@@ -4,19 +4,20 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var config = require('./config/key');
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var studyRouter = require('./routes/study');
 
 var app = express();
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Start MongoDB
+// configure mongoose(MongoDB)
 mongoose.connect(config.mongoURI, {
   useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false
 }).then(() => console.log('MongoDB Connected...'))

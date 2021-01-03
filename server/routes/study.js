@@ -5,16 +5,18 @@ var router = express.Router();
 
 /* GET study listing. */
 router.get('/', function(req, res, next) {
-  res.send('study list');
+  Study.find((err, studies) => {
+    if (err) return res.status(500).json({ success: false, err });
+    res.status(200).json(studies);
+  })
 });
 
 /* POST study create. */
 router.post('/', function(req, res, next) {
-  res.send('create study');
-  const study = new Study(req.body)
-  study.save((err, data) => {
-    if (err) return res.json({ success: false, err })
-    return res.status(200).json({ success: true })
+  const study = new Study(req.body);
+  study.save((err, studies) => {
+    if (err) return res.json({ success: false, err });
+    return res.status(200).json({ success: true });
   })
 });
 
