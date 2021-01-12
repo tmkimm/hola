@@ -6,7 +6,8 @@ var router = express.Router();
 /* GET study listing. */
 router.get('/', function(req, res, next) {
   Study.find((err, studies) => {
-    if (err) return res.status(500).json({ success: false, err });
+    if (err)
+      return res.status(400).json({message: "must be String", err });
     res.status(200).json(studies);
   })
 });
@@ -15,8 +16,16 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   const study = new Study(req.body);
   study.save((err, studies) => {
-    if (err) return res.json({ success: false, err });
-    return res.status(200).json({ success: true });
+    if (err)
+      return res.status(400).json({ errors: [
+        {
+          location: "body",
+          param: "name",
+          error: "TypeError",
+          message: "must be String"
+        }
+      ], err });
+    return res.status(201).json(studies);
   })
 });
 
