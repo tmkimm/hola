@@ -1,8 +1,7 @@
-const mongoose = require('mongoose');
-const { Study } = require('../models/Study');
-var express = require('express');
+import { Study } from '../../models/Study.js';
+import {body, validationResult} from 'express-validator';
+
 var router = express.Router();
-var {body, validationResult} = require('express-validator');
 
 const checkStudy = [
   body('topic').isString().withMessage('Invaild datatype(String)'),
@@ -49,4 +48,4 @@ router.post('/', checkStudy, isStudyValid, function(req, res, next) {
   })
 });
 
-module.exports = router;
+export default router;

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const studySchema = mongoose.Schema({
     topic       : String,
@@ -13,4 +13,4 @@ const studySchema = mongoose.Schema({
 
 const Study = mongoose.model('Study', studySchema);
 
-module.exports = { Study };
+export { Study };
