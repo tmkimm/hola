@@ -5,10 +5,15 @@ const studySchema = mongoose.Schema({
     language    : [String],
     location    : String,
     position    : [{ part: String,
-                     personnel: Number}
-                ],
+                    personnel: Number}
+                    ],
     title       : String,
-    content     : String
+    content     : String,
+    views       : { type: Number, default: 0 }
+},
+{
+    timestamps: true,
+    versionKey: false
 });
 
 const Study = mongoose.model('Study', studySchema);

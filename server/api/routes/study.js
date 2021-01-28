@@ -1,5 +1,6 @@
 import { Study } from '../../models/Study.js';
 import {body, validationResult} from 'express-validator';
+import express from 'express';
 
 var router = express.Router();
 

@@ -4,6 +4,7 @@ import logger from './loaders/logger.js';
 import loaders from './loaders/index.js';
 function startServer() {
   const app = express();
+  
   loaders(app);
 
   app.listen(config.port, () => {
