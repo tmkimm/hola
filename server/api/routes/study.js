@@ -1,8 +1,7 @@
+import { Router } from 'express'; 
 import { Study } from '../../models/Study.js';
 import {body, validationResult} from 'express-validator';
-import express from 'express';
-
-var router = express.Router();
+const route = Router();
 
 const checkStudy = [
   body('topic').isString().withMessage('Invaild datatype(String)'),
@@ -23,30 +22,43 @@ let isStudyValid = (req, res, next) => {
   next();
 };
 
-/* GET study listing. */
-router.get('/', function(req, res, next) {
-  Study.find((err, studies) => {
-    if (err)
-      return res.status(400).json({message: 'must be String', err });
-    res.status(200).json(studies);
-  })
-});
+export default (app) => {
+  app.use('/study', route);
+  
+  /* GET study list. */
+  route.get('/', function(req, res, next) {
+    let limit = 20;
+    let offset = 0;
 
-/* POST study create. */
-router.post('/', checkStudy, isStudyValid, function(req, res, next) {
-  const study = new Study(req.body);
-  study.save((err, studies) => {
-    if (err)
-      return res.status(400).json({ errors: [
-        {
-          location: 'body',
-          param: 'name',
-          error: 'TypeError',
-          message: 'must be String'
-        }
-      ], err });
-    return res.status(201).json(studies);
-  })
-});
+    if(typeof req.query.limit !== 'undefined')
+      limit = req.query.limit;
+    
+    if(typeof req.query.offset !== 'undefined')
+      offset = req.query.offset;
+    
+    Study.find((err, studies) => {
+      if (err)
+        return res.status(400).json({message: 'must be String', err });
+      res.status(200).json(studies);
+    })
+    .limit(Number(limit))
+    .skip(Number(offset))
+  });
 
-export default router;
+  /* POST study create. */
+  route.post('/', checkStudy, isStudyValid, function(req, res, next) {
+    const study = new Study(req.body);
+    study.save((err, studies) => {
+      if (err)
+        return res.status(400).json({ errors: [
+          {
+            location: 'body',
+            param: 'name',
+            error: 'TypeError',
+            message: 'must be String'
+          }
+        ], err });
+      return res.status(201).json(studies);
+    })
+  });
+}

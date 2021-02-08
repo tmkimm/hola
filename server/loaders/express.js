@@ -4,7 +4,7 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import config from '../config/index.js';
 import cors from 'cors';
-import studyRouter from '../api/routes/study.js';
+import routes from '../api/index.js';
 
 export default (app) => {
     app.use(cors());
@@ -13,7 +13,7 @@ export default (app) => {
     app.use(cookieParser());
     app.use(express.static(path.join(path.resolve(), 'public')));
     
-    app.use('/api/study', studyRouter);
+    app.use(config.api.prefix, routes());
     
     // catch 404 and forward to error handler
     app.use(function(req, res, next) {
