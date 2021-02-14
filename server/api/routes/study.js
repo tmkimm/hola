@@ -27,22 +27,28 @@ export default (app) => {
   
   /* GET study list. */
   route.get('/', function(req, res, next) {
-    let limit = 20;
-    let offset = 0;
 
-    if(typeof req.query.limit !== 'undefined')
-      limit = req.query.limit;
+    // Pagenation
+    let offset = parseInt(req.query.offset) || 0;
+    let limit = parseInt(req.query.limit) || 20;
     
-    if(typeof req.query.offset !== 'undefined')
-      offset = req.query.offset;
-    
+    //Sorting
+    const sortableColumns = ['views', 'createdAt'];
+    const sort = req.query.sort.split(',').filter(value => {  // +views, -createdAt
+        return sortableColumns.indexOf(value.substr(1,value.length)) != -1 || sortableColumns.indexOf(value) != -1
+    });
+
+    if(sort.length === 0)
+      sort.push('createdAt');
+
     Study.find((err, studies) => {
       if (err)
         return res.status(400).json({message: 'must be String', err });
       res.status(200).json(studies);
     })
-    .limit(Number(limit))
+    .sort(sort.join(' '))
     .skip(Number(offset))
+    .limit(Number(limit));
   });
 
   /* POST study create. */
