@@ -40,8 +40,19 @@ export default (app) => {
 
     if(sort.length === 0)
       sort.push('createdAt');
+    
+    // Query
+    let query = {};
+    if( typeof req.query.language !== 'undefined' )
+      query.language = {$in: [req.query.language.split(',')]};
 
-    Study.find((err, studies) => {
+    if( typeof req.query.topic !== 'undefined' )
+      query.topic = req.query.topic;
+
+    if( typeof req.query.location !== 'undefined' )
+      query.location = req.query.location;
+
+    Study.find(query, (err, studies) => {
       if (err)
         return res.status(400).json({message: 'must be String', err });
       res.status(200).json(studies);
