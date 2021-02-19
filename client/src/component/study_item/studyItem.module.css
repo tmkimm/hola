@@ -1,20 +1,70 @@
 .studyItem {
-  width: 15rem;
-  height: 15rem;
+  width: 240px;
+  height: 240px;
   margin: 0.625rem;
+  padding: 1.5rem;
   background: #ffffff;
   box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.15);
   border-radius: 1.5rem;
+  position: relative;
 }
 
 .title {
-  font-size: 1.5rem;
-  width: 70%;
+  font-size: 1rem;
+  width: 100%;
   text-align: center;
   margin: 0;
+  margin-top: 1rem;
   padding: 0;
 }
 
-li {
+.content {
+  margin: 0;
+  margin-top: 0.5rem;
+  padding: 0;
+  display: flex;
   list-style: none;
+  justify-content: center;
+}
+
+.language {
+  display: flex;
+  flex-direction: column;
+
+  padding: 5px;
+}
+
+.languageImage {
+  width: 45px;
+  height: 45px;
+}
+
+.languageName {
+  margin: 0;
+  text-align: center;
+  font-size: 12px;
+}
+
+.info {
+  display: flex;
+  font-size: 0.5rem;
+  position: absolute;
+  bottom: 0.5rem;
+  right: 1rem;
+}
+
+.info div {
+  padding-right: 0.5rem;
+}
+
+@media (max-width: 1024px) {
+  .studyItem {
+    width: calc(50% - 2rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .studyItem {
+    width: calc(100% - 2rem);
+  }
 }

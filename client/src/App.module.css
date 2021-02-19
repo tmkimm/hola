@@ -2,17 +2,42 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%;
-  max-width: 80rem;
+}
+
+.wrapper {
+  width: 1300px;
   margin: 0 auto;
 }
 
-.content {
+.temp {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+}
+
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 1 0%;
 }
 
 .title {
-  text-align: left;
+  font-size: 2.25rem;
+  font-weight: 800;
+}
+
+@media screen and (max-width: 1919px) {
+  .wrapper {
+    width: 1040px;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .wrapper {
+    width: 780px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .wrapper {
+    width: calc(100%-2rem);
+  }
 }

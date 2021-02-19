@@ -1,6 +1,5 @@
 .studyList {
   flex-wrap: wrap;
   display: flex;
-  margin: 0;
   padding: 0;
 }
