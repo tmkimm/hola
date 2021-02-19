@@ -18,9 +18,9 @@ const StudyItem = ({ study, onStudyClick }) => {
         ))}
       </ul>
       <section className={styles.info}>
-        <div>{study.location}</div>
-        <div>{study.views}</div>
-        <div>4</div>
+        <p>{study.location}</p>
+        <p>{study.views}</p>
+        <p>4</p>
       </section>
     </li>
   );

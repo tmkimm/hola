@@ -1,10 +1,4 @@
 .app {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.wrapper {
   width: 1300px;
   margin: 0 auto;
 }
@@ -16,7 +10,6 @@
 .main {
   display: flex;
   flex-wrap: wrap;
-  flex: 1 1 0%;
 }
 
 .title {
@@ -25,19 +18,19 @@
 }
 
 @media screen and (max-width: 1919px) {
-  .wrapper {
+  .app {
     width: 1040px;
   }
 }
 
 @media screen and (max-width: 1440px) {
-  .wrapper {
+  .app {
     width: 780px;
   }
 }
 
 @media screen and (max-width: 1024px) {
-  .wrapper {
-    width: calc(100%-2rem);
+  .app {
+    width: calc(100% - 2rem);
   }
 }
