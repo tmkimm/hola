@@ -2,6 +2,7 @@ import styles from "./App.module.css";
 import { useEffect, useState } from "react";
 import StudyList from "./component/study_list/studyList";
 import Navbar from "./component/nav_bar/navbar";
+import Login from "./component/login/login";
 
 function App({ study }) {
   const [popularStudyList, setPopularStudyList] = useState([]);
@@ -30,6 +31,7 @@ function App({ study }) {
   return (
     <div className={styles.app}>
       <Navbar></Navbar>
+      <Login></Login>
       <main className={styles.main}>
         <h1 className={styles.title}>가장 인기있는 글이에요!</h1>
         <StudyList
