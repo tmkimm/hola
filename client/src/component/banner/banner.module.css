@@ -1,0 +1,48 @@
+.banner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainBanner {
+  margin-top: 4rem;
+  display: flex;
+  width: 100%;
+}
+
+.title {
+  flex: 1 1 40%;
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 126.5%;
+  letter-spacing: -0.005em;
+  margin: 0;
+  padding: 0.5rem;
+}
+
+.weak {
+  font-weight: 300;
+  font-size: 2rem;
+}
+
+.mainImg {
+  flex: 1 1 60%;
+}
+
+.mainImgs {
+  width: 100%;
+  padding: 1.5rem;
+}
+
+.subBanner {
+  display: flex;
+  width: 100%;
+}
+
+.subImg {
+  width: 100px;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+}

@@ -1,0 +1,8 @@
+.languageList {
+  margin-top: 10rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  box-shadow: 0px -8px 15px rgba(0, 0, 0, 0.15);
+}

@@ -1,0 +1,21 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #9e9e9e;
+}
+
+.logo {
+  margin-left: 2rem;
+  width: 4.5rem;
+  height: auto;
+}
+
+.login {
+  margin-right: 2rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  outline: none;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}

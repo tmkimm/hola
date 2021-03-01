@@ -14,7 +14,7 @@ const study = new Study(httpClient);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App study={study} />
+    <App studyService={study} />
   </React.StrictMode>,
   document.getElementById("root")
 );

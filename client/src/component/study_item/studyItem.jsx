@@ -2,11 +2,17 @@ import React from "react";
 import styles from "./studyItem.module.css";
 
 const StudyItem = ({ study, onStudyClick }) => {
+  const studyLang = [];
+  for (let i = 0; i < 3; i++) {
+    if (study.language[i] === undefined) break;
+    studyLang.push(study.language[i]);
+  }
+
   return (
     <li className={styles.studyItem} onClick={() => onStudyClick(study)}>
       <h1 className={styles.title}>{study.title}</h1>
       <ul className={styles.content}>
-        {study.language.map((lang) => (
+        {studyLang.map((lang) => (
           <li className={styles.language}>
             <img
               className={styles.languageImage}

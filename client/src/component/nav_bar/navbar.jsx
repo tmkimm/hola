@@ -1,5 +1,16 @@
 import React from "react";
-
-const Navbar = (props) => <nav>Hi im navbar</nav>;
+import styles from "./navbar.module.css";
+const Navbar = (props) => {
+  return (
+    <nav className={styles.navbar}>
+      <img
+        className={styles.logo}
+        src="/images/logo/hola_logo_w.png"
+        alt="logo"
+      />
+      <button className={styles.login}>로그인</button>
+    </nav>
+  );
+};
 
 export default Navbar;
