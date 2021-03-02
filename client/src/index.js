@@ -5,6 +5,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
 import Study from "./service/study_service";
+import { configureStore } from "@reduxjs/toolkit";
+import languageReducer from "./store/store";
+import { Provider } from "react-redux";
+
+const store = configureStore({
+  reducer: {
+    language: languageReducer,
+  },
+});
 
 const httpClient = axios.create({
   baseURL: "http://localhost:3000/api/",
@@ -14,7 +23,9 @@ const study = new Study(httpClient);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App studyService={study} />
+    <Provider store={store}>
+      <App studyService={study} />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
