@@ -6,26 +6,33 @@ import Login from "../../component/login/login";
 import Banner from "../../component/banner/banner";
 import React from "react";
 import LanguageBarList from "../../component/language_bar_list/languageBarList";
+import { useDispatch, useSelector } from "react-redux";
+import { addLanguage, removeLanguage } from "../../store/store";
+
+const SORT_BY_VIEWS = "+views";
+const SORT_BY_DATE = "-createdAt";
 
 const Main = ({ studyService }) => {
   const [popularStudyList, setPopularStudyList] = useState([]);
   const [recentStudyList, setRecentStudyList] = useState([]);
+  const selectedLanguages = useSelector((state) => state.language);
 
   useEffect(() => {
+    console.log("useEffect 실행!!");
     studyService //
-      .getList("-createdAt")
+      .getList(SORT_BY_DATE, selectedLanguages)
       .then((response) => {
         setRecentStudyList(response.data);
       })
       .catch(console.error);
 
     studyService //
-      .getList("+views")
+      .getList(SORT_BY_VIEWS, selectedLanguages)
       .then((response) => {
         setPopularStudyList(response.data);
       })
       .catch(console.error);
-  }, [studyService]);
+  }, [studyService, selectedLanguages]);
 
   const onStudyClick = () => {
     console.log("clicked!");
@@ -33,7 +40,6 @@ const Main = ({ studyService }) => {
 
   return (
     <>
-      <Login></Login>
       <Navbar></Navbar>
       <div className={styles.app}>
         <Banner></Banner>

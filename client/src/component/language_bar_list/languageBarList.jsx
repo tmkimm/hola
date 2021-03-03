@@ -4,21 +4,21 @@ import styles from "./languageBarList.module.css";
 
 const LanguageBarList = (props) => {
   const languages = [
-    "java",
-    "javascript",
-    "typescript",
-    "flutter",
-    "go",
+    "Java",
+    "Javascript",
+    "Typescript",
+    "Flutter",
+    "Go",
     "C",
     "C++",
-    "python",
-    "react",
-    "spring",
-    "vue",
-    "nodejs",
-    "django",
-    "swift",
-    "kotlin",
+    "Python",
+    "React",
+    "Spring",
+    "Vue",
+    "Nodejs",
+    "Django",
+    "Swift",
+    "Kotlin",
   ];
 
   const handleClick = () => {};
