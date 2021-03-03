@@ -44,7 +44,7 @@ export default (app) => {
     // Query
     let query = {};
     if( typeof req.query.language !== 'undefined' )
-      query.language = {$in: [req.query.language.split(',')]};
+      query.language = {$in: req.query.language.split(',')};
 
     if( typeof req.query.topic !== 'undefined' )
       query.topic = req.query.topic;
