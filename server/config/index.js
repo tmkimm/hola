@@ -10,20 +10,17 @@ if (envFound.error) {
 export default {
   port: parseInt(process.env.PORT, 10),
 
- /**
-   * MongoDB URL
-   */
+ /* MongoDB URL */
   databaseURL: process.env.MONGODB_URI,
-
- /**
-   * API configs
-   */
+ /* API configs */
   api: {
     prefix: '/api'
   },
- /**
-   * Used by winston logger
-   */
+ /* Google OAuth2.0 */
+  googleClientID: process.env.GOOGLE_CLIENT_ID,
+ /* JWT Secret */
+  jwtSecretKey: process.env.JWT_SECRET_KEY,
+ /* Used by winston logger */
   logs: {
     level: process.env.LOG_LEVEL || 'silly',
   },

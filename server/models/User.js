@@ -4,33 +4,36 @@ import mongoose from 'mongoose';
 // const jwt = require('jsonwebtoken');
 
 const userSchema = mongoose.Schema({
-    name: {
-        type: String,
-        maxlength: 50
+    id: {
+        type: String
     },
     email: {
         type: String,
         trim: true,
         unique: 1
     },
-    password: {
-        type: String,
-        minlength: 5
-    },
-    lastname: {
+    name: {
         type: String,
         maxlength: 50
+    },
+    nickname: {
+        type: String,
+        maxlength: 100
+    },
+    password: {
+        type: String,
+        minlength: 8
     },
     role: {
         type: Number,
         default: 0
     },
     image: String,
-    token: {
+    idToken: {
         type: String
     },
-    tokenExp: {
-        type: Number
+    tokenType: {
+        type: String
     }
 });
 
@@ -82,3 +85,4 @@ userSchema.statics.findByToken = function (token, cb) {
 const User = mongoose.model('User', userSchema);
 
 export { User };
+
