@@ -57,6 +57,19 @@ export default (app) => {
                     expiresIn: '7d',
                     issuer: 'Hola',
                 });
+
+            const accessExpiryDate = new Date(Date.now() + 60 * 60 * 1000) // 1 hour
+            res.cookie("accessToken", accessToken, {
+                httpOnly: true,
+                secure: true,
+                expires: accessExpiryDate
+            });
+            res.cookie("refreshToken", refreshToken, {
+                httpOnly: true,
+                secure: true,
+                expires: expiryDate
+            });
+
             return res.status(200).json({
                 accessToken: accessToken,
                 refreshToken: refreshToken
