@@ -7,11 +7,17 @@
   box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.15);
   border-radius: 1.5rem;
   position: relative;
+  cursor: pointer;
+  transition: all 200ms ease-in;
+}
+
+.studyItem:hover {
+  transform: scale(1.02);
 }
 
 .title {
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 400;
   width: 100%;
   text-align: center;
   margin: 0;
@@ -62,6 +68,18 @@
 
 .info p {
   padding-right: 0.5rem;
+}
+
+.infoItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.itemImg {
+  width: 15px;
+  height: auto;
+  margin-right: 2px;
 }
 
 @media (max-width: 1024px) {

@@ -19,14 +19,27 @@ const StudyItem = ({ study, onStudyClick }) => {
               src={`/images/languages/${lang}.png`}
               alt="language"
             />
-            <h4 className={styles.languageName}>{lang}</h4>
+            <p className={styles.languageName}>{lang}</p>
           </li>
         ))}
       </ul>
       <section className={styles.info}>
-        <p>{study.location}</p>
-        <p>{study.views}</p>
-        <p>4</p>
+        <div className={styles.infoItem}>
+          <img
+            className={styles.itemImg}
+            src="/images/info/location.png"
+            alt="location"
+          />
+          <p>{study.location}</p>
+        </div>
+        <div className={styles.infoItem}>
+          <img
+            className={styles.itemImg}
+            src="/images/info/heart_filled.png"
+            alt="location"
+          />
+          <p>{study.views}</p>
+        </div>
       </section>
     </li>
   );
