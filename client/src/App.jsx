@@ -5,6 +5,7 @@ import Main from "./page/main/main";
 import PostList from "./page/postList/postList";
 import PostRegister from "./page/postRegister/postRegister";
 import Setting from "./page/setting/setting";
+import LoginModal from "./component/modal/login_modal/loginModal";
 
 function App({ studyService }) {
   return (
