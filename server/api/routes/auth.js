@@ -14,7 +14,7 @@ export default (app) => {
     /* Oauth2.0 구글 로그인 */
     route.post('/', async (req, res, next) => {
         const { tokenId } = req.body;
-        try {
+  //      try {
             const ticket = await client.verifyIdToken({
                 idToken: tokenId,
                 audience: config.googleClientID
@@ -54,28 +54,27 @@ export default (app) => {
                 },
                 config.jwtSecretKey,
                 {
-                    expiresIn: '7d',
+                    expiresIn: '2w',
                     issuer: 'Hola',
                 });
 
-            const accessExpiryDate = new Date(Date.now() + 60 * 60 * 1000) // 1 hour
-            res.cookie("accessToken", accessToken, {
+            res.cookie("X_AUTH", accessToken, {
                 httpOnly: true,
-                secure: true,
-                expires: accessExpiryDate
+                secure: false,
+                maxAge: 1000 * 60 * 60              // 1 Hour
             });
-            res.cookie("refreshToken", refreshToken, {
+            res.cookie("R_AUTH", refreshToken, {
                 httpOnly: true,
-                secure: true,
-                expires: expiryDate
+                secure: false,
+                maxAge: 1000 * 60 * 60 * 24 * 14    // 2 Week
             });
 
             return res.status(200).json({
-                accessToken: accessToken,
-                refreshToken: refreshToken
+                loginSuccess: true,
+                userEmail: userEmail
             });
-        } catch(error) {
-            res.status(402).json({message : 'Invalid credentials'});
-        }
+        // } catch(error) {
+        //     res.status(402).json({message : 'Invalid credentials'});
+        // }
     });
 }
