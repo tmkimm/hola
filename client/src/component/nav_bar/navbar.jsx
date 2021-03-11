@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import Banner from "../banner/banner";
+import LoginModal from "../modal/login_modal/loginModal";
 import Modal from "../modal/modal_component/modal";
+import StudyItem from "../study_item/studyItem";
 import styles from "./navbar.module.css";
 
 const Navbar = (props) => {
@@ -22,18 +25,8 @@ const Navbar = (props) => {
         로그인
       </button>
       {modalVisible && (
-        <Modal
-          visible={modalVisible}
-          closable={true}
-          maskClosable={true}
-          onClose={closeModal}
-        >
-          1안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요 6안녕하세요
-          안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요 11안녕하세요 안녕하세요
-          3안녕하세요 4안녕하세요 5안녕하세요 16안녕하세요 안녕하세요
-          3안녕하세요 4안녕하세요 5안녕하세요 21안녕하세요 안녕하세요
-          3안녕하세요 4안녕하세요 5안녕하세요 26안녕하세요 안녕하세요
-          3안녕하세요 4안녕하세요 5안녕하세요
+        <Modal visible={modalVisible} onClose={closeModal}>
+          <LoginModal handleClose={closeModal} tabIndex={0}></LoginModal>
         </Modal>
       )}
     </nav>

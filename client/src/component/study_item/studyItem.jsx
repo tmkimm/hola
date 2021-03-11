@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./studyItem.module.css";
 import Modal from "../modal/modal_component/modal";
+import PostModal from "../modal/post_modal/postModal";
 
 const StudyItem = ({ study, onStudyClick }) => {
   const studyLang = [];
@@ -11,7 +12,6 @@ const StudyItem = ({ study, onStudyClick }) => {
 
   const [modalVisible, setModalVisible] = useState(false);
   const openModal = () => {
-    console.log("click!!!!!!!!!!!1");
     setModalVisible(true);
   };
   const closeModal = () => {
@@ -20,70 +20,6 @@ const StudyItem = ({ study, onStudyClick }) => {
 
   return (
     <>
-      {modalVisible && (
-        <Modal
-          visible={modalVisible}
-          closable={true}
-          maskClosable={true}
-          onClose={closeModal}
-        >
-          1안녕하세요 2안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요
-          6안녕하세요 7안녕하세요 8안녕하세요 9안녕하세요 10안녕하세요
-          11안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요
-          16안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요
-          21안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요
-          26안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요flskdjfs
-          16안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요
-          21안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요
-          26안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요flskdjfs
-          16안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요
-          21안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요
-          26안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요flskdjfs
-          16안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요
-          21안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요
-          26안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요flskdjfs
-          16안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요
-          21안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요
-          26안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요flskdjfs
-          16안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요
-          21안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요
-          26안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요flskdjfs
-          16안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요
-          21안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요
-          26안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요flskdjfs
-          16안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요
-          21안녕하세요 안녕하세요 3안녕하세요 4안녕하세요 5안녕하세요
-          26안녕하세요 안녕하세요 3안녕하세요 4안녕하세요
-          5안녕하세요flskdjfs16안녕하세요 안녕하세요 3안녕하세요 4안녕하세요
-          5안녕하세요 21안녕하세요 안녕하세요 3안녕하세요 4안녕하세요
-          5안녕하세요 26안녕하세요 안녕하세요 3안녕하세요 4안녕하세요
-          5안녕하세요flskdjfs16안녕하세요 안녕하세요 3안녕하세요 4안녕하세요
-          5안녕하세요 21안녕하세요 안녕하세요 3안녕하세요 4안녕하세요
-          5안녕하세요 26안녕하세요 안녕하세요 3안녕하세요 4안녕하세요
-          5안녕하세요flskdjfs dfsalkfjaslfjslkfmoamdlkfjlsadfjlsdkfjlksfjl
-          sdjflskdjflskjflskdjfs dfsalkfjaslfjslkfmoamdlkfjlsadfjlsdkfjlksfjl
-          sdjflskdjflskjflskdjfs dfsalkfjaslfjslkfmoamdlkfjlsadfjlsdkfjlksfjl
-          sdjflskdjflskjflskdjfs dfsalkfjaslfjslkfmoamdlkfjlsadfjlsdkfjlksfjl
-          sdjflskdjflskjflskdjfs dfsalkfjaslfjslkfmoamdlkfjlsadfjlsdkfjlksfjl
-          sdjflskdjflskjflskdjfs dfsalkfjaslfjslkfmoamdlkfjlsadfjlsdkfjlksfjl
-          sdjflskdjflskjflskdjfs dfsalkfjaslfjslkfmoamdlkfjlsadfjlsdkfjlksfjl
-          sdjflskdjflskjflskdjfs dfsalkfjaslfjslkfmoamdlkfjlsadfjlsdkfjlksfjl
-          sdjflskdjflskjflskdjfs dfsalkfjaslfjslkfmoamdlkfjlsadfjlsdkfjlksfjl
-          sdjflskdjflskjflskdjfs dfsalkfjaslfjslkfmoamdlkfjlsadfjlsdkfjlksfjl
-          sdjflskdjflskjflskdjfs dfsalkfjaslfjslkfmoamdlkfjlsadfjlsdkfjlksfjl
-          sdjflskdjflskjflskdjfs dfsalkfjaslfjslkfmoamdlkfjlsadfjlsdkfjlksfjl
-          sdjflskdjflskjflskdjfs dfsalkfjaslfjslkfmoamdlkfjlsadfjlsdkfjlksfjl
-          sdjflskdjflskjflskdjfs dfsalkfjaslfjslkfmoamdlkfjlsadfjlsdkfjlksfjl
-          sdjflskdjflskjflskdjfs dfsalkfjaslfjslkfmoamdlkfjlsadfjlsdkfjlksfjl
-          sdjflskdjflskjflskdjfs dfsalkfjaslfjslkfmoamdlkfjlsadfjlsdkfjlksfjl
-          sdjflskdjflskjflskdjfs dfsalkfjaslfjslkfmoamdlkfjlsadfjlsdkfjlksfjl
-          sdjflskdjflskjflskdjfs dfsalkfjaslfjslkfmoamdlkfjlsadfjlsdkfjlksfjl
-          sdjflskdjflskjflskdjfs dfsalkfjaslfjslkfmoamdlkfjlsadfjlsdkfjlksfjl
-          sdjflskdjflskjflskdjfs dfsalkfjaslfjslkfmoamdlkfjlsadfjlsdkfjlksfjl
-          sdjflskdjflskjflskdjfs dfsalkfjaslfjslkfmoamdlkfjlsadfjlsdkfjlksfjl
-          sdjflskdjflskjflskdjfs dfsalkfjaslfjslkf
-        </Modal>
-      )}
       <li className={styles.studyItem} onClick={openModal}>
         <h1 className={styles.title}>{study.title}</h1>
         <ul className={styles.content}>
@@ -117,6 +53,11 @@ const StudyItem = ({ study, onStudyClick }) => {
           </div>
         </section>
       </li>
+      {modalVisible && (
+        <Modal visible={modalVisible} onClose={closeModal}>
+          <PostModal handleClose={closeModal} tabIndex={0}></PostModal>
+        </Modal>
+      )}
     </>
   );
 };

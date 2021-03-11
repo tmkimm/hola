@@ -2,7 +2,6 @@ import styles from "./main.module.css";
 import { useEffect, useState } from "react";
 import StudyList from "../../component/study_list/studyList";
 import Navbar from "../../component/nav_bar/navbar";
-import Login from "../../component/login/login";
 import Banner from "../../component/banner/banner";
 import React from "react";
 import LanguageBarList from "../../component/language_bar_list/languageBarList";
