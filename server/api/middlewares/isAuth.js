@@ -9,14 +9,13 @@ const isAuth = (req, res, next) => {
         } catch(err) {
             if (err.message === 'jwt expired') {
                 res.status(401).json({message : 'expired token'});
-            } else if (err.message === 'invalid token') {
-                res.status(401).json({message : 'invalid token'});
             } else {
                 res.status(401).json({message : 'invalid token'});
             }
         }
+        next();
       } else {
         res.status(401).json({message : 'Token not found'});
       }
   }
-  export default isAuth;
+  export { isAuth };

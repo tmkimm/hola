@@ -1,6 +1,7 @@
 import { Router } from 'express'; 
 import { Study } from '../../models/Study.js';
 import {body, validationResult} from 'express-validator';
+import { isAuth } from '../middlewares/isAuth.js';
 const route = Router();
 
 const checkStudy = [
@@ -63,7 +64,7 @@ export default (app) => {
   });
 
   /* POST study create. */
-  route.post('/', checkStudy, isStudyValid, function(req, res, next) {
+  route.post('/', checkStudy, isStudyValid, isAuth, function(req, res, next) {
     const study = new Study(req.body);
     study.save((err, studies) => {
       if (err)
