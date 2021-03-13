@@ -6,7 +6,11 @@
 .main {
   margin-top: 5rem;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.languageBarWrapper {
+  box-shadow: 0px -8px 15px rgba(0, 0, 0, 0.15);
 }
 
 .title {

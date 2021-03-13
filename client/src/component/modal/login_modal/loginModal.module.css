@@ -1,0 +1,53 @@
+.wrapper {
+  width: 606px;
+  height: 480px;
+  box-shadow: rgb(0 0 0 / 9%) 0px 2px 12px 0px;
+  position: relative;
+  display: flex;
+  top: 50%;
+  margin: 0 auto;
+  transform: translateY(-50%);
+}
+
+.grayBlock {
+  width: 216px;
+  background: rgb(241, 243, 245);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.whiteBlock {
+  flex: 1 1 0%;
+  background: white;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.exitWrapper {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1.5rem;
+  color: rgb(134, 142, 150);
+  margin-bottom: 2.25rem;
+}
+
+.blockContent {
+  flex: 1 1 0%;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.welcome {
+  text-align: center;
+  font-size: 1.2rem;
+}

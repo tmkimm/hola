@@ -12,7 +12,7 @@ class Study {
           sort: query,
           offset: 0,
           limit: 20,
-          //language: qs,
+          language: qs,
         },
       });
       return studyList;

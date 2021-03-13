@@ -9,7 +9,7 @@ const languageSlice = createSlice({
     },
     removeLanguage: (state, action) => {
       state.splice(
-        state.findIndex((item) => item === action.payload.language),
+        state.findIndex((item) => item === action.payload),
         1
       );
     },
