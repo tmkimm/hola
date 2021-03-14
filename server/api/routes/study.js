@@ -16,6 +16,16 @@ export default (app) => {
 
     res.status(200).json(studies);
   });
+  
+  /* GET study one. */
+  route.get('/:sequence', async (req, res, next) => {
+    const sequence = req.params.sequence;
+
+    let StudyServcieInstance = new StudyServcie();
+    const study = await StudyServcieInstance.findOneStudy(sequence);
+
+    res.status(200).json(study);
+  });
 
   /* POST study create. */
   route.post('/', checkStudy, isStudyValid, isAuth, function(req, res, next) {
