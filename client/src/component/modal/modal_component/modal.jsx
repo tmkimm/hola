@@ -5,14 +5,9 @@ import Portal from "../portal/portal";
 function Modal({ onClose, visible, children }) {
   const onMaskClick = (e) => {
     if (e.target === e.currentTarget) {
-      document.body.style.overflow = "auto";
       onClose(e);
     }
   };
-
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-  }, []);
 
   return (
     <Portal elementId="modal-root">

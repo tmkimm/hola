@@ -14,6 +14,7 @@ class Study {
       };
 
       if (selectedLanguages.length !== 0) {
+        // 선택된 language가 있으면 language 속성 추가
         const qs = selectedLanguages.map((language) => language).join(",");
         params.language = qs;
       }
