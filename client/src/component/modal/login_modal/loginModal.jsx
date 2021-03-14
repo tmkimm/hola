@@ -1,27 +1,16 @@
-import React, { useState } from "react";
 import styles from "./loginModal.module.css";
 import GoogleLogin from "react-google-login";
+import { useDispatch } from "react-redux";
+import { fetchUserById } from "../../../store/user";
 
 const LoginModal = ({ handleClose }) => {
-  const clientId =
-    "883481629680-maq49j99rprpqk2p1ujsd6mli0tp7lpg.apps.googleusercontent.com";
+  const clientId = process.env.REACT_APP_GOOGLE_LOGIN_API_KEY;
+  const dispatch = useDispatch();
+
   const onSuccess = async (response) => {
-    console.log("###########Response#########");
     console.log(response);
-
-    const {
-      googleId,
-      profileObj: { email, name },
-    } = response;
-
-    /*
-        await onSocial({
-            socialId : googleId,
-            socialType : 'google',
-            email,
-            nickname : name
-        });
-        */
+    const { tokenId } = response;
+    dispatch(fetchUserById(tokenId)).then(handleClose);
   };
 
   const onFailure = (error) => {
@@ -29,20 +18,20 @@ const LoginModal = ({ handleClose }) => {
   };
 
   return (
-    <div class={styles.wrapper}>
-      <div class={styles.grayBlock}>
+    <div className={styles.wrapper}>
+      <div className={styles.grayBlock}>
         <div>
           <img src="images/logo/hola_logo_y.png" alt="welcome"></img>
         </div>
       </div>
-      <div class={styles.whiteBlock}>
-        <div class={styles.exitWrapper} onClick={handleClose}>
+      <div className={styles.whiteBlock}>
+        <div className={styles.exitWrapper} onClick={handleClose}>
           <svg
             stroke="currentColor"
             fill="currentColor"
-            stroke-width="0"
+            strokeWidth="0"
             viewBox="0 0 24 24"
-            tabindex="1"
+            tabIndex="1"
             height="1em"
             width="1em"
             xmlns="http://www.w3.org/2000/svg"

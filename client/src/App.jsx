@@ -1,18 +1,15 @@
-import styles from "./App.module.css";
-import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Main from "./page/main/main";
 import PostList from "./page/postList/postList";
 import PostRegister from "./page/postRegister/postRegister";
 import Setting from "./page/setting/setting";
-import LoginModal from "./component/modal/login_modal/loginModal";
 
-function App({ studyService }) {
+function App() {
   return (
     <Router>
       <Switch>
         <Route exact path={["/", "/main"]}>
-          <Main studyService={studyService} />
+          <Main />
         </Route>
         <Route path="/list">
           <PostList></PostList>

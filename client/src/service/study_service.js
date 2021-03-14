@@ -1,19 +1,25 @@
+import httpClient from "./http_client";
+
 class Study {
-  constructor(httpClient) {
+  constructor() {
     this.study = httpClient;
   }
 
   getList = async (query, selectedLanguages) => {
     try {
-      const qs = selectedLanguages.map((language) => language).join(",");
-      console.log(qs);
+      const params = {
+        sort: query,
+        offset: 0,
+        limit: 20,
+      };
+
+      if (selectedLanguages.length !== 0) {
+        const qs = selectedLanguages.map((language) => language).join(",");
+        params.language = qs;
+      }
+
       const studyList = await this.study.get("study", {
-        params: {
-          sort: query,
-          offset: 0,
-          limit: 20,
-          language: qs,
-        },
+        params,
       });
       return studyList;
     } catch (error) {
@@ -22,4 +28,5 @@ class Study {
   };
 }
 
-export default Study;
+const studyService = new Study(httpClient);
+export default studyService;

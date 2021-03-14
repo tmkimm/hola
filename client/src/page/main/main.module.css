@@ -3,8 +3,12 @@
   margin: 0 auto;
 }
 
+.appWrapper {
+  padding-top: 5rem;
+  background-color: #f8f9fa;
+}
+
 .main {
-  margin-top: 5rem;
   display: flex;
   flex-direction: column;
 }

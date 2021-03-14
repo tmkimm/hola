@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import Banner from "../banner/banner";
 import LoginModal from "../modal/login_modal/loginModal";
 import Modal from "../modal/modal_component/modal";
-import StudyItem from "../study_item/studyItem";
 import styles from "./navbar.module.css";
+import { useSelector } from "react-redux";
 
 const Navbar = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const user = useSelector((state) => state.user);
+  console.log(user);
+
   const openModal = () => {
     setModalVisible(true);
   };
@@ -16,14 +18,20 @@ const Navbar = (props) => {
 
   return (
     <nav className={styles.navbar}>
-      <img
-        className={styles.logo}
-        src="/images/logo/hola_logo_w.png"
-        alt="logo"
-      />
-      <button className={styles.login} onClick={openModal}>
-        로그인
-      </button>
+      <a href="/">
+        <img
+          className={styles.logo}
+          src="/images/logo/hola_logo_w.png"
+          alt="logo"
+        />
+      </a>
+      {user.userName === undefined ? (
+        <button className={styles.login} onClick={openModal}>
+          로그인
+        </button>
+      ) : (
+        <div className={styles.user}>{user.userName}</div>
+      )}
       {modalVisible && (
         <Modal visible={modalVisible} onClose={closeModal}>
           <LoginModal handleClose={closeModal} tabIndex={0}></LoginModal>
