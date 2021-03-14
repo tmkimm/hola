@@ -6,11 +6,12 @@ import Banner from "../../component/banner/banner";
 import React from "react";
 import LanguageBarList from "../../component/language_bar_list/languageBarList";
 import { useSelector } from "react-redux";
+import studyService from "../../service/study_service";
 
 const SORT_BY_VIEWS = "+views";
 const SORT_BY_DATE = "-createdAt";
 
-const Main = ({ studyService }) => {
+const Main = () => {
   const [popularStudyList, setPopularStudyList] = useState([]);
   const [recentStudyList, setRecentStudyList] = useState([]);
   const selectedLanguages = useSelector((state) => state.language);
@@ -29,7 +30,7 @@ const Main = ({ studyService }) => {
         setPopularStudyList(response.data);
       })
       .catch(console.error);
-  }, [studyService, selectedLanguages]);
+  }, [selectedLanguages]);
 
   const onStudyClick = () => {
     console.log("clicked!");
@@ -42,19 +43,21 @@ const Main = ({ studyService }) => {
       <div className={styles.languageBarWrapper}>
         <LanguageBarList />
       </div>
-      <div className={styles.app}>
-        <main className={styles.main}>
-          <h1 className={styles.title}>가장 인기있는 글이에요!</h1>
-          <StudyList
-            onStudyClick={onStudyClick}
-            studyList={popularStudyList}
-          ></StudyList>
-          <h1 className={styles.title}>지금 올라왔어요!</h1>
-          <StudyList
-            onStudyClick={onStudyClick}
-            studyList={recentStudyList}
-          ></StudyList>
-        </main>
+      <div className={styles.appWrapper}>
+        <div className={styles.app}>
+          <main className={styles.main}>
+            <h1 className={styles.title}>가장 인기있는 글이에요!</h1>
+            <StudyList
+              onStudyClick={onStudyClick}
+              studyList={popularStudyList}
+            ></StudyList>
+            <h1 className={styles.title}>지금 올라왔어요!</h1>
+            <StudyList
+              onStudyClick={onStudyClick}
+              studyList={recentStudyList}
+            ></StudyList>
+          </main>
+        </div>
       </div>
     </>
   );

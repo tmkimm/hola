@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styles from "./languageBarItem.module.css";
-import { addLanguage, removeLanguage } from "../../store/store";
+import { addLanguage, removeLanguage } from "../../store/language";
 
 const LanguageBarItem = ({ Language }) => {
   const [selected, setSelected] = useState(false);

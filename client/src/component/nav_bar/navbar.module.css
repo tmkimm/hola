@@ -1,7 +1,6 @@
 .navbar {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #9e9e9e;
 }
 
 .logo {
@@ -18,4 +17,10 @@
   border: none;
   background-color: white;
   cursor: pointer;
+}
+
+.user {
+  margin-right: 2rem;
+  font-weight: 600;
+  font-size: 1.5rem;
 }
