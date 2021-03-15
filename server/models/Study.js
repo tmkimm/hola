@@ -1,7 +1,17 @@
 import mongoose from 'mongoose';
 import autoincrement from 'mongoose-auto-increment';
 
+const commentSchema = mongoose.Schema({
+    contents: String,
+    author: String
+},
+{
+    timestamps: true,
+    versionKey: false
+});
+
 const studySchema = mongoose.Schema({
+    author      : String,
     topic       : String,
     language    : [String],
     location    : String,
@@ -10,8 +20,10 @@ const studySchema = mongoose.Schema({
                     ],
     title       : String,
     content     : String,
+    isDeleted   : { type: Boolean, default: false},
     views       : { type: Number, default: 0 },
-    sequence       : { type: Number, default: 0 }
+    sequence       : { type: Number, default: 0 },
+    comments    : [commentSchema]
 },
 {
     timestamps: true,
