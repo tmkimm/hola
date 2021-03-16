@@ -19,8 +19,8 @@ const fetchUserById = createAsyncThunk(
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    userName: undefined,
-    userId: undefined,
+    name: undefined,
+    id: undefined,
   },
   reducers: {
     setUser: (state, action) => {
@@ -32,7 +32,7 @@ const userSlice = createSlice({
   },
   extraReducers: {
     [fetchUserById.fulfilled]: (state, { payload }) => {
-      state.userName = payload.userName;
+      state.name = payload.userName;
     },
   },
 });
