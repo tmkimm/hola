@@ -27,7 +27,7 @@ const Navbar = (props) => {
           alt="logo"
         />
       </a>
-      {user.userName === undefined ? (
+      {user.name === undefined ? (
         <button className={styles.login} onClick={openModal}>
           로그인
         </button>
