@@ -3,6 +3,19 @@
   justify-content: space-between;
 }
 
+button {
+  outline: none;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+.loginElementWrapper {
+  display: flex;
+  margin-top: 0.5rem;
+  margin-right: 1rem;
+}
+
 .logo {
   margin-left: 2rem;
   width: 4.5rem;
@@ -13,10 +26,18 @@
   margin-right: 2rem;
   font-weight: 600;
   font-size: 1.125rem;
-  outline: none;
-  border: none;
-  background-color: white;
-  cursor: pointer;
+}
+
+.postList {
+  margin-right: 2rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.postRegister {
+  margin-right: 2rem;
+  font-weight: 600;
+  font-size: 1.125rem;
 }
 
 .user {

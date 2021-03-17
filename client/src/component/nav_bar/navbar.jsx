@@ -3,9 +3,12 @@ import LoginModal from "../modal/login_modal/loginModal";
 import Modal from "../modal/modal_component/modal";
 import styles from "./navbar.module.css";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import LoginUser from "../login_user/loginUser";
 
 const Navbar = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
+
   const user = useSelector((state) => state.user);
   console.log(user);
 
@@ -27,13 +30,23 @@ const Navbar = (props) => {
           alt="logo"
         />
       </a>
-      {user.userName === undefined ? (
-        <button className={styles.login} onClick={openModal}>
-          로그인
+      <div className={styles.loginElementWrapper}>
+        <button className={styles.postList}>
+          <Link to="/list">게시판</Link>
         </button>
-      ) : (
-        <div className={styles.user}>{user.userName}</div>
-      )}
+        {user.name === undefined ? (
+          <button className={styles.login} onClick={openModal}>
+            로그인
+          </button>
+        ) : (
+          <>
+            <button className={styles.postRegister}>
+              <Link to="/register">새 글 쓰기</Link>
+            </button>
+            <LoginUser />
+          </>
+        )}
+      </div>
       {modalVisible && (
         <Modal visible={modalVisible} onClose={closeModal}>
           <LoginModal handleClose={closeModal} tabIndex={0}></LoginModal>
