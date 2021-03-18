@@ -28,7 +28,7 @@ export default (app) => {
   });
 
   /* POST study create. */
-  route.post('/', checkStudy, isStudyValid, isAuth, function(req, res, next) {
+  route.post('/', checkStudy, isStudyValid, function(req, res, next) {
     const study = new Study(req.body);
     study.save((err, studies) => {
       if (err)
