@@ -1,12 +1,10 @@
 import mongoose from 'mongoose';
-import autoincrement from 'mongoose-auto-increment';
 
 const commentSchema = mongoose.Schema({
-    contents: String,
+    content: String,
     author: String
 },
 {
-    timestamps: true,
     versionKey: false
 });
 
@@ -22,21 +20,10 @@ const studySchema = mongoose.Schema({
     content     : String,
     isDeleted   : { type: Boolean, default: false},
     views       : { type: Number, default: 0 },
-    sequence       : { type: Number, default: 0 },
     comments    : [commentSchema]
 },
 {
-    timestamps: true,
     versionKey: false
-});
-
-autoincrement.initialize(mongoose.connection);
-
-studySchema.plugin(autoincrement.plugin, {
-    model: 'Study',
-    field: 'sequence',
-    startAt: 1,
-    increment: 1
 });
 
 studySchema.statics.findStudy = async function(offset, limit, sort, language) {
@@ -58,17 +45,41 @@ studySchema.statics.findStudy = async function(offset, limit, sort, language) {
 
     // Query
     let query = {};
+    //query.isDeleted = false;
     if( typeof language !== 'undefined' )
         query.language = {$in: language.split(',')};
   
     return await Study.find(query)
+    //.where('isDeleted').equals(false)
     .sort(sortQuery.join(' '))
     .skip(Number(offsetQuery))
-    .limit(Number(limitQuery));
+    .limit(Number(limitQuery))
+    .select('-isDeleted -comments');
 };
 
-studySchema.statics.findOneStudy = async function(sequence) {
-    return this.findOne({ sequence: sequence });
+studySchema.statics.registerComment = async function(id, content, author) {
+    return await Study.findByIdAndUpdate(
+        { _id: id },
+        {
+          $push: {
+            comments: {
+              content,
+              author
+            }
+          }
+        },
+        {
+          new: true,
+          upsert: true
+        }
+      );
+}
+
+studySchema.statics.deletestudy = function(id) {
+    const isDeleted = Study.findByIdAndUpdate(
+        { _id: id },
+        { isDeleted: true}
+      );
 }
 
 const Study = mongoose.model('Study', studySchema);

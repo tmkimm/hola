@@ -19,9 +19,9 @@ export default class AuthService {
 
             // 신규 사용자 생성
             if (!user) {
-                return res.status(400).json({
+                return res.status(200).json({
                     loginSuccess: false,
-                    message : '회원 가입을 진행합니다.'
+                    message : '회원 가입을 진행해야 합니다.'
                 });
             }
 

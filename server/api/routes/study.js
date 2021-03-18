@@ -17,18 +17,8 @@ export default (app) => {
     res.status(200).json(studies);
   });
   
-  /* GET study one. */
-  route.get('/:sequence', async (req, res, next) => {
-    const sequence = req.params.sequence;
-
-    let StudyServcieInstance = new StudyServcie();
-    const study = await StudyServcieInstance.findOneStudy(sequence);
-
-    res.status(200).json(study);
-  });
-
   /* POST study create. */
-  route.post('/', checkStudy, isStudyValid, function(req, res, next) {
+  route.post('/', checkStudy, isStudyValid, isAuth, function(req, res, next) {
     const study = new Study(req.body);
     study.save((err, studies) => {
       if (err)
@@ -42,5 +32,33 @@ export default (app) => {
         ], err });
       return res.status(201).json(studies);
     })
+  });
+
+  /* GET study one. */
+  route.get('/:id', async (req, res, next) => {
+    const id = req.params.id;
+
+    let StudyServcieInstance = new StudyServcie();
+    const study = await StudyServcieInstance.findById(id);
+
+    res.status(200).json(study);
+  });
+
+  // 스터디 글 삭제
+  route.delete('/:id', (req, res, next) => {
+    const id = req.params.id;
+
+    let StudyServcieInstance = new StudyServcie();
+    StudyServcieInstance.deleteStudy(id);
+    res.status(204).json();
+  });
+
+  route.post('/comments', async (req, res, next) => {
+    const { id, content, author } = req.body;
+
+    let StudyServcieInstance = new StudyServcie();
+    const study = await StudyServcieInstance.registerComment(id, content, author);
+
+    return res.status(200).json(study);
   });
 }
