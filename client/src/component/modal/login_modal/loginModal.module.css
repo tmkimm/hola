@@ -1,30 +1,31 @@
 .wrapper {
-  width: 606px;
+  width: 700px;
   height: 480px;
   box-shadow: rgb(0 0 0 / 9%) 0px 2px 12px 0px;
   position: relative;
   display: flex;
+  flex-direction: column;
   top: 50%;
   margin: 0 auto;
   transform: translateY(-50%);
 }
 
 .grayBlock {
-  width: 216px;
-  background: rgb(241, 243, 245);
-  padding: 1.5rem;
+  background: #f8f9fa;
+  padding: 0 1rem;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
 .whiteBlock {
-  flex: 1 1 0%;
   background: white;
+  height: 100%;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
+
+  align-items: center;
 }
 
 .exitWrapper {
@@ -32,7 +33,6 @@
   justify-content: flex-end;
   font-size: 1.5rem;
   color: rgb(134, 142, 150);
-  margin-bottom: 2.25rem;
 }
 
 .blockContent {
@@ -42,12 +42,13 @@
 }
 
 img {
-  width: 100%;
+  width: 4rem;
   height: auto;
   display: block;
 }
 
-.welcome {
-  text-align: center;
-  font-size: 1.2rem;
+.loginWrapper {
+  display: flex;
+  justyfy-content: space-around;
+  align-items: center;
 }

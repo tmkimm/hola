@@ -2,6 +2,8 @@ import styles from "./loginModal.module.css";
 import GoogleLogin from "react-google-login";
 import { useDispatch } from "react-redux";
 import { fetchUserById } from "../../../store/user";
+import DropdownBar from "../../dropdown_bar/dropdownBar";
+import GoogleButton from "../../login_button/google_button/googleButton";
 
 const LoginModal = ({ handleClose }) => {
   const clientId = process.env.REACT_APP_GOOGLE_LOGIN_API_KEY;
@@ -20,11 +22,7 @@ const LoginModal = ({ handleClose }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.grayBlock}>
-        <div>
-          <img src="images/logo/hola_logo_y.png" alt="welcome"></img>
-        </div>
-      </div>
-      <div className={styles.whiteBlock}>
+        <img src="images/logo/hola_logo_y.png" alt="welcome"></img>
         <div className={styles.exitWrapper} onClick={handleClose}>
           <svg
             stroke="currentColor"
@@ -39,15 +37,23 @@ const LoginModal = ({ handleClose }) => {
             <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
           </svg>
         </div>
-        <div>
+      </div>
+      <div className={styles.whiteBlock}>
+        <h1>Hello World! Code your Dream.</h1>
+        <section className={styles.loginWrapper}>
           <GoogleLogin
             clientId={clientId}
             responseType={"id_token"}
             onSuccess={onSuccess}
             onFailure={onFailure}
-            buttonText={"Google 계정으로 로그인하기"}
+            render={(renderProps) => (
+              <GoogleButton
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+              ></GoogleButton>
+            )}
           />
-        </div>
+        </section>
       </div>
     </div>
   );
