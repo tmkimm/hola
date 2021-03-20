@@ -19,6 +19,7 @@ const studySchema = mongoose.Schema({
     title       : String,
     content     : String,
     isDeleted   : { type: Boolean, default: false},
+    isClosed    : { type: Boolean, default: false},
     views       : { type: Number, default: 0 },
     comments    : [commentSchema]
 },
@@ -45,21 +46,20 @@ studySchema.statics.findStudy = async function(offset, limit, sort, language) {
 
     // Query
     let query = {};
-    //query.isDeleted = false;
     if( typeof language !== 'undefined' )
         query.language = {$in: language.split(',')};
   
     return await Study.find(query)
-    //.where('isDeleted').equals(false)
+    .where('isDeleted').equals(false)
     .sort(sortQuery.join(' '))
     .skip(Number(offsetQuery))
     .limit(Number(limitQuery))
     .select('-isDeleted -comments');
 };
 
-studySchema.statics.registerComment = async function(id, content, author) {
+studySchema.statics.registerComment = async function(studyId, content, author) {
     return await Study.findByIdAndUpdate(
-        { _id: id },
+        { _id: studyId },
         {
           $push: {
             comments: {
@@ -75,11 +75,58 @@ studySchema.statics.registerComment = async function(id, content, author) {
       );
 }
 
-studySchema.statics.deletestudy = function(id) {
-    const isDeleted = Study.findByIdAndUpdate(
+studySchema.statics.deleteStudy = async function(id) {
+    await Study.findByIdAndUpdate(
         { _id: id },
-        { isDeleted: true}
+        { isDeleted: true},
+    );
+}
+
+studySchema.statics.modifyStudy = async function(id, study) {
+    const studyRecord = await Study.findByIdAndUpdate(
+        { _id: id },
+        study,
+        { 
+          new: true
+        }
       );
+    return studyRecord;
+}
+
+studySchema.statics.modifyComment = async function(comment) {
+    const commentRecord = await Study.findOneAndUpdate(
+        {
+            comments:
+            {
+                $elemMatch: { _id : comment.id } 
+            }
+        },
+        {
+            $set:
+            {
+                'comments.$' : comment
+            }
+        },
+        { 
+            new: true
+        }
+      );
+    return commentRecord;
+}
+
+studySchema.statics.deleteComment = async function(id) {
+    const commentRecord = await Study.findOneAndUpdate(
+        { 
+            comments:
+            {
+                $elemMatch: { _id : id } 
+            }
+        },
+        {
+            $pull: { comments: { _id: id } }
+        }
+      );
+    return commentRecord;
 }
 
 const Study = mongoose.model('Study', studySchema);

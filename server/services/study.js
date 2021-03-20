@@ -11,12 +11,31 @@ export default class StudyServcie {
         return studies;
     }
 
-    async registerComment(id, content, author) {
-        const study = await Study.registerComment(id, content, author);
-        return study;
+    async registerStudy(study) {
+        const studyRecord = await Study.create(study);
+        return studyRecord;
+    }
+
+    async modifyStudy(id, study) {
+        const studyRecord = await Study.modifyStudy(id, study);
+        return studyRecord;
     }
 
     async deleteStudy(id) {
-        Study.deleteStudy(id);
+        await Study.deleteStudy(id);
+    }
+
+    async registerComment(comment) {
+        const { studyId, content, author } = comment;
+        const study = await Study.registerComment(studyId, content, author);
+        return study;
+    }
+
+    async modifyComment(comment) {
+        const commentRecord = await Study.modifyComment(comment);
+        return commentRecord;
+    }
+    async deleteComment(id) {
+        await Study.deleteComment(id);
     }
 }
