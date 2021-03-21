@@ -9,6 +9,7 @@
   transition: all 0.125s ease-in 0s;
   color: white;
   box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.15);
+  background-color: #fae100;
 }
 
 .buttonWrapper {

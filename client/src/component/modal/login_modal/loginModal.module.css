@@ -1,6 +1,6 @@
 .wrapper {
-  width: 700px;
-  height: 480px;
+  width: 800px;
+  height: 550px;
   box-shadow: rgb(0 0 0 / 9%) 0px 2px 12px 0px;
   position: relative;
   display: flex;
@@ -10,7 +10,7 @@
   transform: translateY(-50%);
 }
 
-.grayBlock {
+.modalHeader {
   background: #f8f9fa;
   padding: 0 1rem;
   display: flex;
@@ -18,13 +18,12 @@
   align-items: center;
 }
 
-.whiteBlock {
+.modalContent {
   background: white;
   height: 100%;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-
   align-items: center;
 }
 
@@ -48,7 +47,9 @@ img {
 }
 
 .loginWrapper {
+  margin-top: 4rem;
+  width: 60%;
   display: flex;
-  justyfy-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
