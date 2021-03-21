@@ -5,7 +5,8 @@ const isAuth = (req, res, next) => {
       if(req.headers.authorization && req.headers.authorization.startWith('Bearer')) {
         let token = req.headers.authorization.split(' ')[1];
         try {
-            jwt.verify(token, config.jwtSecretKey);
+            const decoded = jwt.verify(token, config.jwtSecretKey);
+            req.user.nickName = decoded.nickName;
         } catch(err) {
             if (err.message === 'jwt expired') {
                 res.status(401).json({message : 'expired token'});

@@ -14,9 +14,11 @@ export default (app) => {
             });
         }
         let AuthServiceInstance = new AuthService();
-        const accessToken = await AuthServiceInstance.isRefreshTokenValid(req.cookies.R_AUTH);
+        const { userEmail, userNickName, accessToken } = await AuthServiceInstance.reissueAccessToken(req.cookies.R_AUTH);
         
         return res.status(200).json({
+            userEmail: userEmail,
+            userNickName: userNickName,
             accessToken: accessToken
         });        
     });

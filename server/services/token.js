@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
 import config from '../config/index.js';
 
-const generateToken = (payload, expiresIn) => {
-    let token = jwt.sign(
+const generateToken = async (payload, expiresIn) => {
+    let token = await jwt.sign(
         payload,
         config.jwtSecretKey,
         {

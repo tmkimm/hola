@@ -1,10 +1,11 @@
 import mongoose from 'mongoose';
-import jwt from 'jsonwebtoken';
-import config from '../config/index.js';
-import { generateToken, decodeToken } from '../services/token.js'
+import { generateToken, decodeToken } from '../services/token.js';
 
 const userSchema = mongoose.Schema({
-    id: {
+    idToken: {
+        type: String
+    },
+    tokenType: {
         type: String
     },
     email: {
@@ -16,7 +17,7 @@ const userSchema = mongoose.Schema({
         type: String,
         maxlength: 50
     },
-    nickname: {
+    nickName: {
         type: String,
         maxlength: 100
     },
@@ -24,32 +25,23 @@ const userSchema = mongoose.Schema({
         type: String,
         minlength: 8
     },
-    role: {
-        type: Number,
-        default: 0
-    },
     image: String,
-    idToken: {
-        type: String
-    },
-    tokenType: {
-        type: String
-    }
+    likesLanguage: [String]
 });
 
 userSchema.statics.findByEmail = function(email) {
     return this.findOne({ email: email });
 };
 
-userSchema.statics.findByUserID = function(userId) {
-    return this.findOne({ id: userId });
+userSchema.statics.findByIdToken = function(idToken) {
+    return this.findOne({ idToken: idToken });
 };
 
-userSchema.methods.generateAccessToken = function() {
+userSchema.methods.generateAccessToken = async function() {
     const user = this;
-    let accessToken = generateToken(
+    const accessToken = await generateToken(
         {
-            name: user.name,
+            nickName: user.nickName,
             email: user.email
         },
         '1h'
@@ -59,7 +51,7 @@ userSchema.methods.generateAccessToken = function() {
 
 userSchema.methods.generateRefreshToken = function() {
     const user = this;
-    let refreshToken = generateToken(
+    const refreshToken = generateToken(
         {
             email: user.email
         },

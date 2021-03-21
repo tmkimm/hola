@@ -6,43 +6,29 @@ import { decodeToken } from './token.js';
 const client = new OAuth2Client(config.googleClientID);
 
 export default class AuthService {
-    async SignInGoogle(tokenId) {
+    async SignIn(idToken) {
         try {
-            const ticket = await client.verifyIdToken({
-                idToken: tokenId,
-                audience: config.googleClientID
-            });  
-
-            const payload = ticket.getPayload();
-            const { sub: googleId, name: userName, email: userEmail } = payload;
-            const user =  await User.findByUserID(googleId);
-
-            // 신규 사용자 생성
-            if (!user) {
-                return res.status(200).json({
-                    loginSuccess: false,
-                    message : '회원 가입을 진행해야 합니다.'
-                });
-            }
+            const user =  await User.findByIdToken(idToken);
 
             // Access Token, Refresh Token 발급
-            const accessToken = user.generateAccessToken();
-            const refreshToken = user.generateRefreshToken();
-
-            return {userEmail, userName, accessToken, refreshToken};
+            const accessToken = await user.generateAccessToken();
+            const refreshToken = await user.generateRefreshToken();
+            return { accessToken, refreshToken };
         } catch(error) {
             res.status(401).json({message : 'Invalid credentials'});
         }
     }
 
-    async isRefreshTokenValid(refreshToken) {
+    // Refresh Token을 이용하여 Access Token 재발급
+    async reissueAccessToken(refreshToken) {
         const decodeRefreshToken = decodeToken(refreshToken);
         if(!decodeRefreshToken) {
             res.status(401).json({message : 'invalid token'});
         }
         
         const user =  await User.findByEmail(decodeRefreshToken.email);
+        const { nickName: userNickName, email: userEmail } = user;
         const accessToken = user.generateAccessToken();
-        return accessToken;
+        return { userEmail, userNickName, accessToken };
     }
 }
