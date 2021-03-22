@@ -5,7 +5,7 @@ import StudyServcie from '../../services/study.js';
 const route = Router();
 
 export default (app) => {
-  app.use('/study', route);
+  app.use('/studies', route);
   
   // 스터디 리스트 조회
   route.get('/', async (req, res, next) => {

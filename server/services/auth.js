@@ -1,7 +1,7 @@
 import config from '../config/index.js';
+import jwt from 'jsonwebtoken';
 import { OAuth2Client} from 'google-auth-library';
 import { User } from '../models/User.js';
-import { decodeToken } from './token.js';
 
 const client = new OAuth2Client(config.googleClientID);
 
@@ -21,7 +21,11 @@ export default class AuthService {
 
     // Refresh Token을 이용하여 Access Token 재발급
     async reissueAccessToken(refreshToken) {
-        const decodeRefreshToken = decodeToken(refreshToken);
+        const decodeRefreshToken = jwt.verify(
+            refreshToken,
+            config.jwtSecretKey
+        );
+
         if(!decodeRefreshToken) {
             res.status(401).json({message : 'invalid token'});
         }

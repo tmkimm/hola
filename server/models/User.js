@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
-import { generateToken, decodeToken } from '../services/token.js';
+import jwt from 'jsonwebtoken';
+import config from '../config/index.js';
 
 const userSchema = mongoose.Schema({
     idToken: {
@@ -26,8 +27,25 @@ const userSchema = mongoose.Schema({
         minlength: 8
     },
     image: String,
-    likesLanguage: [String]
+    likeLanguages: [String]
 });
+
+userSchema.statics.deleteUser= async function(id) {
+    await User.findByIdAndDelete(
+        { _id: id }
+    );
+}
+
+userSchema.statics.modifyUser = async function(id, user) {
+    const userRecord = await User.findByIdAndUpdate(
+        { _id: id },
+        user,
+        { 
+          new: true
+        }
+      );
+    return userRecord;
+}
 
 userSchema.statics.findByEmail = function(email) {
     return this.findOne({ email: email });
@@ -39,25 +57,30 @@ userSchema.statics.findByIdToken = function(idToken) {
 
 userSchema.methods.generateAccessToken = async function() {
     const user = this;
-    const accessToken = await generateToken(
+    const accessToken = await jwt.sign(
         {
             nickName: user.nickName,
             email: user.email
         },
-        '1h'
-    );
+        config.jwtSecretKey,
+        {
+            expiresIn: '1h',
+            issuer: config.issuer
+     });
     return accessToken;
 };
 
-userSchema.methods.generateRefreshToken = function() {
+userSchema.methods.generateRefreshToken = async function() {
     const user = this;
-    const refreshToken = generateToken(
+    const refreshToken = await jwt.sign(
         {
             email: user.email
         },
-        '2w'
-    );
-    return refreshToken;
+        config.jwtSecretKey,
+        {
+            expiresIn: '2w',
+            issuer: config.issuer
+     });
 };
 
 const User = mongoose.model('User', userSchema);
