@@ -1,14 +1,37 @@
-import { Router } from 'express'; 
+import { Router } from 'express';
+import UserServcie from '../../services/user.js';
+const route = Router();
 
-// 입력 받음 : nickName, likeLanguage
-// id, email, name, idToken, tokenType
-// 회원 가입 시 일단 로그인?
 export default (app) => {
     app.use('/users', route);
-
-    route.patch('/', async (req, res, next) => {
-        const user;
+    
+    // 사용자 정보 상세 보기
+    route.get('/:id', async (req, res, next) => {
+        const id = req.params.id;
+        
+        let UserServcieInstance = new UserServcie();
+        const user = await UserServcieInstance.findById(id);
 
         res.status(200).json(user);
-    })
+    });
+
+    // 사용자 정보 수정
+    route.patch('/:id', async (req, res, next) => {
+        const id = req.params.id;
+        const userDTO = req.body;
+
+        let UserServcieInstance = new UserServcie();
+        const user = await UserServcieInstance.modifyUser(id, userDTO);
+
+        res.status(200).json(user); 
+    });
+
+    // 사용자 정보 삭제(회원탈퇴)
+    route.delete('/:id', async (req, res, next) => {
+        const id = req.params.id;
+
+        let UserServcieInstance = new UserServcie();
+        await UserServcieInstance.deleteUser(id);
+        res.status(204).json();
+    });
 }
