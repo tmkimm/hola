@@ -19,7 +19,7 @@ class Study {
         params.language = qs;
       }
 
-      const studyList = await this.study.get("study", {
+      const studyList = await this.study.get("studies", {
         params,
       });
       return studyList;

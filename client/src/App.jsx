@@ -3,6 +3,7 @@ import Main from "./page/main/main";
 import PostList from "./page/postList/postList";
 import PostRegister from "./page/postRegister/postRegister";
 import Setting from "./page/setting/setting";
+import GithubLogin from "./page/auth/githubLogin";
 
 function App() {
   return (
@@ -12,14 +13,17 @@ function App() {
           <Main />
         </Route>
         <Route path="/list">
-          <PostList></PostList>
+          <PostList />
         </Route>
       </Switch>
       <Route path="/register">
-        <PostRegister></PostRegister>
+        <PostRegister />
       </Route>
       <Route path="/setting">
-        <Setting></Setting>
+        <Setting />
+      </Route>
+      <Route path="/auth/github">
+        <GithubLogin />
       </Route>
     </Router>
   );
