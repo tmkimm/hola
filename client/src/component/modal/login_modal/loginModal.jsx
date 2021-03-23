@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./loginModal.module.css";
 import GoogleLogin from "react-google-login";
+import KakaoLogin from "react-kakao-login";
 import { useDispatch } from "react-redux";
 import { fetchUserById } from "../../../store/user";
 import GoogleButton from "../../login_button/google_button/googleButton";
@@ -57,7 +58,8 @@ const LoginModal = ({ handleClose }) => {
 };
 
 const SocialLogin = ({ handleLoginStep, handleClose }) => {
-  const clientId = process.env.REACT_APP_GOOGLE_LOGIN_API_KEY;
+  const googleClientId = process.env.REACT_APP_GOOGLE_LOGIN_API_KEY;
+  const kakaoClientId = process.env.REACT_APP_KAKAO_LOGIN_API_KEY;
   const dispatch = useDispatch();
 
   const onSuccess = async (response) => {
@@ -78,7 +80,7 @@ const SocialLogin = ({ handleLoginStep, handleClose }) => {
       <h1>Hola에 오신 것을 환영합니다!</h1>
       <section className={styles.loginWrapper}>
         <GoogleLogin
-          clientId={clientId}
+          clientId={googleClientId}
           responseType={"id_token"}
           onSuccess={onSuccess}
           onFailure={onFailure}
@@ -90,7 +92,14 @@ const SocialLogin = ({ handleLoginStep, handleClose }) => {
           )}
         />
         <GithubButton></GithubButton>
-        <KakaoButton></KakaoButton>
+        <KakaoLogin
+          token={kakaoClientId}
+          onSuccess={onSuccess}
+          onFailure={onFailure}
+          render={({ onClick }) => (
+            <KakaoButton onClick={onClick}></KakaoButton>
+          )}
+        />
       </section>
     </>
   );

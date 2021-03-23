@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./kakaoButton.module.css";
 
-const KakaoButton = (props) => (
+const KakaoButton = ({ onClick }) => (
   <div classname={styles.buttonWrapper}>
-    <button className={styles.button}>
+    <button className={styles.button} onClick={onClick}>
       <svg
         id="Bold"
         enable-background="new 0 0 24 24"
