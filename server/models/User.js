@@ -38,7 +38,7 @@ userSchema.statics.deleteUser= async function(id) {
 
 userSchema.statics.modifyUser = async function(id, user) {
     const userRecord = await User.findByIdAndUpdate(
-        { _id: id },
+        id,
         user,
         { 
           new: true
@@ -47,12 +47,16 @@ userSchema.statics.modifyUser = async function(id, user) {
     return userRecord;
 }
 
-userSchema.statics.findByEmail = function(email) {
-    return this.findOne({ email: email });
+userSchema.statics.findByEmail = async function(email) {
+    return await User.findOne({ email: email });
 };
 
-userSchema.statics.findByIdToken = function(idToken) {
-    return this.findOne({ idToken: idToken });
+userSchema.statics.findByIdToken = async function(idToken) {
+    return await User.findOne({ idToken: idToken });
+};
+
+userSchema.statics.findByNickname = async function(nickName) {
+    return await User.findOne({ nickName: nickName });
 };
 
 userSchema.methods.generateAccessToken = async function() {
@@ -81,6 +85,7 @@ userSchema.methods.generateRefreshToken = async function() {
             expiresIn: '2w',
             issuer: config.issuer
      });
+    return refreshToken;
 };
 
 const User = mongoose.model('User', userSchema);
