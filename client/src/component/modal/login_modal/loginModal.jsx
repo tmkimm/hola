@@ -62,7 +62,7 @@ const SocialLogin = ({ handleLoginStep, handleClose }) => {
   const kakaoClientId = process.env.REACT_APP_KAKAO_LOGIN_API_KEY;
   const dispatch = useDispatch();
 
-  const onSuccess = async (response) => {
+  const googleOnSuccess = async (response) => {
     const { tokenId } = response;
     dispatch(fetchUserById(tokenId)).then((response) => {
       console.log(response);
@@ -71,7 +71,15 @@ const SocialLogin = ({ handleLoginStep, handleClose }) => {
     });
   };
 
-  const onFailure = (error) => {
+  const googleOnFailure = (error) => {
+    console.log(error);
+  };
+
+  const kakaoOnSuccess = async (response) => {
+    console.log(response);
+  };
+
+  const kakaoOnFailure = (error) => {
     console.log(error);
   };
 
@@ -82,8 +90,8 @@ const SocialLogin = ({ handleLoginStep, handleClose }) => {
         <GoogleLogin
           clientId={googleClientId}
           responseType={"id_token"}
-          onSuccess={onSuccess}
-          onFailure={onFailure}
+          onSuccess={googleOnSuccess}
+          onFailure={googleOnFailure}
           render={(renderProps) => (
             <GoogleButton
               onClick={renderProps.onClick}
@@ -94,8 +102,8 @@ const SocialLogin = ({ handleLoginStep, handleClose }) => {
         <GithubButton></GithubButton>
         <KakaoLogin
           token={kakaoClientId}
-          onSuccess={onSuccess}
-          onFailure={onFailure}
+          onSuccess={kakaoOnSuccess}
+          onFailure={kakaoOnFailure}
           render={({ onClick }) => (
             <KakaoButton onClick={onClick}></KakaoButton>
           )}
