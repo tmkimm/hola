@@ -8,7 +8,6 @@ import LoginUser from "../login_user/loginUser";
 
 const Navbar = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
-
   const user = useSelector((state) => state.user);
   console.log(user);
 
@@ -34,7 +33,7 @@ const Navbar = (props) => {
         <button className={styles.postList}>
           <Link to="/list">게시판</Link>
         </button>
-        {user.name === undefined ? (
+        {user.nickName === undefined ? (
           <button className={styles.login} onClick={openModal}>
             로그인
           </button>
