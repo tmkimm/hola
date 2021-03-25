@@ -1,5 +1,5 @@
 import { Router } from 'express'; 
-import AuthService from '../../services/auth.js';
+import { AuthService } from '../../services/index.js';
 
 const route = Router();
 
@@ -9,17 +9,17 @@ export default (app) => {
     route.get('/', async (req, res, next) => {
         if(!req.cookies.R_AUTH) {
             return res.status(401).json({
-                accessToken: accessToken,
                 message : 'Token not found'
             });
         }
         let AuthServiceInstance = new AuthService();
-        const { userEmail, userNickName, accessToken } = await AuthServiceInstance.reissueAccessToken(req.cookies.R_AUTH);
+        const { _id, nickName, email, accessToken } = await AuthServiceInstance.reissueAccessToken(req.cookies.R_AUTH);
         
         return res.status(200).json({
-            userEmail: userEmail,
-            userNickName: userNickName,
-            accessToken: accessToken
+            _id,
+            email,
+            nickName,
+            accessToken
         });        
     });
 }

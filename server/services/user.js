@@ -1,6 +1,6 @@
 import { User } from '../models/User.js';
 
-export default class UserServcie {
+export class UserServcie {
     async findById(id) {
         const users = await User.findById(id);
         return users;

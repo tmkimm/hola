@@ -1,7 +1,7 @@
 import { Router } from 'express'; 
-import { isAuth } from '../middlewares/isAuth.js';
-import { checkStudy, isStudyValid } from '../middlewares/isStudyValid.js';
-import StudyServcie from '../../services/study.js';
+import { checkStudy, isStudyValid, isAuth } from '../middlewares/index.js';
+import { StudyServcie } from '../../services/index.js';
+
 const route = Router();
 
 export default (app) => {

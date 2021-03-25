@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import UserServcie from '../../services/user.js';
+import { UserServcie } from '../../services/index.js';
+import { nickNameDuplicationCheck } from '../middlewares/index.js'
 const route = Router();
 
 export default (app) => {
@@ -16,7 +17,7 @@ export default (app) => {
     });
 
     // 사용자 정보 수정
-    route.patch('/:id', async (req, res, next) => {
+    route.patch('/:id', nickNameDuplicationCheck, async (req, res, next) => {
         const id = req.params.id;
         const userDTO = req.body;
 

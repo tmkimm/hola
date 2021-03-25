@@ -5,7 +5,7 @@ import { User } from '../models/User.js';
 
 const client = new OAuth2Client(config.googleClientID);
 
-export default class AuthService {
+export class AuthService {
     async SignIn(idToken) {
         try {
             const user =  await User.findByIdToken(idToken);
@@ -31,8 +31,8 @@ export default class AuthService {
         }
         
         const user =  await User.findByEmail(decodeRefreshToken.email);
-        const { nickName: userNickName, email: userEmail } = user;
-        const accessToken = user.generateAccessToken();
-        return { userEmail, userNickName, accessToken };
+        const { _id, nickName, email } = user;
+        const accessToken = await user.generateAccessToken();
+        return { _id, nickName, email, accessToken };
     }
 }

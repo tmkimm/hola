@@ -18,6 +18,9 @@ export default {
   },
  /* Google OAuth2.0 */
   googleClientID: process.env.GOOGLE_CLIENT_ID,
+/* GitHub OAuth2.0 */
+  githubClientID: process.env.GITHUB_CLIENT_ID,
+  githubClientSecret: process.env.GITHUB_CLIENT_SECRET,
  /* JWT Secret */
   jwtSecretKey: process.env.JWT_SECRET_KEY,
  /* Used by winston logger */
