@@ -38,9 +38,9 @@ export default (app) => {
 
     // Oauth2.0 구글 로그인
     route.post('/google', isTokenValidWithGoogle, autoSignUp, async (req, res, next) => {
-        const { idToken } = req.user; 
+        const { email } = req.user; 
         let AuthServiceInstance = new AuthService();
-        const { accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);
+        const { accessToken, refreshToken } = await AuthServiceInstance.SignIn(email);
         
         res.cookie("R_AUTH", refreshToken, {
             httpOnly: true,
@@ -57,12 +57,22 @@ export default (app) => {
     });
 
     // OAuth2.0 깃 로그인
-    route.post('/github', isTokenValidWithGithub, async (req, res, next) => {
+    route.post('/github', isTokenValidWithGithub, autoSignUp, async (req, res, next) => {
+        const { email } = req.user; 
+        let AuthServiceInstance = new AuthService();
+        const { accessToken, refreshToken } = await AuthServiceInstance.SignIn(email);
+        
+        res.cookie("R_AUTH", refreshToken, {
+            httpOnly: true,
+            secure: false,
+            maxAge: 1000 * 60 * 60 * 24 * 14    // 2 Week
+        });
+        
         return res.status(200).json({
             loginSuccess: true,
-            // userEmail: req.user.email,
-            // userNickName: req.user.name,
-            // accessToken: accessToken
+            email: req.user.email,
+            nickName: req.user.name,
+            accessToken: accessToken
         });
     });
 }

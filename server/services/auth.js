@@ -6,9 +6,9 @@ import { User } from '../models/User.js';
 const client = new OAuth2Client(config.googleClientID);
 
 export class AuthService {
-    async SignIn(idToken) {
+    async SignIn(email) {
         try {
-            const user =  await User.findByIdToken(idToken);
+            const user =  await User.findByEmail(email);
 
             // Access Token, Refresh Token 발급
             const accessToken = await user.generateAccessToken();

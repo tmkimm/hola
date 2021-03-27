@@ -1,7 +1,7 @@
 import { User } from '../../models/User.js';
 
 const autoSignUp = async (req, res, next) => {
-    const user =  await User.findByIdToken(req.user.idToken);
+    const user =  await User.findByEmail(req.user.email);
 
     if(!user) {
         const newUser = await User.create(req.user);   
