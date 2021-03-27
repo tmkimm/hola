@@ -8,6 +8,7 @@ const fetchUserById = createAsyncThunk(
     const response = await authService.googleLogin(userId);
     const accessToken = response.data.accessToken;
 
+    // header에 access token 설정
     httpClient.defaults.headers.common[
       "Authorization"
     ] = `Bearer ${accessToken}`;

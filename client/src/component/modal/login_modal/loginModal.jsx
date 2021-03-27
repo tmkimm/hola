@@ -64,6 +64,7 @@ const SocialLogin = ({ handleLoginStep, handleClose }) => {
 
   const googleOnSuccess = async (response) => {
     const { tokenId } = response;
+    console.log("#########token ID : ", tokenId);
     dispatch(fetchUserById(tokenId)).then((response) => {
       console.log(response);
       if (response.payload.loginSuccess === true) handleClose();
@@ -116,12 +117,14 @@ const SocialLogin = ({ handleLoginStep, handleClose }) => {
 const SignUp = () => {
   return (
     <>
-      <h1>Hola에 오신 것을 환영합니다!</h1>
-      <section>
-        <div className={styles.temp}>회원가입 페이지 입니다....</div>
-        <div className={styles.temp}>회원가입 페이지 입니다....</div>
-        <div className={styles.temp}>회원가입 페이지 입니다....</div>
-      </section>
+      <h1>Hola에 처음 오셨군요! 닉네임을 설정해 보세요.</h1>
+      <form>
+        <label>
+          닉네임 :
+          <input type="text" name="닉네임" />
+        </label>
+        <input type="submit" value="회원가입" />
+      </form>
     </>
   );
 };
