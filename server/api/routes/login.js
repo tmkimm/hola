@@ -57,7 +57,7 @@ export default (app) => {
     });
 
     // OAuth2.0 깃 로그인
-    route.post('/google', isTokenValidWithGithub, async (req, res, next) => {
+    route.post('/github', isTokenValidWithGithub, async (req, res, next) => {
         return res.status(200).json({
             loginSuccess: true,
             // userEmail: req.user.email,

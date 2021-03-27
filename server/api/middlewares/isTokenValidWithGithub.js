@@ -4,8 +4,6 @@ import axios from 'axios';
 const isTokenValidWithGithub = async (req, res, next) => {
     try {
         console.log(`req.body: ${req.body.code}`);
-        console.log(`config.githubClientID: ${config.githubClientID}`);
-        console.log(`config.githubClientSecret: ${config.githubClientSecret}`);
 
         const response = await axios.post(
             'https://github.com/login/oauth/access_token',
@@ -29,10 +27,21 @@ const isTokenValidWithGithub = async (req, res, next) => {
         });
 
         console.log(`data :${data}`);
+
+        // const emails = await data.json();
+        // if (!emails || emails.length === 0) {
+        //   return
+        // }
+        // // Sort by primary email - the user may have several emails, but only one of them will be primary
+        // const sortedEmails = emails.sort((a, b) => b.primary - a.primary);
+        // profile.email = sortedEmails[0].email;
+
+        // console.log(`data :${profile.email}`);
+        return res.status(200).json(data);
         next();
 
     } catch (error) {
-        res.status(401).json({message : 'Invalid credentials'});
+        return res.status(401).json({message : 'Invalid credentials'});
     }
 }
 
