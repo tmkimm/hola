@@ -1,3 +1,4 @@
+import user from "../store/user";
 import httpClient from "./http_client";
 
 class Auth {
@@ -11,6 +12,15 @@ class Auth {
         tokenId,
       });
       return user;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  getUserInfo = async () => {
+    try {
+      const userInfo = await this.auth.get("auth");
+      return userInfo;
     } catch (error) {
       console.error(error);
     }
