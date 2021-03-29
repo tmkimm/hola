@@ -66,7 +66,7 @@ const SocialLogin = ({ handleLoginStep, handleClose }) => {
     const { tokenId } = response;
     console.log("#########token ID : ", tokenId);
     dispatch(fetchUserById(tokenId)).then((response) => {
-      console.log(response);
+      console.log("fetchByuserID response :", response);
       if (response.payload.loginSuccess === true) handleClose();
       else handleLoginStep();
     });
