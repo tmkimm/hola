@@ -7,9 +7,21 @@ class Auth {
   }
 
   googleLogin = async (tokenId) => {
+    console.log("code: ", tokenId);
     try {
       const user = await this.auth.post("login/google", {
         tokenId,
+      });
+      return user;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  githubLogin = async (code) => {
+    try {
+      const user = await this.auth.post("login/github", {
+        code,
       });
       return user;
     } catch (error) {
