@@ -11,7 +11,7 @@ const isTokenValidWithGoogle = async (req, res, next) => {
         const payload = ticket.getPayload();
         const { sub: idToken, name, email } = payload; 
         const tokenType = 'Google';
-        req.user = { idToken, name, email, tokenType };
+        req.user = { idToken, tokenType, name, email };
         next();
     } catch (error) {
         res.status(401).json({message : 'Invalid credentials'});

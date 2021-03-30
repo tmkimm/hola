@@ -6,14 +6,16 @@ import { User } from '../models/User.js';
 const client = new OAuth2Client(config.googleClientID);
 
 export class AuthService {
-    async SignIn(email) {
+    async SignIn(idToken) {
         try {
-            const user =  await User.findByEmail(email);
+            const user =  await User.findByIdToken(idToken);
 
             // Access Token, Refresh Token 발급
+            const _id = user._id;
+            const nickName = user.nickName;
             const accessToken = await user.generateAccessToken();
             const refreshToken = await user.generateRefreshToken();
-            return { accessToken, refreshToken };
+            return { _id, nickName, accessToken, refreshToken };
         } catch(error) {
             res.status(401).json({message : 'Invalid credentials'});
         }
@@ -30,7 +32,7 @@ export class AuthService {
             res.status(401).json({message : 'invalid token'});
         }
         
-        const user =  await User.findByEmail(decodeRefreshToken.email);
+        const user =  await User.findByNickname(decodeRefreshToken.nickName);
         const { _id, nickName, email } = user;
         const accessToken = await user.generateAccessToken();
         return { _id, nickName, email, accessToken };

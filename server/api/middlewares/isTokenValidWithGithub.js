@@ -3,7 +3,6 @@ import axios from 'axios';
 
 const isTokenValidWithGithub = async (req, res, next) => {
     try {
-
         // 인가코드를 이용하여 AccessToken 발급
         const accessToken = await axios.post(
             'https://github.com/login/oauth/access_token',
@@ -39,12 +38,11 @@ const isTokenValidWithGithub = async (req, res, next) => {
         const filterEmails = await userEmails.data.filter(user => {
             return user.primary && user.visibility === 'private'
         });
-
-        const idToken = userInfo.id;
+        const idToken = userInfo.idToken;
         const name = userInfo.name;
         const tokenType = 'Github';
         const email = filterEmails[0].email;
-        req.user = { idToken, name, email, tokenType };
+        req.user = { idToken, tokenType, name, email };
 
         next();
     } catch (error) {

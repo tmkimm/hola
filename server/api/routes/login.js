@@ -1,6 +1,6 @@
 import { Router } from 'express'; 
 import { AuthService, UserServcie } from '../../services/index.js';
-import { isTokenValidWithGoogle, isTokenValidWithGithub, nickNameDuplicationCheck, autoSignUp } from '../middlewares/index.js';
+import { isTokenValidWithGoogle, isTokenValidWithGithub, isTokenValidWithKakao, nickNameDuplicationCheck, autoSignUp } from '../middlewares/index.js';
 
 const route = Router();
 
@@ -30,17 +30,16 @@ export default (app) => {
         return res.status(200).json({
             loginSuccess: true,
             _id: user._id,
-            email: user.email,
-            nickName: user.name,
+            nickName: user.nickName,
             accessToken: accessToken
         });
     });
 
     // Oauth2.0 구글 로그인
     route.post('/google', isTokenValidWithGoogle, autoSignUp, async (req, res, next) => {
-        const { email } = req.user; 
+        const { idToken } = req.user; 
         let AuthServiceInstance = new AuthService();
-        const { accessToken, refreshToken } = await AuthServiceInstance.SignIn(email);
+        const { _id, nickName, accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);
         
         res.cookie("R_AUTH", refreshToken, {
             httpOnly: true,
@@ -50,17 +49,17 @@ export default (app) => {
         
         return res.status(200).json({
             loginSuccess: true,
-            email: req.user.email,
-            nickName: req.user.name,
+            _id: _id,
+            nickName: nickName,
             accessToken: accessToken
         });
     });
 
     // OAuth2.0 깃 로그인
     route.post('/github', isTokenValidWithGithub, autoSignUp, async (req, res, next) => {
-        const { email } = req.user; 
+        const { idToken } = req.user; 
         let AuthServiceInstance = new AuthService();
-        const { accessToken, refreshToken } = await AuthServiceInstance.SignIn(email);
+        const { _id, nickName, accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);
         
         res.cookie("R_AUTH", refreshToken, {
             httpOnly: true,
@@ -70,8 +69,28 @@ export default (app) => {
         
         return res.status(200).json({
             loginSuccess: true,
-            email: req.user.email,
-            nickName: req.user.name,
+            _id: _id,
+            nickName: nickName,
+            accessToken: accessToken
+        });
+    });
+
+    // OAuth2.0 카카오 로그인
+    route.post('/kakao', isTokenValidWithKakao, autoSignUp, async (req, res, next) => {
+        const { idToken } = req.user; 
+        let AuthServiceInstance = new AuthService();
+        const { _id, nickName, accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);
+        
+        res.cookie("R_AUTH", refreshToken, {
+            httpOnly: true,
+            secure: false,
+            maxAge: 1000 * 60 * 60 * 24 * 14    // 2 Week
+        });
+        
+        return res.status(200).json({
+            loginSuccess: true,
+            _id: _id,
+            nickName: nickName,
             accessToken: accessToken
         });
     });

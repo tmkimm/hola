@@ -3,12 +3,8 @@ import jwt from 'jsonwebtoken';
 import config from '../config/index.js';
 
 const userSchema = mongoose.Schema({
-    idToken: {
-        type: String
-    },
-    tokenType: {
-        type: String
-    },
+    idToken: String,
+    tokenType: String,
     email: {
         type: String,
         trim: true,
@@ -47,12 +43,12 @@ userSchema.statics.modifyUser = async function(id, user) {
     return userRecord;
 }
 
-userSchema.statics.findByEmail = async function(email) {
-    return await User.findOne({ email: email });
-};
-
 userSchema.statics.findByIdToken = async function(idToken) {
     return await User.findOne({ idToken: idToken });
+};
+
+userSchema.statics.findByEmail = async function(email) {
+    return await User.findOne({ email: email });
 };
 
 userSchema.statics.findByNickname = async function(nickName) {
@@ -64,7 +60,7 @@ userSchema.methods.generateAccessToken = async function() {
     const accessToken = await jwt.sign(
         {
             nickName: user.nickName,
-            email: user.email
+            idToken: user.idToken
         },
         config.jwtSecretKey,
         {
@@ -78,7 +74,7 @@ userSchema.methods.generateRefreshToken = async function() {
     const user = this;
     const refreshToken = await jwt.sign(
         {
-            email: user.email
+            nickName: user.nickName
         },
         config.jwtSecretKey,
         {
