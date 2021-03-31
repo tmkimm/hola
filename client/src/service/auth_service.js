@@ -1,6 +1,10 @@
 import user from "../store/user";
 import httpClient from "./http_client";
 
+/* 
+auth 관련 API를 정의한 class입니다.
+
+*/
 class Auth {
   constructor(httpClient) {
     this.auth = httpClient;
@@ -33,6 +37,21 @@ class Auth {
     try {
       const userInfo = await this.auth.get("auth");
       return userInfo;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  signUp = async (userInfo) => {
+    const signUpResponse = await this.auth.post("login/signup", userInfo);
+    console.log("signUpresponse : ", signUpResponse);
+  };
+
+  logout = async () => {
+    try {
+      const res = await this.auth.post("logout");
+      console.log("returned value from logout API : ", res);
+      return res;
     } catch (error) {
       console.error(error);
     }

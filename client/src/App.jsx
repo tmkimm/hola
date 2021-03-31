@@ -15,8 +15,9 @@ App component
 로그인한 User 정보가 있으면 user 정보를 set 하고
 적절한 component로 routing을 진행합니다.
 
-react-cookie를 사용하려 했으나 refresnToken이 httpOnly라서
-일단은 큰 상관 없는걸로...
+userNickName 여부로 API call 하면 이슈가 있네
+음.... 어떻게 해야할까?
+refreshToken 존재 여부를 cookie나 localStorage에 저장?
 
 */
 

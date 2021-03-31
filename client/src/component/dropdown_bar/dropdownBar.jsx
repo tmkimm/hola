@@ -3,10 +3,11 @@ import styles from "./dropdownBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { clearUser } from "../../store/user";
+import authService from "../../service/auth_service";
 
 /* 
 
-로그인 한 유저에 대해서만 보이는 component로,
+loginUser Component에서 DropDown bar button CLick시 rendering 되는 component로,
 닉네임, 작성 글, 찜한 글, 로그아웃으로 구성되어 있습니다.
 
 로그아웃의 경우 handleLogout을 통해 user를 초기화하는 과정을 진행하며
@@ -18,7 +19,10 @@ const DropdownBar = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const handleLogout = () => {
-    dispatch(clearUser());
+    authService.logout().then((response) => {
+      console.log(response);
+      dispatch(clearUser());
+    });
   };
   return (
     <div className={styles.menuWrapper}>

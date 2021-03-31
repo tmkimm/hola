@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styles from "./loginModal.module.css";
 import GoogleLogin from "react-google-login";
 import KakaoLogin from "react-kakao-login";
-import { useDispatch } from "react-redux";
-import { fetchUserById } from "../../../store/user";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserById, addUserNickName } from "../../../store/user";
 import GoogleButton from "../../login_button/google_button/googleButton";
 import GithubButton from "../../login_button/github_button/githubButton";
 import KakaoButton from "../../login_button/kakao_button/kakaoButton";
@@ -15,6 +15,12 @@ LoginModal Component
 로그인 시도 시 가입 여부에 따라서 가입 된 유저면 모달을 닫고,
 미가입된 유저면 회원가입을 진행합니다.
 
+loginStep이 true면 소셜 로그인,
+false면 닉네임 생성으로 갑니다.
+
+to-do
+Social Login,
+Sign Up Component 분리가 필요합니다.
 */
 
 const LoginModal = ({ handleClose }) => {
@@ -114,14 +120,40 @@ const SocialLogin = ({ handleLoginStep, handleClose }) => {
   );
 };
 
-const SignUp = () => {
+/* 
+
+signUp component로, 회원가입시 닉네임을 설정하는 곳입니다.
+
+to-do
+1. 중복체크 로직 추가가 필요합니다.
+2. image carousel slider 추가가 필요합니다.
+
+*/
+
+const SignUp = ({ handleClose }) => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const nickName = e.target.nickName.value;
+    console.log("###########nickName:", nickName);
+    const userInfo = {
+      id: user.id,
+      nickName,
+    };
+    dispatch(addUserNickName(userInfo)).then((response) => {
+      console.log("addUserNickName response :", response);
+      handleClose();
+    });
+  };
   return (
     <>
       <h1>Hola에 처음 오셨군요! 닉네임을 설정해 보세요.</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
           닉네임 :
-          <input type="text" name="닉네임" />
+          <input type="text" name="nickName" />
         </label>
         <input type="submit" value="회원가입" />
       </form>
