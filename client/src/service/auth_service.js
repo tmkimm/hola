@@ -33,6 +33,27 @@ class Auth {
     }
   };
 
+  kakaoLogin = async (accessToken) => {
+    try {
+      const user = await this.auth.post("login/kakao", {
+        accessToken,
+      });
+      return user;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  logout = async () => {
+    try {
+      const res = await this.auth.post("logout");
+      console.log("returned value from logout API : ", res);
+      return res;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   getUserInfo = async () => {
     try {
       const userInfo = await this.auth.get("auth");
@@ -45,16 +66,6 @@ class Auth {
   signUp = async (userInfo) => {
     const signUpResponse = await this.auth.post("login/signup", userInfo);
     console.log("signUpresponse : ", signUpResponse);
-  };
-
-  logout = async () => {
-    try {
-      const res = await this.auth.post("logout");
-      console.log("returned value from logout API : ", res);
-      return res;
-    } catch (error) {
-      console.error(error);
-    }
   };
 }
 
