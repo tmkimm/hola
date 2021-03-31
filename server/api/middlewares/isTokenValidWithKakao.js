@@ -1,4 +1,3 @@
-import config from '../../config/index.js';
 import axios from 'axios';
 
 const isTokenValidWithKakao = async (req, res, next) => {

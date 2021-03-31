@@ -66,7 +66,6 @@ export default (app) => {
   });
   
   // 댓글 등록
-  // req body : id, content, author
   route.post('/comments', async (req, res, next) => {
     const commentDTO = req.body;
 

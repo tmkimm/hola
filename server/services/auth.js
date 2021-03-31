@@ -32,6 +32,7 @@ export class AuthService {
             res.status(401).json({message : 'invalid token'});
         }
         
+        console.log(decodeRefreshToken.nickName); 
         const user =  await User.findByNickname(decodeRefreshToken.nickName);
         const { _id, nickName, email } = user;
         const accessToken = await user.generateAccessToken();
