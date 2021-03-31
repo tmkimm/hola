@@ -3,12 +3,20 @@ import styles from "./loginUser.module.css";
 import { useSelector } from "react-redux";
 import DropdownBar from "../dropdown_bar/dropdownBar";
 
+/* 
+
+Navbar에서 user 정보가 있으면 rendering 되는 component로,
+User 정보와 새 글쓰기, Dropdown Bar button을 rendering 합니다.
+
+*/
 const LoginUser = () => {
   const user = useSelector((state) => state.user);
   const [menuVisible, setMenuVisible] = useState(false);
 
-  const menuRef = useRef();
+  const menuRef = useRef(); // menuRef를 통해서 menu 영역이 click되었는지 판단하고, 외부 영역 클릭시 메뉴 사라짐
+
   const handleLoginUserClick = () => {
+    // dropdown control
     setMenuVisible((menuVisible) => !menuVisible);
   };
 
@@ -18,6 +26,7 @@ const LoginUser = () => {
         menuVisible &&
         (!menuRef.current || !menuRef.current.contains(e.target))
       )
+        //dropdown이 켜져 있고 dropdown영역 외부 click시 dropdown menu 제거
         setMenuVisible(false);
     },
     [menuVisible, menuRef]
