@@ -104,7 +104,7 @@ studySchema.statics.modifyComment = async function(comment) {
         {
             $set:
             {
-                'comments.$' : comment
+                'comments.$.content' : comment.content
             }
         },
         { 

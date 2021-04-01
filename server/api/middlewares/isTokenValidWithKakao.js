@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const isTokenValidWithKakao = async (req, res, next) => {
     try {
-        console.log(req.body.accessToken);
         // 사용자 정보 가져오기
         const kakaoResponse = await axios.post(
             'https://kapi.kakao.com/v2/user/me',
@@ -11,7 +10,7 @@ const isTokenValidWithKakao = async (req, res, next) => {
             },
             {
                 headers: {
-                    Authorization: `Bearer ${req.body.accessToken}`,
+                    Authorization: `Bearer ${req.body.code}`,
                 }
             }
         );

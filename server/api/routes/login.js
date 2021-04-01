@@ -57,10 +57,11 @@ export default (app) => {
 
     // OAuth2.0 깃 로그인
     route.post('/github', isTokenValidWithGithub, autoSignUp, async (req, res, next) => {
+        console.log(`idToken`);
         const { idToken } = req.user; 
         let AuthServiceInstance = new AuthService();
         const { _id, nickName, accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);
-        
+        console.log(refreshToken);
         res.cookie("R_AUTH", refreshToken, {
             httpOnly: true,
             secure: false,
