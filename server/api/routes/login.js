@@ -40,13 +40,12 @@ export default (app) => {
         const { idToken } = req.user; 
         let AuthServiceInstance = new AuthService();
         const { _id, nickName, accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);
-        
         res.cookie("R_AUTH", refreshToken, {
             httpOnly: true,
             secure: false,
             maxAge: 1000 * 60 * 60 * 24 * 14    // 2 Week
         });
-        
+        console.log(accessToken);
         return res.status(200).json({
             loginSuccess: true,
             _id: _id,
@@ -57,7 +56,6 @@ export default (app) => {
 
     // OAuth2.0 깃 로그인
     route.post('/github', isTokenValidWithGithub, autoSignUp, async (req, res, next) => {
-        console.log(`idToken`);
         const { idToken } = req.user; 
         let AuthServiceInstance = new AuthService();
         const { _id, nickName, accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);

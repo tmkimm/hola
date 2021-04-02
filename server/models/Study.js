@@ -2,14 +2,14 @@ import mongoose from 'mongoose';
 
 const commentSchema = mongoose.Schema({
     content: String,
-    author: String
+    author: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 },
 {
     versionKey: false
 });
 
 const studySchema = mongoose.Schema({
-    author      : String,
+    author      : {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     topic       : String,
     language    : [String],
     location    : String,
