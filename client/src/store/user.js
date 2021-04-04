@@ -13,8 +13,15 @@ createAsyncThunk를 통해 user 상태를 update 합니다.
 // Userid로 Social Login 후, access token을 설정합니다.
 const fetchUserById = createAsyncThunk(
   "user/fetchByIdStatus",
-  async (userId, thunkAPI) => {
-    const response = await authService.googleLogin(userId);
+  async (userData, thunkAPI) => {
+    let response;
+    if (userData.social === "google")
+      response = await authService.googleLogin(userData.code);
+    else if (userData.social === "kakao")
+      response = await authService.kakaoLogin(userData.code);
+    else response = await authService.githubLogin(userData.code);
+
+    console.log("response from auth/login", response);
     const accessToken = response.data.accessToken;
 
     // header에 access token 설정

@@ -6,7 +6,7 @@ const GithubButton = (props) => {
   return (
     <div className={styles.buttonWrapper}>
       <button className={styles.button}>
-        <a href={clientId} target="_blank">
+        <a href={clientId}>
           <svg width="50" height="50" fill="currentColor" viewBox="0 0 20 20">
             <mask
               id="github"

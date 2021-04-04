@@ -21,6 +21,8 @@ false면 닉네임 생성으로 갑니다.
 to-do
 Social Login,
 Sign Up Component 분리가 필요합니다.
+카카오, 깃허브 로그인 적용이 필요합니다.
+
 */
 
 const LoginModal = ({ handleClose }) => {
@@ -70,8 +72,10 @@ const SocialLogin = ({ handleLoginStep, handleClose }) => {
 
   const googleOnSuccess = async (response) => {
     const { tokenId } = response;
-    console.log("#########token ID : ", tokenId);
-    dispatch(fetchUserById(tokenId)).then((response) => {
+    const userData = { code: tokenId, social: "google" };
+    //console.log(userData);
+
+    dispatch(fetchUserById(userData)).then((response) => {
       console.log("fetchByuserID response :", response);
       if (response.payload.loginSuccess === true) handleClose();
       else handleLoginStep();
@@ -82,8 +86,16 @@ const SocialLogin = ({ handleLoginStep, handleClose }) => {
     console.log(error);
   };
 
-  const kakaoOnSuccess = async (response) => {
-    console.log(response);
+  const kakaoOnSuccess = async (data) => {
+    const accessToken = data.response.access_token;
+    const userData = { code: accessToken, social: "kakao" };
+    console.log("kakao response : ", data);
+    console.log("#########accessToken ID : ", accessToken);
+    dispatch(fetchUserById(userData)).then((response) => {
+      console.log("fetchByuserID response :", response);
+      if (response.payload.loginSuccess === true) handleClose();
+      else handleLoginStep();
+    });
   };
 
   const kakaoOnFailure = (error) => {
