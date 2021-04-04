@@ -73,6 +73,8 @@ const SocialLogin = ({ handleLoginStep, handleClose }) => {
   const googleOnSuccess = async (response) => {
     const { tokenId } = response;
     const userData = { code: tokenId, social: "google" };
+    //console.log(userData);
+
     dispatch(fetchUserById(userData)).then((response) => {
       console.log("fetchByuserID response :", response);
       if (response.payload.loginSuccess === true) handleClose();

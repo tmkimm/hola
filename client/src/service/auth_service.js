@@ -10,11 +10,11 @@ class Auth {
     this.auth = httpClient;
   }
 
-  googleLogin = async (tokenId) => {
-    console.log("code: ", tokenId);
+  googleLogin = async (code) => {
+    console.log("code: ", code);
     try {
       const user = await this.auth.post("login/google", {
-        tokenId,
+        code,
       });
       return user;
     } catch (error) {
