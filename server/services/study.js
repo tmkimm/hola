@@ -7,11 +7,12 @@ export class StudyServcie {
     }
 
     async findById(id) {
-        const studies = await Study.findById(id);
+        const studies = await Study.findById(id).populate('author', 'nickName').populate('comments.author', 'nickName');
         return studies;
     }
 
-    async registerStudy(study) {
+    async registerStudy(userID, study) {
+        study.author = userID;
         const studyRecord = await Study.create(study);
         return studyRecord;
     }

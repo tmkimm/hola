@@ -17,7 +17,6 @@ const isTokenValidWithGithub = async (req, res, next) => {
                 }
             }
         );
-        
         // 사용자 정보 가져오기
         const { data: userInfo } = await axios.get(
             'https://api.github.com/user',
@@ -27,23 +26,10 @@ const isTokenValidWithGithub = async (req, res, next) => {
             }
         });
 
-        // 사용자 이메일 가져오기
-        const userEmails = await axios.get(
-            'https://api.github.com/user/emails',
-            {
-                headers: {
-                    Authorization : `token ${accessToken.data.access_token}`
-            }
-        });
-        const filterEmails = await userEmails.data.filter(user => {
-            return user.primary && user.visibility === 'private'
-        });
-        const idToken = userInfo.idToken;
+        const idToken = userInfo.id;
         const name = userInfo.name;
         const tokenType = 'Github';
-        const email = filterEmails[0].email;
-        req.user = { idToken, tokenType, name, email };
-
+        req.user = { idToken, tokenType, name };
         next();
     } catch (error) {
         return res.status(401).json({message : 'Invalid credentials'});

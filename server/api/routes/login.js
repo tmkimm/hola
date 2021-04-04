@@ -40,13 +40,12 @@ export default (app) => {
         const { idToken } = req.user; 
         let AuthServiceInstance = new AuthService();
         const { _id, nickName, accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);
-        
         res.cookie("R_AUTH", refreshToken, {
             httpOnly: true,
             secure: false,
             maxAge: 1000 * 60 * 60 * 24 * 14    // 2 Week
         });
-        
+        console.log(accessToken);
         return res.status(200).json({
             loginSuccess: true,
             _id: _id,
@@ -60,7 +59,7 @@ export default (app) => {
         const { idToken } = req.user; 
         let AuthServiceInstance = new AuthService();
         const { _id, nickName, accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);
-        
+        console.log(refreshToken);
         res.cookie("R_AUTH", refreshToken, {
             httpOnly: true,
             secure: false,

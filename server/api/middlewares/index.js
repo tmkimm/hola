@@ -1,5 +1,5 @@
 export { autoSignUp } from './autoSignUp.js';
-export { isAuth } from './isAuth.js';
+export { isAccessTokenValid } from './isAccessTokenValid.js';
 export { checkStudy, isStudyValid } from './isStudyValid.js';
 export { isTokenValidWithGoogle } from './isTokenValidWithGoogle.js';
 export { isTokenValidWithGithub } from './isTokenValidWithGithub.js';

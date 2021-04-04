@@ -1,5 +1,5 @@
 import { Router } from 'express'; 
-import { checkStudy, isStudyValid, isAuth } from '../middlewares/index.js';
+import { checkStudy, isStudyValid, isAccessTokenValid } from '../middlewares/index.js';
 import { StudyServcie } from '../../services/index.js';
 
 const route = Router();
@@ -17,11 +17,14 @@ export default (app) => {
   });
   
   // 스터디 등록  isAuth
-  route.post('/', checkStudy, isStudyValid, async function(req, res, next) {
+  route.post('/', checkStudy, isStudyValid, isAccessTokenValid, async function(req, res, next) {
     try {
       const studyDTO = req.body;
+      const userId = req.user._id;
+
+      console.log(userId);
       let StudyServcieInstance = new StudyServcie();
-      const study = await StudyServcieInstance.registerStudy(studyDTO);       
+      const study = await StudyServcieInstance.registerStudy(userId, studyDTO);       
       res.status(201).json(study);
     } catch (error) {
       res.status(400).json({ errors: [
