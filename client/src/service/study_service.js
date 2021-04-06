@@ -1,5 +1,10 @@
 import httpClient from "./http_client";
 
+/*
+
+글 등록, 삭제, 수정, 조회 등 study 글 관련 api를 모아놓은 class입니다.
+
+*/
 class Study {
   constructor() {
     this.study = httpClient;

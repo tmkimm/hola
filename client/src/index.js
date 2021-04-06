@@ -13,6 +13,7 @@ const store = configureStore({
     language: languageReducer,
     user: userREducer,
   },
+  devTools: process.env.NODE_ENV !== "production",
 });
 
 ReactDOM.render(

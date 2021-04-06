@@ -33,10 +33,10 @@ class Auth {
     }
   };
 
-  kakaoLogin = async (accessToken) => {
+  kakaoLogin = async (code) => {
     try {
       const user = await this.auth.post("login/kakao", {
-        accessToken,
+        code,
       });
       return user;
     } catch (error) {
@@ -64,8 +64,7 @@ class Auth {
   };
 
   signUp = async (userInfo) => {
-    const signUpResponse = await this.auth.post("login/signup", userInfo);
-    console.log("signUpresponse : ", signUpResponse);
+    return await this.auth.post("login/signup", userInfo);
   };
 }
 

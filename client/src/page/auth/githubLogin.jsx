@@ -21,7 +21,7 @@ const GithubLogin = () => {
             code,
           }
         );
-        console.log("github response!!######", response);
+        console.log("#############github response!!######", response);
         // 유저 JWT 토큰을 저장합니다.
         //  localStorage.setItem("access_token", access_token); */
         history.push("/"); // 로그인이 완료되면 보여줄 페이지

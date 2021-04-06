@@ -9,7 +9,7 @@ import LoginUser from "../login_user/loginUser";
 const Navbar = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
   const user = useSelector((state) => state.user);
-  console.log("user from navbar :", user);
+
   const openModal = () => {
     document.body.style.overflow = "hidden";
     setModalVisible(true);

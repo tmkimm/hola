@@ -139,6 +139,7 @@ signUp component로, 회원가입시 닉네임을 설정하는 곳입니다.
 to-do
 1. 중복체크 로직 추가가 필요합니다.
 2. image carousel slider 추가가 필요합니다.
+3. addUserNickname async-await 테스트 필요합니다.
 
 */
 
@@ -146,18 +147,17 @@ const SignUp = ({ handleClose }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const nickName = e.target.nickName.value;
     console.log("###########nickName:", nickName);
-    const userInfo = {
-      id: user.id,
-      nickName,
-    };
-    dispatch(addUserNickName(userInfo)).then((response) => {
-      console.log("addUserNickName response :", response);
-      handleClose();
-    });
+
+    await dispatch(addUserNickName({ id: user.id, nickName })).then(
+      (response) => {
+        console.log("addUserNickName response :", response);
+        handleClose();
+      }
+    );
   };
   return (
     <>
