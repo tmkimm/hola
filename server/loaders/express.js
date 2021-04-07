@@ -39,6 +39,6 @@ export default (app) => {
         }
       }
     };
-    app.use(cors(corsOptions));
+    app.use(cors());
 }
 
