@@ -1,13 +1,40 @@
 .editorWrapper {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 5rem 1rem;
   width: 1024px;
   margin: 0 auto; /* 중앙 정렬 */
+  background-color: #ffffff;
 }
 
-@media (max-width: 1024px) {
+.test {
+  background-color: #f8f9fa;
+}
+
+.titleInput {
+  font-size: 3rem;
+  font-weight: bold;
+  outline: none;
+  padding-bottom: 0.5rem;
+  border: none;
+  border-bottom: 1px solid #ced4da;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+/* 적용 안할거면 삭제 필요 */
+
+.ql-editor {
+  padding: 0;
+  min-height: 320px;
+  font-size: 5rem;
+  line-height: 1.5;
+}
+
+.ql-editor.ql-blank::before {
+  left: 0px;
+}
+@media screen (max-width: 1024px) {
   width: 768px;
 }
-@media (max-width: 768px) {
+@media screen (max-width: 768px) {
   width: 100%;
 }

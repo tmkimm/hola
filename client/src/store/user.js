@@ -81,20 +81,18 @@ const addUserNickName = createAsyncThunk(
   }
 );
 
+const initialState = {
+  nickName: undefined,
+  id: undefined,
+};
 const userSlice = createSlice({
   name: "user",
-  initialState: {
-    nickName: undefined,
-    id: undefined,
-  },
+  initialState,
   reducers: {
     setUser: (state, action) => {
       state = action.payload;
     },
-    clearUser: (state) => {
-      state.nickName = undefined;
-      state.id = undefined;
-    },
+    clearUser: (state) => initialState,
   },
   extraReducers: {
     [fetchUserById.fulfilled]: (state, { payload }) => {

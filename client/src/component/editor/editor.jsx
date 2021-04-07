@@ -2,15 +2,18 @@ import React, { useRef, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import Quill from "quill";
 import styles from "./editor.module.css";
-const TitleInput = styled.input`
-  font-size: 3rem;
-  outline: none;
-  padding-bottom: 0.5rem;
-  border: none;
-  border-bottom: 1px solid grey;
-  margin-bottom: 2rem;
-  width: 100%;
-`;
+
+/* 
+
+Quill을 이용한 editor 입니다.
+
+To-do
+
+styled-component 제거
+input 관리 redux 적용
+
+
+*/
 const QuillWrapper = styled.div`
   /* 최소 크기 지정 및 padding 제거 */
   .ql-editor {
@@ -24,13 +27,13 @@ const QuillWrapper = styled.div`
   }
 `;
 
-const Editor = ({ title, body, onChangeField }) => {
+const Editor = (props) => {
   const quillElement = useRef(null); // Quill을 적용할 DivElement를 설정
   const quillInstance = useRef(null); // Quill 인스턴스를 설정
 
   useEffect(() => {
     quillInstance.current = new Quill(quillElement.current, {
-      theme: "bubble",
+      theme: "snow", // snow or bubble
       placeholder: "내용을 작성하세요...",
       modules: {
         // 더 많은 옵션
@@ -48,36 +51,34 @@ const Editor = ({ title, body, onChangeField }) => {
     // 참고: https://quilljs.com/docs/api/#events
     const quill = quillInstance.current;
     quill.on("text-change", (delta, oldDelta, source) => {
+      /*
       if (source === "user") {
         onChangeField({ key: "body", value: quill.root.innerHTML });
       }
+      */
     });
-  }, [onChangeField]);
+  }, []);
 
   const onChangeTitle = (e) => {
-    onChangeField({ key: "title", value: e.target.value });
+    //onChangeField({ key: "title", value: e.target.value });
   };
 
-  const handleSubmit = () => {};
-
   return (
-    <section className={styles.editorWrapper}>
-      <TitleInput
-        placeholder="제목을 입력하세요"
-        onChange={onChangeTitle}
-        value={title}
-      />
-      <QuillWrapper>
-        <div ref={quillElement} />
-      </QuillWrapper>
-      <button
-        onClick={() => {
-          handleSubmit();
-        }}
-      >
-        제출
-      </button>
-    </section>
+    <div className={styles.test}>
+      <section className={styles.editorWrapper}>
+        <input
+          className={styles.titleInput}
+          type="text"
+          placeholder="제목을 입력하세요"
+          onChange={onChangeTitle}
+          //value={title}
+        />
+
+        <QuillWrapper>
+          <div ref={quillElement} />
+        </QuillWrapper>
+      </section>
+    </div>
   );
 };
 
