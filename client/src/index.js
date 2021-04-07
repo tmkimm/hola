@@ -5,13 +5,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { configureStore } from "@reduxjs/toolkit";
 import languageReducer from "./store/language";
-import userREducer from "./store/user";
+import userReducer from "./store/user";
+import writeReducer from "./store/write";
 import { Provider } from "react-redux";
 
 const store = configureStore({
   reducer: {
     language: languageReducer,
-    user: userREducer,
+    user: userReducer,
+    write: writeReducer,
   },
   devTools: process.env.NODE_ENV !== "production",
 });
