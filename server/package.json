@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "nodemon ./app.js",
-    "server": "pm2 start ./app.js",
+    "start": "pm2 start ./app.js",
+    "server": "nodemon ./app.js",
     "dev": "concurrently \"npm run server\" \"npm run start --prefix ../client\""
   },
   "dependencies": {
