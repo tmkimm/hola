@@ -1,4 +1,4 @@
-name: Auto Deploy after push
+name: Auto Deploy after push on main branch
 
 on:
   push:
