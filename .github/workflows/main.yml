@@ -1,9 +1,9 @@
-name: Auto Deploy after push
+name: Auto Deploy after push on main branch
 
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:

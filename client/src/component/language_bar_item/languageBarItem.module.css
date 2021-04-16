@@ -6,12 +6,12 @@
 }
 
 .full {
-  opacity: 100%;
+  opacity: 1;
   transform: scale(1.1);
 }
 
 .transparent {
-  opacity: 30%;
+  opacity: 0.3;
 }
 
 .logo:hover {
