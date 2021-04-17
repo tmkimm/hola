@@ -49,14 +49,14 @@ export default (app) => {
   });
 
   // 스터디 수정
-  route.patch('/:id', async (req, res, next) => {
+  route.patch('/:id', async (req, res, next) => { 
     const id = req.params.id;
     const studyDTO = req.body;
 
     let StudyServcieInstance = new StudyServcie();
     const study = await StudyServcieInstance.modifyStudy(id, studyDTO);
 
-    res.status(200).json(study); 
+    res.status(200).json(study);  
   });
 
   // 스터디 글 삭제
