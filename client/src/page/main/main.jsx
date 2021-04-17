@@ -46,7 +46,7 @@ const Main = () => {
       <div className={styles.appWrapper}>
         <div className={styles.app}>
           <main className={styles.main}>
-            <h1 className={styles.title}>가장 인기있는 글이에요!!!!</h1>
+            <h1 className={styles.title}>가장 인기있는 글이에요!</h1>
             <StudyList
               onStudyClick={onStudyClick}
               studyList={popularStudyList}
