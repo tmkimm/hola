@@ -68,8 +68,8 @@ const LoginModal = ({ handleClose }) => {
 const SocialLogin = ({ handleLoginStep, handleClose }) => {
   const googleClientId = process.env.REACT_APP_GOOGLE_LOGIN_API_KEY;
   const kakaoClientId = process.env.REACT_APP_KAKAO_LOGIN_API_KEY;
-  console.log("##############google api!!!", googleClientId);
-  console.log("##############kakao api!!!", kakaoClientId);
+  console.log("##############google api please!!!", googleClientId);
+  console.log("##############kakao api please!!!", kakaoClientId);
   const dispatch = useDispatch();
 
   const googleOnSuccess = async (response) => {
