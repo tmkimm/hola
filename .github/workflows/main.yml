@@ -22,6 +22,15 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+          
+     - name: Make envfile
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_DEBUG: false
+          envkey_REACT_APP_GOOGLE_LOGIN_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          envkey_REACT_APP_GITHUB_LOGIN_API_KEY: ${{ secrets.HUB_API_KEY }}
+          envkey_REACT_APP_KAKAO_LOGIN_API_KEY: ${{ secrets.KAKAO_API_KEY }}
+          file_name: .env
 
       - name: Npm install
         run: npm install
