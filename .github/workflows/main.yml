@@ -22,8 +22,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-          
-     - name: Make envfile
+
+      - name: Make envfile
         uses: SpicyPizza/create-envfile@v1
         with:
           envkey_DEBUG: false
