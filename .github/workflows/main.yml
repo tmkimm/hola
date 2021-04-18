@@ -30,6 +30,7 @@ jobs:
           envkey_REACT_APP_GOOGLE_LOGIN_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           envkey_REACT_APP_GITHUB_LOGIN_API_KEY: ${{ secrets.HUB_API_KEY }}
           envkey_REACT_APP_KAKAO_LOGIN_API_KEY: ${{ secrets.KAKAO_API_KEY }}
+          directory: ./client
           file_name: .env
 
       - name: Npm install
