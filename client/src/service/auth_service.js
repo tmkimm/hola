@@ -3,39 +3,16 @@ import httpClient from "./http_client";
 
 /* 
 auth 관련 API를 정의한 class입니다.
-
 */
+
 class Auth {
   constructor(httpClient) {
     this.auth = httpClient;
   }
 
-  googleLogin = async (code) => {
-    console.log("code: ", code);
+  login = async (method, code) => {
     try {
-      const user = await this.auth.post("login/google", {
-        code,
-      });
-      return user;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  githubLogin = async (code) => {
-    try {
-      const user = await this.auth.post("login/github", {
-        code,
-      });
-      return user;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  kakaoLogin = async (code) => {
-    try {
-      const user = await this.auth.post("login/kakao", {
+      const user = await this.auth.post(`login/${method}`, {
         code,
       });
       return user;
@@ -54,6 +31,8 @@ class Auth {
     }
   };
 
+  /* page refresh시 cookie에 남아있는 http-only refresh token을 이용해
+   유저 정보를 얻어 옵니다. */
   getUserInfo = async () => {
     try {
       const userInfo = await this.auth.get("auth");
@@ -63,6 +42,7 @@ class Auth {
     }
   };
 
+  /* userInfo를 전달하여 회원가입을 진행합니다. */
   signUp = async (userInfo) => {
     return await this.auth.post("login/signup", userInfo);
   };

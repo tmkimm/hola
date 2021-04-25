@@ -11,6 +11,9 @@ createAsyncThunk를 통해 user 상태를 update 합니다.
 to-do
 fullfilled외에 rejected도 처리 로직 추가
 request abort나 signal에 대해서 찾아보기
+loading state 추가하면 좋을듯
+
+받는쪽에서 로그인 함수를 합칠 수 있는지 보자
 
 */
 
@@ -25,13 +28,7 @@ const addUserNickNameAction = createAction("user/addUserNickName");
 const fetchUserById = createAsyncThunk(
   fetchUserByIdAction,
   async (userData, thunkAPI) => {
-    let response;
-    if (userData.social === "google")
-      response = await authService.googleLogin(userData.code);
-    else if (userData.social === "kakao")
-      response = await authService.kakaoLogin(userData.code);
-    else response = await authService.githubLogin(userData.code);
-
+    const response = await authService.login(userData.social, userData.code);
     console.log("response from auth/login", response);
     const accessToken = response.data.accessToken;
 
@@ -50,6 +47,7 @@ const fetchUserByRefreshToken = createAsyncThunk(
   fetchUserByRefreshTokenAction,
   async (thunkAPI) => {
     const response = await authService.getUserInfo();
+    console.log("res: #################", response);
     const accessToken = response.data.accessToken;
     const userInfo = {
       nickName: response.data.nickName,
@@ -65,7 +63,7 @@ const fetchUserByRefreshToken = createAsyncThunk(
   }
 );
 
-// 최초 회원 가입 시 user nickname을 설정하고 access token을 set합니다..
+// 최초 회원 가입 시 user nickname을 설정하고 access token을 set합니다.
 const addUserNickName = createAsyncThunk(
   addUserNickNameAction,
   async (userInfo, thunkAPI) => {

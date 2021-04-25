@@ -21,15 +21,10 @@ const LanguageBarList = (props) => {
     "kotlin",
   ];
 
-  const handleClick = () => {};
-
   return (
     <ul className={styles.languageList}>
-      {languages.map((language) => (
-        <LanguageBarItem
-          Language={language}
-          onItemClick={handleClick}
-        ></LanguageBarItem>
+      {languages.map((language, i) => (
+        <LanguageBarItem Language={language} key={i}></LanguageBarItem>
       ))}
     </ul>
   );

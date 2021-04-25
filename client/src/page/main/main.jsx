@@ -32,10 +32,6 @@ const Main = () => {
       .catch(console.error);
   }, [selectedLanguages]);
 
-  const onStudyClick = () => {
-    console.log("clicked!");
-  };
-
   return (
     <>
       <Navbar></Navbar>
@@ -47,15 +43,9 @@ const Main = () => {
         <div className={styles.app}>
           <main className={styles.main}>
             <h1 className={styles.title}>가장 인기있는 글이에요!</h1>
-            <StudyList
-              onStudyClick={onStudyClick}
-              studyList={popularStudyList}
-            ></StudyList>
+            <StudyList studyList={popularStudyList}></StudyList>
             <h1 className={styles.title}>지금 올라왔어요!</h1>
-            <StudyList
-              onStudyClick={onStudyClick}
-              studyList={recentStudyList}
-            ></StudyList>
+            <StudyList studyList={recentStudyList}></StudyList>
           </main>
         </div>
       </div>

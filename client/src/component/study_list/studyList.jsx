@@ -6,11 +6,7 @@ import styles from "./studyList.module.css";
 const StudyList = ({ studyList, onStudyClick }) => (
   <ul className={styles.studyList}>
     {studyList.map((study) => (
-      <StudyItem
-        onStudyClick={onStudyClick}
-        study={study}
-        key={study._id}
-      ></StudyItem>
+      <StudyItem study={study} key={study._id}></StudyItem>
     ))}
   </ul>
 );
