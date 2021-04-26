@@ -22,9 +22,19 @@ export default (app) => {
         const userDTO = req.body;
 
         let UserServcieInstance = new UserServcie();
-        const user = await UserServcieInstance.modifyUser(id, userDTO);
+        const { userRecord, accessToken, refreshToken } = await UserServcieInstance.modifyUser(id, userDTO);
 
-        res.status(200).json(user); 
+        res.cookie("R_AUTH", refreshToken, {
+            httpOnly: true,
+            secure: false,
+            maxAge: 1000 * 60 * 60 * 24 * 14    // 2 Week
+        });
+        
+        return res.status(200).json({
+            _id: userRecord._id,
+            nickName: userRecord.nickName,
+            accessToken: accessToken
+        });
     });
 
     // 사용자 정보 삭제(회원탈퇴)

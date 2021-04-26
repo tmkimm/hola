@@ -8,7 +8,9 @@ export class UserServcie {
 
     async modifyUser(id, user) {
         const userRecord = await User.modifyUser(id, user);
-        return userRecord;
+        const accessToken = await userRecord.generateAccessToken(); 
+        const refreshToken = await userRecord.generateRefreshToken(); 
+        return { userRecord, accessToken, refreshToken };
     }
 
     async deleteUser(id) {
