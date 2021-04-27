@@ -3,7 +3,7 @@ import styles from "./studyItem.module.css";
 import Modal from "../modal/modal_component/modal";
 import PostModal from "../modal/post_modal/postModal";
 
-const StudyItem = ({ study, onStudyClick }) => {
+const StudyItem = ({ study }) => {
   const studyLang = [];
   for (let i = 0; i < 3; i++) {
     if (study.language[i] === undefined) break;
@@ -23,8 +23,8 @@ const StudyItem = ({ study, onStudyClick }) => {
       <li className={styles.studyItem} onClick={openModal}>
         <h1 className={styles.title}>{study.title}</h1>
         <ul className={styles.content}>
-          {studyLang.map((lang) => (
-            <li className={styles.language}>
+          {studyLang.map((lang, i) => (
+            <li key={i} className={styles.language}>
               <img
                 className={styles.languageImage}
                 src={`/images/languages/${lang}.png`}

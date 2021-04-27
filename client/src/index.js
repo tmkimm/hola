@@ -7,6 +7,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import languageReducer from "./store/language";
 import userReducer from "./store/user";
 import writeReducer from "./store/write";
+import loginStepReducer from "./store/loginStep";
 import { Provider } from "react-redux";
 
 const store = configureStore({
@@ -14,6 +15,7 @@ const store = configureStore({
     language: languageReducer,
     user: userReducer,
     write: writeReducer,
+    loginStep: loginStepReducer,
   },
   devTools: process.env.NODE_ENV !== "production",
 });
