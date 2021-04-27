@@ -79,10 +79,14 @@ const addUserNickName = createAsyncThunk(
   }
 );
 
+// dispatch(action) => reducer => state => re-rendering
+// dispatch(action) => thunk => 비동기처리 => reducer => state => re-rendering
+
 const initialState = {
   nickName: undefined,
   id: undefined,
 };
+
 const userSlice = createSlice({
   name: "user",
   initialState,

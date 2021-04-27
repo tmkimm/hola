@@ -7,6 +7,7 @@ import { fetchUserById, addUserNickName } from "../../../store/user";
 import GoogleButton from "../../login_button/google_button/googleButton";
 import GithubButton from "../../login_button/github_button/githubButton";
 import KakaoButton from "../../login_button/kakao_button/kakaoButton";
+import { nextStep } from "../../../store/loginStep";
 
 /* 
 
@@ -15,21 +16,18 @@ LoginModal Component
 로그인 시도 시 가입 여부에 따라서 가입 된 유저면 모달을 닫고,
 미가입된 유저면 회원가입을 진행합니다.
 
-loginStep이 true면 소셜 로그인,
-false면 닉네임 생성으로 갑니다.
-
-to-do
-Social Login,
-Sign Up Component 분리가 필요합니다.
-카카오, 깃허브 로그인 적용이 필요합니다.
+loginStep에 따라
+true면 <SocialLogin>, false면 <SignUp>
+component를 rendering 합니다.
 
 */
 
-const LoginModal = ({ handleClose }) => {
-  const [loginStep, setLoginStep] = useState(true);
+const LoginModal = ({ handleClose, signUp }) => {
+  const dispatch = useDispatch();
+  const loginStep = useSelector((state) => state.loginStep.currentStep);
 
   const handleLoginStep = () => {
-    setLoginStep(!loginStep);
+    dispatch(nextStep("SIGNUP"));
   };
 
   return (
@@ -52,7 +50,7 @@ const LoginModal = ({ handleClose }) => {
         </div>
       </div>
       <div className={styles.modalContent}>
-        {loginStep === true ? (
+        {loginStep === "LOGIN" ? (
           <SocialLogin
             handleLoginStep={handleLoginStep}
             handleClose={handleClose}
@@ -68,8 +66,7 @@ const LoginModal = ({ handleClose }) => {
 const SocialLogin = ({ handleLoginStep, handleClose }) => {
   const googleClientId = process.env.REACT_APP_GOOGLE_LOGIN_API_KEY;
   const kakaoClientId = process.env.REACT_APP_KAKAO_LOGIN_API_KEY;
-  console.log("##############google api please!!!", googleClientId);
-  console.log("##############kakao api please!!!", kakaoClientId);
+
   const dispatch = useDispatch();
 
   const googleOnSuccess = async (response) => {
@@ -91,9 +88,8 @@ const SocialLogin = ({ handleLoginStep, handleClose }) => {
   const kakaoOnSuccess = async (data) => {
     const accessToken = data.response.access_token;
     const userData = { code: accessToken, social: "kakao" };
-    console.log("kakao response : ", data);
-    console.log("#########accessToken ID : ", accessToken);
-    dispatch(fetchUserById(userData)).then((response) => {
+
+    await dispatch(fetchUserById(userData)).then((response) => {
       console.log("fetchByuserID response :", response);
       if (response.payload.loginSuccess === true) handleClose();
       else handleLoginStep();
@@ -141,14 +137,12 @@ signUp component로, 회원가입시 닉네임을 설정하는 곳입니다.
 to-do
 1. 중복체크 로직 추가가 필요합니다.
 2. image carousel slider 추가가 필요합니다.
-3. addUserNickname async-await 테스트 필요합니다.
 
 */
 
 const SignUp = ({ handleClose }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const nickName = e.target.nickName.value;

@@ -11,7 +11,7 @@ import studyService from "../../service/study_service";
 const SORT_BY_VIEWS = "+views";
 const SORT_BY_DATE = "-createdAt";
 
-const Main = () => {
+const Main = (props) => {
   const [popularStudyList, setPopularStudyList] = useState([]);
   const [recentStudyList, setRecentStudyList] = useState([]);
   const selectedLanguages = useSelector((state) => state.language);

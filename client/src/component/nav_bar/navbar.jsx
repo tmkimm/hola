@@ -2,21 +2,22 @@ import React, { useState } from "react";
 import LoginModal from "../modal/login_modal/loginModal";
 import Modal from "../modal/modal_component/modal";
 import styles from "./navbar.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import LoginUser from "../login_user/loginUser";
+import { setModalVisible } from "../../store/loginStep";
 
-const Navbar = (props) => {
-  const [modalVisible, setModalVisible] = useState(false);
+const Navbar = () => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-
+  const modalVisible = useSelector((state) => state.loginStep.modalVisible);
   const openModal = () => {
     document.body.style.overflow = "hidden";
-    setModalVisible(true);
+    dispatch(setModalVisible(true));
   };
   const closeModal = () => {
     document.body.style.overflow = "auto";
-    setModalVisible(false);
+    dispatch(setModalVisible(false));
   };
 
   return (

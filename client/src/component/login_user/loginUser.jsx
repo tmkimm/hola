@@ -41,7 +41,7 @@ const LoginUser = () => {
 
   return (
     <div className={styles.userWrapper} onClick={handleLoginUserClick}>
-      <div className={styles.userName}>{user.nickName} 개발자</div>
+      <div className={styles.userName}>{user.nickName}</div>
       <img
         className={styles.userImg}
         src="https://media.vlpt.us/images/seeh_h/profile/6b7bfde5-b67c-4665-a2e1-a308e8de2059/tt.PNG?w=120"
