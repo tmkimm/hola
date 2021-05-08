@@ -22,7 +22,7 @@ const DropdownBar = () => {
     authService.logout().then((response) => {
       console.log(response);
       dispatch(clearUser());
-      dispatch(nextStep("SIGNUP"));
+      dispatch(nextStep("LOGIN"));
     });
   };
   return (
