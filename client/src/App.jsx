@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Main from "./page/main/main";
-import PostList from "./page/postList/postList";
 import PostRegister from "./page/postRegister/postRegister";
 import Setting from "./page/setting/setting";
 import GithubLogin from "./page/auth/githubLogin";
@@ -16,8 +15,13 @@ App component
 적절한 component로 routing을 진행합니다.
 
 to-do
-userNickName 여부로 API call 하면 이슈가 있음
 -> localStorage에 user를 저장하자!!
+-> access token은 날아가는데 refresh token은 왜 남아있지? 둘다 header에 저장 아닌가?
+-> 새 글쓰기 같은 버튼에서 access token 여부를 check할 수 있나?
+-> 결론적으로는 ssr을 적용해야하나?
+-> 생각하는 방법은 index.js에서 fetchUserByRefreshToken씀
+-> 성공시 user, localStorage set. 
+-> 실패시 user초기화, localStorage 초기화?
 
 */
 
@@ -26,6 +30,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log("#########APP RERENDERING!!!###############");
     if (user.nickName !== undefined) {
       // 유저가 존재하면 return
       console.log("user가 있어서 return합니다! user 정보 : ", user);
@@ -33,6 +38,7 @@ function App() {
     }
     dispatch(fetchUserByRefreshToken()).then((response) => {
       // 유저 미존재시 refresh token을 이용해서 유저정보 얻어옴
+      // page refresh시에 access token 날아감
       console.log("fetchByuserRefreshToken response :", response);
       // 실패했을때 에러처리 필요할 듯
     });
@@ -43,9 +49,6 @@ function App() {
       <Switch>
         <Route exact path={["/", "/main"]}>
           <Main />
-        </Route>
-        <Route path="/list">
-          <PostList />
         </Route>
       </Switch>
       <Route path="/register">

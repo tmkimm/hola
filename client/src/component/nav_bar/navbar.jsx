@@ -30,9 +30,6 @@ const Navbar = () => {
         />
       </a>
       <div className={styles.loginElementWrapper}>
-        <button className={styles.postList}>
-          <Link to="/list">게시판</Link>
-        </button>
         {user.nickName === undefined ? (
           <button className={styles.login} onClick={openModal}>
             로그인
