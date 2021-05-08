@@ -20,6 +20,9 @@ loginStep에 따라
 true면 <SocialLogin>, false면 <SignUp>
 component를 rendering 합니다.
 
+to-do
+login 후 user 정보 localStorage에 저장하기
+
 */
 
 const LoginModal = ({ handleClose, signUp }) => {
