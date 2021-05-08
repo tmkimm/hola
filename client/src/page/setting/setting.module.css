@@ -1,0 +1,72 @@
+.main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 768px;
+    padding-bottom: 5rem;
+    display: block;
+    box-sizing: inherit;
+}
+
+.titleWrapper {
+    width: 9.5rem;
+    flex-shrink: 0;
+}
+
+.titleWrapperH3 {
+    line-height: 1.5;
+    color: rgb(52, 58, 64);
+    margin: 0px;
+    font-size: 1.125rem;
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+.description {
+    margin-top: 0.875rem;
+    color: rgb(134, 142, 150);
+    font-size: 0.875rem;
+}
+
+.buttonComplete {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: rgb(18, 184, 134);
+    color: white;
+    border-radius: 4px;
+    padding: 0px 1.25rem;
+    height: 2rem;
+    font-size: 1rem;
+}
+
+.buttonSignOut {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: rgb(255, 6, 6);
+    color: white;
+    border-radius: 4px;
+    padding: 0px 1.25rem;
+    height: 2rem;
+    font-size: 1rem;
+}

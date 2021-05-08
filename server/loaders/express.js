@@ -7,7 +7,16 @@ import cors from 'cors';
 import routes from '../api/index.js';
 
 export default (app) => {
-    app.use(cors({credentials: true}));
+    const whitelist = ['http://localhost:3000', 'http://holaworld.io', 'https://holaworld.io'];
+    const corsOptions = {
+        origin: function(origin, callback){
+        const isWhitelisted = whitelist.indexOf(origin) !== -1;
+        callback(null, isWhitelisted); 
+      },
+      credentials:true
+    };
+    app.use(cors(corsOptions));
+    //app.use(cors({credentials: true}));
     app.use(express.json()); 
     app.use(express.urlencoded({ extended: true }));
     app.use(cookieParser());
@@ -29,16 +38,5 @@ export default (app) => {
       res.status(err.status || 500);
       res.render('error');
     });
-
-    const whitelist = ['http://localhost:3000', 'http://holaworld.io', 'https://holaworld.io'];
-    const corsOptions = {
-      origin: function (origin, callback) {
-        if (whitelist.indexOf(origin) !== -1) {
-          callback(null, true)
-        } else {
-          callback(new Error('Not allowed by CORS'))
-        }
-      }
-    };
 }
 
