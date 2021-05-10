@@ -5,10 +5,6 @@
   background-color: #ffffff;
 }
 
-.test {
-  background-color: #f8f9fa;
-}
-
 .titleInput {
   font-size: 3rem;
   font-weight: bold;
@@ -24,11 +20,21 @@
 
 .ql-editor {
   padding: 0;
-  min-height: 320px;
+  min-height: 800px;
   font-size: 5rem;
   line-height: 1.5;
 }
 
+edit > .quill_editor {
+  height: 600px;
+}
+.ql-container {
+  height: 600px;
+}
+
+.ql-editor {
+  height: 600px;
+}
 .ql-editor.ql-blank::before {
   left: 0px;
 }

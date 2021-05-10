@@ -9,7 +9,9 @@ import QuillImageDropAndPaste from "quill-image-drop-and-paste";
 Quill을 이용한 editor 입니다.
 
 To-do
-styled-component 제거
+styled-component 제거 
+-> quill 내부 style sheet 적용하려면 css file을 import 해야해서 일단 보류
+
 input 관리 redux 적용
 
 
@@ -19,7 +21,7 @@ const QuillWrapper = styled.div`
   /* 최소 크기 지정 및 padding 제거 */
   .ql-editor {
     padding: 0;
-    min-height: 320px;
+    min-height: 480px;
     font-size: 1.125rem;
     line-height: 1.5;
   }
@@ -64,7 +66,7 @@ const Editor = (props) => {
 
   useEffect(() => {
     Quill.register("modules/imageDropAndPaste", QuillImageDropAndPaste);
-    quillInstance.current = new Quill("#editor-container", {
+    quillInstance.current = new Quill(quillElement.current, {
       modules: {
         toolbar: [
           [{ header: "1" }, { header: "2" }],
@@ -76,10 +78,48 @@ const Editor = (props) => {
           handler: imageHandler,
         },
       },
-      placeholder: "Copy & paste, or drag an image here...",
+      placeholder: "팀원을 모집해 보세요...",
       readOnly: false,
       theme: "snow",
     });
+
+    /* 기본 image upload button에 대해서도 같은 handler 적용 */
+    const ImageData = QuillImageDropAndPaste.ImageData;
+    quillInstance.current
+      .getModule("toolbar")
+      .addHandler("image", (clicked) => {
+        if (clicked) {
+          let fileInput = quillInstance.current.container.querySelector(
+            "input.ql-image[type=file]"
+          );
+          if (fileInput == null) {
+            fileInput = document.createElement("input");
+            fileInput.setAttribute("type", "file");
+            fileInput.setAttribute(
+              "accept",
+              "image/png, image/gif, image/jpeg, image/bmp, image/x-icon"
+            );
+            fileInput.classList.add("ql-image");
+            fileInput.addEventListener("change", (e) => {
+              let files = e.target.files,
+                file;
+              if (files.length > 0) {
+                file = files[0];
+                let type = file.type;
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                  // handle the inserted image
+                  let dataUrl = e.target.result;
+                  imageHandler(dataUrl, type, new ImageData(dataUrl, type));
+                  fileInput.value = "";
+                };
+                reader.readAsDataURL(file);
+              }
+            });
+          }
+          fileInput.click();
+        }
+      });
   }, []);
 
   const quill = quillInstance.current;
@@ -111,34 +151,41 @@ const Editor = (props) => {
       
     });
   }, []);
-
+//<div id="editor-container" style={{ height: "480px" }}></div>
   const onChangeTitle = (e) => {
     //onChangeField({ key: "title", value: e.target.value });
   };
 */
 
   return (
-    <div className="edit">
-      <div id="editor-container" style={{ height: "480px" }}></div>
+    <section className={styles.editorWrapper}>
+      <input
+        className={styles.titleInput}
+        type="text"
+        placeholder="제목을 입력하세요"
+        //        onChange={}
+        //value={title}
+      />
 
-      <div>
-        <h4>Preview image from BLOB URL:</h4>
-        {image.blob && <img src={URL.createObjectURL(image.blob)} />}
-      </div>
-
-      <hr />
-
-      <div>
-        <h4>Get file infomation from File Object:</h4>
-        {image.file && (
-          <div>
-            <b>name:</b> <span>{image.file.name}</span> <br />
-            <b>size:</b> <span>{image.file.size}</span> <br />
-            <b>type:</b> <span>{image.file.type}</span>
-          </div>
-        )}
-      </div>
-    </div>
+      <QuillWrapper>
+        <div className="quill_editor" ref={quillElement} />
+        <div>
+          <h4>Preview image from BLOB URL:</h4>
+          {image.blob && <img src={URL.createObjectURL(image.blob)} />}
+        </div>
+        <hr />
+        <div>
+          <h4>Get file infomation from File Object:</h4>
+          {image.file && (
+            <div>
+              <b>name:</b> <span>{image.file.name}</span> <br />
+              <b>size:</b> <span>{image.file.size}</span> <br />
+              <b>type:</b> <span>{image.file.type}</span>
+            </div>
+          )}
+        </div>
+      </QuillWrapper>
+    </section>
   );
 };
 export default Editor;
