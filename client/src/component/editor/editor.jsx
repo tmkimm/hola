@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useCallback, useState } from "react";
 import styled from "styled-components";
 import Quill from "quill";
 import styles from "./editor.module.css";
-//import QuillImageDropAndPaste from "quill-image-drop-and-paste";
+import QuillImageDropAndPaste from "quill-image-drop-and-paste";
 
 /* 
 
@@ -14,6 +14,7 @@ input 관리 redux 적용
 
 
 */
+
 const QuillWrapper = styled.div`
   /* 최소 크기 지정 및 padding 제거 */
   .ql-editor {
@@ -55,8 +56,12 @@ const Editor = (props) => {
 
         setImage({ type, dataUrl, blob, file });
       });
+    const quill = quillInstance.current;
+    let index = (quill.getSelection() || {}).index;
+    if (index === undefined || index < 0) index = quill.getLength();
+    quill.insertEmbed(index, "image", "hihi", "user");
   };
-  /*
+
   useEffect(() => {
     Quill.register("modules/imageDropAndPaste", QuillImageDropAndPaste);
     quillInstance.current = new Quill("#editor-container", {
@@ -75,10 +80,10 @@ const Editor = (props) => {
       readOnly: false,
       theme: "snow",
     });
-  });
+  }, []);
 
   const quill = quillInstance.current;
-  */
+
   /*
     quillInstance.current = new Quill(quillElement.current, {
       theme: "snow", // snow or bubble
@@ -112,7 +117,6 @@ const Editor = (props) => {
   };
 */
 
-  /*
   return (
     <div className="edit">
       <div id="editor-container" style={{ height: "480px" }}></div>
@@ -138,7 +142,7 @@ const Editor = (props) => {
   );
 };
 export default Editor;
-
+/*
   return (
     <div className={styles.test}>
       <section className={styles.editorWrapper}>
@@ -158,6 +162,3 @@ export default Editor;
   );
 };
 */
-};
-
-export default Editor;
