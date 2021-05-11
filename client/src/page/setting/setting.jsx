@@ -1,19 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
+import { modifyUserInfo } from "../../store/user";
 import Navbar from "../../component/nav_bar/navbar";
 import styles from "./setting.module.css";
+import { useDispatch, useSelector } from "react-redux";
 
 const Setting = (props) => {
+  const [nickName, setNickName] = useState('');
+  const [likeLanguages, setLikeLanguages] = useState('');
+  const dispatch = useDispatch();
+  const userId = useSelector((state) => state.user.id);
 
+  const onNickNameChange = e => {
+    setNickName(e.target.value);
+  }
   const onCompleteClick = async (e) => {
-    //const nickName = e.target.nickName.value;
-    //console.log("###########nickName:", nickName);
- 
-    // await dispatch(addUserNickName({ id: user.id, nickName })).then(
-    //   (response) => {
-    //     console.log("addUserNickName response :", response);
-    //     handleClose();
-    //   }
-    // );
+    await dispatch(modifyUserInfo(
+        {
+            id: userId,
+            nickName,
+        })).then(
+      () => {
+        //handleClose();
+      }
+    );
   };
 
   const onSignOutClick = async (e) => {
@@ -29,8 +38,8 @@ const Setting = (props) => {
                 <h3 className={styles.titleWrapperH3}>
                 닉네임
                 </h3>
+                <input type="text" name="nickNameInput" onChange={onNickNameChange}/>
             </div>
-            <input type="text" name="nickName" />
             <p className={styles.description}>
                 Hola에서 사용되는 이름입니다.
             </p>
@@ -39,8 +48,8 @@ const Setting = (props) => {
                 <h3 className={styles.titleWrapperH3}>
                 관심 기술 태그
                 </h3>
+                <input type="text" name="likeLanguages" />
             </div>
-            <input type="text" name="likeLanguages" />
             <p className={styles.description}>
                 관심 있는 기술 태그를 등록해주세요.
             </p>

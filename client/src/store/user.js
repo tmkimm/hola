@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, createAction } from "@reduxjs/toolkit";
 import authService from "../service/auth_service";
+import userService from "../service/user_service";
 import httpClient from "../service/http_client";
 
 /* 
@@ -23,6 +24,25 @@ const fetchUserByRefreshTokenAction = createAction(
   "user/fetchUserByRefreshToken"
 );
 const addUserNickNameAction = createAction("user/addUserNickName");
+const modifyUserInfoAction = createAction("user/modifyUserInfo");
+
+
+// 사용자 정보를 수정하고 access token을 설정합니다.
+const modifyUserInfo = createAsyncThunk(
+  modifyUserInfoAction,
+  async (userData, thunkAPI) => {
+    const response = await userService.modifyUserInfo(userData.id, userData);
+    console.log(`service return ${response.data.accessToken}`);
+    const accessToken = response.data.accessToken;
+
+    // header에 access token 설정
+    httpClient.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${accessToken}`;
+
+    return response.data;
+  }
+);
 
 // Userid로 Social Login 후, access token을 설정합니다.
 const fetchUserById = createAsyncThunk(
@@ -112,9 +132,15 @@ const userSlice = createSlice({
       state.nickName = payload.nickName;
       state.id = payload._id;
     },
+
+    [modifyUserInfo.fulfilled]: (state, { payload }) => {
+      console.log(`payload :${payload.nickName}`)
+      state.nickName = payload.nickName;
+      state.id = payload._id;
+    },
   },
 });
 
 export const { setUser, clearUser } = userSlice.actions;
-export { fetchUserById, fetchUserByRefreshToken, addUserNickName };
+export { fetchUserById, fetchUserByRefreshToken, addUserNickName, modifyUserInfo };
 export default userSlice.reducer;
