@@ -1,0 +1,8 @@
+.editorWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 5rem 1rem;
+  width: 1024px;
+  margin: 0 auto; /* 중앙 정렬 */
+  background-color: #ffffff;
+}

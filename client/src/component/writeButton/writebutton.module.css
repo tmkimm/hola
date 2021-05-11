@@ -1,0 +1,33 @@
+.buttons {
+  display: flex;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.cancelButton {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: rgb(233, 236, 239);
+  color: rgb(73, 80, 87);
+  border-radius: 4px;
+  padding: 0px 1.25rem;
+  height: 2rem;
+  font-size: 1rem;
+  margin-right: 1rem;
+}
+
+.registerButton {
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: rgb(18, 184, 134);
+  color: white;
+  border-radius: 4px;
+  padding: 0px 1.25rem;
+  height: 2rem;
+  font-size: 1rem;
+}

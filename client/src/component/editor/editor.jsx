@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Quill from "quill";
 import styles from "./editor.module.css";
 import QuillImageDropAndPaste from "quill-image-drop-and-paste";
-
+import "react-quill/dist/quill.snow.css";
 /* 
 
 Quill을 이용한 editor 입니다.
@@ -78,7 +78,7 @@ const Editor = (props) => {
           handler: imageHandler,
         },
       },
-      placeholder: "팀원을 모집해 보세요...",
+      placeholder: "내용을 입력하세요...",
       readOnly: false,
       theme: "snow",
     });
@@ -168,7 +168,7 @@ const Editor = (props) => {
       />
 
       <QuillWrapper>
-        <div className="quill_editor" ref={quillElement} />
+        <div className={styles.quillEditor} ref={quillElement} />
         <div>
           <h4>Preview image from BLOB URL:</h4>
           {image.blob && <img src={URL.createObjectURL(image.blob)} />}
@@ -189,23 +189,3 @@ const Editor = (props) => {
   );
 };
 export default Editor;
-/*
-  return (
-    <div className={styles.test}>
-      <section className={styles.editorWrapper}>
-        <input
-          className={styles.titleInput}
-          type="text"
-          placeholder="제목을 입력하세요"
-          onChange={onChangeTitle}
-          //value={title}
-        />
-
-        <QuillWrapper>
-          <div ref={quillElement} />
-        </QuillWrapper>
-      </section>
-    </div>
-  );
-};
-*/
