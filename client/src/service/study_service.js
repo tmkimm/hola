@@ -1,4 +1,5 @@
 import httpClient from "./http_client";
+import { getFormatedToday } from "../common/utils";
 
 /*
 
@@ -28,6 +29,18 @@ class Study {
         params,
       });
       return studyList;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  /* users/sign 말고 studies/sign 어떤가? */
+  getUrl = async (userName) => {
+    try {
+      const fileName = `${userName}_${getFormatedToday()}`;
+      const preSignedUrl = await this.study.post("users/sign", {
+        fileName,
+      });
+      return preSignedUrl;
     } catch (error) {
       console.error(error);
     }

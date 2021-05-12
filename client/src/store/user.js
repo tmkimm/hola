@@ -98,8 +98,6 @@ const addUserNickName = createAsyncThunk(
   }
 );
 
-// dispatch(action) => reducer => state => re-rendering
-// dispatch(action) => thunk => 비동기처리 => reducer => state => re-rendering
 const userName = localStorage.getItem("userName");
 const initialState = {
   nickName: userName === null ? undefined : userName,

@@ -40,6 +40,8 @@ const Editor = (props) => {
     file: null, // image's File object
   });
 
+  const uploadImg = () => {};
+
   const imageHandler = (dataUrl, type, imageData) => {
     imageData
       .minify({
@@ -58,6 +60,14 @@ const Editor = (props) => {
 
         setImage({ type, dataUrl, blob, file });
       });
+    /*
+    uploadimgToS3(your_upload_url, formData, (err, res) => {
+      if (err) return;
+      let index = (quill.getSelection() || {}).index;
+      if (index === undefined || index < 0) index = quill.getLength();
+      quill.insertEmbed(index, "image", res.data.image_url, "user");
+    });
+    */
     const quill = quillInstance.current;
     let index = (quill.getSelection() || {}).index;
     if (index === undefined || index < 0) index = quill.getLength();
