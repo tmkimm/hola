@@ -6,6 +6,17 @@ const route = Router();
 export default (app) => {
     app.use('/users', route);
     
+    // s3 pre-sign url 발급
+    route.post('/sign', async (req, res, next) => {
+        const { fileName } = req.body;
+        let UserServcieInstance = new UserServcie();
+        const signedUrlPut = await UserServcieInstance.getPreSignUrl(fileName);
+
+        res.status(200).json({
+            preSignUrl: signedUrlPut
+        });
+    });
+
     // 사용자 정보 상세 보기
     route.get('/:id', async (req, res, next) => {
         const id = req.params.id;
@@ -45,4 +56,5 @@ export default (app) => {
         await UserServcieInstance.deleteUser(id);
         res.status(204).json();
     });
+    
 }

@@ -1,4 +1,6 @@
+import config from '../config/index.js';
 import { User } from '../models/User.js';
+import AWS from 'aws-sdk';
 
 export class UserServcie {
     async findById(id) {
@@ -15,5 +17,22 @@ export class UserServcie {
 
     async deleteUser(id) {
         await User.deleteUser(id);
+    }
+
+    async getPreSignUrl(fileName) {
+        const s3 = new AWS.S3({
+            accessKeyId: config.S3AccessKeyId,
+            secretAccessKey: config.S3SecretAccessKey,
+            region: config.S3BucketRegion
+        });
+
+        const params = {
+            Bucket: config.S3BucketName,
+            Key: fileName,
+            Expires: 60 * 60 * 3
+        };
+
+        const signedUrlPut = await s3.getSignedUrlPromise('putObject', params);
+        return signedUrlPut;
     }
 }

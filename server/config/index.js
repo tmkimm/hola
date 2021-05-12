@@ -27,5 +27,11 @@ export default {
   logs: {
     level: process.env.LOG_LEVEL || 'silly',
   },
-  issuer: 'Hola'
+  issuer: 'Hola',
+  /* S3 */
+  S3AccessKeyId: process.env.S3_ACCESS_KEY_ID,
+  S3SecretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+  S3BucketName: process.env.S3_BUCKET_NAME,
+  S3BucketRegion: process.env.S3_BUCKET_REGION,
+
 };
