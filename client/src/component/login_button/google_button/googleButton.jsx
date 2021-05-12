@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./googleButton.module.css";
 
 const GoogleButton = ({ onClick }) => (
-  <div classname={styles.buttonWrapper}>
+  <div className={styles.buttonWrapper}>
     <button className={styles.button} onClick={onClick}>
       <svg width="50" height="50" fill="none" viewBox="0 0 20 20">
         <path

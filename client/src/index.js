@@ -5,10 +5,10 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { configureStore } from "@reduxjs/toolkit";
 import languageReducer from "./store/language";
-import userReducer from "./store/user";
+import userReducer, { setUser } from "./store/user";
 import writeReducer from "./store/write";
 import loginStepReducer from "./store/loginStep";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 
 const store = configureStore({
   reducer: {
@@ -19,6 +19,8 @@ const store = configureStore({
   },
   devTools: process.env.NODE_ENV !== "production",
 });
+
+//login된 user가 있으면 user redux 갱신
 
 ReactDOM.render(
   <React.StrictMode>

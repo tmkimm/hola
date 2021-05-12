@@ -21,6 +21,7 @@ const DropdownBar = () => {
   const handleLogout = () => {
     authService.logout().then((response) => {
       console.log(response);
+      localStorage.removeItem("userName");
       dispatch(clearUser());
       dispatch(nextStep("LOGIN"));
     });

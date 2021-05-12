@@ -22,14 +22,16 @@ to-do
 -> 생각하는 방법은 index.js에서 fetchUserByRefreshToken씀
 -> 성공시 user, localStorage set. 
 -> 실패시 user초기화, localStorage 초기화?
-
+-> fetchByRefreshToken의 정확한 용도를 알아야될듯..!
+-> access token 없을때 계속 써야할텐데, user 있으면 그냥 setting 하면 되지않나?
 */
 
-function App() {
+const App = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    /*
     console.log("#########APP RERENDERING!!!###############");
     if (user.nickName !== undefined) {
       // 유저가 존재하면 return
@@ -41,7 +43,7 @@ function App() {
       // page refresh시에 access token 날아감
       console.log("fetchByuserRefreshToken response :", response);
       // 실패했을때 에러처리 필요할 듯
-    });
+    }); */
   }, [user, dispatch]);
 
   return (
@@ -62,6 +64,6 @@ function App() {
       </Route>
     </Router>
   );
-}
+};
 
 export default App;

@@ -26,7 +26,6 @@ const fetchUserByRefreshTokenAction = createAction(
 const addUserNickNameAction = createAction("user/addUserNickName");
 const modifyUserInfoAction = createAction("user/modifyUserInfo");
 
-
 // 사용자 정보를 수정하고 access token을 설정합니다.
 const modifyUserInfo = createAsyncThunk(
   modifyUserInfoAction,
@@ -101,9 +100,9 @@ const addUserNickName = createAsyncThunk(
 
 // dispatch(action) => reducer => state => re-rendering
 // dispatch(action) => thunk => 비동기처리 => reducer => state => re-rendering
-
+const userName = localStorage.getItem("userName");
 const initialState = {
-  nickName: undefined,
+  nickName: userName === null ? undefined : userName,
   id: undefined,
 };
 
@@ -114,27 +113,32 @@ const userSlice = createSlice({
     setUser: (state, action) => {
       state = action.payload;
     },
-    clearUser: (state) => initialState,
+    clearUser: (state) => {
+      state.nickName = undefined;
+    },
   },
   extraReducers: {
     [fetchUserById.fulfilled]: (state, { payload }) => {
-      console.log("#########payload!!!", payload);
+      localStorage.setItem("userName", payload.nickName);
       state.nickName = payload.nickName;
       state.id = payload._id;
     },
 
     [fetchUserByRefreshToken.fulfilled]: (state, { payload }) => {
+      localStorage.setItem("userName", payload.nickName);
       state.nickName = payload.nickName;
       state.id = payload.id;
     },
 
     [addUserNickName.fulfilled]: (state, { payload }) => {
+      localStorage.setItem("userName", payload.nickName);
       state.nickName = payload.nickName;
       state.id = payload._id;
     },
 
     [modifyUserInfo.fulfilled]: (state, { payload }) => {
-      console.log(`payload :${payload.nickName}`)
+      console.log(`payload :${payload.nickName}`);
+      localStorage.setItem("userName", payload.nickName);
       state.nickName = payload.nickName;
       state.id = payload._id;
     },
@@ -142,5 +146,10 @@ const userSlice = createSlice({
 });
 
 export const { setUser, clearUser } = userSlice.actions;
-export { fetchUserById, fetchUserByRefreshToken, addUserNickName, modifyUserInfo };
+export {
+  fetchUserById,
+  fetchUserByRefreshToken,
+  addUserNickName,
+  modifyUserInfo,
+};
 export default userSlice.reducer;
