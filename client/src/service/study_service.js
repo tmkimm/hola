@@ -1,4 +1,5 @@
 import httpClient from "./http_client";
+import axios from "axios";
 import { getFormatedToday } from "../common/utils";
 
 /*
@@ -34,7 +35,7 @@ class Study {
     }
   };
   /* users/sign 말고 studies/sign 어떤가? */
-  getUrl = async (userName) => {
+  getPresignedUrl = async (userName) => {
     try {
       const fileName = `${userName}_${getFormatedToday()}`;
       const preSignedUrl = await this.study.post("users/sign", {
@@ -43,6 +44,17 @@ class Study {
       return preSignedUrl;
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  uploadImageToS3 = async (presignedUrl, file) => {
+    try {
+      const response = await axios.PUT("presignedUrl", {
+        file,
+      });
+      return response;
+    } catch (error) {
+      console.log(error);
     }
   };
 }

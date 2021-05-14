@@ -1,9 +1,11 @@
 import React, { useRef, useEffect, useCallback, useState } from "react";
 import styled from "styled-components";
+import studyService from "../../service/study_service";
 import Quill from "quill";
 import styles from "./editor.module.css";
 import QuillImageDropAndPaste from "quill-image-drop-and-paste";
 import "react-quill/dist/quill.snow.css";
+import { useSelector } from "react-redux";
 /* 
 
 Quill을 이용한 editor 입니다.
@@ -33,6 +35,7 @@ const QuillWrapper = styled.div`
 const Editor = (props) => {
   const quillElement = useRef(null); // Quill을 적용할 DivElement를 설정
   const quillInstance = useRef(null); // Quill 인스턴스를 설정
+  const user = useSelector((state) => state.user);
   const [image, setImage] = useState({
     type: "", // image's mimeType
     dataUrl: null, // image's base64 string
@@ -40,9 +43,7 @@ const Editor = (props) => {
     file: null, // image's File object
   });
 
-  const uploadImg = () => {};
-
-  const imageHandler = (dataUrl, type, imageData) => {
+  const imageHandler = async (dataUrl, type, imageData) => {
     imageData
       .minify({
         maxWidth: 320,
@@ -60,18 +61,18 @@ const Editor = (props) => {
 
         setImage({ type, dataUrl, blob, file });
       });
-    /*
-    uploadimgToS3(your_upload_url, formData, (err, res) => {
-      if (err) return;
-      let index = (quill.getSelection() || {}).index;
-      if (index === undefined || index < 0) index = quill.getLength();
-      quill.insertEmbed(index, "image", res.data.image_url, "user");
-    });
-    */
+
     const quill = quillInstance.current;
-    let index = (quill.getSelection() || {}).index;
-    if (index === undefined || index < 0) index = quill.getLength();
-    quill.insertEmbed(index, "image", "hihi", "user");
+    const preSignedUrl = await studyService.getPresignedUrl(user.nickName);
+    console.log(preSignedUrl);
+    const res = await studyService
+      .uploadImageToS3(preSignedUrl, image.file)
+      .then((response) => {
+        console.log(response);
+        let index = (quill.getSelection() || {}).index;
+        if (index === undefined || index < 0) index = quill.getLength();
+        quill.insertEmbed(index, "image", preSignedUrl, "user");
+      });
   };
 
   useEffect(() => {
@@ -133,39 +134,6 @@ const Editor = (props) => {
   }, []);
 
   const quill = quillInstance.current;
-
-  /*
-    quillInstance.current = new Quill(quillElement.current, {
-      theme: "snow", // snow or bubble
-      placeholder: "내용을 작성하세요...",
-      modules: {
-        // 더 많은 옵션
-        // https://quilljs.com/docs/modules/toolbar/ 참고
-        toolbar: [
-          [{ header: "1" }, { header: "2" }],
-          ["bold", "italic", "underline", "strike"],
-          [{ list: "ordered" }, { list: "bullet" }],
-          ["blockquote", "code-block", "link", "image"],
-        ],
-      },
-    });
-    
-    // quill에 text-change 이벤트 핸들러 등록
-    // 참고: https://quilljs.com/docs/api/#events
-    const quill = quillInstance.current;
-    quill.on("text-change", (delta, oldDelta, source) => {
-      /*
-      if (source === "user") {
-        onChangeField({ key: "body", value: quill.root.innerHTML });
-      }
-      
-    });
-  }, []);
-//<div id="editor-container" style={{ height: "480px" }}></div>
-  const onChangeTitle = (e) => {
-    //onChangeField({ key: "title", value: e.target.value });
-  };
-*/
 
   return (
     <section className={styles.editorWrapper}>
