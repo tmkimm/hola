@@ -5,7 +5,8 @@ const commentSchema = mongoose.Schema({
     author: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 },
 {
-    versionKey: false
+    versionKey: false,
+    timestamps: true
 });
 
 const studySchema = mongoose.Schema({
@@ -24,7 +25,8 @@ const studySchema = mongoose.Schema({
     comments    : [commentSchema]
 },
 {
-    versionKey: false
+    versionKey: false,
+    timestamps: true
 });
 
 studySchema.statics.findStudy = async function(offset, limit, sort, language) {
