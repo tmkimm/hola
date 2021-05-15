@@ -33,6 +33,22 @@ class Study {
       console.error(error);
     }
   };
+
+  register = async ({ title, body, tags }) => {
+    const data = {
+      title,
+      content: body,
+    };
+    try {
+      const response = await this.study.post("studies", {
+        data,
+      });
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   /* users/sign 말고 studies/sign 어떤가? */
   getPresignedUrl = async (userName) => {
     try {

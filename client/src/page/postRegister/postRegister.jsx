@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./postRegister.module.css";
-import Editor from "../../component/editor/editor";
 import Writebutton from "../../component/writeButton/writebutton";
+import EditorContainer from "../../component/editor/editorContainer";
 
 const handleSubmit = () => {};
 
@@ -10,7 +10,7 @@ const PostRegister = (props) => {
 
   return (
     <section className={styles.editorWrapper}>
-      <Editor></Editor>
+      <EditorContainer></EditorContainer>
       <Writebutton></Writebutton>
     </section>
   );

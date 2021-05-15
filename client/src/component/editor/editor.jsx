@@ -38,7 +38,7 @@ const QuillWrapper = styled.div`
   }
 `;
 
-const Editor = (props) => {
+const Editor = ({ title, body, onChangeField }) => {
   const quillElement = useRef(null); // Quill을 적용할 DivElement를 설정
   const quillInstance = useRef(null); // Quill 인스턴스를 설정
   const user = useSelector((state) => state.user);
@@ -137,18 +137,26 @@ const Editor = (props) => {
           fileInput.click();
         }
       });
-  }, []);
 
-  const quill = quillInstance.current;
+    const quill = quillInstance.current;
+    quill.on("text-change", (delta, oldDelta, source) => {
+      if (source === "user") {
+        onChangeField({ key: "body", value: quill.root.innerHTML });
+      }
+    });
+  }, [onChangeField]);
 
+  const onChangeTitle = (e) => {
+    onChangeField({ key: "title", value: e.target.value });
+  };
   return (
     <section className={styles.editorWrapper}>
       <input
         className={styles.titleInput}
         type="text"
         placeholder="제목을 입력하세요"
-        //        onChange={}
-        //value={title}
+        onChange={onChangeTitle}
+        value={title}
       />
 
       <QuillWrapper>
