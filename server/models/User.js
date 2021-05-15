@@ -24,6 +24,9 @@ const userSchema = mongoose.Schema({
     },
     image: String,
     likeLanguages: [String]
+},
+{
+    timestamps: true
 });
 
 userSchema.statics.deleteUser= async function(id) {

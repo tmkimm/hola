@@ -7,18 +7,13 @@ const client = new OAuth2Client(config.googleClientID);
 
 export class AuthService {
     async SignIn(idToken) {
-        try {
-            const user =  await User.findByIdToken(idToken);
-
-            // Access Token, Refresh Token 발급
-            const _id = user._id;
-            const nickName = user.nickName;
-            const accessToken = await user.generateAccessToken();
-            const refreshToken = await user.generateRefreshToken();
-            return { _id, nickName, accessToken, refreshToken };
-        } catch(error) {
-            res.status(401).json({message : 'Invalid credentials'});
-        }
+        const user =  await User.findByIdToken(idToken);
+        // Access Token, Refresh Token 발급
+        const _id = user._id;
+        const nickName = user.nickName;
+        const accessToken = await user.generateAccessToken();
+        const refreshToken = await user.generateRefreshToken();
+        return { _id, nickName, accessToken, refreshToken };
     }
 
     // Refresh Token을 이용하여 Access Token 재발급
