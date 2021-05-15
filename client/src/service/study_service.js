@@ -1,5 +1,4 @@
 import httpClient from "./http_client";
-import axios from "axios";
 import { getFormatedToday } from "../common/utils";
 
 /*
@@ -37,24 +36,42 @@ class Study {
   /* users/sign 말고 studies/sign 어떤가? */
   getPresignedUrl = async (userName) => {
     try {
-      const fileName = `${userName}_${getFormatedToday()}`;
-      const preSignedUrl = await this.study.post("users/sign", {
+      const fileName = `${userName}_${getFormatedToday()}.png`;
+      const response = await this.study.post("users/sign", {
         fileName,
       });
-      return preSignedUrl;
+      return response.data.preSignUrl;
     } catch (error) {
       console.error(error);
     }
   };
 
   uploadImageToS3 = async (presignedUrl, file) => {
+    /*
     try {
-      const response = await axios.PUT("presignedUrl", {
+      const response = await axios.put(presignedUrl, {
         file,
       });
       return response;
     } catch (error) {
       console.log(error);
+    }
+    */
+    const response = await fetch(
+      new Request(presignedUrl, {
+        method: "PUT",
+        body: file,
+        headers: new Headers({
+          "Content-Type": "image/png",
+        }),
+      })
+    );
+    console.log("response!!!", response);
+    if (response.status !== 200) {
+      // The upload failed, so let's notify the caller.
+      //onError();
+      console.log("error occured!");
+      return;
     }
   };
 }

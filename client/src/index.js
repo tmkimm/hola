@@ -5,10 +5,10 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { configureStore } from "@reduxjs/toolkit";
 import languageReducer from "./store/language";
-import userReducer, { setUser } from "./store/user";
+import userReducer from "./store/user";
 import writeReducer from "./store/write";
 import loginStepReducer from "./store/loginStep";
-import { Provider, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 
 const store = configureStore({
   reducer: {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./loginModal.module.css";
 import GoogleLogin from "react-google-login";
 import KakaoLogin from "react-kakao-login";

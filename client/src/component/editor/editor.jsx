@@ -6,16 +6,22 @@ import styles from "./editor.module.css";
 import QuillImageDropAndPaste from "quill-image-drop-and-paste";
 import "react-quill/dist/quill.snow.css";
 import { useSelector } from "react-redux";
+import { getFormatedToday } from "../../common/utils";
+
 /* 
 
-Quill을 이용한 editor 입니다.
+Quill을 이용한 editor component 입니다.
+redux로 editor 상태를 관리하고,
+user가 image upload시 s3 bucket으로 바로 upload 합니다.
 
 To-do
 styled-component 제거 
 -> quill 내부 style sheet 적용하려면 css file을 import 해야해서 일단 보류
 
+png 파일 외에 gif나 jpeg도 test
+image minify 적용할건지 결정 필요
+image upload시 파일 크기 작은거 확인 필요
 input 관리 redux 적용
-
 
 */
 
@@ -36,13 +42,11 @@ const Editor = (props) => {
   const quillElement = useRef(null); // Quill을 적용할 DivElement를 설정
   const quillInstance = useRef(null); // Quill 인스턴스를 설정
   const user = useSelector((state) => state.user);
-  const [image, setImage] = useState({
-    type: "", // image's mimeType
-    dataUrl: null, // image's base64 string
-    blob: null, // image's BLOB object
-    file: null, // image's File object
-  });
+  const [image, setImage] = useState();
+  let test = null;
+  let testType = null;
 
+  /* image Handler 함수 */
   const imageHandler = async (dataUrl, type, imageData) => {
     imageData
       .minify({
@@ -51,30 +55,32 @@ const Editor = (props) => {
         quality: 0.7,
       })
       .then((miniImageData) => {
-        const blob = miniImageData.toBlob();
-        const file = miniImageData.toFile("my_cool_image.png");
-
+        const fileName = `${user.nickName}_${getFormatedToday()}.png`;
+        const file = miniImageData.toFile(fileName);
+        test = file;
+        testType = type;
         console.log(`type: ${type}`);
-        console.log(`dataUrl: ${dataUrl}`);
-        console.log(`blob: ${blob}`);
         console.log(`file: ${file}`);
-
-        setImage({ type, dataUrl, blob, file });
+        setImage({ ...file });
       });
 
     const quill = quillInstance.current;
     const preSignedUrl = await studyService.getPresignedUrl(user.nickName);
-    console.log(preSignedUrl);
-    const res = await studyService
-      .uploadImageToS3(preSignedUrl, image.file)
-      .then((response) => {
-        console.log(response);
-        let index = (quill.getSelection() || {}).index;
-        if (index === undefined || index < 0) index = quill.getLength();
-        quill.insertEmbed(index, "image", preSignedUrl, "user");
-      });
+    const fileName = `${user.nickName}_${getFormatedToday()}.png`;
+    const test1 = imageData.toFile(fileName);
+
+    /* bucket image upload */
+    await studyService.uploadImageToS3(preSignedUrl, test1).then((response) => {
+      console.log("####", response);
+      console.log("filename : ", fileName);
+      const imageUrl = `https://hola-post-image.s3.ap-northeast-2.amazonaws.com/${fileName}`;
+      let index = (quill.getSelection() || {}).index;
+      if (index === undefined || index < 0) index = quill.getLength();
+      quill.insertEmbed(index, "image", imageUrl, "user");
+    });
   };
 
+  /* default quill editor 설정 */
   useEffect(() => {
     Quill.register("modules/imageDropAndPaste", QuillImageDropAndPaste);
     quillInstance.current = new Quill(quillElement.current, {
@@ -147,21 +153,6 @@ const Editor = (props) => {
 
       <QuillWrapper>
         <div className={styles.quillEditor} ref={quillElement} />
-        <div>
-          <h4>Preview image from BLOB URL:</h4>
-          {image.blob && <img src={URL.createObjectURL(image.blob)} />}
-        </div>
-        <hr />
-        <div>
-          <h4>Get file infomation from File Object:</h4>
-          {image.file && (
-            <div>
-              <b>name:</b> <span>{image.file.name}</span> <br />
-              <b>size:</b> <span>{image.file.size}</span> <br />
-              <b>type:</b> <span>{image.file.type}</span>
-            </div>
-          )}
-        </div>
       </QuillWrapper>
     </section>
   );
