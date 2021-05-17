@@ -5,7 +5,7 @@ import httpClient from "../service/http_client";
 
 /* 
 
-user 관련 store를 다루는 redux code입니다.
+user 관련 store를 다루는 redux store 입니다.
 createSlice를 통해 전역 user state를 생성하고,
 createAsyncThunk를 통해 user 상태를 update 합니다.
 

@@ -17,6 +17,7 @@ const writeSlice = createSlice({
   initialState,
   reducers: {
     changeField: (state, { payload: { key, value } }) => ({
+      ...state,
       [key]: value,
     }),
 

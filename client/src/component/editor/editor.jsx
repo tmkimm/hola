@@ -39,15 +39,15 @@ const QuillWrapper = styled.div`
 `;
 
 const Editor = ({ title, body, onChangeField }) => {
-  const quillElement = useRef(null); // Quill을 적용할 DivElement를 설정
-  const quillInstance = useRef(null); // Quill 인스턴스를 설정
+  const quillElement = useRef(""); // Quill을 적용할 DivElement를 설정
+  const quillInstance = useRef(""); // Quill 인스턴스를 설정
   const user = useSelector((state) => state.user);
   const [image, setImage] = useState();
   let test = null;
   let testType = null;
 
   /* image Handler 함수 */
-  const imageHandler = async (dataUrl, type, imageData) => {
+  const imageHandler = useCallback(async (dataUrl, type, imageData) => {
     imageData
       .minify({
         maxWidth: 320,
@@ -71,14 +71,13 @@ const Editor = ({ title, body, onChangeField }) => {
 
     /* bucket image upload */
     await studyService.uploadImageToS3(preSignedUrl, test1).then((response) => {
-      console.log("####", response);
-      console.log("filename : ", fileName);
       const imageUrl = `https://hola-post-image.s3.ap-northeast-2.amazonaws.com/${fileName}`;
       let index = (quill.getSelection() || {}).index;
       if (index === undefined || index < 0) index = quill.getLength();
       quill.insertEmbed(index, "image", imageUrl, "user");
+      quill.setSelection(quill.getSelection().index + 1, 0); // image upload 후 cursor 이동
     });
-  };
+  }, []);
 
   /* default quill editor 설정 */
   useEffect(() => {
@@ -144,11 +143,12 @@ const Editor = ({ title, body, onChangeField }) => {
         onChangeField({ key: "body", value: quill.root.innerHTML });
       }
     });
-  }, [onChangeField]);
+  }, [onChangeField, imageHandler]);
 
   const onChangeTitle = (e) => {
     onChangeField({ key: "title", value: e.target.value });
   };
+
   return (
     <section className={styles.editorWrapper}>
       <input

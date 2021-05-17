@@ -8,7 +8,7 @@ import styles from "./writebutton.module.css";
 
 */
 
-const Writebutton = (props) => {
+const Writebutton = ({onCancel, onPublish}) => {
   return (
     <section className={styles.buttons}>
       <button className={styles.cancelButton}>취소</button>
