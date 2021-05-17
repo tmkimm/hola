@@ -5,6 +5,9 @@ import { getFormatedToday } from "../common/utils";
 
 글 등록, 삭제, 수정, 조회 등 study 글 관련 api를 모아놓은 class입니다.
 
+to-do
+
+
 */
 class Study {
   constructor() {
@@ -63,16 +66,6 @@ class Study {
   };
 
   uploadImageToS3 = async (presignedUrl, file) => {
-    /*
-    try {
-      const response = await axios.put(presignedUrl, {
-        file,
-      });
-      return response;
-    } catch (error) {
-      console.log(error);
-    }
-    */
     const response = await fetch(
       new Request(presignedUrl, {
         method: "PUT",

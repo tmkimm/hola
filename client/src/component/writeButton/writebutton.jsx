@@ -8,11 +8,15 @@ import styles from "./writebutton.module.css";
 
 */
 
-const Writebutton = ({onCancel, onPublish}) => {
+const Writebutton = ({ onPublish, onCancel }) => {
   return (
     <section className={styles.buttons}>
-      <button className={styles.cancelButton}>취소</button>
-      <button className={styles.registerButton}>글 등록</button>
+      <button onClick={onCancel} className={styles.cancelButton}>
+        취소
+      </button>
+      <button onClick={onPublish} className={styles.registerButton}>
+        글 등록
+      </button>
     </section>
   );
 };
