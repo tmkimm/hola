@@ -4,23 +4,23 @@ import studyService from "../service/study_service";
 /* 
 
 editor 상태를 관리하는 redux store 입니다.
-title은 제목, body는 내용, languages는 사용 언어를 담고 있습니다.
+title은 제목, content 내용, languages는 사용 언어를 담고 있습니다.
 
 */
-const postRegisterAction = createAction("write/postRegister");
+const writePostAction = createAction("write/writePost");
 
-const postRegister = createAsyncThunk(
-  postRegisterAction,
-  async ({ title, body, tags }, thunkAPI) => {
-    const response = await studyService.register({ title, body, tags });
-    console.log("response from PostRegisterAPI!", response);
-    return { title, body, tags };
+const writePost = createAsyncThunk(
+  writePostAction,
+  async ({ title, content, language }, thunkAPI) => {
+    const response = await studyService.register({ title, content, language });
+    console.log("response from writePostAPI!", response);
+    return response.status;
   }
 );
 const initialState = {
   title: "",
-  body: "",
-  tags: [],
+  content: "",
+  language: [],
   post: null,
   postError: null,
 };
@@ -37,17 +37,27 @@ const writeSlice = createSlice({
     clearField: (state) => initialState,
   },
   extraReducers: {
-    [postRegister.pending]: (state, { payload }) => ({
+    [writePost.pending]: (state, { payload }) => ({
       ...state,
       post: null,
       postError: null,
     }),
-    [postRegister.fulfilled]: (state, { payload }) => {
+    [writePost.fulfilled]: (state, { payload }) => {
+      // 수정 필요
+      if (payload === 201) {
+        state.post = "success";
+      }
       state.post = payload; // post 정보 담음
+    },
+    [writePost.rejected]: (state, { payload }) => {
+      console.log("rejected payload~~~~~~~~~~~", payload);
+      if (payload === 401) {
+        state.postError = "failed"; // post 정보 담음
+      }
     },
   },
 });
 
 export const { changeField, clearField } = writeSlice.actions;
-export { postRegister };
+export { writePost };
 export default writeSlice.reducer;

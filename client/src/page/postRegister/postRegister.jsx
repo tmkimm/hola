@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./postRegister.module.css";
 import EditorContainer from "../../component/editor/editorContainer";
 import WritebuttonContainer from "../../component/writeButton/writebuttonContainer";
-
-const handleSubmit = () => {};
 
 const PostRegister = (props) => {
   return (

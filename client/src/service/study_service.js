@@ -37,14 +37,12 @@ class Study {
     }
   };
 
-  register = async ({ title, body, tags }) => {
-    const data = {
-      title,
-      content: body,
-    };
+  register = async ({ title, content, language }) => {
     try {
       const response = await this.study.post("studies", {
-        data,
+        title,
+        content,
+        language: ["Typescript", "python"],
       });
       return response;
     } catch (error) {

@@ -4,6 +4,7 @@
   justify-content: flex-end;
   -webkit-box-align: center;
   align-items: center;
+  margin-top: 1rem;
 }
 
 .cancelButton {
@@ -24,7 +25,7 @@
   cursor: pointer;
   outline: none;
   border: none;
-  background: rgb(18, 184, 134);
+  background-color: #392f31;
   color: white;
   border-radius: 4px;
   padding: 0px 1.25rem;

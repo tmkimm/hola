@@ -5,9 +5,9 @@ import Editor from "./editor";
 
 const EditorContainer = (props) => {
   const dispatch = useDispatch();
-  const { title, body } = useSelector(({ write }) => ({
+  const { title, content } = useSelector(({ write }) => ({
     title: write.title,
-    body: write.body,
+    content: write.content,
   }));
 
   const onChangeField = useCallback(
@@ -23,7 +23,11 @@ const EditorContainer = (props) => {
   }, [dispatch]);
 
   return (
-    <Editor onChangeField={onChangeField} title={title} body={body}></Editor>
+    <Editor
+      onChangeField={onChangeField}
+      title={title}
+      content={content}
+    ></Editor>
   );
 };
 

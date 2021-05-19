@@ -38,13 +38,11 @@ const QuillWrapper = styled.div`
   }
 `;
 
-const Editor = ({ title, body, onChangeField }) => {
+const Editor = ({ title, content, onChangeField }) => {
   const quillElement = useRef(""); // Quill을 적용할 DivElement를 설정
   const quillInstance = useRef(""); // Quill 인스턴스를 설정
   const user = useSelector((state) => state.user);
   const [image, setImage] = useState();
-  let test = null;
-  let testType = null;
 
   /* image Handler 함수 */
   const imageHandler = useCallback(async (dataUrl, type, imageData) => {
@@ -57,26 +55,26 @@ const Editor = ({ title, body, onChangeField }) => {
       .then((miniImageData) => {
         const fileName = `${user.nickName}_${getFormatedToday()}.png`;
         const file = miniImageData.toFile(fileName);
-        test = file;
-        testType = type;
         console.log(`type: ${type}`);
         console.log(`file: ${file}`);
-        setImage({ ...file });
+        setImage((state) => file);
       });
 
     const quill = quillInstance.current;
     const preSignedUrl = await studyService.getPresignedUrl(user.nickName);
     const fileName = `${user.nickName}_${getFormatedToday()}.png`;
-    const test1 = imageData.toFile(fileName);
+    const imageFile = imageData.toFile(fileName);
 
     /* bucket image upload */
-    await studyService.uploadImageToS3(preSignedUrl, test1).then((response) => {
-      const imageUrl = `https://hola-post-image.s3.ap-northeast-2.amazonaws.com/${fileName}`;
-      let index = (quill.getSelection() || {}).index;
-      if (index === undefined || index < 0) index = quill.getLength();
-      quill.insertEmbed(index, "image", imageUrl, "user");
-      quill.setSelection(quill.getSelection().index + 1, 0); // image upload 후 cursor 이동
-    });
+    await studyService
+      .uploadImageToS3(preSignedUrl, imageFile)
+      .then((response) => {
+        const imageUrl = `https://hola-post-image.s3.ap-northeast-2.amazonaws.com/${fileName}`;
+        let index = (quill.getSelection() || {}).index;
+        if (index === undefined || index < 0) index = quill.getLength();
+        quill.insertEmbed(index, "image", imageUrl, "user");
+        quill.setSelection(quill.getSelection().index + 1, 0); // image upload 후 cursor 이동
+      });
   }, []);
 
   /* default quill editor 설정 */
@@ -140,7 +138,7 @@ const Editor = ({ title, body, onChangeField }) => {
     const quill = quillInstance.current;
     quill.on("text-change", (delta, oldDelta, source) => {
       if (source === "user") {
-        onChangeField({ key: "body", value: quill.root.innerHTML });
+        onChangeField({ key: "content", value: quill.root.innerHTML });
       }
     });
   }, [onChangeField, imageHandler]);
