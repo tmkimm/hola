@@ -31,7 +31,6 @@ const modifyUserInfo = createAsyncThunk(
   modifyUserInfoAction,
   async (userData, thunkAPI) => {
     const response = await userService.modifyUserInfo(userData.id, userData);
-    console.log(`service return ${response.data.accessToken}`);
     const accessToken = response.data.accessToken;
 
     // header에 access token 설정

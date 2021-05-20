@@ -12,7 +12,7 @@ class User {
   // 사용자 정보를 수정합니다.
   // 닉네임이 변경될 경우 AccessToken을 다시 설정해야 합니다.
   modifyUserInfo = async (id, userData) => {
-    console.log(`userService id : ${id} userData : ${userData.nickName}`)
+    console.log(`userService id : ${id} userData : ${userData.nickName} likeLanguages : ${userData.likeLanguages}`)
     try {
       const user = await this.user.patch(`users/${id}`, userData);
       return user;
