@@ -3,7 +3,7 @@ const languageList = [
     { value: 'c++', label: 'c++' },
     { value: 'c#', label: 'c#' },
     { value: 'spring', label: 'Spring' },
-    { value: 'ㅓavaScript', label: 'JavaScript' },
+    { value: 'javaScript', label: 'JavaScript' },
     { value: 'react', label: 'React.js' },
     { value: 'vue', label: 'Vue.js' },
     { value: 'node.js', label: 'Node.js' },
