@@ -8,6 +8,25 @@
   background-color: #f8f9fa;
 }
 
+.category {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.category__item {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+  color: rgb(134, 142, 150);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.active {
+  color: rgb(52, 58, 64);
+}
+
 .main {
   display: flex;
   flex-direction: column;
