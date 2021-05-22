@@ -54,6 +54,7 @@ export default (app) => {
 
         let UserServcieInstance = new UserServcie();
         await UserServcieInstance.deleteUser(id);
+        res.clearCookie('R_AUTH');
         res.status(204).json();
     });
     

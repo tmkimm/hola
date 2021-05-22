@@ -20,6 +20,17 @@ class User {
       console.error(error);
     }
   };
+
+  // 회원 탈퇴
+  deleteUser = async( id ) => {
+    try {
+      await this.user.delete(`users/${id}`);
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  };
 }
 
 const userService = new User(httpClient);

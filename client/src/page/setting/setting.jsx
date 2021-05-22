@@ -1,15 +1,23 @@
 import React, { useState } from "react";
-import { modifyUserInfo } from "../../store/user";
+import Select from 'react-select';
 import Navbar from "../../component/nav_bar/navbar";
 import styles from "./setting.module.css";
+import { modifyUserInfo } from "../../store/user";
 import { useDispatch, useSelector } from "react-redux";
-import Select from 'react-select';
 import languageList from '../../languageList';
+import { useHistory } from "react-router";
+import { useToasts } from 'react-toast-notifications';
+import userService from "../../service/user_service";
+import { clearUser } from "../../store/user";
+import { nextStep } from "../../store/loginStep";
+
+
 
 const customStyles = {
   control: (css) => ({
     ...css,
     width: "500px",
+    height:"3rem"
   }),
 };
 
@@ -17,27 +25,44 @@ const Setting = (props) => {
   const [nickName, setNickName] = useState('');
   const [likeLanguages, setLikeLanguages] = useState('');
   const dispatch = useDispatch();
+  const history = useHistory();
   const userId = useSelector((state) => state.user.id);
 
   const onCompleteClick = async (e) => {
-    const languages = [];
-    likeLanguages.forEach(element => {
-      languages.push(element.value);
-    });
+    if(nickName == '') {
+      // addToast('닉네임을 입력해야 합니다.', {
+      //   appearance: 'warning',
+      //   autoDismiss: true,
+      // })
+    }
+    else {
+      const languages = [];
+      likeLanguages.forEach(element => {
+        languages.push(element.value);
+      });
 
-    await dispatch(modifyUserInfo(
-        {
-            id: userId,
-            nickName,
-            likeLanguages: languages
-        })).then(
-      () => {
-      }
-    );
+      await dispatch(modifyUserInfo(
+          {
+              id: userId,
+              nickName,
+              likeLanguages: languages
+          })).then(
+        () => {
+          history.push('/');
+        }
+      );
+    }
   };
 
+  // 회원 탈퇴
   const onSignOutClick = async (e) => {
-
+    userService.deleteUser(userId).then((deleteSuccess) => {
+      console.log(`deleteSuccess : ${deleteSuccess}`)
+      localStorage.removeItem("userName");
+      dispatch(clearUser());
+      dispatch(nextStep("LOGIN"));
+      history.push('/');
+    });
   };
 
     return (

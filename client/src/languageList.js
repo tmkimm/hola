@@ -1,7 +1,7 @@
 const languageList = [
-    { value: 'c', label: 'c' },
-    { value: 'c++', label: 'c++' },
-    { value: 'c#', label: 'c#' },
+    { value: 'c', label: 'C' },
+    { value: 'c++', label: 'C++' },
+    { value: 'c#', label: 'C#' },
     { value: 'spring', label: 'Spring' },
     { value: 'javaScript', label: 'JavaScript' },
     { value: 'react', label: 'React.js' },
