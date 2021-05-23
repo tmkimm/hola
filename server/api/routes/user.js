@@ -17,6 +17,16 @@ export default (app) => {
         });
     });
 
+      
+    // 사용자 정보 조회
+    route.get('/', async (req, res, next) => {
+        const { nickName } = req.query;
+        let UserServcieInstance = new UserServcie();
+        const user = await UserServcieInstance.findByNickName(nickName);
+
+        res.status(200).json(user);
+    });
+
     // 사용자 정보 상세 보기
     route.get('/:id', async (req, res, next) => {
         const id = req.params.id;

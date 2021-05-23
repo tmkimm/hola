@@ -1,8 +1,15 @@
 import config from "../config/index.js";
 import { User } from "../models/User.js";
 import AWS from "aws-sdk";
+import { nickNameDuplicationCheck } from '../api/middlewares/index.js';
 
 export class UserServcie {
+
+  async findByNickName(nickName) {
+    const users = await User.findByNickName(nickName);
+    return users;
+  }
+
   async findById(id) {
     const users = await User.findById(id);
     return users;

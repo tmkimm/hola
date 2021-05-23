@@ -54,7 +54,7 @@ userSchema.statics.findByEmail = async function(email) {
     return await User.findOne({ email: email });
 };
 
-userSchema.statics.findByNickname = async function(nickName) {
+userSchema.statics.findByNickName = async function(nickName) {
     return await User.findOne({ nickName: nickName });
 };
 
