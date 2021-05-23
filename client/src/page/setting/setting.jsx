@@ -16,6 +16,10 @@ import { toast } from 'react-toastify';
 이미지 컴포넌트로 분리
 s3 경로 config 파일로 분리
 
+
+localstorage 체크
+reject면 localstorage 삭제
+
 */
 const customStyles = {
   control: (css) => ({
@@ -27,18 +31,19 @@ const customStyles = {
 
 const Setting = (props) => {
   const defaultImage = 'https://media.vlpt.us/images/seeh_h/profile/6b7bfde5-b67c-4665-a2e1-a308e8de2059/tt.PNG?w=120';
+  const [id, setID] = useState('');
   const [nickName, setNickName] = useState('');
   const [likeLanguages, setLikeLanguages] = useState([]);
   const [userImage, setUserImage] = useState(defaultImage);
-  const userId = useSelector((state) => state.user.id);
+  const userNickName = useSelector((state) => state.user.nickName);
   const history = useHistory();
   const dispatch = useDispatch();
 
   // 사용자 정보 세팅
   useEffect(() => {
-    if(userId) {
+    if(userNickName) {
       userService
-      .getUserInfo(userId)
+      .getUserInfoByNickName(userNickName)
       .then((response) => {
         const userInfo = response.data;
         setLikeLanguages(userInfo.likeLanguages.map((obj) => {
@@ -46,6 +51,7 @@ const Setting = (props) => {
           rObj[obj.value] = obj;
           return rObj;
         }));
+        setID(userInfo._id);
         setNickName(userInfo.nickName);
         if(userInfo.image) {
 
@@ -73,7 +79,7 @@ const Setting = (props) => {
 
       await dispatch(modifyUserInfo(
           {
-              id: userId,
+              id: id,
               nickName,
               likeLanguages: languages
           })).then(
@@ -95,7 +101,7 @@ const Setting = (props) => {
   }
   // 회원 탈퇴
   const onSignOutClick = async (e) => {
-    userService.deleteUser(userId).then((deleteSuccess) => {
+    userService.deleteUser(id).then((deleteSuccess) => {
       localStorage.removeItem("userName");
       dispatch(clearUser());
       dispatch(nextStep("LOGIN"));

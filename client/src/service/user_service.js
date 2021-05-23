@@ -9,10 +9,26 @@ class User {
     this.user = httpClient;
   }
 
-  // 사용자 정보를 조회합니다.
+  // id를 이용해 사용자 정보를 조회합니다.
   getUserInfo = async (id) => {
     try {
       const user = await this.user.get(`users/${id}`);
+      return user;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // 닉네임을 이용해 사용자 정보를 조회합니다.
+  getUserInfoByNickName = async (nickName) => {
+    try {
+      const params = {
+        nickName: nickName
+      };
+
+      const user = await this.user.get(`users`, {
+        params
+      });
       return user;
     } catch (error) {
       console.error(error);
