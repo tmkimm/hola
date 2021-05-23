@@ -9,6 +9,16 @@ class User {
     this.user = httpClient;
   }
 
+  // 사용자 정보를 조회합니다.
+  getUserInfo = async (id) => {
+    try {
+      const user = await this.user.get(`users/${id}`);
+      return user;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   // 사용자 정보를 수정합니다.
   // 닉네임이 변경될 경우 AccessToken을 다시 설정해야 합니다.
   modifyUserInfo = async (id, userData) => {
