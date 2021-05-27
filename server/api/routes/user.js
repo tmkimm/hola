@@ -41,7 +41,6 @@ export default (app) => {
     route.patch('/:id', nickNameDuplicationCheck, async (req, res, next) => {
         const id = req.params.id;
         const userDTO = req.body;
-
         let UserServcieInstance = new UserServcie();
         const { userRecord, accessToken, refreshToken } = await UserServcieInstance.modifyUser(id, userDTO);
 
