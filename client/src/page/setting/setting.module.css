@@ -18,59 +18,6 @@
   font-size: 1rem;
 }
 
-.image {
-  display: flex;
-}
-
-.imageControl {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  margin-left: 10px;
-}
-
-.customLabelFileUpload {
-  background-color: rgb(18, 184, 134);
-  color: white;
-  border-radius: 4px;
-  display: inline-block;
-  cursor: pointer;
-  font-weight: bold;
-  text-align: center;
-  padding: 0px;
-  width: 100px;
-  height: 30px;
-  font-size: 1rem;
-  margin: 5px;
-}
-
-.buttonImageDelete {
-  display: inline-block;
-  width: 100px;
-  background: rgb(18, 184, 134);
-  height: 30px;
-  margin: 5px;
-  margin-right: 0px;
-  padding: 0px;
-  font-size: 1rem;
-}
-
-.imageControl input[type="file"] {
-  display: none;
-}
-
-.userImg {
-  display: block;
-  height: 10rem;
-  width: 10rem;
-  box-shadow: rgb(0 0 0 / 9%) 0px 0px 8px;
-  border-radius: 50%;
-  object-fit: cover;
-  transition: all 0.125s ease-in 0s;
-  margin: 40px 0px;
-}
-
 .titleWrapper {
   display: flex;
 }

@@ -10,4 +10,12 @@ const getFormatedToday = () => {
   return year + "-" + month + "-" + day + "_" + hour + "-" + min + "-" + sec;
 };
 
-export { getFormatedToday };
+const isBase64 = (str) => {
+  try {
+      return str.substring(0, 5) == 'data:' ? true : false;
+  } catch (err) {
+    return false;
+  }
+};
+
+export { getFormatedToday, isBase64 };
