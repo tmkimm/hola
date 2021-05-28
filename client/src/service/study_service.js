@@ -37,6 +37,15 @@ class Study {
     }
   };
 
+  getDetail = async (id) => {
+    try {
+      const response = await this.study.get(`studies/${id}`);
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   register = async ({ title, content, language }) => {
     try {
       const response = await this.study.post("studies", {
@@ -83,20 +92,18 @@ class Study {
   };
 
   uploadImageToS3WithBase64 = async (presignedUrl, file, fileName) => {
-    let arr = file.split(','),
-    mime = arr[0].match(/:(.*?);/)[1],
-    bstr = atob(arr[1]), 
-    n = bstr.length, 
-    u8arr = new Uint8Array(n);
-        
-    while(n--){
-        u8arr[n] = bstr.charCodeAt(n);
+    let arr = file.split(","),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
     }
     const imageFile = new File([u8arr], fileName, { type: mime });
-    await this.uploadImageToS3(presignedUrl, imageFile)
-    .then((response) => {
-    });
-  }
+    await this.uploadImageToS3(presignedUrl, imageFile).then((response) => {});
+  };
 }
 
 const studyService = new Study(httpClient);

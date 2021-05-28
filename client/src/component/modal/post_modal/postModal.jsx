@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import studyService from "../../../service/study_service";
 import styles from "./postModal.module.css";
 
 const PostModal = ({ study, handleClose }) => {
-  console.log("hihihihihihi Im modal");
+  const [content, setContent] = useState("");
+  useEffect(() => {
+    const res = studyService.getDetail(study._id).then((response) => {
+      console.log("response!!!", response.data.content);
+      setContent((state) => response.data.content);
+    });
+  }, []);
+
   return (
     <div className={styles.wrapper}>
-      <div className={styles.content}>스터디 합시다!</div>
+      <div dangerouslySetInnerHTML={{ __html: content }}></div>
     </div>
   );
 };
