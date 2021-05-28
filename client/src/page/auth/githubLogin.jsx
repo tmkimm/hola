@@ -11,8 +11,6 @@ github login component 입니다.
 github에서 popup login을 만들어 주지 않아 자체적으로 component를 만들었고,
 code와 함께 redirection 되면 login 시도 후 main으로 이동합니다.
 
-to-do
-login 후 user 정보 localStorage에 저장하기
 
 */
 

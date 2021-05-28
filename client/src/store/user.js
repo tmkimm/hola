@@ -33,17 +33,16 @@ const modifyUserInfo = createAsyncThunk(
     const response = await userService.modifyUserInfo(userData.id, userData);
     console.log(response);
     // 정보 수정 성공시에만 access token 설정
-    if(response.modifySuccess) {
+    if (response.modifySuccess) {
       const accessToken = response.user.data.accessToken;
       // header에 access token 설정
       httpClient.defaults.headers.common[
         "Authorization"
       ] = `Bearer ${accessToken}`;
-    }
-    else {
+    } else {
       return rejectWithValue(response.modifySuccess);
     }
-    
+
     return response.user.data;
   }
 );
@@ -100,9 +99,8 @@ const addUserNickName = createAsyncThunk(
   }
 );
 
-const userName = localStorage.getItem("userName");
 const initialState = {
-  nickName: userName === null ? undefined : userName,
+  nickName: undefined,
   id: undefined,
 };
 
@@ -110,34 +108,31 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setUser: (state, action) => {
-      state = action.payload;
-    },
+    setUser: (state, action) => ({
+      ...state,
+      nickName: action.payload,
+    }),
     clearUser: (state) => {
       state.nickName = undefined;
     },
   },
   extraReducers: {
     [fetchUserById.fulfilled]: (state, { payload }) => {
-      localStorage.setItem("userName", payload.nickName);
       state.nickName = payload.nickName;
       state.id = payload._id;
     },
 
     [fetchUserByRefreshToken.fulfilled]: (state, { payload }) => {
-      localStorage.setItem("userName", payload.nickName);
       state.nickName = payload.nickName;
       state.id = payload.id;
     },
 
     [addUserNickName.fulfilled]: (state, { payload }) => {
-      localStorage.setItem("userName", payload.nickName);
       state.nickName = payload.nickName;
       state.id = payload._id;
     },
 
     [modifyUserInfo.fulfilled]: (state, { payload }) => {
-      localStorage.setItem("userName", payload.nickName);
       state.nickName = payload.nickName;
       state.id = payload._id;
     },

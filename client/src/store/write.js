@@ -6,6 +6,9 @@ import studyService from "../service/study_service";
 editor 상태를 관리하는 redux store 입니다.
 title은 제목, content 내용, languages는 사용 언어를 담고 있습니다.
 
+To-do
+생성시 글 id 건내주기 api 적용
+
 */
 const writePostAction = createAction("write/writePost");
 

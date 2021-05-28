@@ -55,7 +55,11 @@ const StudyItem = ({ study }) => {
       </li>
       {modalVisible && (
         <Modal visible={modalVisible} onClose={closeModal}>
-          <PostModal handleClose={closeModal} tabIndex={0}></PostModal>
+          <PostModal
+            study={study}
+            handleClose={closeModal}
+            tabIndex={0}
+          ></PostModal>
         </Modal>
       )}
     </>

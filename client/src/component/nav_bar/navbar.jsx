@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LoginModal from "../modal/login_modal/loginModal";
 import Modal from "../modal/modal_component/modal";
 import styles from "./navbar.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import LoginUser from "../login_user/loginUser";
 import { setModalVisible } from "../../store/loginStep";
+import { clearUser, fetchUserByRefreshToken, setUser } from "../../store/user";
 
-const Navbar = () => {
+const Navbar = React.memo(() => {
+  console.log("NAVBAR START!");
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const history = useHistory();
+  let apiFlag = false;
+
   const modalVisible = useSelector((state) => state.loginStep.modalVisible);
   const openModal = () => {
     document.body.style.overflow = "hidden";
@@ -20,6 +25,24 @@ const Navbar = () => {
     dispatch(setModalVisible(false));
   };
 
+  useEffect(() => {
+    console.log("navbar useEffect!!");
+    //dispatch(setUser("hi"));
+    if (apiFlag) {
+      // page refresh후 갱신
+      dispatch(fetchUserByRefreshToken()).then((response) => {
+        // 유저 미존재시 refresh token을 이용해서 유저정보 얻어옴
+        console.log(response.meta.requestStatus);
+        if (response.meta.requestStatus !== "fulfilled") {
+          //clearUser();
+          history.push("/");
+          //alert("히히");
+        }
+        console.log("fetchByuserRefreshToken response :", response);
+        // 실패했을때 에러처리 필요할 듯
+      });
+    }
+  }, [dispatch, apiFlag, history]);
   return (
     <nav className={styles.navbar}>
       <a href="/">
@@ -30,7 +53,7 @@ const Navbar = () => {
         />
       </a>
       <div className={styles.loginElementWrapper}>
-        {user.nickName === undefined ? (
+        {!user.nickName ? (
           <button className={styles.login} onClick={openModal}>
             로그인
           </button>
@@ -50,6 +73,6 @@ const Navbar = () => {
       )}
     </nav>
   );
-};
+});
 
 export default Navbar;

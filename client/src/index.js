@@ -3,42 +3,59 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import languageReducer from "./store/language";
 import userReducer from "./store/user";
 import writeReducer from "./store/write";
 import loginStepReducer from "./store/loginStep";
 import { Provider } from "react-redux";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import { PersistGate } from "redux-persist/integration/react";
+
+const persistConfig = {
+  key: "user",
+  storage,
+  whitelist: ["user"],
+};
+
+const reducers = combineReducers({
+  language: languageReducer,
+  user: userReducer,
+  write: writeReducer,
+  loginStep: loginStepReducer,
+});
+
+const _persistedReducer = persistReducer(persistConfig, reducers);
 
 const store = configureStore({
-  reducer: {
-    language: languageReducer,
-    user: userReducer,
-    write: writeReducer,
-    loginStep: loginStepReducer,
-  },
+  reducer: _persistedReducer,
   devTools: process.env.NODE_ENV !== "production",
 });
+
+const persistor = persistStore(store);
 
 //login된 user가 있으면 user redux 갱신
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
