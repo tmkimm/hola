@@ -29,16 +29,22 @@ const modifyUserInfoAction = createAction("user/modifyUserInfo");
 // 사용자 정보를 수정하고 access token을 설정합니다.
 const modifyUserInfo = createAsyncThunk(
   modifyUserInfoAction,
-  async (userData, thunkAPI) => {
+  async (userData, { rejectWithValue }) => {
     const response = await userService.modifyUserInfo(userData.id, userData);
-    const accessToken = response.data.accessToken;
-
-    // header에 access token 설정
-    httpClient.defaults.headers.common[
-      "Authorization"
-    ] = `Bearer ${accessToken}`;
-
-    return response.data;
+    console.log(response);
+    // 정보 수정 성공시에만 access token 설정
+    if(response.modifySuccess) {
+      const accessToken = response.user.data.accessToken;
+      // header에 access token 설정
+      httpClient.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${accessToken}`;
+    }
+    else {
+      return rejectWithValue(response.modifySuccess);
+    }
+    
+    return response.user.data;
   }
 );
 
@@ -47,7 +53,6 @@ const fetchUserById = createAsyncThunk(
   fetchUserByIdAction,
   async (userData, thunkAPI) => {
     const response = await authService.login(userData.social, userData.code);
-    console.log("response from auth/login", response);
     const accessToken = response.data.accessToken;
 
     // header에 access token 설정
@@ -65,7 +70,6 @@ const fetchUserByRefreshToken = createAsyncThunk(
   fetchUserByRefreshTokenAction,
   async (thunkAPI) => {
     const response = await authService.getUserInfo();
-    console.log("res: #################", response);
     const accessToken = response.data.accessToken;
     const userInfo = {
       nickName: response.data.nickName,
@@ -87,7 +91,6 @@ const addUserNickName = createAsyncThunk(
   async (userInfo, thunkAPI) => {
     const response = await authService.signUp(userInfo);
     const accessToken = response.data.accessToken;
-    console.log("response from addUserNickName! : , ", response);
 
     httpClient.defaults.headers.common[
       "Authorization"
@@ -134,10 +137,15 @@ const userSlice = createSlice({
     },
 
     [modifyUserInfo.fulfilled]: (state, { payload }) => {
-      console.log(`payload :${payload.nickName}`);
       localStorage.setItem("userName", payload.nickName);
       state.nickName = payload.nickName;
       state.id = payload._id;
+    },
+
+    [modifyUserInfo.rejected]: (state, { payload }) => {
+      if (payload === 401) {
+        state.postError = "failed"; // post 정보 담음
+      }
     },
   },
 });

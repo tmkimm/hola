@@ -124,8 +124,22 @@ const Setting = (props) => {
         }
       }
       await dispatch(modifyUserInfo(payload)).then(
-        () => {
-          history.push('/');
+        (response) => {
+          console.log(`payload : ` + response.payload);
+          if(response.payload) {
+            toast.success('변경이 완료되었습니다.', {
+              position: "top-right",
+              autoClose: 5000
+            });
+            history.push('/');
+          }
+          else {
+            toast.error('닉네임이 중복되었습니다.', {
+              position: "top-right",
+              autoClose: 5000
+            });
+          }
+
         }
       );
     }

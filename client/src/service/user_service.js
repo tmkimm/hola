@@ -34,17 +34,22 @@ class User {
       console.error(error);
     }
   };
-
+  
   // 사용자 정보를 수정합니다.
   // 닉네임이 변경될 경우 AccessToken을 다시 설정해야 합니다.
-  modifyUserInfo = async (id, userData) => {
-    console.log(`userService id : ${id} userData : ${userData.nickName} likeLanguages : ${userData.likeLanguages}`)
+  async modifyUserInfo(id, userData) {
     try {
-      const user = await this.user.patch(`users/${id}`, userData);
-      return user;
+       const user = await this.user.patch(`users/${id}`, userData);
+        return { 
+          user,
+          modifySuccess: true
+        };
     } catch (error) {
-      console.error(error);
-    }
+      return {
+        user: null,
+        modifySuccess: false
+      };
+    };
   };
 
   // 회원 탈퇴

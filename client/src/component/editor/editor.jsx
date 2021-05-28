@@ -55,8 +55,6 @@ const Editor = ({ title, content, onChangeField }) => {
       .then((miniImageData) => {
         const fileName = `${user.nickName}_${getFormatedToday()}.png`;
         const file = miniImageData.toFile(fileName);
-        console.log(`type: ${type}`);
-        console.log(`file: ${file}`);
         setImage((state) => file);
       });
 
@@ -64,7 +62,6 @@ const Editor = ({ title, content, onChangeField }) => {
     const preSignedUrl = await studyService.getPresignedUrl(user.nickName);
     const fileName = `${user.nickName}_${getFormatedToday()}.png`;
     const imageFile = imageData.toFile(fileName);
-
     /* bucket image upload */
     await studyService
       .uploadImageToS3(preSignedUrl, imageFile)
