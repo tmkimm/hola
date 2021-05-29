@@ -12,9 +12,11 @@ const StudyItem = ({ study }) => {
 
   const [modalVisible, setModalVisible] = useState(false);
   const openModal = () => {
+    document.body.style.overflow = "hidden";
     setModalVisible(true);
   };
   const closeModal = () => {
+    document.body.style.overflow = "auto";
     setModalVisible(false);
   };
 

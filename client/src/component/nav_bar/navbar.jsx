@@ -13,7 +13,6 @@ const Navbar = React.memo(() => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const history = useHistory();
-  let apiFlag = false;
 
   const modalVisible = useSelector((state) => state.loginStep.modalVisible);
   const openModal = () => {
@@ -26,23 +25,17 @@ const Navbar = React.memo(() => {
   };
 
   useEffect(() => {
-    console.log("navbar useEffect!!");
-    //dispatch(setUser("hi"));
-    if (apiFlag) {
+    if (user.nickName) {
       // page refresh후 갱신
       dispatch(fetchUserByRefreshToken()).then((response) => {
-        // 유저 미존재시 refresh token을 이용해서 유저정보 얻어옴
-        console.log(response.meta.requestStatus);
-        if (response.meta.requestStatus !== "fulfilled") {
-          //clearUser();
-          history.push("/");
-          //alert("히히");
-        }
+        // 유저 nickname 존재시 refresh token을 이용해서 유저정보 얻어옴
+        if (response.meta.requestStatus !== "fulfilled") history.push("/");
         console.log("fetchByuserRefreshToken response :", response);
         // 실패했을때 에러처리 필요할 듯
       });
     }
-  }, [dispatch, apiFlag, history]);
+  }, [dispatch, history, user.nickName]);
+
   return (
     <nav className={styles.navbar}>
       <a href="/">

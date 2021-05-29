@@ -36,7 +36,11 @@ const LoginModal = ({ handleClose, signUp }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.modalHeader}>
-        <img src="images/logo/hola_logo_y.png" alt="welcome"></img>
+        <img
+          className={styles.logo}
+          src="images/logo/hola_logo_y.png"
+          alt="welcome"
+        ></img>
         <div className={styles.exitWrapper} onClick={handleClose}>
           <svg
             stroke="currentColor"

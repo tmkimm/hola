@@ -14,6 +14,8 @@ import { fetchUserByRefreshToken, clearUser } from "../../store/user";
 main page의 layout을 담당하는 component입니다. 
 component rendering시 useEffect를 통해 render할 post list를 받아옵니다.
 
+최신, 트렌딩 두가지의 기준으로 분리하였습니다.
+
 To-Do
 category component 분리
 
@@ -27,7 +29,7 @@ const ACTIVE = styles.active;
 const INACTIVE = styles.inactive;
 
 const Main = (props) => {
-  console.log("MAIN START!!!");
+  console.log("MAIN START!!");
   const [popularStudyList, setPopularStudyList] = useState([]);
   const [recentStudyList, setRecentStudyList] = useState([]);
   const [category, setCategory] = useState(SHOW_BY_DATE);
@@ -36,7 +38,7 @@ const Main = (props) => {
   const selectedLanguages = useSelector((state) => state.language);
 
   useEffect(() => {
-    console.log("Main UseEffect!!!!!!!!!!!!!!!!!!");
+    console.log("Main UseEffect!!");
     studyService //
       .getList(SORT_BY_DATE, selectedLanguages)
       .then((response) => {
@@ -54,17 +56,19 @@ const Main = (props) => {
       .catch(console.error);
   }, [selectedLanguages]);
 
-  const toggleCategory = (e) => {
+  const toggleCategoryToDate = (e) => {
+    if (category === SHOW_BY_DATE) return;
+    setCategory((state) => SHOW_BY_DATE);
+    setStyleDate((state) => ACTIVE);
+    setStyleRecent((state) => INACTIVE);
+  };
+
+  const toggleCategoryToView = (e) => {
     console.log(e);
-    if (category === SHOW_BY_DATE) {
-      setCategory((state) => SHOW_BY_VIEWS);
-      setStyleDate((state) => INACTIVE);
-      setStyleRecent((state) => ACTIVE);
-    } else {
-      setCategory((state) => SHOW_BY_DATE);
-      setStyleDate((state) => ACTIVE);
-      setStyleRecent((state) => INACTIVE);
-    }
+    if (category === SHOW_BY_VIEWS) return;
+    setCategory((state) => SHOW_BY_VIEWS);
+    setStyleDate((state) => INACTIVE);
+    setStyleRecent((state) => ACTIVE);
   };
 
   return (
@@ -80,7 +84,7 @@ const Main = (props) => {
             <section className={styles.category}>
               <div
                 className={`${styles.category__item} ${styleDate}`}
-                onClick={toggleCategory}
+                onClick={toggleCategoryToDate}
               >
                 <svg
                   stroke="currentColor"
@@ -97,7 +101,7 @@ const Main = (props) => {
               </div>
               <div
                 className={`${styles.category__item} ${styleRecent}`}
-                onClick={toggleCategory}
+                onClick={toggleCategoryToView}
               >
                 <svg
                   stroke="currentColor"
@@ -110,14 +114,13 @@ const Main = (props) => {
                 >
                   <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"></path>
                 </svg>
-
                 <span className={styles.text}>트렌딩</span>
               </div>
             </section>
             {category === SHOW_BY_DATE ? (
-              <StudyList studyList={popularStudyList}></StudyList>
-            ) : (
               <StudyList studyList={recentStudyList}></StudyList>
+            ) : (
+              <StudyList studyList={popularStudyList}></StudyList>
             )}
           </main>
         </div>
