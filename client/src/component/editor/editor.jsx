@@ -46,22 +46,11 @@ const Editor = ({ title, content, onChangeField }) => {
 
   /* image Handler 함수 */
   const imageHandler = useCallback(async (dataUrl, type, imageData) => {
-    imageData
-      .minify({
-        maxWidth: 320,
-        maxHeight: 320,
-        quality: 0.7,
-      })
-      .then((miniImageData) => {
-        const fileName = `${user.nickName}_${getFormatedToday()}.png`;
-        const file = miniImageData.toFile(fileName);
-        setImage((state) => file);
-      });
-
     const quill = quillInstance.current;
     const preSignedUrl = await studyService.getPresignedUrl(user.nickName);
     const fileName = `${user.nickName}_${getFormatedToday()}.png`;
     const imageFile = imageData.toFile(fileName);
+
     /* bucket image upload */
     await studyService
       .uploadImageToS3(preSignedUrl, imageFile)

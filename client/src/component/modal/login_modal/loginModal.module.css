@@ -40,7 +40,7 @@
   flex-direction: column;
 }
 
-img {
+.logo {
   width: 4rem;
   height: auto;
   display: block;

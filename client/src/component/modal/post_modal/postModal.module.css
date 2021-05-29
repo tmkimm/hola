@@ -1,9 +1,35 @@
 .wrapper {
-  width: 80%;
+  width: 800px;
   box-shadow: rgb(0 0 0 / 9%) 0px 2px 12px 0px;
-  position: relative;
+  position: absolute;
   display: flex;
-  top: 50%;
+  flex-direction: column;
+  top: 20%;
+  left: 50%;
   margin: 0 auto;
-  transform: translateY(-50%);
+  transform: translateX(-50%);
+}
+
+.modalHeader {
+  background: #f8f9fa;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.postContent {
+  background: white;
+  min-height: 800px;
+  padding: 1.5rem;
+}
+
+.logo {
+  width: 4rem;
+  height: auto;
+  display: block;
+}
+
+.postContent img {
+  max-width: 100%;
 }
