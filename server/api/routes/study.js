@@ -22,7 +22,6 @@ export default (app) => {
       const studyDTO = req.body;
       const userId = req.user._id;
 
-      console.log(userId);
       let StudyServcieInstance = new StudyServcie();
       const study = await StudyServcieInstance.registerStudy(userId, studyDTO);       
       res.status(201).json(study);
@@ -69,11 +68,12 @@ export default (app) => {
   });
   
   // 댓글 등록
-  route.post('/comments', async (req, res, next) => {
+  route.post('/comments', isAccessTokenValid, async (req, res, next) => {
     const commentDTO = req.body;
+    const userId = req.user._id;
 
     let StudyServcieInstance = new StudyServcie();
-    const study = await StudyServcieInstance.registerComment(commentDTO);
+    const study = await StudyServcieInstance.registerComment(userId, commentDTO);
 
     return res.status(201).json(study);
   })

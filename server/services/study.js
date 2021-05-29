@@ -7,7 +7,7 @@ export class StudyServcie {
     }
 
     async findById(id) {
-        const studies = await Study.findById(id).populate('author', 'nickName').populate('comments.author', 'nickName');
+        const studies = await Study.findById(id).populate('author', 'nickName image').populate('comments.author', 'nickName image');
         return studies;
     }
 
@@ -26,9 +26,9 @@ export class StudyServcie {
         await Study.deleteStudy(id);
     }
 
-    async registerComment(comment) {
-        const { studyId, content, author } = comment;
-        const study = await Study.registerComment(studyId, content, author);
+    async registerComment(userID, comment) {
+        const { studyId, content } = comment;
+        const study = await Study.registerComment(studyId, content, userID);
         return study;
     }
 

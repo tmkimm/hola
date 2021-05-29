@@ -14,7 +14,6 @@ export default (app) => {
         }
         let AuthServiceInstance = new AuthService();
         const { _id, nickName, email, accessToken } = await AuthServiceInstance.reissueAccessToken(req.cookies.R_AUTH);
-        
         return res.status(200).json({
             _id,
             email,
