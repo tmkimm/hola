@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import LoginUser from "../login_user/loginUser";
 import { setModalVisible } from "../../store/loginStep";
-import { clearUser, fetchUserByRefreshToken, setUser } from "../../store/user";
+import { fetchUserByRefreshToken } from "../../store/user";
 
 const Navbar = React.memo(() => {
   console.log("NAVBAR START!");

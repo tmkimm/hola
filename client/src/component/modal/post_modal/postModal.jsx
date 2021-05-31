@@ -15,10 +15,12 @@ To-Do
 */
 const PostModal = ({ study, handleClose }) => {
   const [content, setContent] = useState("");
-  console.log(study);
+  const [title, setTitle] = useState("");
+
   useEffect(() => {
     studyService.getDetail(study._id).then((response) => {
       setContent((state) => response.data.content);
+      console.log(response);
     });
   }, [study._id]);
 
@@ -46,11 +48,24 @@ const PostModal = ({ study, handleClose }) => {
         </div>
       </div>
       <section className={styles.modalContent}>
-        <div className={styles.postHeader}></div>
-        <div
-          className={styles.postContent}
-          dangerouslySetInnerHTML={{ __html: content }}
-        ></div>
+        <div className={styles.postHeader}>
+          <div className={styles.registeredDate}>2021.05.24</div>
+          <div className={styles.title}>파이썬 스터디 구합니다</div>
+          <div className={styles.user}>
+            <img
+              className={styles.userImg}
+              src="https://media.vlpt.us/images/seeh_h/profile/6b7bfde5-b67c-4665-a2e1-a308e8de2059/tt.PNG?w=120"
+              alt="thumbnail"
+            />
+            <div className={styles.userName}>velopert</div>
+          </div>
+        </div>
+        <div className={styles.postContentWrapper}>
+          <div
+            className={styles.postContent}
+            dangerouslySetInnerHTML={{ __html: content }}
+          ></div>
+        </div>
       </section>
     </div>
   );
