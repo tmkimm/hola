@@ -12,7 +12,6 @@ User 정보와 새 글쓰기, Dropdown Bar button을 rendering 합니다.
 const LoginUser = React.memo(() => {
   const user = useSelector((state) => state.user);
   const [menuVisible, setMenuVisible] = useState(false);
-  //console.log("I'm LoginUser!!!!!");
   console.log("user from loginUser", user);
   const menuRef = useRef(); // menuRef를 통해서 menu 영역이 click되었는지 판단하고, 외부 영역 클릭시 메뉴 사라짐
 
@@ -43,11 +42,7 @@ const LoginUser = React.memo(() => {
   return (
     <div className={styles.userWrapper} onClick={handleLoginUserClick}>
       <div className={styles.userName}>{user.nickName}</div>
-      <img
-        className={styles.userImg}
-        src="https://media.vlpt.us/images/seeh_h/profile/6b7bfde5-b67c-4665-a2e1-a308e8de2059/tt.PNG?w=120"
-        alt="thumbnail"
-      />
+      <img className={styles.userImg} src={user.imageUrl} alt="userImg" />
       <svg
         stroke="currentColor"
         fill="currentColor"

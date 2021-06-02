@@ -3,7 +3,11 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  combineReducers,
+  getDefaultMiddleware,
+} from "@reduxjs/toolkit";
 import languageReducer from "./store/language";
 import userReducer from "./store/user";
 import writeReducer from "./store/write";
@@ -30,9 +34,14 @@ const reducers = combineReducers({
 
 const _persistedReducer = persistReducer(persistConfig, reducers);
 
+const customizedMiddleware = getDefaultMiddleware({
+  serializableCheck: false,
+});
+
 const store = configureStore({
   reducer: _persistedReducer,
   devTools: process.env.NODE_ENV !== "production",
+  middleware: customizedMiddleware,
 });
 
 const persistor = persistStore(store);

@@ -73,7 +73,7 @@ const Main = (props) => {
 
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar showRegisterButton={true} />
       <Banner />
       <div className={styles.languageBarWrapper}>
         <LanguageBarList />

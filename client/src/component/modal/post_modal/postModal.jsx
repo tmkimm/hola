@@ -37,6 +37,8 @@ const PostModal = ({ study, handleClose }) => {
   const [content, setContent] = useState("");
   const [nickname, setNickname] = useState("");
   const [imagePath, setImagePath] = useState("");
+  const defaultPath =
+    "https://hola-post-image.s3.ap-northeast-2.amazonaws.com/";
   console.log("###nickname : ", user.nickName);
   useEffect(() => {
     studyService.getDetail(study._id).then((response) => {
@@ -76,8 +78,8 @@ const PostModal = ({ study, handleClose }) => {
           <div className={styles.user}>
             <img
               className={styles.userImg}
-              src="https://media.vlpt.us/images/seeh_h/profile/6b7bfde5-b67c-4665-a2e1-a308e8de2059/tt.PNG?w=120"
-              alt="thumbnail"
+              src={defaultPath + imagePath}
+              alt="userImg"
             />
             <div className={styles.userName}>{nickname}</div>
           </div>

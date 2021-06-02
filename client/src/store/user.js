@@ -73,6 +73,7 @@ const fetchUserByRefreshToken = createAsyncThunk(
     const userInfo = {
       nickName: response.data.nickName,
       id: response.data._id,
+      image: response.data.image,
     };
 
     // header에 access token 설정
@@ -102,8 +103,10 @@ const addUserNickName = createAsyncThunk(
 const initialState = {
   nickName: undefined,
   id: undefined,
+  imageUrl: undefined,
 };
 
+const defaultPath = "https://hola-post-image.s3.ap-northeast-2.amazonaws.com/";
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -117,25 +120,33 @@ const userSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchUserById.fulfilled]: (state, { payload }) => {
-      state.nickName = payload.nickName;
-      state.id = payload._id;
-    },
+    [fetchUserById.fulfilled]: (state, { payload }) => ({
+      ...state,
+      nickName: payload.nickName,
+      id: payload._id,
+      imageUrl: defaultPath + payload.image,
+    }),
 
-    [fetchUserByRefreshToken.fulfilled]: (state, { payload }) => {
-      state.nickName = payload.nickName;
-      state.id = payload.id;
-    },
+    [fetchUserByRefreshToken.fulfilled]: (state, { payload }) => ({
+      ...state,
+      nickName: payload.nickName,
+      id: payload._id,
+      imageUrl: defaultPath + payload.image,
+    }),
 
-    [addUserNickName.fulfilled]: (state, { payload }) => {
-      state.nickName = payload.nickName;
-      state.id = payload._id;
-    },
+    [addUserNickName.fulfilled]: (state, { payload }) => ({
+      ...state,
+      nickName: payload.nickName,
+      id: payload._id,
+      imageUrl: defaultPath + payload.image,
+    }),
 
-    [modifyUserInfo.fulfilled]: (state, { payload }) => {
-      state.nickName = payload.nickName;
-      state.id = payload._id;
-    },
+    [modifyUserInfo.fulfilled]: (state, { payload }) => ({
+      ...state,
+      nickName: payload.nickName,
+      id: payload._id,
+      imageUrl: defaultPath + payload.image,
+    }),
 
     [modifyUserInfo.rejected]: (state, { payload }) => {
       if (payload === 401) {

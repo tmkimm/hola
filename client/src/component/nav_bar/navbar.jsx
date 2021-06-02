@@ -8,7 +8,7 @@ import LoginUser from "../login_user/loginUser";
 import { setModalVisible } from "../../store/loginStep";
 import { fetchUserByRefreshToken } from "../../store/user";
 
-const Navbar = React.memo(() => {
+const Navbar = React.memo(({ showRegisterButton }) => {
   console.log("NAVBAR START!");
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -52,9 +52,11 @@ const Navbar = React.memo(() => {
           </button>
         ) : (
           <>
-            <button className={styles.postRegister}>
-              <Link to="/register">새 글 쓰기</Link>
-            </button>
+            {showRegisterButton && (
+              <button className={styles.postRegister}>
+                <Link to="/register">새 글 쓰기</Link>
+              </button>
+            )}
             <LoginUser />
           </>
         )}
