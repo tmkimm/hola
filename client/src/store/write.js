@@ -47,6 +47,7 @@ const writeSlice = createSlice({
     }),
     [writePost.fulfilled]: (state, { payload }) => {
       // 수정 필요
+      console.log("payload test after registration: ", payload);
       if (payload === 201) {
         state.post = "success";
       }

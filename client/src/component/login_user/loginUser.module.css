@@ -28,3 +28,7 @@
   transition: all 0.125s ease-in 0s;
   margin-right: -0.4375rem;
 }
+
+.userName {
+  margin-right: 0.25rem;
+}

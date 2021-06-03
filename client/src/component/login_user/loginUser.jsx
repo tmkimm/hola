@@ -12,7 +12,6 @@ User 정보와 새 글쓰기, Dropdown Bar button을 rendering 합니다.
 const LoginUser = React.memo(() => {
   const user = useSelector((state) => state.user);
   const [menuVisible, setMenuVisible] = useState(false);
-  console.log("user from loginUser", user);
   const menuRef = useRef(); // menuRef를 통해서 menu 영역이 click되었는지 판단하고, 외부 영역 클릭시 메뉴 사라짐
 
   const handleLoginUserClick = () => {

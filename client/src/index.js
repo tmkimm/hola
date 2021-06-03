@@ -11,6 +11,7 @@ import {
 import languageReducer from "./store/language";
 import userReducer from "./store/user";
 import writeReducer from "./store/write";
+import readReducer from "./store/read";
 import loginStepReducer from "./store/loginStep";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
@@ -29,6 +30,7 @@ const reducers = combineReducers({
   language: languageReducer,
   user: userReducer,
   write: writeReducer,
+  read: readReducer,
   loginStep: loginStepReducer,
 });
 

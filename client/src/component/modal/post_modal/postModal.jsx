@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import studyService from "../../../service/study_service";
 import styles from "./postModal.module.css";
-import CommentContainer from "../../comment_container/commentContainer"
+import { readPost } from "../../../store/read";
+import CommentContainer from "../../comment_container/commentContainer";
 
 /* 
 
@@ -34,20 +35,16 @@ const TestButton = () => {
 };
 
 const PostModal = ({ study, handleClose }) => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const [content, setContent] = useState("");
-  const [nickname, setNickname] = useState("");
-  const [imagePath, setImagePath] = useState("");
+  const read = useSelector((state) => state.read);
+  console.log("postmodal rendering!!!");
   const defaultPath =
     "https://hola-post-image.s3.ap-northeast-2.amazonaws.com/";
   console.log("###nickname : ", user.nickName);
   useEffect(() => {
-    studyService.getDetail(study._id).then((response) => {
-      setContent((state) => response.data.content);
-      setNickname((state) => response.data.author.nickName);
-      setImagePath((state) => response.data.author.image);
-    });
-  }, [study._id]);
+    dispatch(readPost(study._id));
+  }, [dispatch, study._id]);
 
   return (
     <div className={styles.wrapper}>
@@ -79,28 +76,28 @@ const PostModal = ({ study, handleClose }) => {
           <div className={styles.user}>
             <img
               className={styles.userImg}
-              src={defaultPath + imagePath}
+              src={defaultPath + read.post.imagePath}
               alt="userImg"
             />
-            <div className={styles.userName}>{nickname}</div>
+            <div className={styles.userName}>{read.post.nickname}</div>
           </div>
-          {user.nickName === nickname && <TestButton></TestButton>}
+          {user.nickName === read.post.nickname && <TestButton></TestButton>}
         </div>
         <div className={styles.postContentWrapper}>
           <div
             className={styles.postContent}
-            dangerouslySetInnerHTML={{ __html: content }}
+            dangerouslySetInnerHTML={{ __html: read.post.content }}
           ></div>
         </div>
       </section>
       <section className={styles.modalComment}>
         <div className={styles.postComment}>
-        <CommentContainer id={study._id}></CommentContainer>   
+          <CommentContainer id={study._id}></CommentContainer>
         </div>
       </section>
     </div>
   );
 };
-//user={{...user}} 
+//user={{...user}}
 
 export default PostModal;
