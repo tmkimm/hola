@@ -77,6 +77,11 @@ studySchema.statics.registerComment = async function(studyId, content, author) {
       );
 }
 
+
+studySchema.statics.findComments = async function(id) {
+    return await Study.findById(id).populate('comments.author', 'nickName image').select('comments');
+}
+
 studySchema.statics.deleteStudy = async function(id) {
     await Study.findByIdAndUpdate(
         { _id: id },

@@ -67,6 +67,17 @@ export default (app) => {
     res.status(204).json();
   });
   
+
+  // 댓글 리스트 조회
+  route.get('/comments/:id', async (req, res, next) => {
+    const id = req.params.id;
+
+    let StudyServcieInstance = new StudyServcie();
+    const comments = await StudyServcieInstance.findComments(id);
+
+    res.status(200).json(comments);
+  });
+
   // 댓글 등록
   route.post('/comments', isAccessTokenValid, async (req, res, next) => {
     const commentDTO = req.body;

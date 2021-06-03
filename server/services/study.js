@@ -26,6 +26,12 @@ export class StudyServcie {
         await Study.deleteStudy(id);
     }
 
+
+    async findComments(id) {
+        const comments = await Study.findComments(id);
+        return comments;
+    }
+
     async registerComment(userID, comment) {
         const { studyId, content } = comment;
         const study = await Study.registerComment(studyId, content, userID);
