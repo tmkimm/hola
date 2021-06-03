@@ -31,6 +31,12 @@
   background: white;
 }
 
+.modalComment {
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+
 .postHeader {
   display: flex;
   flex-direction: column;
@@ -70,6 +76,12 @@
 }
 
 .postContent {
+  width: 80%;
+  min-height: 800px;
+  margin: 0 auto;
+}
+
+.postComment {
   width: 80%;
   min-height: 800px;
   margin: 0 auto;

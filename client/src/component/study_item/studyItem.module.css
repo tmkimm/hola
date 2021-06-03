@@ -81,15 +81,3 @@
   height: auto;
   margin-right: 2px;
 }
-
-@media (max-width: 1024px) {
-  .studyItem {
-    width: calc(50% - 2rem);
-  }
-}
-
-@media (max-width: 768px) {
-  .studyItem {
-    width: calc(100% - 2rem);
-  }
-}

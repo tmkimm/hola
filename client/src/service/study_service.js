@@ -46,6 +46,7 @@ class Study {
     }
   };
 
+
   register = async ({ title, content, language }) => {
     try {
       const response = await this.study.post("studies", {
@@ -54,6 +55,50 @@ class Study {
         language: ["Typescript", "python"],
       });
       return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+  // 스터디의 댓글 리스트 조회
+  getComments = async (id) => {
+    try {
+      const response = await this.study.get(`studies/comments/${id}`);
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // 신규 댓글 등록
+  registerComment = async ({ id, content }) => {
+    try {
+      const response = await this.study.post("studies/comments", {
+        studyId: id,
+        content
+      });
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // 댓글 수정
+  modifyComment = async ({ id, content }) => {
+    try {
+      const response = await this.study.patch(`studies/comments/${id}`, {
+        content
+      });
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // 댓글 삭제
+  deleteComment = async ({ id }) => {
+    try {
+      await this.study.delete(`studies/comments/${id}`);
     } catch (error) {
       console.error(error);
     }

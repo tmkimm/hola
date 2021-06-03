@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import studyService from "../../../service/study_service";
 import styles from "./postModal.module.css";
+import CommentContainer from "../../comment_container/commentContainer"
 
 /* 
 
@@ -92,8 +93,14 @@ const PostModal = ({ study, handleClose }) => {
           ></div>
         </div>
       </section>
+      <section className={styles.modalComment}>
+        <div className={styles.postComment}>
+        <CommentContainer id={study._id}></CommentContainer>   
+        </div>
+      </section>
     </div>
   );
 };
+//user={{...user}} 
 
 export default PostModal;

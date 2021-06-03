@@ -10,6 +10,21 @@ const getFormatedToday = () => {
   return year + "-" + month + "-" + day + "_" + hour + "-" + min + "-" + sec;
 };
 
+const formatDate = (date) => {
+  var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+  if (month.length < 2) 
+      month = '0' + month;
+  if (day.length < 2) 
+      day = '0' + day;
+
+  return [year, month, day].join('-');
+}
+
+
 const isBase64 = (str) => {
   try {
       return str.substring(0, 5) == 'data:' ? true : false;
@@ -18,4 +33,4 @@ const isBase64 = (str) => {
   }
 };
 
-export { getFormatedToday, isBase64 };
+export { getFormatedToday, isBase64, formatDate };

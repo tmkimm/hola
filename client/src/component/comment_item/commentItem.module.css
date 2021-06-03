@@ -1,0 +1,72 @@
+.commentHeader {
+  display: flex;
+  flex-direction: row;
+}
+
+.commentInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+}
+
+.userImg {
+  display: block;
+  height: 2.5rem;
+  width: 2.5rem;
+  box-shadow: rgb(0 0 0 / 9%) 0px 0px 8px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: all 0.125s ease-in 0s;
+}
+
+.registeredDate {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 126.5%; /* or 19px */
+  letter-spacing: -0.005em;
+  color: #8c8c8c;
+}
+
+.buttonWrapper {
+  position: absolute;
+  right: 4.5rem;
+}
+
+.commentInput input {
+  border-color: hsl(0, 0%, 80%);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  font-size: large;
+  width: 40rem;
+  height: 3rem;
+  padding: 0px;
+}
+
+.commentInputButton {
+  display: flex;
+  flex-direction: row;
+}
+
+.commentInputButton button {
+  font-weight: bold;
+  color: white;
+  border-radius: 4px;
+  width: 70px;
+  margin-top: 10px;
+  margin-right: 10px;
+  height: 1.75rem;
+  font-size: 1rem;
+}
+
+.buttonComplete {
+  background: rgb(18, 184, 134);
+}
+
+.buttonCancel {
+  background: rgb(100, 97, 97);
+}

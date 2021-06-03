@@ -1,0 +1,29 @@
+.commentInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 30 0px;
+}
+
+.commentInput textarea {
+  font-family: inherit;
+  padding: 1rem 1rem 1.5rem;
+  outline: none;
+  width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+.commentInput button {
+  font-weight: bold;
+  color: white;
+  border-radius: 4px;
+  width: 80px;
+  margin-bottom: 40px;
+  height: 2rem;
+  font-size: 1rem;
+}
+
+.buttonComplete {
+  background: rgb(18, 184, 134);
+}
