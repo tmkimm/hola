@@ -15,18 +15,28 @@ const readPost = createAsyncThunk(readPostAction, async (id, thunkAPI) => {
 });
 
 const initialState = {
-  post: null,
+  post: {
+    id: undefined,
+    title: "",
+    content: "",
+    nickname: "",
+    imagePath: "",
+  },
   error: null,
 };
 
 const readSlice = createSlice({
   name: "read",
   initialState,
-  reducers: {},
+  reducers: {
+    clearPost: (state) => initialState,
+  },
   extraReducers: {
     [readPost.fulfilled]: (state, { payload }) => ({
       ...state,
       post: {
+        id: payload._id,
+        title: payload.title,
         content: payload.content,
         nickname: payload.author.nickName,
         imagePath: payload.author.image,
@@ -36,4 +46,5 @@ const readSlice = createSlice({
 });
 
 export { readPost };
+export const { clearPost } = readSlice.actions;
 export default readSlice.reducer;

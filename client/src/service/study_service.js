@@ -2,12 +2,8 @@ import httpClient from "./http_client";
 import { getFormatedToday } from "../common/utils";
 
 /*
-
 글 등록, 삭제, 수정, 조회 등 study 글 관련 api를 모아놓은 class입니다.
-
 to-do
-
-
 */
 class Study {
   constructor() {
@@ -46,7 +42,6 @@ class Study {
     }
   };
 
-
   register = async ({ title, content, language }) => {
     try {
       const response = await this.study.post("studies", {
@@ -59,7 +54,20 @@ class Study {
       console.error(error);
     }
   };
-  
+
+  modify = async ({ id, title, content, language }) => {
+    try {
+      const response = await this.study.patch(`studies/${id}`, {
+        title,
+        content,
+        language: ["Typescript", "python"],
+      });
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   // 스터디의 댓글 리스트 조회
   getComments = async (id) => {
     try {
@@ -75,7 +83,7 @@ class Study {
     try {
       const response = await this.study.post("studies/comments", {
         studyId: id,
-        content
+        content,
       });
       return response;
     } catch (error) {
@@ -87,7 +95,7 @@ class Study {
   modifyComment = async ({ id, content }) => {
     try {
       const response = await this.study.patch(`studies/comments/${id}`, {
-        content
+        content,
       });
       return response;
     } catch (error) {

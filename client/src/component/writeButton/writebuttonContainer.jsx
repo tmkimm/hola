@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router";
-import { writePost } from "../../store/write";
+import { modifyPost, writePost } from "../../store/write";
 import Writebutton from "./writebutton";
 
 /* 
@@ -19,23 +19,33 @@ To-do
 const WritebuttonContainer = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { title, content, language, post, postError } = useSelector(
+  const { title, content, language, post, postError, postId } = useSelector(
     ({ write }) => ({
       title: write.title,
       content: write.content,
       language: write.language,
       post: write.post,
       postError: write.postError,
+      postId: write.postId,
     })
   );
 
   // language 자동으로 넘어가도록 수정
   const onPublish = () => {
-    dispatch(
-      writePost({ title, content, language: ["Typescript", "typescript"] })
-    ).then((response) => {
-      console.log("response is ", response);
-    });
+    console.log("postid : ", postId);
+    if (postId)
+      dispatch(modifyPost(postId, title, content, language)).then(
+        (response) => {
+          console.log("response is ", response);
+        }
+      );
+    else {
+      dispatch(
+        writePost({ title, content, language: ["Typescript", "typescript"] })
+      ).then((response) => {
+        console.log("response is ", response);
+      });
+    }
   };
 
   const onCancel = () => {

@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import studyService from "../../../service/study_service";
 import styles from "./postModal.module.css";
-import { readPost } from "../../../store/read";
+import { readPost, clearPost } from "../../../store/read";
+import { setPost } from "../../../store/write";
 import CommentContainer from "../../comment_container/commentContainer";
+import { useHistory } from "react-router";
 
 /* 
 
@@ -17,18 +19,19 @@ To-Do
 
 */
 
-const handleEdit = () => {
-  console.log("test edit");
+const handleEdit = (dispatch, history, post) => {
+  dispatch(setPost(post));
+  history.push("/register");
 };
 
 const handleDelete = () => {
   console.log("test delete");
 };
 
-const TestButton = () => {
+const TestButton = ({ dispatch, history, post }) => {
   return (
     <section className={styles.buttonWrapper}>
-      <button onClick={handleEdit}>수정</button>
+      <button onClick={() => handleEdit(dispatch, history, post)}>수정</button>
       <button onClick={handleDelete}>삭제</button>
     </section>
   );
@@ -36,6 +39,7 @@ const TestButton = () => {
 
 const PostModal = ({ study, handleClose }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector((state) => state.user);
   const read = useSelector((state) => state.read);
   console.log("postmodal rendering!!!");
@@ -44,6 +48,9 @@ const PostModal = ({ study, handleClose }) => {
   console.log("###nickname : ", user.nickName);
   useEffect(() => {
     dispatch(readPost(study._id));
+    return () => {
+      dispatch(clearPost());
+    };
   }, [dispatch, study._id]);
 
   return (
@@ -51,7 +58,7 @@ const PostModal = ({ study, handleClose }) => {
       <section className={styles.modalHeader}>
         <img
           className={styles.logo}
-          src="/images/logo/hola_logo_w.png"
+          src="/images/logo/hola_logo_y.png"
           alt="welcome"
         ></img>
         <div className={styles.exitWrapper} onClick={handleClose}>
@@ -81,7 +88,13 @@ const PostModal = ({ study, handleClose }) => {
             />
             <div className={styles.userName}>{read.post.nickname}</div>
           </div>
-          {user.nickName === read.post.nickname && <TestButton></TestButton>}
+          {user.nickName === read.post.nickname && (
+            <TestButton
+              dispatch={dispatch}
+              history={history}
+              post={read.post}
+            ></TestButton>
+          )}
         </div>
         <div className={styles.postContentWrapper}>
           <div

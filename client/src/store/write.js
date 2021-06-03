@@ -11,6 +11,7 @@ To-do
 
 */
 const writePostAction = createAction("write/writePost");
+const modifyPostAction = createAction("write/modifyPost");
 
 const writePost = createAsyncThunk(
   writePostAction,
@@ -20,12 +21,29 @@ const writePost = createAsyncThunk(
     return response.status;
   }
 );
+
+const modifyPost = createAsyncThunk(
+  modifyPostAction,
+  async ({ id, title, content, language }, thunkAPI) => {
+    console.log("start modifyPostAPI!");
+    const response = await studyService.modify({
+      id,
+      title,
+      content,
+      language,
+    });
+    console.log("response from modifyPostAPI!", response);
+    return response.status;
+  }
+);
+
 const initialState = {
   title: "",
   content: "",
   language: [],
-  post: null,
-  postError: null,
+  post: undefined,
+  postError: undefined,
+  postId: undefined,
 };
 
 const writeSlice = createSlice({
@@ -38,6 +56,14 @@ const writeSlice = createSlice({
     }),
 
     clearField: (state) => initialState,
+
+    setPost: (state, { payload: post }) => ({
+      ...state,
+      title: post.title,
+      content: post.content,
+      language: post.language,
+      postId: post.id,
+    }),
   },
   extraReducers: {
     [writePost.pending]: (state, { payload }) => ({
@@ -47,7 +73,6 @@ const writeSlice = createSlice({
     }),
     [writePost.fulfilled]: (state, { payload }) => {
       // 수정 필요
-      console.log("payload test after registration: ", payload);
       if (payload === 201) {
         state.post = "success";
       }
@@ -60,8 +85,21 @@ const writeSlice = createSlice({
       }
     },
   },
+  [modifyPost.fulfilled]: (state, { payload }) => {
+    // 수정 필요
+    if (payload === 201) {
+      state.post = "success";
+    }
+    state.post = payload; // post 정보 담음
+  },
+  [modifyPost.rejected]: (state, { payload }) => {
+    console.log("rejected payload~~~~~~~~~~~", payload);
+    if (payload === 401) {
+      state.postError = "failed"; // post 정보 담음
+    }
+  },
 });
 
-export const { changeField, clearField } = writeSlice.actions;
-export { writePost };
+export const { changeField, clearField, setPost } = writeSlice.actions;
+export { writePost, modifyPost };
 export default writeSlice.reducer;
