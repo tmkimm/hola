@@ -47,7 +47,7 @@ class Study {
       const response = await this.study.post("studies", {
         title,
         content,
-        language: ["Typescript", "python"],
+        language,
       });
       return response;
     } catch (error) {
@@ -61,7 +61,7 @@ class Study {
       const response = await this.study.patch(`studies/${id}`, {
         title,
         content,
-        language: ["Typescript", "python"],
+        language,
       });
       return response;
     } catch (error) {

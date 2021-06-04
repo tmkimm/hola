@@ -6,6 +6,7 @@ import { readPost, clearPost } from "../../../store/read";
 import { setPost } from "../../../store/write";
 import CommentContainer from "../../comment_container/commentContainer";
 import { useHistory } from "react-router";
+import Modal from "../modal_component/modal";
 
 /* 
 
@@ -25,7 +26,7 @@ const handleEdit = (dispatch, history, post) => {
 };
 
 const handleDelete = () => {
-  console.log("test delete");
+  alert("삭제 하시겠습니까?");
 };
 
 const TestButton = ({ dispatch, history, post }) => {

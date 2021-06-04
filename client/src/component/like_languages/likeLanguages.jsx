@@ -1,17 +1,16 @@
 import React from "react";
-import Select from 'react-select';
-import languageList from '../../languageList';
+import Select from "react-select";
+import languageList from "../../languageList";
 
 const customStyles = {
   control: (css) => ({
     ...css,
     width: "500px",
-    height:"3rem"
+    height: "3rem",
   }),
 };
 
-const LikeLanguages = ({ likeLanguages, setLikeLanguages}) => {
-
+const LikeLanguages = ({ likeLanguages, setLikeLanguages }) => {
   return (
     <Select
       isMulti

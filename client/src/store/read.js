@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, createAction } from "@reduxjs/toolkit";
 import studyService from "../service/study_service";
+import languageList from "../languageList";
 /* 
 
 읽고 있는 post 상태를 만드는 redux store 입니다.
@@ -11,6 +12,11 @@ const readPostAction = createAction("read/readPost");
 const readPost = createAsyncThunk(readPostAction, async (id, thunkAPI) => {
   const response = await studyService.getDetail(id);
   console.log("response from readPostAPI!", response.data);
+  const language = response.data.language.map((obj) => ({
+    value: obj,
+    label: languageList.find((element) => element.value === obj).label,
+  }));
+  response.data.language = language;
   return response.data;
 });
 
@@ -18,6 +24,7 @@ const initialState = {
   post: {
     id: undefined,
     title: "",
+    language: [],
     content: "",
     nickname: "",
     imagePath: "",
@@ -37,6 +44,7 @@ const readSlice = createSlice({
       post: {
         id: payload._id,
         title: payload.title,
+        language: payload.language,
         content: payload.content,
         nickname: payload.author.nickName,
         imagePath: payload.author.image,

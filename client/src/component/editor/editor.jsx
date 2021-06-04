@@ -7,6 +7,7 @@ import QuillImageDropAndPaste from "quill-image-drop-and-paste";
 import "react-quill/dist/quill.snow.css";
 import { useSelector } from "react-redux";
 import { getFormatedToday } from "../../common/utils";
+import LikeLanguages from "../like_languages/likeLanguages";
 
 /* 
 
@@ -38,11 +39,18 @@ const QuillWrapper = styled.div`
   }
 `;
 
-const Editor = ({ title, content, onChangeField }) => {
+const Editor = ({
+  title,
+  content,
+  language,
+  onChangeField,
+  onChangeLanguage,
+}) => {
   const quillElement = useRef(""); // Quill을 적용할 DivElement를 설정
   const quillInstance = useRef(""); // Quill 인스턴스를 설정
   const user = useSelector((state) => state.user);
   const [image, setImage] = useState();
+  const [likeLanguages, setLikeLanguages] = useState([]);
 
   /* image Handler 함수 */
   const imageHandler = useCallback(async (dataUrl, type, imageData) => {
@@ -149,7 +157,10 @@ const Editor = ({ title, content, onChangeField }) => {
         onChange={onChangeTitle}
         value={title}
       />
-
+      <LikeLanguages
+        likeLanguages={language}
+        setLikeLanguages={onChangeLanguage}
+      ></LikeLanguages>
       <QuillWrapper>
         <div className={styles.quillEditor} ref={quillElement} />
       </QuillWrapper>

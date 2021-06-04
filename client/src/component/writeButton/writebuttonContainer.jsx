@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router";
+import { useHistory } from "react-router";
 import { modifyPost, writePost } from "../../store/write";
 import Writebutton from "./writebutton";
+import { toast } from "react-toastify";
 
 /* 
 
@@ -32,18 +33,23 @@ const WritebuttonContainer = (props) => {
 
   // language 자동으로 넘어가도록 수정
   const onPublish = () => {
-    console.log("postid : ", post);
     if (postId)
       dispatch(modifyPost({ postId, title, content, language })).then(
         (response) => {
           console.log("response is ", response);
+          toast.info("글 수정이 완료되었습니다.", {
+            position: "top-right",
+            autoClose: 3000,
+          });
         }
       );
     else {
-      dispatch(
-        writePost({ title, content, language: ["Typescript", "typescript"] })
-      ).then((response) => {
+      dispatch(writePost({ title, content, language })).then((response) => {
         console.log("response is ", response);
+        toast.success("글 작성이 완료되었습니다.", {
+          position: "top-right",
+          autoClose: 3000,
+        });
       });
     }
   };

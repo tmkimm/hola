@@ -16,7 +16,12 @@ const modifyPostAction = createAction("write/modifyPost");
 const writePost = createAsyncThunk(
   writePostAction,
   async ({ title, content, language }, thunkAPI) => {
-    const response = await studyService.register({ title, content, language });
+    const new_lang = language.map((item) => item.value);
+    const response = await studyService.register({
+      title,
+      content,
+      language: new_lang,
+    });
     console.log("response from writePostAPI!", response);
     return response.status;
   }
@@ -26,11 +31,12 @@ const modifyPost = createAsyncThunk(
   modifyPostAction,
   async ({ postId, title, content, language }, thunkAPI) => {
     console.log("start modifyPostAPI!");
+    const new_lang = language.map((item) => item.value);
     const response = await studyService.modify(
       postId,
       title,
       content,
-      language
+      new_lang
     );
     console.log("response from modifyPostAPI!", response);
     return response.status;
@@ -53,6 +59,11 @@ const writeSlice = createSlice({
     changeField: (state, { payload: { key, value } }) => ({
       ...state,
       [key]: value,
+    }),
+
+    changeLanguage: (state, { payload: language }) => ({
+      ...state,
+      language,
     }),
 
     clearField: (state) => initialState,
@@ -102,6 +113,7 @@ const writeSlice = createSlice({
   },
 });
 
-export const { changeField, clearField, setPost } = writeSlice.actions;
+export const { changeField, changeLanguage, clearField, setPost } =
+  writeSlice.actions;
 export { writePost, modifyPost };
 export default writeSlice.reducer;
