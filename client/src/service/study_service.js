@@ -55,8 +55,9 @@ class Study {
     }
   };
 
-  modify = async ({ id, title, content, language }) => {
+  modify = async (id, title, content, language) => {
     try {
+      console.log(id, title);
       const response = await this.study.patch(`studies/${id}`, {
         title,
         content,

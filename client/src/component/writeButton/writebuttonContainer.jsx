@@ -32,9 +32,9 @@ const WritebuttonContainer = (props) => {
 
   // language 자동으로 넘어가도록 수정
   const onPublish = () => {
-    console.log("postid : ", postId);
+    console.log("postid : ", post);
     if (postId)
-      dispatch(modifyPost(postId, title, content, language)).then(
+      dispatch(modifyPost({ postId, title, content, language })).then(
         (response) => {
           console.log("response is ", response);
         }

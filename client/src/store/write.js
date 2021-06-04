@@ -24,14 +24,14 @@ const writePost = createAsyncThunk(
 
 const modifyPost = createAsyncThunk(
   modifyPostAction,
-  async ({ id, title, content, language }, thunkAPI) => {
+  async ({ postId, title, content, language }, thunkAPI) => {
     console.log("start modifyPostAPI!");
-    const response = await studyService.modify({
-      id,
+    const response = await studyService.modify(
+      postId,
       title,
       content,
-      language,
-    });
+      language
+    );
     console.log("response from modifyPostAPI!", response);
     return response.status;
   }
@@ -84,19 +84,21 @@ const writeSlice = createSlice({
         state.postError = "failed"; // post 정보 담음
       }
     },
-  },
-  [modifyPost.fulfilled]: (state, { payload }) => {
-    // 수정 필요
-    if (payload === 201) {
-      state.post = "success";
-    }
-    state.post = payload; // post 정보 담음
-  },
-  [modifyPost.rejected]: (state, { payload }) => {
-    console.log("rejected payload~~~~~~~~~~~", payload);
-    if (payload === 401) {
-      state.postError = "failed"; // post 정보 담음
-    }
+    [modifyPost.fulfilled]: (state, { payload }) => {
+      // 수정 필요
+      if (payload === 200) {
+        console.log("hihihi!! I'm 200");
+        state = { ...state, post: "success" };
+        return state;
+      }
+      state.post = payload; // post 정보 담음
+    },
+    [modifyPost.rejected]: (state, { payload }) => {
+      console.log("rejected payload~~~~~~~~~~~", payload);
+      if (payload === 401) {
+        state.postError = "failed"; // post 정보 담음
+      }
+    },
   },
 });
 
