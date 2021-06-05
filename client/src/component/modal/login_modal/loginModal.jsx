@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./loginModal.module.css";
 import GoogleLogin from "react-google-login";
 import KakaoLogin from "react-kakao-login";
@@ -8,6 +8,9 @@ import GoogleButton from "../../login_button/google_button/googleButton";
 import GithubButton from "../../login_button/github_button/githubButton";
 import KakaoButton from "../../login_button/kakao_button/kakaoButton";
 import { nextStep } from "../../../store/loginStep";
+import UserImageUpload from "../../user_image_upload/userImageUpload";
+import studyService from "../../../service/study_service";
+import { getFormatedToday } from "../../../common/utils";
 
 /* 
 
@@ -143,19 +146,33 @@ signUp component로, 회원가입시 닉네임을 설정하는 곳입니다.
 
 to-do
 1. 중복체크 로직 추가가 필요합니다.
-2. image carousel slider 추가가 필요합니다.
 
 */
 
 const SignUp = ({ handleClose }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const [image, setImage] = useState(null);
+  const [isImageChanged, setIsImageChanged] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const nickName = e.target.nickName.value;
     console.log("###########nickName:", nickName);
 
-    await dispatch(addUserNickName({ id: user.id, nickName })).then(
+    if (isImageChanged) {
+      if (image) {
+        const preSignedUrl = await studyService.getPresignedUrl(nickName);
+        const fileName = `${nickName}_${getFormatedToday()}.png`;
+
+        await studyService
+          .uploadImageToS3WithBase64(preSignedUrl, image, fileName)
+          .then((response) => {
+            console.log("response from uploadUserimgtoS3", response);
+          });
+      }
+    }
+
+    await dispatch(addUserNickName({ id: user.id, nickName, image })).then(
       (response) => {
         console.log("addUserNickName response :", response);
         handleClose();
@@ -165,6 +182,11 @@ const SignUp = ({ handleClose }) => {
   return (
     <>
       <h1>Hola에 처음 오셨군요! 닉네임을 설정해 보세요.</h1>
+      <UserImageUpload
+        image={image}
+        setImage={setImage}
+        setIsImageChanged={setIsImageChanged}
+      ></UserImageUpload>
       <form onSubmit={handleSubmit}>
         <label>
           닉네임 :
