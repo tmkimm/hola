@@ -23,7 +23,9 @@ const userSchema = mongoose.Schema({
         minlength: 8
     },
     image: String,
-    likeLanguages: [String]
+    likeLanguages: [String],
+    likeStudies: [{type: mongoose.Schema.Types.ObjectId, ref: 'Study'}],
+    readList: [{type: mongoose.Schema.Types.ObjectId, ref: 'Study'}]
 },
 {
     timestamps: true
@@ -86,6 +88,50 @@ userSchema.methods.generateRefreshToken = async function() {
      });
     return refreshToken;
 };
+
+userSchema.statics.addLikeStudy = async function(studyId, userId) {
+    return await User.findByIdAndUpdate(
+        { _id: userId },
+        {
+          $push: {
+            likeStudies: {
+                _id: studyId
+            }
+          }
+        },
+        {
+          new: true,
+          upsert: true
+        }
+      );
+}
+
+userSchema.statics.deleteLikeStudy = async function(studyId, userId) {
+    const deleteRecord = await User.findOneAndUpdate(
+        { _id: userId },
+        {
+            $pull: { likeStudies: studyId }
+        }
+      );
+    return deleteRecord;
+}
+
+userSchema.statics.addReadList = async function(studyId, userId) {
+    return await User.findByIdAndUpdate(
+        { _id: userId },
+        {
+          $push: {
+            readList: {
+                _id: studyId
+            }
+          }
+        },
+        {
+          new: true,
+          upsert: true
+        }
+      );
+}
 
 const User = mongoose.model('User', userSchema);
 

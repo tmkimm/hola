@@ -26,6 +26,11 @@ export class UserServcie {
     await User.deleteUser(id);
   }
 
+  async findUserLikes(id) {
+    const userLikes = await User.findById(id).populate('likeStudies');
+    return userLikes;
+}
+
   async getPreSignUrl(fileName) {
     const s3 = new AWS.S3({
       accessKeyId: config.S3AccessKeyId,
@@ -41,5 +46,10 @@ export class UserServcie {
 
     const signedUrlPut = await s3.getSignedUrlPromise("putObject", params);
     return signedUrlPut;
+  }
+
+  async addReadLists(studyId, userId) {
+    const user = await User.addReadList(studyId, userId);
+    return user;
   }
 }

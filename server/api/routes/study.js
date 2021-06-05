@@ -108,4 +108,27 @@ export default (app) => {
     await StudyServcieInstance.deleteComment(id);
     res.status(204).json();
   });
+
+  // 좋아요 등록
+  route.post('/likes', isAccessTokenValid, async (req, res, next) => {
+    const { studyId } = req.body;
+    const userId = req.user._id;
+
+    console.log(`studyId : ${studyId}`)
+    console.log(`userId : ${userId}`)
+    let StudyServcieInstance = new StudyServcie();
+    const study = await StudyServcieInstance.addLike(studyId, userId);
+
+    return res.status(201).json(study);
+  });
+
+  // 좋아요 삭제
+  route.delete('/likes/:id', async (req, res, next) => {
+    const userId = req.params.id; // 사용자 id
+    const { studyId } = req.body;
+
+    let StudyServcieInstance = new StudyServcie();
+    await StudyServcieInstance.deleteLike(studyId, userId);
+    res.status(204).json();
+  });
 }

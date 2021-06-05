@@ -1,4 +1,5 @@
 import { Study } from '../models/Study.js';
+import { User } from '../models/User.js';
 
 export class StudyServcie {
     async findStudy(offset, limit, sort, language) {
@@ -44,5 +45,17 @@ export class StudyServcie {
     }
     async deleteComment(id) {
         await Study.deleteComment(id);
+    }
+
+    async addLike(studyId, userId) {
+        const study = await Study.addLike(studyId, userId);
+        const user = await User.addLikeStudy(studyId, userId);
+        return study;
+    }
+
+    async deleteLike(studyId, userId) {
+        const study = await Study.deleteLike(studyId, userId);
+        const user = await User.deleteLikeStudy(studyId, userId);
+        return study;
     }
 }

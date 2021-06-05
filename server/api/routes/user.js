@@ -66,5 +66,15 @@ export default (app) => {
         res.clearCookie('R_AUTH');
         res.status(204).json();
     });
+
+    // 사용자 관심 등록 리스트 조회
+    route.get('/likes/:id', async (req, res, next) => {
+        const id = req.params.id;
+        
+        let UserServcieInstance = new UserServcie();
+        const user = await UserServcieInstance.findUserLikes(id);
+
+        res.status(200).json(user);
+    });
     
 }

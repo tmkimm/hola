@@ -22,12 +22,22 @@ const studySchema = mongoose.Schema({
     isDeleted   : { type: Boolean, default: false},
     isClosed    : { type: Boolean, default: false},
     views       : { type: Number, default: 0 },
-    comments    : [commentSchema]
+    comments    : [commentSchema],
+    likes       : [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
 },
 {
     versionKey: false,
     timestamps: true
 });
+
+studySchema.set('toObject', { virtuals: true })
+studySchema.set('toJSON', { virtuals: true })
+
+// 좋아요 수
+studySchema.virtual('likesCount').get(function () {
+    return this.likes.length
+});
+
 
 studySchema.statics.findStudy = async function(offset, limit, sort, language) {
     // Pagenation
@@ -76,7 +86,6 @@ studySchema.statics.registerComment = async function(studyId, content, author) {
         }
       );
 }
-
 
 studySchema.statics.findComments = async function(id) {
     return await Study.findById(id).populate('comments.author', 'nickName image').select('comments');
@@ -134,6 +143,33 @@ studySchema.statics.deleteComment = async function(id) {
         }
       );
     return commentRecord;
+}
+
+studySchema.statics.addLike = async function(studyId, userId) {
+    return await Study.findByIdAndUpdate(
+        { _id: studyId },
+        {
+          $push: {
+            likes: {
+                _id: userId
+            }
+          }
+        },
+        {
+          new: true,
+          upsert: true
+        }
+      );
+}
+
+studySchema.statics.deleteLike = async function(studyId, userId) {
+    const deleteRecord = await Study.findOneAndUpdate(
+        { _id: studyId },
+        {
+            $pull: { likes: userId }
+        }
+      );
+    return deleteRecord;
 }
 
 const Study = mongoose.model('Study', studySchema);
