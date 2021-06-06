@@ -27,9 +27,14 @@ export class UserServcie {
   }
 
   async findUserLikes(id) {
-    const userLikes = await User.findById(id).populate('likeStudies');
+    const userLikes = await User.findById(id).populate('likeStudies').select('likeStudies');
     return userLikes;
-}
+  }
+
+  async findReadList(id) {
+    const readLIst = await User.findById(id).populate('readList').select('readList');
+    return readLIst;
+  }
 
   async getPreSignUrl(fileName) {
     const s3 = new AWS.S3({

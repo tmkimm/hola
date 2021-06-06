@@ -39,10 +39,10 @@ export default (app) => {
 
   // 스터디 상세 보기
   route.get('/:id', getUserIdWithAccessToken, async (req, res, next) => {
-    const id = req.params.id;
+    const studyId = req.params.id;
     const userId = req.user._id;
     let StudyServcieInstance = new StudyServcie();
-    const study = await StudyServcieInstance.findById(id);
+    const study = await StudyServcieInstance.studyDetailView(studyId, userId);
 
     res.status(200).json(study);
   });

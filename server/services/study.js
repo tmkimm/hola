@@ -7,8 +7,11 @@ export class StudyServcie {
         return studies;
     }
 
-    async findById(id) {
-        const studies = await Study.findById(id).populate('author', 'nickName image').populate('comments.author', 'nickName image');
+    async studyDetailView(studyId, userId) {
+        const studies = await Study.findById(studyId).populate('author', 'nickName image').populate('comments.author', 'nickName image');
+        if(userId) {
+            await User.addReadList(studyId, userId);
+        }
         return studies;
     }
 

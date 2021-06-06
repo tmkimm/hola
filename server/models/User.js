@@ -117,20 +117,19 @@ userSchema.statics.deleteLikeStudy = async function(studyId, userId) {
 }
 
 userSchema.statics.addReadList = async function(studyId, userId) {
-    return await User.findByIdAndUpdate(
-        { _id: userId },
-        {
-          $push: {
-            readList: {
-                _id: studyId
+    const isStudyExists = await User.findOne({ readList: studyId });
+    if(!isStudyExists) {
+        await User.findByIdAndUpdate(
+            { _id: userId },
+            {
+              $push: {
+                readList: {
+                    _id: studyId
+                }
+              }
             }
-          }
-        },
-        {
-          new: true,
-          upsert: true
-        }
-      );
+        );
+    }
 }
 
 const User = mongoose.model('User', userSchema);
