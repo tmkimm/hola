@@ -1,5 +1,5 @@
 import { Router } from 'express'; 
-import { checkStudy, isStudyValid, isAccessTokenValid } from '../middlewares/index.js';
+import { checkStudy, isStudyValid, isAccessTokenValid, getUserIdWithAccessToken } from '../middlewares/index.js';
 import { StudyServcie } from '../../services/index.js';
 
 const route = Router();
@@ -38,9 +38,9 @@ export default (app) => {
   });
 
   // 스터디 상세 보기
-  route.get('/:id', async (req, res, next) => {
+  route.get('/:id', getUserIdWithAccessToken, async (req, res, next) => {
     const id = req.params.id;
-
+    const userId = req.user._id;
     let StudyServcieInstance = new StudyServcie();
     const study = await StudyServcieInstance.findById(id);
 

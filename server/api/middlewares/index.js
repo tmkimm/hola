@@ -5,3 +5,4 @@ export { isTokenValidWithGoogle } from './isTokenValidWithGoogle.js';
 export { isTokenValidWithGithub } from './isTokenValidWithGithub.js';
 export { isTokenValidWithKakao } from './isTokenValidWithKakao.js';
 export { nickNameDuplicationCheck } from './nickNameDuplicationCheck.js';
+export { getUserIdWithAccessToken } from './getUserIdWithAccessToken.js';
