@@ -123,7 +123,7 @@ class Study {
       const response = await this.study.post("users/sign", {
         fileName,
       });
-      return response.data.preSignUrl;
+      return { preSignedUrl: response.data.preSignUrl, fileName };
     } catch (error) {
       console.error(error);
     }

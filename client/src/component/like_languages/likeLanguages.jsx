@@ -5,7 +5,7 @@ import languageList from "../../languageList";
 const customStyles = {
   control: (css) => ({
     ...css,
-    width: "500px",
+    width: "400px",
     height: "3rem",
   }),
 };
