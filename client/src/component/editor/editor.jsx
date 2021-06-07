@@ -55,8 +55,10 @@ const Editor = ({
   /* image Handler 함수 */
   const imageHandler = useCallback(async (dataUrl, type, imageData) => {
     const quill = quillInstance.current;
-    const preSignedUrl = await studyService.getPresignedUrl(user.nickName);
-    const fileName = `${user.nickName}_${getFormatedToday()}.png`;
+    const { preSignedUrl, fileName } = await studyService.getPresignedUrl(
+      user.nickName
+    );
+
     const imageFile = imageData.toFile(fileName);
 
     /* bucket image upload */

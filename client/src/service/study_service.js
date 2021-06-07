@@ -100,8 +100,10 @@ class Study {
       });
       return response;
     } catch (error) {
-      //console.error(error);
+      console.log(error.response.status);
+      return error.response.status;
       //console.log("error from console.log", error);
+      //return
     }
   };
 

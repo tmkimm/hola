@@ -11,6 +11,7 @@ import { nextStep } from "../../../store/loginStep";
 import UserImageUpload from "../../user_image_upload/userImageUpload";
 import studyService from "../../../service/study_service";
 import { getFormatedToday } from "../../../common/utils";
+import LikeLanguages from "../../like_languages/likeLanguages";
 
 /* 
 
@@ -154,6 +155,9 @@ const SignUp = ({ handleClose }) => {
   const user = useSelector((state) => state.user);
   const [image, setImage] = useState(null);
   const [isImageChanged, setIsImageChanged] = useState(false);
+  const [nickName, setNickName] = useState("");
+  const [likeLanguages, setLikeLanguages] = useState([]);
+  const onCompleteClick = async (e) => {};
   const handleSubmit = async (e) => {
     e.preventDefault();
     const nickName = e.target.nickName.value;
@@ -187,13 +191,33 @@ const SignUp = ({ handleClose }) => {
         setImage={setImage}
         setIsImageChanged={setIsImageChanged}
       ></UserImageUpload>
-      <form onSubmit={handleSubmit}>
-        <label>
-          닉네임 :
-          <input type="text" name="nickName" />
-        </label>
-        <input type="submit" value="회원가입" />
-      </form>
+      <div className={styles.titleWrapper}>
+        <h3>닉네임</h3>
+        <input
+          type="text"
+          name="nickNameInput"
+          value={nickName}
+          onChange={(e) => {
+            setNickName(e.target.value);
+          }}
+        />
+      </div>
+
+      <div className={styles.titleWrapper}>
+        <h3>관심 기술 태그</h3>
+        <LikeLanguages
+          likeLanguages={likeLanguages}
+          setLikeLanguages={setLikeLanguages}
+        ></LikeLanguages>
+      </div>
+
+      <button
+        onClick={onCompleteClick}
+        className={styles.buttonComplete}
+        name="complete"
+      >
+        완료
+      </button>
     </>
   );
 };
