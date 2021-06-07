@@ -48,7 +48,7 @@ export default (app) => {
   });
 
   // 스터디 수정
-  route.patch('/:id', async (req, res, next) => { 
+  route.patch('/:id', isAccessTokenValid, async (req, res, next) => { 
     const id = req.params.id;
     const studyDTO = req.body;
 
@@ -59,7 +59,7 @@ export default (app) => {
   });
 
   // 스터디 글 삭제
-  route.delete('/:id', async (req, res, next) => {
+  route.delete('/:id', isAccessTokenValid, async (req, res, next) => {
     const id = req.params.id;
 
     let StudyServcieInstance = new StudyServcie();
@@ -90,7 +90,7 @@ export default (app) => {
   })
 
   // 댓글 수정
-  route.patch('/comments/:id', async (req, res, next) => {
+  route.patch('/comments/:id', isAccessTokenValid, async (req, res, next) => {
     const commentDTO = req.body;
     commentDTO.id = req.params.id;
 
@@ -101,7 +101,7 @@ export default (app) => {
   });
 
   // 댓글 삭제
-  route.delete('/comments/:id', async (req, res, next) => {
+  route.delete('/comments/:id', isAccessTokenValid, async (req, res, next) => {
     const id = req.params.id;
 
     let StudyServcieInstance = new StudyServcie();

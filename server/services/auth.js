@@ -19,18 +19,20 @@ export class AuthService {
 
     // Refresh Token을 이용하여 Access Token 재발급
     async reissueAccessToken(refreshToken) {
+        let decodeSuccess = true;
         const decodeRefreshToken = jwt.verify(
             refreshToken,
             config.jwtSecretKey
         );
 
         if(!decodeRefreshToken) {
-            res.status(401).json({message : 'invalid token'});
+            decodeSuccess = false;
+            return { decodeSuccess };
         }
         
         const user =  await User.findByNickName(decodeRefreshToken.nickName);
         const { _id, nickName, email, image } = user;
         const accessToken = await user.generateAccessToken();
-        return { _id, nickName, email, image, accessToken };
+        return { decodeSuccess, _id, nickName, email, image, accessToken };
     }
 }

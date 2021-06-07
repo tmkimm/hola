@@ -69,7 +69,7 @@ userSchema.methods.generateAccessToken = async function() {
         },
         config.jwtSecretKey,
         {
-            expiresIn: '1h',
+            expiresIn: '1m',
             issuer: config.issuer
      });
     return accessToken;
@@ -83,7 +83,7 @@ userSchema.methods.generateRefreshToken = async function() {
         },
         config.jwtSecretKey,
         {
-            expiresIn: '2w',
+            expiresIn: '5m',
             issuer: config.issuer
      });
     return refreshToken;

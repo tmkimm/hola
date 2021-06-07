@@ -1,13 +1,13 @@
 import { Router } from 'express';
 import { UserServcie } from '../../services/index.js';
-import { nickNameDuplicationCheck } from '../middlewares/index.js'
+import { nickNameDuplicationCheck, isAccessTokenValid } from '../middlewares/index.js'
 const route = Router();
 
 export default (app) => {
     app.use('/users', route);
     
     // s3 pre-sign url 발급
-    route.post('/sign', async (req, res, next) => {
+    route.post('/sign', isAccessTokenValid, async (req, res, next) => {
         const { fileName } = req.body;
         let UserServcieInstance = new UserServcie();
         const signedUrlPut = await UserServcieInstance.getPreSignUrl(fileName);
@@ -16,7 +16,6 @@ export default (app) => {
             preSignUrl: signedUrlPut
         });
     });
-
       
     // 사용자 정보 조회
     route.get('/', async (req, res, next) => {
@@ -38,7 +37,7 @@ export default (app) => {
     });
 
     // 사용자 정보 수정
-    route.patch('/:id', nickNameDuplicationCheck, async (req, res, next) => {
+    route.patch('/:id', isAccessTokenValid, nickNameDuplicationCheck, async (req, res, next) => {
         const id = req.params.id;
         const userDTO = req.body;
         let UserServcieInstance = new UserServcie();
@@ -58,7 +57,7 @@ export default (app) => {
     });
 
     // 사용자 정보 삭제(회원탈퇴)
-    route.delete('/:id', async (req, res, next) => {
+    route.delete('/:id', isAccessTokenValid, async (req, res, next) => {
         const id = req.params.id;
 
         let UserServcieInstance = new UserServcie();

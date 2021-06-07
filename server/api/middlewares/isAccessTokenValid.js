@@ -9,7 +9,10 @@ const isAccessTokenValid = async (req, res, next) => {
             const decodedUser = await jwt.verify(token, config.jwtSecretKey);
             const user = await User.findByIdToken(decodedUser.idToken);
             if(!user) {
-                return res.status(401).json({message : 'User not found'});
+                return res.status(401).json({
+                    error : -2,
+                    message : 'User not found'
+                });
             }
             else{
                 req.user = {
@@ -17,17 +20,25 @@ const isAccessTokenValid = async (req, res, next) => {
                      nickName: user.nickName
                 };
             }
-
         } catch(err) {
             if (err.message === 'jwt expired') {
-                return res.status(401).json({message : 'expired token'});
+                return res.status(401).json({
+                    error : -2,
+                    message : 'Expired access token'
+                });
             } else {
-                return res.status(401).json({message : 'invalid token'});
+                return res.status(401).json({
+                    error : -2,
+                    message : 'Invalid access token'
+                });
             }
         }
         next();
       } else {
-        return res.status(401).json({message : 'Token not found'});
+        return res.status(401).json({
+            error : -2,
+            message : 'Token not found'
+        });
       }
   }
   export { isAccessTokenValid };
