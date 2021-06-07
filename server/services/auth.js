@@ -20,12 +20,13 @@ export class AuthService {
     // Refresh Token을 이용하여 Access Token 재발급
     async reissueAccessToken(refreshToken) {
         let decodeSuccess = true;
-        const decodeRefreshToken = jwt.verify(
-            refreshToken,
-            config.jwtSecretKey
-        );
-
-        if(!decodeRefreshToken) {
+        let decodeRefreshToken = '';
+        try {
+            decodeRefreshToken = await jwt.verify(
+                refreshToken,
+                config.jwtSecretKey
+            );
+        } catch(err) {
             decodeSuccess = false;
             return { decodeSuccess };
         }
