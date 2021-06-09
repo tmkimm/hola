@@ -1,6 +1,6 @@
 import { Router } from 'express'; 
 import { checkStudy, isStudyValid, isAccessTokenValid, getUserIdWithAccessToken } from '../middlewares/index.js';
-import { StudyServcie } from '../../services/index.js';
+import { StudyService } from '../../services/index.js';
 
 const route = Router();
 
@@ -10,8 +10,8 @@ export default (app) => {
   // 스터디 리스트 조회
   route.get('/', async (req, res, next) => {
     const { offset, limit, sort, language } = req.query;
-    let StudyServcieInstance = new StudyServcie();
-    const studies = await StudyServcieInstance.findStudy(offset, limit, sort, language);
+    let StudyServiceInstance = new StudyService();
+    const studies = await StudyServiceInstance.findStudy(offset, limit, sort, language);
 
     res.status(200).json(studies);
   });
@@ -22,8 +22,8 @@ export default (app) => {
       const studyDTO = req.body;
       const userId = req.user._id;
 
-      let StudyServcieInstance = new StudyServcie();
-      const study = await StudyServcieInstance.registerStudy(userId, studyDTO);       
+      let StudyServiceInstance = new StudyService();
+      const study = await StudyServiceInstance.registerStudy(userId, studyDTO);       
       res.status(201).json(study);
     } catch (error) {
       res.status(400).json({ errors: [
@@ -41,8 +41,8 @@ export default (app) => {
   route.get('/:id', getUserIdWithAccessToken, async (req, res, next) => {
     const studyId = req.params.id;
     const userId = req.user._id;
-    let StudyServcieInstance = new StudyServcie();
-    const study = await StudyServcieInstance.studyDetailView(studyId, userId);
+    let StudyServiceInstance = new StudyService();
+    const study = await StudyServiceInstance.studyDetailView(studyId, userId);
 
     res.status(200).json(study);
   });
@@ -52,8 +52,8 @@ export default (app) => {
     const id = req.params.id;
     const studyDTO = req.body;
 
-    let StudyServcieInstance = new StudyServcie();
-    const study = await StudyServcieInstance.modifyStudy(id, studyDTO);
+    let StudyServiceInstance = new StudyService();
+    const study = await StudyServiceInstance.modifyStudy(id, studyDTO);
 
     res.status(200).json(study);  
   });
@@ -62,8 +62,8 @@ export default (app) => {
   route.delete('/:id', isAccessTokenValid, async (req, res, next) => {
     const id = req.params.id;
 
-    let StudyServcieInstance = new StudyServcie();
-    await StudyServcieInstance.deleteStudy(id);
+    let StudyServiceInstance = new StudyService();
+    await StudyServiceInstance.deleteStudy(id);
     res.status(204).json();
   });
   
@@ -72,8 +72,8 @@ export default (app) => {
   route.get('/comments/:id', async (req, res, next) => {
     const id = req.params.id;
 
-    let StudyServcieInstance = new StudyServcie();
-    const comments = await StudyServcieInstance.findComments(id);
+    let StudyServiceInstance = new StudyService();
+    const comments = await StudyServiceInstance.findComments(id);
 
     res.status(200).json(comments);
   });
@@ -83,8 +83,8 @@ export default (app) => {
     const commentDTO = req.body;
     const userId = req.user._id;
 
-    let StudyServcieInstance = new StudyServcie();
-    const study = await StudyServcieInstance.registerComment(userId, commentDTO);
+    let StudyServiceInstance = new StudyService();
+    const study = await StudyServiceInstance.registerComment(userId, commentDTO);
 
     return res.status(201).json(study);
   })
@@ -94,8 +94,8 @@ export default (app) => {
     const commentDTO = req.body;
     commentDTO.id = req.params.id;
 
-    let StudyServcieInstance = new StudyServcie();
-    const comment = await StudyServcieInstance.modifyComment(commentDTO);
+    let StudyServiceInstance = new StudyService();
+    const comment = await StudyServiceInstance.modifyComment(commentDTO);
 
     res.status(200).json(comment);
   });
@@ -104,8 +104,8 @@ export default (app) => {
   route.delete('/comments/:id', isAccessTokenValid, async (req, res, next) => {
     const id = req.params.id;
 
-    let StudyServcieInstance = new StudyServcie();
-    await StudyServcieInstance.deleteComment(id);
+    let StudyServiceInstance = new StudyService();
+    await StudyServiceInstance.deleteComment(id);
     res.status(204).json();
   });
 
@@ -113,11 +113,9 @@ export default (app) => {
   route.post('/likes', isAccessTokenValid, async (req, res, next) => {
     const { studyId } = req.body;
     const userId = req.user._id;
-
-    console.log(`studyId : ${studyId}`)
-    console.log(`userId : ${userId}`)
-    let StudyServcieInstance = new StudyServcie();
-    const study = await StudyServcieInstance.addLike(studyId, userId);
+    
+    let StudyServiceInstance = new StudyService();
+    const study = await StudyServiceInstance.addLike(studyId, userId);
 
     return res.status(201).json(study);
   });
@@ -127,8 +125,8 @@ export default (app) => {
     const userId = req.params.id; // 사용자 id
     const { studyId } = req.body;
 
-    let StudyServcieInstance = new StudyServcie();
-    await StudyServcieInstance.deleteLike(studyId, userId);
+    let StudyServiceInstance = new StudyService();
+    await StudyServiceInstance.deleteLike(studyId, userId);
     res.status(204).json();
   });
 }

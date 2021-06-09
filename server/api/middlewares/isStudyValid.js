@@ -13,7 +13,6 @@ const checkStudy = [
 
 // Study 유효성 검증 미들웨어
 const isStudyValid = (req, res, next) => {
-  console.log(req.body);
   const errors = validationResult(req);
   if(!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() });  

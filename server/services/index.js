@@ -1,3 +1,3 @@
 export { AuthService } from './auth.js';
-export { StudyServcie } from './study.js';
+export { StudyService } from './study.js';
 export { UserServcie } from './user.js';

@@ -7,7 +7,7 @@ export default (app) => {
     app.use('/users', route);
     
     // s3 pre-sign url 발급
-    route.post('/sign', isAccessTokenValid, async (req, res, next) => {
+    route.post('/sign', async (req, res, next) => {
         const { fileName } = req.body;
         let UserServcieInstance = new UserServcie();
         const signedUrlPut = await UserServcieInstance.getPreSignUrl(fileName);

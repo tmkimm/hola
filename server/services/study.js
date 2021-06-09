@@ -1,7 +1,7 @@
 import { Study } from '../models/Study.js';
 import { User } from '../models/User.js';
 
-export class StudyServcie {
+export class StudyService {
     async findStudy(offset, limit, sort, language) {
         const studies = await Study.findStudy(offset, limit, sort, language);
         return studies;

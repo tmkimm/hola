@@ -30,7 +30,6 @@ export class AuthService {
             decodeSuccess = false;
             return { decodeSuccess };
         }
-        
         const user =  await User.findByNickName(decodeRefreshToken.nickName);
         const { _id, nickName, email, image } = user;
         const accessToken = await user.generateAccessToken();
