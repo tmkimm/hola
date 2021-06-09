@@ -1,12 +1,6 @@
 import {body, validationResult} from 'express-validator';
 
 const checkStudy = [
-  // body('topic').isString().withMessage('Invaild datatype(String)'),
-  // body('language').isArray().withMessage('Invaild datatype(Array)'),
-  // body('location').isString().withMessage('Invaild datatype(String)'),
-  // body('position').isArray().withMessage('Invaild datatype(Array)'),
-  // body('position.*.part').isString().withMessage('Invaild datatype(String)'),
-  // body('position.*.personnel').isNumeric().withMessage('Invaild datatype(Number)'),
   body('title').isString().withMessage('Invaild datatype(String)'),
   body('content').isString().withMessage('Invaild datatype(String)')
 ];

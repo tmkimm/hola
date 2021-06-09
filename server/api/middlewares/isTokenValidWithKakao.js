@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+// 클라이언트에게 전달받은 token을 이용해 사용자 정보를 가져온다.
+// 각 소셜 로그인에 따라 Oauth 서버를 호출한다.
 const isTokenValidWithKakao = async (req, res, next) => {
     try {
         // 사용자 정보 가져오기

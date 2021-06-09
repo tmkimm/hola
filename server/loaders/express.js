@@ -15,12 +15,15 @@ export default (app) => {
       },
       credentials:true
     };
+
+    // Cors Whitelist 관리
     app.use(cors(corsOptions));
-    //app.use(cors({credentials: true}));
     app.use(express.json()); 
     app.use(express.urlencoded({ extended: true }));
     app.use(cookieParser());
     app.use(express.static(path.join(path.resolve(), 'public')));
+
+    // API Route 설정
     app.use(config.api.prefix, routes());
     
     // catch 404 and forward to error handler

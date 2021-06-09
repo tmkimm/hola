@@ -1,6 +1,8 @@
 import config from '../../config/index.js';
 import axios from 'axios';
 
+// 클라이언트에게 전달받은 token을 이용해 사용자 정보를 가져온다.
+// 각 소셜 로그인에 따라 Oauth 서버를 호출한다.
 const isTokenValidWithGithub = async (req, res, next) => {
     try {
         // 인가코드를 이용하여 AccessToken 발급

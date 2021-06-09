@@ -4,9 +4,14 @@ import { AuthService } from '../../services/index.js';
 const route = Router();
 
 export default (app) => {
+    /*
+    권한에 관련된 Router를 정의한다.
+    # GET /auth : Refresh Token을 이용해 Access Token 발급
+    - Refresh Token이 존재하지 않거나 유효하지 않을 경우 error: -1
+    - Access Token이 유효하지 않을 경우 error: -2
+    */
     app.use('/auth', route);
 
-    // -1, -2
     route.get('/', async (req, res, next) => {
         if(!req.cookies.R_AUTH) {
             return res.status(401).json({

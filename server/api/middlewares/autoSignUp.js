@@ -1,5 +1,9 @@
 import { User } from '../../models/User.js';
 
+// 로그인 시 회원가입 여부를 판단한다.
+// loginSuccess
+// true: 로그인 완료
+// false: 로그인 실패. 회원 가입 필요.
 const autoSignUp = async (req, res, next) => {
     const user = await User.findByIdToken(req.user.idToken);
     if(!user) {

@@ -6,6 +6,8 @@ import { User } from '../models/User.js';
 const client = new OAuth2Client(config.googleClientID);
 
 export class AuthService {
+
+    // 로그인 시 사용자 정보를 조회하고 Token을 생성한다.
     async SignIn(idToken) {
         const user =  await User.findByIdToken(idToken);
         // Access Token, Refresh Token 발급
@@ -17,7 +19,7 @@ export class AuthService {
         return { _id, nickName, image, accessToken, refreshToken };
     }
 
-    // Refresh Token을 이용하여 Access Token 재발급
+    // Refresh Token을 이용하여 Access Token 재발급한다.
     async reissueAccessToken(refreshToken) {
         let decodeSuccess = true;
         let decodeRefreshToken = '';
