@@ -9,7 +9,6 @@ import { setModalVisible } from "../../store/loginStep";
 import { fetchUserByRefreshToken } from "../../store/user";
 
 const Navbar = React.memo(({ showRegisterButton }) => {
-  console.log("NAVBAR START!");
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const history = useHistory();

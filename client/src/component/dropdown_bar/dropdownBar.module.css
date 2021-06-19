@@ -27,3 +27,7 @@
   font-weight: 500;
   cursor: auto;
 }
+
+.menuWrapper a {
+  width: 100%;
+}

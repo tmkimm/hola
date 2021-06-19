@@ -27,15 +27,20 @@ const DropdownBar = () => {
   return (
     <div className={styles.menuWrapper}>
       <ul className={styles.menu}>
-        <li className={styles.userName}>{user.name} 개발자</li>
         <li className={styles.menuItem}>
-          <Link to="/list">내 작성글</Link>
+          <Link to="/list" style={{ display: "inline-block" }}>
+            내 작성글
+          </Link>
         </li>
         <li className={styles.menuItem}>
-          <Link to="/list">찜한 글</Link>
+          <Link to="/list" style={{ display: "inline-block" }}>
+            찜한 글
+          </Link>
         </li>
         <li className={styles.menuItem}>
-          <Link to="/setting">설정</Link>
+          <Link to="/setting" style={{ display: "inline-block" }}>
+            설정
+          </Link>
         </li>
         <li className={styles.menuItem} onClick={handleLogout}>
           로그아웃

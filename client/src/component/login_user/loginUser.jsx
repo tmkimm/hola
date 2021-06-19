@@ -53,7 +53,7 @@ const LoginUser = React.memo(() => {
       >
         <path d="M7 10l5 5 5-5z"></path>
       </svg>
-      {menuVisible && <DropdownBar ref={menuRef}></DropdownBar>}
+      {menuVisible && <DropdownBar></DropdownBar>}
     </div>
   );
 });
