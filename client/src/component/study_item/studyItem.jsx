@@ -49,7 +49,7 @@ const StudyItem = ({ study }) => {
             <img
               className={styles.itemImg}
               src="/images/info/heart_filled.png"
-              alt="location"
+              alt="likes"
             />
             <p>{study.views}</p>
           </div>

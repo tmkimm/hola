@@ -1,0 +1,29 @@
+.likesAndViewsWrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 4rem;
+  margin-top: 1rem;
+}
+
+.likes {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.views {
+  display: flex;
+  align-items: center;
+}
+
+.itemImg {
+  width: 2rem;
+  margin-right: 0.25rem;
+}
+
+.locationImg {
+  width: 1.5rem;
+  margin-right: 0.25rem;
+}

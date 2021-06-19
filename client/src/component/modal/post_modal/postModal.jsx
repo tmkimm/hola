@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import studyService from "../../../service/study_service";
+import LikesAndViews from "../../likes_and_views/likesAndViews";
 import styles from "./postModal.module.css";
 import { readPost, clearPost } from "../../../store/read";
 import { setPost } from "../../../store/write";
@@ -22,6 +23,7 @@ To-Do
 
 const handleEdit = (dispatch, history, post) => {
   dispatch(setPost(post));
+  document.body.style.overflow = "auto";
   history.push("/register");
 };
 
@@ -46,7 +48,7 @@ const PostModal = ({ study, handleClose }) => {
   console.log("postmodal rendering!!!");
   const defaultPath =
     "https://hola-post-image.s3.ap-northeast-2.amazonaws.com/";
-  console.log("###nickname : ", user.nickName);
+  console.log("###studycontent : ", study);
   useEffect(() => {
     dispatch(readPost(study._id));
     return () => {
@@ -105,6 +107,11 @@ const PostModal = ({ study, handleClose }) => {
         </div>
       </section>
       <section className={styles.modalComment}>
+        <LikesAndViews
+          views={study.views}
+          likes={study.likesCount}
+        ></LikesAndViews>
+
         <div className={styles.postComment}>
           <CommentContainer id={study._id}></CommentContainer>
         </div>
@@ -112,6 +119,5 @@ const PostModal = ({ study, handleClose }) => {
     </div>
   );
 };
-//user={{...user}}
 
 export default PostModal;
