@@ -165,14 +165,14 @@ const Setting = (props) => {
         <hr />
         <button
           onClick={onCompleteClick}
-          className={styles.buttonComplete}
+          className={`${styles.buttonComplete} ${styles.mainButton}`}
           name="complete"
         >
           완료
         </button>
         <button
           onClick={onSignOutClick}
-          className={styles.buttonSignOut}
+          className={`${styles.buttonSignOut} ${styles.mainButton}`}
           name="signOut"
         >
           회원탈퇴
