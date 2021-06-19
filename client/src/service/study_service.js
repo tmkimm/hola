@@ -116,6 +116,27 @@ class Study {
     }
   };
 
+  addLikes = async (studyId) => {
+    try {
+      const response = await this.study.post("studies/likes", {
+        studyId,
+      });
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  deleteLikes = async (studyId) => {
+    try {
+      await this.study.delete("studies/likes", {
+        studyId,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   /* users/sign 말고 studies/sign 어떤가? */
   getPresignedUrl = async (userName) => {
     try {

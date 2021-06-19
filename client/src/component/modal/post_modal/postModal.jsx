@@ -109,7 +109,10 @@ const PostModal = ({ study, handleClose }) => {
       <section className={styles.modalComment}>
         <LikesAndViews
           views={study.views}
+          likeUser={study.likes}
           likes={study.likesCount}
+          studyId={study._id}
+          userId={user.id}
         ></LikesAndViews>
 
         <div className={styles.postComment}>
