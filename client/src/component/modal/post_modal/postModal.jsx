@@ -8,6 +8,7 @@ import { setPost } from "../../../store/write";
 import CommentContainer from "../../comment_container/commentContainer";
 import { useHistory } from "react-router";
 import Modal from "../modal_component/modal";
+import CancelButton from "../../cancelButton/cancelButton";
 
 /* 
 
@@ -32,11 +33,21 @@ const handleDelete = () => {
 };
 
 const TestButton = ({ dispatch, history, post }) => {
+  const handleDelete = () => {
+    setShowPopup((state) => !state);
+  };
+
+  const [showPopup, setShowPopup] = useState(false);
   return (
-    <section className={styles.buttonWrapper}>
-      <button onClick={() => handleEdit(dispatch, history, post)}>수정</button>
-      <button onClick={handleDelete}>삭제</button>
-    </section>
+    <>
+      <section className={styles.buttonWrapper}>
+        <button onClick={() => handleEdit(dispatch, history, post)}>
+          수정
+        </button>
+        <button onClick={handleDelete}>삭제</button>
+      </section>
+      {showPopup && <CancelButton></CancelButton>}
+    </>
   );
 };
 
