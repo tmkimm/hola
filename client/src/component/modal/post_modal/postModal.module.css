@@ -12,9 +12,8 @@
 }
 
 .buttonWrapper {
-  position: absolute;
-  right: 0.5rem;
-  bottom: 0;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .modalHeader {
@@ -40,7 +39,6 @@
 .postHeader {
   display: flex;
   flex-direction: column;
-  position: relative;
   width: 80%;
   margin: 0 auto;
   margin-top: 3rem;
@@ -77,7 +75,7 @@
 
 .postContent {
   width: 80%;
-  min-height: 800px;
+
   margin: 0 auto;
 }
 

@@ -4,11 +4,16 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  width: 400px;
+  width: 350px;
   height: 200px;
-  top: 50%;
-  left: 50%;
-  border: 1px solid red;
+  top: 15%;
+  left: 30%;
+
+  background-color: white;
+  border-radius: 4px;
+  padding: 2rem 1.5rem;
+  box-shadow: rgb(0 0 0 / 20%) 0px 2px 12px 0px;
+  animation: 0.4s ease-in-out 0s 1 normal forwards running hwrkPK;
 }
 
 .buttons {

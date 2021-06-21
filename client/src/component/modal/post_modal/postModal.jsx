@@ -28,10 +28,6 @@ const handleEdit = (dispatch, history, post) => {
   history.push("/register");
 };
 
-const handleDelete = () => {
-  alert("삭제 하시겠습니까?");
-};
-
 const TestButton = ({ dispatch, history, post }) => {
   const handleDelete = () => {
     setShowPopup((state) => !state);
