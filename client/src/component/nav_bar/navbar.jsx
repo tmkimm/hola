@@ -7,6 +7,7 @@ import { Link, useHistory } from "react-router-dom";
 import LoginUser from "../login_user/loginUser";
 import { setModalVisible } from "../../store/loginStep";
 import { fetchUserByRefreshToken } from "../../store/user";
+import { toast } from "react-toastify";
 
 const Navbar = React.memo(({ showRegisterButton }) => {
   const dispatch = useDispatch();
@@ -28,7 +29,13 @@ const Navbar = React.memo(({ showRegisterButton }) => {
       // page refresh후 갱신
       dispatch(fetchUserByRefreshToken()).then((response) => {
         // 유저 nickname 존재시 refresh token을 이용해서 유저정보 얻어옴
-        if (response.meta.requestStatus !== "fulfilled") history.push("/");
+        if (response.meta.requestStatus !== "fulfilled") {
+          history.push("/");
+          toast.error("로그인이 만료 되었어요!", {
+            position: "top-right",
+            autoClose: 3000,
+          });
+        }
         console.log("fetchByuserRefreshToken response :", response);
         // 실패했을때 에러처리 필요할 듯
       });

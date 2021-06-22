@@ -12,7 +12,7 @@ import UserImageUpload from "../../user_image_upload/userImageUpload";
 import studyService from "../../../service/study_service";
 import { getFormatedToday } from "../../../common/utils";
 import LikeLanguages from "../../like_languages/likeLanguages";
-
+import TopBar from "../../top_bar/topBar";
 /* 
 
 LoginModal Component
@@ -60,16 +60,7 @@ const LoginModal = ({ handleClose, signUp }) => {
           </svg>
         </div>
       </div>
-      <div className={styles.modalContent}>
-        {loginStep === "LOGIN" ? (
-          <SocialLogin
-            handleLoginStep={handleLoginStep}
-            handleClose={handleClose}
-          ></SocialLogin>
-        ) : (
-          <SignUp handleClose={handleClose}></SignUp>
-        )}
-      </div>
+      <div className={styles.modalContent}>{componentForStep[loginStep]}</div>
     </div>
   );
 };
@@ -189,6 +180,7 @@ const SignUp = ({ handleClose }) => {
   };
   return (
     <>
+      <TopBar></TopBar>
       <h1>Hola에 처음 오셨군요! 닉네임을 설정해 보세요.</h1>
       <UserImageUpload
         image={image}
@@ -224,6 +216,11 @@ const SignUp = ({ handleClose }) => {
       </button>
     </>
   );
+};
+
+const componentForStep = {
+  LOGIN: <SocialLogin />,
+  SIGNUP: <SignUp />,
 };
 
 export default LoginModal;
