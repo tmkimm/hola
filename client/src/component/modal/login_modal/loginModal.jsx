@@ -13,6 +13,7 @@ import studyService from "../../../service/study_service";
 import { getFormatedToday } from "../../../common/utils";
 import LikeLanguages from "../../like_languages/likeLanguages";
 import TopBar from "../../top_bar/topBar";
+import SocialLoginContainer from "../../socialLoginContainer/socialLoginContainer";
 /* 
 
 LoginModal Component
@@ -25,17 +26,12 @@ true면 <SocialLogin>, false면 <SignUp>
 component를 rendering 합니다.
 
 to-do
-login 후 user 정보 localStorage에 저장하기
+꼭 modalvisible이 전역 state로 관리가 되어야 하는가?
 
 */
 
-const LoginModal = ({ handleClose, signUp }) => {
-  const dispatch = useDispatch();
+const LoginModal = ({ handleClose }) => {
   const loginStep = useSelector((state) => state.loginStep.currentStep);
-
-  const handleLoginStep = () => {
-    dispatch(nextStep("SIGNUP"));
-  };
 
   return (
     <div className={styles.wrapper}>
@@ -60,75 +56,16 @@ const LoginModal = ({ handleClose, signUp }) => {
           </svg>
         </div>
       </div>
-      <div className={styles.modalContent}>{componentForStep[loginStep]}</div>
+      <div className={styles.modalContent}>
+        {loginStep === "LOGIN" ? (
+          <SocialLoginContainer
+            handleClose={handleClose}
+          ></SocialLoginContainer>
+        ) : (
+          <SignUp handleClose={handleClose}></SignUp>
+        )}
+      </div>
     </div>
-  );
-};
-
-const SocialLogin = ({ handleLoginStep, handleClose }) => {
-  const googleClientId = process.env.REACT_APP_GOOGLE_LOGIN_API_KEY;
-  const kakaoClientId = process.env.REACT_APP_KAKAO_LOGIN_API_KEY;
-
-  const dispatch = useDispatch();
-
-  const googleOnSuccess = async (response) => {
-    const { tokenId } = response;
-    const userData = { code: tokenId, social: "google" };
-    //console.log(userData);
-
-    dispatch(fetchUserById(userData)).then((response) => {
-      console.log("fetchByuserID response :", response);
-      if (response.payload.loginSuccess === true) handleClose();
-      else handleLoginStep();
-    });
-  };
-
-  const googleOnFailure = (error) => {
-    console.log(error);
-  };
-
-  const kakaoOnSuccess = async (data) => {
-    const accessToken = data.response.access_token;
-    const userData = { code: accessToken, social: "kakao" };
-
-    await dispatch(fetchUserById(userData)).then((response) => {
-      console.log("fetchByuserID response :", response);
-      if (response.payload.loginSuccess === true) handleClose();
-      else handleLoginStep();
-    });
-  };
-
-  const kakaoOnFailure = (error) => {
-    console.log(error);
-  };
-
-  return (
-    <>
-      <h1>Hola에 오신 것을 환영합니다!</h1>
-      <section className={styles.loginWrapper}>
-        <GoogleLogin
-          clientId={googleClientId}
-          responseType={"id_token"}
-          onSuccess={googleOnSuccess}
-          onFailure={googleOnFailure}
-          render={(renderProps) => (
-            <GoogleButton
-              onClick={renderProps.onClick}
-              disabled={renderProps.disabled}
-            ></GoogleButton>
-          )}
-        />
-        <GithubButton></GithubButton>
-        <KakaoLogin
-          token={kakaoClientId}
-          onSuccess={kakaoOnSuccess}
-          onFailure={kakaoOnFailure}
-          render={({ onClick }) => (
-            <KakaoButton onClick={onClick}></KakaoButton>
-          )}
-        />
-      </section>
-    </>
   );
 };
 
@@ -139,8 +76,8 @@ signUp component로, 회원가입시 닉네임을 설정하는 곳입니다.
 to-do
 1. 중복체크 로직 추가가 필요합니다.
 2. 3단계 구성이 필요합니다.
-- 1. 로그인 플랫폼 선택
-- 2. 닉네임 + 사진 선택
+- 1. 닉네임 선택
+- 2. 사진 선택
 - 3. 관심분야 선택
 
 */
@@ -218,9 +155,14 @@ const SignUp = ({ handleClose }) => {
   );
 };
 
-const componentForStep = {
-  LOGIN: <SocialLogin />,
-  SIGNUP: <SignUp />,
-};
+// const componentForStep = {
+//   LOGIN: (
+//     <SocialLogin
+//       handleLoginStep={handleLoginStep}
+//       handleClose={handleClose}
+//     ></SocialLogin>
+//   ),
+//   SIGNUP: <SignUp handleClose={handleClose}></SignUp>,
+// };
 
 export default LoginModal;

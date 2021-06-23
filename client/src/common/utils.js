@@ -12,22 +12,19 @@ const getFormatedToday = () => {
 
 const formatDate = (date) => {
   var d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear();
+    month = "" + (d.getMonth() + 1),
+    day = "" + d.getDate(),
+    year = d.getFullYear();
 
-  if (month.length < 2) 
-      month = '0' + month;
-  if (day.length < 2) 
-      day = '0' + day;
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
 
-  return [year, month, day].join('-');
-}
-
+  return [year, month, day].join("-");
+};
 
 const isBase64 = (str) => {
   try {
-      return str.substring(0, 5) == 'data:' ? true : false;
+    return str.substring(0, 5) === "data:" ? true : false;
   } catch (err) {
     return false;
   }
