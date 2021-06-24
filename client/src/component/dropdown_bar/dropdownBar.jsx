@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { clearUser } from "../../store/user";
 import authService from "../../service/auth_service";
-import { nextStep } from "../../store/loginStep";
+import { clearStep, nextStep } from "../../store/loginStep";
 /* 
 
 loginUser Component에서 DropDown bar button CLick시 rendering 되는 component로,
@@ -21,7 +21,7 @@ const DropdownBar = () => {
   const handleLogout = () => {
     authService.logout().then((response) => {
       dispatch(clearUser());
-      dispatch(nextStep("LOGIN"));
+      dispatch(clearStep());
     });
   };
   return (

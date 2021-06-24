@@ -2,4 +2,5 @@
   position: absolute;
   left: 1rem;
   opacity: 0.6;
+  cursor: pointer;
 }

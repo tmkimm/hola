@@ -13,7 +13,8 @@ import studyService from "../../../service/study_service";
 import { getFormatedToday } from "../../../common/utils";
 import LikeLanguages from "../../like_languages/likeLanguages";
 import TopBar from "../../top_bar/topBar";
-import SocialLoginContainer from "../../socialLoginContainer/socialLoginContainer";
+import SocialLoginContainer from "../../social_login_container/socialLoginContainer";
+import SetNicknameContainer from "../../set_nickname_container/setNicknameContainer";
 /* 
 
 LoginModal Component
@@ -29,10 +30,29 @@ to-do
 꼭 modalvisible이 전역 state로 관리가 되어야 하는가?
 
 */
+const loginProcess = {
+  socialLogin: 1,
+  setNickname: 2,
+  setImage: 3,
+  setInterest: 4,
+};
 
 const LoginModal = ({ handleClose }) => {
   const loginStep = useSelector((state) => state.loginStep.currentStep);
-
+  const renderByLoginStep = (loginStep) => {
+    switch (loginStep) {
+      case loginProcess["socialLogin"]:
+        return (
+          <SocialLoginContainer
+            handleClose={handleClose}
+          ></SocialLoginContainer>
+        );
+      case loginProcess["setNickname"]:
+        return <SetNicknameContainer />;
+      default:
+        return <div></div>;
+    }
+  };
   return (
     <div className={styles.wrapper}>
       <div className={styles.modalHeader}>
@@ -56,15 +76,7 @@ const LoginModal = ({ handleClose }) => {
           </svg>
         </div>
       </div>
-      <div className={styles.modalContent}>
-        {loginStep === "LOGIN" ? (
-          <SocialLoginContainer
-            handleClose={handleClose}
-          ></SocialLoginContainer>
-        ) : (
-          <SignUp handleClose={handleClose}></SignUp>
-        )}
-      </div>
+      <div className={styles.modalContent}>{renderByLoginStep(loginStep)}</div>
     </div>
   );
 };
@@ -82,87 +94,77 @@ to-do
 
 */
 
-const SignUp = ({ handleClose }) => {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-  const [image, setImage] = useState(null);
-  const [isImageChanged, setIsImageChanged] = useState(false);
-  const [nickName, setNickName] = useState("");
-  const [likeLanguages, setLikeLanguages] = useState([]);
-  const onCompleteClick = async (e) => {};
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const nickName = e.target.nickName.value;
-    console.log("###########nickName:", nickName);
+// const SignUp = ({ handleClose }) => {
+//   const dispatch = useDispatch();
+//   const user = useSelector((state) => state.user);
+//   const [image, setImage] = useState(null);
+//   const [isImageChanged, setIsImageChanged] = useState(false);
+//   const [nickName, setNickName] = useState("");
+//   const [likeLanguages, setLikeLanguages] = useState([]);
+//   const onCompleteClick = async (e) => {};
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     const nickName = e.target.nickName.value;
+//     console.log("###########nickName:", nickName);
 
-    if (isImageChanged) {
-      if (image) {
-        const preSignedUrl = await studyService.getPresignedUrl(nickName);
-        const fileName = `${nickName}_${getFormatedToday()}.png`;
+//     if (isImageChanged) {
+//       if (image) {
+//         const preSignedUrl = await studyService.getPresignedUrl(nickName);
+//         const fileName = `${nickName}_${getFormatedToday()}.png`;
 
-        await studyService
-          .uploadImageToS3WithBase64(preSignedUrl, image, fileName)
-          .then((response) => {
-            console.log("response from uploadUserimgtoS3", response);
-          });
-      }
-    }
+//         await studyService
+//           .uploadImageToS3WithBase64(preSignedUrl, image, fileName)
+//           .then((response) => {
+//             console.log("response from uploadUserimgtoS3", response);
+//           });
+//       }
+//     }
 
-    await dispatch(addUserNickName({ id: user.id, nickName, image })).then(
-      (response) => {
-        console.log("addUserNickName response :", response);
-        handleClose();
-      }
-    );
-  };
-  return (
-    <>
-      <TopBar></TopBar>
-      <h1>Hola에 처음 오셨군요! 닉네임을 설정해 보세요.</h1>
-      <UserImageUpload
-        image={image}
-        setImage={setImage}
-        setIsImageChanged={setIsImageChanged}
-      ></UserImageUpload>
-      <div className={styles.titleWrapper}>
-        <h3>닉네임</h3>
-        <input
-          type="text"
-          name="nickNameInput"
-          value={nickName}
-          onChange={(e) => {
-            setNickName(e.target.value);
-          }}
-        />
-      </div>
+//     await dispatch(addUserNickName({ id: user.id, nickName, image })).then(
+//       (response) => {
+//         console.log("addUserNickName response :", response);
+//         handleClose();
+//       }
+//     );
+//   };
+//   return (
+//     <>
+//       <TopBar></TopBar>
+//       <h1>Hola에 처음 오셨군요! 닉네임을 설정해 보세요.</h1>
+//       <UserImageUpload
+//         image={image}
+//         setImage={setImage}
+//         setIsImageChanged={setIsImageChanged}
+//       ></UserImageUpload>
+//       <div className={styles.titleWrapper}>
+//         <h3>닉네임</h3>
+//         <input
+//           type="text"
+//           name="nickNameInput"
+//           value={nickName}
+//           onChange={(e) => {
+//             setNickName(e.target.value);
+//           }}
+//         />
+//       </div>
 
-      <div className={styles.titleWrapper}>
-        <h3>관심 기술 태그</h3>
-        <LikeLanguages
-          likeLanguages={likeLanguages}
-          setLikeLanguages={setLikeLanguages}
-        ></LikeLanguages>
-      </div>
+//       <div className={styles.titleWrapper}>
+//         <h3>관심 기술 태그</h3>
+//         <LikeLanguages
+//           likeLanguages={likeLanguages}
+//           setLikeLanguages={setLikeLanguages}
+//         ></LikeLanguages>
+//       </div>
 
-      <button
-        onClick={onCompleteClick}
-        className={styles.buttonComplete}
-        name="complete"
-      >
-        완료
-      </button>
-    </>
-  );
-};
-
-// const componentForStep = {
-//   LOGIN: (
-//     <SocialLogin
-//       handleLoginStep={handleLoginStep}
-//       handleClose={handleClose}
-//     ></SocialLogin>
-//   ),
-//   SIGNUP: <SignUp handleClose={handleClose}></SignUp>,
+//       <button
+//         onClick={onCompleteClick}
+//         className={styles.buttonComplete}
+//         name="complete"
+//       >
+//         완료
+//       </button>
+//     </>
+//   );
 // };
 
 export default LoginModal;

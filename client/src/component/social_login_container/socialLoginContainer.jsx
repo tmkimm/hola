@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { nextStep } from "../../store/loginStep";
-import SocialLogin from "../socialLogin/socialLogin";
+import SocialLogin from "../social_login/socialLogin";
 import { fetchUserById } from "../../store/user";
 
 const SocialLoginContainer = ({ handleClose }) => {

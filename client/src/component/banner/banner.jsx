@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./banner.module.css";
 
-const Banner = (props) => (
+const Banner = React.memo(() => (
   <section className={styles.banner}>
     <div className={styles.bannerContent}>
       <h1 className={styles.title}>
@@ -28,6 +28,5 @@ const Banner = (props) => (
       />
     </div>
   </section>
-);
-
+));
 export default Banner;

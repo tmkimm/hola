@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./postRegister.module.css";
 import EditorContainer from "../../component/editor/editorContainer";
-import WritebuttonContainer from "../../component/writeButton/writebuttonContainer";
+import WritebuttonContainer from "../../component/write_button/writebuttonContainer";
 import Navbar from "../../component/nav_bar/navbar";
 
 const PostRegister = (props) => {

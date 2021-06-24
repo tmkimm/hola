@@ -1,10 +1,8 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { previousStep } from "../../store/loginStep";
 import styles from "./topBar.module.css";
-const TopBar = (props) => {
-  const handleClick = () => {
-    console.log("clicked!");
-  };
-
+const TopBar = ({ handleClick }) => {
   return (
     <img
       className={styles.backButton}
