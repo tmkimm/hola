@@ -76,7 +76,7 @@ const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
             <div>{comment.author.nickName}</div>
           </div>
         </div>
-        {user.nickName == comment.author.nickName && (
+        {user.nickName === comment.author.nickName && (
           <ButtonControl></ButtonControl>
         )}
       </section>

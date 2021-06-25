@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./dropdownBar.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { clearUser } from "../../store/user";
 import authService from "../../service/auth_service";
-import { clearStep, nextStep } from "../../store/loginStep";
+import { clearStep } from "../../store/loginStep";
 /* 
 
 loginUser Component에서 DropDown bar button CLick시 rendering 되는 component로,
@@ -16,7 +16,6 @@ API를 통해 refresh token을 초기화 합니다.
 */
 
 const DropdownBar = () => {
-  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const handleLogout = () => {
     authService.logout().then((response) => {

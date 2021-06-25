@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import LoginModal from "../modal/login_modal/loginModal";
 import Modal from "../modal/modal_component/modal";
 import styles from "./navbar.module.css";
@@ -32,7 +32,6 @@ const Navbar = React.memo(({ showRegisterButton }) => {
   };
 
   useEffect(() => {
-    console.log("useriD###########", user.id);
     if (user.nickName) {
       // 이거 언제하는 작업이지..?
       // page refresh후 갱신

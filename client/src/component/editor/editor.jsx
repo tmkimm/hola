@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback, useState } from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import studyService from "../../service/study_service";
 import Quill from "quill";
@@ -6,7 +6,6 @@ import styles from "./editor.module.css";
 import QuillImageDropAndPaste from "quill-image-drop-and-paste";
 import "react-quill/dist/quill.snow.css";
 import { useSelector } from "react-redux";
-import { getFormatedToday } from "../../common/utils";
 import LikeLanguages from "../like_languages/likeLanguages";
 
 /* 
@@ -49,29 +48,30 @@ const Editor = ({
   const quillElement = useRef(""); // Quill을 적용할 DivElement를 설정
   const quillInstance = useRef(""); // Quill 인스턴스를 설정
   const user = useSelector((state) => state.user);
-  const [image, setImage] = useState();
-  const [likeLanguages, setLikeLanguages] = useState([]);
 
   /* image Handler 함수 */
-  const imageHandler = useCallback(async (dataUrl, type, imageData) => {
-    const quill = quillInstance.current;
-    const { preSignedUrl, fileName } = await studyService.getPresignedUrl(
-      user.nickName
-    );
+  const imageHandler = useCallback(
+    async (dataUrl, type, imageData) => {
+      const quill = quillInstance.current;
+      const { preSignedUrl, fileName } = await studyService.getPresignedUrl(
+        user.nickName
+      );
 
-    const imageFile = imageData.toFile(fileName);
+      const imageFile = imageData.toFile(fileName);
 
-    /* bucket image upload */
-    await studyService
-      .uploadImageToS3(preSignedUrl, imageFile)
-      .then((response) => {
-        const imageUrl = `https://hola-post-image.s3.ap-northeast-2.amazonaws.com/${fileName}`;
-        let index = (quill.getSelection() || {}).index;
-        if (index === undefined || index < 0) index = quill.getLength();
-        quill.insertEmbed(index, "image", imageUrl, "user");
-        quill.setSelection(quill.getSelection().index + 1, 0); // image upload 후 cursor 이동
-      });
-  }, []);
+      /* bucket image upload */
+      await studyService
+        .uploadImageToS3(preSignedUrl, imageFile)
+        .then((response) => {
+          const imageUrl = `https://hola-post-image.s3.ap-northeast-2.amazonaws.com/${fileName}`;
+          let index = (quill.getSelection() || {}).index;
+          if (index === undefined || index < 0) index = quill.getLength();
+          quill.insertEmbed(index, "image", imageUrl, "user");
+          quill.setSelection(quill.getSelection().index + 1, 0); // image upload 후 cursor 이동
+        });
+    },
+    [user.nickName]
+  );
 
   /* default quill editor 설정 */
   useEffect(() => {

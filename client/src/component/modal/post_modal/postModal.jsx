@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import studyService from "../../../service/study_service";
 import LikesAndViews from "../../likes_and_views/likesAndViews";
 import styles from "./postModal.module.css";
 import { readPost, clearPost } from "../../../store/read";
 import { setPost } from "../../../store/write";
 import CommentContainer from "../../comment_container/commentContainer";
 import { useHistory } from "react-router";
-import Modal from "../modal_component/modal";
 import CancelButton from "../../cancelButton/cancelButton";
 
 /* 

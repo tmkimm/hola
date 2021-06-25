@@ -4,21 +4,46 @@
   display: block;
 }
 
-.titleWrapper {
+.inputWrapper {
   display: flex;
-  margin-bottom: 1rem;
+  align-items: center;
+  margin-top: 3rem;
 }
 
-.titleWrapper input {
+.nicknameInput {
   border-color: hsl(0, 0%, 80%);
   border-radius: 4px;
   border-style: solid;
   border-width: 1px;
   font-size: large;
-  width: 25rem;
-  padding: 0px;
+  width: 20rem;
+  height: 3rem;
+  padding-left: 1rem;
 }
-.titleWrapper h3 {
-  margin: 10px 10px 10px 0px;
-  width: 130px;
+
+.inputWrapper h3 {
+  margin-right: 1rem;
+  font-size: 1rem;
+}
+
+.title {
+  margin-top: 4rem;
+  text-align: center;
+  animation-duration: 4s;
+  animation-name: opacityAnimation;
+}
+
+.buttonNext {
+  margin-top: 5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+@keyframes opacityAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { nextStep } from "../../store/loginStep";
-import { setUser } from "../../store/user";
 import SetNickname from "../set_nickname/setNickname";
 
 const SetNicknameContainer = (props) => {

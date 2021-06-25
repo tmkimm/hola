@@ -16,11 +16,11 @@ const modifyPostAction = createAction("write/modifyPost");
 const writePost = createAsyncThunk(
   writePostAction,
   async ({ title, content, language }, thunkAPI) => {
-    const new_lang = language.map((item) => item.value);
+    const newLanguages = language.map((item) => item.value);
     const response = await studyService.register({
       title,
       content,
-      language: new_lang,
+      language: newLanguages,
     });
     console.log("response from writePostAPI!", response);
     return response.status;

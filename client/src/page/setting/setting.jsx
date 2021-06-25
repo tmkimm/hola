@@ -42,16 +42,12 @@ const Setting = (props) => {
         .then((response) => {
           const userInfo = response.data;
           if (userInfo.likeLanguages.length > 0) {
-            setLikeLanguages(
-              userInfo.likeLanguages.map((obj) => {
-                let rObj = {};
-                rObj.value = obj;
-                rObj.label = languageList.find((element) => {
-                  if (element.value === obj) return true;
-                }).label;
-                return rObj;
-              })
-            );
+            const userLanguage = userInfo.likeLanguages.map((obj) => ({
+              value: obj,
+              label: languageList.find((element) => element.value === obj)
+                .label,
+            }));
+            setLikeLanguages(userLanguage);
           }
           setID(userInfo._id);
           setNickName(userInfo.nickName);
@@ -62,7 +58,7 @@ const Setting = (props) => {
         })
         .catch(console.error);
     }
-  }, []);
+  }, [user.nickName]);
 
   // 변경 완료 버튼
   const onCompleteClick = async (e) => {

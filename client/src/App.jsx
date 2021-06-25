@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Main from "./page/main/main";
 import PostRegister from "./page/postRegister/postRegister";
 import Setting from "./page/setting/setting";
 import GithubLogin from "./page/auth/githubLogin";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchUserByRefreshToken, clearUser } from "./store/user";
 
 /* 
 

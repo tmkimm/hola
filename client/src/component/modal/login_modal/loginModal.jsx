@@ -1,20 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./loginModal.module.css";
-import GoogleLogin from "react-google-login";
-import KakaoLogin from "react-kakao-login";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchUserById, addUserNickName } from "../../../store/user";
-import GoogleButton from "../../login_button/google_button/googleButton";
-import GithubButton from "../../login_button/github_button/githubButton";
-import KakaoButton from "../../login_button/kakao_button/kakaoButton";
-import { nextStep } from "../../../store/loginStep";
-import UserImageUpload from "../../user_image_upload/userImageUpload";
-import studyService from "../../../service/study_service";
-import { getFormatedToday } from "../../../common/utils";
-import LikeLanguages from "../../like_languages/likeLanguages";
-import TopBar from "../../top_bar/topBar";
+import { useSelector } from "react-redux";
 import SocialLoginContainer from "../../social_login_container/socialLoginContainer";
 import SetNicknameContainer from "../../set_nickname_container/setNicknameContainer";
+
 /* 
 
 LoginModal Component
@@ -36,18 +25,22 @@ const loginProcess = {
   setImage: 3,
   setInterest: 4,
 };
+const SOCIAL_LOGIN = 1;
+const SET_NICKNAME = 2;
+const SET_IMAGE = 3;
+const SET_INTEREST = 4;
 
 const LoginModal = ({ handleClose }) => {
   const loginStep = useSelector((state) => state.loginStep.currentStep);
   const renderByLoginStep = (loginStep) => {
     switch (loginStep) {
-      case loginProcess["socialLogin"]:
+      case SOCIAL_LOGIN:
         return (
           <SocialLoginContainer
             handleClose={handleClose}
           ></SocialLoginContainer>
         );
-      case loginProcess["setNickname"]:
+      case SET_NICKNAME:
         return <SetNicknameContainer />;
       default:
         return <div></div>;

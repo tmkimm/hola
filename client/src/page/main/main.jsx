@@ -5,9 +5,8 @@ import Navbar from "../../component/nav_bar/navbar";
 import Banner from "../../component/banner/banner";
 import React from "react";
 import LanguageBarList from "../../component/language_bar_list/languageBarList";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import studyService from "../../service/study_service";
-import { fetchUserByRefreshToken, clearUser } from "../../store/user";
 
 /* 
 

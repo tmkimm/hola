@@ -6,11 +6,15 @@ const SetNickname = ({ nickname, setNickname, handleLoginStep }) => {
   return (
     <>
       <TopBarContainer></TopBarContainer>
-      <h1>Hola에 처음 오셨군요! 환영합니다.</h1>
-      <h1>Hola에서 사용할 닉네임을 입력해 주세요.</h1>
-      <div className={styles.titleWrapper}>
+      <h1 className={styles.title}>
+        Hola에 처음 오셨군요!
+        <br />
+        우선, 사용하실 닉네임을 설정해 볼까요?
+      </h1>
+      <div className={styles.inputWrapper}>
         <h3>닉네임</h3>
         <input
+          className={styles.nicknameInput}
           type="text"
           name="nickNameInput"
           value={nickname}
@@ -21,7 +25,7 @@ const SetNickname = ({ nickname, setNickname, handleLoginStep }) => {
       </div>
       <button
         onClick={handleLoginStep}
-        className={styles.buttonComplete}
+        className={styles.buttonNext}
         name="complete"
       >
         다음
