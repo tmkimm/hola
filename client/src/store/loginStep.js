@@ -12,6 +12,9 @@ loginStep(social login, signUp)을 관리하는 redux 입니다.
 const initialState = {
   modalVisible: false,
   currentStep: 1,
+  nickName: undefined,
+  id: undefined,
+  imageUrl: undefined,
 };
 
 const loginstepSlice = createSlice({
@@ -22,15 +25,19 @@ const loginstepSlice = createSlice({
       ...state,
       currentStep: state.currentStep + 1,
     }),
-    setModalVisible: (state, action) => ({
-      ...state,
-      modalVisible: action.payload,
-    }),
     previousStep: (state, action) => ({
       ...state,
       currentStep: state.currentStep - 1,
     }),
     clearStep: () => initialState,
+    setUser: (state, { payload: { key, value } }) => ({
+      ...state,
+      [key]: value,
+    }),
+    setModalVisible: (state, action) => ({
+      ...state,
+      modalVisible: action.payload,
+    }),
   },
 });
 

@@ -68,6 +68,7 @@ const fetchUserById = createAsyncThunk(
 const fetchUserByRefreshToken = createAsyncThunk(
   fetchUserByRefreshTokenAction,
   async (thunkAPI) => {
+    // 생각해볼 것. 성공했을때만 이 data 넣어야 하나?
     const response = await authService.getUserInfo();
     const accessToken = response.data.accessToken;
     const userInfo = {
@@ -111,13 +112,11 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setUser: (state, action) => ({
+    setUser: (state, { payload: { key, value } }) => ({
       ...state,
-      ...action.payload,
+      [key]: value,
     }),
-    clearUser: (state) => {
-      state.nickName = undefined;
-    },
+    clearUser: (state) => initialState,
   },
   extraReducers: {
     [fetchUserById.fulfilled]: (state, { payload }) => ({

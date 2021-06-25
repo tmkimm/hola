@@ -131,11 +131,11 @@ to-do
 //     <>
 //       <TopBar></TopBar>
 //       <h1>Hola에 처음 오셨군요! 닉네임을 설정해 보세요.</h1>
-//       <UserImageUpload
-//         image={image}
-//         setImage={setImage}
-//         setIsImageChanged={setIsImageChanged}
-//       ></UserImageUpload>
+// <UserImageUpload
+//   image={image}
+//   setImage={setImage}
+//   setIsImageChanged={setIsImageChanged}
+// ></UserImageUpload>
 //       <div className={styles.titleWrapper}>
 //         <h3>닉네임</h3>
 //         <input

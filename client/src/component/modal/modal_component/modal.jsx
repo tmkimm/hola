@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Portal from "../portal/portal";
 
 function Modal({ onClose, visible, children }) {
@@ -18,17 +18,30 @@ function Modal({ onClose, visible, children }) {
   );
 }
 
+const modalAnimation = keyframes`
+  0% {
+    opacity: 0;
+    top: -200%;
+  }
+  
+  100% {
+    opacity: 1;
+    top: 0;
+  }
+`;
+
 const ModalWrapper = styled.div`
   box-sizing: border-box;
   display: ${(props) => (props.visible ? "block" : "none")};
   position: fixed;
-  top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   z-index: 1000;
   overflow: auto;
   outline: 0;
+  animation: 0.5s ease 0s 1 normal forwards running ${modalAnimation};
+}
 `;
 
 const ModalOverlay = styled.div`

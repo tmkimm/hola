@@ -11,8 +11,7 @@ const SetNicknameContainer = (props) => {
 
   const handleLoginStep = () => {
     // 닉네임이 겹치면 빨간글씨로 띄워주자
-    dispatch(setUser(nickname));
-    dispatch(nextStep("SETIMAGE"));
+    dispatch(nextStep());
   };
 
   // const handleSubmit = async (e) => {

@@ -6,9 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import LoginUser from "../login_user/loginUser";
 import { setModalVisible } from "../../store/loginStep";
-import { fetchUserByRefreshToken } from "../../store/user";
+import { clearUser, fetchUserByRefreshToken } from "../../store/user";
 import { toast } from "react-toastify";
 
+/* 
+To-do
+
+생각해 봐야할 부분
+react modal을 modalVisible을 통해 rendering 여부를 결정해 주는게 의미가 있는가?
+
+*/
 const Navbar = React.memo(({ showRegisterButton }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -25,12 +32,15 @@ const Navbar = React.memo(({ showRegisterButton }) => {
   };
 
   useEffect(() => {
+    console.log("useriD###########", user.id);
     if (user.nickName) {
+      // 이거 언제하는 작업이지..?
       // page refresh후 갱신
       dispatch(fetchUserByRefreshToken()).then((response) => {
         // 유저 nickname 존재시 refresh token을 이용해서 유저정보 얻어옴
         if (response.meta.requestStatus !== "fulfilled") {
           history.push("/");
+          dispatch(clearUser()); // 유저 초기화
           toast.error("로그인이 만료 되었어요!", {
             position: "top-right",
             autoClose: 3000,
@@ -67,11 +77,9 @@ const Navbar = React.memo(({ showRegisterButton }) => {
           </>
         )}
       </div>
-      {modalVisible && (
-        <Modal visible={modalVisible} onClose={closeModal}>
-          <LoginModal handleClose={closeModal} tabIndex={0}></LoginModal>
-        </Modal>
-      )}
+      <Modal visible={modalVisible} onClose={closeModal}>
+        <LoginModal handleClose={closeModal} tabIndex={0}></LoginModal>
+      </Modal>
     </nav>
   );
 });

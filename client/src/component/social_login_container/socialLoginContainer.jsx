@@ -2,16 +2,12 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { nextStep } from "../../store/loginStep";
 import SocialLogin from "../social_login/socialLogin";
-import { fetchUserById } from "../../store/user";
+import { fetchUserById, setUser } from "../../store/user";
 
 const SocialLoginContainer = ({ handleClose }) => {
   const googleClientId = process.env.REACT_APP_GOOGLE_LOGIN_API_KEY;
   const kakaoClientId = process.env.REACT_APP_KAKAO_LOGIN_API_KEY;
   const dispatch = useDispatch();
-
-  const handleLoginStep = () => {
-    dispatch(nextStep("SIGNUP"));
-  };
 
   const googleOnSuccess = async (response) => {
     const { tokenId } = response;
@@ -20,7 +16,7 @@ const SocialLoginContainer = ({ handleClose }) => {
     dispatch(fetchUserById(userData)).then((response) => {
       console.log("fetchByuserID response :", response);
       if (response.payload.loginSuccess === true) handleClose();
-      else handleLoginStep();
+      else dispatch(nextStep());
     });
   };
 
@@ -35,7 +31,7 @@ const SocialLoginContainer = ({ handleClose }) => {
     await dispatch(fetchUserById(userData)).then((response) => {
       console.log("fetchByuserID response :", response);
       if (response.payload.loginSuccess === true) handleClose();
-      else handleLoginStep();
+      else dispatch(nextStep());
     });
   };
 

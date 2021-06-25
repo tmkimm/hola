@@ -24,10 +24,7 @@ const SocialLogin = ({
           onSuccess={googleOnSuccess}
           onFailure={googleOnFailure}
           render={(renderProps) => (
-            <GoogleButton
-              onClick={renderProps.onClick}
-              disabled={renderProps.disabled}
-            ></GoogleButton>
+            <GoogleButton onClick={renderProps.onClick}></GoogleButton>
           )}
         />
         <GithubButton></GithubButton>
