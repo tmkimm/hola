@@ -1,59 +1,41 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { nextStep } from "../../store/loginStep";
-import { setUser } from "../../store/user";
+import styles from "./setImage.module.css";
 import UserImageUpload from "../user_image_upload/userImageUpload";
+import TopBarContainer from "../top_bar_container/topBarContainer";
 
-const setImage = (props) => {
-  const dispatch = useDispatch();
-  const [isImageChanged, setIsImageChanged] = useState(false);
-  const [image, setImage] = useState(null);
-  const handleLoginStep = () => {
-    // 닉네임이 겹치면 빨간글씨로 띄워주자
-    dispatch(setUser(image));
-    dispatch(nextStep("SETIMAGE"));
-  };
-  //   const handleSubmit = async (e) => {
-  //     e.preventDefault();
-  //     const nickName = e.target.nickName.value;
-  //     console.log("###########nickName:", nickName);
-
-  //     if (isImageChanged) {
-  //       if (image) {
-  //         const preSignedUrl = await studyService.getPresignedUrl(nickName);
-  //         const fileName = `${nickName}_${getFormatedToday()}.png`;
-
-  //         await studyService
-  //           .uploadImageToS3WithBase64(preSignedUrl, image, fileName)
-  //           .then((response) => {
-  //             console.log("response from uploadUserimgtoS3", response);
-  //           });
-  //       }
-  //     }
-
-  //     await dispatch(addUserNickName({ id: user.id, nickName, image })).then(
-  //       (response) => {
-  //         console.log("addUserNickName response :", response);
-  //         handleClose();
-  //       }
-  //     );
-  //   };
+const SetImage = ({
+  loginStep,
+  isImageChanged,
+  setIsImageChanged,
+  userImage,
+  setUserImage,
+  handleLoginStep,
+}) => {
   return (
     <>
+      <TopBarContainer></TopBarContainer>
+      <h1 className={styles.title}>
+        {loginStep.nickName}님만의 특별한 이미지를 설정해 보세요. <br />
+        물론, 언제든지 변경할 수 있어요!
+      </h1>
+      <div className={styles.text}>
+        미 업로드시 기본 이미지로 자동 설정됩니다.
+      </div>
       <UserImageUpload
-        image={image}
-        setImage={setImage}
+        image={userImage}
+        setImage={setUserImage}
         setIsImageChanged={setIsImageChanged}
       ></UserImageUpload>
+
       <button
         onClick={handleLoginStep}
-        className={styles.buttonComplete}
+        className={styles.buttonNext}
         name="complete"
       >
-        다음
+        가입 완료
       </button>
     </>
   );
 };
 
-export default setImage;
+export default SetImage;

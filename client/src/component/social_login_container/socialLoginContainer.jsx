@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { nextStep } from "../../store/loginStep";
+import { nextStep, setSignUpUser } from "../../store/loginStep";
 import SocialLogin from "../social_login/socialLogin";
 import { fetchUserById } from "../../store/user";
 
@@ -15,8 +15,12 @@ const SocialLoginContainer = ({ handleClose }) => {
 
     dispatch(fetchUserById(userData)).then((response) => {
       console.log("fetchByuserID response :", response);
+      const id = response.payload._id;
       if (response.payload.loginSuccess === true) handleClose();
-      else dispatch(nextStep());
+      else {
+        dispatch(setSignUpUser({ key: "id", value: id }));
+        dispatch(nextStep());
+      }
     });
   };
 
@@ -30,8 +34,12 @@ const SocialLoginContainer = ({ handleClose }) => {
 
     await dispatch(fetchUserById(userData)).then((response) => {
       console.log("fetchByuserID response :", response);
+      const id = response.payload._id;
       if (response.payload.loginSuccess === true) handleClose();
-      else dispatch(nextStep());
+      else {
+        dispatch(setSignUpUser({ key: "id", value: id }));
+        dispatch(nextStep());
+      }
     });
   };
 

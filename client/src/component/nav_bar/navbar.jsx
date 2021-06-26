@@ -35,6 +35,7 @@ const Navbar = React.memo(({ showRegisterButton }) => {
     if (user.nickName) {
       // 이거 언제하는 작업이지..?
       // page refresh후 갱신
+      // 지금은 로그인 직후에도 일어남.. 상관은 없긴한데.. 없앨 수 있나?
       dispatch(fetchUserByRefreshToken()).then((response) => {
         // 유저 nickname 존재시 refresh token을 이용해서 유저정보 얻어옴
         if (response.meta.requestStatus !== "fulfilled") {

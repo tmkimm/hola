@@ -3,7 +3,8 @@ import styles from "./loginModal.module.css";
 import { useSelector } from "react-redux";
 import SocialLoginContainer from "../../social_login_container/socialLoginContainer";
 import SetNicknameContainer from "../../set_nickname_container/setNicknameContainer";
-
+import SetInterestContainer from "../../set_interest_container/setInterestContainer";
+import SetImageContainer from "../../set_image_container/setImageContainer";
 /* 
 
 LoginModal Component
@@ -19,16 +20,11 @@ to-do
 꼭 modalvisible이 전역 state로 관리가 되어야 하는가?
 
 */
-const loginProcess = {
-  socialLogin: 1,
-  setNickname: 2,
-  setImage: 3,
-  setInterest: 4,
-};
+
 const SOCIAL_LOGIN = 1;
 const SET_NICKNAME = 2;
-const SET_IMAGE = 3;
-const SET_INTEREST = 4;
+const SET_INTEREST = 3;
+const SET_IMAGE = 4;
 
 const LoginModal = ({ handleClose }) => {
   const loginStep = useSelector((state) => state.loginStep.currentStep);
@@ -42,6 +38,10 @@ const LoginModal = ({ handleClose }) => {
         );
       case SET_NICKNAME:
         return <SetNicknameContainer />;
+      case SET_INTEREST:
+        return <SetInterestContainer></SetInterestContainer>;
+      case SET_IMAGE:
+        return <SetImageContainer></SetImageContainer>;
       default:
         return <div></div>;
     }

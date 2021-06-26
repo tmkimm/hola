@@ -15,6 +15,7 @@ const initialState = {
   nickName: undefined,
   id: undefined,
   imageUrl: undefined,
+  likeLanguages: [],
 };
 
 const loginstepSlice = createSlice({
@@ -30,7 +31,7 @@ const loginstepSlice = createSlice({
       currentStep: state.currentStep - 1,
     }),
     clearStep: () => initialState,
-    setUser: (state, { payload: { key, value } }) => ({
+    setSignUpUser: (state, { payload: { key, value } }) => ({
       ...state,
       [key]: value,
     }),
@@ -41,6 +42,11 @@ const loginstepSlice = createSlice({
   },
 });
 
-export const { nextStep, previousStep, clearStep, setModalVisible } =
-  loginstepSlice.actions;
+export const {
+  nextStep,
+  previousStep,
+  clearStep,
+  setSignUpUser,
+  setModalVisible,
+} = loginstepSlice.actions;
 export default loginstepSlice.reducer;

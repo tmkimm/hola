@@ -29,7 +29,7 @@
 .title {
   margin-top: 4rem;
   text-align: center;
-  animation-duration: 3s;
+  animation-duration: 4s;
   animation-name: opacityAnimation;
 }
 
@@ -37,11 +37,6 @@
   margin-top: 5rem;
   font-size: 1.25rem;
   font-weight: bold;
-}
-
-.titleText {
-  animation-duration: 3s;
-  animation-name: opacityAnimation;
 }
 
 @keyframes opacityAnimation {

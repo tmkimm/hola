@@ -21,6 +21,11 @@ s3 경로 config 파일로 분리
 
 getPresignedUrl과 사용하는 filename 맞춰야함(분 달라지면 파일 못찾음)
 
+사용자 정보 API로 넘길때 
+=> [React, NodeJs]와 같이 일반 배열 형태
+
+Input 표현을 위해 LikeLanguages Component로 넘길때
+=> {value, label} 형태로 되어있음
 
 */
 const Setting = (props) => {
@@ -38,7 +43,7 @@ const Setting = (props) => {
   useEffect(() => {
     if (user.nickName) {
       userService
-        .getUserInfoByNickName(user.nickName)
+        .getUserInfoByNickName(user.nickName) // 이 api 이미 있나? user redux에서 가져오면 되는데?
         .then((response) => {
           const userInfo = response.data;
           if (userInfo.likeLanguages.length > 0) {

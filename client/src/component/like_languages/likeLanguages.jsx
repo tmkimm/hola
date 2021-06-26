@@ -6,7 +6,7 @@ const customStyles = {
   control: (css) => ({
     ...css,
     width: "400px",
-    height: "3rem",
+    minHeight: "3rem",
   }),
 };
 
