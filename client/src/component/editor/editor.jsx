@@ -58,17 +58,14 @@ const Editor = ({
       );
 
       const imageFile = imageData.toFile(fileName);
+      const imageUrl = `https://hola-post-image.s3.ap-northeast-2.amazonaws.com/${fileName}`;
 
       /* bucket image upload */
-      await studyService
-        .uploadImageToS3(preSignedUrl, imageFile)
-        .then((response) => {
-          const imageUrl = `https://hola-post-image.s3.ap-northeast-2.amazonaws.com/${fileName}`;
-          let index = (quill.getSelection() || {}).index;
-          if (index === undefined || index < 0) index = quill.getLength();
-          quill.insertEmbed(index, "image", imageUrl, "user");
-          quill.setSelection(quill.getSelection().index + 1, 0); // image upload 후 cursor 이동
-        });
+      await studyService.uploadImageToS3(preSignedUrl, imageFile);
+      let index = (quill.getSelection() || {}).index;
+      if (index === undefined || index < 0) index = quill.getLength();
+      quill.insertEmbed(index, "image", imageUrl, "user");
+      quill.setSelection(quill.getSelection().index + 1, 0); // image upload 후 cursor 이동
     },
     [user.nickName]
   );
