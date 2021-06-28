@@ -15,29 +15,37 @@ const SetImageContainer = (props) => {
     dispatch(setSignUpUser({ key: "image", value: userImage }));
     dispatch(nextStep());
   };
+
   const handleSignUp = async () => {
-    const nickName = loginStep.nickname;
+    const nickName = loginStep.nickName;
     const id = loginStep.id;
+    const likeLanguages = loginStep.likeLanguages;
+
     if (isImageChanged) {
       if (userImage) {
-        const preSignedUrl = await studyService.getPresignedUrl(nickName);
-        const fileName = `${nickName}_${getFormatedToday()}.png`;
+        const { preSignedUrl, fileName } = await studyService.getPresignedUrl(
+          nickName
+        );
+        dispatch(setSignUpUser({ key: "image", value: fileName }));
 
-        await studyService
-          .uploadImageToS3WithBase64(preSignedUrl, userImage, fileName)
-          .then((response) => {
-            console.log("response from uploadUserimgtoS3", response);
-          });
+        const response = await studyService.uploadImageToS3WithBase64(
+          preSignedUrl,
+          userImage,
+          fileName
+        );
+        console.log("response from uploadUserimgtoS3", response);
       }
     }
 
-    await dispatch(addUserNickName({ id, nickName, image: userImage })).then(
-      (response) => {
-        console.log("addUserNickName response :", response);
-        //handleClose();
-      }
+    console.log("id from loginstep", id); // 이게 가끔 안나오는데, 확인 필요
+
+    const response = await dispatch(
+      addUserNickName({ id, nickName, likeLanguages, image: loginStep.image })
     );
+    console.log("addUserNickName response :", response);
+    dispatch(nextStep());
   };
+
   return (
     <SetImage
       loginStep={loginStep}
@@ -45,7 +53,7 @@ const SetImageContainer = (props) => {
       setIsImageChanged={setIsImageChanged}
       userImage={userImage}
       setUserImage={setUserImage}
-      handleLoginStep={handleLoginStep}
+      handleLoginStep={handleSignUp}
     ></SetImage>
   );
 };

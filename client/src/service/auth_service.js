@@ -43,6 +43,7 @@ class Auth {
 
   /* userInfo를 전달하여 회원가입을 진행합니다. */
   signUp = async (userInfo) => {
+    console.log("here for signup!");
     return await this.auth.post("login/signup", userInfo);
   };
 }

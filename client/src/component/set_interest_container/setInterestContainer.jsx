@@ -8,7 +8,12 @@ const SetInterestContainer = (props) => {
   const dispatch = useDispatch();
   const loginStep = useSelector((state) => state.loginStep);
   const handleLoginStep = () => {
-    dispatch(setSignUpUser({ key: "likeLanguages", value: likeLanguages }));
+    dispatch(
+      setSignUpUser({
+        key: "likeLanguages",
+        value: likeLanguages.map((item) => item.value),
+      })
+    );
     dispatch(nextStep());
   };
 

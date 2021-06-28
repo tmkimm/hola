@@ -151,6 +151,7 @@ class Study {
   };
 
   uploadImageToS3 = async (presignedUrl, file) => {
+    console.log("presigend URL IS !!!!", presignedUrl);
     const response = await fetch(
       new Request(presignedUrl, {
         method: "PUT",
@@ -167,9 +168,14 @@ class Study {
       console.log("error occured!");
       return;
     }
+    return "hehe success";
   };
 
   uploadImageToS3WithBase64 = async (presignedUrl, file, fileName) => {
+    console.log("=======at base64==========");
+    console.log("pre : ", presignedUrl);
+    console.log("fileName: ", fileName);
+    console.log("=======at base64==========");
     let arr = file.split(","),
       mime = arr[0].match(/:(.*?);/)[1],
       bstr = atob(arr[1]),
@@ -180,7 +186,8 @@ class Study {
       u8arr[n] = bstr.charCodeAt(n);
     }
     const imageFile = new File([u8arr], fileName, { type: mime });
-    await this.uploadImageToS3(presignedUrl, imageFile).then((response) => {});
+    const response = await this.uploadImageToS3(presignedUrl, imageFile);
+    return response;
   };
 }
 

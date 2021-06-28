@@ -14,6 +14,7 @@ import { modifyUserInfo } from "../../store/user";
 import { getFormatedToday } from "../../common/utils";
 import LikeLanguages from "../../component/like_languages/likeLanguages";
 import UserImageUpload from "../../component/user_image_upload/userImageUpload";
+
 /*
 // TODO
 이미지 컴포넌트로 분리
@@ -46,6 +47,7 @@ const Setting = (props) => {
         .getUserInfoByNickName(user.nickName) // 이 api 이미 있나? user redux에서 가져오면 되는데?
         .then((response) => {
           const userInfo = response.data;
+
           if (userInfo.likeLanguages.length > 0) {
             const userLanguage = userInfo.likeLanguages.map((obj) => ({
               value: obj,
@@ -91,8 +93,9 @@ const Setting = (props) => {
 
       if (isImageChanged) {
         if (image) {
-          const preSignedUrl = await studyService.getPresignedUrl(nickName);
-          const fileName = `${nickName}_${getFormatedToday()}.png`;
+          const { preSignedUrl, fileName } = await studyService.getPresignedUrl(
+            nickName
+          );
 
           await studyService
             .uploadImageToS3WithBase64(preSignedUrl, image, fileName)
