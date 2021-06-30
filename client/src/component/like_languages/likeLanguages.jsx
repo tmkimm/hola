@@ -10,11 +10,12 @@ const customStyles = {
   }),
 };
 
-const LikeLanguages = ({ likeLanguages, setLikeLanguages }) => {
+const LikeLanguages = ({ likeLanguages, setLikeLanguages, placeholder }) => {
   return (
     <Select
       isMulti
       styles={customStyles}
+      placeholder={placeholder}
       name="likeLanguages"
       options={languageList}
       classNamePrefix="select"

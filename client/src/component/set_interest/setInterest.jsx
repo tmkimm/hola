@@ -22,6 +22,7 @@ const SetInterest = ({
       <div className={styles.inputWrapper}>
         <h3>관심 기술 태그</h3>
         <LikeLanguages
+          placeholder={"관심 태그 선택"}
           likeLanguages={likeLanguages}
           setLikeLanguages={setLikeLanguages}
         ></LikeLanguages>

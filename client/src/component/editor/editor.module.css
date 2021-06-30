@@ -9,6 +9,16 @@
   width: 100%;
 }
 
+.languageWrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.languageList {
+  margin-right: 1rem;
+}
+
 /* 적용 안할거면 삭제 필요 */
 
 @media screen (max-width: 1024px) {
