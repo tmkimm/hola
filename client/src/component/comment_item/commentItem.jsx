@@ -8,7 +8,8 @@ import { fetchUserByRefreshToken } from "../../store/user";
 const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
   const user = useSelector((state) => state.user);
   const [content, setContent] = useState(comment.content);
-  const [preContent, setPreContent] = useState(comment.content);
+  //const [preContent, setPreContent] = useState(comment.content);
+  const preContent = comment.content;
   const [inputVisible, setInputVisible] = useState(false); // 댓글 입력 여부
   const defaultImage =
     "https://media.vlpt.us/images/seeh_h/profile/6b7bfde5-b67c-4665-a2e1-a308e8de2059/tt.PNG?w=120";

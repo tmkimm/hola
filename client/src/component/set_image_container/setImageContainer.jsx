@@ -3,7 +3,6 @@ import SetImage from "../set_image/setImage";
 import { useDispatch, useSelector } from "react-redux";
 import { nextStep, setSignUpUser } from "../../store/loginStep";
 import studyService from "../../service/study_service";
-import { getFormatedToday } from "../../common/utils";
 import { addUserNickName } from "../../store/user";
 
 const SetImageContainer = (props) => {
@@ -11,10 +10,6 @@ const SetImageContainer = (props) => {
   const loginStep = useSelector((state) => state.loginStep);
   const [isImageChanged, setIsImageChanged] = useState(false);
   const [userImage, setUserImage] = useState(null);
-  const handleLoginStep = () => {
-    dispatch(setSignUpUser({ key: "image", value: userImage }));
-    dispatch(nextStep());
-  };
 
   const handleSignUp = async () => {
     const nickName = loginStep.nickName;

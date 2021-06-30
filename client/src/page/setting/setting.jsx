@@ -11,7 +11,6 @@ import studyService from "../../service/study_service";
 import { clearUser } from "../../store/user";
 import { nextStep } from "../../store/loginStep";
 import { modifyUserInfo } from "../../store/user";
-import { getFormatedToday } from "../../common/utils";
 import LikeLanguages from "../../component/like_languages/likeLanguages";
 import UserImageUpload from "../../component/user_image_upload/userImageUpload";
 
