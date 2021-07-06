@@ -4,7 +4,7 @@ import { isBase64 } from "../../common/utils";
 
 const UserImageUpload = ({ image, setImage, setIsImageChanged }) => {
   const defaultImage =
-    "https://media.vlpt.us/images/seeh_h/profile/6b7bfde5-b67c-4665-a2e1-a308e8de2059/tt.PNG?w=120";
+    "https://hola-post-image.s3.ap-northeast-2.amazonaws.com/default.PNG";
 
   // 이미지 업로드 버튼
   const onImageUploadClick = async (e) => {

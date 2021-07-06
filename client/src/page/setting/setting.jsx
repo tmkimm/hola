@@ -102,7 +102,7 @@ const Setting = (props) => {
               payload.image = fileName;
             });
         } else {
-          payload.image = "";
+          payload.image = "default.PNG";
         }
       }
       await dispatch(modifyUserInfo(payload)).then((response) => {
