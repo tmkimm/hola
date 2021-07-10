@@ -18,6 +18,7 @@ const LikesAndViews = ({ views, likes, likeUser, studyId, userId }) => {
   const [likeImg, setLikeImg] = useState(initialImg);
 
   const handleLikesClick = () => {
+    console.log('studyId : ' + studyId);
     if (likeImg === "heart_filled") {
       studyService.addLikes(studyId);
       setLikeImg("heart_unfilled");

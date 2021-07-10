@@ -118,8 +118,9 @@ class Study {
 
   addLikes = async (studyId) => {
     try {
+      console.log('studyId : ' + studyId);
       const response = await this.study.post("studies/likes", {
-        studyId,
+        studyId: studyId.toString(),
       });
       return response;
     } catch (error) {
@@ -128,10 +129,9 @@ class Study {
   };
 
   deleteLikes = async (studyId) => {
+    console.log('delete likes, studyid : ' + studyId);
     try {
-      await this.study.delete("studies/likes", {
-        studyId,
-      });
+      await this.study.delete(`studies/likes/${studyId}`);
     } catch (error) {
       console.error(error);
     }

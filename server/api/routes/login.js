@@ -25,11 +25,10 @@ export default (app) => {
 
         // 회원 정보 수정(등록)
         let UserServcieInstance = new UserServcie();
-        const user = await UserServcieInstance.modifyUser(id, userDTO);
-        
+        const { userRecord } = await UserServcieInstance.modifyUser(id, userDTO);
         // AccessToken, RefreshToken 발급
         let AuthServiceInstance = new AuthService();
-        const { accessToken, refreshToken } = await AuthServiceInstance.SignIn(user.idToken);
+        const { accessToken, refreshToken } = await AuthServiceInstance.SignIn(userRecord.idToken);
 
         res.cookie("R_AUTH", refreshToken, {
             httpOnly: true,
@@ -39,9 +38,9 @@ export default (app) => {
         
         return res.status(200).json({
             loginSuccess: true,
-            _id: user._id,
-            nickName: user.nickName,
-            image: user.image,
+            _id: userRecord._id,
+            nickName: userRecord.nickName,
+            image: userRecord.image,
             accessToken: accessToken
         });
     });
