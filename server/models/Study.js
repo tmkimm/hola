@@ -172,6 +172,18 @@ studySchema.statics.deleteLike = async function(studyId, userId) {
     return deleteRecord;
 }
 
+
+// 조회수 증가
+studySchema.statics.increaseView = async function(studyId) {
+    let studyRecord = await Study.findById({ _id: studyId });
+    await Study.findOneAndUpdate(
+        { _id: studyId },
+        {
+            views: studyRecord.views + 1
+        }
+      );
+}
+
 const Study = mongoose.model('Study', studySchema);
 
 export { Study };
