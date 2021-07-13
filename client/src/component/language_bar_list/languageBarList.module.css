@@ -1,8 +1,7 @@
 .languageList {
   margin: 0 auto;
-  margin-top: 10rem;
-  width: 1300px;
+  max-width: 1300px;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
   padding: 1rem;
 }

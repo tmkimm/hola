@@ -30,6 +30,9 @@ const SetImageContainer = (props) => {
         );
         console.log("response from uploadUserimgtoS3", response);
       }
+    } else {
+      console.log("here!!!! hehe!!");
+      dispatch(setSignUpUser({ key: "image", value: "default.PNG" }));
     }
 
     console.log("id from loginstep", id); // 이게 가끔 안나오는데, 확인 필요

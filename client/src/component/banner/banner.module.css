@@ -1,9 +1,10 @@
 .banner {
   display: flex;
-  width: 1300px;
+  max-width: 1300px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 4rem;
+  padding: 2rem;
 }
 
 .bannerContent {
@@ -22,6 +23,10 @@
   padding-left: 0.5rem;
 }
 
+.titleContent {
+  display: block;
+}
+
 .bannerImg {
   flex: 1 1 55%;
 }
@@ -29,9 +34,6 @@
 .subBanner {
   display: flex;
   align-items: center;
-}
-
-.subImgWrapper {
 }
 
 .subImg {
@@ -51,4 +53,30 @@
 .weak {
   font-weight: 300;
   font-size: 2rem;
+}
+
+@media screen and (max-width: 1300px) {
+  .banner {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mainImg {
+    width: 80%;
+    padding: 1.5rem;
+  }
+
+  .bannerImg {
+    display: flex;
+    justify-content: center;
+  }
+
+  .titleContent {
+    display: inline;
+  }
+
+  .subBanner {
+    margin: auto;
+    height: 4.5rem;
+  }
 }

@@ -70,3 +70,17 @@
 .backButton {
   color: gray;
 }
+
+@media (max-width: 768px) {
+  .wrapper {
+    flex: 1 1 0%;
+    width: auto;
+    height: 100%;
+  }
+
+  .modalHeader {
+    background: #f8f9fa;
+    padding: 0 1rem;
+    border-radius: 0;
+  }
+}

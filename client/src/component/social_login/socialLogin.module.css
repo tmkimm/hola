@@ -5,3 +5,9 @@
   justify-content: space-between;
   align-items: center;
 }
+
+@media (max-width: 768px) {
+  .loginWrapper {
+    width: 80%;
+  }
+}

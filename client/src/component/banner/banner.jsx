@@ -5,9 +5,9 @@ const Banner = React.memo(() => (
   <section className={styles.banner}>
     <div className={styles.bannerContent}>
       <h1 className={styles.title}>
-        스터디와 <br />
-        사이드 프로젝트를 <br />
-        찾는 가장 쉬운 방법
+        <span className={styles.titleContent}>스터디와 </span>
+        <span className={styles.titleContent}>사이드 프로젝트를 </span>
+        <span className={styles.titleContent}>찾는 가장 쉬운 방법</span>
       </h1>
       <div className={styles.subBanner}>
         <div className={styles.subImgWrapper}>
