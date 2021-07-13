@@ -13,6 +13,11 @@ export class StudyService {
     // 로그인된 사용자일 경우 읽은 목록을 추가한다.
     async studyDetailView(studyId, userId) {
         const studies = await Study.findById(studyId).populate('author', 'nickName image').populate('comments.author', 'nickName image');
+        
+        // 조회수 증가
+        Study.increaseView(studyId);
+
+        // 읽은 목록 추가
         if(userId) {
             await User.addReadList(studyId, userId);
         }

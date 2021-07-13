@@ -4,6 +4,7 @@ import auth from './routes/auth.js';
 import login from './routes/login.js';
 import logout from './routes/logout.js'
 import user from './routes/user.js'
+import feedback from './routes/feedback.js'
 
 export default () => {
     const app = Router();
@@ -12,5 +13,6 @@ export default () => {
     logout(app);
     user(app);
     study(app);
+    feedback(app);
     return app;
 }
