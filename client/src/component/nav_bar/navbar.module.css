@@ -1,6 +1,7 @@
 .navbar {
   display: flex;
   justify-content: space-between;
+  padding: 1.5rem;
 }
 
 button {
@@ -12,12 +13,10 @@ button {
 
 .loginElementWrapper {
   display: flex;
-  margin-top: 0.5rem;
   margin-right: 1rem;
 }
 
 .logo {
-  margin-left: 2rem;
   width: 4.5rem;
   height: auto;
 }

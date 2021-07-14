@@ -1,7 +1,7 @@
 .logo {
   width: 60px;
   height: 60px;
-  transition: all 200ms ease-in;
+  transition: transform 200ms ease-in;
   cursor: pointer;
 }
 
@@ -19,5 +19,19 @@
 }
 
 .item {
-  margin-right: 1rem;
+  margin-right: 0.75rem;
+  margin-left: 0.75rem;
+}
+
+@media screen and (max-width: 575px) {
+  .item {
+    margin-right: 0.2rem;
+    margin-left: 0.2rem;
+  }
+  .logo {
+    width: 40px;
+    height: 40px;
+    transition: transform 200ms ease-in;
+    cursor: pointer;
+  }
 }

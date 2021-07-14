@@ -66,3 +66,15 @@
     width: calc(100% - 2rem);
   }
 }
+
+@media screen and (max-width: 768px) {
+  .languageBarWrapper {
+    margin-top: 5rem;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .languageBarWrapper {
+    margin-top: 2rem;
+  }
+}

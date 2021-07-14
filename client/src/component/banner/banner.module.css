@@ -25,6 +25,7 @@
 
 .titleContent {
   display: block;
+  word-break: keep-all;
 }
 
 .bannerImg {
@@ -77,6 +78,45 @@
 
   .subBanner {
     margin: auto;
-    height: 4.5rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .bannerContent {
+    text-align: center;
+  }
+
+  .titleContent {
+    font-size: 2.375rem;
+  }
+  .weak {
+    font-size: 1.75rem;
+  }
+  .subImg {
+    width: 100px;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .banner {
+    margin-top: 0rem;
+  }
+
+  .bannerContent {
+    text-align: center;
+  }
+
+  .titleContent {
+    font-size: 2.125rem;
+  }
+  .weak {
+    display: none;
+  }
+  .subImg {
+    display: none;
+  }
+  .subBanner {
+    flex-direction: column;
   }
 }
