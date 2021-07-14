@@ -5,6 +5,7 @@ import SocialLoginContainer from "../../social_login_container/socialLoginContai
 import SetNicknameContainer from "../../set_nickname_container/setNicknameContainer";
 import SetInterestContainer from "../../set_interest_container/setInterestContainer";
 import SetImageContainer from "../../set_image_container/setImageContainer";
+import SignupEnd from "../../signup_end/signupEnd";
 /* 
 
 LoginModal Component
@@ -25,6 +26,7 @@ const SOCIAL_LOGIN = 1;
 const SET_NICKNAME = 2;
 const SET_INTEREST = 3;
 const SET_IMAGE = 4;
+const SIGNUP_END = 5;
 
 const LoginModal = ({ handleClose }) => {
   const loginStep = useSelector((state) => state.loginStep.currentStep);
@@ -42,6 +44,8 @@ const LoginModal = ({ handleClose }) => {
         return <SetInterestContainer></SetInterestContainer>;
       case SET_IMAGE:
         return <SetImageContainer></SetImageContainer>;
+      case SIGNUP_END:
+        return <SignupEnd handleClose={handleClose}></SignupEnd>;
       default:
         return <div></div>;
     }
@@ -73,91 +77,5 @@ const LoginModal = ({ handleClose }) => {
     </div>
   );
 };
-
-/* 
-
-signUp component로, 회원가입시 닉네임을 설정하는 곳입니다.
-
-to-do
-1. 중복체크 로직 추가가 필요합니다.
-2. 3단계 구성이 필요합니다.
-- 1. 닉네임 선택
-- 2. 사진 선택
-- 3. 관심분야 선택
-
-*/
-
-// const SignUp = ({ handleClose }) => {
-//   const dispatch = useDispatch();
-//   const user = useSelector((state) => state.user);
-//   const [image, setImage] = useState(null);
-//   const [isImageChanged, setIsImageChanged] = useState(false);
-//   const [nickName, setNickName] = useState("");
-//   const [likeLanguages, setLikeLanguages] = useState([]);
-//   const onCompleteClick = async (e) => {};
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     const nickName = e.target.nickName.value;
-//     console.log("###########nickName:", nickName);
-
-//     if (isImageChanged) {
-//       if (image) {
-//         const preSignedUrl = await studyService.getPresignedUrl(nickName);
-//         const fileName = `${nickName}_${getFormatedToday()}.png`;
-
-//         await studyService
-//           .uploadImageToS3WithBase64(preSignedUrl, image, fileName)
-//           .then((response) => {
-//             console.log("response from uploadUserimgtoS3", response);
-//           });
-//       }
-//     }
-
-//     await dispatch(addUserNickName({ id: user.id, nickName, image })).then(
-//       (response) => {
-//         console.log("addUserNickName response :", response);
-//         handleClose();
-//       }
-//     );
-//   };
-//   return (
-//     <>
-//       <TopBar></TopBar>
-//       <h1>Hola에 처음 오셨군요! 닉네임을 설정해 보세요.</h1>
-// <UserImageUpload
-//   image={image}
-//   setImage={setImage}
-//   setIsImageChanged={setIsImageChanged}
-// ></UserImageUpload>
-//       <div className={styles.titleWrapper}>
-//         <h3>닉네임</h3>
-//         <input
-//           type="text"
-//           name="nickNameInput"
-//           value={nickName}
-//           onChange={(e) => {
-//             setNickName(e.target.value);
-//           }}
-//         />
-//       </div>
-
-//       <div className={styles.titleWrapper}>
-//         <h3>관심 기술 태그</h3>
-//         <LikeLanguages
-//           likeLanguages={likeLanguages}
-//           setLikeLanguages={setLikeLanguages}
-//         ></LikeLanguages>
-//       </div>
-
-//       <button
-//         onClick={onCompleteClick}
-//         className={styles.buttonComplete}
-//         name="complete"
-//       >
-//         완료
-//       </button>
-//     </>
-//   );
-// };
 
 export default LoginModal;

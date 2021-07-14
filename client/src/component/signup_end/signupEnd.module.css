@@ -1,0 +1,20 @@
+.title {
+  margin-top: 4rem;
+  text-align: center;
+  animation-duration: 3s;
+  animation-name: opacityAnimation;
+}
+
+@keyframes opacityAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.buttonClose {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
