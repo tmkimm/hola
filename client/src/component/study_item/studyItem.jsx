@@ -7,7 +7,9 @@ const StudyItem = ({ study }) => {
   const studyLang = [];
   for (let i = 0; i < 3; i++) {
     if (study.language[i] === undefined) break;
-    studyLang.push(study.language[i]);
+    if (study.language[i] === "c#") studyLang.push("cc");
+    else studyLang.push(study.language[i]);
+    console.log(study.language[i]);
   }
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -32,7 +34,9 @@ const StudyItem = ({ study }) => {
                 src={`/images/languages/${lang}.png`}
                 alt="language"
               />
-              <p className={styles.languageName}>{lang}</p>
+              <p className={styles.languageName}>
+                {lang === "cc" ? "c#" : lang}
+              </p>
             </li>
           ))}
         </ul>
