@@ -3,8 +3,7 @@ import styles from "./userImageUpload.module.css";
 import { isBase64 } from "../../common/utils";
 
 const UserImageUpload = ({ image, setImage, setIsImageChanged }) => {
-  const defaultImage =
-    "https://hola-post-image.s3.ap-northeast-2.amazonaws.com/default.PNG";
+  const baseUrl = "https://hola-post-image.s3.ap-northeast-2.amazonaws.com/";
 
   // 이미지 업로드 버튼
   const onImageUploadClick = async (e) => {
@@ -32,8 +31,8 @@ const UserImageUpload = ({ image, setImage, setIsImageChanged }) => {
           image
             ? isBase64(image)
               ? image
-              : `https://hola-post-image.s3.ap-northeast-2.amazonaws.com/${image}`
-            : defaultImage
+              : `${baseUrl}${image}`
+            : `${baseUrl}default.PNG`
         }
         alt="사용자 이미지"
       />

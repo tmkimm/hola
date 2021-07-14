@@ -14,7 +14,6 @@ const initialState = {
   currentStep: 1,
   nickName: undefined,
   id: undefined,
-  imageUrl: undefined,
   likeLanguages: [],
 };
 

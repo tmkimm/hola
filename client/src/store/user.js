@@ -90,6 +90,7 @@ const fetchUserByRefreshToken = createAsyncThunk(
 const addUserNickName = createAsyncThunk(
   addUserNickNameAction,
   async (userInfo, thunkAPI) => {
+    console.log("userinfo!!!", userInfo);
     const response = await authService.signUp(userInfo);
     const accessToken = response.data.accessToken;
 

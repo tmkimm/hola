@@ -9,7 +9,6 @@ const StudyItem = ({ study }) => {
     if (study.language[i] === undefined) break;
     if (study.language[i] === "c#") studyLang.push("cc");
     else studyLang.push(study.language[i]);
-    console.log(study.language[i]);
   }
 
   const [modalVisible, setModalVisible] = useState(false);

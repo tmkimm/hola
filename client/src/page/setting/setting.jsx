@@ -9,7 +9,7 @@ import languageList from "../../languageList";
 import userService from "../../service/user_service";
 import studyService from "../../service/study_service";
 import { clearUser } from "../../store/user";
-import { nextStep } from "../../store/loginStep";
+import { clearStep } from "../../store/loginStep";
 import { modifyUserInfo } from "../../store/user";
 import LikeLanguages from "../../component/like_languages/likeLanguages";
 import UserImageUpload from "../../component/user_image_upload/userImageUpload";
@@ -124,12 +124,22 @@ const Setting = (props) => {
 
   // 회원 탈퇴
   const onSignOutClick = async (e) => {
-    userService.deleteUser(id).then((deleteSuccess) => {
+    const deleteResult = userService.deleteUser(id);
+    if (deleteResult) {
+      toast.success("회원 탈퇴가 완료되었어요!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
       localStorage.removeItem("userName");
       dispatch(clearUser());
-      dispatch(nextStep("LOGIN"));
+      dispatch(clearStep());
       history.push("/");
-    });
+    } else {
+      toast.error("회원 탈퇴에 실패하였어요! 재시도해 주세요.", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+    }
   };
 
   return (

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SetImage from "../set_image/setImage";
 import { useDispatch, useSelector } from "react-redux";
-import { nextStep, setSignUpUser } from "../../store/loginStep";
+import { nextStep } from "../../store/loginStep";
 import studyService from "../../service/study_service";
 import { addUserNickName } from "../../store/user";
 
@@ -15,13 +15,13 @@ const SetImageContainer = (props) => {
     const nickName = loginStep.nickName;
     const id = loginStep.id;
     const likeLanguages = loginStep.likeLanguages;
-
+    let image = "";
     if (isImageChanged) {
       if (userImage) {
         const { preSignedUrl, fileName } = await studyService.getPresignedUrl(
           nickName
         );
-        dispatch(setSignUpUser({ key: "image", value: fileName }));
+        image = fileName;
 
         const response = await studyService.uploadImageToS3WithBase64(
           preSignedUrl,
@@ -31,16 +31,18 @@ const SetImageContainer = (props) => {
         console.log("response from uploadUserimgtoS3", response);
       }
     } else {
-      console.log("here!!!! hehe!!");
-      dispatch(setSignUpUser({ key: "image", value: "default.PNG" }));
+      image = "default.PNG";
     }
 
-    console.log("id from loginstep", id); // 이게 가끔 안나오는데, 확인 필요
-
-    const response = await dispatch(
-      addUserNickName({ id, nickName, likeLanguages, image: loginStep.image })
+    dispatch(
+      addUserNickName({
+        id,
+        nickName,
+        likeLanguages,
+        image,
+      })
     );
-    console.log("addUserNickName response :", response);
+
     dispatch(nextStep());
   };
 
