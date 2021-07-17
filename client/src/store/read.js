@@ -48,7 +48,7 @@ const readSlice = createSlice({
     [readPost.fulfilled]: (state, { payload }) => ({
       ...state,
       post: {
-        id: payload.id,
+        id: payload._id,
         title: payload.title,
         language: payload.language,
         content: payload.content,
