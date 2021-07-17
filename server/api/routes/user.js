@@ -52,7 +52,16 @@ export default (app) => {
         return res.status(200).json({
             _id: userRecord._id,
             nickName: userRecord.nickName,
-            accessToken: accessToken
+            accessToken: accessToken,
+            isExists: false
+        });
+    });
+
+
+    // 사용자 닉네임 중복 체크
+    route.get('/:id/exists', isAccessTokenValid, nickNameDuplicationCheck, async (req, res, next) => {
+        return res.status(200).json({
+            isExists: false
         });
     });
 
