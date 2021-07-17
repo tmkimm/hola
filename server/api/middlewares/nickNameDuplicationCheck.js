@@ -6,12 +6,18 @@ const nickNameDuplicationCheck = async (req, res, next) => {
         if(req.body.nickName) {
             const user = await User.findByNickName(req.body.nickName);
             if(user) {
-                return res.status(400).json({message : `Nickname is duplicated.`});
+                return res.status(409).json({
+                    message : `Nickname is duplicated.`,
+                    isExists: true
+                });
             }
         }
         next();
     } catch(err) {
-        return res.status(400).json({message : `Nickname is duplicated.`});
+        return res.status(409).json({
+            message : `Nickname is duplicated.`,
+            isExists: true
+        });
     }
 }
 
