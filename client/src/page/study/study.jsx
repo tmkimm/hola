@@ -4,6 +4,8 @@ import { useHistory, useLocation } from "react-router-dom";
 import CancelButton from "../../component/cancelButton/cancelButton";
 import CommentContainer from "../../component/comment_container/commentContainer";
 import LikesAndViews from "../../component/likes_and_views/likesAndViews";
+import LoadingSpinner from "../../component/loading/loadingSpinner";
+import Modal from "../../component/modal/modal_component/modal";
 import Navbar from "../../component/nav_bar/navbar";
 import { clearPost, readPost } from "../../store/read";
 import { setPost } from "../../store/write";
@@ -56,46 +58,52 @@ const Study = () => {
   return (
     <>
       <Navbar showRegisterButton={true}></Navbar>
-      <div className={styles.wrapper}>
-        <section className={styles.postHeader}>
-          <div className={styles.title}>{read.post.title}</div>
-          <div className={styles.registeredDate}>{read.post.createdAt}</div>
-          <div className={styles.user}>
-            <img
-              className={styles.userImg}
-              src={defaultPath + read.post.imagePath}
-              alt="userImg"
-            />
-            <div className={styles.userName}>{read.post.nickname}</div>
+      {read.loading === "idle" ? (
+        <Modal visible={true}>
+          <LoadingSpinner></LoadingSpinner>
+        </Modal>
+      ) : (
+        <div className={styles.wrapper}>
+          <section className={styles.postHeader}>
+            <div className={styles.title}>{read.post.title}</div>
+            <div className={styles.registeredDate}>{read.post.createdAt}</div>
+            <div className={styles.user}>
+              <img
+                className={styles.userImg}
+                src={defaultPath + read.post.imagePath}
+                alt="userImg"
+              />
+              <div className={styles.userName}>{read.post.nickname}</div>
+            </div>
+            {user.nickName === read.post.nickname && (
+              <TestButton
+                dispatch={dispatch}
+                history={history}
+                post={read.post}
+              ></TestButton>
+            )}
+          </section>
+          <div className={styles.postContentWrapper}>
+            <div
+              className={styles.postContent}
+              dangerouslySetInnerHTML={{ __html: read.post.content }}
+            ></div>
           </div>
-          {user.nickName === read.post.nickname && (
-            <TestButton
-              dispatch={dispatch}
-              history={history}
-              post={read.post}
-            ></TestButton>
-          )}
-        </section>
-        <div className={styles.postContentWrapper}>
-          <div
-            className={styles.postContent}
-            dangerouslySetInnerHTML={{ __html: read.post.content }}
-          ></div>
-        </div>
 
-        <section className={styles.modalComment}>
-          <LikesAndViews
-            views={read.post.views}
-            likeUser={read.post.likes}
-            likes={read.post.likesCount}
-            studyId={read.post.id}
-            userId={user.id}
-          ></LikesAndViews>
-          <div className={styles.postComment}>
-            <CommentContainer id={studyId}></CommentContainer>
-          </div>
-        </section>
-      </div>
+          <section className={styles.modalComment}>
+            <LikesAndViews
+              views={read.post.views}
+              likeUser={read.post.likes}
+              likes={read.post.likesCount}
+              studyId={read.post.id}
+              userId={user.id}
+            ></LikesAndViews>
+            <div className={styles.postComment}>
+              <CommentContainer id={read.post.id}></CommentContainer>
+            </div>
+          </section>
+        </div>
+      )}
     </>
   );
 };

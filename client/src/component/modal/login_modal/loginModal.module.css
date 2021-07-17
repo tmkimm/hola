@@ -5,9 +5,10 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  top: 50%;
+  top: -200%;
   margin: 0 auto;
   transform: translateY(-50%);
+  animation: loginAnimation 0.5s ease 0s 1 normal forwards running;
 }
 
 .modalHeader {
@@ -69,6 +70,18 @@
 
 .backButton {
   color: gray;
+}
+
+@keyframes loginAnimation {
+  0% {
+    opacity: 0;
+    top: -100%;
+  }
+
+  100% {
+    opacity: 1;
+    top: 50%;
+  }
 }
 
 @media (max-width: 768px) {

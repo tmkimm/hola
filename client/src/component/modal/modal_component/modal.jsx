@@ -3,6 +3,7 @@ import Portal from "../portal/portal";
 
 function Modal({ onClose, visible, children }) {
   const onMaskClick = (e) => {
+    if (onClose === undefined) return;
     if (e.target === e.currentTarget) {
       onClose(e);
     }
@@ -30,6 +31,8 @@ const modalAnimation = keyframes`
   }
 `;
 
+//animation: 0.5s ease 0s 1 normal forwards running ${modalAnimation};
+
 const ModalWrapper = styled.div`
   box-sizing: border-box;
   display: ${(props) => (props.visible ? "block" : "none")};
@@ -40,7 +43,7 @@ const ModalWrapper = styled.div`
   z-index: 1000;
   overflow: auto;
   outline: 0;
-  animation: 0.5s ease 0s 1 normal forwards running ${modalAnimation};
+  top:0;
 }
 `;
 
