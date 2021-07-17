@@ -77,7 +77,7 @@ const Navbar = React.memo(({ showRegisterButton }) => {
           </>
         )}
       </div>
-      <Modal visible={modalVisible} onClose={closeModal}>
+      <Modal visible={modalVisible} name="login" onClose={closeModal}>
         <LoginModal handleClose={closeModal} tabIndex={0}></LoginModal>
       </Modal>
     </nav>

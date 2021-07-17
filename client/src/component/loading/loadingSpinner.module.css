@@ -9,7 +9,7 @@
 }
 
 .spinnerImg {
-  animation: rotateImage 1.75s linear infinite;
+  animation: rotateImage 1.2s linear infinite;
   transform-origin: 50% 50%;
 }
 
