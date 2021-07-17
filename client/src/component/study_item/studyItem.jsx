@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import styles from "./studyItem.module.css";
 import Modal from "../modal/modal_component/modal";
 import PostModal from "../modal/post_modal/postModal";
+import { useHistory } from "react-router-dom";
 
 const StudyItem = ({ study }) => {
   const studyLang = [];
+  const history = useHistory();
+
   for (let i = 0; i < 3; i++) {
     if (study.language[i] === undefined) break;
     if (study.language[i] === "c#") studyLang.push("cc");
@@ -12,9 +15,12 @@ const StudyItem = ({ study }) => {
   }
 
   const [modalVisible, setModalVisible] = useState(false);
-  const openModal = () => {
-    document.body.style.overflow = "hidden";
-    setModalVisible(true);
+  // const openModal = () => {
+  //   document.body.style.overflow = "hidden";
+  //   setModalVisible(true);
+  // };
+  const onClick = () => {
+    history.push(`/study?id=${study._id}`);
   };
   const closeModal = () => {
     document.body.style.overflow = "auto";
@@ -23,7 +29,7 @@ const StudyItem = ({ study }) => {
 
   return (
     <>
-      <li className={styles.studyItem} onClick={openModal}>
+      <li className={styles.studyItem} onClick={onClick}>
         <h1 className={styles.title}>{study.title}</h1>
         <ul className={styles.content}>
           {studyLang.map((lang, i) => (

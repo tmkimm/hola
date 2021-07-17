@@ -14,7 +14,7 @@ const SignupEnd = ({ handleClose }) => {
         className={styles.buttonClose}
         name="complete"
       >
-        가입 완료
+        시작하기
       </button>
     </>
   );

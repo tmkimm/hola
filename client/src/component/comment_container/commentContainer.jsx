@@ -10,6 +10,7 @@ const CommentContainer = ({ id }) => {
 
   // 댓글 등록 버튼
   const onRegisterClick = async (e) => {
+    console.log("id!!!!!!", id);
     await studyService.registerComment({ id, content });
     setContent("");
     setIsComplete((isComplete) => !isComplete);

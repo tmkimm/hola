@@ -20,6 +20,7 @@ To-do
 const WritebuttonContainer = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const user = useSelector((state) => state.user);
   const { title, content, language, post, postError, postId } = useSelector(
     ({ write }) => ({
       title: write.title,
@@ -60,7 +61,7 @@ const WritebuttonContainer = (props) => {
 
   useEffect(() => {
     if (post) {
-      history.push("/");
+      history.push(`/`);
     }
 
     if (postError) {
