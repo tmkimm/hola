@@ -1,8 +1,9 @@
 import styled, { keyframes } from "styled-components";
 import Portal from "../portal/portal";
 
-function Modal({ onClose, visible, children }) {
+const Modal = ({ name, onClose, visible, children }) => {
   const onMaskClick = (e) => {
+    if (onClose === undefined) return;
     if (e.target === e.currentTarget) {
       onClose(e);
     }
@@ -10,25 +11,13 @@ function Modal({ onClose, visible, children }) {
 
   return (
     <Portal elementId="modal-root">
-      <ModalOverlay visible={visible} />
+      <ModalOverlay name={name} visible={visible} />
       <ModalWrapper onClick={onMaskClick} tabIndex={-1} visible={visible}>
         {children}
       </ModalWrapper>
     </Portal>
   );
-}
-
-const modalAnimation = keyframes`
-  0% {
-    opacity: 0;
-    top: -200%;
-  }
-  
-  100% {
-    opacity: 1;
-    top: 0;
-  }
-`;
+};
 
 const ModalWrapper = styled.div`
   box-sizing: border-box;
@@ -40,7 +29,7 @@ const ModalWrapper = styled.div`
   z-index: 1000;
   overflow: auto;
   outline: 0;
-  animation: 0.5s ease 0s 1 normal forwards running ${modalAnimation};
+  top:0;
 }
 `;
 
@@ -52,7 +41,8 @@ const ModalOverlay = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background: rgba(77, 77, 77, 0.5);
+  background: ${(props) =>
+    props.name === "loading" ? "white" : "rgba(77, 77, 77, 0.5)"};
   z-index: 999;
 `;
 

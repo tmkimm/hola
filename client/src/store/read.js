@@ -21,6 +21,7 @@ const readPost = createAsyncThunk(readPostAction, async (id, thunkAPI) => {
 });
 
 const initialState = {
+  loading: "idle",
   post: {
     id: undefined,
     title: "",
@@ -47,6 +48,7 @@ const readSlice = createSlice({
   extraReducers: {
     [readPost.fulfilled]: (state, { payload }) => ({
       ...state,
+      loading: "success",
       post: {
         id: payload._id,
         title: payload.title,

@@ -1,0 +1,32 @@
+.spinner {
+  width: 320px;
+  height: 320px;
+  position: relative;
+  display: flex;
+  top: 50%;
+  margin: 0 auto;
+  transform: translateY(-50%);
+}
+
+.spinnerImg {
+  animation: rotateImage 1.2s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+@keyframes rotateImage {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(30deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-30deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
