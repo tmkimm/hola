@@ -33,7 +33,36 @@ export default (app) => {
 
     res.status(200).json(studies);
   });
-  
+
+  // 메인에서의 스터디 추천
+  route.get('/recommend', getUserIdWithAccessToken, async (req, res, next) => {
+    const userId = req.user._id;
+    let StudyServiceInstance = new StudyService();
+    const studies = await StudyServiceInstance.recommendToUserFromMain(userId);
+
+    res.status(200).json(studies);
+  });
+
+  // 글에서의 스터디 추천
+  route.get('/:id/recommend', async (req, res, next) => {
+    const studyId = req.params.id;
+    let StudyServiceInstance = new StudyService();
+    const study = await StudyServiceInstance.recommendToUserFromStudy(studyId);
+
+    res.status(200).json(study);
+  });
+
+  // 스터디 상세 보기
+  // 로그인된 사용자일 경우 읽은 목록을 추가한다.
+  route.get('/:id', getUserIdWithAccessToken, async (req, res, next) => {
+    const studyId = req.params.id;
+    const userId = req.user._id;
+    let StudyServiceInstance = new StudyService();
+    const study = await StudyServiceInstance.studyDetailView(studyId, userId);
+
+    res.status(200).json(study);
+  });
+
   // 스터디 등록 
   route.post('/', checkStudy, isStudyValid, isAccessTokenValid, async function(req, res, next) {
     try {
@@ -53,17 +82,6 @@ export default (app) => {
         }
       ], error }); 
     }
-  });
-
-  // 스터디 상세 보기
-  // 로그인된 사용자일 경우 읽은 목록을 추가한다.
-  route.get('/:id', getUserIdWithAccessToken, async (req, res, next) => {
-    const studyId = req.params.id;
-    const userId = req.user._id;
-    let StudyServiceInstance = new StudyService();
-    const study = await StudyServiceInstance.studyDetailView(studyId, userId);
-
-    res.status(200).json(study);
   });
 
   // 스터디 수정

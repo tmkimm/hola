@@ -9,6 +9,42 @@ export class StudyService {
         return studies;
     }
 
+    // 메인 화면에서 스터디를 추천한다.
+    // 4건 이하일 경우 무조건 다시 조회가 아니라, 해당 되는 건은 포함하고 나머지 건만 조회해야함
+    async recommendToUserFromMain(userId) {
+        let sort, likeLanguages;
+        if(userId) {
+            let user = await User.findById(userId);
+            likeLanguages = user.likeLanguages;
+            sort = 'views';
+        }
+        else {
+            sort = 'totalLikes';
+        }
+
+        let studies = await Study.findStudyRecommend('views', likeLanguages);
+        if(studies.length < 4)
+            studies = await Study.findStudyRecommend('totalLikes', []);
+
+        return studies;
+    }
+
+    // 글에서 스터디를 추천한다.
+    // 4건 이하일 경우 무조건 다시 조회가 아니라, 해당 되는 건은 포함하고 나머지 건만 조회해야함
+    async recommendToUserFromStudy(studyId) {
+        let sort = 'views', language;
+        if(studyId) {
+            let study = await Study.findById(studyId);
+            language = study.language;
+        }
+
+        let studies = await Study.findStudyRecommend(sort, language);
+        if(studies.length < 4)
+            studies = await Study.findStudyRecommend(sort, []);
+
+        return studies;
+    }
+
     // 상세 스터디 정보를 조회한다.
     // 로그인된 사용자일 경우 읽은 목록을 추가한다.
     async studyDetailView(studyId, userId) {
