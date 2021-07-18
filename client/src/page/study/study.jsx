@@ -66,7 +66,9 @@ const Study = () => {
         <div className={styles.wrapper}>
           <section className={styles.postHeader}>
             <div className={styles.title}>{read.post.title}</div>
-            <div className={styles.registeredDate}>{read.post.createdAt}</div>
+            <div className={styles.registeredDate}>
+              {new Date(read.post.createdAt).toString()}
+            </div>
             <div className={styles.user}>
               <img
                 className={styles.userImg}

@@ -2,10 +2,6 @@ import styled, { keyframes } from "styled-components";
 import Portal from "../portal/portal";
 
 const Modal = ({ name, onClose, visible, children }) => {
-  console.log(name);
-  console.log(onClose);
-  console.log(visible);
-  console.log(children);
   const onMaskClick = (e) => {
     if (onClose === undefined) return;
     if (e.target === e.currentTarget) {
