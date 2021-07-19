@@ -37,8 +37,9 @@ export default (app) => {
   // 메인에서의 스터디 추천
   route.get('/recommend', getUserIdWithAccessToken, async (req, res, next) => {
     const userId = req.user._id;
+    const { studyId } = req.query;
     let StudyServiceInstance = new StudyService();
-    const studies = await StudyServiceInstance.recommendToUserFromMain(userId);
+    const studies = await StudyServiceInstance.recommendToUserFromMain(userId, studyId);
 
     res.status(200).json(studies);
   });
