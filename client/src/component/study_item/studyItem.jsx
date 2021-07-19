@@ -49,16 +49,16 @@ const StudyItem = ({ study }) => {
           <div className={styles.infoItem}>
             <img
               className={styles.itemImg}
-              src="/images/info/location.png"
-              alt="location"
+              src="/images/info/heart_filled.png"
+              alt="likes"
             />
-            <p>{study.location}</p>
+            <p>{study.totalLikes}</p>
           </div>
           <div className={styles.infoItem}>
             <img
-              className={styles.itemImg}
-              src="/images/info/heart_filled.png"
-              alt="likes"
+              className={styles.viewImg}
+              src="/images/info/eye.png"
+              alt="views"
             />
             <p>{study.views}</p>
           </div>

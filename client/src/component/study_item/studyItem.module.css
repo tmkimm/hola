@@ -82,6 +82,10 @@
   margin-right: 2px;
 }
 
+.viewImg {
+  width: 30px;
+}
+
 @media screen and (max-width: 768px) {
   .studyItem {
     width: calc(50% - 2rem);
