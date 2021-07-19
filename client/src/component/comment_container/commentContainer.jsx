@@ -15,13 +15,13 @@ const CommentContainer = ({ id }) => {
     setContent("");
     setIsComplete((isComplete) => !isComplete);
   };
-
+  console.log(commentList.length);
   useEffect(() => {
     studyService.getComments(id).then((response) => {
       console.log(`comment useeffect!!!`);
       setCommentList(response.data.comments);
     });
-  }, [id]);
+  }, [id, isComplete]);
 
   return (
     <>
