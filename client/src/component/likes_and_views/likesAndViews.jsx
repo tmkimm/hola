@@ -11,6 +11,7 @@ api check 필요 -> 중복 id 들어감
 해당 글 id 던지면 좋아요 수와 views만 return 받을 수 있는 api 있으면 좋을 것 같음
 
 */
+
 const LikesAndViews = ({ views, likes, likeUser, studyId, userId }) => {
   const isLike = likeUser.filter((likeUserid) => likeUserid === userId);
   console.log(isLike.length);
@@ -18,7 +19,7 @@ const LikesAndViews = ({ views, likes, likeUser, studyId, userId }) => {
   const [likeImg, setLikeImg] = useState(initialImg);
 
   const handleLikesClick = () => {
-    console.log('studyId : ' + studyId);
+    console.log("studyId : " + studyId);
     if (likeImg === "heart_filled") {
       studyService.addLikes(studyId);
       setLikeImg("heart_unfilled");
@@ -40,11 +41,7 @@ const LikesAndViews = ({ views, likes, likeUser, studyId, userId }) => {
         <p>{likes}</p>
       </div>
       <div className={styles.views}>
-        <img
-          className={styles.locationImg}
-          src="/images/info/location.png"
-          alt="location"
-        />
+        <img className={styles.eyeImg} src="/images/info/eye.png" alt="views" />
         <p>{views}</p>
       </div>
     </section>

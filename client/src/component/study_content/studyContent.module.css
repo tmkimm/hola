@@ -1,13 +1,10 @@
 .wrapper {
-  width: 800px;
-  box-shadow: rgb(0 0 0 / 9%) 0px 2px 12px 0px;
-  position: absolute;
+  width: 48rem;
   display: flex;
   flex-direction: column;
-  top: 20%;
-  left: 50%;
+  margin-top: 5rem;
   margin: 0 auto;
-  transform: translateX(-50%);
+  padding: 1.5rem;
   padding-bottom: 5rem;
 }
 
@@ -16,18 +13,8 @@
   justify-content: flex-end;
 }
 
-.modalHeader {
-  background: #f8f9fa;
-  padding: 0 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.modalContent {
-  display: flex;
-  flex-direction: column;
-  background: white;
+.buttonWrapper button {
+  font-size: 1rem;
 }
 
 .modalComment {
@@ -36,46 +23,68 @@
   background: white;
 }
 
+.languageList {
+  display: flex;
+}
+
+.languageItem {
+  margin-right: 0.5rem;
+}
+
+.languageItem img {
+  width: 3rem;
+  height: 3rem;
+}
+
+.languageInfo {
+  margin-top: 5rem;
+}
+
 .postHeader {
   display: flex;
   flex-direction: column;
-  width: 80%;
-  margin: 0 auto;
   margin-top: 3rem;
 }
 
 .user {
-  cursor: pointer;
   display: flex;
-  -webkit-box-align: center;
   align-items: center;
   position: relative;
   margin-top: 2rem;
 }
 
 .userName {
+  cursor: pointer;
   font-size: 18px;
   font-weight: 600;
 }
 
 .userImg {
+  cursor: pointer;
   display: block;
   height: 2.5rem;
   width: 2.5rem;
   box-shadow: rgb(0 0 0 / 9%) 0px 0px 8px;
   border-radius: 50%;
   object-fit: cover;
-  transition: all 0.125s ease-in 0s;
+  transition: all 0.125s;
+}
+
+.userImg:hover {
+  scale: 1.1;
 }
 
 .postContentWrapper {
-  background: #f8f9fa;
   margin-top: 5rem;
+  font-size: 1.125rem;
+  word-break: keep-all;
+  overflow-wraps: break-word;
+  line-height: 1.7;
+  letter-spacing: -0.004em;
 }
 
 .postContent {
-  width: 80%;
-
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -92,21 +101,30 @@
 }
 
 .postContent img {
+  display: block;
+  margin: 0 auto;
   max-width: 100%;
 }
 
 .registeredDate {
   font-weight: 600;
-  font-size: 15px;
+  font-size: 1rem;
   line-height: 126.5%; /* or 19px */
+  margin-top: 0.5rem;
   letter-spacing: -0.005em;
   color: #8c8c8c;
 }
 
 .title {
   font-weight: 800;
-  font-size: 38px;
+  font-size: 3rem;
   line-height: 126.5%; /* or 48px */
   letter-spacing: -0.005em;
   color: #000000;
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    width: 100%;
+  }
 }
