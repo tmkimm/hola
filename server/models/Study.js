@@ -113,8 +113,7 @@ studySchema.statics.findStudy = async function(offset, limit, sort, language) {
 };
 
 // 사용자에게 추천 조회
-studySchema.statics.findStudyRecommend = async function(sort, language) {
-    console.log(`sort : ${sort} language : ${language}`);
+studySchema.statics.findStudyRecommend = async function(sort, language, studyId, limit) {
     let sortQuery = [];
     //Sorting
     if(sort) {
@@ -128,18 +127,29 @@ studySchema.statics.findStudyRecommend = async function(sort, language) {
     }
     // Query
     let query = {};
-    if( typeof language !== 'undefined' )
+    if( typeof language == 'object' && language.length > 0 )
         query.language = {$in: language};
 
     // 14일 이내 조회
     let today = new Date();
     query.createdAt = {$gte: today.setDate(today.getDate() - 14)};
+
+    // 현재 읽고 있는 글은 제외하고 조회
+    query._id = {$ne: studyId};
   
-    return await Study.find(query)
+    let studies =  await Study.find(query)
     .where('isDeleted').equals(false)
     .sort(sortQuery.join(' '))
-    .limit(5)
+    .limit(limit)
     .select('-isDeleted -comments');
+
+    // let studies2 =  await Study.find(query)
+    // .where('isDeleted').equals(false)
+    // .sort(sortQuery.join(' '))
+    // .limit(limit)
+    // .select('-isDeleted -comments');
+    // studies.push(...studies2);
+    return studies;
 };
 
 studySchema.statics.registerComment = async function(studyId, content, author) {
