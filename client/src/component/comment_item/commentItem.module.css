@@ -1,6 +1,16 @@
+.commentContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.8rem;
+}
+
 .commentHeader {
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
+}
+
+.avatarWrapper {
+  display: flex;
 }
 
 .commentInfo {
@@ -32,8 +42,8 @@
 }
 
 .buttonWrapper {
-  position: absolute;
-  right: 4.5rem;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .commentInput input {
@@ -69,4 +79,12 @@
 
 .buttonCancel {
   background: rgb(100, 97, 97);
+}
+
+hr {
+  border: 0;
+  display: block;
+  width: 98%;
+  background-color: #808080;
+  height: 1px;
 }

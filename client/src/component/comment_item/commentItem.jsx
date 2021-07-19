@@ -58,32 +58,36 @@ const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
   };
 
   return (
-    <>
+    <li className={styles.commentContainer}>
       <section className={styles.commentHeader}>
-        <img
-          className={styles.userImg}
-          src={
-            comment.author.image
-              ? `https://hola-post-image.s3.ap-northeast-2.amazonaws.com/${comment.author.image}`
-              : defaultImage
-          }
-          alt="사용자 이미지"
-        />
-        <div className={styles.commentInfo}>
-          <div className={styles.title}>
-            <div className={styles.registeredDate}>
-              {formatDate(comment.createdAt)}
+        <div className={styles.avatarWrapper}>
+          <img
+            className={styles.userImg}
+            src={
+              comment.author.image
+                ? `https://hola-post-image.s3.ap-northeast-2.amazonaws.com/${comment.author.image}`
+                : defaultImage
+            }
+            alt="사용자 이미지"
+          />
+
+          <div className={styles.commentInfo}>
+            <div className={styles.title}>
+              <div className={styles.registeredDate}>
+                {formatDate(comment.createdAt)}
+              </div>
+              <div>{comment.author.nickName}</div>
             </div>
-            <div>{comment.author.nickName}</div>
           </div>
         </div>
         {user.nickName === comment.author.nickName && (
           <ButtonControl></ButtonControl>
         )}
       </section>
+
       <section className={styles.commentContent}>
         {inputVisible && (
-          <React.Fragment>
+          <>
             <div className={styles.commentInput}>
               <input
                 type="text"
@@ -111,12 +115,12 @@ const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
                 </button>
               </div>
             </div>
-          </React.Fragment>
+          </>
         )}
         {!inputVisible && <p>{content}</p>}
       </section>
       <hr />
-    </>
+    </li>
   );
 });
 
