@@ -31,6 +31,29 @@ const StudyButtons = ({ dispatch, history, post }) => {
   );
 };
 
+const StudyLanguage = ({ languages }) => {
+  const usedLanguage = languages.map((lang) => lang.value);
+  return (
+    <ul className={styles.languageList}>
+      {usedLanguage.map((lang) => (
+        <LangItem Language={lang}></LangItem>
+      ))}
+    </ul>
+  );
+};
+
+const LangItem = ({ Language }) => {
+  return (
+    <li className={styles.languageItem}>
+      <img
+        className={styles.logo}
+        src={`/images/languages/${Language}.png`}
+        alt="language logo"
+      />
+    </li>
+  );
+};
+
 const StudyContent = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -62,6 +85,8 @@ const StudyContent = () => {
             post={read.post}
           ></StudyButtons>
         )}
+        <h1 className={styles.languageInfo}>사용 언어 정보</h1>
+        <StudyLanguage languages={read.post.language}></StudyLanguage>
       </section>
       <div className={styles.postContentWrapper}>
         <div

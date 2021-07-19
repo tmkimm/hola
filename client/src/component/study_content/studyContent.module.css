@@ -23,6 +23,23 @@
   background: white;
 }
 
+.languageList {
+  display: flex;
+}
+
+.languageItem {
+  margin-right: 0.5rem;
+}
+
+.languageItem img {
+  width: 3rem;
+  height: 3rem;
+}
+
+.languageInfo {
+  margin-top: 5rem;
+}
+
 .postHeader {
   display: flex;
   flex-direction: column;

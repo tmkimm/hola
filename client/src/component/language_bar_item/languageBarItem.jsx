@@ -22,7 +22,7 @@ const LanguageBarItem = ({ Language }) => {
         className={`${styles.logo} ${displayType}`}
         onClick={onItemClick}
         src={`/images/languages/${Language}.png`}
-        alt=""
+        alt="language logo"
       />
     </li>
   );
