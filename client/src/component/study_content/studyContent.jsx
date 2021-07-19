@@ -35,8 +35,8 @@ const StudyLanguage = ({ languages }) => {
   const usedLanguage = languages.map((lang) => lang.value);
   return (
     <ul className={styles.languageList}>
-      {usedLanguage.map((lang) => (
-        <LangItem Language={lang}></LangItem>
+      {usedLanguage.map((lang, i) => (
+        <LangItem Language={lang} key={i}></LangItem>
       ))}
     </ul>
   );
