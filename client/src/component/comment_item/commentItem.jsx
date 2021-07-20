@@ -4,6 +4,7 @@ import styles from "./commentItem.module.css";
 import studyService from "../../service/study_service";
 import { formatDate } from "../../common/utils.js";
 import { fetchUserByRefreshToken } from "../../store/user";
+import CommentButtons from "../comment_buttons/commentButtons";
 
 const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
   const user = useSelector((state) => state.user);
@@ -47,16 +48,6 @@ const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
     setInputVisible(false);
   };
 
-  // 수정, 삭제 버튼 컨트롤
-  const ButtonControl = () => {
-    return (
-      <section className={styles.buttonWrapper}>
-        <button onClick={onModifyClick}>수정</button>
-        <button onClick={onDeleteClick}>삭제</button>
-      </section>
-    );
-  };
-
   return (
     <li className={styles.commentContainer}>
       <section className={styles.commentHeader}>
@@ -81,7 +72,10 @@ const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
           </div>
         </div>
         {user.nickName === comment.author.nickName && (
-          <ButtonControl></ButtonControl>
+          <CommentButtons
+            onModifyClick={onModifyClick}
+            onDeleteClick={onDeleteClick}
+          ></CommentButtons>
         )}
       </section>
 
