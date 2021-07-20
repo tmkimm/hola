@@ -6,14 +6,14 @@
   position: absolute;
   width: 350px;
   height: 200px;
-  top: 15%;
-  left: 30%;
-
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
   background-color: white;
   border-radius: 4px;
   padding: 2rem 1.5rem;
   box-shadow: rgb(0 0 0 / 20%) 0px 2px 12px 0px;
-  animation: 0.4s ease-in-out 0s 1 normal forwards running hwrkPK;
+  animation: modalAnimation 0.5s ease-in-out 0s 1 normal forwards running;
 }
 
 .buttons {
@@ -46,4 +46,16 @@
   padding: 0px 1.25rem;
   height: 2rem;
   font-size: 1rem;
+}
+
+@keyframes modalAnimation {
+  0% {
+    opacity: 0;
+    top: 0%;
+  }
+
+  100% {
+    opacity: 1;
+    top: 50%;
+  }
 }

@@ -5,18 +5,24 @@ import CancelButton from "../../component/cancelButton/cancelButton";
 import CommentContainer from "../../component/comment_container/commentContainer";
 import LikesAndViews from "../../component/likes_and_views/likesAndViews";
 import { setPost } from "../../store/write";
+import Modal from "../modal/modal_component/modal";
 import styles from "./studyContent.module.css";
 
-const handleEdit = (dispatch, history, post) => {
-  dispatch(setPost(post));
-  history.push("/register");
-};
-
 const StudyButtons = ({ dispatch, history, post }) => {
-  const handleDelete = () => {
+  const [showPopup, setShowPopup] = useState(false);
+  const handleEdit = (dispatch, history, post) => {
+    dispatch(setPost(post));
+    history.push("/register");
+  };
+
+  const openModal = () => {
+    document.body.style.overflow = "hidden";
     setShowPopup((state) => !state);
   };
-  const [showPopup, setShowPopup] = useState(false);
+  const closeModal = () => {
+    document.body.style.overflow = "auto";
+    setShowPopup((state) => !state);
+  };
   return (
     <>
       <section className={styles.buttonWrapper}>
@@ -24,9 +30,16 @@ const StudyButtons = ({ dispatch, history, post }) => {
         <button onClick={() => handleEdit(dispatch, history, post)}>
           수정
         </button>
-        <button onClick={handleDelete}>삭제</button>
+        <button onClick={openModal}>삭제</button>
       </section>
-      {showPopup && <CancelButton></CancelButton>}
+
+      <Modal visible={showPopup} onClose={closeModal}>
+        <CancelButton
+          confirmMsg="작성하신 글을 삭제 하시겠어요?"
+          positiveMsg="네, 삭제할래요"
+          negativeMsg="아니요"
+        ></CancelButton>
+      </Modal>
     </>
   );
 };
