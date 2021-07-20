@@ -43,11 +43,13 @@ const StudyLanguage = ({ languages }) => {
 };
 
 const LangItem = ({ Language }) => {
+  console.log(Language);
+  const lang = Language === "c#" ? "cc" : Language;
   return (
     <li className={styles.languageItem}>
       <img
         className={styles.logo}
-        src={`/images/languages/${Language}.png`}
+        src={`/images/languages/${lang}.png`}
         alt="language logo"
       />
     </li>

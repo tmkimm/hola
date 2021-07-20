@@ -16,7 +16,6 @@ const languageList = [
   { value: "angular", label: "Angular.js" },
   { value: "ruby", label: "Ruby" },
   { value: "java", label: "Java" },
-  { value: "flask", label: "Flask" },
   { value: "flutte", label: "Flutte" },
 ];
 

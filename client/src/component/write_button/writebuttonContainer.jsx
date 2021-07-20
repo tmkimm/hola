@@ -20,7 +20,7 @@ To-do
 const WritebuttonContainer = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const user = useSelector((state) => state.user);
+
   const { title, content, language, post, postError, postId } = useSelector(
     ({ write }) => ({
       title: write.title,
@@ -31,10 +31,37 @@ const WritebuttonContainer = (props) => {
       postId: write.postId,
     })
   );
+  const checkValidity = () => {
+    if (!title) {
+      toast.error("제목을 입력해주세요!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      return false;
+    }
 
+    if (language.length === 0) {
+      toast.error("사용 언어를 선택해주세요!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      return false;
+    }
+
+    if (!content) {
+      toast.error("내용을 입력해주세요!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      return false;
+    }
+    return true;
+  };
   // language 자동으로 넘어가도록 수정
   const onPublish = () => {
-    if (postId)
+    if (!checkValidity()) return;
+
+    if (postId) {
       dispatch(modifyPost({ postId, title, content, language })).then(
         (response) => {
           console.log("response is ", response);
@@ -44,7 +71,7 @@ const WritebuttonContainer = (props) => {
           });
         }
       );
-    else {
+    } else {
       dispatch(writePost({ title, content, language })).then((response) => {
         console.log("response is ", response);
         toast.success("글 작성이 완료되었습니다.", {
