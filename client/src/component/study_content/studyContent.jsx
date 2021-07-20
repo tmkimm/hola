@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import CancelButton from "../../component/cancelButton/cancelButton";
 import CommentContainer from "../../component/comment_container/commentContainer";
 import LikesAndViews from "../../component/likes_and_views/likesAndViews";
+import studyService from "../../service/study_service";
 import { setPost } from "../../store/write";
-import Modal from "../modal/modal_component/modal";
 import StudyButtons from "../study_buttons/studyButtons";
 import styles from "./studyContent.module.css";
 
@@ -21,7 +20,6 @@ const StudyLanguage = ({ languages }) => {
 };
 
 const LangItem = ({ Language }) => {
-  console.log(Language);
   const lang = Language === "c#" ? "cc" : Language;
   return (
     <li className={styles.languageItem}>
@@ -34,9 +32,22 @@ const LangItem = ({ Language }) => {
   );
 };
 
-const StudyContent = () => {
+const StudyContent = ({ id }) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const read = useSelector((state) => state.read);
+  console.log(id);
+  const handleDelete = async (id) => {
+    await studyService.deleteStudy(id);
+    history.push("/");
+  };
+
+  const handleEdit = (dispatch, history) => {
+    dispatch(setPost(read.post));
+    history.push("/register");
+  };
+
   const defaultPath =
     "https://hola-post-image.s3.ap-northeast-2.amazonaws.com/";
 
@@ -57,7 +68,12 @@ const StudyContent = () => {
           <div className={styles.userName}>{read.post.nickname}</div>
         </div>
         {user.nickName === read.post.nickname && (
-          <StudyButtons post={read.post}></StudyButtons>
+          <StudyButtons
+            history={history}
+            dispatch={dispatch}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+          ></StudyButtons>
         )}
         <h1 className={styles.languageInfo}>사용 언어 정보</h1>
         <StudyLanguage languages={read.post.language}></StudyLanguage>

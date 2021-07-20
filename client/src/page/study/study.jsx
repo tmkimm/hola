@@ -16,7 +16,7 @@ const Study = () => {
   const studyId = query.get("id");
   const dispatch = useDispatch();
   const read = useSelector((state) => state.read);
-
+  console.log(studyId);
   console.log(read);
   useEffect(() => {
     dispatch(readPost(studyId));
@@ -33,7 +33,7 @@ const Study = () => {
           <LoadingSpinner />
         </Modal>
       ) : (
-        <StudyContent />
+        <StudyContent id={studyId} />
       )}
     </>
   );

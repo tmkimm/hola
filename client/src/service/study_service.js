@@ -69,6 +69,14 @@ class Study {
     }
   };
 
+  deleteStudy = async (id) => {
+    try {
+      await this.study.delete(`studies/${id}`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   // 스터디의 댓글 리스트 조회
   getComments = async (id) => {
     try {
@@ -118,7 +126,7 @@ class Study {
 
   addLikes = async (studyId) => {
     try {
-      console.log('studyId : ' + studyId);
+      console.log("studyId : " + studyId);
       const response = await this.study.post("studies/likes", {
         studyId: studyId.toString(),
       });
@@ -129,7 +137,7 @@ class Study {
   };
 
   deleteLikes = async (studyId) => {
-    console.log('delete likes, studyid : ' + studyId);
+    console.log("delete likes, studyid : " + studyId);
     try {
       await this.study.delete(`studies/likes/${studyId}`);
     } catch (error) {

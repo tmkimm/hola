@@ -34,7 +34,6 @@ const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
       id: comment._id,
       content,
     });
-    console.log(typeof response);
     if (response === 401) {
       dispatch(fetchUserByRefreshToken());
       await studyService.modifyComment({ id: comment._id, content });

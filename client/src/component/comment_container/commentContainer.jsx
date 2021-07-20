@@ -10,7 +10,6 @@ const CommentContainer = ({ id }) => {
 
   // 댓글 등록 버튼
   const onRegisterClick = async (e) => {
-    console.log("id!!!!!!", id);
     await studyService.registerComment({ id, content });
     setContent("");
     setIsComplete((isComplete) => !isComplete);
@@ -18,7 +17,6 @@ const CommentContainer = ({ id }) => {
   console.log(commentList.length);
   useEffect(() => {
     studyService.getComments(id).then((response) => {
-      console.log(`comment useeffect!!!`);
       setCommentList(response.data.comments);
     });
   }, [id, isComplete]);
