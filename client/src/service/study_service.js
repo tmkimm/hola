@@ -57,7 +57,6 @@ class Study {
 
   modify = async (id, title, content, language) => {
     try {
-      console.log(id, title);
       const response = await this.study.patch(`studies/${id}`, {
         title,
         content,
@@ -128,7 +127,7 @@ class Study {
     try {
       console.log("studyId : " + studyId);
       const response = await this.study.post("studies/likes", {
-        studyId: studyId.toString(),
+        studyId,
       });
       return response;
     } catch (error) {

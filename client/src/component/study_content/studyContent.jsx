@@ -38,8 +38,10 @@ const StudyContent = ({ id }) => {
   const user = useSelector((state) => state.user);
   const read = useSelector((state) => state.read);
   console.log(id);
+  console.log("read : ", read);
   const handleDelete = async (id) => {
     await studyService.deleteStudy(id);
+    document.body.style.overflow = "auto";
     history.push("/");
   };
 
@@ -72,7 +74,7 @@ const StudyContent = ({ id }) => {
             history={history}
             dispatch={dispatch}
             handleEdit={handleEdit}
-            handleDelete={handleDelete}
+            handleDelete={() => handleDelete(id)}
           ></StudyButtons>
         )}
         <h1 className={styles.languageInfo}>사용 언어 정보</h1>
@@ -89,7 +91,7 @@ const StudyContent = ({ id }) => {
         <LikesAndViews
           views={read.post.views}
           likeUser={read.post.likes}
-          likes={read.post.likesCount}
+          totalLikes={read.post.totalLikes}
           studyId={read.post.id}
           userId={user.id}
         ></LikesAndViews>

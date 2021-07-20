@@ -114,7 +114,7 @@ const PostModal = ({ study, handleClose }) => {
         <LikesAndViews
           views={study.views}
           likeUser={study.likes}
-          likes={study.likesCount}
+          likes={study.totalLikes}
           studyId={study._id}
           userId={user.id}
         ></LikesAndViews>

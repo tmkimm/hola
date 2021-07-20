@@ -23,6 +23,7 @@ const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
 
   // 댓글 삭제 버튼 클릭
   const onDeleteClick = async () => {
+    document.body.style.overflow = "auto";
     setInputVisible(false);
     await studyService.deleteComment({ id: comment._id });
     setIsComplete((isComplete) => !isComplete);

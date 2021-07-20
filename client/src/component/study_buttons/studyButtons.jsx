@@ -18,7 +18,6 @@ const StudyButtons = ({ history, dispatch, handleEdit, handleDelete }) => {
   return (
     <>
       <section className={styles.buttonWrapper}>
-        <button>마감</button>
         <button onClick={() => handleEdit(dispatch, history)}>수정</button>
         <button onClick={openModal}>삭제</button>
       </section>

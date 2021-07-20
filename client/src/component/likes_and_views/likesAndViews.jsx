@@ -12,9 +12,10 @@ api check 필요 -> 중복 id 들어감
 
 */
 
-const LikesAndViews = ({ views, likes, likeUser, studyId, userId }) => {
+const LikesAndViews = ({ views, totalLikes, likeUser, studyId, userId }) => {
   const isLike = likeUser.filter((likeUserid) => likeUserid === userId);
   console.log(isLike.length);
+  console.log("likeUser: ", likeUser);
   const initialImg = isLike.length === 0 ? "heart_unfilled" : "heart_filled";
   const [likeImg, setLikeImg] = useState(initialImg);
 
@@ -38,7 +39,7 @@ const LikesAndViews = ({ views, likes, likeUser, studyId, userId }) => {
           src={`/images/info/${likeImg}.png`}
           alt="likes"
         />
-        <p>{likes}</p>
+        <p>{totalLikes}</p>
       </div>
       <div className={styles.views}>
         <img className={styles.eyeImg} src="/images/info/eye.png" alt="views" />
