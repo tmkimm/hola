@@ -6,43 +6,8 @@ import CommentContainer from "../../component/comment_container/commentContainer
 import LikesAndViews from "../../component/likes_and_views/likesAndViews";
 import { setPost } from "../../store/write";
 import Modal from "../modal/modal_component/modal";
+import StudyButtons from "../study_buttons/studyButtons";
 import styles from "./studyContent.module.css";
-
-const StudyButtons = ({ dispatch, history, post }) => {
-  const [showPopup, setShowPopup] = useState(false);
-  const handleEdit = (dispatch, history, post) => {
-    dispatch(setPost(post));
-    history.push("/register");
-  };
-
-  const openModal = () => {
-    document.body.style.overflow = "hidden";
-    setShowPopup((state) => !state);
-  };
-  const closeModal = () => {
-    document.body.style.overflow = "auto";
-    setShowPopup((state) => !state);
-  };
-  return (
-    <>
-      <section className={styles.buttonWrapper}>
-        <button>마감</button>
-        <button onClick={() => handleEdit(dispatch, history, post)}>
-          수정
-        </button>
-        <button onClick={openModal}>삭제</button>
-      </section>
-
-      <Modal visible={showPopup} onClose={closeModal}>
-        <CancelButton
-          confirmMsg="작성하신 글을 삭제 하시겠어요?"
-          positiveMsg="네, 삭제할래요"
-          negativeMsg="아니요"
-        ></CancelButton>
-      </Modal>
-    </>
-  );
-};
 
 const StudyLanguage = ({ languages }) => {
   const usedLanguage = languages.map((lang) => lang.value);
@@ -70,8 +35,6 @@ const LangItem = ({ Language }) => {
 };
 
 const StudyContent = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
   const user = useSelector((state) => state.user);
   const read = useSelector((state) => state.read);
   const defaultPath =
@@ -94,11 +57,7 @@ const StudyContent = () => {
           <div className={styles.userName}>{read.post.nickname}</div>
         </div>
         {user.nickName === read.post.nickname && (
-          <StudyButtons
-            dispatch={dispatch}
-            history={history}
-            post={read.post}
-          ></StudyButtons>
+          <StudyButtons post={read.post}></StudyButtons>
         )}
         <h1 className={styles.languageInfo}>사용 언어 정보</h1>
         <StudyLanguage languages={read.post.language}></StudyLanguage>

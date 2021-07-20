@@ -8,11 +8,6 @@
   padding-bottom: 5rem;
 }
 
-.buttonWrapper {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .buttonWrapper button {
   font-size: 1rem;
 }
