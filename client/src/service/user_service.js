@@ -19,6 +19,7 @@ class User {
     }
   };
 
+  // user nickname 중복 검사를 실행합니다.
   checkNickname = async (nickname) => {
     try {
       const response = await this.user.get(`users/${nickname}/exists`);
@@ -68,7 +69,23 @@ class User {
       return true;
     } catch (error) {
       console.error(error);
-      return false;
+    }
+  };
+
+  getUserReadList = async (id) => {
+    try {
+      const response = await this.user.get(`users/read-list/${id}`);
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  getUserLikeList = async (id) => {
+    try {
+      const response = await this.user.get(`user/likes/${id}`);
+    } catch (error) {
+      console.error(error);
     }
   };
 }
