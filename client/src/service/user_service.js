@@ -84,6 +84,7 @@ class User {
   getUserLikeList = async (id) => {
     try {
       const response = await this.user.get(`user/likes/${id}`);
+      return response;
     } catch (error) {
       console.error(error);
     }

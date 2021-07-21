@@ -5,6 +5,8 @@ import PostRegister from "./page/postRegister/postRegister";
 import Setting from "./page/setting/setting";
 import GithubLogin from "./page/auth/githubLogin";
 import Study from "./page/study/study";
+import MyPosts from "./page/my_posts/myPosts";
+import MyLikes from "./page/my_likes/myLikes";
 
 /* 
 
@@ -31,11 +33,17 @@ const App = () => {
       <Route path="/setting">
         <Setting />
       </Route>
-      <Route path="/auth/github">
-        <GithubLogin />
-      </Route>
       <Route path="/study">
         <Study />
+      </Route>
+      <Route path="/myPosts">
+        <MyPosts />
+      </Route>
+      <Route path="/myLikes">
+        <MyLikes />
+      </Route>
+      <Route path="/auth/github">
+        <GithubLogin />
       </Route>
     </Router>
   );

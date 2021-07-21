@@ -30,13 +30,13 @@ const DropdownBar = () => {
     <div className={styles.menuWrapper}>
       <ul className={styles.menu}>
         <li className={styles.menuItem}>
-          <Link to="/list" style={{ display: "inline-block" }}>
+          <Link to="/myPosts" style={{ display: "inline-block" }}>
             내 작성글
           </Link>
         </li>
         <li className={styles.menuItem}>
-          <Link to="/list" style={{ display: "inline-block" }}>
-            찜한 글
+          <Link to="/myLikes" style={{ display: "inline-block" }}>
+            내 관심글
           </Link>
         </li>
         <li className={styles.menuItem}>
