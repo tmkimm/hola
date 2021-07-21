@@ -1,3 +1,5 @@
+@value cancelBackground from  '../../common/color.css';
+
 .logo {
   width: 4rem;
   height: auto;

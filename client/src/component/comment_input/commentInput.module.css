@@ -1,3 +1,5 @@
+@value registerBackground from '../../common/color.css';
+
 .commentInput {
   display: flex;
   flex-direction: column;
@@ -13,7 +15,7 @@
   margin-bottom: 10px;
 }
 
-.commentInput button {
+.buttonComplete {
   font-weight: bold;
   color: white;
   border-radius: 4px;
@@ -21,14 +23,11 @@
   margin-bottom: 40px;
   height: 2rem;
   font-size: 1rem;
+  background-color: registerBackground;
 }
 
 .buttonWrapper {
   display: flex;
   justify-content: flex-end;
   margin-top: 1rem;
-}
-
-.buttonComplete {
-  background-color: #392f31;
 }

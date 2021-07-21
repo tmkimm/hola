@@ -1,3 +1,7 @@
+@value cancelBackground from  '../../common/color.css';
+@value cancelFontColor from '../../common/color.css';
+@value registerBackground from '../../common/color.css';
+
 .commentContainer {
   display: flex;
   flex-direction: column;
@@ -58,8 +62,6 @@
 }
 
 .commentInputButton button {
-  font-weight: bold;
-  color: white;
   border-radius: 4px;
   width: 70px;
   margin-top: 10px;
@@ -69,11 +71,13 @@
 }
 
 .buttonComplete {
-  background: rgb(18, 184, 134);
+  background: registerBackground;
+  font-weight: bold;
+  color: white;
 }
 
 .buttonCancel {
-  background: rgb(100, 97, 97);
+  background: cancelBackground;
 }
 
 hr {

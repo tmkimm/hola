@@ -1,3 +1,7 @@
+@value cancelBackground from  '../../common/color.css';
+@value cancelFontColor from '../../common/color.css';
+@value registerBackground from '../../common/color.css';
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -26,8 +30,7 @@
   cursor: pointer;
   outline: none;
   border: none;
-  background: rgb(233, 236, 239);
-  color: rgb(73, 80, 87);
+  background: cancelBackground;
   border-radius: 4px;
   padding: 0px 1.25rem;
   height: 2rem;
@@ -40,7 +43,7 @@
   cursor: pointer;
   outline: none;
   border: none;
-  background-color: #392f31;
+  background-color: registerBackground;
   color: white;
   border-radius: 4px;
   padding: 0px 1.25rem;

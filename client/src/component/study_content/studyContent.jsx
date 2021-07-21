@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { formatDate } from "../../common/utils";
 import CommentContainer from "../../component/comment_container/commentContainer";
 import LikesAndViews from "../../component/likes_and_views/likesAndViews";
 import studyService from "../../service/study_service";
@@ -58,7 +59,7 @@ const StudyContent = ({ id }) => {
       <section className={styles.postHeader}>
         <div className={styles.title}>{read.post.title}</div>
         <div className={styles.registeredDate}>
-          {new Date(read.post.createdAt).toString()}
+          {formatDate(read.post.createdAt)}
         </div>
 
         <div className={styles.user}>
