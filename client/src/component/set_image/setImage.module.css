@@ -34,8 +34,13 @@
 }
 
 .buttonNext {
-  font-size: 1.25rem;
   font-weight: bold;
+  color: white;
+  border-radius: 4px;
+  width: 8rem;
+  height: 2.5rem;
+  font-size: 1.25rem;
+  background-color: #392f31;
 }
 
 .titleText {

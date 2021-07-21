@@ -9,6 +9,11 @@ const SignupEnd = ({ handleClose }) => {
         <br />
         Hola에서 당신의 꿈을 코딩하세요!
       </h1>
+      <img
+        className={styles.logo}
+        src="/images/logo/hola_logo_y.png"
+        alt="logo"
+      />
       <button
         onClick={handleClose}
         className={styles.buttonClose}

@@ -5,6 +5,17 @@
   animation-name: opacityAnimation;
 }
 
+.buttonClose {
+  font-weight: bold;
+  color: white;
+  border-radius: 4px;
+  width: 8rem;
+  height: 2.5rem;
+  font-size: 1.25rem;
+  margin-top: 3rem;
+  background-color: #392f31;
+}
+
 @keyframes opacityAnimation {
   0% {
     opacity: 0;
@@ -12,10 +23,4 @@
   100% {
     opacity: 1;
   }
-}
-
-.buttonClose {
-  margin-top: 10rem;
-  font-size: 1.25rem;
-  font-weight: bold;
 }

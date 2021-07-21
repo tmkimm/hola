@@ -19,41 +19,50 @@ class User {
     }
   };
 
+  checkNickname = async (nickname) => {
+    try {
+      const response = await this.user.get(`users/${nickname}/exists`);
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   // 닉네임을 이용해 사용자 정보를 조회합니다.
   getUserInfoByNickName = async (nickName) => {
     try {
       const params = {
-        nickName: nickName
+        nickName: nickName,
       };
 
       const user = await this.user.get(`users`, {
-        params
+        params,
       });
       return user;
     } catch (error) {
       console.error(error);
     }
   };
-  
+
   // 사용자 정보를 수정합니다.
   // 닉네임이 변경될 경우 AccessToken을 다시 설정해야 합니다.
-  async modifyUserInfo(id, userData) {
+  modifyUserInfo = async (id, userData) => {
     try {
-       const user = await this.user.patch(`users/${id}`, userData);
-        return { 
-          user,
-          modifySuccess: true
-        };
+      const user = await this.user.patch(`users/${id}`, userData);
+      return {
+        user,
+        modifySuccess: true,
+      };
     } catch (error) {
       return {
         user: null,
-        modifySuccess: false
+        modifySuccess: false,
       };
-    };
+    }
   };
 
   // 회원 탈퇴
-  deleteUser = async( id ) => {
+  deleteUser = async (id) => {
     try {
       await this.user.delete(`users/${id}`);
       return true;
