@@ -4,6 +4,7 @@ import axios from 'axios';
 // 각 소셜 로그인에 따라 Oauth 서버를 호출한다.
 const isTokenValidWithKakao = async (req, res, next) => {
     try {
+        console.log(`kakao req.body.code : ${req.body.code}`);
         // 사용자 정보 가져오기
         const kakaoResponse = await axios.post(
             'https://kapi.kakao.com/v2/user/me',
@@ -17,9 +18,16 @@ const isTokenValidWithKakao = async (req, res, next) => {
             }
         );
         
+        console.log(`idToken : ${idToken}`);
+
+
         const idToken = kakaoResponse.data.id;
         const tokenType = 'Kakao';
         const name = kakaoResponse.data.kakao_account.profile.nickname;
+
+        console.log(`name : ${name}`);
+
+
         req.user = { idToken, tokenType, name };
 
         next();
