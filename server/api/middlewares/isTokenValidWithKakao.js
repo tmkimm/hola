@@ -18,10 +18,10 @@ const isTokenValidWithKakao = async (req, res, next) => {
             }
         );
         
+        const idToken = kakaoResponse.data.id;
+
         console.log(`idToken : ${idToken}`);
 
-
-        const idToken = kakaoResponse.data.id;
         const tokenType = 'Kakao';
         const name = kakaoResponse.data.kakao_account.profile.nickname;
 
