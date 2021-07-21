@@ -5,6 +5,8 @@ import axios from 'axios';
 // 각 소셜 로그인에 따라 Oauth 서버를 호출한다.
 const isTokenValidWithGithub = async (req, res, next) => {
     try {
+        console.log(`github req.body.code : ${req.body.code}`);
+        console.log(`config.githubClientID : ${config.githubClientID}`);
         // 인가코드를 이용하여 AccessToken 발급
         const accessToken = await axios.post(
             'https://github.com/login/oauth/access_token',
@@ -19,6 +21,8 @@ const isTokenValidWithGithub = async (req, res, next) => {
                 }
             }
         );
+
+        console.log(`accessToken.data.access_token : ${accessToken.data.access_token}`);
         // 사용자 정보 가져오기
         const { data: userInfo } = await axios.get(
             'https://api.github.com/user',
@@ -31,6 +35,7 @@ const isTokenValidWithGithub = async (req, res, next) => {
         const idToken = userInfo.id;
         const name = userInfo.name;
         const tokenType = 'Github';
+        console.log(`idToken : ${idToken} name : ${name}`);
         req.user = { idToken, tokenType, name };
         next();
     } catch (error) {
