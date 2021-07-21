@@ -20,10 +20,12 @@
 
 .languageList {
   display: flex;
+  border-bottom: 3px solid #dcdcdc;
 }
 
 .languageItem {
   margin-right: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .languageItem img {
@@ -103,9 +105,9 @@
 
 .registeredDate {
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.25rem;
   line-height: 126.5%; /* or 19px */
-  margin-top: 0.5rem;
+  margin-top: 1.5rem;
   letter-spacing: -0.005em;
   color: #8c8c8c;
 }
