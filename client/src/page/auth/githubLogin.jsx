@@ -4,6 +4,8 @@ import { useHistory, useLocation } from "react-router";
 import { fetchUserById } from "../../store/user";
 import { useDispatch } from "react-redux";
 import { setModalVisible, nextStep } from "../../store/loginStep";
+import Modal from "../../component/modal/modal_component/modal";
+import LoadingSpinner from "../../component/loading/loadingSpinner";
 
 /* 
 
@@ -20,12 +22,13 @@ const GithubLogin = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const getToken = async () => {
+    const getToken = () => {
       const { code } = qs.parse(location.search, {
         ignoreQueryPrefix: true,
       });
       const userData = { code, social: "github" };
-      await dispatch(fetchUserById(userData)).then((response) => {
+      console.log("gitgub Login", code);
+      dispatch(fetchUserById(userData)).then((response) => {
         if (response.payload.loginSuccess === false) {
           // signUp 진행
           dispatch(setModalVisible(true));
@@ -37,7 +40,12 @@ const GithubLogin = () => {
 
     getToken();
   }, [dispatch, history, location.search]);
-  return null; // 이 부분에 로딩바와 같은 페이지를 렌더링 해도 좋아요.
+
+  return (
+    <Modal visible={true} name="loading">
+      <LoadingSpinner />
+    </Modal>
+  ); // 이 부분에 로딩바와 같은 페이지를 렌더링 해도 좋아요.
 };
 
 export default GithubLogin;

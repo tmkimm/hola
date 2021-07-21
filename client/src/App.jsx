@@ -16,7 +16,7 @@ App component
 */
 
 const App = () => {
-  console.log("App!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+  console.log("AppV2!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
   return (
     <Router>

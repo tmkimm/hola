@@ -7,7 +7,7 @@ const GithubButton = (props) => {
     <div className={styles.buttonWrapper}>
       <button className={styles.button}>
         <a
-          href={`https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=http://localhost:3000/auth/github`}
+          href={`https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=https://holaworld.io/auth/github`}
         >
           <svg width="50" height="50" fill="currentColor" viewBox="0 0 20 20">
             <mask
