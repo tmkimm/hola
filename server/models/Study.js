@@ -143,12 +143,20 @@ studySchema.statics.findStudyRecommend = async function(sort, language, studyId,
     .limit(limit)
     .select('-isDeleted -comments');
 
-    // let studies2 =  await Study.find(query)
-    // .where('isDeleted').equals(false)
-    // .sort(sortQuery.join(' '))
-    // .limit(limit)
-    // .select('-isDeleted -comments');
-    // studies.push(...studies2);
+    // 부족한 개수만큼 추가 조회
+    if(studies.length < limit - 1) {
+        let notInStudyIdArr = studies.map(study => {
+            return study._id;
+        });
+        query._id = {$nin: notInStudyIdArr};    // 이미 조회된 글들은 중복 x
+        delete query.language;
+        let shortStudies = await Study.find(query)
+        .where('isDeleted').equals(false)
+        .sort(sortQuery.join(' '))
+        .limit(limit - studies.length)
+        .select('-isDeleted -comments');
+        studies.push(...shortStudies);
+    }
     return studies;
 };
 
@@ -261,15 +269,14 @@ studySchema.statics.deleteLike = async function(studyId, userId) {
       );
     return deleteRecord;
 }
-
-
 // 조회수 증가
 studySchema.statics.increaseView = async function(studyId) {
-    let studyRecord = await Study.findById({ _id: studyId });
     await Study.findOneAndUpdate(
         { _id: studyId },
         {
-            views: studyRecord.views + 1
+          $inc: {
+            views : 1
+          }
         }
       );
 }

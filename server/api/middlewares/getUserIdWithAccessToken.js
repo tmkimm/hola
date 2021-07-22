@@ -20,6 +20,7 @@ const getUserIdWithAccessToken = async (req, res, next) => {
     req.user = {
         _id: userId
     }
+
     next();
   }
   export { getUserIdWithAccessToken };

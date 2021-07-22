@@ -11,7 +11,7 @@ export class StudyService {
 
     // 메인 화면에서 스터디를 추천한다.
     // 4건 이하일 경우 무조건 다시 조회가 아니라, 해당 되는 건은 포함하고 나머지 건만 조회해야함
-    async recommendToUserFromMain(userId, studyId) {
+    async recommendToUserFromMain(userId) {
         let sort, likeLanguages, limit = 20;
         if(userId) {
             let user = await User.findById(userId);
@@ -22,10 +22,7 @@ export class StudyService {
             sort = 'totalLikes';
         }
 
-        let studies = await Study.findStudyRecommend('-views', likeLanguages, studyId, limit);
-        if(studies.length < limit)
-            studies = await Study.findStudyRecommend('-totalLikes', [], studyId, limit);
-
+        let studies = await Study.findStudyRecommend('-views', likeLanguages, null, limit);
         return studies;
     }
 
@@ -39,9 +36,6 @@ export class StudyService {
         }
 
         let studies = await Study.findStudyRecommend(sort, language, studyId, limit);
-        if(studies.length < limit)
-            studies = await Study.findStudyRecommend(sort, [], studyId, limit);
-
         return studies;
     }
 
@@ -60,6 +54,12 @@ export class StudyService {
         return studies;
     }
 
+    // 사용자의 관심 등록 여부를 조회한다.
+    async findUserLiked(studyId, userId) {
+        const studies = await Study.find({_id : studyId, likes : userId});;
+        let isLiked = studies.length > 0 ? true : false;
+        return isLiked;
+    }
     // 신규 스터디를 등록한다.
     async registerStudy(userID, study) {
         study.author = userID;
