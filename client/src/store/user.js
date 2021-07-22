@@ -133,7 +133,7 @@ const userSlice = createSlice({
     [fetchUserByRefreshToken.fulfilled]: (state, { payload }) => ({
       ...state,
       nickName: payload.nickName,
-      id: payload._id,
+      id: payload.id,
       imageUrl: defaultPath + payload.image,
       likeLanguages: payload.likeLanguages,
     }),
