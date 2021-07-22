@@ -32,8 +32,6 @@ const Main = (props) => {
   const [popularStudyList, setPopularStudyList] = useState([]);
   const [recentStudyList, setRecentStudyList] = useState([]);
   const [category, setCategory] = useState(SHOW_BY_DATE);
-  const [styleDate, setStyleDate] = useState(ACTIVE);
-  const [styleRecent, setStyleRecent] = useState(INACTIVE);
   const selectedLanguages = useSelector((state) => state.language);
 
   useEffect(() => {
@@ -55,19 +53,9 @@ const Main = (props) => {
       .catch(console.error);
   }, [selectedLanguages]);
 
-  const toggleCategoryToDate = (e) => {
-    if (category === SHOW_BY_DATE) return;
-    setCategory((state) => SHOW_BY_DATE);
-    setStyleDate((state) => ACTIVE);
-    setStyleRecent((state) => INACTIVE);
-  };
-
-  const toggleCategoryToView = (e) => {
-    console.log(e);
-    if (category === SHOW_BY_VIEWS) return;
-    setCategory((state) => SHOW_BY_VIEWS);
-    setStyleDate((state) => INACTIVE);
-    setStyleRecent((state) => ACTIVE);
+  const toggleCategory = () => {
+    if (category === SHOW_BY_VIEWS) setCategory((state) => SHOW_BY_DATE);
+    else setCategory((state) => SHOW_BY_VIEWS);
   };
 
   return (
@@ -82,8 +70,10 @@ const Main = (props) => {
           <main className={styles.main}>
             <section className={styles.category}>
               <div
-                className={`${styles.category__item} ${styleDate}`}
-                onClick={toggleCategoryToDate}
+                className={`${styles.category__item} ${
+                  category === SHOW_BY_DATE ? ACTIVE : INACTIVE
+                }`}
+                onClick={toggleCategory}
               >
                 <svg
                   stroke="currentColor"
@@ -98,9 +88,12 @@ const Main = (props) => {
                 </svg>
                 <span className={styles.text}>최신</span>
               </div>
+
               <div
-                className={`${styles.category__item} ${styleRecent}`}
-                onClick={toggleCategoryToView}
+                className={`${styles.category__item} ${
+                  category === SHOW_BY_DATE ? INACTIVE : ACTIVE
+                }`}
+                onClick={toggleCategory}
               >
                 <svg
                   stroke="currentColor"
