@@ -32,8 +32,10 @@ export class UserServcie {
   // 사용자가 관심 등록한 글 리스트를 조회한다.
   async findUserLikes(id) {
     const userLikes = await User.findById(id)
-    .where('isDeleted').equals(false)
-    .populate('likeStudies')
+    .populate({
+      path: 'likeStudies',
+      match: { isDeleted: false}
+    })
     .select('likeStudies');
     return userLikes;
   }
@@ -41,8 +43,10 @@ export class UserServcie {
   // 사용자의 읽은 목록을 조회한다.
   async findReadList(id) {
     const readLIst = await User.findById(id)
-    .where('isDeleted').equals(false)
-    .populate('readList')
+    .populate({
+      path: 'readList',
+      match: { isDeleted: false}
+    })
     .select('readList');
     return readLIst;
   }

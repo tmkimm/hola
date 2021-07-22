@@ -114,7 +114,7 @@ userSchema.statics.deleteLikeStudy = async function (studyId, userId) {
 };
 
 userSchema.statics.addReadList = async function (studyId, userId) {
-  const isStudyExists = await User.findOne({ readList: studyId });
+  const isStudyExists = await User.findOne({ _id: userId, readList: studyId });
   if (!isStudyExists) {
     await User.findByIdAndUpdate(
       { _id: userId },
