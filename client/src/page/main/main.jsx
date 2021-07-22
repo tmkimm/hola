@@ -15,9 +15,6 @@ component rendering시 useEffect를 통해 render할 post list를 받아옵니�
 
 최신, 트렌딩 두가지의 기준으로 분리하였습니다.
 
-To-Do
-category component 분리
-
 */
 
 const SORT_BY_VIEWS = "+views";
