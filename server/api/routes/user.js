@@ -52,6 +52,7 @@ export default (app) => {
         return res.status(200).json({
             _id: userRecord._id,
             nickName: userRecord.nickName,
+            image: userRecord.image,
             accessToken: accessToken,
             isExists: false
         });

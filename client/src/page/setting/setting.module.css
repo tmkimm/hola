@@ -1,3 +1,5 @@
+@value registerBackground from '../../common/color.css';
+
 .main {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -20,6 +22,11 @@
 
 .titleWrapper {
   display: flex;
+  align-items: center;
+}
+
+.likeLanguages {
+  margin-top: 3rem;
 }
 
 .titleWrapper input {
@@ -29,10 +36,11 @@
   border-width: 1px;
   font-size: large;
   width: 18rem;
-  padding: 0px;
+  min-height: 3rem;
+  padding: 1rem;
 }
+
 .titleWrapper h3 {
-  margin: 10px 10px 10px 0px;
   width: 130px;
 }
 
@@ -43,9 +51,20 @@
 }
 
 .buttonComplete {
-  background-color: #392f31;
+  margin-top: 1.5rem;
+  background-color: registerBackground;
 }
 
 .buttonSignOut {
   background: rgb(255, 50, 23);
+}
+
+@media screen and (max-width: 768px) {
+  .main {
+    width: 100%;
+  }
+  .titleWrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

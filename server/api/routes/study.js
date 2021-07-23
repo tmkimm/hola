@@ -37,9 +37,8 @@ export default (app) => {
   // 메인에서의 스터디 추천
   route.get('/recommend', getUserIdWithAccessToken, async (req, res, next) => {
     const userId = req.user._id;
-    const { studyId } = req.query;
     let StudyServiceInstance = new StudyService();
-    const studies = await StudyServiceInstance.recommendToUserFromMain(userId, studyId);
+    const studies = await StudyServiceInstance.recommendToUserFromMain(userId);
 
     res.status(200).json(studies);
   });
@@ -62,6 +61,18 @@ export default (app) => {
     const study = await StudyServiceInstance.studyDetailView(studyId, userId);
 
     res.status(200).json(study);
+  });
+
+  // 사용자의 스터디 관심 등록 여부
+  route.get('/:id/isLiked', getUserIdWithAccessToken, async (req, res, next) => {
+    const studyId = req.params.id;
+    const userId = req.user._id;
+    let StudyServiceInstance = new StudyService();
+    const isLiked = await StudyServiceInstance.findUserLiked(studyId, userId);
+
+    res.status(200).json({
+      isLiked
+    });
   });
 
   // 스터디 등록 

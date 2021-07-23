@@ -14,9 +14,10 @@ export class AuthService {
         const _id = user._id;
         const nickName = user.nickName;
         const image = user.image;
+        const likeLanguages = user.likeLanguages;
         const accessToken = await user.generateAccessToken();
         const refreshToken = await user.generateRefreshToken();
-        return { _id, nickName, image, accessToken, refreshToken };
+        return { _id, nickName, image, likeLanguages, accessToken, refreshToken };
     }
 
     // Refresh Token을 이용하여 Access Token 재발급한다.
@@ -33,8 +34,8 @@ export class AuthService {
             return { decodeSuccess };
         }
         const user =  await User.findByNickName(decodeRefreshToken.nickName);
-        const { _id, nickName, email, image } = user;
+        const { _id, nickName, email, image, likeLanguages } = user;
         const accessToken = await user.generateAccessToken();
-        return { decodeSuccess, _id, nickName, email, image, accessToken };
+        return { decodeSuccess, _id, nickName, email, image, likeLanguages, accessToken };
     }
 }

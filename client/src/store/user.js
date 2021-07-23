@@ -12,9 +12,7 @@ createAsyncThunk를 통해 user 상태를 update 합니다.
 to-do
 fullfilled외에 rejected도 처리 로직 추가
 request abort나 signal에 대해서 찾아보기
-loading state 추가하면 좋을듯
 fetchByRefresh Token에서 user Id추가
-받는쪽에서 로그인 함수를 합칠 수 있는지 보자
 
 */
 
@@ -133,7 +131,7 @@ const userSlice = createSlice({
     [fetchUserByRefreshToken.fulfilled]: (state, { payload }) => ({
       ...state,
       nickName: payload.nickName,
-      id: payload._id,
+      id: payload.id,
       imageUrl: defaultPath + payload.image,
       likeLanguages: payload.likeLanguages,
     }),

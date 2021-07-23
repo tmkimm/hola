@@ -50,7 +50,7 @@ export default (app) => {
     route.post('/google', isTokenValidWithGoogle, autoSignUp, async (req, res, next) => {
         const { idToken } = req.user; 
         let AuthServiceInstance = new AuthService();
-        const { _id, nickName, image, accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);
+        const { _id, nickName, image, likeLanguages, accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);
         
         res.cookie("R_AUTH", refreshToken, {
             httpOnly: true,
@@ -63,6 +63,7 @@ export default (app) => {
             _id: _id,
             nickName: nickName,
             image: image,
+            likeLanguages: likeLanguages,
             accessToken: accessToken
         });
     });
@@ -72,7 +73,7 @@ export default (app) => {
     route.post('/github', isTokenValidWithGithub, autoSignUp, async (req, res, next) => {
         const { idToken } = req.user; 
         let AuthServiceInstance = new AuthService();
-        const { _id, nickName, image, accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);
+        const { _id, nickName, image, likeLanguages, accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);
         res.cookie("R_AUTH", refreshToken, {
             httpOnly: true,
             secure: false,
@@ -84,6 +85,7 @@ export default (app) => {
             _id: _id,
             nickName: nickName,
             image: image,
+            likeLanguages: likeLanguages,
             accessToken: accessToken
         });
     });
@@ -93,7 +95,7 @@ export default (app) => {
     route.post('/kakao', isTokenValidWithKakao, autoSignUp, async (req, res, next) => {
         const { idToken } = req.user; 
         let AuthServiceInstance = new AuthService();
-        const { _id, nickName, image, accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);
+        const { _id, nickName, image, likeLanguages, accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);
         
         res.cookie("R_AUTH", refreshToken, {
             httpOnly: true,
@@ -106,6 +108,7 @@ export default (app) => {
             _id: _id,
             nickName: nickName,
             image: image,
+            likeLanguages: likeLanguages,
             accessToken: accessToken
         });
     });
