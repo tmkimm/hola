@@ -88,7 +88,12 @@ const Setting = (props) => {
   // 변경 완료 버튼
   const onCompleteClick = async (e) => {
     if (!nickName) {
-      toast.error("닉네임을 입력해야 합니다.", {
+      toast.error("닉네임을 입력해 주세요!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+    } else if (nickName.length > 15) {
+      toast.error("닉네임은 15자 아래로 입력해주세요!", {
         position: "top-right",
         autoClose: 3000,
       });

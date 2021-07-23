@@ -46,6 +46,11 @@ const StudyContent = ({ id }) => {
     history.push("/");
   };
 
+  const handleEnd = async () => {
+    const res = await studyService.editClose(id, !read.post.isClosed);
+    console.log("res from fuck", res);
+  };
+
   const handleEdit = (dispatch, history) => {
     dispatch(setPost(read.post));
     history.push("/register");
@@ -76,6 +81,8 @@ const StudyContent = ({ id }) => {
             dispatch={dispatch}
             handleEdit={handleEdit}
             handleDelete={() => handleDelete(id)}
+            handleEnd={handleEnd}
+            isClosed={read.post.isClosed}
           ></StudyButtons>
         )}
         <h1 className={styles.languageInfo}>사용 언어 정보</h1>

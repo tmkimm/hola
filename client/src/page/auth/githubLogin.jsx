@@ -29,12 +29,14 @@ const GithubLogin = () => {
       const userData = { code, social: "github" };
       console.log("gitgub Login", code);
       dispatch(fetchUserById(userData)).then((response) => {
+        console.log("res: !! ", response);
         if (response.payload.loginSuccess === false) {
           // signUp 진행
+          console.log("res: !! ", response);
           dispatch(setModalVisible(true));
-          dispatch(nextStep("SIGNUP"));
+          dispatch(nextStep());
         }
-        history.push("/");
+        //history.push("/");
       });
     };
 

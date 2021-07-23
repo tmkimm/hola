@@ -68,6 +68,17 @@ class Study {
     }
   };
 
+  editClose = async (id, isClosed) => {
+    try {
+      const response = await this.study.patch(`studies/${id}`, {
+        isClosed,
+      });
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   deleteStudy = async (id) => {
     try {
       await this.study.delete(`studies/${id}`);

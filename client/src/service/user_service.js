@@ -20,12 +20,15 @@ class User {
   };
 
   // user nickname 중복 검사를 실행합니다.
-  checkNickname = async (nickname) => {
+  checkNickname = async (id, nickName) => {
     try {
-      const response = await this.user.get(`users/${nickname}/exists`);
-      return response;
+      console.log(id, nickName);
+      const response = await this.user.get(
+        `users/${id}/exists?nickName=${nickName}`
+      );
+      return response.data;
     } catch (error) {
-      console.error(error);
+      if (error.response.status === 409) return { isExists: true };
     }
   };
 
