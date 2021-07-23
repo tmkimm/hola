@@ -59,7 +59,7 @@ export default (app) => {
 
 
     // 사용자 닉네임 중복 체크
-    route.get('/:id/exists', isAccessTokenValid, nickNameDuplicationCheck, async (req, res, next) => {
+    route.get('/:id/exists', nickNameDuplicationCheck, async (req, res, next) => {
         return res.status(200).json({
             isExists: false
         });
