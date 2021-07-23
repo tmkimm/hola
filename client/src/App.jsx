@@ -7,6 +7,7 @@ import GithubLogin from "./page/auth/githubLogin";
 import Study from "./page/study/study";
 import MyPosts from "./page/my_posts/myPosts";
 import MyLikes from "./page/my_likes/myLikes";
+import SettingContainer from "./component/setting_container/settingContainer";
 
 /* 
 
@@ -31,7 +32,7 @@ const App = () => {
         <PostRegister />
       </Route>
       <Route path="/setting">
-        <Setting />
+        <SettingContainer />
       </Route>
       <Route path="/study">
         <Study />

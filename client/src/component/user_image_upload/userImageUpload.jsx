@@ -11,6 +11,7 @@ const UserImageUpload = ({ image, setImage, setIsImageChanged }) => {
       const reader = new FileReader();
       reader.addEventListener("load", () => {
         setImage(reader.result);
+        //base64로 setImage
       });
       reader.readAsDataURL(e.target.files[0]);
     }
@@ -23,6 +24,7 @@ const UserImageUpload = ({ image, setImage, setIsImageChanged }) => {
     setIsImageChanged(true);
   };
 
+  // image가 base64면 그냥 쓰고, base64가 아니면 url로 조합
   return (
     <div className={styles.image}>
       <img
@@ -31,7 +33,7 @@ const UserImageUpload = ({ image, setImage, setIsImageChanged }) => {
           image
             ? isBase64(image)
               ? image
-              : `${baseUrl}${image}`
+              : `${image}`
             : `${baseUrl}default.PNG`
         }
         alt="사용자 이미지"

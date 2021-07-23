@@ -69,11 +69,13 @@ const fetchUserByRefreshToken = createAsyncThunk(
   async (thunkAPI) => {
     // 생각해볼 것. 성공했을때만 이 data 넣어야 하나?
     const response = await authService.getUserInfo();
+
     const accessToken = response.data.accessToken;
     const userInfo = {
       nickName: response.data.nickName,
       id: response.data._id,
       image: response.data.image,
+      likeLanguages: response.data.likeLanguages,
     };
 
     // header에 access token 설정
