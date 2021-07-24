@@ -3,7 +3,6 @@ import styles from "./studyItem.module.css";
 import Modal from "../modal/modal_component/modal";
 import PostModal from "../modal/post_modal/postModal";
 import { useHistory } from "react-router-dom";
-import StudyList from "../study_list/studyList";
 
 const StudyItem = ({ study }) => {
   const studyLang = [];

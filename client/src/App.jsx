@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Main from "./page/main/main";
 import PostRegister from "./page/postRegister/postRegister";
-import Setting from "./page/setting/setting";
 import GithubLogin from "./page/auth/githubLogin";
 import Study from "./page/study/study";
 import MyPosts from "./page/my_posts/myPosts";
@@ -19,7 +18,7 @@ App component
 */
 
 const App = () => {
-  console.log("AppV2!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+  console.log("AppV3!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
   return (
     <Router>
