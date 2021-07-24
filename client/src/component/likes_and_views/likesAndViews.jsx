@@ -10,6 +10,10 @@ To-do
 api check 필요 -> 중복 id 들어감
 해당 글 id 던지면 좋아요 수와 views만 return 받을 수 있는 api 있으면 좋을 것 같음
 
+삭제 제대로 되고 있는지 확인 필요
+StudyContent에서 read, user redux 정보를 다 전달 받고 있는데, 
+이거 제대로 된 구조인지 생각필요
+
 */
 
 const LikesAndViews = ({ views, totalLikes, likeUser, studyId, userId }) => {
@@ -18,14 +22,19 @@ const LikesAndViews = ({ views, totalLikes, likeUser, studyId, userId }) => {
   console.log("likeUser: ", likeUser);
   const initialImg = isLike.length === 0 ? "heart_unfilled" : "heart_filled";
   const [likeImg, setLikeImg] = useState(initialImg);
+  const [likeCount, setLikeCount] = useState(totalLikes);
 
-  const handleLikesClick = () => {
+  const handleLikesClick = async () => {
     console.log("studyId : " + studyId);
     if (likeImg === "heart_filled") {
-      studyService.addLikes(studyId);
+      const response = await studyService.deleteLikes(studyId);
+      console.log("delete like response: ", response);
       setLikeImg("heart_unfilled");
+      setLikeCount((state) => state - 1);
     } else {
-      studyService.deleteLikes(studyId);
+      const response = await studyService.addLikes(studyId);
+      console.log("add like response : ", response);
+      setLikeCount((state) => state + 1);
       setLikeImg("heart_filled");
     }
   };
@@ -39,7 +48,7 @@ const LikesAndViews = ({ views, totalLikes, likeUser, studyId, userId }) => {
           src={`/images/info/${likeImg}.png`}
           alt="likes"
         />
-        <p>{totalLikes}</p>
+        <p>{likeCount}</p>
       </div>
       <div className={styles.views}>
         <img className={styles.eyeImg} src="/images/info/eye.png" alt="views" />

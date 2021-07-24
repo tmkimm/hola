@@ -15,7 +15,6 @@ const StudyButtons = ({
   const [close, setClose] = useState(isClosed);
   const [isDeleteButton, setIsDeleTeButton] = useState(false);
 
-  console.log("tset!!!!!!!!!!!!!", close);
   const openModal = (target) => {
     if (target === "deleteModal") setIsDeleTeButton(true);
     else setIsDeleTeButton(false);

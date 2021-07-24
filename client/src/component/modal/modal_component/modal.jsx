@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import Portal from "../portal/portal";
 
 const Modal = ({ name, onClose, visible, children }) => {
