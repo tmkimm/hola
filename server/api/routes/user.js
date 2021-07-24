@@ -86,11 +86,20 @@ export default (app) => {
         res.status(200).json(user);
     });
 
-    // 사용자 읽은 목록 리스트 조회
+    // 사용자 읽은 목록  조회
     route.get('/read-list/:id', async (req, res, next) => {
         const id = req.params.id;
         let UserServcieInstance = new UserServcie();
         const user = await UserServcieInstance.findReadList(id);
+
+        res.status(200).json(user);
+    });
+
+    // 사용자 작성 글 목록 조회
+    route.get('/myStudies/:id', async (req, res, next) => {
+        const id = req.params.id;
+        let UserServcieInstance = new UserServcie();
+        const user = await UserServcieInstance.findMyStudies(id);
 
         res.status(200).json(user);
     });
