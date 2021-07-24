@@ -36,7 +36,7 @@ const UserImageUpload = ({ image, setImage, setIsImageChanged }) => {
               : `${image}`
             : `${baseUrl}default.PNG`
         }
-        alt="사용자 이미지"
+        alt="user avatar"
       />
       <div className={styles.imageControl}>
         <label className={styles.customLabelFileUpload}>

@@ -3,11 +3,12 @@ import styles from "./studyItem.module.css";
 import Modal from "../modal/modal_component/modal";
 import PostModal from "../modal/post_modal/postModal";
 import { useHistory } from "react-router-dom";
+import StudyList from "../study_list/studyList";
 
 const StudyItem = ({ study }) => {
   const studyLang = [];
   const history = useHistory();
-
+  const displayType = study.isClosed ? styles.closed : styles.open;
   for (let i = 0; i < 3; i++) {
     if (study.language[i] === undefined) break;
     if (study.language[i] === "c#") studyLang.push("cc");
@@ -15,12 +16,11 @@ const StudyItem = ({ study }) => {
   }
 
   const [modalVisible, setModalVisible] = useState(false);
-  // const openModal = () => {
-  //   document.body.style.overflow = "hidden";
-  //   setModalVisible(true);
-  // };
+  console.log(study.isClosed);
+
   const onClick = () => {
     history.push(`/study?id=${study._id}`);
+    console.log(study);
   };
   const closeModal = () => {
     document.body.style.overflow = "auto";
@@ -29,7 +29,7 @@ const StudyItem = ({ study }) => {
 
   return (
     <>
-      <li className={styles.studyItem} onClick={onClick}>
+      <li className={`${styles.studyItem} ${displayType}`} onClick={onClick}>
         <h1 className={styles.title}>{study.title}</h1>
         <ul className={styles.content}>
           {studyLang.map((lang, i) => (
@@ -63,6 +63,7 @@ const StudyItem = ({ study }) => {
             <p>{study.views}</p>
           </div>
         </section>
+        {study.isClosed && <div className={styles.closeNotice}>모집 완료</div>}
       </li>
       {modalVisible && (
         <Modal visible={modalVisible} onClose={closeModal}>

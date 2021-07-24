@@ -46,8 +46,8 @@ const StudyContent = ({ id }) => {
     history.push("/");
   };
 
-  const handleEnd = async () => {
-    const res = await studyService.editClose(id, !read.post.isClosed);
+  const handleEnd = async (editValue) => {
+    const res = await studyService.editClose(id, editValue);
     console.log("res from fuck", res);
   };
 
