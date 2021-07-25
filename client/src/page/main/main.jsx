@@ -7,6 +7,7 @@ import React from "react";
 import LanguageBarList from "../../component/language_bar_list/languageBarList";
 import { useSelector } from "react-redux";
 import studyService from "../../service/study_service";
+import Rating from "../../component/rating/rating";
 
 /* 
 
@@ -113,6 +114,7 @@ const Main = (props) => {
             )}
           </main>
         </div>
+        <Rating></Rating>
       </div>
     </>
   );

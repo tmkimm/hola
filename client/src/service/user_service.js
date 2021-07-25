@@ -92,6 +92,18 @@ class User {
       console.error(error);
     }
   };
+
+  submitFeedback = async ({ rating, content }) => {
+    try {
+      const response = await this.user.post(`feedback`, {
+        rating,
+        content,
+      });
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 }
 
 const userService = new User(httpClient);
