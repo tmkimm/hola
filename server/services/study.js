@@ -56,9 +56,14 @@ export class StudyService {
 
     // 사용자의 관심 등록 여부를 조회한다.
     async findUserLiked(studyId, userId) {
-        const studies = await Study.find({_id : studyId, likes : userId});;
-        let isLiked = studies.length > 0 ? true : false;
-        return isLiked;
+        if(userId && studyId) {
+            const studies = await Study.find({_id : studyId, likes : userId});;
+            let isLiked = studies.length > 0 ? true : false;
+            return isLiked;
+        } else {
+            return false;
+        }
+        
     }
     // 신규 스터디를 등록한다.
     async registerStudy(userID, study) {

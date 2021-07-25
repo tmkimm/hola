@@ -1,5 +1,6 @@
 import config from "../config/index.js";
 import { User } from "../models/User.js";
+import { Study } from '../models/Study.js';
 import AWS from "aws-sdk";
 
 export class UserServcie {
@@ -26,6 +27,8 @@ export class UserServcie {
   }
 
   async deleteUser(id) {
+    // 사용자가 작성한 글 제거
+    await Study.deleteMany({ "author": id});
     await User.deleteUser(id);
   }
 
@@ -49,6 +52,12 @@ export class UserServcie {
     })
     .select('readList');
     return readLIst;
+  }
+
+  // 사용자의 작성 목록을 조회한다.
+  async findMyStudies(id) {
+    const myStudies = await Study.find({"author": id, "isDeleted": false});
+    return myStudies;
   }
 
   // S3 Pre-Sign Url을 발급한다.

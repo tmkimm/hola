@@ -29,13 +29,14 @@ export class AuthService {
                 refreshToken,
                 config.jwtSecretKey
             );
-        } catch(err) {
+            const user = await User.findByNickName(decodeRefreshToken.nickName);
+            const { _id, nickName, email, image, likeLanguages } = user;
+            const accessToken = await user.generateAccessToken();
+            return { decodeSuccess, _id, nickName, email, image, likeLanguages, accessToken };
+        } 
+        catch(err) {
             decodeSuccess = false;
             return { decodeSuccess };
         }
-        const user =  await User.findByNickName(decodeRefreshToken.nickName);
-        const { _id, nickName, email, image, likeLanguages } = user;
-        const accessToken = await user.generateAccessToken();
-        return { decodeSuccess, _id, nickName, email, image, likeLanguages, accessToken };
     }
 }
