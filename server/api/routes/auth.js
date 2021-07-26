@@ -1,5 +1,6 @@
 import { Router } from 'express'; 
 import { AuthService } from '../../services/index.js';
+import { isAccessTokenValid } from '../middlewares/index.js';
 
 const route = Router();
 
@@ -12,6 +13,7 @@ export default (app) => {
     */
     app.use('/auth', route);
 
+    // Refresh Token을 이용해 Access Token 발급
     route.get('/', async (req, res, next) => {
         if(!req.cookies.R_AUTH) {
             return res.status(401).json({
@@ -39,5 +41,13 @@ export default (app) => {
                 accessToken
             });        
         }
+    });
+
+    // Access Token이 유효한지 체크
+    route.get('/isValid', isAccessTokenValid, async (req, res, next) => {
+        return res.status(200).json({
+            isValid: true
+        });        
+        
     });
 }
