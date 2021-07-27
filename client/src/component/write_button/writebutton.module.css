@@ -1,8 +1,6 @@
 .buttons {
   display: flex;
-  -webkit-box-pack: end;
   justify-content: flex-end;
-  -webkit-box-align: center;
   align-items: center;
   margin-top: 1rem;
 }

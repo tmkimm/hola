@@ -22,8 +22,6 @@
   bottom: 1.5rem;
   width: 400px;
   border-radius: 20px;
-  -webkit-box-shadow: 6px 6px 5px -2px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 6px 6px 5px -2px rgba(0, 0, 0, 0.75);
   box-shadow: 6px 6px 5px -2px rgba(0, 0, 0, 0.75);
   background-color: #f1f0f7;
 }
@@ -103,8 +101,11 @@ input {
   cursor: pointer;
 }
 
-.button1:hover {
-  transform: scale(1.1);
+.submitButton:hover {
+  transform: scale(1.05);
+}
+.exitWrapper {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1300px) {

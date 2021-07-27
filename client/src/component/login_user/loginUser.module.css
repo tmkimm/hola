@@ -1,7 +1,6 @@
 .userWrapper {
   cursor: pointer;
   display: flex;
-  -webkit-box-align: center;
   align-items: center;
   position: relative;
 }
