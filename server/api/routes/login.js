@@ -31,8 +31,9 @@ export default (app) => {
         const { accessToken, refreshToken } = await AuthServiceInstance.SignIn(userRecord.idToken);
 
         res.cookie("R_AUTH", refreshToken, {
+            sameSite: 'none',
             httpOnly: true,
-            secure: false,
+            secure: true,
             maxAge: 1000 * 60 * 60 * 24 * 14    // 2 Week
         });
         
@@ -51,10 +52,10 @@ export default (app) => {
         const { idToken } = req.user; 
         let AuthServiceInstance = new AuthService();
         const { _id, nickName, image, likeLanguages, accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);
-        console.log(`google login accesstoken : ${accessToken}`);
         res.cookie("R_AUTH", refreshToken, {
+            sameSite: 'none',
             httpOnly: true,
-            secure: false,
+            secure: true,
             maxAge: 1000 * 60 * 60 * 24 * 14    // 2 Week
         });
         
@@ -74,10 +75,10 @@ export default (app) => {
         const { idToken } = req.user; 
         let AuthServiceInstance = new AuthService();
         const { _id, nickName, image, likeLanguages, accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);
-        console.log(`git login accesstoken : ${accessToken}`);
         res.cookie("R_AUTH", refreshToken, {
+            sameSite: 'none',
             httpOnly: true,
-            secure: false,
+            secure: true,
             maxAge: 1000 * 60 * 60 * 24 * 14    // 2 Week
         });
         
@@ -97,11 +98,11 @@ export default (app) => {
         const { idToken } = req.user; 
         let AuthServiceInstance = new AuthService();
         const { _id, nickName, image, likeLanguages, accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);
-        console.log(`kakao login accesstoken : ${accessToken}`);
         
         res.cookie("R_AUTH", refreshToken, {
+            sameSite: 'none',
             httpOnly: true,
-            secure: false,
+            secure: true,
             maxAge: 1000 * 60 * 60 * 24 * 14    // 2 Week
         });
         

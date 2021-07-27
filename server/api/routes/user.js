@@ -44,8 +44,9 @@ export default (app) => {
         const { userRecord, accessToken, refreshToken } = await UserServcieInstance.modifyUser(id, userDTO);
 
         res.cookie("R_AUTH", refreshToken, {
+            sameSite: 'none',
             httpOnly: true,
-            secure: false,
+            secure: true,
             maxAge: 1000 * 60 * 60 * 24 * 14    // 2 Week
         });
         
