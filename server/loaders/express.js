@@ -7,7 +7,7 @@ import cors from 'cors';
 import routes from '../api/index.js';
 
 export default (app) => {
-    const whitelist = ['http://localhost:3000', 'http://holaworld.io', 'https://holaworld.io'];
+    const whitelist = ['http://localhost:3000', 'http://holaworld.io', 'https://holaworld.io', 'http://www.holaworld.io', 'https://www.holaworld.io'];
     const corsOptions = {
         origin: function(origin, callback){
         const isWhitelisted = whitelist.indexOf(origin) !== -1;

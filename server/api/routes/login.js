@@ -51,7 +51,7 @@ export default (app) => {
         const { idToken } = req.user; 
         let AuthServiceInstance = new AuthService();
         const { _id, nickName, image, likeLanguages, accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);
-        
+        console.log(`google login accesstoken : ${accessToken}`);
         res.cookie("R_AUTH", refreshToken, {
             httpOnly: true,
             secure: false,
@@ -74,6 +74,7 @@ export default (app) => {
         const { idToken } = req.user; 
         let AuthServiceInstance = new AuthService();
         const { _id, nickName, image, likeLanguages, accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);
+        console.log(`git login accesstoken : ${accessToken}`);
         res.cookie("R_AUTH", refreshToken, {
             httpOnly: true,
             secure: false,
@@ -96,6 +97,7 @@ export default (app) => {
         const { idToken } = req.user; 
         let AuthServiceInstance = new AuthService();
         const { _id, nickName, image, likeLanguages, accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);
+        console.log(`kakao login accesstoken : ${accessToken}`);
         
         res.cookie("R_AUTH", refreshToken, {
             httpOnly: true,
