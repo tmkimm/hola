@@ -47,7 +47,6 @@
 .user {
   cursor: pointer;
   display: flex;
-  -webkit-box-align: center;
   align-items: center;
   position: relative;
   margin-top: 2rem;
