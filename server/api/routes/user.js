@@ -46,6 +46,7 @@ export default (app) => {
         res.cookie("R_AUTH", refreshToken, {
             httpOnly: true,
             secure: false,
+            sameSite: 'none',
             maxAge: 1000 * 60 * 60 * 24 * 14    // 2 Week
         });
         
