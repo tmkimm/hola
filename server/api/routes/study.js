@@ -30,7 +30,6 @@ export default (app) => {
     const { offset, limit, sort, language } = req.query;
     let StudyServiceInstance = new StudyService();
     const studies = await StudyServiceInstance.findStudy(offset, limit, sort, language);
-
     res.status(200).json(studies);
   });
 

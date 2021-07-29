@@ -75,6 +75,7 @@ export default (app) => {
         const { idToken } = req.user; 
         let AuthServiceInstance = new AuthService();
         const { _id, nickName, image, likeLanguages, accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);
+        console.log(`accessToken : ${accessToken}`);
         res.cookie("R_AUTH", refreshToken, {
             sameSite: 'none',
             httpOnly: true,
