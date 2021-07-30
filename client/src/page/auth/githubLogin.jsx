@@ -3,7 +3,11 @@ import qs from "qs";
 import { useHistory, useLocation } from "react-router";
 import { fetchUserById } from "../../store/user";
 import { useDispatch } from "react-redux";
-import { setModalVisible, nextStep } from "../../store/loginStep";
+import {
+  setModalVisible,
+  nextStep,
+  setSignUpUser,
+} from "../../store/loginStep";
 import Modal from "../../component/modal/modal_component/modal";
 import LoadingSpinner from "../../component/loading/loadingSpinner";
 
@@ -29,10 +33,9 @@ const GithubLogin = () => {
       const userData = { code, social: "github" };
       console.log("gitgub Login", code);
       dispatch(fetchUserById(userData)).then((response) => {
-        console.log("res: !! ", response);
+        const id = response.payload._id;
         if (response.payload.loginSuccess === false) {
-          // signUp 진행
-          console.log("res: !! ", response);
+          dispatch(setSignUpUser({ key: "id", value: id }));
           dispatch(setModalVisible(true));
           dispatch(nextStep());
         }
