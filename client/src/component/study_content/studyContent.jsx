@@ -6,6 +6,7 @@ import CommentContainer from "../../component/comment_container/commentContainer
 import LikesAndViews from "../../component/likes_and_views/likesAndViews";
 import studyService from "../../service/study_service";
 import { setPost } from "../../store/write";
+import RecommendPost from "../recommend_post/recommendPost";
 import StudyButtons from "../study_buttons/studyButtons";
 import styles from "./studyContent.module.css";
 
@@ -85,6 +86,7 @@ const StudyContent = ({ id }) => {
             isClosed={read.post.isClosed}
           ></StudyButtons>
         )}
+        <RecommendPost id={id}></RecommendPost>
         <h1 className={styles.languageInfo}>사용 언어 정보</h1>
         <StudyLanguage languages={read.post.language}></StudyLanguage>
       </section>

@@ -1,0 +1,65 @@
+.totalWrapper {
+  position: relative;
+  margin-top: 2rem;
+}
+
+.recommendWrapper {
+  position: absolute;
+  left: 100%;
+}
+
+.listWrapper {
+  width: 240px;
+  margin-left: 5rem;
+  border-left: 2px solid rgb(233, 236, 239);
+  padding: 1rem 0.75rem;
+  line-height: 1.5;
+  font-size: 0.875rem;
+  max-height: calc(100vh - 128px);
+  overflow: hidden auto;
+  border: 2px solid #e2e2e2;
+  border-radius: 1rem;
+  margin-top: 1.5rem;
+  position: fixed;
+  top: 400px;
+}
+
+.userInfoWrapper {
+  display: flex;
+  margin-left: 5rem;
+  position: fixed;
+  top: 350px;
+}
+
+.userInfo {
+  margin-left: 0.5rem;
+}
+
+.userName {
+  font-weight: bold;
+}
+
+.bar {
+  width: 0px;
+  height: 2.5rem;
+  border: 2px solid #4482f7;
+  background-color: #4482f7;
+}
+
+.postList {
+  display: flex;
+  margin-top: 0.4rem;
+  cursor: pointer;
+}
+
+.index {
+  color: #4b9ef4;
+  margin-right: 0.25rem;
+}
+
+.title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}

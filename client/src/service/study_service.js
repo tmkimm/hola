@@ -42,6 +42,14 @@ class Study {
     }
   };
 
+  getRecommendedPost = async (id) => {
+    try {
+      const response = await this.study.get(`studies/${id}/recommend`);
+      return response.data;
+    } catch (e) {
+      console.error(e);
+    }
+  };
   register = async ({ title, content, language }) => {
     try {
       const response = await this.study.post("studies", {
