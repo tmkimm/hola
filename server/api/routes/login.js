@@ -115,4 +115,26 @@ export default (app) => {
             accessToken: accessToken
         });
     });
+
+    // 게스트 로그인
+    route.post('/guest', async (req, res, next) => {
+        let AuthServiceInstance = new AuthService();
+        const { _id, nickName, image, likeLanguages, accessToken, refreshToken } = await AuthServiceInstance.SignIn('Guest');
+        
+        res.cookie("R_AUTH", refreshToken, {
+            sameSite: 'none',
+            httpOnly: true,
+            secure: true,
+            maxAge: 1000 * 60 * 60 * 24 * 14    // 2 Week
+        });
+        
+        return res.status(200).json({
+            loginSuccess: true,
+            _id: _id,
+            nickName: nickName,
+            image: image,
+            likeLanguages: likeLanguages,
+            accessToken: accessToken
+        });
+    });
 }
