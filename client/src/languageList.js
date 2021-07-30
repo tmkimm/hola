@@ -1,3 +1,12 @@
+/**
+ * 언어 추가
+ * sql
+ * react-native
+ * aws
+ * nestjs
+ * nextjs
+ */
+
 const languageList = [
   { value: "c", label: "C" },
   { value: "c++", label: "C++" },
@@ -16,7 +25,7 @@ const languageList = [
   { value: "angular", label: "Angular.js" },
   { value: "ruby", label: "Ruby" },
   { value: "java", label: "Java" },
-  { value: "flutte", label: "Flutte" },
+  { value: "flutter", label: "Flutter" },
 ];
 
 export default languageList;

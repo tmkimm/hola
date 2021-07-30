@@ -95,7 +95,8 @@ studySchema.statics.findStudyRecommend = async function(sort, language, studyId,
     query._id = {$ne: studyId};
 
     // 사용자가 작성한 글 제외하고 조회
-    query.author = {$ne: userId};
+    if(userId)
+        query.author = {$ne: userId};
   
     let studies =  await Study.find(query)
     .where('isDeleted').equals(false)
