@@ -43,10 +43,11 @@ export default (app) => {
   });
 
   // 글에서의 스터디 추천
-  route.get('/:id/recommend', async (req, res, next) => {
+  route.get('/:id/recommend', getUserIdWithAccessToken, async (req, res, next) => {
     const studyId = req.params.id;
+    const userId = req.user._id;
     let StudyServiceInstance = new StudyService();
-    const study = await StudyServiceInstance.recommendToUserFromStudy(studyId);
+    const study = await StudyServiceInstance.recommendToUserFromStudy(studyId, userId);
 
     res.status(200).json(study);
   });

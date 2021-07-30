@@ -60,8 +60,8 @@ studySchema.statics.findStudy = async function(offset, limit, sort, language) {
     let query = {};
     if( typeof language !== 'undefined' )
         query.language = {$in: language.split(',')};
-  
-    return await Study.find(query)
+
+    return await Study.find(query, {language:{$slice: [0, 3]}})
     .where('isDeleted').equals(false)
     .sort(sortQuery.join(' '))
     .skip(Number(offsetQuery))
@@ -70,7 +70,7 @@ studySchema.statics.findStudy = async function(offset, limit, sort, language) {
 };
 
 // 사용자에게 추천 조회
-studySchema.statics.findStudyRecommend = async function(sort, language, studyId, limit) {
+studySchema.statics.findStudyRecommend = async function(sort, language, studyId, userId, limit) {
     let sortQuery = [];
     //Sorting
     if(sort) {
@@ -93,6 +93,9 @@ studySchema.statics.findStudyRecommend = async function(sort, language, studyId,
 
     // 현재 읽고 있는 글은 제외하고 조회
     query._id = {$ne: studyId};
+
+    // 사용자가 작성한 글 제외하고 조회
+    query.author = {$ne: userId};
   
     let studies =  await Study.find(query)
     .where('isDeleted').equals(false)

@@ -28,14 +28,14 @@ export class StudyService {
 
     // 글에서 스터디를 추천한다.
     // 4건 이하일 경우 무조건 다시 조회가 아니라, 해당 되는 건은 포함하고 나머지 건만 조회해야함
-    async recommendToUserFromStudy(studyId) {
-        let sort = '-views', language, limit = 5;
+    async recommendToUserFromStudy(studyId, userId) {
+        let sort = '-views', language, limit = 10;
         if(studyId) {
             let study = await Study.findById(studyId);
             language = study.language;
         }
 
-        let studies = await Study.findStudyRecommend(sort, language, studyId, limit);
+        let studies = await Study.findStudyRecommend(sort, language, studyId, userId, limit);
         return studies;
     }
 
