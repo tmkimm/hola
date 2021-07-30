@@ -36,7 +36,7 @@ const GithubLogin = () => {
           dispatch(setModalVisible(true));
           dispatch(nextStep());
         }
-        //history.push("/");
+        history.push("/");
       });
     };
 
