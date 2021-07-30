@@ -28,7 +28,7 @@ class User {
       );
       return response.data;
     } catch (error) {
-      if (error.response.status === 409) return { isExists: true };
+      console.log(error);
     }
   };
 

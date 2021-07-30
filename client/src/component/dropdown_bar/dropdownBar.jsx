@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./dropdownBar.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { clearUser } from "../../store/user";
 import authService from "../../service/auth_service";
@@ -19,6 +19,7 @@ API를 통해 refresh token을 초기화 합니다.
 const DropdownBar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const userNickname = useSelector((state) => state.user.nickName);
   const handleLogout = () => {
     authService.logout().then((response) => {
       dispatch(clearUser());
@@ -39,11 +40,13 @@ const DropdownBar = () => {
             내 관심글
           </Link>
         </li>
-        <li className={styles.menuItem}>
-          <Link to="/setting" style={{ display: "inline-block" }}>
-            설정
-          </Link>
-        </li>
+        {userNickname !== "Guest" && (
+          <li className={styles.menuItem}>
+            <Link to="/setting" style={{ display: "inline-block" }}>
+              설정
+            </Link>
+          </li>
+        )}
         <li className={styles.menuItem} onClick={handleLogout}>
           로그아웃
         </li>

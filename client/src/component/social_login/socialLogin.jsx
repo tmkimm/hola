@@ -13,6 +13,7 @@ const SocialLogin = ({
   kakaoOnSuccess,
   kakaoOnFailure,
   kakaoClientId,
+  guestLogin,
 }) => {
   return (
     <>
@@ -37,6 +38,9 @@ const SocialLogin = ({
           )}
         />
       </section>
+      <button className={styles.guestLogin} onClick={guestLogin}>
+        Login as GUEST
+      </button>
     </>
   );
 };

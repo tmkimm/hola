@@ -10,8 +10,6 @@ const SetNicknameContainer = (props) => {
   const [nickname, setNickname] = useState("");
   const userId = useSelector((state) => state.loginStep.id);
   const handleLoginStep = async () => {
-    // 닉네임이 겹치면 빨간글씨로 띄워주자
-
     const response = await userService.checkNickname(userId, nickname);
     if (response.isExists) {
       toast.info("닉네임이 중복 되었어요!", {
