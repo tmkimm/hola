@@ -5,9 +5,7 @@ import { User } from '../../models/User.js';
 // true: 로그인 완료
 // false: 로그인 실패. 회원 가입 필요.
 const autoSignUp = async (req, res, next) => {
-    console.log(`autoSignup idTOken : ${req.user.idToken}`);
     const user = await User.findByIdToken(req.user.idToken);
-    console.log(user);
     if(!user) {
         const newUser = await User.create(req.user);   
         return res.status(200).json({

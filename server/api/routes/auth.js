@@ -25,6 +25,7 @@ export default (app) => {
         const { decodeSuccess, _id, nickName, email, image, likeLanguages, accessToken } = await AuthServiceInstance.reissueAccessToken(req.cookies.R_AUTH);
         // Refresh Token가 유효하지 않을 경우
         if(!decodeSuccess) {
+            res.clearCookie('R_AUTH');
             return res.status(401).json({
                 error: -1,
                 message : 'Invalid refresh token'

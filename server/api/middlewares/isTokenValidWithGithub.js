@@ -30,9 +30,7 @@ const isTokenValidWithGithub = async (req, res, next) => {
             }
         });
         const idToken = userInfo.id;
-        console.log(`git idToken : ${idToken}`);
         const name = userInfo.name;
-        console.log(`git name : ${name}`);
         const tokenType = 'Github';
         req.user = { idToken, tokenType, name };
         next();
