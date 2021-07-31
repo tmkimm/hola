@@ -29,6 +29,11 @@ export class UserServcie {
   async deleteUser(id) {
     // 사용자가 작성한 글 제거
     await Study.deleteMany({ "author": id});
+
+    // 사용자가 작성한 댓글 제거
+    await Study.findOneAndUpdate({ comments: {$elemMatch: { author : id }}},
+      { $pull: { comments: { author: id } } });
+
     await User.deleteUser(id);
   }
 
@@ -45,13 +50,13 @@ export class UserServcie {
 
   // 사용자의 읽은 목록을 조회한다.
   async findReadList(id) {
-    const readLIst = await User.findById(id)
+    const readList = await User.findById(id)
     .populate({
       path: 'readList',
       match: { isDeleted: false}
     })
     .select('readList');
-    return readLIst;
+    return readList;
   }
 
   // 사용자의 작성 목록을 조회한다.

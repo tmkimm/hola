@@ -31,14 +31,6 @@ const studySchema = mongoose.Schema({
     timestamps: true
 });
 
-studySchema.set('toObject', { virtuals: true })
-studySchema.set('toJSON', { virtuals: true })
-
-// 좋아요 수
-studySchema.virtual('likesCount').get(function () {
-    return this.likes.length
-});
-
 // 최신, 트레딩 조회
 studySchema.statics.findStudy = async function(offset, limit, sort, language) {
     // Pagenation
@@ -100,6 +92,7 @@ studySchema.statics.findStudyRecommend = async function(sort, language, studyId,
   
     let studies =  await Study.find(query)
     .where('isDeleted').equals(false)
+    .where('isClosed').equals(false)
     .sort(sortQuery.join(' '))
     .limit(limit)
     .select('-isDeleted -comments');
@@ -113,6 +106,7 @@ studySchema.statics.findStudyRecommend = async function(sort, language, studyId,
         delete query.language;
         let shortStudies = await Study.find(query)
         .where('isDeleted').equals(false)
+        .where('isClosed').equals(false)
         .sort(sortQuery.join(' '))
         .limit(limit - studies.length)
         .select('-isDeleted -comments');
