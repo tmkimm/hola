@@ -1,57 +1,35 @@
 import styles from "./main.module.css";
-import { useEffect, useState } from "react";
-import StudyList from "../../component/study_list/studyList";
+import { useState } from "react";
+
 import Navbar from "../../component/nav_bar/navbar";
 import Banner from "../../component/banner/banner";
 import React from "react";
 import LanguageBarList from "../../component/language_bar_list/languageBarList";
-import { useSelector } from "react-redux";
-import studyService from "../../service/study_service";
+
 import Rating from "../../component/rating/rating";
+import ShowByDate from "../../component/show_studies/show_by_date/showByDate";
+import ShowByViews from "../../component/show_studies/show_by_views/showByViews";
 
 /* 
 
 main page의 layout을 담당하는 component입니다. 
-component rendering시 useEffect를 통해 render할 post list를 받아옵니다.
-
-최신, 트렌딩 두가지의 기준으로 분리하였습니다.
+최신, 트렌딩 두가지의 기준으로 데이터를 보여줍니다.
 
 */
 
-const SORT_BY_VIEWS = "+views";
-const SORT_BY_DATE = "-createdAt";
-const SHOW_BY_VIEWS = "trending";
-const SHOW_BY_DATE = "recent";
+const SHOW_BY_VIEWS = "-views";
+const SHOW_BY_DATE = "-createdAt";
 const ACTIVE = styles.active;
 const INACTIVE = styles.inactive;
 
 const Main = (props) => {
   console.log("MAIN START!!");
-  const [popularStudyList, setPopularStudyList] = useState([]);
-  const [recentStudyList, setRecentStudyList] = useState([]);
+
   const [category, setCategory] = useState(SHOW_BY_DATE);
-  const selectedLanguages = useSelector((state) => state.language);
 
-  useEffect(() => {
-    console.log("Main UseEffect!!");
-    studyService //
-      .getList(SORT_BY_DATE, selectedLanguages)
-      .then((response) => {
-        console.log("study list api 1 완료");
-        setRecentStudyList(response.data);
-      })
-      .catch(console.error);
+  const toggleCategory = (toggleTo) => {
+    if (category === toggleTo) return; // 바꾸려는 대상이 현재 상태와 같으면 return
 
-    studyService //
-      .getList(SORT_BY_VIEWS, selectedLanguages)
-      .then((response) => {
-        console.log("study list api 2 완료");
-        setPopularStudyList(response.data);
-      })
-      .catch(console.error);
-  }, [selectedLanguages]);
-
-  const toggleCategory = () => {
     if (category === SHOW_BY_VIEWS) setCategory((state) => SHOW_BY_DATE);
     else setCategory((state) => SHOW_BY_VIEWS);
   };
@@ -71,7 +49,7 @@ const Main = (props) => {
                 className={`${styles.category__item} ${
                   category === SHOW_BY_DATE ? ACTIVE : INACTIVE
                 }`}
-                onClick={toggleCategory}
+                onClick={() => toggleCategory(SHOW_BY_DATE)}
               >
                 <svg
                   stroke="currentColor"
@@ -91,7 +69,7 @@ const Main = (props) => {
                 className={`${styles.category__item} ${
                   category === SHOW_BY_DATE ? INACTIVE : ACTIVE
                 }`}
-                onClick={toggleCategory}
+                onClick={() => toggleCategory(SHOW_BY_VIEWS)}
               >
                 <svg
                   stroke="currentColor"
@@ -107,14 +85,10 @@ const Main = (props) => {
                 <span className={styles.text}>트렌딩</span>
               </div>
             </section>
-            {category === SHOW_BY_DATE ? (
-              <StudyList studyList={recentStudyList}></StudyList>
-            ) : (
-              <StudyList studyList={popularStudyList}></StudyList>
-            )}
+            {category === SHOW_BY_DATE ? <ShowByDate /> : <ShowByViews />}
           </main>
         </div>
-        <Rating></Rating>
+        <Rating />
       </div>
     </>
   );

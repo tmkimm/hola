@@ -4,10 +4,11 @@ import Modal from "../modal/modal_component/modal";
 import PostModal from "../modal/post_modal/postModal";
 import { useHistory } from "react-router-dom";
 
-const StudyItem = ({ study }) => {
+const StudyItem = ({ study, lastStudyElementRef }) => {
   const studyLang = [];
   const history = useHistory();
   const displayType = study.isClosed ? styles.closed : styles.open;
+
   for (let i = 0; i < 3; i++) {
     if (study.language[i] === undefined) break;
     if (study.language[i] === "c#") studyLang.push("cc");
@@ -15,7 +16,6 @@ const StudyItem = ({ study }) => {
   }
 
   const [modalVisible, setModalVisible] = useState(false);
-  console.log(study.isClosed);
 
   const onClick = () => {
     history.push(`/study?id=${study._id}`);
@@ -28,7 +28,11 @@ const StudyItem = ({ study }) => {
 
   return (
     <>
-      <li className={`${styles.studyItem} ${displayType}`} onClick={onClick}>
+      <li
+        ref={lastStudyElementRef ? lastStudyElementRef : null}
+        className={`${styles.studyItem} ${displayType}`}
+        onClick={onClick}
+      >
         <h1 className={styles.title}>{study.title}</h1>
         <ul className={styles.content}>
           {studyLang.map((lang, i) => (

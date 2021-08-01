@@ -31,7 +31,6 @@ const GithubLogin = () => {
         ignoreQueryPrefix: true,
       });
       const userData = { code, social: "github" };
-      console.log("gitgub Login", code);
       dispatch(fetchUserById(userData)).then((response) => {
         const id = response.payload._id;
         if (response.payload.loginSuccess === false) {
@@ -50,7 +49,7 @@ const GithubLogin = () => {
     <Modal visible={true} name="loading">
       <LoadingSpinner />
     </Modal>
-  ); // 이 부분에 로딩바와 같은 페이지를 렌더링 해도 좋아요.
+  );
 };
 
 export default GithubLogin;

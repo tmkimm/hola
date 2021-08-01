@@ -46,6 +46,10 @@ class Auth {
     console.log("here for signup!");
     return await this.auth.post("login/signup", userInfo);
   };
+
+  resetToken = () => {
+    this.auth.defaults.headers.common["Authorization"] = "";
+  };
 }
 
 const authService = new Auth(httpClient);

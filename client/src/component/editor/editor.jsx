@@ -27,13 +27,13 @@ image upload시 파일 크기 작은거 확인 필요 <- 해결 됨
 const QuillWrapper = styled.div`
   /* 최소 크기 지정 및 padding 제거 */
   .ql-editor {
-    padding: 0;
+    padding: 1rem;
     min-height: 480px;
     font-size: 1.125rem;
     line-height: 1.5;
   }
   .ql-editor.ql-blank::before {
-    left: 0px;
+    left: 1rem;
   }
 `;
 

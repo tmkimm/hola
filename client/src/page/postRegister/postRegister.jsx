@@ -4,7 +4,7 @@ import EditorContainer from "../../component/editor/editorContainer";
 import WritebuttonContainer from "../../component/write_button/writebuttonContainer";
 import Navbar from "../../component/nav_bar/navbar";
 
-const PostRegister = (props) => {
+const PostRegister = () => {
   return (
     <>
       <Navbar showRegisterButton={false}></Navbar>

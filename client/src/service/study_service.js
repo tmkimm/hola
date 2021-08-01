@@ -10,12 +10,15 @@ class Study {
     this.study = httpClient;
   }
 
-  getList = async (query, selectedLanguages) => {
+  getList = async (query, selectedLanguages, pageNumber) => {
+    console.log("query: ", query);
+    console.log("lang: ", selectedLanguages);
+    console.log("pagenum: ", pageNumber);
     try {
       const params = {
         sort: query,
-        offset: 0,
-        limit: 20,
+        offset: pageNumber,
+        limit: 5,
       };
 
       if (selectedLanguages.length !== 0) {
@@ -27,6 +30,7 @@ class Study {
       const studyList = await this.study.get("studies", {
         params,
       });
+      //console.log("study list : ", studyList);
       return studyList;
     } catch (error) {
       console.error(error);
