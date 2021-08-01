@@ -24,6 +24,7 @@ const DropdownBar = () => {
     authService.logout().then((response) => {
       dispatch(clearUser());
       dispatch(clearStep());
+      authService.resetToken();
       history.push("/");
     });
   };
