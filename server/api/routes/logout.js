@@ -1,5 +1,4 @@
 import { Router } from 'express'; 
-//import { } from '../middlewares/index.js';
 
 const route = Router();
 

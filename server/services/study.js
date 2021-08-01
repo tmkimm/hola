@@ -41,7 +41,7 @@ export class StudyService {
 
     // 상세 스터디 정보를 조회한다.
     // 로그인된 사용자일 경우 읽은 목록을 추가한다.
-    async studyDetailView(studyId, userId) {
+    async findStudyDetail(studyId, userId) {
         const studies = await Study.findById(studyId).populate('author', 'nickName image').populate('comments.author', 'nickName image');
         
         // 조회수 증가

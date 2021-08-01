@@ -1,6 +1,8 @@
 import { Router } from 'express'; 
 import { AuthService } from '../../services/index.js';
 import { isAccessTokenValid } from '../middlewares/index.js';
+import { asyncErrorWrapper } from '../../asyncErrorWrapper.js';
+import { CustomError } from "../../CustomError.js";
 
 const route = Router();
 
@@ -14,22 +16,16 @@ export default (app) => {
     app.use('/auth', route);
 
     // Refresh Token을 이용해 Access Token 발급
-    route.get('/', async (req, res, next) => {
+    route.get('/', asyncErrorWrapper(async (req, res, next) => {
         if(!req.cookies.R_AUTH) {
-            return res.status(401).json({
-                error: -1,
-                message : 'Refresh token not found'
-            });
+            throw new CustomError('RefreshTokenError', 401, 'Refresh token not found');
         }
         let AuthServiceInstance = new AuthService();
         const { decodeSuccess, _id, nickName, email, image, likeLanguages, accessToken } = await AuthServiceInstance.reissueAccessToken(req.cookies.R_AUTH);
         // Refresh Token가 유효하지 않을 경우
         if(!decodeSuccess) {
             res.clearCookie('R_AUTH');
-            return res.status(401).json({
-                error: -1,
-                message : 'Invalid refresh token'
-            });
+            throw new CustomError('RefreshTokenError', 401, 'Invalid refresh token');
         }
         else {
             return res.status(200).json({
@@ -41,13 +37,12 @@ export default (app) => {
                 accessToken
             });        
         }
-    });
+    }));
 
     // Access Token이 유효한지 체크
     route.get('/isValid', isAccessTokenValid, async (req, res, next) => {
         return res.status(200).json({
             isValid: true
         });        
-        
     });
 }

@@ -11,7 +11,8 @@ class Auth {
 
   login = async (method, code) => {
     try {
-      const user = await this.auth.post(`login/${method}`, {
+      const user = await this.auth.post(`login`, {
+        loginType: method,
         code,
       });
       return user;

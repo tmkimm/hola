@@ -12,14 +12,10 @@ export default (app) => {
 
   // 피드백 등록 
   route.post('/', async function(req, res, next) {
-    try {
       const { rating, content } = req.body;
 
       let FeedbackServiceInstance = new FeedbackService();
       const feedback = await FeedbackServiceInstance.registerFeedback(rating, content);       
       res.status(201).json(feedback);
-    } catch (error) {
-      res.status(400).json(error); 
-    }
   });
 }

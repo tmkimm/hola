@@ -1,7 +1,8 @@
 import { User } from '../../models/User.js';
+import { asyncErrorWrapper } from '../../asyncErrorWrapper.js';
 
 // 회원 정보 수정 시 닉네임이 중복되었는지 체크한다.
-const nickNameDuplicationCheck = async (req, res, next) => {
+const nickNameDuplicationCheck = asyncErrorWrapper(async (req, res, next) => {
     let { nickName } = req.query;
     try {
         if(nickName) {
@@ -20,6 +21,6 @@ const nickNameDuplicationCheck = async (req, res, next) => {
             isExists: true
         });
     }
-}
+});
 
 export { nickNameDuplicationCheck };

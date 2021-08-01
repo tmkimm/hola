@@ -1,15 +1,15 @@
 import config from '../config/index.js';
 import jwt from 'jsonwebtoken';
-import { OAuth2Client} from 'google-auth-library';
 import { User } from '../models/User.js';
-
-const client = new OAuth2Client(config.googleClientID);
+import { CustomError } from "../CustomError.js";
 
 export class AuthService {
 
     // 로그인 시 사용자 정보를 조회하고 Token을 생성한다.
     async SignIn(idToken) {
         const user =  await User.findByIdToken(idToken);
+        if(!user) throw new CustomError('InvaildParameterError', 401, 'User not found');
+
         // Access Token, Refresh Token 발급
         const _id = user._id;
         const nickName = user.nickName;
@@ -30,6 +30,7 @@ export class AuthService {
                 config.jwtSecretKey
             );
             const user = await User.findByNickName(decodeRefreshToken.nickName);
+            if(!user) throw new CustomError('InvaildParameterError', 401, 'User not found');
             const { _id, nickName, email, image, likeLanguages } = user;
             const accessToken = await user.generateAccessToken();
             return { decodeSuccess, _id, nickName, email, image, likeLanguages, accessToken };
