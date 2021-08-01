@@ -20,7 +20,7 @@ const useStudySearch = (category, pageNumber, setPageNumber) => {
     setLoading(true);
     setError(false);
     if (lang.length !== selectedLanguages.length) {
-      console.log("달라서 return합니다");
+      //  console.log("달라서 return합니다");
       return;
     }
     studyService

@@ -14,7 +14,7 @@ const CommentContainer = ({ id }) => {
     setContent("");
     setIsComplete((isComplete) => !isComplete);
   };
-  console.log(commentList.length);
+
   useEffect(() => {
     studyService.getComments(id).then((response) => {
       setCommentList(response.data.comments);

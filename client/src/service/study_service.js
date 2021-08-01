@@ -11,9 +11,6 @@ class Study {
   }
 
   getList = async (query, selectedLanguages, pageNumber) => {
-    console.log("query: ", query);
-    console.log("lang: ", selectedLanguages);
-    console.log("pagenum: ", pageNumber);
     try {
       const params = {
         sort: query,
@@ -130,7 +127,7 @@ class Study {
       });
       return response;
     } catch (error) {
-      console.log(error.response.status);
+      //console.log(error.response.status);
       return error.response.status;
       //console.log("error from console.log", error);
       //return
@@ -148,7 +145,7 @@ class Study {
 
   addLikes = async (studyId) => {
     try {
-      console.log("studyId : " + studyId);
+      // console.log("studyId : " + studyId);
       const response = await this.study.post("studies/likes", {
         studyId,
       });
@@ -159,7 +156,6 @@ class Study {
   };
 
   deleteLikes = async (studyId) => {
-    console.log("delete likes, studyid : " + studyId);
     try {
       await this.study.delete(`studies/likes/${studyId}`);
     } catch (error) {
@@ -181,7 +177,6 @@ class Study {
   };
 
   uploadImageToS3 = async (presignedUrl, file) => {
-    console.log("presigend URL IS !!!!", presignedUrl);
     const response = await fetch(
       new Request(presignedUrl, {
         method: "PUT",
@@ -191,7 +186,7 @@ class Study {
         }),
       })
     );
-    console.log("response!!!", response);
+
     if (response.status !== 200) {
       // The upload failed, so let's notify the caller.
       //onError();
@@ -202,10 +197,10 @@ class Study {
   };
 
   uploadImageToS3WithBase64 = async (presignedUrl, file, fileName) => {
-    console.log("=======at base64==========");
-    console.log("pre : ", presignedUrl);
-    console.log("fileName: ", fileName);
-    console.log("=======at base64==========");
+    // console.log("=======at base64==========");
+    // console.log("pre : ", presignedUrl);
+    // console.log("fileName: ", fileName);
+    // console.log("=======at base64==========");
     let arr = file.split(","),
       mime = arr[0].match(/:(.*?);/)[1],
       bstr = atob(arr[1]),

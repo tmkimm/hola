@@ -24,7 +24,7 @@ class Auth {
   logout = async () => {
     try {
       const res = await this.auth.post("logout");
-      console.log("returned value from logout API : ", res);
+      //  console.log("returned value from logout API : ", res);
       return res;
     } catch (error) {
       console.error(error);
@@ -44,7 +44,7 @@ class Auth {
 
   /* userInfo를 전달하여 회원가입을 진행합니다. */
   signUp = async (userInfo) => {
-    console.log("here for signup!");
+    //console.log("here for signup!");
     return await this.auth.post("login/signup", userInfo);
   };
 

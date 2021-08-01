@@ -64,7 +64,6 @@ const WritebuttonContainer = (props) => {
     if (postId) {
       dispatch(modifyPost({ postId, title, content, language })).then(
         (response) => {
-          console.log("response is ", response);
           toast.info("글 수정이 완료되었습니다.", {
             position: "top-right",
             autoClose: 3000,
@@ -73,7 +72,6 @@ const WritebuttonContainer = (props) => {
       );
     } else {
       dispatch(writePost({ title, content, language })).then((response) => {
-        console.log("response is ", response);
         toast.success("글 작성이 완료되었습니다.", {
           position: "top-right",
           autoClose: 3000,

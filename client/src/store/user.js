@@ -29,7 +29,7 @@ const modifyUserInfo = createAsyncThunk(
   modifyUserInfoAction,
   async (userData, { rejectWithValue }) => {
     const response = await userService.modifyUserInfo(userData.id, userData);
-    console.log(response);
+
     // 정보 수정 성공시에만 access token 설정
     if (response.modifySuccess) {
       const accessToken = response.user.data.accessToken;
@@ -49,10 +49,9 @@ const modifyUserInfo = createAsyncThunk(
 const fetchUserById = createAsyncThunk(
   fetchUserByIdAction,
   async (userData, thunkAPI) => {
-    console.log("before api");
     const response = await authService.login(userData.social, userData.code);
     const accessToken = response.data.accessToken;
-    console.log("after api");
+
     // header에 access token 설정
     httpClient.defaults.headers.common[
       "Authorization"
@@ -91,7 +90,7 @@ const fetchUserByRefreshToken = createAsyncThunk(
 const addUserNickName = createAsyncThunk(
   addUserNickNameAction,
   async (userInfo, thunkAPI) => {
-    console.log("userinfo!!!", userInfo);
+    //console.log("userinfo!!!", userInfo);
     const response = await authService.signUp(userInfo);
     const accessToken = response.data.accessToken;
 

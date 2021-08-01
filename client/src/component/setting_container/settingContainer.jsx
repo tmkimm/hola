@@ -67,7 +67,6 @@ const SettingContainer = (props) => {
         autoClose: 3000,
       });
     } else {
-      console.log(likeLanguages);
       let payload = {
         id: user.id,
         likeLanguages: likeLanguages.map((element) => element.value),

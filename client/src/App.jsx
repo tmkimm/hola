@@ -18,8 +18,6 @@ App component
 */
 
 const App = () => {
-  console.log("AppV3!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
   return (
     <Router>
       <Switch>

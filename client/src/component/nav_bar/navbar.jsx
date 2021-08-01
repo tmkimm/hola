@@ -46,7 +46,7 @@ const Navbar = React.memo(({ showRegisterButton }) => {
             autoClose: 3000,
           });
         }
-        console.log("fetchByuserRefreshToken response :", response);
+        //  console.log("fetchByuserRefreshToken response :", response);
         // 실패했을때 에러처리 필요할 듯
       });
     }

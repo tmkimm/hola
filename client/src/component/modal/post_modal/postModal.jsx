@@ -52,7 +52,7 @@ const PostModal = ({ study, handleClose }) => {
   const read = useSelector((state) => state.read);
   const defaultPath =
     "https://hola-post-image.s3.ap-northeast-2.amazonaws.com/";
-  console.log("###studycontent : ", study);
+
   useEffect(() => {
     dispatch(readPost(study._id));
     return () => {

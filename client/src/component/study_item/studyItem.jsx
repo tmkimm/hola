@@ -19,7 +19,7 @@ const StudyItem = ({ study, lastStudyElementRef }) => {
 
   const onClick = () => {
     history.push(`/study?id=${study._id}`);
-    console.log(study);
+    // console.log(study);
   };
   const closeModal = () => {
     document.body.style.overflow = "auto";

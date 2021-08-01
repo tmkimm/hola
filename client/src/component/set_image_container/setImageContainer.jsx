@@ -28,7 +28,7 @@ const SetImageContainer = (props) => {
           userImage,
           fileName
         );
-        console.log("response from uploadUserimgtoS3", response);
+        // console.log("response from uploadUserimgtoS3", response);
       }
     } else {
       image = "default.PNG";

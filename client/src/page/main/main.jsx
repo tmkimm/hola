@@ -23,7 +23,7 @@ const ACTIVE = styles.active;
 const INACTIVE = styles.inactive;
 
 const Main = (props) => {
-  console.log("MAIN START!!");
+  // console.log("MAIN START!!");
 
   const [category, setCategory] = useState(SHOW_BY_DATE);
 

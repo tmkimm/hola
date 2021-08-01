@@ -18,22 +18,20 @@ StudyContent에서 read, user redux 정보를 다 전달 받고 있는데,
 
 const LikesAndViews = ({ views, totalLikes, likeUser, studyId, userId }) => {
   const isLike = likeUser.filter((likeUserid) => likeUserid === userId);
-  console.log(isLike.length);
-  console.log("likeUser: ", likeUser);
+
   const initialImg = isLike.length === 0 ? "heart_unfilled" : "heart_filled";
   const [likeImg, setLikeImg] = useState(initialImg);
   const [likeCount, setLikeCount] = useState(totalLikes);
 
   const handleLikesClick = async () => {
-    console.log("studyId : " + studyId);
     if (likeImg === "heart_filled") {
       const response = await studyService.deleteLikes(studyId);
-      console.log("delete like response: ", response);
+
       setLikeImg("heart_unfilled");
       setLikeCount((state) => state - 1);
     } else {
       const response = await studyService.addLikes(studyId);
-      console.log("add like response : ", response);
+
       setLikeCount((state) => state + 1);
       setLikeImg("heart_filled");
     }

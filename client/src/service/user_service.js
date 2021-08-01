@@ -22,7 +22,6 @@ class User {
   // user nickname 중복 검사를 실행합니다.
   checkNickname = async (id, nickName) => {
     try {
-      console.log(id, nickName);
       const response = await this.user.get(
         `users/${id}/exists?nickName=${nickName}`
       );

@@ -39,8 +39,8 @@ const StudyContent = ({ id }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const read = useSelector((state) => state.read);
-  console.log(id);
-  console.log("read : ", read);
+  // console.log(id);
+  // console.log("read : ", read);
   const handleDelete = async (id) => {
     await studyService.deleteStudy(id);
     document.body.style.overflow = "auto";
@@ -49,7 +49,6 @@ const StudyContent = ({ id }) => {
 
   const handleEnd = async (editValue) => {
     const res = await studyService.editClose(id, editValue);
-    console.log("res from fuck", res);
   };
 
   const handleEdit = (dispatch, history) => {
