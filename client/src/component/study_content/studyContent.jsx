@@ -39,7 +39,7 @@ const StudyContent = ({ id }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const read = useSelector((state) => state.read);
-  // console.log(id);
+  console.log(id);
   // console.log("read : ", read);
   const handleDelete = async (id) => {
     await studyService.deleteStudy(id);
