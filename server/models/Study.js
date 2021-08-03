@@ -102,6 +102,7 @@ studySchema.statics.findStudyRecommend = async function(sort, language, studyId,
         let notInStudyIdArr = studies.map(study => {
             return study._id;
         });
+        notInStudyIdArr.push(studyId);
         query._id = {$nin: notInStudyIdArr};    // 이미 조회된 글들은 중복 x
         delete query.language;
         let shortStudies = await Study.find(query)
