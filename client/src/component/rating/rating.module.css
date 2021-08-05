@@ -16,18 +16,29 @@
   transition: all 0.2s ease-in;
 }
 
+.imgWrapper {
+  width: 7rem;
+  margin: 0 auto;
+}
+
+.imgLogo {
+  width: 100%;
+}
+
 .container {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
   position: fixed;
   left: 1.5rem;
   bottom: 1.5rem;
-  width: 400px;
+  width: 500px;
   border-radius: 20px;
-  box-shadow: 6px 6px 5px -2px rgba(0, 0, 0, 0.75);
-  background-color: #f1f0f7;
+  box-shadow: 2px 4px 4px -2px rgba(0, 0, 0, 0.75);
+  padding: 1rem;
 }
 
 .ratings {
-  height: 150px;
   overflow-y: auto;
   background-color: white;
   display: flex;
@@ -42,36 +53,38 @@
 }
 
 .header {
-  background: rgb(47, 182, 196);
-  background: linear-gradient(
-    90deg,
-    rgba(47, 182, 196, 1) 11%,
-    rgba(28, 217, 208, 1) 74%
-  );
-  padding: 1rem;
-  height: 8rem;
   display: flex;
   flex-direction: column;
-  color: white;
-  border-radius: 20px 20px 0 0;
+  color: black;
+  background-color: white;
+  margin-bottom: 0.5rem;
+}
+
+.exitWrapper {
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .titleWrapper {
   display: flex;
+  flex-direction: column;
+  text-align: center;
   justify-content: space-between;
-  font-size: 1.5rem;
+}
+
+.title {
+  font-weight: 800;
+  font-size: 1.8rem;
 }
 
 .content {
-  margin-top: 1.5rem;
+  margin-top: 0.25rem;
+  font-size: 1rem;
 }
 
 footer {
-  background: linear-gradient(
-    90deg,
-    rgba(47, 182, 196, 1) 11%,
-    rgba(28, 217, 208, 1) 74%
-  );
+  background-color: white;
   border-radius: 0 0 20px 20px;
   height: 4rem;
   display: flex;
@@ -80,32 +93,44 @@ footer {
 }
 
 input {
-  width: 100%;
-  height: 2rem;
+  width: 20rem;
+  height: 2.5rem;
   border: none;
   outline: none;
   font-size: 1rem;
   padding: 0 1.5rem;
+  border: 3px solid #4482f7;
+  border-radius: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.inputWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .submitButton {
-  height: 48px;
   background-color: black;
+  border-radius: 8px;
   color: white;
-  font-size: 1.25rem;
-  border-radius: 50%;
   transition: transform 300ms ease-in;
   outline: none;
-  background: transparent;
   border: none;
   cursor: pointer;
+  width: 6rem;
+  height: 2.5rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
 }
 
 .submitButton:hover {
   transform: scale(1.05);
-}
-.exitWrapper {
-  cursor: pointer;
 }
 
 @media screen and (max-width: 1300px) {
