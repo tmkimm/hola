@@ -20,23 +20,30 @@
 
 .languageList {
   display: flex;
-  border-bottom: 3px solid #dcdcdc;
 }
 
 .languageItem {
   margin-right: 0.5rem;
+  background: #dce2f0;
+  border: 2px solid #dce2f0;
+  border-radius: 58px;
+  padding: 0.25rem 0.5rem;
   margin-bottom: 1rem;
 }
 
-.languageItem img {
-  width: 3rem;
-  height: 3rem;
+.usedLanguageInfo {
+  margin-bottom: 1rem;
+  margin-right: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 500;
 }
 
-.languageInfo {
-  margin-top: 5rem;
+.usedLanguageWrapper {
+  display: flex;
+  align-items: center;
+  border-bottom: 3px solid #dcdcdc;
+  margin-top: 2rem;
 }
-
 .postHeader {
   display: flex;
   flex-direction: column;
@@ -69,6 +76,12 @@
 
 .userImg:hover {
   scale: 1.1;
+}
+
+.userAndDate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .postContentWrapper {

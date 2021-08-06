@@ -13,25 +13,19 @@ import styles from "./studyContent.module.css";
 const StudyLanguage = ({ languages }) => {
   const usedLanguage = languages.map((lang) => lang.value);
   return (
-    <ul className={styles.languageList}>
-      {usedLanguage.map((lang, i) => (
-        <LangItem Language={lang} key={i}></LangItem>
-      ))}
-    </ul>
+    <section className={styles.usedLanguageWrapper}>
+      <div className={styles.usedLanguageInfo}>사용 언어 :</div>
+      <ul className={styles.languageList}>
+        {usedLanguage.map((lang, i) => (
+          <LangItem Language={lang} key={i}></LangItem>
+        ))}
+      </ul>
+    </section>
   );
 };
 
 const LangItem = ({ Language }) => {
-  const lang = Language === "c#" ? "cc" : Language;
-  return (
-    <li className={styles.languageItem}>
-      <img
-        className={styles.logo}
-        src={`/images/languages/${lang}.png`}
-        alt="language logo"
-      />
-    </li>
-  );
+  return <li className={styles.languageItem}>{Language}</li>;
 };
 
 const StudyContent = ({ id }) => {
@@ -63,17 +57,18 @@ const StudyContent = ({ id }) => {
     <div className={styles.wrapper}>
       <section className={styles.postHeader}>
         <div className={styles.title}>{read.post.title}</div>
-        <div className={styles.registeredDate}>
-          {formatDate(read.post.createdAt)}
-        </div>
-
-        <div className={styles.user}>
-          <img
-            className={styles.userImg}
-            src={defaultPath + read.post.imagePath}
-            alt="userImg"
-          />
-          <div className={styles.userName}>{read.post.nickname}</div>
+        <div className={styles.userAndDate}>
+          <div className={styles.user}>
+            <img
+              className={styles.userImg}
+              src={defaultPath + read.post.imagePath}
+              alt="userImg"
+            />
+            <div className={styles.userName}>{read.post.nickname}</div>
+          </div>
+          <div className={styles.registeredDate}>
+            {formatDate(read.post.createdAt)}
+          </div>
         </div>
         {user.nickName === read.post.nickname && (
           <StudyButtons
@@ -86,7 +81,7 @@ const StudyContent = ({ id }) => {
           ></StudyButtons>
         )}
         <RecommendPost id={id}></RecommendPost>
-        <h1 className={styles.languageInfo}>사용 언어 정보</h1>
+
         <StudyLanguage languages={read.post.language}></StudyLanguage>
       </section>
       <div className={styles.postContentWrapper}>
