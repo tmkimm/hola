@@ -77,6 +77,17 @@ export default (app) => {
     });
   }));
 
+  // 글의 관심 등록한 사용자 리스트 조회
+  route.get('/:id/likes', asyncErrorWrapper(async (req, res, next) => {
+    const studyId = req.params.id;
+    let StudyServiceInstance = new StudyService();
+    const likeUsers = await StudyServiceInstance.findLikeUsers(studyId);
+
+    res.status(200).json({
+      likeUsers
+    });
+  }));
+
   // 스터디 등록 
   route.post('/', checkStudy, isStudyValid, isAccessTokenValid, asyncErrorWrapper(async function(req, res, next) {
     try {
@@ -168,7 +179,7 @@ export default (app) => {
     let StudyServiceInstance = new StudyService();
     const study = await StudyServiceInstance.addLike(studyId, userId);
 
-    return res.status(201).json(study);
+    return res.status(201).json({likeUsers: study.likes});
   }));
 
   // 좋아요 삭제

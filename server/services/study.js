@@ -57,14 +57,24 @@ export class StudyService {
     // 사용자의 관심 등록 여부를 조회한다.
     async findUserLiked(studyId, userId) {
         if(userId && studyId) {
-            const studies = await Study.find({_id : studyId, likes : userId});;
+            const studies = await Study.find({_id : studyId, likes : userId});
             let isLiked = studies.length > 0 ? true : false;
             return isLiked;
         } else {
             return false;
         }
-        
     }
+
+    // 스터디의 관심 등록한 사용자 리스트를 조회한다.
+    async findLikeUsers(studyId) {
+        if(studyId) {
+            const likeUsers = await Study.findById(studyId).select('likes');
+            return likeUsers.likes;
+        } else {
+            return [];
+        }
+    }
+
     // 신규 스터디를 등록한다.
     async registerStudy(userID, study) {
         study.author = userID;
@@ -110,7 +120,7 @@ export class StudyService {
     // 관심 등록 추가
     async addLike(studyId, userId) {
         const study = await Study.addLike(studyId, userId);
-        const user = await User.addLikeStudy(studyId, userId);
+        await User.addLikeStudy(studyId, userId);
         return study;
     }
 
