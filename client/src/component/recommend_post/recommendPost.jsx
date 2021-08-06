@@ -32,7 +32,7 @@ const RecommendPost = ({ id }) => {
           {posts.map((post, idx) => (
             <li
               className={styles.postList}
-              key={post.id}
+              key={post._id}
               onClick={() => onclick(post._id)}
             >
               <div className={styles.index}>{`${idx + 1}.`}</div>
