@@ -86,7 +86,7 @@ const Rating = (props) => {
         <div className={styles.ratingIcon}>
           <img
             className={styles.ratingIconImg}
-            src="/images/logo/hola_default.png"
+            src="/images/logo/rating.png"
             alt="default"
             onClick={handleClick}
           />
