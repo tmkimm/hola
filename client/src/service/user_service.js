@@ -92,6 +92,15 @@ class User {
     }
   };
 
+  getUserPostList = async (id) => {
+    try {
+      const response = await this.user.get(`users/myStudies/${id}`);
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   submitFeedback = async ({ rating, content }) => {
     try {
       const response = await this.user.post(`feedback`, {
