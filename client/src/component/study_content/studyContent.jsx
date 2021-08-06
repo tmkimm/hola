@@ -42,7 +42,7 @@ const StudyContent = ({ id }) => {
   };
 
   const handleEnd = async (editValue) => {
-    const res = await studyService.editClose(id, editValue);
+    await studyService.editClose(id, editValue);
   };
 
   const handleEdit = (dispatch, history) => {

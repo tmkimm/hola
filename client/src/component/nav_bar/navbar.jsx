@@ -16,7 +16,7 @@ To-do
 react modal을 modalVisible을 통해 rendering 여부를 결정해 주는게 의미가 있는가?
 
 */
-const Navbar = React.memo(({ showRegisterButton }) => {
+const Navbar = React.memo(() => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const history = useHistory();
@@ -29,6 +29,13 @@ const Navbar = React.memo(({ showRegisterButton }) => {
   const closeModal = () => {
     document.body.style.overflow = "auto";
     dispatch(setModalVisible(false));
+  };
+  const handleRegister = () => {
+    if (user.id === undefined) {
+      openModal();
+      return;
+    }
+    history.push("/register");
   };
 
   useEffect(() => {
@@ -62,19 +69,15 @@ const Navbar = React.memo(({ showRegisterButton }) => {
         />
       </a>
       <div className={styles.loginElementWrapper}>
+        <button className={styles.postRegister} onClick={handleRegister}>
+          새 글 쓰기
+        </button>
         {!user.nickName ? (
           <button className={styles.login} onClick={openModal}>
             로그인
           </button>
         ) : (
-          <>
-            {showRegisterButton && (
-              <button className={styles.postRegister}>
-                <Link to="/register">새 글 쓰기</Link>
-              </button>
-            )}
-            <LoginUser />
-          </>
+          <LoginUser />
         )}
       </div>
       <Modal visible={modalVisible} name="login" onClose={closeModal}>

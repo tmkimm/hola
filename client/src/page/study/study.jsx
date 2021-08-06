@@ -26,7 +26,7 @@ const Study = () => {
 
   return (
     <>
-      <Navbar showRegisterButton={true}></Navbar>
+      <Navbar />
       {read.loading === "idle" ? (
         <Modal visible={true} name="loading">
           <LoadingSpinner />

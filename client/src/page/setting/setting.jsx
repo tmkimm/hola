@@ -22,7 +22,7 @@ const Setting = ({
 }) => {
   return (
     <>
-      <Navbar showRegisterButton={true}></Navbar>
+      <Navbar />
       <div className={styles.main}>
         <h1>내 정보 수정</h1>
         <UserImageUpload

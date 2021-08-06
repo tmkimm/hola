@@ -18,7 +18,7 @@ const MyPosts = (props) => {
 
   return (
     <>
-      <Navbar showRegisterButton={true}></Navbar>
+      <Navbar />
 
       <section className={styles.pageWrapper}>
         <div className={styles.myLikes}>

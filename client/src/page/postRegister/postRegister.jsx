@@ -7,7 +7,7 @@ import Navbar from "../../component/nav_bar/navbar";
 const PostRegister = () => {
   return (
     <>
-      <Navbar showRegisterButton={false}></Navbar>
+      <Navbar />
       <section className={styles.editorWrapper}>
         <EditorContainer></EditorContainer>
         <WritebuttonContainer></WritebuttonContainer>
