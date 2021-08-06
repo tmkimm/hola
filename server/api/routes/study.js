@@ -172,9 +172,9 @@ export default (app) => {
   }));
 
   // 좋아요 삭제
-  route.delete('/likes/:id', asyncErrorWrapper(async (req, res, next) => {
-    const userId = req.params.id; // 사용자 id
-    const { studyId } = req.body;
+  route.delete('/likes/:id', isAccessTokenValid, asyncErrorWrapper(async (req, res, next) => {
+    const studyId = req.params.id; // 사용자 id
+    const userId = req.user._id;
 
     let StudyServiceInstance = new StudyService();
     await StudyServiceInstance.deleteLike(studyId, userId);
