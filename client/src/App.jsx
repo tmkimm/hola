@@ -18,6 +18,7 @@ App component
 */
 
 const App = () => {
+  console.log("App v1.5");
   return (
     <Router>
       <Switch>
