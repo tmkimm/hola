@@ -155,12 +155,19 @@ class Study {
     }
   };
 
-  deleteLikes = async (studyId, userId) => {
+  deleteLikes = async (studyId) => {
     try {
-      const response = await this.study.delete(`studies/likes/${userId}`, {
-        studyId,
-      });
+      const response = await this.study.delete(`studies/likes/${studyId}`);
       return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  getLikesUser = async (studyId) => {
+    try {
+      const response = await this.study.get(`studies/${studyId}/likes`);
+      return response.data;
     } catch (error) {
       console.error(error);
     }
