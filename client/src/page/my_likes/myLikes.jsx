@@ -6,6 +6,8 @@ import userService from "../../service/user_service";
 import styles from "./myLikes.module.css";
 import { MdFavorite } from "react-icons/md";
 import { FaBook } from "react-icons/fa";
+import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
 /*
 
@@ -24,7 +26,7 @@ const MyLikes = (props) => {
   const [likeList, setLikeList] = useState([]);
   const [category, setCategory] = useState(SHOW_BY_READS);
   const userId = useSelector((state) => state.user.id);
-  console.log("user from myLikse : ", userId);
+  const history = useHistory();
 
   const toggleCategory = (toggleTo) => {
     if (category === toggleTo) return;
@@ -33,6 +35,13 @@ const MyLikes = (props) => {
   };
 
   useEffect(() => {
+    if (userId === undefined) {
+      toast.error("로그인이 필요한 페이지입니다.", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      history.push("/");
+    }
     userService.getUserLikeList(userId).then((res) => {
       setLikeList((state) => res.data.likeStudies);
     });
@@ -40,7 +49,7 @@ const MyLikes = (props) => {
     userService.getUserReadList(userId).then((res) => {
       setReadList((state) => res.data.readList);
     });
-  }, [userId]);
+  }, [userId, history]);
 
   return (
     <>

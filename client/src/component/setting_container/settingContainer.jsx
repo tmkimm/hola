@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { toast } from "react-toastify";
@@ -36,6 +36,16 @@ const SettingContainer = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    if (user.id === undefined || user.nickName === "Guest") {
+      toast.error("로그인이 필요한 페이지입니다.", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      history.push("/");
+    }
+  }, [history, user.id, user.nickName]);
 
   const openModal = () => {
     document.body.style.overflow = "hidden";
@@ -93,6 +103,7 @@ const SettingContainer = (props) => {
       }
 
       dispatch(modifyUserInfo(payload)).then((response) => {
+        console.log(response);
         if (response.payload) {
           toast.success("변경이 완료되었습니다.", {
             position: "top-right",

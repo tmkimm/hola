@@ -7,13 +7,9 @@ import Navbar from "../../component/nav_bar/navbar";
 import StudyContent from "../../component/study_content/studyContent";
 import { clearPost, readPost } from "../../store/read";
 
-const useQuery = () => {
-  return new URLSearchParams(useLocation().search);
-};
-
 const Study = () => {
-  const query = useQuery();
-  const studyId = query.get("id");
+  const location = useLocation();
+  const studyId = location.pathname.split("/")[2];
   const dispatch = useDispatch();
   const read = useSelector((state) => state.read);
 

@@ -1,19 +1,27 @@
+@value registerBackground from '../../common/color.css';
+
 .title {
-  margin-top: 4rem;
+  margin: 0;
+  margin-top: 3rem;
   text-align: center;
   animation-duration: 3s;
   animation-name: opacityAnimation;
 }
 
+.logo {
+  margin-top: 2rem;
+}
+
 .buttonClose {
+  margin-top: 4rem;
   font-weight: bold;
   color: white;
   border-radius: 4px;
   width: 8rem;
   height: 2.5rem;
   font-size: 1.25rem;
-  margin-top: 3rem;
-  background-color: #392f31;
+
+  background-color: registerBackground;
 }
 
 @keyframes opacityAnimation {

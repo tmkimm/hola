@@ -1,3 +1,5 @@
+@value registerBackground from '../../common/color.css';
+
 .buttons {
   display: flex;
   justify-content: flex-end;
@@ -23,7 +25,7 @@
   cursor: pointer;
   outline: none;
   border: none;
-  background-color: #392f31;
+  background-color: registerBackground;
   color: white;
   border-radius: 4px;
   padding: 0px 1.25rem;

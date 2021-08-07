@@ -9,6 +9,7 @@ import { setPost } from "../../store/write";
 import RecommendPost from "../recommend_post/recommendPost";
 import StudyButtons from "../study_buttons/studyButtons";
 import styles from "./studyContent.module.css";
+import { FaArrowLeft } from "react-icons/fa";
 
 const StudyLanguage = ({ languages }) => {
   const usedLanguage = languages.map((lang) => lang.value);
@@ -50,12 +51,21 @@ const StudyContent = ({ id }) => {
     history.push("/register");
   };
 
+  const handleBack = () => {
+    history.goBack();
+  };
   const defaultPath =
     "https://hola-post-image.s3.ap-northeast-2.amazonaws.com/";
 
   return (
     <div className={styles.wrapper}>
       <section className={styles.postHeader}>
+        <FaArrowLeft
+          size="30"
+          color="808080"
+          cursor="pointer"
+          onClick={handleBack}
+        />
         <div className={styles.title}>{read.post.title}</div>
         <div className={styles.userAndDate}>
           <div className={styles.user}>

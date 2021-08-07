@@ -126,6 +126,7 @@
 }
 
 .title {
+  margin-top: 2.5rem;
   font-weight: 800;
   font-size: 3rem;
   line-height: 126.5%; /* or 48px */
