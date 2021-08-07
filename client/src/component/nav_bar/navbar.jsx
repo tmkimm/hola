@@ -12,9 +12,6 @@ import { toast } from "react-toastify";
 /* 
 To-do
 
-생각해 봐야할 부분
-react modal을 modalVisible을 통해 rendering 여부를 결정해 주는게 의미가 있는가?
-
 */
 const Navbar = React.memo(() => {
   const dispatch = useDispatch();
@@ -40,9 +37,7 @@ const Navbar = React.memo(() => {
 
   useEffect(() => {
     if (user.nickName) {
-      // 이거 언제하는 작업이지..?
       // page refresh후 갱신
-      // 지금은 로그인 직후에도 일어남.. 상관은 없긴한데.. 없앨 수 있나? 차라리 banner나 여기로 가는게?
       dispatch(fetchUserByRefreshToken()).then((response) => {
         // 유저 nickname 존재시 refresh token을 이용해서 유저정보 얻어옴
         if (response.meta.requestStatus !== "fulfilled") {
@@ -54,7 +49,7 @@ const Navbar = React.memo(() => {
           });
         }
         //  console.log("fetchByuserRefreshToken response :", response);
-        // 실패했을때 에러처리 필요할 듯
+        // 실패했을때 에러처리 필요
       });
     }
   }, [dispatch, history, user.nickName]);

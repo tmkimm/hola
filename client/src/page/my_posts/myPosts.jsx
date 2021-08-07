@@ -5,16 +5,27 @@ import { FaBook } from "react-icons/fa";
 import StudyList from "../../component/study_list/studyList";
 import userService from "../../service/user_service";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const MyPosts = (props) => {
   const [postList, setPostList] = useState([]);
   const userId = useSelector((state) => state.user.id);
+  const history = useHistory();
 
   useEffect(() => {
+    if (userId === undefined) {
+      toast.error("로그인이 필요한 페이지입니다.", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      history.push("/");
+    }
+
     userService.getUserPostList(userId).then((res) => {
       setPostList(res.data);
     });
-  }, [userId]);
+  }, [userId, history]);
 
   return (
     <>
