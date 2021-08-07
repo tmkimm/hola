@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useCallback, useRef, useState } from "react";
 import StudyList from "../../study_list/studyList";
 import useStudySearch from "../hooks/useStudySearch";
 

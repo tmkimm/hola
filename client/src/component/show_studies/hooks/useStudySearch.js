@@ -8,21 +8,21 @@ const useStudySearch = (category, pageNumber, setPageNumber) => {
   const [hasMore, setHasMore] = useState(true);
   const [studyList, setStudyList] = useState([]);
   const selectedLanguages = useSelector((state) => state.language);
-  const [lang, setLang] = useState([]);
+  const [currentLanguage, setCurrentLanguage] = useState([]);
 
   useEffect(() => {
     setPageNumber((prev) => 0);
     setStudyList((prev) => []);
-    setLang((lang) => [...selectedLanguages]);
+    setCurrentLanguage((lang) => [...selectedLanguages]);
   }, [selectedLanguages, setPageNumber]);
 
   useEffect(() => {
     setLoading(true);
     setError(false);
-    if (lang.length !== selectedLanguages.length) {
-      //  console.log("달라서 return합니다");
+    if (currentLanguage.length !== selectedLanguages.length) {
       return;
     }
+
     studyService
       .getList(category, selectedLanguages, pageNumber)
       .then((response) => {
@@ -33,7 +33,7 @@ const useStudySearch = (category, pageNumber, setPageNumber) => {
       .catch((e) => {
         setError(true);
       });
-  }, [category, pageNumber, selectedLanguages, lang.length]);
+  }, [category, pageNumber, selectedLanguages, currentLanguage.length]);
 
   return { loading, error, studyList, hasMore };
 };

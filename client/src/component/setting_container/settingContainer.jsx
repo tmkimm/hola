@@ -103,6 +103,7 @@ const SettingContainer = (props) => {
       }
 
       dispatch(modifyUserInfo(payload)).then((response) => {
+        console.log(response);
         if (response.payload) {
           toast.success("변경이 완료되었습니다.", {
             position: "top-right",
