@@ -18,7 +18,7 @@ const StudyItem = ({ study, lastStudyElementRef }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const onClick = () => {
-    history.push(`/study?id=${study._id}`);
+    history.push(`/study/${study._id}`);
     // console.log(study);
   };
   const closeModal = () => {
