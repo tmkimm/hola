@@ -188,7 +188,7 @@ export default (app) => {
     const userId = req.user._id;
 
     let StudyServiceInstance = new StudyService();
-    await StudyServiceInstance.deleteLike(studyId, userId);
-    res.status(204).json();
+    const study = await StudyServiceInstance.deleteLike(studyId, userId);
+    res.status(201).json({likeUsers: study.likes});
   }));
 }

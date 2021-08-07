@@ -127,7 +127,7 @@ export class StudyService {
     // 관심 등록 취소(삭제)
     async deleteLike(studyId, userId) {
         const study = await Study.deleteLike(studyId, userId);
-        const user = await User.deleteLikeStudy(studyId, userId);
+        await User.deleteLikeStudy(studyId, userId);
         return study;
     }
 }

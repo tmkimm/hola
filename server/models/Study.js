@@ -221,6 +221,9 @@ studySchema.statics.deleteLike = async function(studyId, userId) {
             $inc: {
               totalLikes : -1
             }
+        },
+        {
+          new: true
         }
       );
     return deleteRecord;
