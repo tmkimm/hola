@@ -1,3 +1,5 @@
+@value registerBackground from '../../common/color.css';
+
 .title {
   margin-top: 4rem;
   text-align: center;
@@ -13,7 +15,7 @@
   height: 2.5rem;
   font-size: 1.25rem;
   margin-top: 3rem;
-  background-color: #392f31;
+  background-color: registerBackground;
 }
 
 @keyframes opacityAnimation {
