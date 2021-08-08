@@ -29,7 +29,7 @@ input에 state 바꿀때는 isMount가 true일때만 하기
 const SettingContainer = (props) => {
   const user = useSelector((state) => state.user);
   const [nickName, setNickName] = useState(user.nickName);
-  const preNickName = user.nickname;
+  const preNickName = user.nickName;
   const [likeLanguages, setLikeLanguages] = useState(user.likeLanguages);
   const [image, setImage] = useState(user.imageUrl);
   const [isImageChanged, setIsImageChanged] = useState(false);
@@ -83,7 +83,17 @@ const SettingContainer = (props) => {
       };
 
       //닉네임 변경
-      if (nickName !== preNickName) payload.nickName = nickName;
+      if (nickName !== preNickName) {
+        const response = await userService.checkNickname(user.id, nickName);
+        if (response.isExists) {
+          toast.info("닉네임이 중복 되었어요!", {
+            position: "top-right",
+            autoClose: 3000,
+          });
+          return;
+        }
+        payload.nickName = nickName;
+      }
 
       // 이미지 변경
       if (isImageChanged) {
@@ -103,19 +113,12 @@ const SettingContainer = (props) => {
       }
 
       dispatch(modifyUserInfo(payload)).then((response) => {
-        console.log(response);
-        if (response.payload) {
-          toast.success("변경이 완료되었습니다.", {
-            position: "top-right",
-            autoClose: 3000,
-          });
-          history.push("/");
-        } else {
-          toast.error("닉네임이 중복되었습니다.", {
-            position: "top-right",
-            autoClose: 3000,
-          });
-        }
+        //console.log("response from modifyuserinfo", response);
+        toast.success("변경이 완료되었어요!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
+        history.push("/");
       });
     }
   };
@@ -145,7 +148,6 @@ const SettingContainer = (props) => {
     <Setting
       nickName={nickName}
       setNickName={setNickName}
-      preNickName={preNickName}
       likeLanguages={likeLanguages}
       setLikeLanguages={setLikeLanguages}
       image={image}
