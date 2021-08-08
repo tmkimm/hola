@@ -7,6 +7,7 @@ import QuillImageDropAndPaste from "quill-image-drop-and-paste";
 import "react-quill/dist/quill.snow.css";
 import { useSelector } from "react-redux";
 import LikeLanguages from "../like_languages/likeLanguages";
+import MagicUrl from "quill-magic-url";
 
 /* 
 
@@ -71,6 +72,7 @@ const Editor = ({
 
   /* default quill editor 설정 */
   useEffect(() => {
+    Quill.register("modules/magicUrl", MagicUrl);
     Quill.register("modules/imageDropAndPaste", QuillImageDropAndPaste);
     quillInstance.current = new Quill(quillElement.current, {
       modules: {
@@ -78,11 +80,12 @@ const Editor = ({
           [{ header: "1" }, { header: "2" }],
           ["bold", "italic", "underline", "strike"],
           [{ list: "ordered" }, { list: "bullet" }],
-          ["blockquote", "code-block", "link", "image"],
+          ["link", "image"],
         ],
         imageDropAndPaste: {
           handler: imageHandler,
         },
+        magicUrl: true,
       },
       placeholder: "내용을 입력하세요...",
       readOnly: false,
@@ -131,6 +134,10 @@ const Editor = ({
     quill.on("text-change", (delta, oldDelta, source) => {
       if (source === "user") {
         onChangeField({ key: "content", value: quill.root.innerHTML });
+        console.log("delta", delta);
+        console.log("oldDelta", oldDelta);
+        console.log(quill.getSelection().index);
+        quill.setSelection(quill.getSelection().index + 100, 0); // image upload 후 cursor 이동
       }
     });
   }, [onChangeField, imageHandler]);
