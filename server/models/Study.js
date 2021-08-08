@@ -44,6 +44,7 @@ studySchema.statics.findStudy = async function(offset, limit, sort, language) {
         sortQuery = sort.split(',').filter(value => {
             return sortableColumns.indexOf(value.substr(1,value.length)) != -1 || sortableColumns.indexOf(value) != -1
         });
+        sortQuery.push('-createdAt');
     }
     else {
         sortQuery.push('createdAt');

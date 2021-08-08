@@ -12,14 +12,8 @@ const nickNameDuplicationCheck = asyncErrorWrapper(async (req, res, next) => {
                 isExists: true
             });
         }
-        next();
     }
-    else {
-        return res.status(200).json({
-            message : `Nickname not found.`,
-            isExists: true
-        });
-    }
+    next();
 });
 
 export { nickNameDuplicationCheck };

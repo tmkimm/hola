@@ -1,5 +1,6 @@
 import { Study } from '../models/Study.js';
 import { User } from '../models/User.js';
+import sanitizeHtml from 'sanitize-html';
 
 export class StudyService {
 
@@ -78,12 +79,24 @@ export class StudyService {
     // 신규 스터디를 등록한다.
     async registerStudy(userID, study) {
         study.author = userID;
+        if(study.content) {
+            let cleanHTML = sanitizeHtml(study.content, {
+                allowedTags: sanitizeHtml.defaults.allowedTags.concat([ 'img' ])
+              });
+            study.content = cleanHTML;
+        }
         const studyRecord = await Study.create(study);
         return studyRecord;
     }
 
     // 스터디 정보를 수정한다.
     async modifyStudy(id, study) {
+        if(study.content) {
+            let cleanHTML = sanitizeHtml(study.content, {
+                allowedTags: sanitizeHtml.defaults.allowedTags.concat([ 'img' ])
+              });
+            study.content = cleanHTML;
+        }
         const studyRecord = await Study.modifyStudy(id, study);
         return studyRecord;
     }

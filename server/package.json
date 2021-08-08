@@ -6,7 +6,8 @@
   "scripts": {
     "start": "pm2 start ./app.js",
     "server": "nodemon ./app.js",
-    "dev": "concurrently \"npm run server\" \"npm run start --prefix ../client\""
+    "dev": "concurrently \"npm run server\" \"npm run start --prefix ../client\"",
+    "test": "jest"
   },
   "dependencies": {
     "aws-sdk": "^2.905.0",
@@ -21,13 +22,14 @@
     "express-validator": "^6.9.2",
     "google-auth-library": "^7.0.2",
     "http-errors": "~1.6.3",
+    "jest": "^27.0.6",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.9",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.6",
     "path": "^0.12.7",
     "pm2": "^4.5.6",
-    "sanitize-html": "^2.3.3",
+    "sanitize-html": "^2.4.0",
     "winston": "^3.3.3"
   }
 }
