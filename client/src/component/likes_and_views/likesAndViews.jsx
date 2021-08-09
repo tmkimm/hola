@@ -25,7 +25,9 @@ const LikesAndViews = ({ views, studyId, userId }) => {
   useEffect(() => {
     studyService.getLikesUser(studyId).then((res) => {
       setTotalLikes(res.likeUsers.length);
-      if (userId !== undefined) {
+      if (userId === undefined) {
+        setLikeImg("heart_unfilled");
+      } else {
         const isLike = res.likeUsers.filter(
           (likeUserid) => likeUserid === userId
         );
