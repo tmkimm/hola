@@ -18,15 +18,12 @@ API를 통해 refresh token을 초기화 합니다.
 
 const DropdownBar = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const userNickname = useSelector((state) => state.user.nickName);
-  const handleLogout = () => {
-    authService.logout().then((response) => {
-      dispatch(clearUser());
-      dispatch(clearStep());
-      authService.resetToken();
-      history.push("/");
-    });
+  const handleLogout = async () => {
+    await authService.logout();
+    dispatch(clearUser());
+    dispatch(clearStep());
+    authService.resetToken();
   };
   return (
     <div className={styles.menuWrapper}>
