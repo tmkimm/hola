@@ -25,25 +25,25 @@ const App = () => {
         <Route exact path={["/", "/main"]}>
           <Main />
         </Route>
+        <Route path="/register">
+          <PostRegister />
+        </Route>
+        <Route path="/setting">
+          <SettingContainer />
+        </Route>
+        <Route path="/study">
+          <Study />
+        </Route>
+        <Route path="/myPosts">
+          <MyPosts />
+        </Route>
+        <Route path="/myLikes">
+          <MyLikes />
+        </Route>
+        <Route path="/auth/github">
+          <GithubLogin />
+        </Route>
       </Switch>
-      <Route path="/register">
-        <PostRegister />
-      </Route>
-      <Route path="/setting">
-        <SettingContainer />
-      </Route>
-      <Route path="/study">
-        <Study />
-      </Route>
-      <Route path="/myPosts">
-        <MyPosts />
-      </Route>
-      <Route path="/myLikes">
-        <MyLikes />
-      </Route>
-      <Route path="/auth/github">
-        <GithubLogin />
-      </Route>
     </Router>
   );
 };
