@@ -1,5 +1,5 @@
-const getFormatedToday = () => {
-  const date = new Date();
+const getFormatedToday = (standardDate) => {
+  const date = standardDate ? new Date(standardDate) : new Date();
   const year = date.getFullYear();
   const month = ("0" + (1 + date.getMonth())).slice(-2);
   const day = ("0" + date.getDate()).slice(-2);
@@ -7,11 +7,15 @@ const getFormatedToday = () => {
   const min = ("0" + date.getMinutes()).slice(-2);
   const sec = ("0" + date.getSeconds()).slice(-2);
 
-  return year + "-" + month + "-" + day + "_" + hour + "-" + min + "-" + sec;
+  if (standardDate) {
+    return year + "-" + month + "-" + day + " " + hour + ":" + min + ":" + sec;
+  } else {
+    return year + "-" + month + "-" + day + "_" + hour + "-" + min + "-" + sec;
+  }
 };
 
 const formatDate = (date) => {
-  var d = new Date(date),
+  let d = new Date(date),
     month = "" + (d.getMonth() + 1),
     day = "" + d.getDate(),
     year = d.getFullYear();

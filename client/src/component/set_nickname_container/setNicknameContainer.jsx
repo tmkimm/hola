@@ -10,17 +10,25 @@ const SetNicknameContainer = (props) => {
   const [nickname, setNickname] = useState("");
   const userId = useSelector((state) => state.loginStep.id);
   const handleLoginStep = async () => {
-    const response = await userService.checkNickname(userId, nickname);
-    if (response.isExists) {
-      toast.info("닉네임이 중복 되었어요!", {
+    if (nickname.length > 15) {
+      toast.info("닉네임은 최대 15글자 입니다.", {
         position: "top-right",
         autoClose: 3000,
       });
       return;
     }
 
-    if (nickname.length > 15) {
-      toast.info("닉네임은 최대 15글자 입니다.", {
+    if (nickname.length === 0) {
+      toast.info("닉네임을 입력해 주세요!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      return;
+    }
+
+    const response = await userService.checkNickname(userId, nickname);
+    if (response.isExists) {
+      toast.info("닉네임이 중복 되었어요!", {
         position: "top-right",
         autoClose: 3000,
       });

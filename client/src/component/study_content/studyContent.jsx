@@ -10,6 +10,7 @@ import RecommendPost from "../recommend_post/recommendPost";
 import StudyButtons from "../study_buttons/studyButtons";
 import styles from "./studyContent.module.css";
 import { FaArrowLeft } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const StudyLanguage = ({ languages }) => {
   const usedLanguage = languages.map((lang) => lang.value);
@@ -39,6 +40,10 @@ const StudyContent = ({ id }) => {
   const handleDelete = async (id) => {
     await studyService.deleteStudy(id);
     document.body.style.overflow = "auto";
+    toast.success("글 삭제가 완료되었어요!", {
+      position: "top-right",
+      autoClose: 3000,
+    });
     history.push("/");
   };
 

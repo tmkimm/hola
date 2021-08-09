@@ -1,4 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
+import EmptyList from "../../empty_list/emptyList";
 import StudyList from "../../study_list/studyList";
 import useStudySearch from "../hooks/useStudySearch";
 
@@ -26,10 +27,16 @@ const ShowByViews = () => {
     [loading, hasMore]
   );
   return (
-    <StudyList
-      lastStudyElementRef={lastStudyElementRef}
-      studyList={studyList}
-    ></StudyList>
+    <>
+      {!loading && studyList.length === 0 ? (
+        <EmptyList />
+      ) : (
+        <StudyList
+          lastStudyElementRef={lastStudyElementRef}
+          studyList={studyList}
+        ></StudyList>
+      )}
+    </>
   );
 };
 

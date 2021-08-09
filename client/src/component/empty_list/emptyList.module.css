@@ -1,0 +1,46 @@
+.emptyImgWrapper {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.emptyImg {
+  width: 10rem;
+}
+
+.textWrapper {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.text {
+  font-size: 1.5rem;
+  line-height: 1.7;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 1024px) {
+  .emptyImgWrapper {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .emptyImg {
+    width: 6rem;
+  }
+
+  .textWrapper {
+    margin-top: 1rem;
+  }
+
+  .text {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    font-weight: 600;
+  }
+}

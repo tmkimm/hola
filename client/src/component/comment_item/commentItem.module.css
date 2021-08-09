@@ -5,7 +5,9 @@
 .commentContainer {
   display: flex;
   flex-direction: column;
-  margin-bottom: 0.8rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgb(233, 236, 239);
 }
 
 .commentHeader {
@@ -29,17 +31,21 @@
 
 .userImg {
   display: block;
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 3rem;
+  width: 3rem;
+  margin-right: 0.5rem;
   box-shadow: rgb(0 0 0 / 9%) 0px 0px 8px;
   border-radius: 50%;
   object-fit: cover;
   transition: all 0.125s ease-in 0s;
 }
 
-.registeredDate {
+.userNickname {
   font-weight: 600;
-  font-size: 15px;
+}
+
+.registeredDate {
+  font-size: 1rem;
   line-height: 126.5%; /* or 19px */
   letter-spacing: -0.005em;
   color: #8c8c8c;
@@ -68,6 +74,14 @@
   margin-right: 10px;
   height: 1.75rem;
   font-size: 1rem;
+}
+
+.commentContent {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  letter-spacing: -0.004em;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .buttonComplete {

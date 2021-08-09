@@ -7,10 +7,13 @@ import { toast } from "react-toastify";
 const Rating = (props) => {
   const [showRating, setShowRating] = useState(false);
   const [rating, setRating] = useState(0);
+  const [imageName, setImageName] = useState("score_3");
+
   const inputRef = useRef();
 
   const ratingChanged = (score) => {
     setRating(score);
+    setImageName(`score_${Math.round(score)}`);
   };
   const handleClick = () => {
     setShowRating((state) => !state);
@@ -55,7 +58,7 @@ const Rating = (props) => {
           <div className={styles.imgWrapper}>
             <img
               className={styles.imgLogo}
-              src="/images/logo/hola_default2.png"
+              src={`/images/ratings/${imageName}.png`}
               alt="default logo"
             />
           </div>

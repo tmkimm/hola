@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./commentItem.module.css";
 import studyService from "../../service/study_service";
-import { formatDate } from "../../common/utils.js";
+import { getFormatedToday } from "../../common/utils.js";
 import { fetchUserByRefreshToken } from "../../store/user";
 import CommentButtons from "../comment_buttons/commentButtons";
 
@@ -64,10 +64,12 @@ const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
 
           <div className={styles.commentInfo}>
             <div className={styles.title}>
-              <div className={styles.registeredDate}>
-                {formatDate(comment.createdAt)}
+              <div className={styles.userNickname}>
+                {comment.author.nickName}
               </div>
-              <div>{comment.author.nickName}</div>
+              <div className={styles.registeredDate}>
+                {getFormatedToday(comment.createdAt)}
+              </div>
             </div>
           </div>
         </div>
@@ -111,9 +113,8 @@ const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
             </div>
           </>
         )}
-        {!inputVisible && <p>{content}</p>}
+        {!inputVisible && <p className={styles.commentContent}>{content}</p>}
       </section>
-      <hr />
     </li>
   );
 });
