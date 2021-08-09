@@ -134,10 +134,6 @@ const Editor = ({
     quill.on("text-change", (delta, oldDelta, source) => {
       if (source === "user") {
         onChangeField({ key: "content", value: quill.root.innerHTML });
-        console.log("delta", delta);
-        console.log("oldDelta", oldDelta);
-        console.log(quill.getSelection().index);
-        quill.setSelection(quill.getSelection().index + 100, 0); // image upload 후 cursor 이동
       }
     });
   }, [onChangeField, imageHandler]);

@@ -116,6 +116,10 @@
   max-width: 100%;
 }
 
+.postContent a {
+  color: #2883f3;
+}
+
 .registeredDate {
   font-weight: 600;
   font-size: 1.25rem;
