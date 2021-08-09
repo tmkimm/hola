@@ -12,7 +12,7 @@ const PostRegister = () => {
   const history = useHistory();
 
   useEffect(() => {
-    if (user.id === undefined || user.nickName === "Guest") {
+    if (user.id === undefined) {
       toast.error("로그인이 필요한 페이지입니다.", {
         position: "top-right",
         autoClose: 3000,
