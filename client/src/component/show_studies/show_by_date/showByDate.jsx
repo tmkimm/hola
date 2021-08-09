@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import EmptyList from "../../empty_list/emptyList";
 import StudyList from "../../study_list/studyList";
 import useStudySearch from "../hooks/useStudySearch";
 
@@ -30,10 +31,16 @@ const ShowByDate = () => {
   );
 
   return (
-    <StudyList
-      lastStudyElementRef={lastStudyElementRef}
-      studyList={studyList}
-    ></StudyList>
+    <>
+      {!loading && studyList.length === 0 ? (
+        <EmptyList />
+      ) : (
+        <StudyList
+          lastStudyElementRef={lastStudyElementRef}
+          studyList={studyList}
+        ></StudyList>
+      )}
+    </>
   );
 };
 
