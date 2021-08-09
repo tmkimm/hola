@@ -28,8 +28,14 @@ const studySchema = mongoose.Schema({
 },
 {
     versionKey: false,
-    timestamps: true
+    timestamps: true,
+    toObject: { virtuals: true },
+    toJSON: { virtuals: true },
 });
+
+studySchema.virtual('totalComments').get(function() {
+    return this.comments.length
+  });
 
 // 최신, 트레딩 조회
 studySchema.statics.findStudy = async function(offset, limit, sort, language) {
@@ -58,8 +64,7 @@ studySchema.statics.findStudy = async function(offset, limit, sort, language) {
     .where('isDeleted').equals(false)
     .sort(sortQuery.join(' '))
     .skip(Number(offsetQuery))
-    .limit(Number(limitQuery))
-    .select('-isDeleted -comments');
+    .limit(Number(limitQuery));
 };
 
 // 사용자에게 추천 조회
