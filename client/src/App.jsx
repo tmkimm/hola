@@ -7,6 +7,7 @@ import Study from "./page/study/study";
 import MyPosts from "./page/my_posts/myPosts";
 import MyLikes from "./page/my_likes/myLikes";
 import SettingContainer from "./component/setting_container/settingContainer";
+import NotFound from "./page/notFound/notFound";
 
 /* 
 
@@ -42,6 +43,9 @@ const App = () => {
         </Route>
         <Route path="/auth/github">
           <GithubLogin />
+        </Route>
+        <Route>
+          <NotFound />
         </Route>
       </Switch>
     </Router>

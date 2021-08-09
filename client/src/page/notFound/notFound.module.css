@@ -1,0 +1,33 @@
+@value registerBackground from '../../common/color.css';
+
+.notFoundWrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.errorImg {
+  width: 20rem;
+}
+
+.message {
+  margin-top: 2rem;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.homeButton {
+  margin-top: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: registerBackground;
+  color: white;
+  border-radius: 4px;
+  padding: 0px 1.125rem;
+  height: 2.5rem;
+  font-size: 1.125rem;
+}
