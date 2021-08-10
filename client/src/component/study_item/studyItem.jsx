@@ -8,6 +8,7 @@ const StudyItem = ({ study, lastStudyElementRef }) => {
   const studyLang = [];
   const history = useHistory();
   const displayType = study.isClosed ? styles.closed : styles.open;
+  //console.log(study);
 
   for (let i = 0; i < 3; i++) {
     if (study.language[i] === undefined) break;
