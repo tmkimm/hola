@@ -101,7 +101,7 @@ studySchema.statics.findStudyRecommend = async function(sort, language, studyId,
     .where('isClosed').equals(false)
     .sort(sortQuery.join(' '))
     .limit(limit)
-    .select('-isDeleted -comments');
+    .select('-isDeleted');
 
     // 부족한 개수만큼 추가 조회
     if(studies.length < limit - 1) {
@@ -116,7 +116,7 @@ studySchema.statics.findStudyRecommend = async function(sort, language, studyId,
         .where('isClosed').equals(false)
         .sort(sortQuery.join(' '))
         .limit(limit - studies.length)
-        .select('-isDeleted -comments');
+        .select('-isDeleted');
         studies.push(...shortStudies);
     }
     return studies;
