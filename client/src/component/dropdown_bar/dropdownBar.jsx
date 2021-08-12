@@ -28,6 +28,11 @@ const DropdownBar = () => {
   return (
     <div className={styles.menuWrapper}>
       <ul className={styles.menu}>
+        <li className={`${styles.menuItem} ${styles.newPost}`}>
+          <Link to="/register" style={{ display: "inline-block" }}>
+            새 글 작성
+          </Link>
+        </li>
         <li className={styles.menuItem}>
           <Link to="/myPosts" style={{ display: "inline-block" }}>
             내 작성글

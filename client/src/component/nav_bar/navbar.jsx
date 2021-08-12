@@ -3,7 +3,7 @@ import LoginModal from "../modal/login_modal/loginModal";
 import Modal from "../modal/modal_component/modal";
 import styles from "./navbar.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import LoginUser from "../login_user/loginUser";
 import { setModalVisible } from "../../store/loginStep";
 import { clearUser, fetchUserByRefreshToken } from "../../store/user";

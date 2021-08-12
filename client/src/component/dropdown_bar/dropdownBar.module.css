@@ -31,3 +31,13 @@
 .menuWrapper a {
   width: 100%;
 }
+
+.newPost {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .newPost {
+    display: inline-block;
+  }
+}

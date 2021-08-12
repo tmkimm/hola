@@ -38,3 +38,12 @@ button {
   font-weight: 600;
   font-size: 1.5rem;
 }
+
+@media screen and (max-width: 600px) {
+  .postRegister {
+    display: none;
+  }
+  .login {
+    margin-right: 0;
+  }
+}

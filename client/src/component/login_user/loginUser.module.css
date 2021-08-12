@@ -8,6 +8,7 @@
 .userName {
   font-size: 18px;
   font-weight: 600;
+  margin-right: 0.25rem;
 }
 
 .userImg {
@@ -28,6 +29,8 @@
   margin-right: -0.4375rem;
 }
 
-.userName {
-  margin-right: 0.25rem;
+@media screen and (max-width: 600px) {
+  .userName {
+    display: none;
+  }
 }

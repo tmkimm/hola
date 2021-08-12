@@ -1,6 +1,6 @@
 .app {
-  width: 1300px;
   margin: 0 auto;
+  width: 1300px;
 }
 
 .appWrapper {
@@ -62,15 +62,12 @@
   }
 }
 
-@media screen and (max-width: 1024px) {
-  .app {
-    width: calc(100% - 2rem);
-  }
-}
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 830px) {
   .languageBarWrapper {
     margin-top: 5rem;
+  }
+  .app {
+    width: calc(100% - 2rem);
   }
 }
 
