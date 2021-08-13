@@ -2,15 +2,16 @@ import React, { useEffect } from "react";
 import Select from "react-select";
 import languageList from "../../languageList";
 
-const customStyles = {
-  control: (css) => ({
-    ...css,
-    width: "400px",
-    minHeight: "3rem",
-  }),
-};
-
 const LikeLanguages = ({ likeLanguages, setLikeLanguages, placeholder }) => {
+  const customStyles = {
+    control: (css) => ({
+      ...css,
+      maxWidth: "500px",
+      width: "100%",
+      minHeight: "3rem",
+    }),
+  };
+
   return (
     <Select
       isMulti

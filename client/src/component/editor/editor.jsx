@@ -160,11 +160,13 @@ const Editor = ({
       />
       <div className={styles.languageWrapper}>
         <h3 className={styles.languageList}>사용 언어 : </h3>
-        <LikeLanguages
-          likeLanguages={language}
-          setLikeLanguages={onChangeLanguage}
-          placeholder={"프로젝트/스터디 진행 언어 선택"}
-        ></LikeLanguages>
+        <div className={styles.likeLanguagesWrapper}>
+          <LikeLanguages
+            likeLanguages={language}
+            setLikeLanguages={onChangeLanguage}
+            placeholder={"프로젝트/스터디 진행 언어 선택"}
+          ></LikeLanguages>
+        </div>
       </div>
       <QuillWrapper>
         <div className={styles.quillEditor} ref={quillElement} />

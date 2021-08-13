@@ -41,7 +41,7 @@
 }
 
 .titleWrapper h3 {
-  width: 130px;
+  width: 20rem;
 }
 
 .description {
@@ -57,6 +57,10 @@
 
 .buttonSignOut {
   background: rgb(255, 50, 23);
+}
+
+.likeLanguageWrapper {
+  width: 100%;
 }
 
 @media screen and (max-width: 768px) {

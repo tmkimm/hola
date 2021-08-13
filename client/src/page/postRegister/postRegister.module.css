@@ -6,3 +6,9 @@
   margin: 0 auto; /* 중앙 정렬 */
   background-color: #ffffff;
 }
+
+@media screen and (max-width: 1048px) {
+  .editorWrapper {
+    width: 100%;
+  }
+}

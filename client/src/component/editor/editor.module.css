@@ -17,14 +17,18 @@
 }
 
 .languageList {
-  margin-right: 1rem;
+  width: 8rem;
 }
 
-/* 적용 안할거면 삭제 필요 */
-
-@media screen (max-width: 1024px) {
-  width: 768px;
-}
-@media screen (max-width: 768px) {
+.likeLanguagesWrapper {
   width: 100%;
+}
+
+@media screen and (max-width: 575px) {
+  .titleInput {
+    font-size: 2rem;
+  }
+  .likeLanguagesWrapper {
+    font-size: 0.8rem;
+  }
 }
