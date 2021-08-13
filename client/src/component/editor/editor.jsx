@@ -87,7 +87,7 @@ const Editor = ({
         },
         magicUrl: true,
       },
-      placeholder: "내용을 입력하세요...",
+      placeholder: `프로젝트/스터디 진행 방식 및 신청 방법(오픈카톡, 댓글 등)에 대해 구체적으로 작성 부탁드려요!`,
       readOnly: false,
       theme: "snow",
     });
