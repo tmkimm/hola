@@ -1,24 +1,26 @@
-import React, { useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import styles from "./rating.module.css";
 import ReactStars from "react-rating-stars-component";
 import userService from "../../service/user_service";
 import { toast } from "react-toastify";
 
-const Rating = (props) => {
+const Rating = React.memo(() => {
   const [showRating, setShowRating] = useState(false);
   const [rating, setRating] = useState(0);
   const [imageName, setImageName] = useState("score_3");
 
   const inputRef = useRef();
 
-  const ratingChanged = (score) => {
+  const ratingChanged = useCallback((score) => {
     setRating(score);
     setImageName(`score_${Math.round(score)}`);
-  };
-  const handleClick = () => {
+  }, []);
+
+  const handleClick = useCallback(() => {
     setShowRating((state) => !state);
-  };
-  const onSubmit = async () => {
+  }, []);
+
+  const onSubmit = useCallback(async () => {
     await userService.submitFeedback({
       rating,
       content: inputRef.current.value,
@@ -28,7 +30,8 @@ const Rating = (props) => {
       position: "top-right",
       autoClose: 3000,
     });
-  };
+  }, [rating]);
+
   return (
     <>
       {showRating ? (
@@ -97,6 +100,6 @@ const Rating = (props) => {
       )}
     </>
   );
-};
+});
 
 export default Rating;
