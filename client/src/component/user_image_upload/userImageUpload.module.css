@@ -23,23 +23,23 @@
   display: inline-block;
   cursor: pointer;
   text-align: center;
-  padding: 0px;
-  width: 100px;
-  height: 30px;
-  font-size: 1rem;
+  padding-top: 4px;
+  width: 7.5rem;
+  height: 2rem;
   font-weight: 500;
   margin: 5px;
 }
 
 .buttonImageDelete {
-  width: 100px;
+  width: 7.5rem;
+  height: 2rem;
+  font-size: 1rem;
   color: white;
   border-radius: 4px;
   background-color: registerBackground;
-  height: 30px;
   margin: 5px;
   margin-right: 0px;
-  font-size: 1rem;
+  padding: 0px;
   font-weight: 600;
 }
 
