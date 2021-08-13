@@ -21,8 +21,26 @@
   color: #4482f7;
 }
 
+.descriptionMobile {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .loginWrapper {
-    width: 80%;
+    flex-direction: column;
+    margin-top: 1.5rem;
+  }
+  .loginTitle {
+    font-size: 1.5rem;
+  }
+
+  .descriptionMobile {
+    margin-top: 3rem;
+    display: block;
+  }
+
+  .guestLogin {
+    margin-top: 1rem;
+    width: 20rem;
   }
 }

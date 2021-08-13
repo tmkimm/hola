@@ -30,3 +30,13 @@
   letter-spacing: -0.005em;
   color: #565656;
 }
+
+@media screen and (max-width: 768px) {
+  .button {
+    width: 20rem;
+    height: 4.5rem;
+  }
+  .loginDescription {
+    display: none;
+  }
+}

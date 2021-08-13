@@ -17,7 +17,8 @@ const SocialLogin = ({
 }) => {
   return (
     <>
-      <h1>Hola에 오신 것을 환영합니다!</h1>
+      <h1 className={styles.loginTitle}>Hola에 오신 것을 환영합니다!</h1>
+      <div className={styles.descriptionMobile}>소셜 로그인</div>
       <section className={styles.loginWrapper}>
         <GoogleLogin
           clientId={googleClientId}
@@ -38,6 +39,7 @@ const SocialLogin = ({
           )}
         />
       </section>
+      <div className={styles.descriptionMobile}>게스트 로그인</div>
       <button className={styles.guestLogin} onClick={guestLogin}>
         Login as GUEST
       </button>
