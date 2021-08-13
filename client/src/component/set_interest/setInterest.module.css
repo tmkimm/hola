@@ -10,6 +10,7 @@
   display: flex;
   align-items: center;
   margin-top: 3rem;
+  width: 80%;
 }
 
 .nicknameInput {
@@ -26,6 +27,7 @@
 .inputWrapper h3 {
   margin-right: 1rem;
   font-size: 1rem;
+  width: 20%;
 }
 
 .title {
@@ -46,11 +48,31 @@
   background-color: registerBackground;
 }
 
+.likeLanguageWrapper {
+  width: 100%;
+}
+
 @keyframes opacityAnimation {
   0% {
     opacity: 0;
   }
   100% {
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .title {
+    font-size: 1.125rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .inputWrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .inputWrapper h3 {
+    width: 100%;
   }
 }

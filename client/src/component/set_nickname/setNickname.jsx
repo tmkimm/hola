@@ -12,7 +12,7 @@ const SetNickname = ({ nickname, setNickname, handleLoginStep }) => {
         우선, 사용하실 닉네임을 설정해 볼까요?
       </h1>
       <div className={styles.inputWrapper}>
-        <h3>닉네임</h3>
+        <h3 className={styles.nicknameText}>닉네임</h3>
         <input
           className={styles.nicknameInput}
           type="text"

@@ -58,3 +58,17 @@
     opacity: 1;
   }
 }
+
+@media screen and (max-width: 575px) {
+  .title {
+    margin-top: 6rem;
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    margin-top: 6rem;
+    font-size: 1.5rem;
+  }
+}
