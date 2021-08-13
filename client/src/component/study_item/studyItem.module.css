@@ -83,11 +83,14 @@
 }
 
 .viewImg {
-  width: 20px;
+  width: 16px;
   height: auto;
   margin-right: 2px;
 }
 
+.views {
+  margin-left: 2px;
+}
 .closed {
   opacity: 0.4;
 }
@@ -106,6 +109,10 @@
   color: white;
   background-color: black;
   border-radius: 4px;
+}
+
+.comments {
+  margin-left: 2px;
 }
 
 @media screen and (max-width: 830px) {

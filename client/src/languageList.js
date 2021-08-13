@@ -5,6 +5,10 @@
  * aws
  * nestjs
  * nextjs
+ * tensorflow
+ * R
+ * anaconda
+ *
  */
 
 const languageList = [

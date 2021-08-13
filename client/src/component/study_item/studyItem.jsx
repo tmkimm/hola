@@ -3,12 +3,12 @@ import styles from "./studyItem.module.css";
 import Modal from "../modal/modal_component/modal";
 import PostModal from "../modal/post_modal/postModal";
 import { useHistory } from "react-router-dom";
+import { FaRegCommentDots, FaRegEye } from "react-icons/fa";
 
 const StudyItem = ({ study, lastStudyElementRef }) => {
   const studyLang = [];
   const history = useHistory();
   const displayType = study.isClosed ? styles.closed : styles.open;
-  //console.log(study);
 
   for (let i = 0; i < 3; i++) {
     if (study.language[i] === undefined) break;
@@ -51,20 +51,23 @@ const StudyItem = ({ study, lastStudyElementRef }) => {
         </ul>
         <section className={styles.info}>
           <div className={styles.infoItem}>
+            <FaRegCommentDots size={14} color={"#9A9A9A"} />
+            <p className={styles.comments}>{study.totalComments}</p>
+          </div>
+
+          <div className={styles.infoItem}>
+            <FaRegEye size={16} color={"#9A9A9A"} />
+
+            <p className={styles.views}>{study.views}</p>
+          </div>
+
+          <div className={styles.infoItem}>
             <img
               className={styles.itemImg}
               src="/images/info/heart_filled.png"
               alt="likes"
             />
             <p>{study.totalLikes}</p>
-          </div>
-          <div className={styles.infoItem}>
-            <img
-              className={styles.viewImg}
-              src="/images/info/eye.png"
-              alt="views"
-            />
-            <p>{study.views}</p>
           </div>
         </section>
         {study.isClosed && <div className={styles.closeNotice}>모집 완료</div>}
