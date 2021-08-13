@@ -2,7 +2,7 @@ import React from "react";
 import LanguageBarItem from "../language_bar_item/languageBarItem";
 import styles from "./languageBarList.module.css";
 
-const LanguageBarList = (props) => {
+const LanguageBarList = React.memo(() => {
   const languages = [
     "javascript",
     "typescript",
@@ -27,6 +27,6 @@ const LanguageBarList = (props) => {
       ))}
     </ul>
   );
-};
+});
 
 export default LanguageBarList;

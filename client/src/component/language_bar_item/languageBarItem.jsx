@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import styles from "./languageBarItem.module.css";
 import { addLanguage, removeLanguage } from "../../store/language";
 
-const LanguageBarItem = ({ Language }) => {
+const LanguageBarItem = React.memo(({ Language }) => {
   const [selected, setSelected] = useState(false);
   const displayType = selected === true ? styles.full : styles.transparent;
 
   const dispatch = useDispatch();
 
-  const onItemClick = () => {
+  const onItemClick = useCallback(() => {
     setSelected((state) => !state);
 
     if (!selected) dispatch(addLanguage(Language));
     else dispatch(removeLanguage(Language));
-  };
+  }, [dispatch, selected, Language]);
 
   return (
     <li className={styles.item}>
@@ -26,6 +26,6 @@ const LanguageBarItem = ({ Language }) => {
       />
     </li>
   );
-};
+});
 
 export default LanguageBarItem;
