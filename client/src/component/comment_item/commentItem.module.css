@@ -101,3 +101,9 @@ hr {
   background-color: #808080;
   height: 1px;
 }
+
+@media screen and (max-width: 575px) {
+  .commentContent {
+    font-size: 1rem;
+  }
+}

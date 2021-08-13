@@ -4,7 +4,7 @@ import styles from "./commentInput.module.css";
 const CommentInput = ({ content, setContent, onRegisterClick, count }) => {
   return (
     <div className={styles.commentInput}>
-      <h1>{count}개의 댓글이 있습니다.</h1>
+      <h1 className={styles.commentCount}>{count}개의 댓글이 있습니다.</h1>
       <textarea
         placeholder="댓글을 입력하세요."
         value={content}

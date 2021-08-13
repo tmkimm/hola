@@ -48,6 +48,7 @@
 
 .mainImg {
   width: 100%;
+  height: auto;
   padding: 1.5rem;
 }
 
@@ -64,6 +65,7 @@
 
   .mainImg {
     width: 80%;
+    height: auto;
     padding: 1.5rem;
   }
 

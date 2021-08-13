@@ -3,4 +3,11 @@
   left: 1rem;
   opacity: 0.6;
   cursor: pointer;
+  width: 3rem;
+}
+
+@media screen and (max-width: 768px) {
+  .backButton {
+    width: 2rem;
+  }
 }

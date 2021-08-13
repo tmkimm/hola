@@ -31,3 +31,9 @@
   justify-content: flex-end;
   margin-top: 1rem;
 }
+
+@media screen and (max-width: 575px) {
+  .commentCount {
+    font-size: 1.25rem;
+  }
+}
