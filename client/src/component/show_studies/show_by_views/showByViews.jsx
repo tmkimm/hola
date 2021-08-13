@@ -7,7 +7,7 @@ const ShowByViews = () => {
   const SHOW_BY_VIEWS = "-views";
   const [pageNumber, setPageNumber] = useState(0);
   const observer = useRef();
-  const { studyList, hasMore, loading, error } = useStudySearch(
+  const { studyList, hasMore, loading } = useStudySearch(
     SHOW_BY_VIEWS,
     pageNumber,
     setPageNumber

@@ -23,7 +23,7 @@ const SetImageContainer = (props) => {
         );
         image = fileName;
 
-        const response = await studyService.uploadImageToS3WithBase64(
+        await studyService.uploadImageToS3WithBase64(
           preSignedUrl,
           userImage,
           fileName

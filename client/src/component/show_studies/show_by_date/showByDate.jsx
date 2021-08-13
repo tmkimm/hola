@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useCallback, useRef, useState } from "react";
 import EmptyList from "../../empty_list/emptyList";
 import StudyList from "../../study_list/studyList";
 import useStudySearch from "../hooks/useStudySearch";
@@ -10,7 +9,7 @@ const ShowByDate = () => {
 
   const observer = useRef();
 
-  const { studyList, hasMore, loading, error } = useStudySearch(
+  const { studyList, hasMore, loading } = useStudySearch(
     SHOW_BY_DATE,
     pageNumber,
     setPageNumber
