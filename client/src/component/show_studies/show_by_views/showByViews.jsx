@@ -19,7 +19,7 @@ const ShowByViews = () => {
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
-          setPageNumber((prevPageNumber) => prevPageNumber + 5);
+          setPageNumber((prevPageNumber) => prevPageNumber + 20);
         }
       });
       if (node) observer.current.observe(node);

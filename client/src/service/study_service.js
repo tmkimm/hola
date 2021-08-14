@@ -15,7 +15,7 @@ class Study {
       const params = {
         sort: query,
         offset: pageNumber,
-        limit: 5,
+        limit: 20,
       };
 
       if (selectedLanguages.length !== 0) {
