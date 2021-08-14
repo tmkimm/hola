@@ -8,7 +8,7 @@ const LanguageBarList = React.memo(() => {
     "typescript",
     "react",
     "vue",
-    "nodejs",
+    "node.js",
     "java",
     "spring",
     "kotlin",

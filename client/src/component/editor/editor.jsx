@@ -21,7 +21,6 @@ styled-component 제거
 
 png 파일 외에 gif나 jpeg도 test
 image minify 적용할건지 결정 필요
-image upload시 파일 크기 작은거 확인 필요 <- 해결 됨
 
 */
 
