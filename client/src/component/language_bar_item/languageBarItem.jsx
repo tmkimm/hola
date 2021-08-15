@@ -6,7 +6,7 @@ import { addLanguage, removeLanguage } from "../../store/language";
 const LanguageBarItem = React.memo(({ Language, selected }) => {
   const [isSelected, setIsSelected] = useState(selected);
   const displayType = isSelected === true ? styles.full : styles.transparent;
-  console.log(selected);
+
   const dispatch = useDispatch();
 
   const onItemClick = useCallback(() => {
