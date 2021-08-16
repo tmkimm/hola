@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'; 
 
 const commentSchema = mongoose.Schema({
     content: String,    // 댓글 내용
@@ -59,8 +59,7 @@ studySchema.statics.findStudy = async function(offset, limit, sort, language) {
     let query = {};
     if( typeof language !== 'undefined' )
         query.language = {$in: language.split(',')};
-
-    return await Study.find(query, {language:{$slice: [0, 3]}})
+    return await Study.find(query)
     .where('isDeleted').equals(false)
     .sort(sortQuery.join(' '))
     .skip(Number(offsetQuery))
