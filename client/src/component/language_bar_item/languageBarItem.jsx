@@ -3,18 +3,17 @@ import { useDispatch } from "react-redux";
 import styles from "./languageBarItem.module.css";
 import { addLanguage, removeLanguage } from "../../store/language";
 
-const LanguageBarItem = React.memo(({ Language }) => {
-  const [selected, setSelected] = useState(false);
-  const displayType = selected === true ? styles.full : styles.transparent;
+const LanguageBarItem = React.memo(({ Language, selected }) => {
+  const [isSelected, setIsSelected] = useState(selected);
+  const displayType = isSelected === true ? styles.full : styles.transparent;
 
   const dispatch = useDispatch();
 
   const onItemClick = useCallback(() => {
-    setSelected((state) => !state);
-
-    if (!selected) dispatch(addLanguage(Language));
+    if (!isSelected) dispatch(addLanguage(Language));
     else dispatch(removeLanguage(Language));
-  }, [dispatch, selected, Language]);
+    setIsSelected((state) => !state);
+  }, [dispatch, isSelected, Language]);
 
   return (
     <li className={styles.item}>
