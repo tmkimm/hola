@@ -1,13 +1,18 @@
 /**
  * 언어 추가
  * sql
- * react-native
  * aws
  * nestjs
  * nextjs
  * tensorflow
- * R
- * anaconda
+ * php
+ * 쿠버네티스
+ * 도커
+ * git
+ * android
+ * 제플린
+ * 피그마
+ * 유니티
  *
  */
 

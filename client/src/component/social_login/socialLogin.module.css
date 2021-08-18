@@ -6,21 +6,6 @@
   align-items: center;
 }
 
-.guestLogin {
-  width: 15rem;
-  height: 2.5rem;
-  margin-top: 3rem;
-  background-color: #fff;
-  color: #000;
-  border: 1px solid #4482f7;
-  font-weight: bold;
-  font-size: 1rem;
-  line-height: 126.5%;
-  text-align: center;
-  letter-spacing: -0.005em;
-  color: #4482f7;
-}
-
 .descriptionMobile {
   display: none;
 }
@@ -37,10 +22,5 @@
   .descriptionMobile {
     margin-top: 3rem;
     display: block;
-  }
-
-  .guestLogin {
-    margin-top: 1rem;
-    width: 20rem;
   }
 }

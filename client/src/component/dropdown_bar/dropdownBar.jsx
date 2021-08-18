@@ -18,7 +18,6 @@ API를 통해 refresh token을 초기화 합니다.
 
 const DropdownBar = () => {
   const dispatch = useDispatch();
-  const userNickname = useSelector((state) => state.user.nickName);
   const handleLogout = async () => {
     await authService.logout();
     dispatch(clearUser());
@@ -43,13 +42,13 @@ const DropdownBar = () => {
             내 관심글
           </Link>
         </li>
-        {userNickname !== "Guest" && (
-          <li className={styles.menuItem}>
-            <Link to="/setting" style={{ display: "inline-block" }}>
-              설정
-            </Link>
-          </li>
-        )}
+
+        <li className={styles.menuItem}>
+          <Link to="/setting" style={{ display: "inline-block" }}>
+            설정
+          </Link>
+        </li>
+
         <li className={styles.menuItem} onClick={handleLogout}>
           로그아웃
         </li>

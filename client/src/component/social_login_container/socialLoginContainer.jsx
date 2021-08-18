@@ -43,16 +43,6 @@ const SocialLoginContainer = ({ handleClose }) => {
     });
   };
 
-  const guestLogin = async (data) => {
-    const accessToken = "guest";
-    const userData = { code: accessToken, social: "guest" };
-
-    await dispatch(fetchUserById(userData)).then((response) => {
-      //   console.log("fetchByuserID response :", response);
-      if (response.payload.loginSuccess === true) handleClose();
-    });
-  };
-
   const kakaoOnFailure = (error) => {
     console.log(error);
   };
@@ -64,7 +54,6 @@ const SocialLoginContainer = ({ handleClose }) => {
       kakaoOnSuccess={kakaoOnSuccess}
       kakaoOnFailure={kakaoOnFailure}
       kakaoClientId={kakaoClientId}
-      guestLogin={guestLogin}
     ></SocialLogin>
   );
 };

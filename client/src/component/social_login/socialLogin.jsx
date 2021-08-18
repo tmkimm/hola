@@ -13,7 +13,6 @@ const SocialLogin = ({
   kakaoOnSuccess,
   kakaoOnFailure,
   kakaoClientId,
-  guestLogin,
 }) => {
   return (
     <>
@@ -39,10 +38,6 @@ const SocialLogin = ({
           )}
         />
       </section>
-      <div className={styles.descriptionMobile}>게스트 로그인</div>
-      <button className={styles.guestLogin} onClick={guestLogin}>
-        Login as GUEST
-      </button>
     </>
   );
 };
