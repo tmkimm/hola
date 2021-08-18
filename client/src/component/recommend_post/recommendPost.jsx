@@ -13,7 +13,7 @@ const RecommendPost = ({ id }) => {
   }, [id]);
 
   const onclick = (id) => {
-    history.push(`/study?id=${id}`);
+    history.push(`/study/${id}`);
   };
 
   return (
