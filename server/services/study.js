@@ -7,6 +7,22 @@ export class StudyService {
     // 메인 화면에서 스터디 리스트를 조회한다.
     async findStudy(offset, limit, sort, language) {
         const studies = await Study.findStudy(offset, limit, sort, language);
+        const sortStudies = this.sortLanguageByQueryParam(studies, language);
+        return sortStudies;
+    }
+
+    // 선택한 언어가 리스트의 앞에 오도록 정렬
+    async sortLanguageByQueryParam(studies, language) {
+        if( typeof language == 'undefined' )
+            return studies;
+
+        const paramLanguage = language.split(',');
+        for (let i = 0 ; i < studies.length; i++) {
+            studies[i].language.sort(function(a, b) {
+                if(paramLanguage.indexOf(b) != -1) return 1;
+                else  return -1;
+            })
+        } 
         return studies;
     }
 
