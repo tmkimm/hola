@@ -36,6 +36,7 @@
   justify-content: flex-end;
   font-size: 1.5rem;
   color: rgb(134, 142, 150);
+  cursor: pointer;
 }
 
 .blockContent {

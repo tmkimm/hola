@@ -22,5 +22,7 @@
   .descriptionMobile {
     margin-top: 3rem;
     display: block;
+    color: rgb(134, 142, 150);
+    font-weight: 500;
   }
 }

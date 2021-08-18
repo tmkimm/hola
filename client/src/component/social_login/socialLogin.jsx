@@ -17,7 +17,7 @@ const SocialLogin = ({
   return (
     <>
       <h1 className={styles.loginTitle}>Hola에 오신 것을 환영합니다!</h1>
-      <div className={styles.descriptionMobile}>소셜 로그인</div>
+      <div className={styles.descriptionMobile}>소셜 계정으로 로그인</div>
       <section className={styles.loginWrapper}>
         <GoogleLogin
           clientId={googleClientId}
