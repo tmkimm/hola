@@ -29,9 +29,9 @@ export default (app) => {
   
   // 스터디 리스트 조회
   route.get('/', asyncErrorWrapper(async (req, res, next) => {
-    const { offset, limit, sort, language } = req.query;
+    const { offset, limit, sort, language, period } = req.query;
     let StudyServiceInstance = new StudyService();
-    const studies = await StudyServiceInstance.findStudy(offset, limit, sort, language);
+    const studies = await StudyServiceInstance.findStudy(offset, limit, sort, language, period);
     res.status(200).json(studies);
   }));
 
