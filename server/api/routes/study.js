@@ -1,5 +1,5 @@
 import { Router } from 'express'; 
-import { checkStudy, isStudyValid, isAccessTokenValid, getUserIdByAccessToken } from '../middlewares/index.js';
+import { checkStudy, isStudyValid, isAccessTokenValid, getUserIdByAccessToken, isStudyIdValid } from '../middlewares/index.js';
 import { StudyService } from '../../services/index.js';
 import { asyncErrorWrapper } from '../../asyncErrorWrapper.js';
 import { CustomError } from "../../CustomError.js";
@@ -56,17 +56,16 @@ export default (app) => {
 
   // 스터디 상세 보기
   // 로그인된 사용자일 경우 읽은 목록을 추가한다.
-  route.get('/:id', getUserIdByAccessToken, asyncErrorWrapper(async (req, res, next) => {
+  route.get('/:id', isStudyIdValid, getUserIdByAccessToken, asyncErrorWrapper(async (req, res, next) => {
     const studyId = req.params.id;
     const userId = req.user._id;
     let StudyServiceInstance = new StudyService();
     const study = await StudyServiceInstance.findStudyDetail(studyId, userId);
-
     res.status(200).json(study);
   }));
 
   // 알림을 통한 스터디 상세 보기
-  route.get('/:id/notice', getUserIdByAccessToken, asyncErrorWrapper(async (req, res, next) => {
+  route.get('/:id/notice', isStudyIdValid, getUserIdByAccessToken, asyncErrorWrapper(async (req, res, next) => {
     const studyId = req.params.id;
     const userId = req.user._id;
     let StudyServiceInstance = new StudyService();
