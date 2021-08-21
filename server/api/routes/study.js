@@ -65,6 +65,16 @@ export default (app) => {
     res.status(200).json(study);
   }));
 
+  // 알림을 통한 스터디 상세 보기
+  route.get('/:id/notice', getUserIdByAccessToken, asyncErrorWrapper(async (req, res, next) => {
+    const studyId = req.params.id;
+    const userId = req.user._id;
+    let StudyServiceInstance = new StudyService();
+    const study = await StudyServiceInstance.findStudyDetailAndUpdateReadAt(studyId, userId);
+
+    res.status(200).json(study);
+  }));
+
   // 사용자의 스터디 관심 등록 여부
   route.get('/:id/isLiked', getUserIdByAccessToken, asyncErrorWrapper(async (req, res, next) => {
     const studyId = req.params.id;
@@ -164,10 +174,11 @@ export default (app) => {
 
   // 댓글 삭제
   route.delete('/comments/:id', isAccessTokenValid, asyncErrorWrapper(async (req, res, next) => {
-    const id = req.params.id;
+    const commentId = req.params.id;
+    const userId = req.user._id;
 
     let StudyServiceInstance = new StudyService();
-    await StudyServiceInstance.deleteComment(id);
+    await StudyServiceInstance.deleteComment(commentId, userId);
     res.status(204).json();
   }));
 

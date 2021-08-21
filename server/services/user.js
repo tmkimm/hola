@@ -34,6 +34,7 @@ export class UserServcie {
     await Study.findOneAndUpdate({ comments: {$elemMatch: { author : id }}},
       { $pull: { comments: { author: id } } });
 
+    await Notification.deleteNotificationByUser(id);  // 회원 탈퇴 시 관련 알림 제거
     await User.deleteUser(id);
   }
 

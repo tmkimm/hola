@@ -1,5 +1,6 @@
 import { Study } from '../models/Study.js';
 import { User } from '../models/User.js';
+import { Notification } from '../models/Notification.js';
 import sanitizeHtml from 'sanitize-html';
 
 export class StudyService {
@@ -71,6 +72,14 @@ export class StudyService {
         return studies;
     }
 
+    // 알림을 읽음 표시하고 상세 스터디 정보를 조회한다.
+    async findStudyDetailAndUpdateReadAt(studyId, userId) {
+        if(userId) {
+            await Notification.updateReadAt(studyId, userId);
+        }
+        return await this.findStudyDetail(studyId, userId);
+    }
+
     // 사용자의 관심 등록 여부를 조회한다.
     async findUserLiked(studyId, userId) {
         if(userId && studyId) {
@@ -120,6 +129,7 @@ export class StudyService {
     // 스터디를 삭제한다.
     async deleteStudy(id) {
         await Study.deleteStudy(id);
+        await Notification.deleteNotificationByStudy(id);   // 글 삭제 시 관련 알림 제거
     }
 
     // 스터디 id를 이용해 댓글 리스트를 조회한다.
@@ -132,6 +142,7 @@ export class StudyService {
     async registerComment(userID, comment) {
         const { studyId, content } = comment;
         const study = await Study.registerComment(studyId, content, userID);
+        await Notification.registerNotification(studyId, study.author, userID, 'comment');   // 알림 등록
         return study;
     }
 
@@ -142,14 +153,16 @@ export class StudyService {
     }
 
     // 댓글을 삭제한다.
-    async deleteComment(id) {
-        await Study.deleteComment(id);
+    async deleteComment(commentId, userId) {
+        const studyRecord = await Study.deleteComment(commentId);
+        await Notification.deleteNotification(studyRecord._id, studyRecord.author, userId, 'comment');   // 알림 삭제
     }
 
-    // 관심 등록 추가
+    // 관심 등록 추가  
     async addLike(studyId, userId) {
         const study = await Study.addLike(studyId, userId);
         await User.addLikeStudy(studyId, userId);
+        await Notification.registerNotification(studyId, study.author, userId, 'like');   // 알림 등록
         return study;
     }
 
@@ -157,6 +170,8 @@ export class StudyService {
     async deleteLike(studyId, userId) {
         const study = await Study.deleteLike(studyId, userId);
         await User.deleteLikeStudy(studyId, userId);
+        await Notification.deleteNotification(studyId, study.author, userId, 'like');   // 알림 삭제
+
         return study;
     }
 }

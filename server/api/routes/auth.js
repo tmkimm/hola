@@ -1,5 +1,5 @@
 import { Router } from 'express'; 
-import { AuthService } from '../../services/index.js';
+import { AuthService, NotificationService } from '../../services/index.js';
 import { isAccessTokenValid } from '../middlewares/index.js';
 import { asyncErrorWrapper } from '../../asyncErrorWrapper.js';
 import { CustomError } from "../../CustomError.js";
@@ -28,13 +28,17 @@ export default (app) => {
             throw new CustomError('RefreshTokenError', 401, 'Invalid refresh token');
         }
         else {
+            let NotificationServcieInstance = new NotificationService();
+            let unReadNoticeCount = await NotificationServcieInstance.findUnReadCount(_id);
+            let hasUnreadNotice = unReadNoticeCount > 0 ? true : false;
             return res.status(200).json({
                 _id,
                 email,
                 nickName,
                 image,
                 likeLanguages,
-                accessToken
+                accessToken,
+                hasUnreadNotice
             });        
         }
     }));
