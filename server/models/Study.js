@@ -38,7 +38,7 @@ studySchema.virtual('totalComments').get(function() {
   });
 
 // 최신, 트레딩 조회
-studySchema.statics.findStudy = async function(offset, limit, sort, language) {
+studySchema.statics.findStudy = async function(offset, limit, sort, language, period) {
     // Pagenation
     let offsetQuery = parseInt(offset) || 0;
     let limitQuery = parseInt(limit) || 20;
@@ -59,6 +59,13 @@ studySchema.statics.findStudy = async function(offset, limit, sort, language) {
     let query = {};
     if( typeof language !== 'undefined' )
         query.language = {$in: language.split(',')};
+
+    if(!isNaN(period)) {
+        let today = new Date();
+        query.createdAt = {$gte: today.setDate(today.getDate() - period)};
+    }
+
+        
     return await Study.find(query)
     .where('isDeleted').equals(false)
     .sort(sortQuery.join(' '))

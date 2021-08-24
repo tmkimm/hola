@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { UserServcie } from '../../services/index.js';
+import { UserServcie, NotificationService } from '../../services/index.js';
 import { nickNameDuplicationCheck, isAccessTokenValid } from '../middlewares/index.js';
 import { asyncErrorWrapper } from '../../asyncErrorWrapper.js';
 import { CustomError } from "../../CustomError.js";
@@ -104,6 +104,14 @@ export default (app) => {
         const user = await UserServcieInstance.findMyStudies(id);
 
         res.status(200).json(user);
+    }));
+
+    // 사용자 알림 목록 조회
+    route.get('/notifications/:id', asyncErrorWrapper(async (req, res, next) => {
+        const id = req.params.id;
+        let NotificationServcieInstance = new NotificationService();
+        const notice = await NotificationServcieInstance.findMyNotice(id);
+        res.status(200).json(notice);
     }));
     
 }

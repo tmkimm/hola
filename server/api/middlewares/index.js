@@ -4,3 +4,4 @@ export { checkStudy, isStudyValid } from './isStudyValid.js';
 export { isTokenValidWithOauth } from './isTokenValidWithOauth.js';
 export { nickNameDuplicationCheck } from './nickNameDuplicationCheck.js';
 export { getUserIdByAccessToken } from './getUserIdByAccessToken.js';
+export { isStudyIdValid } from './isStudyIdValid.js';
