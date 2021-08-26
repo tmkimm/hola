@@ -1,8 +1,20 @@
 import mongoose from 'mongoose'; 
 
-const commentSchema = mongoose.Schema({
+// 대댓글 스키마
+const replySchema = mongoose.Schema({
     content: String,    // 댓글 내용
     author: {type: mongoose.Schema.Types.ObjectId, ref: 'User'} // 댓글 등록자 정보
+},
+{
+    versionKey: false,
+    timestamps: true    // createdAt, updatedAt 컬럼 사용
+});
+
+// 댓글 스키마
+const commentSchema = mongoose.Schema({
+    content: String,    // 댓글 내용
+    author: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},  // 댓글 등록자 정보
+    replies: [replySchema]
 },
 {
     versionKey: false,
@@ -128,26 +140,26 @@ studySchema.statics.findStudyRecommend = async function(sort, language, studyId,
     return studies;
 };
 
-studySchema.statics.registerComment = async function(studyId, content, author) {
-    return await Study.findByIdAndUpdate(
-        { _id: studyId },
-        {
-          $push: {
-            comments: {
-              content,
-              author
-            }
-          }
-        },
-        {
-          new: true,
-          upsert: true
-        }
-      );
+studySchema.statics.registerComment = async function(studyId, commentId, content, author) {
+    let study;
+    if(commentId) {
+        study = await Study.findOneAndUpdate(
+            {_id: studyId, comments: { $elemMatch: { _id : commentId } } },
+            {$push: { 'comments.$.replies': {content,author}}},
+            {new: true, upsert: true}
+        );
+    } else {
+        study = await Study.findOneAndUpdate(
+            {_id: studyId},
+            {$push: { 'comments': {content, author}}},
+            {new: true, upsert: true}
+        );
+    }
+    return study;
 }
 
 studySchema.statics.findComments = async function(id) {
-    return await Study.findById(id).populate('comments.author', 'nickName image');
+    return await Study.findById(id).populate('comments.author', 'nickName image').populate('comments.replies.author', 'nickName image');
 }
 
 studySchema.statics.deleteStudy = async function(id) {
@@ -169,37 +181,43 @@ studySchema.statics.modifyStudy = async function(id, study) {
 }
 
 studySchema.statics.modifyComment = async function(comment) {
-    const commentRecord = await Study.findOneAndUpdate(
-        {
-            comments:
+    let commentRecord;
+    let { id, content, commentId } = comment;
+    if(commentId) {
+        commentRecord = await Study.findOneAndUpdate(
+            { 
+                'comments': { $elemMatch: { _id : commentId } } 
+            },
+            { 
+                $set: { 'comments.$[].replies.$[i].content' : content }
+            },
             {
-                $elemMatch: { _id : comment.id } 
+                arrayFilters: [{'i._id': id}],
+                new: true
             }
-        },
-        {
-            $set:
-            {
-                'comments.$.content' : comment.content
-            }
-        },
-        { 
-            new: true
-        }
-      );
+        );
+    } else {
+        commentRecord = await Study.findOneAndUpdate(
+            { comments: { $elemMatch: { _id : id } } },
+            { $set: { 'comments.$.content' : content } },
+            { new: true }
+        );
+    }
     return commentRecord;
 }
 
 studySchema.statics.deleteComment = async function(id) {
     const commentRecord = await Study.findOneAndUpdate(
-        { 
-            comments:
-            {
-                $elemMatch: { _id : id } 
-            }
-        },
-        {
-            $pull: { comments: { _id: id } }
-        }
+        { comments: { $elemMatch: { _id : id } }},
+        { $pull: { comments: { _id: id } }}
+      );
+    return commentRecord;
+}
+
+studySchema.statics.deleteReply = async function(id) {
+    const commentRecord = await Study.findOneAndUpdate(
+        { 'comments.replies': { $elemMatch: { _id : id } }},
+        { $pull: { 'comments.$.replies': { _id: id } }}
       );
     return commentRecord;
 }
@@ -252,6 +270,28 @@ studySchema.statics.increaseView = async function(studyId) {
       );
 }
 
+// 댓글 등록한 사용자 아이디 조회
+studySchema.statics.findAuthorByCommentId = async function(commentId) {
+    let study = await Study.findOne({comments: { $elemMatch: { _id : commentId } }});
+    if(study) {
+        let { author } = study.comments[study.comments.length -1];
+        return author;
+    } else {
+        return null;
+    }
+}
+
+// 댓글 등록한 사용자 아이디 조회
+studySchema.statics.findAuthorByReplyId = async function(replyId) {
+    let study = await Study.findOne({'comments.replies': { $elemMatch: { _id : replyId } }});
+    if(study) {
+        let { author } = study.comments[study.comments.length -1];
+        return author;
+    } else {
+        return null;
+    }
+    
+}
 const Study = mongoose.model('Study', studySchema);
 
 export { Study };

@@ -140,9 +140,18 @@ export class StudyService {
 
     // 신규 댓글을 추가한다.
     async registerComment(userID, comment) {
-        const { studyId, content } = comment;
-        const study = await Study.registerComment(studyId, content, userID);
-        await Notification.registerNotification(studyId, study.author, userID, 'comment');   // 알림 등록
+        const { studyId, commentId, content } = comment;
+        const study = await Study.registerComment(studyId, commentId, content, userID);
+
+        // 대댓글
+        if(commentId) {
+            // 대댓글 등록 시 댓글 등록자에게 달림 추가
+            let author = await Study.findAuthorByCommentId(commentId);
+            await Notification.registerNotification(studyId, author, userID, 'reply');        // 알림 등록
+        } else {
+            // 댓글
+            await Notification.registerNotification(studyId, study.author, userID, 'comment');   // 알림 등록
+        }
         return study;
     }
 
@@ -156,6 +165,13 @@ export class StudyService {
     async deleteComment(commentId, userId) {
         const studyRecord = await Study.deleteComment(commentId);
         await Notification.deleteNotification(studyRecord._id, studyRecord.author, userId, 'comment');   // 알림 삭제
+    }
+
+    // 대댓글을 삭제한다.
+    async deleteReply(replyId, userId) {
+        let author = await Study.findAuthorByReplyId(replyId);
+        const studyRecord = await Study.deleteReply(replyId);
+        await Notification.deleteNotification(studyRecord._id, author, userId, 'reply');   // 알림 삭제
     }
 
     // 관심 등록 추가  

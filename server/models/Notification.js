@@ -41,7 +41,7 @@ notificationSchema.statics.findUnReadCount = async function(targetUserId) {
 // like : 좋아요, comment : 댓글, reply: 대댓글
 notificationSchema.statics.registerNotification = async function(studyId, targetUserId, generateUserId, noticeType) {
     const isNoticeExist = await Notification.findOne({ studyId: studyId, targetUserId: targetUserId, generateUserId: generateUserId, noticeType: noticeType });
-    if (!isNoticeExist) {
+    if (!isNoticeExist && targetUserId != generateUserId) {
         let noticeCode = noticeType == 'like' ? '0' : noticeType == 'comment' ? '1' : noticeType == 'reply' ? '2' : '';
         await Notification.create({ targetUserId, generateUserId, studyId, noticeCode, noticeType});
     }

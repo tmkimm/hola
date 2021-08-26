@@ -137,49 +137,6 @@ export default (app) => {
     await StudyServiceInstance.deleteStudy(id);
     res.status(204).json();
   }));
-  
-
-  // 댓글 리스트 조회
-  route.get('/comments/:id', asyncErrorWrapper(async (req, res, next) => {
-    const id = req.params.id;
-
-    let StudyServiceInstance = new StudyService();
-    const comments = await StudyServiceInstance.findComments(id);
-
-    res.status(200).json(comments);
-  }));
-
-  // 댓글 등록
-  route.post('/comments', isAccessTokenValid, asyncErrorWrapper(async (req, res, next) => {
-    const commentDTO = req.body;
-    const userId = req.user._id;
-
-    let StudyServiceInstance = new StudyService();
-    const study = await StudyServiceInstance.registerComment(userId, commentDTO);
-
-    return res.status(201).json(study);
-  }));
-
-  // 댓글 수정
-  route.patch('/comments/:id', isAccessTokenValid, asyncErrorWrapper(async (req, res, next) => {
-    const commentDTO = req.body;
-    commentDTO.id = req.params.id;
-
-    let StudyServiceInstance = new StudyService();
-    const comment = await StudyServiceInstance.modifyComment(commentDTO);
-
-    res.status(200).json(comment);
-  }));
-
-  // 댓글 삭제
-  route.delete('/comments/:id', isAccessTokenValid, asyncErrorWrapper(async (req, res, next) => {
-    const commentId = req.params.id;
-    const userId = req.user._id;
-
-    let StudyServiceInstance = new StudyService();
-    await StudyServiceInstance.deleteComment(commentId, userId);
-    res.status(204).json();
-  }));
 
   // 좋아요 등록
   route.post('/likes', isAccessTokenValid, asyncErrorWrapper(async (req, res, next) => {
