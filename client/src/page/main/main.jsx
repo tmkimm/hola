@@ -14,10 +14,8 @@ import { AiFillFire } from "react-icons/ai";
 import { FaCalendarCheck } from "react-icons/fa";
 
 /* 
-
 main page의 layout을 담당하는 component입니다. 
 최신, 트렌딩 두가지의 기준으로 데이터를 보여줍니다.
-
 */
 
 const SHOW_BY_VIEWS = "-views";
