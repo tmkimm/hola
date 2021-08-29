@@ -34,6 +34,12 @@ export class UserServcie {
     await Study.findOneAndUpdate({ comments: {$elemMatch: { author : id }}},
       { $pull: { comments: { author: id } } });
 
+    // 사용자가 작성한 대댓글 제거
+    await Study.findOneAndUpdate({ 'comments.replies': { $elemMatch: { author : id } }},
+      { $pull: { 'comments.$.replies': { author: id } }}
+    );
+
+
     await Notification.deleteNotificationByUser(id);  // 회원 탈퇴 시 관련 알림 제거
     await User.deleteUser(id);
   }
