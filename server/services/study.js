@@ -176,9 +176,11 @@ export class StudyService {
 
     // 관심 등록 추가  
     async addLike(studyId, userId) {
-        const study = await Study.addLike(studyId, userId);
-        await User.addLikeStudy(studyId, userId);
-        await Notification.registerNotification(studyId, study.author, userId, 'like');   // 알림 등록
+        const {study, isLikeExist} = await Study.addLike(studyId, userId);
+        if(!isLikeExist) {
+            await User.addLikeStudy(studyId, userId);
+            await Notification.registerNotification(studyId, study.author, userId, 'like');   // 알림 등록
+        }
         return study;
     }
 
@@ -187,7 +189,6 @@ export class StudyService {
         const study = await Study.deleteLike(studyId, userId);
         await User.deleteLikeStudy(studyId, userId);
         await Notification.deleteNotification(studyId, study.author, userId, 'like');   // 알림 삭제
-
         return study;
     }
 }

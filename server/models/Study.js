@@ -222,25 +222,35 @@ studySchema.statics.deleteReply = async function(id) {
     return commentRecord;
 }
 
+// 관심등록 추가
+// 디바운스 실패 경우를 위해 예외처리
 studySchema.statics.addLike = async function(studyId, userId) {
-    return await Study.findByIdAndUpdate(
-        { _id: studyId },
-        {
-          $push: {
-            likes: {
-                _id: userId
-            }
-          },
-          $inc: {
-            totalLikes : 1
-          }
+    let study = await Study.find({_id: studyId, likes: { $in: [userId]} });
+    let isLikeExist = study.length > 0 ? true : false;
 
-        },
-        {
-          new: true,
-          upsert: true
-        }
-      );
+    if(!isLikeExist) {
+        study = await Study.findByIdAndUpdate(
+            { _id: studyId },
+            {
+              $push: {
+                likes: {
+                    _id: userId
+                }
+              },
+              $inc: {
+                totalLikes : 1
+              }
+    
+            },
+            {
+              new: true,
+              upsert: true
+            }
+          );
+    } else {
+        study = study[study.length - 1];
+    }
+    return { study, isLikeExist };
 }
 
 studySchema.statics.deleteLike = async function(studyId, userId) {
