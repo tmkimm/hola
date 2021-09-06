@@ -6,8 +6,8 @@ import sanitizeHtml from 'sanitize-html';
 export class StudyService {
 
     // 메인 화면에서 스터디 리스트를 조회한다.
-    async findStudy(offset, limit, sort, language, period) {
-        const studies = await Study.findStudy(offset, limit, sort, language, period);
+    async findStudy(offset, limit, sort, language, period, isClosed) {
+        const studies = await Study.findStudy(offset, limit, sort, language, period, isClosed);
         const sortStudies = this.sortLanguageByQueryParam(studies, language);
         return sortStudies;
     }

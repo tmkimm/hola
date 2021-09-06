@@ -50,7 +50,7 @@ studySchema.virtual('totalComments').get(function() {
   });
 
 // 최신, 트레딩 조회
-studySchema.statics.findStudy = async function(offset, limit, sort, language, period) {
+studySchema.statics.findStudy = async function(offset, limit, sort, language, period, isClosed) {
     // Pagenation
     let offsetQuery = parseInt(offset) || 0;
     let limitQuery = parseInt(limit) || 20;
@@ -77,6 +77,10 @@ studySchema.statics.findStudy = async function(offset, limit, sort, language, pe
         query.createdAt = {$gte: today.setDate(today.getDate() - period)};
     }
 
+    // 마감된 글 안보기 기능(false만 지원)
+    if(typeof isClosed === "string" && !(isClosed === 'true')) {
+        query.isClosed = {$eq: (isClosed==='true')};
+    }
         
     return await Study.find(query)
     .where('isDeleted').equals(false)
