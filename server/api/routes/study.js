@@ -59,8 +59,22 @@ export default (app) => {
   route.get('/:id', isStudyIdValid, getUserIdByAccessToken, asyncErrorWrapper(async (req, res, next) => {
     const studyId = req.params.id;
     const userId = req.user._id;
+    let readList = req.cookies.RVIEW;
     let StudyServiceInstance = new StudyService();
     const study = await StudyServiceInstance.findStudyDetail(studyId, userId);
+    const { updateReadList, isAlreadyRead} = await StudyServiceInstance.increaseView(studyId, userId, readList);
+    if(!isAlreadyRead) {
+      // 쿠키는 당일만 유효
+      let untilMidnight = new Date();
+      untilMidnight.setHours(24, 0, 0, 0);
+      res.cookie("RVIEW", updateReadList, {
+        sameSite: 'none',
+        httpOnly: true,
+        secure: true,
+        expires: untilMidnight
+      });
+    }
+
     res.status(200).json(study);
   }));
 

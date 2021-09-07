@@ -58,18 +58,25 @@ export class StudyService {
         return studies;
     }
 
+    // 조회수 증가
+    async increaseView(studyId, userId, readList) {
+        let isAlreadyRead = true;
+        let updateReadList = readList;
+        
+        // 조회수 중복 증가 방지
+        if(readList === undefined || (typeof readList === 'string' && readList.indexOf(studyId) == -1)) {
+            Study.increaseView(studyId); // 조회수 증가    
+            if(userId)  await User.addReadList(studyId, userId);    // 읽은 목록 추가
+            if(readList === undefined)    updateReadList = `${studyId}`;
+            else    updateReadList = `${readList}|${studyId}`;
+            isAlreadyRead = false;
+        }
+        return {updateReadList, isAlreadyRead};
+    }
     // 상세 스터디 정보를 조회한다.
     // 로그인된 사용자일 경우 읽은 목록을 추가한다.
     async findStudyDetail(studyId, userId) {
         const studies = await Study.findById(studyId).populate('author', 'nickName image').populate('comments.author', 'nickName image');
-        
-        // 조회수 증가
-        Study.increaseView(studyId);
-
-        // 읽은 목록 추가
-        if(userId) {
-            await User.addReadList(studyId, userId);
-        }
         return studies;
     }
 
