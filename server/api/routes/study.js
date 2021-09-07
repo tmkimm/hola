@@ -2,7 +2,6 @@ import { Router } from 'express';
 import { checkStudy, isStudyValid, isAccessTokenValid, getUserIdByAccessToken, isStudyIdValid } from '../middlewares/index.js';
 import { StudyService } from '../../services/index.js';
 import { asyncErrorWrapper } from '../../asyncErrorWrapper.js';
-import { CustomError } from "../../CustomError.js";
 
 const route = Router();
 
@@ -16,11 +15,6 @@ export default (app) => {
     # GET /studies/:id : 스터디 상세 정보 조회
     # PATCH /studies/:id : 스터디 정보 수정
     # DELETE /studies/:id : 스터디 삭제
-
-    # GET /studies/comments/:id : 스터디의 댓글 리스트 조회
-    # POST /studies/comments : 신규 댓글 등록
-    # PATCH /studies/comments/:id : 댓글 정보 수정
-    # DELETE /studies/comments/:id : 댓글 삭제
 
     # POST /studies/likes : 좋아요 등록
     # DELETE /studies/likes/:id : 좋아요 삭제

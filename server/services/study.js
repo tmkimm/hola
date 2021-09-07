@@ -2,7 +2,6 @@ import { Study } from '../models/Study.js';
 import { User } from '../models/User.js';
 import { Notification } from '../models/Notification.js';
 import sanitizeHtml from 'sanitize-html';
-import { CustomError } from "../CustomError.js";
 
 export class StudyService {
 
@@ -140,59 +139,6 @@ export class StudyService {
         await Study.chkeckStudyAuthorization(id, tokenUserId);    // 접근 권한 체크
         await Study.deleteStudy(id);
         await Notification.deleteNotificationByStudy(id);   // 글 삭제 시 관련 알림 제거
-    }
-
-    // 스터디 id를 이용해 댓글 리스트를 조회한다.
-    async findComments(id) {
-        const comments = await Study.findComments(id);
-        return comments;
-    }
-
-    // 신규 댓글을 추가한다.
-    async registerComment(userID, comment) {
-        const { studyId, commentId, content } = comment;
-        const study = await Study.registerComment(studyId, commentId, content, userID);
-
-        // 대댓글
-        if(commentId) {
-            // 대댓글 등록 시 댓글 등록자에게 달림 추가
-            let author = await Study.findAuthorByCommentId(commentId);
-            await Notification.registerNotification(studyId, author, userID, 'reply');        // 알림 등록
-        } else {
-            // 댓글
-            await Notification.registerNotification(studyId, study.author, userID, 'comment');   // 알림 등록
-        }
-        return study;
-    }
-
-    // 댓글을 수정한다.
-    async modifyComment(comment, tokenUserId) {
-        await Study.chkeckCommentAuthorization(comment.id, tokenUserId);
-        const commentRecord = await Study.modifyComment(comment);
-        return commentRecord;
-    }
-
-    // 대댓글을 수정한다.
-    async modifyReply(comment, tokenUserId) {
-        await Study.chkeckReplyAuthorization(comment.id, tokenUserId);
-        const commentRecord = await Study.modifyReply(comment);
-        return commentRecord;
-    }
-
-    // 댓글을 삭제한다.
-    async deleteComment(commentId, userId) {
-        await Study.chkeckCommentAuthorization(commentId, userId);
-
-        const studyRecord = await Study.deleteComment(commentId);
-        await Notification.deleteNotification(studyRecord._id, studyRecord.author, userId, 'comment');   // 알림 삭제
-    }
-
-    // 대댓글을 삭제한다.
-    async deleteReply(replyId, userId) {
-        await Study.chkeckReplyAuthorization(replyId, userId);
-        let author = await Study.findAuthorByReplyId(replyId);
-        const studyRecord = await Study.deleteReply(replyId);
-        await Notification.deleteNotification(studyRecord._id, author, userId, 'reply');   // 알림 삭제
     }
 
     // 관심 등록 추가  

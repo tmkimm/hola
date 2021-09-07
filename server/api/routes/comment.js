@@ -1,6 +1,6 @@
 import { Router } from 'express'; 
 import { isAccessTokenValid } from '../middlewares/index.js';
-import { StudyService } from '../../services/index.js';
+import { CommentService } from '../../services/index.js';
 import { asyncErrorWrapper } from '../../asyncErrorWrapper.js';
 
 const route = Router();
@@ -21,8 +21,8 @@ export default (app) => {
   route.get('/:id', asyncErrorWrapper(async (req, res, next) => {
     const id = req.params.id;
 
-    let StudyServiceInstance = new StudyService();
-    const comments = await StudyServiceInstance.findComments(id);
+    let CommentServiceInstance = new CommentService();
+    const comments = await CommentServiceInstance.findComments(id);
 
     res.status(200).json(comments);
   }));
@@ -32,42 +32,20 @@ export default (app) => {
     const commentDTO = req.body;
     const userId = req.user._id;
 
-    let StudyServiceInstance = new StudyService();
-    const study = await StudyServiceInstance.registerComment(userId, commentDTO);
+    let CommentServiceInstance = new CommentService();
+    const study = await CommentServiceInstance.registerComment(userId, commentDTO);
 
     return res.status(201).json(study);
   }));
 
-  // 대댓글 등록
-  route.post('/replies', isAccessTokenValid, asyncErrorWrapper(async (req, res, next) => {
-    const commentDTO = req.body;
-    const userId = req.user._id;
-
-    let StudyServiceInstance = new StudyService();
-    const study = await StudyServiceInstance.registerComment(userId, commentDTO);
-
-    return res.status(201).json(study);
-  }));
   // 댓글 수정
   route.patch('/:id', isAccessTokenValid, asyncErrorWrapper(async (req, res, next) => {
     const commentDTO = req.body;
     commentDTO.id = req.params.id;
     const tokenUserId = req.user._id;
 
-    let StudyServiceInstance = new StudyService();
-    const comment = await StudyServiceInstance.modifyComment(commentDTO, tokenUserId);
-
-    res.status(200).json(comment);
-  }));
-
-  // 대댓글 수정
-  route.patch('/replies/:id', isAccessTokenValid, asyncErrorWrapper(async (req, res, next) => {
-    const commentDTO = req.body;
-    commentDTO.id = req.params.id;
-    const tokenUserId = req.user._id;
-
-    let StudyServiceInstance = new StudyService();
-    const comment = await StudyServiceInstance.modifyReply(commentDTO, tokenUserId);
+    let CommentServiceInstance = new CommentService();
+    const comment = await CommentServiceInstance.modifyComment(commentDTO, tokenUserId);
 
     res.status(200).json(comment);
   }));
@@ -77,18 +55,8 @@ export default (app) => {
     const commentId = req.params.id;
     const userId = req.user._id;
 
-    let StudyServiceInstance = new StudyService();
-    await StudyServiceInstance.deleteComment(commentId, userId);
-    res.status(204).json();
-  }));
-
-  // 대댓글 삭제
-  route.delete('/replies/:id', isAccessTokenValid, asyncErrorWrapper(async (req, res, next) => {
-    const replyId = req.params.id;
-    const userId = req.user._id;
-
-    let StudyServiceInstance = new StudyService();
-    await StudyServiceInstance.deleteReply(replyId, userId);
+    let CommentServiceInstance = new CommentService();
+    await CommentServiceInstance.deleteComment(commentId, userId);
     res.status(204).json();
   }));
 }

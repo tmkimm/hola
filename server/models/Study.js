@@ -145,21 +145,23 @@ studySchema.statics.findStudyRecommend = async function(sort, language, studyId,
     return studies;
 };
 
-studySchema.statics.registerComment = async function(studyId, commentId, content, author) {
+studySchema.statics.registerComment = async function(studyId, content, author) {
     let study;
-    if(commentId) {
-        study = await Study.findOneAndUpdate(
-            {_id: studyId, comments: { $elemMatch: { _id : commentId } } },
-            {$push: { 'comments.$.replies': {content,author}}},
-            {new: true, upsert: true}
-        );
-    } else {
-        study = await Study.findOneAndUpdate(
-            {_id: studyId},
-            {$push: { 'comments': {content, author}}},
-            {new: true, upsert: true}
-        );
-    }
+    study = await Study.findOneAndUpdate(
+        {_id: studyId},
+        {$push: { 'comments': {content, author}}},
+        {new: true, upsert: true}
+    );
+    return study;
+}
+
+studySchema.statics.registerReply = async function(studyId, commentId, content, author) {
+    let study;
+    study = await Study.findOneAndUpdate(
+        {_id: studyId, comments: { $elemMatch: { _id : commentId } } },
+        {$push: { 'comments.$.replies': {content,author}}},
+        {new: true, upsert: true}
+    );
     return study;
 }
 
