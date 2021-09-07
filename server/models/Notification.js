@@ -47,19 +47,19 @@ notificationSchema.statics.registerNotification = async function(studyId, target
     }
 }
 
-// 알림 삭제(알림 등록된 데이터가 삭제된 경우 읽지 않은 알림 제거)
+// 알림 삭제
 notificationSchema.statics.deleteNotification = async function(studyId, targetUserId, generateUserId, noticeType) {
-    await Notification.deleteOne({studyId, targetUserId, generateUserId, noticeType});
+    await Notification.deleteMany({studyId, targetUserId, generateUserId, noticeType});
 }
 
 // 글 삭제 시 관련 알림 제거
 notificationSchema.statics.deleteNotificationByStudy = async function(studyId) {
-    await Notification.deleteOne({studyId: studyId});
+    await Notification.deleteMany({studyId: studyId});
 }
 
 // 회원 탈퇴 시 관련 알림 제거
-notificationSchema.statics.deleteNotificationByUser = async function(generateUserId) {
-    await Notification.deleteOne({generateUserId: generateUserId});
+notificationSchema.statics.deleteNotificationByUser = async function(userId) {
+    await Notification.deleteMany({ $or: [{targetUserId: userId}, {generateUserId: userId}]});
 }
 
 // 알림 읽음 처리

@@ -1,6 +1,7 @@
 import config from "../config/index.js";
 import { User } from "../models/User.js";
 import { Study } from '../models/Study.js';
+import { Notification } from '../models/Notification.js';
 import AWS from "aws-sdk";
 import { CustomError } from "../CustomError.js";
 
@@ -40,14 +41,14 @@ export class UserServcie {
     // 사용자가 작성한 댓글 제거
     await Study.findOneAndUpdate({ comments: {$elemMatch: { author : id }}},
       { $pull: { comments: { author: id } } });
-
+      
     // 사용자가 작성한 대댓글 제거
     await Study.findOneAndUpdate({ 'comments.replies': { $elemMatch: { author : id } }},
       { $pull: { 'comments.$.replies': { author: id } }}
     );
-
-
-    await Notification.deleteNotificationByUser(id);  // 회원 탈퇴 시 관련 알림 제거
+    
+    // 회원 탈퇴 시 관련 알림 제거
+    await Notification.deleteNotificationByUser(id);  
     await User.deleteUser(id);
   }
 
