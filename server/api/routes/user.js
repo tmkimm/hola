@@ -41,9 +41,10 @@ export default (app) => {
     // 사용자 정보 수정
     route.patch('/:id', isAccessTokenValid, nickNameDuplicationCheck, asyncErrorWrapper(async (req, res, next) => {
         const id = req.params.id;
+        const tokenUserId = req.user._id;
         const userDTO = req.body;
         let UserServcieInstance = new UserServcie();
-        const { userRecord, accessToken, refreshToken } = await UserServcieInstance.modifyUser(id, userDTO);
+        const { userRecord, accessToken, refreshToken } = await UserServcieInstance.modifyUser(id, tokenUserId, userDTO);
 
         res.cookie("R_AUTH", refreshToken, {
             sameSite: 'none',
@@ -72,9 +73,10 @@ export default (app) => {
     // 사용자 정보 삭제(회원탈퇴)
     route.delete('/:id', isAccessTokenValid, asyncErrorWrapper(async (req, res, next) => {
         const id = req.params.id;
+        const tokenUserId = req.user._id;
 
         let UserServcieInstance = new UserServcie();
-        await UserServcieInstance.deleteUser(id);
+        await UserServcieInstance.deleteUser(id, tokenUserId);
         res.clearCookie('R_AUTH');
         res.status(204).json();
     }));

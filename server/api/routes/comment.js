@@ -52,9 +52,10 @@ export default (app) => {
   route.patch('/:id', isAccessTokenValid, asyncErrorWrapper(async (req, res, next) => {
     const commentDTO = req.body;
     commentDTO.id = req.params.id;
+    const tokenUserId = req.user._id;
 
     let StudyServiceInstance = new StudyService();
-    const comment = await StudyServiceInstance.modifyComment(commentDTO);
+    const comment = await StudyServiceInstance.modifyComment(commentDTO, tokenUserId);
 
     res.status(200).json(comment);
   }));
@@ -63,9 +64,10 @@ export default (app) => {
   route.patch('/replies/:id', isAccessTokenValid, asyncErrorWrapper(async (req, res, next) => {
     const commentDTO = req.body;
     commentDTO.id = req.params.id;
+    const tokenUserId = req.user._id;
 
     let StudyServiceInstance = new StudyService();
-    const comment = await StudyServiceInstance.modifyComment(commentDTO);
+    const comment = await StudyServiceInstance.modifyReply(commentDTO, tokenUserId);
 
     res.status(200).json(comment);
   }));

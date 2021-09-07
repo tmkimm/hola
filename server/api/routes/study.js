@@ -121,10 +121,11 @@ export default (app) => {
   // 스터디 수정
   route.patch('/:id', isAccessTokenValid, asyncErrorWrapper(async (req, res, next) => { 
     const id = req.params.id;
+    const tokenUserId = req.user._id;
     const studyDTO = req.body;
 
     let StudyServiceInstance = new StudyService();
-    const study = await StudyServiceInstance.modifyStudy(id, studyDTO);
+    const study = await StudyServiceInstance.modifyStudy(id, tokenUserId, studyDTO);
 
     res.status(200).json(study);  
   }));
@@ -132,9 +133,10 @@ export default (app) => {
   // 스터디 글 삭제
   route.delete('/:id', isAccessTokenValid, asyncErrorWrapper(async (req, res, next) => {
     const id = req.params.id;
+    const tokenUserId = req.user._id;
 
     let StudyServiceInstance = new StudyService();
-    await StudyServiceInstance.deleteStudy(id);
+    await StudyServiceInstance.deleteStudy(id, tokenUserId);
     res.status(204).json();
   }));
 

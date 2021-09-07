@@ -50,7 +50,7 @@ export default (app) => {
 
         // 회원 정보 수정(등록)
         let UserServcieInstance = new UserServcie();
-        const { userRecord } = await UserServcieInstance.modifyUser(id, userDTO);
+        const { userRecord } = await UserServcieInstance.modifyUser(id, id, userDTO);
         // AccessToken, RefreshToken 발급
         let AuthServiceInstance = new AuthService();
         const { accessToken, refreshToken } = await AuthServiceInstance.SignIn(userRecord.idToken);

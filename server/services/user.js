@@ -2,6 +2,7 @@ import config from "../config/index.js";
 import { User } from "../models/User.js";
 import { Study } from '../models/Study.js';
 import AWS from "aws-sdk";
+import { CustomError } from "../CustomError.js";
 
 export class UserServcie {
 
@@ -19,14 +20,20 @@ export class UserServcie {
 
   // 사용자 정보를 수정한다.
   // 닉네임을 기준으로 Token을 생성하기 때문에 Token을 재발급한다.
-  async modifyUser(id, user) {
+  async modifyUser(id, tokenUserId, user) {
+    if(id != tokenUserId)
+      throw new CustomError('NotAuthenticatedError', 401, 'User does not match');
+
     const userRecord = await User.modifyUser(id, user);
     const accessToken = await userRecord.generateAccessToken();
     const refreshToken = await userRecord.generateRefreshToken();
     return { userRecord, accessToken, refreshToken };
   }
 
-  async deleteUser(id) {
+  async deleteUser(id, tokenUserId) {
+    if(id != tokenUserId)
+      throw new CustomError('NotAuthenticatedError', 401, 'User does not match');
+      
     // 사용자가 작성한 글 제거
     await Study.deleteMany({ "author": id});
 

@@ -2,6 +2,7 @@ import { Study } from '../models/Study.js';
 import { User } from '../models/User.js';
 import { Notification } from '../models/Notification.js';
 import sanitizeHtml from 'sanitize-html';
+import { CustomError } from "../CustomError.js";
 
 export class StudyService {
 
@@ -115,7 +116,8 @@ export class StudyService {
     }
 
     // 스터디 정보를 수정한다.
-    async modifyStudy(id, study) {
+    async modifyStudy(id, tokenUserId, study) {
+        await Study.chkeckStudyAuthorization(id, tokenUserId);    // 접근 권한 체크
         if(study.content) {
             let cleanHTML = sanitizeHtml(study.content, {
                 allowedTags: sanitizeHtml.defaults.allowedTags.concat([ 'img' ])
@@ -127,7 +129,8 @@ export class StudyService {
     }
 
     // 스터디를 삭제한다.
-    async deleteStudy(id) {
+    async deleteStudy(id, tokenUserId) {
+        await Study.chkeckStudyAuthorization(id, tokenUserId);    // 접근 권한 체크
         await Study.deleteStudy(id);
         await Notification.deleteNotificationByStudy(id);   // 글 삭제 시 관련 알림 제거
     }
@@ -156,19 +159,30 @@ export class StudyService {
     }
 
     // 댓글을 수정한다.
-    async modifyComment(comment) {
+    async modifyComment(comment, tokenUserId) {
+        await Study.chkeckCommentAuthorization(comment.id, tokenUserId);
         const commentRecord = await Study.modifyComment(comment);
+        return commentRecord;
+    }
+
+    // 대댓글을 수정한다.
+    async modifyReply(comment, tokenUserId) {
+        await Study.chkeckReplyAuthorization(comment.id, tokenUserId);
+        const commentRecord = await Study.modifyReply(comment);
         return commentRecord;
     }
 
     // 댓글을 삭제한다.
     async deleteComment(commentId, userId) {
+        await Study.chkeckCommentAuthorization(commentId, userId);
+
         const studyRecord = await Study.deleteComment(commentId);
         await Notification.deleteNotification(studyRecord._id, studyRecord.author, userId, 'comment');   // 알림 삭제
     }
 
     // 대댓글을 삭제한다.
     async deleteReply(replyId, userId) {
+        await Study.chkeckReplyAuthorization(replyId, userId);
         let author = await Study.findAuthorByReplyId(replyId);
         const studyRecord = await Study.deleteReply(replyId);
         await Notification.deleteNotification(studyRecord._id, author, userId, 'reply');   // 알림 삭제

@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'; 
+import { CustomError } from "../CustomError.js";
 
 // 대댓글 스키마
 const replySchema = mongoose.Schema({
@@ -184,29 +185,35 @@ studySchema.statics.modifyStudy = async function(id, study) {
     return studyRecord;
 }
 
+// 댓글 수정
 studySchema.statics.modifyComment = async function(comment) {
     let commentRecord;
+    let { id, content } = comment;
+
+    commentRecord = await Study.findOneAndUpdate(
+        { comments: { $elemMatch: { _id : id } } },
+        { $set: { 'comments.$.content' : content } },
+        { new: true }
+    );
+    return commentRecord;
+}
+
+// 대댓글 수정
+studySchema.statics.modifyReply = async function(comment) {
+    let commentRecord;
     let { id, content, commentId } = comment;
-    if(commentId) {
-        commentRecord = await Study.findOneAndUpdate(
-            { 
-                'comments': { $elemMatch: { _id : commentId } } 
-            },
-            { 
-                $set: { 'comments.$[].replies.$[i].content' : content }
-            },
-            {
-                arrayFilters: [{'i._id': id}],
-                new: true
-            }
+    commentRecord = await Study.findOneAndUpdate(
+        { 
+            'comments': { $elemMatch: { _id : commentId } } 
+        },
+        { 
+            $set: { 'comments.$[].replies.$[i].content' : content }
+        },
+        {
+            arrayFilters: [{'i._id': id}],
+            new: true
+        }
         );
-    } else {
-        commentRecord = await Study.findOneAndUpdate(
-            { comments: { $elemMatch: { _id : id } } },
-            { $set: { 'comments.$.content' : content } },
-            { new: true }
-        );
-    }
     return commentRecord;
 }
 
@@ -306,6 +313,32 @@ studySchema.statics.findAuthorByReplyId = async function(replyId) {
     }
     
 }
+
+// 스터디 수정 권한 체크
+studySchema.statics.chkeckStudyAuthorization = async function(studyId, tokenUserId) {
+    const study = await Study.findOne({_id: studyId, author: tokenUserId});  
+    if(!study) {
+        throw new CustomError('NotAuthenticatedError', 401, 'User does not match');
+    }
+}
+
+// 댓글 수정 권한 체크
+studySchema.statics.chkeckCommentAuthorization = async function(commentId, tokenUserId) {
+    const study = await Study.findOne({comments: { $elemMatch: { _id : commentId, author : tokenUserId }}});  
+    if(!study) {
+        throw new CustomError('NotAuthenticatedError', 401, 'User does not match');
+    }
+}
+
+// 대댓글 수정 권한 체크
+studySchema.statics.chkeckReplyAuthorization = async function(replyId, tokenUserId) {
+    const study = await Study.findOne({'comments.replies': { $elemMatch: { _id : replyId, author : tokenUserId }}});  
+    if(!study) {
+        throw new CustomError('NotAuthenticatedError', 401, 'User does not match');
+    }
+}
+
+
 const Study = mongoose.model('Study', studySchema);
 
 export { Study };
