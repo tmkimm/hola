@@ -1,13 +1,15 @@
-import { Study } from '../models/Study.js';
-import { User } from '../models/User.js';
-import { Notification } from '../models/Notification.js';
 import sanitizeHtml from 'sanitize-html';
 
 export class StudyService {
+    constructor({ studyModel, userModel, notificationModel}) {
+        this.studyModel = studyModel;
+        this.userModel = userModel;
+        this.notificationModel = notificationModel;
+    }
 
     // 메인 화면에서 스터디 리스트를 조회한다.
     async findStudy(offset, limit, sort, language, period, isClosed) {
-        const studies = await Study.findStudy(offset, limit, sort, language, period, isClosed);
+        const studies = await this.studyModel.findStudy(offset, limit, sort, language, period, isClosed);
         const sortStudies = this.sortLanguageByQueryParam(studies, language);
         return sortStudies;
     }
@@ -32,7 +34,7 @@ export class StudyService {
     async recommendToUserFromMain(userId) {
         let sort, likeLanguages, limit = 20;
         if(userId) {
-            let user = await User.findById(userId);
+            let user =await this.userModel.findById(userId);
             likeLanguages = user.likeLanguages;
             sort = 'views';
         }
@@ -40,7 +42,7 @@ export class StudyService {
             sort = 'totalLikes';
         }
 
-        let studies = await Study.findStudyRecommend('-views', likeLanguages, null, limit);
+        let studies = await this.studyModel.findStudyRecommend('-views', likeLanguages, null, limit);
         return studies;
     }
 
@@ -49,11 +51,11 @@ export class StudyService {
     async recommendToUserFromStudy(studyId, userId) {
         let sort = '-views', language, limit = 10;
         if(studyId) {
-            let study = await Study.findById(studyId);
+            let study = await this.studyModel.findById(studyId);
             language = study.language;
         }
 
-        let studies = await Study.findStudyRecommend(sort, language, studyId, userId, limit);
+        let studies = await this.studyModel.findStudyRecommend(sort, language, studyId, userId, limit);
         return studies;
     }
 
@@ -64,8 +66,8 @@ export class StudyService {
         
         // 조회수 중복 증가 방지
         if(readList === undefined || (typeof readList === 'string' && readList.indexOf(studyId) == -1)) {
-            Study.increaseView(studyId); // 조회수 증가    
-            if(userId)  await User.addReadList(studyId, userId);    // 읽은 목록 추가
+            await this.studyModel.increaseView(studyId); // 조회수 증가    
+            if(userId) await this.userModel.addReadList(studyId, userId);    // 읽은 목록 추가
             if(readList === undefined)    updateReadList = `${studyId}`;
             else    updateReadList = `${readList}|${studyId}`;
             isAlreadyRead = false;
@@ -75,14 +77,14 @@ export class StudyService {
     // 상세 스터디 정보를 조회한다.
     // 로그인된 사용자일 경우 읽은 목록을 추가한다.
     async findStudyDetail(studyId, userId) {
-        const studies = await Study.findById(studyId).populate('author', 'nickName image').populate('comments.author', 'nickName image');
+        const studies = await this.studyModel.findById(studyId).populate('author', 'nickName image').populate('comments.author', 'nickName image');
         return studies;
     }
 
     // 알림을 읽음 표시하고 상세 스터디 정보를 조회한다.
     async findStudyDetailAndUpdateReadAt(studyId, userId) {
         if(userId) {
-            await Notification.updateReadAt(studyId, userId);
+           await this.notificationModel.updateReadAt(studyId, userId);
         }
         return await this.findStudyDetail(studyId, userId);
     }
@@ -90,7 +92,7 @@ export class StudyService {
     // 사용자의 관심 등록 여부를 조회한다.
     async findUserLiked(studyId, userId) {
         if(userId && studyId) {
-            const studies = await Study.find({_id : studyId, likes : userId});
+            const studies = await this.studyModel.find({_id : studyId, likes : userId});
             let isLiked = studies.length > 0 ? true : false;
             return isLiked;
         } else {
@@ -101,7 +103,7 @@ export class StudyService {
     // 스터디의 관심 등록한 사용자 리스트를 조회한다.
     async findLikeUsers(studyId) {
         if(studyId) {
-            const likeUsers = await Study.findById(studyId).select('likes');
+            const likeUsers = await this.studyModel.findById(studyId).select('likes');
             return likeUsers.likes;
         } else {
             return [];
@@ -117,45 +119,45 @@ export class StudyService {
               });
             study.content = cleanHTML;
         }
-        const studyRecord = await Study.create(study);
+        const studyRecord = await this.studyModel.create(study);
         return studyRecord;
     }
 
     // 스터디 정보를 수정한다.
     async modifyStudy(id, tokenUserId, study) {
-        await Study.chkeckStudyAuthorization(id, tokenUserId);    // 접근 권한 체크
+        await this.studyModel.chkeckStudyAuthorization(id, tokenUserId);    // 접근 권한 체크
         if(study.content) {
             let cleanHTML = sanitizeHtml(study.content, {
                 allowedTags: sanitizeHtml.defaults.allowedTags.concat([ 'img' ])
               });
             study.content = cleanHTML;
         }
-        const studyRecord = await Study.modifyStudy(id, study);
+        const studyRecord = await this.studyModel.modifyStudy(id, study);
         return studyRecord;
     }
 
     // 스터디를 삭제한다.
     async deleteStudy(id, tokenUserId) {
-        await Study.chkeckStudyAuthorization(id, tokenUserId);    // 접근 권한 체크
-        await Study.deleteStudy(id);
-        await Notification.deleteNotificationByStudy(id);   // 글 삭제 시 관련 알림 제거
+        await this.studyModel.chkeckStudyAuthorization(id, tokenUserId);    // 접근 권한 체크
+        await this.studyModel.deleteStudy(id);
+       await this.notificationModel.deleteNotificationByStudy(id);   // 글 삭제 시 관련 알림 제거
     }
 
     // 관심 등록 추가  
     async addLike(studyId, userId) {
-        const {study, isLikeExist} = await Study.addLike(studyId, userId);
+        const {study, isLikeExist} = await this.studyModel.addLike(studyId, userId);
         if(!isLikeExist) {
-            await User.addLikeStudy(studyId, userId);
-            await Notification.registerNotification(studyId, study.author, userId, 'like');   // 알림 등록
+           await this.userModel.addLikeStudy(studyId, userId);
+           await this.notificationModel.registerNotification(studyId, study.author, userId, 'like');   // 알림 등록
         }
         return study;
     }
 
     // 관심 등록 취소(삭제)
     async deleteLike(studyId, userId) {
-        const study = await Study.deleteLike(studyId, userId);
-        await User.deleteLikeStudy(studyId, userId);
-        await Notification.deleteNotification(studyId, study.author, userId, 'like');   // 알림 삭제
+        const study = await this.studyModel.deleteLike(studyId, userId);
+       await this.userModel.deleteLikeStudy(studyId, userId);
+       await this.notificationModel.deleteNotification(studyId, study.author, userId, 'like');   // 알림 삭제
         return study;
     }
 }

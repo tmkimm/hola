@@ -2,6 +2,9 @@ import { Router } from 'express';
 import { checkStudy, isStudyValid, isAccessTokenValid, getUserIdByAccessToken, isStudyIdValid } from '../middlewares/index.js';
 import { StudyService } from '../../services/index.js';
 import { asyncErrorWrapper } from '../../asyncErrorWrapper.js';
+import { Study as studyModel } from '../../models/Study.js';
+import { User as userModel} from '../../models/User.js';
+import { Notification as notificationModel} from '../../models/Notification.js';
 
 const route = Router();
 
@@ -24,7 +27,7 @@ export default (app) => {
   // 스터디 리스트 조회
   route.get('/', asyncErrorWrapper(async (req, res, next) => {
     const { offset, limit, sort, language, period, isClosed } = req.query;
-    let StudyServiceInstance = new StudyService();
+    let StudyServiceInstance = new StudyService({studyModel, userModel, notificationModel});
     const studies = await StudyServiceInstance.findStudy(offset, limit, sort, language, period, isClosed);
     res.status(200).json(studies);
   }));
@@ -32,7 +35,7 @@ export default (app) => {
   // 메인에서의 스터디 추천
   route.get('/recommend', getUserIdByAccessToken, asyncErrorWrapper(async (req, res, next) => {
     const userId = req.user._id;
-    let StudyServiceInstance = new StudyService();
+    let StudyServiceInstance = new StudyService({studyModel, userModel, notificationModel});
     const studies = await StudyServiceInstance.recommendToUserFromMain(userId);
 
     res.status(200).json(studies);
@@ -42,7 +45,7 @@ export default (app) => {
   route.get('/:id/recommend', getUserIdByAccessToken, asyncErrorWrapper(async (req, res, next) => {
     const studyId = req.params.id;
     const userId = req.user._id;
-    let StudyServiceInstance = new StudyService();
+    let StudyServiceInstance = new StudyService({studyModel, userModel, notificationModel});
     const study = await StudyServiceInstance.recommendToUserFromStudy(studyId, userId);
 
     res.status(200).json(study);
@@ -54,7 +57,7 @@ export default (app) => {
     const studyId = req.params.id;
     const userId = req.user._id;
     let readList = req.cookies.RVIEW;
-    let StudyServiceInstance = new StudyService();
+    let StudyServiceInstance = new StudyService({studyModel, userModel, notificationModel});
     const study = await StudyServiceInstance.findStudyDetail(studyId, userId);
     const { updateReadList, isAlreadyRead} = await StudyServiceInstance.increaseView(studyId, userId, readList);
     if(!isAlreadyRead) {
@@ -76,7 +79,7 @@ export default (app) => {
   route.get('/:id/notice', isStudyIdValid, getUserIdByAccessToken, asyncErrorWrapper(async (req, res, next) => {
     const studyId = req.params.id;
     const userId = req.user._id;
-    let StudyServiceInstance = new StudyService();
+    let StudyServiceInstance = new StudyService({studyModel, userModel, notificationModel});
     const study = await StudyServiceInstance.findStudyDetailAndUpdateReadAt(studyId, userId);
 
     res.status(200).json(study);
@@ -86,7 +89,7 @@ export default (app) => {
   route.get('/:id/isLiked', getUserIdByAccessToken, asyncErrorWrapper(async (req, res, next) => {
     const studyId = req.params.id;
     const userId = req.user._id;
-    let StudyServiceInstance = new StudyService();
+    let StudyServiceInstance = new StudyService({studyModel, userModel, notificationModel});
     const isLiked = await StudyServiceInstance.findUserLiked(studyId, userId);
 
     res.status(200).json({
@@ -97,7 +100,7 @@ export default (app) => {
   // 글의 관심 등록한 사용자 리스트 조회
   route.get('/:id/likes', asyncErrorWrapper(async (req, res, next) => {
     const studyId = req.params.id;
-    let StudyServiceInstance = new StudyService();
+    let StudyServiceInstance = new StudyService({studyModel, userModel, notificationModel});
     const likeUsers = await StudyServiceInstance.findLikeUsers(studyId);
 
     res.status(200).json({
@@ -111,7 +114,7 @@ export default (app) => {
       const studyDTO = req.body;
       const userId = req.user._id;
 
-      let StudyServiceInstance = new StudyService();
+      let StudyServiceInstance = new StudyService({studyModel, userModel, notificationModel});
       const study = await StudyServiceInstance.registerStudy(userId, studyDTO);       
       res.status(201).json(study);
     } catch (error) {
@@ -132,7 +135,7 @@ export default (app) => {
     const tokenUserId = req.user._id;
     const studyDTO = req.body;
 
-    let StudyServiceInstance = new StudyService();
+    let StudyServiceInstance = new StudyService({studyModel, userModel, notificationModel});
     const study = await StudyServiceInstance.modifyStudy(id, tokenUserId, studyDTO);
 
     res.status(200).json(study);  
@@ -143,7 +146,7 @@ export default (app) => {
     const id = req.params.id;
     const tokenUserId = req.user._id;
 
-    let StudyServiceInstance = new StudyService();
+    let StudyServiceInstance = new StudyService({studyModel, userModel, notificationModel});
     await StudyServiceInstance.deleteStudy(id, tokenUserId);
     res.status(204).json();
   }));
@@ -153,7 +156,7 @@ export default (app) => {
     const { studyId } = req.body;
     const userId = req.user._id;
     
-    let StudyServiceInstance = new StudyService();
+    let StudyServiceInstance = new StudyService({studyModel, userModel, notificationModel});
     const study = await StudyServiceInstance.addLike(studyId, userId);
 
     return res.status(201).json({likeUsers: study.likes});
@@ -164,7 +167,7 @@ export default (app) => {
     const studyId = req.params.id; // 사용자 id
     const userId = req.user._id;
 
-    let StudyServiceInstance = new StudyService();
+    let StudyServiceInstance = new StudyService({studyModel, userModel, notificationModel});
     const study = await StudyServiceInstance.deleteLike(studyId, userId);
     res.status(201).json({likeUsers: study.likes});
   }));

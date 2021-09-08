@@ -2,6 +2,8 @@ import { Router } from 'express';
 import { isAccessTokenValid } from '../middlewares/index.js';
 import { CommentService } from '../../services/index.js';
 import { asyncErrorWrapper } from '../../asyncErrorWrapper.js';
+import { Study as studyModel } from '../../models/Study.js';
+import { Notification as notificationModel} from '../../models/Notification.js';
 
 const route = Router();
 
@@ -21,7 +23,7 @@ export default (app) => {
   route.get('/:id', asyncErrorWrapper(async (req, res, next) => {
     const id = req.params.id;
 
-    let CommentServiceInstance = new CommentService();
+    let CommentServiceInstance = new CommentService({studyModel, notificationModel});
     const comments = await CommentServiceInstance.findComments(id);
 
     res.status(200).json(comments);
@@ -32,7 +34,7 @@ export default (app) => {
     const commentDTO = req.body;
     const userId = req.user._id;
 
-    let CommentServiceInstance = new CommentService();
+    let CommentServiceInstance = new CommentService({studyModel, notificationModel});
     const study = await CommentServiceInstance.registerComment(userId, commentDTO);
 
     return res.status(201).json(study);
@@ -44,7 +46,7 @@ export default (app) => {
     commentDTO.id = req.params.id;
     const tokenUserId = req.user._id;
 
-    let CommentServiceInstance = new CommentService();
+    let CommentServiceInstance = new CommentService({studyModel, notificationModel});
     const comment = await CommentServiceInstance.modifyComment(commentDTO, tokenUserId);
 
     res.status(200).json(comment);
@@ -55,7 +57,7 @@ export default (app) => {
     const commentId = req.params.id;
     const userId = req.user._id;
 
-    let CommentServiceInstance = new CommentService();
+    let CommentServiceInstance = new CommentService({studyModel, notificationModel});
     await CommentServiceInstance.deleteComment(commentId, userId);
     res.status(204).json();
   }));

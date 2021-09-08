@@ -2,7 +2,9 @@ import { Router } from 'express';
 import { AuthService, UserServcie } from '../../services/index.js';
 import { isTokenValidWithOauth, nickNameDuplicationCheck, autoSignUp } from '../middlewares/index.js';
 import { asyncErrorWrapper } from '../../asyncErrorWrapper.js';
-import { CustomError } from "../../CustomError.js";
+import { Study as studyModel } from '../../models/Study.js';
+import { User as userModel} from '../../models/User.js';
+import { Notification as notificationModel} from '../../models/Notification.js';
 const route = Router();
 
 export default (app) => {
@@ -21,7 +23,7 @@ export default (app) => {
     // isTokenValidWithGoogle : 클라이언트에게 전달받은 idToken을 이용해 유효성 검증 후 사용자 정보를 가져온다.
     route.post('/', isTokenValidWithOauth, autoSignUp, asyncErrorWrapper(async (req, res, next) => {
         const { idToken } = req.user; 
-        let AuthServiceInstance = new AuthService();
+        let AuthServiceInstance =new AuthService({userModel});
         const { _id, nickName, image, likeLanguages, accessToken, refreshToken } = await AuthServiceInstance.SignIn(idToken);
         res.cookie("R_AUTH", refreshToken, {
             sameSite: 'none',
@@ -49,10 +51,10 @@ export default (app) => {
         delete userDTO.id;
 
         // 회원 정보 수정(등록)
-        let UserServcieInstance = new UserServcie();
+        let UserServcieInstance = new UserServcie({studyModel, userModel, notificationModel});
         const { userRecord } = await UserServcieInstance.modifyUser(id, id, userDTO);
         // AccessToken, RefreshToken 발급
-        let AuthServiceInstance = new AuthService();
+        let AuthServiceInstance =new AuthService({userModel});
         const { accessToken, refreshToken } = await AuthServiceInstance.SignIn(userRecord.idToken);
 
         res.cookie("R_AUTH", refreshToken, {

@@ -3,6 +3,8 @@ import { AuthService, NotificationService } from '../../services/index.js';
 import { isAccessTokenValid } from '../middlewares/index.js';
 import { asyncErrorWrapper } from '../../asyncErrorWrapper.js';
 import { CustomError } from "../../CustomError.js";
+import { User as userModel} from '../../models/User.js';
+import { Notification as notificationModel} from '../../models/Notification.js';
 
 const route = Router();
 
@@ -20,7 +22,7 @@ export default (app) => {
         if(!req.cookies.R_AUTH) {
             throw new CustomError('RefreshTokenError', 401, 'Refresh token not found');
         }
-        let AuthServiceInstance = new AuthService();
+        let AuthServiceInstance = new AuthService({userModel});
         const { decodeSuccess, _id, nickName, email, image, likeLanguages, accessToken } = await AuthServiceInstance.reissueAccessToken(req.cookies.R_AUTH);
         // Refresh Token가 유효하지 않을 경우
         if(!decodeSuccess) {
@@ -28,7 +30,7 @@ export default (app) => {
             throw new CustomError('RefreshTokenError', 401, 'Invalid refresh token');
         }
         else {
-            let NotificationServcieInstance = new NotificationService();
+            let NotificationServcieInstance = new NotificationService({notificationModel});
             let unReadNoticeCount = await NotificationServcieInstance.findUnReadCount(_id);
             let hasUnreadNotice = unReadNoticeCount > 0 ? true : false;
             return res.status(200).json({

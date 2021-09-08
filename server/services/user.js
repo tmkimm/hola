@@ -1,21 +1,23 @@
 import config from "../config/index.js";
-import { User } from "../models/User.js";
-import { Study } from '../models/Study.js';
-import { Notification } from '../models/Notification.js';
 import AWS from "aws-sdk";
 import { CustomError } from "../CustomError.js";
 
 export class UserServcie {
+  constructor({ studyModel, userModel, notificationModel}) {
+    this.studyModel = studyModel;
+    this.userModel = userModel;
+    this.notificationModel = notificationModel;
+}
 
   // 닉네임을 이용하여 사용자 정보를 조회한다.
   async findByNickName(nickName) {
-    const users = await User.findByNickName(nickName);
+    const users = await this.userModel.findByNickName(nickName);
     return users;
   }
 
   // id를 이용하여 사용자 정보를 조회한다.
   async findById(id) {
-    const users = await User.findById(id);
+    const users = await this.userModel.findById(id);
     return users;
   }
 
@@ -25,7 +27,7 @@ export class UserServcie {
     if(id != tokenUserId)
       throw new CustomError('NotAuthenticatedError', 401, 'User does not match');
 
-    const userRecord = await User.modifyUser(id, user);
+    const userRecord = await this.userModel.modifyUser(id, user);
     const accessToken = await userRecord.generateAccessToken();
     const refreshToken = await userRecord.generateRefreshToken();
     return { userRecord, accessToken, refreshToken };
@@ -36,25 +38,25 @@ export class UserServcie {
       throw new CustomError('NotAuthenticatedError', 401, 'User does not match');
       
     // 사용자가 작성한 글 제거
-    await Study.deleteMany({ "author": id});
+    await this.studyModel.deleteMany({ "author": id});
 
     // 사용자가 작성한 댓글 제거
-    await Study.findOneAndUpdate({ comments: {$elemMatch: { author : id }}},
+    await this.studyModel.findOneAndUpdate({ comments: {$elemMatch: { author : id }}},
       { $pull: { comments: { author: id } } });
       
     // 사용자가 작성한 대댓글 제거
-    await Study.findOneAndUpdate({ 'comments.replies': { $elemMatch: { author : id } }},
+    await this.studyModel.findOneAndUpdate({ 'comments.replies': { $elemMatch: { author : id } }},
       { $pull: { 'comments.$.replies': { author: id } }}
     );
     
     // 회원 탈퇴 시 관련 알림 제거
-    await Notification.deleteNotificationByUser(id);  
-    await User.deleteUser(id);
+    await this.notificationModel.deleteNotificationByUser(id);  
+    await this.userModel.deleteUser(id);
   }
 
   // 사용자가 관심 등록한 글 리스트를 조회한다.
   async findUserLikes(id) {
-    const userLikes = await User.findById(id)
+    const userLikes = await this.userModel.findById(id)
     .populate({
       path: 'likeStudies',
       match: { isDeleted: false}
@@ -65,7 +67,7 @@ export class UserServcie {
 
   // 사용자의 읽은 목록을 조회한다.
   async findReadList(id) {
-    const readList = await User.findById(id)
+    const readList = await this.userModel.findById(id)
     .populate({
       path: 'readList',
       match: { isDeleted: false}
@@ -76,7 +78,7 @@ export class UserServcie {
 
   // 사용자의 작성 목록을 조회한다.
   async findMyStudies(id) {
-    const myStudies = await Study.find({"author": id, "isDeleted": false});
+    const myStudies = await this.studyModel.find({"author": id, "isDeleted": false});
     return myStudies;
   }
 
@@ -100,7 +102,7 @@ export class UserServcie {
 
   // 사용자의 읽은 목록을 추가한다.
   async addReadLists(studyId, userId) {
-    const user = await User.addReadList(studyId, userId);
+    const user = await this.userModel.addReadList(studyId, userId);
     return user;
   }
 }

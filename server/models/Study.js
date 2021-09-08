@@ -304,7 +304,7 @@ studySchema.statics.findAuthorByCommentId = async function(commentId) {
     }
 }
 
-// 댓글 등록한 사용자 아이디 조회
+// 대댓글 등록한 사용자 아이디 조회
 studySchema.statics.findAuthorByReplyId = async function(replyId) {
     let study = await Study.findOne({'comments.replies': { $elemMatch: { _id : replyId } }});
     if(study) {

@@ -2,6 +2,8 @@ import { Router } from 'express';
 import { isAccessTokenValid } from '../middlewares/index.js';
 import { ReplyService } from '../../services/index.js';
 import { asyncErrorWrapper } from '../../asyncErrorWrapper.js';
+import { Study as studyModel } from '../../models/Study.js';
+import { Notification as notificationModel} from '../../models/Notification.js';
 
 const route = Router();
 
@@ -21,7 +23,7 @@ export default (app) => {
     const commentDTO = req.body;
     const userId = req.user._id;
 
-    let ReplyServiceInstance = new ReplyService();
+    let ReplyServiceInstance = new ReplyService({studyModel, notificationModel});
     const study = await ReplyServiceInstance.registerReply(userId, commentDTO);
 
     return res.status(201).json(study);
@@ -33,7 +35,7 @@ export default (app) => {
     commentDTO.id = req.params.id;
     const tokenUserId = req.user._id;
 
-    let ReplyServiceInstance = new ReplyService();
+    let ReplyServiceInstance = new ReplyService({studyModel, notificationModel});
     const comment = await ReplyServiceInstance.modifyReply(commentDTO, tokenUserId);
 
     res.status(200).json(comment);
@@ -43,7 +45,7 @@ export default (app) => {
     const replyId = req.params.id;
     const userId = req.user._id;
 
-    let ReplyServiceInstance = new ReplyService();
+    let ReplyServiceInstance = new ReplyService({studyModel, notificationModel});
     await ReplyServiceInstance.deleteReply(replyId, userId);
     res.status(204).json();
   }));

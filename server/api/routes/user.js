@@ -2,7 +2,9 @@ import { Router } from 'express';
 import { UserServcie, NotificationService } from '../../services/index.js';
 import { nickNameDuplicationCheck, isAccessTokenValid } from '../middlewares/index.js';
 import { asyncErrorWrapper } from '../../asyncErrorWrapper.js';
-import { CustomError } from "../../CustomError.js";
+import { Study as studyModel } from '../../models/Study.js';
+import { User as userModel} from '../../models/User.js';
+import { Notification as notificationModel} from '../../models/Notification.js';
 const route = Router();
 
 export default (app) => {
@@ -11,7 +13,7 @@ export default (app) => {
     // s3 pre-sign url 발급
     route.post('/sign', asyncErrorWrapper(async (req, res, next) => {
         const { fileName } = req.body;
-        let UserServcieInstance = new UserServcie();
+        let UserServcieInstance = new UserServcie({studyModel, userModel, notificationModel});
         const signedUrlPut = await UserServcieInstance.getPreSignUrl(fileName);
 
         res.status(200).json({
@@ -22,7 +24,7 @@ export default (app) => {
     // 사용자 정보 조회
     route.get('/', asyncErrorWrapper(async (req, res, next) => {
         const { nickName } = req.query;
-        let UserServcieInstance = new UserServcie();
+        let UserServcieInstance = new UserServcie({studyModel, userModel, notificationModel});
         const user = await UserServcieInstance.findByNickName(nickName);
 
         res.status(200).json(user);
@@ -32,7 +34,7 @@ export default (app) => {
     route.get('/:id', asyncErrorWrapper(async (req, res, next) => {
         const id = req.params.id;
         
-        let UserServcieInstance = new UserServcie();
+        let UserServcieInstance = new UserServcie({studyModel, userModel, notificationModel});
         const user = await UserServcieInstance.findById(id);
 
         res.status(200).json(user);
@@ -43,7 +45,7 @@ export default (app) => {
         const id = req.params.id;
         const tokenUserId = req.user._id;
         const userDTO = req.body;
-        let UserServcieInstance = new UserServcie();
+        let UserServcieInstance = new UserServcie({studyModel, userModel, notificationModel});
         const { userRecord, accessToken, refreshToken } = await UserServcieInstance.modifyUser(id, tokenUserId, userDTO);
 
         res.cookie("R_AUTH", refreshToken, {
@@ -75,7 +77,7 @@ export default (app) => {
         const id = req.params.id;
         const tokenUserId = req.user._id;
 
-        let UserServcieInstance = new UserServcie();
+        let UserServcieInstance = new UserServcie({studyModel, userModel, notificationModel});
         await UserServcieInstance.deleteUser(id, tokenUserId);
         res.clearCookie('R_AUTH');
         res.status(204).json();
@@ -84,7 +86,7 @@ export default (app) => {
     // 사용자 관심 등록 리스트 조회
     route.get('/likes/:id', asyncErrorWrapper(async (req, res, next) => {
         const id = req.params.id;
-        let UserServcieInstance = new UserServcie();
+        let UserServcieInstance = new UserServcie({studyModel, userModel, notificationModel});
         const user = await UserServcieInstance.findUserLikes(id);
 
         res.status(200).json(user);
@@ -93,7 +95,7 @@ export default (app) => {
     // 사용자 읽은 목록  조회
     route.get('/read-list/:id', asyncErrorWrapper(async (req, res, next) => {
         const id = req.params.id;
-        let UserServcieInstance = new UserServcie();
+        let UserServcieInstance = new UserServcie({studyModel, userModel, notificationModel});
         const user = await UserServcieInstance.findReadList(id);
 
         res.status(200).json(user);
@@ -102,7 +104,7 @@ export default (app) => {
     // 사용자 작성 글 목록 조회
     route.get('/myStudies/:id', asyncErrorWrapper(async (req, res, next) => {
         const id = req.params.id;
-        let UserServcieInstance = new UserServcie();
+        let UserServcieInstance = new UserServcie({studyModel, userModel, notificationModel});
         const user = await UserServcieInstance.findMyStudies(id);
 
         res.status(200).json(user);
@@ -111,7 +113,7 @@ export default (app) => {
     // 사용자 알림 목록 조회
     route.get('/notifications/:id', asyncErrorWrapper(async (req, res, next) => {
         const id = req.params.id;
-        let NotificationServcieInstance = new NotificationService();
+        let NotificationServcieInstance = new NotificationService({notificationModel});
         const notice = await NotificationServcieInstance.findMyNotice(id);
         res.status(200).json(notice);
     }));
