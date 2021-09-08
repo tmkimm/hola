@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 const notificationSchema = mongoose.Schema({
     targetUserId      : {type: mongoose.Schema.Types.ObjectId, ref: 'User'},     // 대상자 정보
     generateUserId      : {type: mongoose.Schema.Types.ObjectId, ref: 'User'},  // 사용자 정보
+    generateObjectId      : {type: mongoose.Schema.Types.ObjectId},  // 알림 대상 Object Id
     studyId      : {type: mongoose.Schema.Types.ObjectId, ref: 'Study'},   // 스터디 ID
     readAt       : Date,                                                   // 읽은 시간
     isRead       : {type: Boolean, default: false},
@@ -39,17 +40,17 @@ notificationSchema.statics.findUnReadCount = async function(targetUserId) {
 
 // 신규 알림 등록
 // like : 좋아요, comment : 댓글, reply: 대댓글
-notificationSchema.statics.registerNotification = async function(studyId, targetUserId, generateUserId, noticeType) {
-    const isNoticeExist = await Notification.findOne({ studyId: studyId, targetUserId: targetUserId, generateUserId: generateUserId, noticeType: noticeType });
+notificationSchema.statics.registerNotification = async function(studyId, targetUserId, generateUserId, noticeType, generateObjectId) {
+    const isNoticeExist = await Notification.findOne({ studyId: studyId, generateObjectId: generateObjectId });
     if (!isNoticeExist && targetUserId != generateUserId) {
         let noticeCode = noticeType == 'like' ? '0' : noticeType == 'comment' ? '1' : noticeType == 'reply' ? '2' : '';
-        await Notification.create({ targetUserId, generateUserId, studyId, noticeCode, noticeType});
+        await Notification.create({ targetUserId, generateUserId, studyId, noticeCode, noticeType, generateObjectId});
     }
 }
 
 // 알림 삭제
-notificationSchema.statics.deleteNotification = async function(studyId, targetUserId, generateUserId, noticeType) {
-    await Notification.deleteMany({studyId, targetUserId, generateUserId, noticeType});
+notificationSchema.statics.deleteNotification = async function(generateObjectId) {
+    await Notification.deleteMany({generateObjectId});
 }
 
 // 글 삭제 시 관련 알림 제거

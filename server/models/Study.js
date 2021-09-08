@@ -70,8 +70,8 @@ studySchema.statics.findStudy = async function(offset, limit, sort, language, pe
     }
     // Query
     let query = {};
-    if( typeof language !== 'undefined' )
-        query.language = {$in: language.split(',')};
+    if( typeof language === 'string' ) query.language = {$in: language.split(',')};
+    else if( typeof language === 'undefined' ) return []; 
 
     if(!isNaN(period)) {
         let today = new Date();
@@ -147,22 +147,24 @@ studySchema.statics.findStudyRecommend = async function(sort, language, studyId,
 
 studySchema.statics.registerComment = async function(studyId, content, author) {
     let study;
+    let commentId = new mongoose.Types.ObjectId();
     study = await Study.findOneAndUpdate(
         {_id: studyId},
-        {$push: { 'comments': {content, author}}},
+        {$push: { 'comments': {_id: commentId, content, author}}},
         {new: true, upsert: true}
     );
-    return study;
+    return { study, commentId } ;
 }
 
 studySchema.statics.registerReply = async function(studyId, commentId, content, author) {
     let study;
+    let replyId = new mongoose.Types.ObjectId();
     study = await Study.findOneAndUpdate(
         {_id: studyId, comments: { $elemMatch: { _id : commentId } } },
-        {$push: { 'comments.$.replies': {content,author}}},
+        {$push: { 'comments.$.replies': {_id: replyId, content,author}}},
         {new: true, upsert: true}
     );
-    return study;
+    return {study, replyId};
 }
 
 studySchema.statics.findComments = async function(id) {
@@ -317,7 +319,7 @@ studySchema.statics.findAuthorByReplyId = async function(replyId) {
 }
 
 // 스터디 수정 권한 체크
-studySchema.statics.chkeckStudyAuthorization = async function(studyId, tokenUserId) {
+studySchema.statics.checkStudyAuthorization = async function(studyId, tokenUserId) {
     const study = await Study.findOne({_id: studyId, author: tokenUserId});  
     if(!study) {
         throw new CustomError('NotAuthenticatedError', 401, 'User does not match');
@@ -325,7 +327,7 @@ studySchema.statics.chkeckStudyAuthorization = async function(studyId, tokenUser
 }
 
 // 댓글 수정 권한 체크
-studySchema.statics.chkeckCommentAuthorization = async function(commentId, tokenUserId) {
+studySchema.statics.checkCommentAuthorization = async function(commentId, tokenUserId) {
     const study = await Study.findOne({comments: { $elemMatch: { _id : commentId, author : tokenUserId }}});  
     if(!study) {
         throw new CustomError('NotAuthenticatedError', 401, 'User does not match');
@@ -333,7 +335,7 @@ studySchema.statics.chkeckCommentAuthorization = async function(commentId, token
 }
 
 // 대댓글 수정 권한 체크
-studySchema.statics.chkeckReplyAuthorization = async function(replyId, tokenUserId) {
+studySchema.statics.checkReplyAuthorization = async function(replyId, tokenUserId) {
     const study = await Study.findOne({'comments.replies': { $elemMatch: { _id : replyId, author : tokenUserId }}});  
     if(!study) {
         throw new CustomError('NotAuthenticatedError', 401, 'User does not match');
