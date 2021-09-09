@@ -12,24 +12,24 @@ export class CommentService {
 
     // 신규 댓글을 추가한다.
     async registerComment(userID, comment) {
-        const { studyId, commentId, content } = comment;
-        const study = await this.studyModel.registerComment(studyId, content, userID);
-        await this.notificationModel.registerNotification(studyId, study.author, userID, 'comment');   // 알림 등록
+        const { studyId, content } = comment;
+        const {study, commentId} = await this.studyModel.registerComment(studyId, content, userID);
+        await this.notificationModel.registerNotification(studyId, study.author, userID, 'comment', commentId);   // 알림 등록
         return study;
     }
 
     // 댓글을 수정한다.
     async modifyComment(comment, tokenUserId) {
-        await this.studyModel.chkeckCommentAuthorization(comment.id, tokenUserId);
+        await this.studyModel.checkCommentAuthorization(comment.id, tokenUserId);
         const commentRecord = await this.studyModel.modifyComment(comment);
         return commentRecord;
     }
 
     // 댓글을 삭제한다.
     async deleteComment(commentId, userId) {
-        await this.studyModel.chkeckCommentAuthorization(commentId, userId);
+        await this.studyModel.checkCommentAuthorization(commentId, userId);
 
         const studyRecord = await this.studyModel.deleteComment(commentId);
-        await this.notificationModel.deleteNotification(studyRecord._id, studyRecord.author, userId, 'comment');   // 알림 삭제
+        await this.notificationModel.deleteNotification(commentId);   // 알림 삭제
     }
 }

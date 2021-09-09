@@ -125,7 +125,7 @@ export class StudyService {
 
     // 스터디 정보를 수정한다.
     async modifyStudy(id, tokenUserId, study) {
-        await this.studyModel.chkeckStudyAuthorization(id, tokenUserId);    // 접근 권한 체크
+        await this.studyModel.checkStudyAuthorization(id, tokenUserId);    // 접근 권한 체크
         if(study.content) {
             let cleanHTML = sanitizeHtml(study.content, {
                 allowedTags: sanitizeHtml.defaults.allowedTags.concat([ 'img' ])
@@ -138,7 +138,7 @@ export class StudyService {
 
     // 스터디를 삭제한다.
     async deleteStudy(id, tokenUserId) {
-        await this.studyModel.chkeckStudyAuthorization(id, tokenUserId);    // 접근 권한 체크
+        await this.studyModel.checkStudyAuthorization(id, tokenUserId);    // 접근 권한 체크
         await this.studyModel.deleteStudy(id);
        await this.notificationModel.deleteNotificationByStudy(id);   // 글 삭제 시 관련 알림 제거
     }
@@ -148,7 +148,7 @@ export class StudyService {
         const {study, isLikeExist} = await this.studyModel.addLike(studyId, userId);
         if(!isLikeExist) {
            await this.userModel.addLikeStudy(studyId, userId);
-           await this.notificationModel.registerNotification(studyId, study.author, userId, 'like');   // 알림 등록
+           //await this.notificationModel.registerNotification(studyId, study.author, userId, 'like');   // 알림 등록
         }
         return study;
     }
@@ -157,7 +157,7 @@ export class StudyService {
     async deleteLike(studyId, userId) {
         const study = await this.studyModel.deleteLike(studyId, userId);
        await this.userModel.deleteLikeStudy(studyId, userId);
-       await this.notificationModel.deleteNotification(studyId, study.author, userId, 'like');   // 알림 삭제
+       //await this.notificationModel.deleteNotification(studyId, study.author, userId, 'like');   // 알림 삭제
         return study;
     }
 }

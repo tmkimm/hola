@@ -1,5 +1,5 @@
 import { Router } from 'express'; 
-import { AuthService, UserServcie } from '../../services/index.js';
+import { AuthService, UserService } from '../../services/index.js';
 import { isTokenValidWithOauth, nickNameDuplicationCheck, autoSignUp } from '../middlewares/index.js';
 import { asyncErrorWrapper } from '../../asyncErrorWrapper.js';
 import { Study as studyModel } from '../../models/Study.js';
@@ -51,8 +51,8 @@ export default (app) => {
         delete userDTO.id;
 
         // 회원 정보 수정(등록)
-        let UserServcieInstance = new UserServcie({studyModel, userModel, notificationModel});
-        const { userRecord } = await UserServcieInstance.modifyUser(id, id, userDTO);
+        let UserServiceInstance = new UserService({studyModel, userModel, notificationModel});
+        const { userRecord } = await UserServiceInstance.modifyUser(id, id, userDTO);
         // AccessToken, RefreshToken 발급
         let AuthServiceInstance =new AuthService({userModel});
         const { accessToken, refreshToken } = await AuthServiceInstance.SignIn(userRecord.idToken);

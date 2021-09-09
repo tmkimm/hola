@@ -2,7 +2,7 @@ import config from "../config/index.js";
 import AWS from "aws-sdk";
 import { CustomError } from "../CustomError.js";
 
-export class UserServcie {
+export class UserService {
   constructor({ studyModel, userModel, notificationModel}) {
     this.studyModel = studyModel;
     this.userModel = userModel;
