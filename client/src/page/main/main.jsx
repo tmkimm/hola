@@ -12,6 +12,8 @@ import ShowByViews from "../../component/show_studies/show_by_views/showByViews"
 
 import { AiFillFire } from "react-icons/ai";
 import { FaCalendarCheck } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { clear, init } from "../../store/language";
 
 /* 
 main page의 layout을 담당하는 component입니다. 
@@ -23,10 +25,10 @@ const SHOW_BY_DATE = "-createdAt";
 const ACTIVE = styles.active;
 const INACTIVE = styles.inactive;
 
-const Main = (props) => {
-  // console.log("MAIN START!!");
-
+const Main = () => {
   const [category, setCategory] = useState(SHOW_BY_DATE);
+  const [checked, setChecked] = useState(true);
+  const dispatch = useDispatch();
 
   const toggleCategory = (toggleTo) => {
     if (category === toggleTo) return; // 바꾸려는 대상이 현재 상태와 같으면 return
@@ -35,12 +37,39 @@ const Main = (props) => {
     else setCategory((state) => SHOW_BY_VIEWS);
   };
 
+  const handleSelect = (e) => {
+    if (checked) dispatch(clear());
+    else dispatch(init());
+    setChecked((checked) => !checked);
+  };
+
   return (
     <>
       <Navbar />
       <Banner />
+      <div className={styles.languageSelectBox}>
+        <img
+          className={styles.languagebarBubble}
+          src="/images/info/languegeBar_bubble.png"
+          alt="information"
+        />
+        <div className={styles.selectWrapper} onClick={handleSelect}>
+          <input
+            className={styles.selectboxInput}
+            type="checkbox"
+            name="languageSelect"
+            value="전체 언어 보기"
+            checked={checked ? "checked" : ""}
+            readOnly
+          ></input>
+          <label htmlFor="languageSelect">
+            <span>전체 언어 보기</span>
+          </label>
+        </div>
+      </div>
+
       <div className={styles.languageBarWrapper}>
-        <LanguageBarList />
+        <LanguageBarList setChecked={setChecked} />
       </div>
       <div className={styles.appWrapper}>
         <div className={styles.app}>

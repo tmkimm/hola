@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  mode: "-createdAt",
   sortByViews: [],
   sortByRecent: [],
 };
@@ -18,4 +19,4 @@ const studySlice = createSlice({
 });
 
 export const { update, clear } = studySlice.actions;
-export default studySlice;
+export default studySlice.reducer;

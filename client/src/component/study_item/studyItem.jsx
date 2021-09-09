@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./studyItem.module.css";
 import Modal from "../modal/modal_component/modal";
 import PostModal from "../modal/post_modal/postModal";
 import { useHistory } from "react-router-dom";
 import { FaRegCommentDots, FaRegEye } from "react-icons/fa";
-import useWindowScrollPosition from "../../hooks/useWindowScrollPosition";
-import useLocalStorage from "../../hooks/useLocalStorage";
 
 const StudyItem = ({ study, lastStudyElementRef }) => {
   const studyLang = [];
@@ -21,14 +19,6 @@ const StudyItem = ({ study, lastStudyElementRef }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const onClick = () => {
-    // localStorage.setItem("mainPage", JSON.stringify(2000));
-    // console.log(
-    //   "localStorage 저장 to : ",
-    //   JSON.parse(window.localStorage.getItem("mainPage"))
-    // );
-    // //useLocalStorage('main',window.scrollY)
-    // //console.log("history.push occured!");
-    // console.log(window.scrollY);
     history.push(`/study/${study._id}`);
     // console.log(study);
   };
@@ -67,7 +57,6 @@ const StudyItem = ({ study, lastStudyElementRef }) => {
 
           <div className={styles.infoItem}>
             <FaRegEye size={16} color={"#9A9A9A"} />
-
             <p className={styles.views}>{study.views}</p>
           </div>
 

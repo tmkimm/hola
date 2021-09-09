@@ -27,7 +27,7 @@ class Study {
       const studyList = await this.study.get("studies", {
         params,
       });
-      //console.log("study list : ", studyList);
+
       return studyList;
     } catch (error) {
       console.error(error);

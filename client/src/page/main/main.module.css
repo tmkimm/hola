@@ -40,9 +40,87 @@
   flex-direction: column;
 }
 
+.languagebarBubble {
+  width: 240px;
+  height: 60px;
+  margin-left: 1rem;
+  animation: bubbleAnimation 1.2s ease-in-out;
+}
+
+.languageSelectBox {
+  margin: 0 auto;
+  margin-top: 5rem;
+  max-width: 1210px;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* .selectboxInput {
+  width: 2rem;
+  border-radius: 4px;
+} */
+
+.selectboxInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.selectboxInput + label {
+  display: inline-block;
+  position: relative;
+  padding-left: 40px;
+  cursor: pointer;
+}
+
+.selectWrapper {
+  margin-right: 1rem;
+}
+.selectWrapper input[type="checkbox"] + label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.selectWrapper input[type="checkbox"]:checked + label:after {
+  content: "\2714";
+  color: white;
+  position: absolute;
+  left: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 4px;
+  text-align: center;
+  border: 1px solid #ccc;
+  background-color: #5f7db7;
+}
+
+@keyframes bubbleAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .languageBarWrapper {
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
-  margin-top: 5rem;
+  margin-top: 1rem;
 }
 
 .title {
@@ -63,7 +141,7 @@
 }
 
 @media screen and (max-width: 830px) {
-  .languageBarWrapper {
+  .languageSelectBox {
     margin-top: 5rem;
   }
   .app {
@@ -72,7 +150,39 @@
 }
 
 @media screen and (max-width: 575px) {
-  .languageBarWrapper {
+  .languageSelectBox {
     margin-top: 2rem;
+    font-size: 1.125rem;
+  }
+  .selectboxInput + label {
+    display: inline-block;
+    position: relative;
+    padding-left: 2rem;
+    cursor: pointer;
+  }
+
+  .selectWrapper input[type="checkbox"] + label:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .selectWrapper input[type="checkbox"]:checked + label:after {
+    content: "\2714";
+    color: white;
+    position: absolute;
+    left: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 4px;
+    text-align: center;
+    border: 1px solid #ccc;
+    background-color: #5f7db7;
   }
 }
