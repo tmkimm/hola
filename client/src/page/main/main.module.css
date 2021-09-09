@@ -41,7 +41,7 @@
 }
 
 .languagebarBubble {
-  width: 240px;
+  width: 270px;
   height: 60px;
   margin-left: 1rem;
   animation: bubbleAnimation 1.2s ease-in-out;
@@ -82,7 +82,9 @@
 
 .selectWrapper {
   margin-right: 1rem;
+  margin-bottom: 0.75rem;
 }
+
 .selectWrapper input[type="checkbox"] + label:before {
   content: "";
   position: absolute;
@@ -150,10 +152,16 @@
 }
 
 @media screen and (max-width: 575px) {
+  .languagebarBubble {
+    display: none;
+  }
+
   .languageSelectBox {
     margin-top: 2rem;
     font-size: 1.125rem;
+    justify-content: flex-end;
   }
+
   .selectboxInput + label {
     display: inline-block;
     position: relative;
