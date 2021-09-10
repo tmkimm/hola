@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./userImageUpload.module.css";
-import { isBase64 } from "../../common/utils";
+import { isBase64 } from "common/utils";
 
 const UserImageUpload = ({ image, setImage, setIsImageChanged }) => {
   const baseUrl = "https://hola-post-image.s3.ap-northeast-2.amazonaws.com/";

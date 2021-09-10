@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./studyItem.module.css";
-import Modal from "../modal/modal_component/modal";
-import PostModal from "../modal/post_modal/postModal";
+import Modal from "component/modal/modal_component/modal";
+import PostModal from "component/modal/post_modal/postModal";
 import { useHistory } from "react-router-dom";
 import { FaRegCommentDots, FaRegEye } from "react-icons/fa";
 

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import LikesAndViews from "../../likes_and_views/likesAndViews";
 import styles from "./postModal.module.css";
-import { readPost, clearPost } from "../../../store/read";
-import { setPost } from "../../../store/write";
-import CommentContainer from "../../comment_container/commentContainer";
+import { readPost, clearPost } from "store/read";
+import { setPost } from "store/write";
 import { useHistory } from "react-router";
-import CancelButton from "../../cancelButton/cancelButton";
+import LikesAndViews from "component/likes_and_views/likesAndViews";
+import CommentContainer from "component/comment_container/commentContainer";
+import CancelButton from "component/cancelButton/cancelButton";
 
 /* 
 

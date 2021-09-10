@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./setting.module.css";
-import Navbar from "../../component/nav_bar/navbar";
-import LikeLanguages from "../../component/like_languages/likeLanguages";
-import UserImageUpload from "../../component/user_image_upload/userImageUpload";
-import Modal from "../../component/modal/modal_component/modal";
-import CancelButton from "../../component/cancelButton/cancelButton";
+import Navbar from "component/nav_bar/navbar";
+import LikeLanguages from "component/like_languages/likeLanguages";
+import UserImageUpload from "component/user_image_upload/userImageUpload";
+import Modal from "component/modal/modal_component/modal";
+import CancelButton from "component/cancelButton/cancelButton";
 
 const Setting = ({
   nickName,

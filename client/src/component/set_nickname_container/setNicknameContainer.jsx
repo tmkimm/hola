@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { nextStep, setSignUpUser } from "../../store/loginStep";
-import SetNickname from "../set_nickname/setNickname";
+import { nextStep, setSignUpUser } from "store/loginStep";
+import SetNickname from "component/set_nickname/setNickname";
 import { toast } from "react-toastify";
-import userService from "../../service/user_service";
+import userService from "service/user_service";
 
 const SetNicknameContainer = (props) => {
   const dispatch = useDispatch();

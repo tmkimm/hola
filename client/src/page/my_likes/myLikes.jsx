@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Navbar from "../../component/nav_bar/navbar";
-import StudyList from "../../component/study_list/studyList";
-import userService from "../../service/user_service";
+import Navbar from "component/nav_bar/navbar";
+import StudyList from "component/study_list/studyList";
+import userService from "service/user_service";
 import styles from "./myLikes.module.css";
 import { MdFavorite } from "react-icons/md";
 import { FaBook } from "react-icons/fa";

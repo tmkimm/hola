@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./commentItem.module.css";
-import studyService from "../../service/study_service";
-import { getFormatedToday } from "../../common/utils.js";
-import { fetchUserByRefreshToken } from "../../store/user";
-import CommentButtons from "../comment_buttons/commentButtons";
+import studyService from "service/study_service";
+import { getFormatedToday } from "common/utils.js";
+import { fetchUserByRefreshToken } from "store/user";
+import CommentButtons from "component/comment_buttons/commentButtons";
 
 const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
   const user = useSelector((state) => state.user);

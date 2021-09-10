@@ -1,19 +1,18 @@
+import React, { useState } from "react";
 import styles from "./main.module.css";
-import { useState } from "react";
 
-import Navbar from "../../component/nav_bar/navbar";
-import Banner from "../../component/banner/banner";
-import React from "react";
-import LanguageBarList from "../../component/language_bar_list/languageBarList";
+import Navbar from "component/nav_bar/navbar";
+import Banner from "component/banner/banner";
+import LanguageBarList from "component/language_bar_list/languageBarList";
 
-import Rating from "../../component/rating/rating";
-import ShowByDate from "../../component/show_studies/show_by_date/showByDate";
-import ShowByViews from "../../component/show_studies/show_by_views/showByViews";
+import Rating from "component/rating/rating";
+import ShowByDate from "component/show_studies/show_by_date/showByDate";
+import ShowByViews from "component/show_studies/show_by_views/showByViews";
 
 import { AiFillFire } from "react-icons/ai";
 import { FaCalendarCheck } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { clear, init } from "../../store/language";
+import { clear, init } from "store/language";
 
 /* 
 main page의 layout을 담당하는 component입니다. 

@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { nextStep, setSignUpUser } from "../../store/loginStep";
-import SocialLogin from "../social_login/socialLogin";
-import { fetchUserById } from "../../store/user";
+import { nextStep, setSignUpUser } from "store/loginStep";
+import SocialLogin from "component/social_login/socialLogin";
+import { fetchUserById } from "store/user";
 
 const SocialLoginContainer = ({ handleClose }) => {
   const googleClientId = process.env.REACT_APP_GOOGLE_LOGIN_API_KEY;

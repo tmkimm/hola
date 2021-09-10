@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./loginModal.module.css";
 import { useSelector } from "react-redux";
-import SocialLoginContainer from "../../social_login_container/socialLoginContainer";
-import SetNicknameContainer from "../../set_nickname_container/setNicknameContainer";
-import SetInterestContainer from "../../set_interest_container/setInterestContainer";
-import SetImageContainer from "../../set_image_container/setImageContainer";
-import SignupEnd from "../../signup_end/signupEnd";
+import SocialLoginContainer from "component/social_login_container/socialLoginContainer";
+import SetNicknameContainer from "component/set_nickname_container/setNicknameContainer";
+import SetInterestContainer from "component/set_interest_container/setInterestContainer";
+import SetImageContainer from "component/set_image_container/setImageContainer";
+import SignupEnd from "component/signup_end/signupEnd";
 /* 
 
 LoginModal Component

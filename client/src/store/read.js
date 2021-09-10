@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, createAction } from "@reduxjs/toolkit";
-import studyService from "../service/study_service";
-import languageList from "../languageList";
+import studyService from "service/study_service";
+import languageList from "common/languageList";
 /* 
 
 읽고 있는 post 상태를 만드는 redux store 입니다.

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { modifyPost, writePost } from "../../store/write";
+import { modifyPost, writePost } from "store/write";
 import Writebutton from "./writebutton";
 import { toast } from "react-toastify";
 

@@ -1,6 +1,6 @@
 import React from "react";
-import LikeLanguages from "../like_languages/likeLanguages";
-import TopBarContainer from "../top_bar_container/topBarContainer";
+import LikeLanguages from "component/like_languages/likeLanguages";
+import TopBarContainer from "component/top_bar_container/topBarContainer";
 import styles from "./setInterest.module.css";
 const SetInterest = ({
   loginStep,

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, createAction } from "@reduxjs/toolkit";
-import authService from "../service/auth_service";
-import userService from "../service/user_service";
-import httpClient from "../service/http_client";
+import authService from "service/auth_service";
+import userService from "service/user_service";
+import httpClient from "service/http_client";
 
 /* 
 

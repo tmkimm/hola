@@ -2,12 +2,6 @@ import React from "react";
 import styles from "./notFound.module.css";
 import { useHistory } from "react-router-dom";
 
-/* to-do
-
-반응형 처리 필요 
-
-*/
-
 const NotFound = () => {
   const history = useHistory();
 

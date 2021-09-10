@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./studyButtons.module.css";
-import Modal from "../modal/modal_component/modal";
-import CancelButton from "../../component/cancelButton/cancelButton";
+import Modal from "component/modal/modal_component/modal";
+import CancelButton from "component/cancelButton/cancelButton";
 
 const StudyButtons = ({
   history,

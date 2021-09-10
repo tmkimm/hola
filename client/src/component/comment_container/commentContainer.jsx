@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import CommentInput from "../comment_input/commentInput";
-import CommentList from "../comment_list/commentList";
-import studyService from "../../service/study_service";
+import CommentInput from "component/comment_input/commentInput";
+import CommentList from "component/comment_list/commentList";
+import studyService from "service/study_service";
 import { useDispatch, useSelector } from "react-redux";
-import Modal from "../modal/modal_component/modal";
-import LoginModal from "../modal/login_modal/loginModal";
-import { setModalVisible } from "../../store/loginStep";
+import Modal from "component/modal/modal_component/modal";
+import LoginModal from "component/modal/login_modal/loginModal";
+import { setModalVisible } from "store/loginStep";
 
 const CommentContainer = ({ id }) => {
   const [commentList, setCommentList] = useState([]);

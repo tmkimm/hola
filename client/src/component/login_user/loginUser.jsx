@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./loginUser.module.css";
 import { useSelector } from "react-redux";
-import DropdownBar from "../dropdown_bar/dropdownBar";
+import DropdownBar from "component/dropdown_bar/dropdownBar";
 
 /* 
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { nextStep, setSignUpUser } from "../../store/loginStep";
-import SetInterest from "../set_interest/setInterest";
+import { nextStep, setSignUpUser } from "store/loginStep";
+import SetInterest from "component/set_interest/setInterest";
 
 const SetInterestContainer = (props) => {
   const [likeLanguages, setLikeLanguages] = useState([]);

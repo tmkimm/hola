@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./setImage.module.css";
-import UserImageUpload from "../user_image_upload/userImageUpload";
-import TopBarContainer from "../top_bar_container/topBarContainer";
+import UserImageUpload from "component/user_image_upload/userImageUpload";
+import TopBarContainer from "component/top_bar_container/topBarContainer";
 
 const SetImage = ({
   loginStep,

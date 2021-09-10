@@ -1,12 +1,12 @@
 import React, { useRef, useEffect, useCallback } from "react";
 import styled from "styled-components";
-import studyService from "../../service/study_service";
+import studyService from "service/study_service";
 import Quill from "quill";
 import styles from "./editor.module.css";
 import QuillImageDropAndPaste from "quill-image-drop-and-paste";
 import "react-quill/dist/quill.snow.css";
 import { useSelector } from "react-redux";
-import LikeLanguages from "../like_languages/likeLanguages";
+import LikeLanguages from "component/like_languages/likeLanguages";
 import MagicUrl from "quill-magic-url";
 
 /* 

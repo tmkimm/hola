@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./dropdownBar.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { clearUser } from "../../store/user";
-import authService from "../../service/auth_service";
-import { clearStep } from "../../store/loginStep";
+import { clearUser } from "store/user";
+import authService from "service/auth_service";
+import { clearStep } from "store/loginStep";
 
 /* 
 

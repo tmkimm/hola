@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./setNickname.module.css";
-import TopBarContainer from "../top_bar_container/topBarContainer";
+import TopBarContainer from "component/top_bar_container/topBarContainer";
 
 const SetNickname = ({ nickname, setNickname, handleLoginStep }) => {
   return (

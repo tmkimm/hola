@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from "react";
-import EmptyList from "../../empty_list/emptyList";
-import StudyList from "../../study_list/studyList";
+import EmptyList from "component/empty_list/emptyList";
+import StudyList from "component/study_list/studyList";
 import useStudySearch from "../hooks/useStudySearch";
 
 const ShowByDate = () => {

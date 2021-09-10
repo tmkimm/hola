@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import studyService from "../../service/study_service";
+import studyService from "service/study_service";
 import styles from "./recommendPost.module.css";
 
 const RecommendPost = ({ id }) => {

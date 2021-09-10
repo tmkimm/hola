@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addLanguage, removeLanguage } from "../../store/language";
-import LanguageBarItem from "../language_bar_item/languageBarItem";
+import { addLanguage, removeLanguage } from "store/language";
+import LanguageBarItem from "component/language_bar_item/languageBarItem";
 import styles from "./languageBarList.module.css";
 
 const LanguageBarList = React.memo(({ setChecked }) => {

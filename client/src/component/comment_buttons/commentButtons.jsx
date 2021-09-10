@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import CancelButton from "../cancelButton/cancelButton";
-import Modal from "../modal/modal_component/modal";
+import CancelButton from "component/cancelButton/cancelButton";
+import Modal from "component/modal/modal_component/modal";
 import styles from "./commentButtons.module.css";
 
 const CommentButtons = ({ onModifyClick, onDeleteClick }) => {

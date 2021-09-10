@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import studyService from "../../service/study_service";
-import { setModalVisible } from "../../store/loginStep";
-import LoginModal from "../modal/login_modal/loginModal";
-import Modal from "../modal/modal_component/modal";
+import studyService from "service/study_service";
+import { setModalVisible } from "store/loginStep";
+import LoginModal from "component/modal/login_modal/loginModal";
+import Modal from "component/modal/modal_component/modal";
 import styles from "./likesAndViews.module.css";
 
 /* 

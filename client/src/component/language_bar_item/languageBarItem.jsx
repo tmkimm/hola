@@ -1,7 +1,5 @@
-import React, { useCallback, useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import styles from "./languageBarItem.module.css";
-import { addLanguage, removeLanguage } from "../../store/language";
 
 const LanguageBarItem = React.memo(({ Language, selected, onItemClick }) => {
   const displayType = selected === true ? styles.full : styles.transparent;

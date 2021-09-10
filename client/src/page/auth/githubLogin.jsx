@@ -1,15 +1,11 @@
 import { useEffect } from "react";
 import qs from "qs";
 import { useHistory, useLocation } from "react-router";
-import { fetchUserById } from "../../store/user";
+import { fetchUserById } from "store/user";
 import { useDispatch } from "react-redux";
-import {
-  setModalVisible,
-  nextStep,
-  setSignUpUser,
-} from "../../store/loginStep";
-import Modal from "../../component/modal/modal_component/modal";
-import LoadingSpinner from "../../component/loading/loadingSpinner";
+import { setModalVisible, nextStep, setSignUpUser } from "store/loginStep";
+import Modal from "component/modal/modal_component/modal";
+import LoadingSpinner from "component/loading/loadingSpinner";
 
 /* 
 

@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import LoginModal from "../modal/login_modal/loginModal";
-import Modal from "../modal/modal_component/modal";
+import LoginModal from "component/modal/login_modal/loginModal";
+import Modal from "component/modal/modal_component/modal";
 import styles from "./navbar.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import LoginUser from "../login_user/loginUser";
-import { setModalVisible } from "../../store/loginStep";
-import { clearUser, fetchUserByRefreshToken } from "../../store/user";
+import LoginUser from "component/login_user/loginUser";
+import { setModalVisible } from "store/loginStep";
+import { clearUser, fetchUserByRefreshToken } from "store/user";
 import { toast } from "react-toastify";
 
 /* 

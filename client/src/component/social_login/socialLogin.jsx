@@ -2,9 +2,9 @@ import React from "react";
 import styles from "./socialLogin.module.css";
 import GoogleLogin from "react-google-login";
 import KakaoLogin from "react-kakao-login";
-import GoogleButton from "../login_button/google_button/googleButton";
-import GithubButton from "../login_button/github_button/githubButton";
-import KakaoButton from "../login_button/kakao_button/kakaoButton";
+import GoogleButton from "component/login_button/google_button/googleButton";
+import GithubButton from "component/login_button/github_button/githubButton";
+import KakaoButton from "component/login_button/kakao_button/kakaoButton";
 
 const SocialLogin = ({
   googleOnSuccess,

@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from "react";
 import styles from "./rating.module.css";
 import ReactStars from "react-rating-stars-component";
-import userService from "../../service/user_service";
+import userService from "service/user_service";
 import { toast } from "react-toastify";
 
 const Rating = React.memo(() => {

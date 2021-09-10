@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { toast } from "react-toastify";
-import languageList from "../../languageList";
-import userService from "../../service/user_service";
-import studyService from "../../service/study_service";
-import { clearUser } from "../../store/user";
-import { clearStep } from "../../store/loginStep";
-import { modifyUserInfo } from "../../store/user";
-import Setting from "../../page/setting/setting";
+import languageList from "common/languageList";
+import userService from "service/user_service";
+import studyService from "service/study_service";
+import { clearUser } from "store/user";
+import { clearStep } from "store/loginStep";
+import { modifyUserInfo } from "store/user";
+import Setting from "page/setting/setting";
 
 /*
 // TODO

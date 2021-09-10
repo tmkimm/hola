@@ -1,6 +1,6 @@
 import React from "react";
 import Select from "react-select";
-import languageList from "../../languageList";
+import languageList from "common/languageList";
 
 const LikeLanguages = ({ likeLanguages, setLikeLanguages, placeholder }) => {
   const customStyles = {

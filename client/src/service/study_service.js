@@ -1,5 +1,5 @@
 import httpClient from "./http_client";
-import { getFormatedToday } from "../common/utils";
+import { getFormatedToday } from "common/utils";
 
 /*
 글 등록, 삭제, 수정, 조회 등 study 글 관련 api를 모아놓은 class입니다.
