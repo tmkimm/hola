@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addLanguage, removeLanguage } from "store/language";
+import { addLanguage, clearLanguage, removeLanguage } from "store/language";
 import LanguageBarItem from "component/language_bar_item/languageBarItem";
 import styles from "./languageBarList.module.css";
 
@@ -14,10 +14,15 @@ const LanguageBarList = React.memo(({ setChecked }) => {
   const dispatch = useDispatch();
   const onItemClick = useCallback(
     (Langauge, selected) => {
-      if (!selected) dispatch(addLanguage(Langauge));
-      else dispatch(removeLanguage(Langauge));
+      if (selectedLanguage.length === 14) {
+        dispatch(clearLanguage());
+        dispatch(addLanguage(Langauge));
+      } else {
+        if (!selected) dispatch(addLanguage(Langauge));
+        else dispatch(removeLanguage(Langauge));
+      }
     },
-    [dispatch]
+    [dispatch, selectedLanguage.length]
   );
 
   const languages = [

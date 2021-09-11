@@ -29,12 +29,12 @@ const languageSlice = createSlice({
         1
       );
     },
-    clear: () => [],
-    init: () => initialState,
+    clearLanguage: () => [],
+    initLanguage: () => initialState,
   },
 });
 
-export const { addLanguage, removeLanguage, clear, init } =
+export const { addLanguage, removeLanguage, clearLanguage, initLanguage } =
   languageSlice.actions;
 
 export default languageSlice.reducer;
