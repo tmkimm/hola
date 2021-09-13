@@ -59,9 +59,10 @@ export class UserService {
     const userLikes = await this.userModel.findById(id)
     .populate({
       path: 'likeStudies',
-      match: { isDeleted: false}
+      match: { isDeleted: false},
+      options: { sort: { createdAt: -1 } }
     })
-    .select('likeStudies');
+    .select('likeStudies')
     return userLikes;
   }
 
@@ -70,7 +71,8 @@ export class UserService {
     const readList = await this.userModel.findById(id)
     .populate({
       path: 'readList',
-      match: { isDeleted: false}
+      match: { isDeleted: false},
+      options: { sort: { createdAt: -1 } }
     })
     .select('readList');
     return readList;
@@ -78,7 +80,7 @@ export class UserService {
 
   // 사용자의 작성 목록을 조회한다.
   async findMyStudies(id) {
-    const myStudies = await this.studyModel.find({"author": id, "isDeleted": false});
+    const myStudies = await this.studyModel.find({"author": id, "isDeleted": false}).sort('-createdAt');
     return myStudies;
   }
 
