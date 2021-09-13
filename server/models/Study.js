@@ -269,20 +269,27 @@ studySchema.statics.addLike = async function(studyId, userId) {
 }
 
 studySchema.statics.deleteLike = async function(studyId, userId) {
-    const deleteRecord = await Study.findOneAndUpdate(
-        { _id: studyId },
-        {
-            $pull: { likes: userId },
-            $inc: {
-              totalLikes : -1
+    const studies = await Study.find({_id: studyId });
+    let study = studies[studies.length - 1];
+    
+    let isLikeExist = study.likes.indexOf(userId) > 0 ? true : false;
+    if(isLikeExist) {
+        study = await Study.findOneAndUpdate(
+            { _id: studyId },
+            {
+                $pull: { likes: userId },
+                $inc: {
+                totalLikes : -1
+                }
+            },
+            {
+            new: true
             }
-        },
-        {
-          new: true
-        }
-      );
-    return deleteRecord;
+        );
+    }
+    return {study, isLikeExist};
 }
+
 // 조회수 증가
 studySchema.statics.increaseView = async function(studyId) {
     await Study.findOneAndUpdate(

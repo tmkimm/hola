@@ -155,9 +155,11 @@ export class StudyService {
 
     // 관심 등록 취소(삭제)
     async deleteLike(studyId, userId) {
-        const study = await this.studyModel.deleteLike(studyId, userId);
-       await this.userModel.deleteLikeStudy(studyId, userId);
-       //await this.notificationModel.deleteNotification(studyId, study.author, userId, 'like');   // 알림 삭제
+        const {study, isLikeExist} = await this.studyModel.deleteLike(studyId, userId);
+        if(isLikeExist) {
+            await this.userModel.deleteLikeStudy(studyId, userId);
+            // await this.notificationModel.deleteNotification(studyId, study.author, userId, 'like');   // 알림 삭제
+        }
         return study;
     }
 }
