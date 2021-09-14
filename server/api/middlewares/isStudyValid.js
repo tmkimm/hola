@@ -1,11 +1,19 @@
 import {body, validationResult} from 'express-validator';
 import { asyncErrorWrapper } from '../../asyncErrorWrapper.js';
 import { CustomError } from "../../CustomError.js";
+import languageList from "../../languageList.js";
 
 const checkStudy = [
-  body('title').isString().withMessage('Invaild datatype(String)'),
-  body('content').isString().withMessage('Invaild datatype(String)'),
-  body('language').isArray().withMessage('Invaild datatype(Array)')
+  body('title').isString().withMessage('Invaild datatype(String)').optional({nullable: true}),
+  body('content').isString().withMessage('Invaild datatype(String)').optional({nullable: true}),
+  body('language').isArray().withMessage('Invaild datatype(Array)').optional({nullable: true}),
+  body('language')
+  .custom((language) => {
+      return language.every((item) => {
+        return languageList.indexOf(item) > 0 ? true: false
+      })
+  })
+  .withMessage( "Invaild language list").optional({nullable: true})
 ];
 
 // Study 유효성 검증 미들웨어

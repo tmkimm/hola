@@ -130,7 +130,7 @@ export default (app) => {
   }));
 
   // 스터디 수정
-  route.patch('/:id', isAccessTokenValid, asyncErrorWrapper(async (req, res, next) => { 
+  route.patch('/:id', isAccessTokenValid, checkStudy, isStudyValid, asyncErrorWrapper(async (req, res, next) => { 
     const id = req.params.id;
     const tokenUserId = req.user._id;
     const studyDTO = req.body;
