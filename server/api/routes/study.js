@@ -142,7 +142,7 @@ export default (app) => {
   }));
 
   // 스터디 글 삭제
-  route.delete('/:id', isAccessTokenValid, asyncErrorWrapper(async (req, res, next) => {
+  route.delete('/:id', isStudyIdValid, isAccessTokenValid, asyncErrorWrapper(async (req, res, next) => {
     const id = req.params.id;
     const tokenUserId = req.user._id;
 

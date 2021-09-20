@@ -271,8 +271,8 @@ studySchema.statics.addLike = async function(studyId, userId) {
 studySchema.statics.deleteLike = async function(studyId, userId) {
     const studies = await Study.find({_id: studyId });
     let study = studies[studies.length - 1];
-    
-    let isLikeExist = study.likes.indexOf(userId) > 0 ? true : false;
+    let isLikeExist = study.likes.indexOf(userId) > -1 ? true : false;
+
     if(isLikeExist) {
         study = await Study.findOneAndUpdate(
             { _id: studyId },

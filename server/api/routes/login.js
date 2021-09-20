@@ -1,6 +1,6 @@
 import { Router } from 'express'; 
 import { AuthService, UserService } from '../../services/index.js';
-import { isTokenValidWithOauth, nickNameDuplicationCheck, autoSignUp } from '../middlewares/index.js';
+import { isUserIdValid, isTokenValidWithOauth, nickNameDuplicationCheck, autoSignUp } from '../middlewares/index.js';
 import { asyncErrorWrapper } from '../../asyncErrorWrapper.js';
 import { Study as studyModel } from '../../models/Study.js';
 import { User as userModel} from '../../models/User.js';
@@ -31,7 +31,6 @@ export default (app) => {
             secure: true,
             maxAge: 1000 * 60 * 60 * 24 * 14    // 2 Week
         });
-        
         return res.status(200).json({
             loginSuccess: true,
             _id: _id,
@@ -45,7 +44,7 @@ export default (app) => {
     // 회원 가입
     // - 로그인 시 회원 정보가 Insert되므로 회원 가입 시 정보를 수정한다.
     // - 회원 가입 완료 시 Refresh Token과 Access Token이 발급된다.
-    route.post('/signup', nickNameDuplicationCheck, asyncErrorWrapper(async (req, res, next) => {
+    route.post('/signup', nickNameDuplicationCheck, isUserIdValid, asyncErrorWrapper(async (req, res, next) => {
         const id = req.body.id;
         const userDTO = req.body;
         delete userDTO.id;

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { UserService, NotificationService } from '../../services/index.js';
-import { nickNameDuplicationCheck, isAccessTokenValid } from '../middlewares/index.js';
+import { nickNameDuplicationCheck, isAccessTokenValid, isUserIdValid } from '../middlewares/index.js';
 import { asyncErrorWrapper } from '../../asyncErrorWrapper.js';
 import { Study as studyModel } from '../../models/Study.js';
 import { User as userModel} from '../../models/User.js';
@@ -31,7 +31,7 @@ export default (app) => {
     }));
 
     // 사용자 정보 상세 보기
-    route.get('/:id', asyncErrorWrapper(async (req, res, next) => {
+    route.get('/:id', isUserIdValid, asyncErrorWrapper(async (req, res, next) => {
         const id = req.params.id;
         
         let UserServiceInstance = new UserService({studyModel, userModel, notificationModel});
@@ -41,7 +41,7 @@ export default (app) => {
     }));
 
     // 사용자 정보 수정
-    route.patch('/:id', isAccessTokenValid, nickNameDuplicationCheck, asyncErrorWrapper(async (req, res, next) => {
+    route.patch('/:id', isUserIdValid, isAccessTokenValid, nickNameDuplicationCheck, asyncErrorWrapper(async (req, res, next) => {
         const id = req.params.id;
         const tokenUserId = req.user._id;
         const userDTO = req.body;
@@ -73,7 +73,7 @@ export default (app) => {
     }));
 
     // 사용자 정보 삭제(회원탈퇴)
-    route.delete('/:id', isAccessTokenValid, asyncErrorWrapper(async (req, res, next) => {
+    route.delete('/:id', isUserIdValid, isAccessTokenValid, asyncErrorWrapper(async (req, res, next) => {
         const id = req.params.id;
         const tokenUserId = req.user._id;
 
@@ -84,16 +84,15 @@ export default (app) => {
     }));
 
     // 사용자 관심 등록 리스트 조회
-    route.get('/likes/:id', asyncErrorWrapper(async (req, res, next) => {
+    route.get('/likes/:id', isUserIdValid, isAccessTokenValid, async (req, res, next) => {
         const id = req.params.id;
         let UserServiceInstance = new UserService({studyModel, userModel, notificationModel});
         const user = await UserServiceInstance.findUserLikes(id);
-
         res.status(200).json(user);
-    }));
+    });
 
     // 사용자 읽은 목록  조회
-    route.get('/read-list/:id', asyncErrorWrapper(async (req, res, next) => {
+    route.get('/read-list/:id', isUserIdValid, isAccessTokenValid, asyncErrorWrapper(async (req, res, next) => {
         const id = req.params.id;
         let UserServiceInstance = new UserService({studyModel, userModel, notificationModel});
         const user = await UserServiceInstance.findReadList(id);
@@ -102,7 +101,7 @@ export default (app) => {
     }));
 
     // 사용자 작성 글 목록 조회
-    route.get('/myStudies/:id', asyncErrorWrapper(async (req, res, next) => {
+    route.get('/myStudies/:id', isUserIdValid, isAccessTokenValid, asyncErrorWrapper(async (req, res, next) => {
         const id = req.params.id;
         let UserServiceInstance = new UserService({studyModel, userModel, notificationModel});
         const user = await UserServiceInstance.findMyStudies(id);

@@ -6,7 +6,7 @@ if(process.env.NODE_ENV !== 'development') {
   transports.push(
     new winston.transports.Console()
   )
-} else {
+} else {  
   transports.push(
     new winston.transports.Console({
       format: winston.format.combine(
@@ -16,10 +16,25 @@ if(process.env.NODE_ENV !== 'development') {
     })
   )
 }
+let level, silent;
+switch (process.env.NODE_ENV) {
+  case "production":
+    level = "warning";
+    silent = false;
+    break;
+  case "test":
+    level = "emerg";
+    silent = true;
+    break;
+  default:
+    level = "debug";
+    silent = false;
+    break;
+}
 
 const LoggerInstance = winston.createLogger({
-  level: config.logs.level,
-  levels: winston.config.npm.levels,
+  level,
+  silent,
   format: winston.format.combine(
     winston.format.timestamp({
       format: 'YYYY-MM-DD HH:mm:ss'

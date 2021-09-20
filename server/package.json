@@ -7,7 +7,7 @@
     "start": "pm2 start ./app.js",
     "server": "nodemon ./app.js",
     "dev": "concurrently \"npm run server\" \"npm run start --prefix ../client\"",
-    "test": "cross-env NODE_ENV=test jest"
+    "test": "cross-env NODE_ENV=test jest --forceExit --runInBand "
   },
   "dependencies": {
     "aws-sdk": "^2.905.0",
