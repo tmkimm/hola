@@ -1,5 +1,5 @@
-import httpClient from "./http_client";
-import { getFormatedToday } from "common/utils";
+import httpClient from './http_client';
+import { getFormatedToday } from 'common/utils';
 
 /*
 글 등록, 삭제, 수정, 조회 등 study 글 관련 api를 모아놓은 class입니다.
@@ -10,21 +10,22 @@ class Study {
     this.study = httpClient;
   }
 
-  getList = async (query, selectedLanguages, pageNumber) => {
+  getList = async (query, selectedLanguages, pageNumber, checked) => {
     try {
       const params = {
         sort: query,
         offset: pageNumber,
         limit: 20,
+        isClosed: checked,
       };
 
       if (selectedLanguages.length !== 0) {
         // 선택된 language가 있으면 language 속성 추가
-        const qs = selectedLanguages.map((language) => language).join(",");
+        const qs = selectedLanguages.map((language) => language).join(',');
         params.language = qs;
       }
 
-      const studyList = await this.study.get("studies", {
+      const studyList = await this.study.get('studies', {
         params,
       });
 
@@ -53,7 +54,7 @@ class Study {
   };
   register = async ({ title, content, language }) => {
     try {
-      const response = await this.study.post("studies", {
+      const response = await this.study.post('studies', {
         title,
         content,
         language,
@@ -109,7 +110,7 @@ class Study {
   // 신규 댓글 등록
   registerComment = async ({ id, content }) => {
     try {
-      const response = await this.study.post("studies/comments", {
+      const response = await this.study.post('studies/comments', {
         studyId: id,
         content,
       });
@@ -146,7 +147,7 @@ class Study {
   addLikes = async (studyId) => {
     try {
       // console.log("studyId : " + studyId);
-      const response = await this.study.post("studies/likes", {
+      const response = await this.study.post('studies/likes', {
         studyId,
       });
       return response;
@@ -177,7 +178,7 @@ class Study {
   getPresignedUrl = async (userName) => {
     try {
       const fileName = `${userName}_${getFormatedToday()}.png`;
-      const response = await this.study.post("users/sign", {
+      const response = await this.study.post('users/sign', {
         fileName,
       });
       return { preSignedUrl: response.data.preSignUrl, fileName };
@@ -189,10 +190,10 @@ class Study {
   uploadImageToS3 = async (presignedUrl, file) => {
     const response = await fetch(
       new Request(presignedUrl, {
-        method: "PUT",
+        method: 'PUT',
         body: file,
         headers: new Headers({
-          "Content-Type": "image/png",
+          'Content-Type': 'image/png',
         }),
       })
     );
@@ -200,10 +201,10 @@ class Study {
     if (response.status !== 200) {
       // The upload failed, so let's notify the caller.
       //onError();
-      console.log("error occured!");
+      console.log('error occured!');
       return;
     }
-    return "hehe success";
+    return 'hehe success';
   };
 
   uploadImageToS3WithBase64 = async (presignedUrl, file, fileName) => {
@@ -211,7 +212,7 @@ class Study {
     // console.log("pre : ", presignedUrl);
     // console.log("fileName: ", fileName);
     // console.log("=======at base64==========");
-    let arr = file.split(","),
+    let arr = file.split(','),
       mime = arr[0].match(/:(.*?);/)[1],
       bstr = atob(arr[1]),
       n = bstr.length,

@@ -1,16 +1,17 @@
-import React, { useCallback, useRef, useState } from "react";
-import EmptyList from "component/empty_list/emptyList";
-import StudyList from "component/study_list/studyList";
-import useStudySearch from "../hooks/useStudySearch";
+import React, { useCallback, useRef, useState } from 'react';
+import EmptyList from 'component/empty_list/emptyList';
+import StudyList from 'component/study_list/studyList';
+import useStudySearch from '../hooks/useStudySearch';
 
-const ShowByViews = () => {
-  const SHOW_BY_VIEWS = "-views";
+const ShowByViews = ({ checked }) => {
+  const SHOW_BY_VIEWS = '-views';
   const [pageNumber, setPageNumber] = useState(0);
   const observer = useRef();
   const { studyList, hasMore, loading } = useStudySearch(
     SHOW_BY_VIEWS,
     pageNumber,
-    setPageNumber
+    setPageNumber,
+    checked
   );
 
   const lastStudyElementRef = useCallback(

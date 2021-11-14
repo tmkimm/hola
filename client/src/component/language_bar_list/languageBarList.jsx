@@ -1,20 +1,20 @@
-import React, { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   addLanguage,
   clearLanguage,
   initLanguage,
   removeLanguage,
-} from "store/language";
-import LanguageBarItem from "component/language_bar_item/languageBarItem";
-import styles from "./languageBarList.module.css";
+} from 'store/language';
+import LanguageBarItem from 'component/language_bar_item/languageBarItem';
+import styles from './languageBarList.module.css';
 
-const LanguageBarList = React.memo(({ setChecked }) => {
+const LanguageBarList = React.memo(() => {
   const selectedLanguage = useSelector((state) => state.language);
 
-  useEffect(() => {
-    setChecked(selectedLanguage.length === 14);
-  }, [selectedLanguage.length, setChecked]);
+  // useEffect(() => {
+  //   setChecked(selectedLanguage.length === 14);
+  // }, [selectedLanguage.length, setChecked]);
 
   const dispatch = useDispatch();
   const onItemClick = useCallback(
@@ -34,20 +34,20 @@ const LanguageBarList = React.memo(({ setChecked }) => {
   );
 
   const languages = [
-    "javascript",
-    "typescript",
-    "react",
-    "vue",
-    "node.js",
-    "java",
-    "spring",
-    "kotlin",
-    "c++",
-    "go",
-    "python",
-    "django",
-    "flutter",
-    "swift",
+    'javascript',
+    'typescript',
+    'react',
+    'vue',
+    'node.js',
+    'java',
+    'spring',
+    'kotlin',
+    'c++',
+    'go',
+    'python',
+    'django',
+    'flutter',
+    'swift',
   ];
 
   //console.log(selectedLanguage);
