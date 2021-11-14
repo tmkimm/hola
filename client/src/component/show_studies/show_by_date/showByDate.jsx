@@ -1,10 +1,10 @@
-import React, { useCallback, useRef, useState } from "react";
-import EmptyList from "component/empty_list/emptyList";
-import StudyList from "component/study_list/studyList";
-import useStudySearch from "../hooks/useStudySearch";
+import React, { useCallback, useRef, useState } from 'react';
+import EmptyList from 'component/empty_list/emptyList';
+import StudyList from 'component/study_list/studyList';
+import useStudySearch from '../hooks/useStudySearch';
 
-const ShowByDate = () => {
-  const SHOW_BY_DATE = "-createdAt";
+const ShowByDate = ({ checked }) => {
+  const SHOW_BY_DATE = '-createdAt';
   const [pageNumber, setPageNumber] = useState(0);
 
   const observer = useRef();
@@ -12,7 +12,8 @@ const ShowByDate = () => {
   const { studyList, hasMore, loading } = useStudySearch(
     SHOW_BY_DATE,
     pageNumber,
-    setPageNumber
+    setPageNumber,
+    checked
   );
 
   const lastStudyElementRef = useCallback(

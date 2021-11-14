@@ -11,7 +11,6 @@
 
 .category {
   display: flex;
-  margin-bottom: 2rem;
 }
 
 .category__item {
@@ -78,6 +77,7 @@
   position: relative;
   padding-left: 40px;
   cursor: pointer;
+  font-size: 1.5rem;
 }
 
 .selectWrapper {
@@ -85,8 +85,9 @@
   margin-bottom: 0.75rem;
 }
 
-.selectWrapper input[type="checkbox"] + label:before {
-  content: "";
+.selectWrapper input[type='checkbox'] + label:before {
+  font-size: 1.5rem;
+  content: '';
   position: absolute;
   left: 0;
   width: 2rem;
@@ -97,8 +98,9 @@
   border-radius: 4px;
 }
 
-.selectWrapper input[type="checkbox"]:checked + label:after {
-  content: "\2714";
+.selectWrapper input[type='checkbox']:checked + label:after {
+  font-size: 1.5rem;
+  content: '\2714';
   color: white;
   position: absolute;
   left: 0;
@@ -108,6 +110,13 @@
   text-align: center;
   border: 1px solid #ccc;
   background-color: #5f7db7;
+}
+
+.categoryWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
 }
 
 @keyframes bubbleAnimation {
@@ -169,8 +178,8 @@
     cursor: pointer;
   }
 
-  .selectWrapper input[type="checkbox"] + label:before {
-    content: "";
+  .selectWrapper input[type='checkbox'] + label:before {
+    content: '';
     position: absolute;
     left: 0;
     width: 1.5rem;
@@ -181,8 +190,8 @@
     border-radius: 4px;
   }
 
-  .selectWrapper input[type="checkbox"]:checked + label:after {
-    content: "\2714";
+  .selectWrapper input[type='checkbox']:checked + label:after {
+    content: '\2714';
     color: white;
     position: absolute;
     left: 0;

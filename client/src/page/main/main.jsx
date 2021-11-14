@@ -1,33 +1,32 @@
-import React, { useState } from "react";
-import styles from "./main.module.css";
+import React, { useState } from 'react';
+import styles from './main.module.css';
 
-import Navbar from "component/nav_bar/navbar";
-import Banner from "component/banner/banner";
-import LanguageBarList from "component/language_bar_list/languageBarList";
+import Navbar from 'component/nav_bar/navbar';
+import Banner from 'component/banner/banner';
+import LanguageBarList from 'component/language_bar_list/languageBarList';
 
-import Rating from "component/rating/rating";
-import ShowByDate from "component/show_studies/show_by_date/showByDate";
-import ShowByViews from "component/show_studies/show_by_views/showByViews";
+import Rating from 'component/rating/rating';
+import ShowByDate from 'component/show_studies/show_by_date/showByDate';
+import ShowByViews from 'component/show_studies/show_by_views/showByViews';
 
-import { AiFillFire } from "react-icons/ai";
-import { FaCalendarCheck } from "react-icons/fa";
-import { useDispatch } from "react-redux";
-import { clearLanguage, initLanguage } from "store/language";
+import { AiFillFire } from 'react-icons/ai';
+import { FaCalendarCheck } from 'react-icons/fa';
+//import { useDispatch } from 'react-redux';
+//import { clearLanguage, initLanguage } from 'store/language';
 
 /* 
 main page의 layout을 담당하는 component입니다. 
 최신, 트렌딩 두가지의 기준으로 데이터를 보여줍니다.
 */
 
-const SHOW_BY_VIEWS = "-views";
-const SHOW_BY_DATE = "-createdAt";
+const SHOW_BY_VIEWS = '-views';
+const SHOW_BY_DATE = '-createdAt';
 const ACTIVE = styles.active;
 const INACTIVE = styles.inactive;
 
 const Main = () => {
   const [category, setCategory] = useState(SHOW_BY_DATE);
   const [checked, setChecked] = useState(true);
-  const dispatch = useDispatch();
 
   const toggleCategory = (toggleTo) => {
     if (category === toggleTo) return; // 바꾸려는 대상이 현재 상태와 같으면 return
@@ -37,8 +36,8 @@ const Main = () => {
   };
 
   const handleSelect = (e) => {
-    if (checked) dispatch(clearLanguage());
-    else dispatch(initLanguage());
+    // if (checked) dispatch(clearLanguage());
+    // else dispatch(initLanguage());
     setChecked((checked) => !checked);
   };
 
@@ -49,52 +48,58 @@ const Main = () => {
       <div className={styles.languageSelectBox}>
         <img
           className={styles.languagebarBubble}
-          src="/images/info/languegeBar_bubble.png"
-          alt="information"
+          src='/images/info/languegeBar_bubble.png'
+          alt='information'
         />
-        <div className={styles.selectWrapper} onClick={handleSelect}>
-          <input
-            className={styles.selectboxInput}
-            type="checkbox"
-            name="languageSelect"
-            value="전체 언어 보기"
-            checked={checked ? "checked" : ""}
-            readOnly
-          ></input>
-          <label htmlFor="languageSelect">
-            <span>전체 언어 보기</span>
-          </label>
-        </div>
       </div>
 
       <div className={styles.languageBarWrapper}>
-        <LanguageBarList setChecked={setChecked} />
+        <LanguageBarList />
       </div>
       <div className={styles.appWrapper}>
         <div className={styles.app}>
           <main className={styles.main}>
-            <section className={styles.category}>
-              <div
-                className={`${styles.category__item} ${
-                  category === SHOW_BY_DATE ? ACTIVE : INACTIVE
-                }`}
-                onClick={() => toggleCategory(SHOW_BY_DATE)}
-              >
-                <FaCalendarCheck />
-                <span className={styles.text}>최신</span>
-              </div>
+            <div className={styles.categoryWrapper}>
+              <section className={styles.category}>
+                <div
+                  className={`${styles.category__item} ${
+                    category === SHOW_BY_DATE ? ACTIVE : INACTIVE
+                  }`}
+                  onClick={() => toggleCategory(SHOW_BY_DATE)}
+                >
+                  <FaCalendarCheck />
+                  <span className={styles.text}>최신</span>
+                </div>
 
-              <div
-                className={`${styles.category__item} ${
-                  category === SHOW_BY_DATE ? INACTIVE : ACTIVE
-                }`}
-                onClick={() => toggleCategory(SHOW_BY_VIEWS)}
-              >
-                <AiFillFire />
-                <span className={styles.text}>인기</span>
+                <div
+                  className={`${styles.category__item} ${
+                    category === SHOW_BY_DATE ? INACTIVE : ACTIVE
+                  }`}
+                  onClick={() => toggleCategory(SHOW_BY_VIEWS)}
+                >
+                  <AiFillFire />
+                  <span className={styles.text}>인기</span>
+                </div>
+              </section>
+              <div className={styles.selectWrapper} onClick={handleSelect}>
+                <input
+                  className={styles.selectboxInput}
+                  type='checkbox'
+                  name='languageSelect'
+                  value='마감 글 보기'
+                  checked={checked ? 'checked' : ''}
+                  readOnly
+                ></input>
+                <label htmlFor='languageSelect'>
+                  <span>모집 중인 글만 보기</span>
+                </label>
               </div>
-            </section>
-            {category === SHOW_BY_DATE ? <ShowByDate /> : <ShowByViews />}
+            </div>
+            {category === SHOW_BY_DATE ? (
+              <ShowByDate checked={checked} />
+            ) : (
+              <ShowByViews checked={checked} />
+            )}
           </main>
         </div>
         <Rating />

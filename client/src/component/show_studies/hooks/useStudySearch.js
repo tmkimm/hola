@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import studyService from "../../../service/study_service";
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import studyService from '../../../service/study_service';
 
-const useStudySearch = (category, pageNumber, setPageNumber) => {
+const useStudySearch = (category, pageNumber, setPageNumber, checked) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [hasMore, setHasMore] = useState(true);
@@ -14,7 +14,7 @@ const useStudySearch = (category, pageNumber, setPageNumber) => {
     setPageNumber((prev) => 0);
     setStudyList((prev) => []);
     setCurrentLanguage((lang) => [...selectedLanguages]);
-  }, [selectedLanguages, setPageNumber]);
+  }, [selectedLanguages, setPageNumber, checked]);
 
   useEffect(() => {
     setLoading(true);
@@ -24,7 +24,7 @@ const useStudySearch = (category, pageNumber, setPageNumber) => {
     }
 
     studyService
-      .getList(category, selectedLanguages, pageNumber)
+      .getList(category, selectedLanguages, pageNumber, !checked)
       .then((response) => {
         setStudyList((prev) => [...prev, ...response.data]);
         setLoading(false);
@@ -33,7 +33,13 @@ const useStudySearch = (category, pageNumber, setPageNumber) => {
       .catch((e) => {
         setError(true);
       });
-  }, [category, pageNumber, selectedLanguages, currentLanguage.length]);
+  }, [
+    category,
+    pageNumber,
+    selectedLanguages,
+    currentLanguage.length,
+    checked,
+  ]);
 
   return { loading, error, studyList, hasMore };
 };
