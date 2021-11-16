@@ -162,13 +162,13 @@
 
 @media screen and (max-width: 575px) {
   .languagebarBubble {
-    display: none;
+    width: 180px;
+    height: 40px;
   }
 
   .languageSelectBox {
     margin-top: 2rem;
     font-size: 1.125rem;
-    justify-content: flex-end;
   }
 
   .selectWrapper {
