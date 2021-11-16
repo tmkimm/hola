@@ -91,7 +91,9 @@ const Main = () => {
                   readOnly
                 ></input>
                 <label htmlFor='languageSelect'>
-                  <span>모집 중인 글만 보기</span>
+                  <span className={styles.selectTitle}>
+                    모집 중인 글만 보기
+                  </span>
                 </label>
               </div>
             </div>
