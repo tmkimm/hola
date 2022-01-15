@@ -94,7 +94,7 @@ class User {
 
   getUserPostList = async (id) => {
     try {
-      const response = await this.user.get(`users/myStudies/${id}`);
+      const response = await this.user.get(`users/myPosts/${id}`);
       return response;
     } catch (error) {
       console.error(error);
