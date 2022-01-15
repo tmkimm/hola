@@ -19,7 +19,6 @@ App component
 */
 
 const App = () => {
-  console.log('test deployment');
   return (
     <Router>
       <Switch>
