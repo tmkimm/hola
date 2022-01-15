@@ -1,13 +1,13 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Main from "./page/main/main";
-import PostRegister from "./page/post_register/postRegister";
-import GithubLogin from "./page/auth/githubLogin";
-import Study from "./page/study/study";
-import MyPosts from "./page/my_posts/myPosts";
-import MyLikes from "./page/my_likes/myLikes";
-import SettingContainer from "./component/setting_container/settingContainer";
-import NotFound from "./page/notFound/notFound";
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Main from './page/main/main';
+import PostRegister from './page/post_register/postRegister';
+import GithubLogin from './page/auth/githubLogin';
+import Study from './page/study/study';
+import MyPosts from './page/my_posts/myPosts';
+import MyLikes from './page/my_likes/myLikes';
+import SettingContainer from './component/setting_container/settingContainer';
+import NotFound from './page/notFound/notFound';
 
 /* 
 
@@ -19,29 +19,29 @@ App component
 */
 
 const App = () => {
-  console.log(".");
+  console.log('test deployment');
   return (
     <Router>
       <Switch>
-        <Route exact path={["/", "/main"]}>
+        <Route exact path={['/', '/main']}>
           <Main />
         </Route>
-        <Route path="/register">
+        <Route path='/register'>
           <PostRegister />
         </Route>
-        <Route path="/setting">
+        <Route path='/setting'>
           <SettingContainer />
         </Route>
-        <Route path="/study">
+        <Route path='/study'>
           <Study />
         </Route>
-        <Route path="/myPosts">
+        <Route path='/myPosts'>
           <MyPosts />
         </Route>
-        <Route path="/myLikes">
+        <Route path='/myLikes'>
           <MyLikes />
         </Route>
-        <Route path="/auth/github">
+        <Route path='/auth/github'>
           <GithubLogin />
         </Route>
         <Route>
