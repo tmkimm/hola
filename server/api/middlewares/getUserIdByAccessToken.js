@@ -6,8 +6,7 @@ import { asyncErrorWrapper } from '../../asyncErrorWrapper.js';
 
 // Access Token을 이용해 로그인 된 사용자인지 판단한다.
 // 로그인된 사용자일 경우 req.user._id를 세팅한다.
-const getUserIdByAccessToken = asyncErrorWrapper(async (req, res, next) => {
-    let userId = '';
+const getUserIdByAccessToken = asyncErrorWrapper(async (req, _, next) => {
     if(req.headers.authorization?.startsWith('Bearer')) {
         let token = req.headers.authorization.split(' ')[1];
         try {
