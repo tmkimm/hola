@@ -27,6 +27,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",
     "styled-components": "^5.3.0",
+    "typescript": "^3.9.10",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

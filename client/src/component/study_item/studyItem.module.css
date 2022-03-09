@@ -1,43 +1,65 @@
+p {
+  margin: 0;
+}
+
+li {
+  padding: 0;
+  margin: 0;
+}
+
 .studyItem {
-  width: 15rem;
-  height: 15rem;
-  margin: 0.625rem;
-  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 90px 30px 39.5px 30px;
+  width: 384px;
   background: #ffffff;
-  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.15);
-  border-radius: 1.5rem;
+  border: 2px solid #d1d1d1;
+  border-radius: 30px;
   position: relative;
   cursor: pointer;
-  transition: transform 200ms ease-in;
 }
 
 .studyItem:hover {
   transform: scale(1.02);
 }
 
+.schedule {
+  display: flex;
+  font-size: 18px;
+  gap: 10px;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.scheduleTitle {
+  font-weight: 700;
+  letter-spacing: -4%;
+}
+
 .title {
-  font-size: 1rem;
+  font-size: 24px;
+  min-height: 72px;
+  line-height: 36px;
   font-weight: 400;
-  width: 100%;
-  text-align: center;
-  margin: 0;
-  margin-top: 1.5rem;
-  padding: 0;
-  line-height: 1.265;
+  margin: 15px 0;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  overflow: hidden;
   word-break: break-all;
 }
 
+.hashtag {
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.4);
+  min-height: 23px;
+  margin-bottom: 50px;
+}
+
 .content {
-  margin: 0;
-  margin-top: 0.5rem;
+  margin-bottom: 50px;
   padding: 0;
   display: flex;
   list-style: none;
-  justify-content: center;
 }
 
 .language {
@@ -48,49 +70,29 @@
 }
 
 .languageImage {
-  width: 45px;
-  height: 45px;
-}
-
-.languageName {
-  margin: 0;
-  text-align: center;
-  font-size: 12px;
+  width: 42px;
+  height: 42px;
 }
 
 .info {
+  width: 100%;
   display: flex;
+  justify-content: center;
   font-size: 0.75rem;
-  position: absolute;
-  bottom: 0.5rem;
-  right: 1rem;
+  justify-content: space-between;
 }
 
-.info p {
-  padding-right: 0.5rem;
+.viewsAndComment {
+  display: flex;
+  gap: 10px;
 }
 
 .infoItem {
   display: flex;
-  justify-content: center;
   align-items: center;
+  gap: 5px;
 }
 
-.itemImg {
-  width: 15px;
-  height: auto;
-  margin-right: 2px;
-}
-
-.viewImg {
-  width: 16px;
-  height: auto;
-  margin-right: 2px;
-}
-
-.views {
-  margin-left: 2px;
-}
 .closed {
   opacity: 0.4;
 }
@@ -109,10 +111,6 @@
   color: white;
   background-color: black;
   border-radius: 4px;
-}
-
-.comments {
-  margin-left: 2px;
 }
 
 @media screen and (max-width: 830px) {

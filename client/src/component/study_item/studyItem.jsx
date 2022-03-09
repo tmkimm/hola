@@ -4,6 +4,7 @@ import Modal from "component/modal/modal_component/modal";
 import PostModal from "component/modal/post_modal/postModal";
 import { useHistory } from "react-router-dom";
 import { FaRegCommentDots, FaRegEye } from "react-icons/fa";
+import Avatar from "component/common/avatar/avatar";
 
 const StudyItem = ({ study, lastStudyElementRef }) => {
   const studyLang = [];
@@ -20,7 +21,6 @@ const StudyItem = ({ study, lastStudyElementRef }) => {
 
   const onClick = () => {
     history.push(`/study/${study._id}`);
-    // console.log(study);
   };
   const closeModal = () => {
     document.body.style.overflow = "auto";
@@ -34,39 +34,34 @@ const StudyItem = ({ study, lastStudyElementRef }) => {
         className={`${styles.studyItem} ${displayType}`}
         onClick={onClick}
       >
+        <div className={styles.schedule}>
+          <p className={styles.scheduleTitle}>일정 |</p>
+          <p classname={styles.scheduleInfo}>2020.02.05-03.14</p>
+        </div>
         <h1 className={styles.title}>{study.title}</h1>
+        <p className={styles.hashtag}>#웹토이 프로젝트 #개발자 #기획자</p>
         <ul className={styles.content}>
           {studyLang.map((lang, i) => (
             <li key={i} className={styles.language}>
               <img
                 className={styles.languageImage}
-                src={`/images/languages/${lang}.png`}
+                src={`/images/languages/${lang}.svg`}
                 alt="language"
               />
-              <p className={styles.languageName}>
-                {lang === "cc" ? "c#" : lang}
-              </p>
             </li>
           ))}
         </ul>
         <section className={styles.info}>
-          <div className={styles.infoItem}>
-            <FaRegCommentDots size={14} color={"#9A9A9A"} />
-            <p className={styles.comments}>{study.totalComments}</p>
-          </div>
-
-          <div className={styles.infoItem}>
-            <FaRegEye size={16} color={"#9A9A9A"} />
-            <p className={styles.views}>{study.views}</p>
-          </div>
-
-          <div className={styles.infoItem}>
-            <img
-              className={styles.itemImg}
-              src="/images/info/heart_filled.png"
-              alt="likes"
-            />
-            <p>{study.totalLikes}</p>
+          <Avatar size="small" userName="testUser"></Avatar>
+          <div className={styles.viewsAndComment}>
+            <div className={styles.infoItem}>
+              <FaRegEye size={24} color={"#9A9A9A"} />
+              <p className={styles.views}>{study.views}</p>
+            </div>
+            <div className={styles.infoItem}>
+              <FaRegCommentDots size={20} color={"#9A9A9A"} />
+              <p className={styles.comments}>{study.totalComments}</p>
+            </div>
           </div>
         </section>
         {study.isClosed && <div className={styles.closeNotice}>모집 완료</div>}
