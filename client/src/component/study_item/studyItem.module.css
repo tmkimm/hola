@@ -18,6 +18,7 @@ li {
   border-radius: 30px;
   position: relative;
   cursor: pointer;
+  transition: 0.2s ease-in;
 }
 
 .studyItem:hover {
@@ -115,12 +116,12 @@ li {
 
 @media screen and (max-width: 830px) {
   .studyItem {
-    width: calc(50% - 2rem);
+    width: 100%;
   }
 }
 
-@media screen and (max-width: 575px) {
+/* @media screen and (max-width: 575px) {
   .studyItem {
     width: calc(100% - 2rem);
   }
-}
+} */

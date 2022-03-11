@@ -1,5 +1,6 @@
 .studyList {
   display: flex;
+  justify-content: center;
   gap: 24px;
   flex-wrap: wrap;
   padding: 0;

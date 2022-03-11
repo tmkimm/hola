@@ -1,10 +1,11 @@
 .app {
   margin: 0 auto;
-  width: 1300px;
+  max-width: 1200px;
+  width: 100%;
 }
 
 .appWrapper {
-  padding-top: 5rem;
+  padding: 5rem 1rem 0 1rem;
   background-color: #f8f9fa;
   min-height: 60rem;
 }
@@ -85,9 +86,9 @@
   margin-bottom: 0.75rem;
 }
 
-.selectWrapper input[type='checkbox'] + label:before {
+.selectWrapper input[type="checkbox"] + label:before {
   font-size: 1.5rem;
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   width: 2rem;
@@ -98,9 +99,9 @@
   border-radius: 4px;
 }
 
-.selectWrapper input[type='checkbox']:checked + label:after {
+.selectWrapper input[type="checkbox"]:checked + label:after {
   font-size: 1.5rem;
-  content: '\2714';
+  content: "\2714";
   color: white;
   position: absolute;
   left: 0;
@@ -140,24 +141,24 @@
 }
 
 @media screen and (max-width: 1919px) {
-  .app {
-    width: 1040px;
-  }
+  /* .app {
+    width: 1200px;
+  } */
 }
 
-@media screen and (max-width: 1440px) {
-  .app {
-    width: 780px;
-  }
+@media screen and (max-width: 1300px) {
+  /* .app {
+    width: 800px;
+  } */
 }
 
 @media screen and (max-width: 830px) {
   .languageSelectBox {
     margin-top: 5rem;
   }
-  .app {
+  /* .app {
     width: calc(100% - 2rem);
-  }
+  } */
 }
 
 @media screen and (max-width: 575px) {
@@ -182,8 +183,8 @@
     cursor: pointer;
   }
 
-  .selectWrapper input[type='checkbox'] + label:before {
-    content: '';
+  .selectWrapper input[type="checkbox"] + label:before {
+    content: "";
     position: absolute;
     left: 0;
     width: 1.5rem;
@@ -194,8 +195,8 @@
     border-radius: 4px;
   }
 
-  .selectWrapper input[type='checkbox']:checked + label:after {
-    content: '\2714';
+  .selectWrapper input[type="checkbox"]:checked + label:after {
+    content: "\2714";
     color: white;
     position: absolute;
     left: 0;
