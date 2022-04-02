@@ -50,7 +50,6 @@ const LanguageBarList = React.memo(() => {
     'swift',
   ];
 
-  //console.log(selectedLanguage);
   return (
     <ul className={styles.languageList}>
       {languages.map((language, i) => {

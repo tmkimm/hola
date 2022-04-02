@@ -9,7 +9,7 @@ const LanguageBarItem = React.memo(({ Language, selected, onItemClick }) => {
       <img
         className={`${styles.logo} ${displayType}`}
         onClick={() => onItemClick(Language, selected)}
-        src={`/images/languages/${Language}.png`}
+        src={`/images/languages/${Language}.svg`}
         alt={Language}
       />
     </li>
