@@ -11,8 +11,6 @@ import ShowByViews from 'component/show_studies/show_by_views/showByViews';
 
 import { AiFillFire } from 'react-icons/ai';
 import { FaCalendarCheck } from 'react-icons/fa';
-//import { useDispatch } from 'react-redux';
-//import { clearLanguage, initLanguage } from 'store/language';
 
 /* 
 main page의 layout을 담당하는 component입니다. 
