@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./studyItem.module.css";
-import Modal from "component/modal/modal_component/modal";
-import PostModal from "component/modal/post_modal/postModal";
 import { useHistory } from "react-router-dom";
 import { FaRegCommentDots, FaRegEye } from "react-icons/fa";
 import Avatar from "component/common/avatar/avatar";
@@ -29,7 +27,7 @@ const StudyItem = ({ study, lastStudyElementRef }) => {
     >
       <div className={styles.schedule}>
         <p className={styles.scheduleTitle}>일정 |</p>
-        <p classname={styles.scheduleInfo}>2020.02.05-03.14</p>
+        <p className={styles.scheduleInfo}>2020.02.05-03.14</p>
       </div>
       <h1 className={styles.title}>{study.title}</h1>
       <p className={styles.hashtag}>#웹토이 프로젝트 #개발자 #기획자</p>

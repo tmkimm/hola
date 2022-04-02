@@ -11,8 +11,9 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 90px 30px 39.5px 30px;
+  padding: 90px 30px 40px 30px;
   width: 384px;
+  height: 455px;
   background: #ffffff;
   border: 2px solid #d1d1d1;
   border-radius: 30px;
@@ -47,6 +48,7 @@ li {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   word-break: break-all;
+  overflow: hidden;
 }
 
 .hashtag {
@@ -60,14 +62,8 @@ li {
   margin-bottom: 50px;
   padding: 0;
   display: flex;
+  gap: 10px;
   list-style: none;
-}
-
-.language {
-  display: flex;
-  flex-direction: column;
-  margin-top: 0.75rem;
-  padding: 5px;
 }
 
 .languageImage {
@@ -114,9 +110,9 @@ li {
   border-radius: 4px;
 }
 
-@media screen and (max-width: 830px) {
+@media screen and (max-width: 768px) {
   .studyItem {
-    width: 100%;
+    /* width: 100%; */
   }
 }
 
