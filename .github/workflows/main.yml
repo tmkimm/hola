@@ -29,6 +29,7 @@ jobs:
           echo REACT_APP_GOOGLE_LOGIN_API_KEY=${{ secrets.GOOGLE_API_KEY }} >> .env
           echo REACT_APP_GITHUB_LOGIN_API_KEY=${{ secrets.HUB_API_KEY }} >> .env
           echo REACT_APP_KAKAO_LOGIN_API_KEY=${{ secrets.KAKAO_API_KEY }} >> .env
+          echo REACT_APP_SENTRY_API_KEY=${{ secrets.KAKAO_API_KEY }} >> .env
           cat .env
         working-directory: ${{ env.working-directory }}
 
@@ -49,4 +50,4 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_IAM_MANAGER_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_IAM_MANAGER_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_BUCKET_REGION }}
-          SOURCE_DIR: "client/build"
+          SOURCE_DIR: 'client/build'
