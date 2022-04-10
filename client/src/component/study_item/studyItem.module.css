@@ -11,9 +11,9 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 90px 30px 40px 30px;
-  width: 384px;
-  height: 455px;
+  padding: 67.25px 39.5px 27px 30.5px;
+  width: 356px;
+  height: 430px;
   background: #ffffff;
   border: 2px solid #d1d1d1;
   border-radius: 30px;
@@ -43,6 +43,7 @@ li {
   min-height: 72px;
   line-height: 36px;
   font-weight: 400;
+  letter-spacing: -0.04em;
   margin: 15px 0;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -55,15 +56,19 @@ li {
   font-size: 18px;
   color: rgba(0, 0, 0, 0.4);
   min-height: 23px;
-  margin-bottom: 50px;
+  margin-bottom: 45px;
 }
 
 .content {
-  margin-bottom: 50px;
+  margin-bottom: 49px;
   padding: 0;
   display: flex;
   gap: 10px;
   list-style: none;
+}
+
+.language {
+  height: 42px;
 }
 
 .languageImage {
@@ -72,11 +77,13 @@ li {
 }
 
 .info {
-  width: 100%;
+  width: 300px;
   display: flex;
-  justify-content: center;
   font-size: 0.75rem;
   justify-content: space-between;
+  border-top: 2px solid #f2f2f2;
+  margin-left: -5px;
+  padding-top: 9.75px;
 }
 
 .viewsAndComment {

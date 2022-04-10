@@ -1,17 +1,17 @@
-import React from "react";
-import styles from "./studyItem.module.css";
-import { useHistory } from "react-router-dom";
-import { FaRegCommentDots, FaRegEye } from "react-icons/fa";
-import Avatar from "component/common/avatar/avatar";
+import React from 'react';
+import styles from './studyItem.module.css';
+import { useHistory } from 'react-router-dom';
+import { FaRegCommentDots, FaRegEye } from 'react-icons/fa';
+import Avatar from 'component/common/avatar/avatar';
 
 const StudyItem = ({ study, lastStudyElementRef }) => {
   const studyLang = [];
   const history = useHistory();
   const displayType = study.isClosed ? styles.closed : styles.open;
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 5; i++) {
     if (study.language[i] === undefined) break;
-    if (study.language[i] === "c#") studyLang.push("cc");
+    if (study.language[i] === 'c#') studyLang.push('cc');
     else studyLang.push(study.language[i]);
   }
 
@@ -37,20 +37,20 @@ const StudyItem = ({ study, lastStudyElementRef }) => {
             <img
               className={styles.languageImage}
               src={`/images/languages/${lang}.svg`}
-              alt="language"
+              alt='language'
             />
           </li>
         ))}
       </ul>
       <section className={styles.info}>
-        <Avatar size="small" userName="testUser"></Avatar>
+        <Avatar size='small' userName='testUser'></Avatar>
         <div className={styles.viewsAndComment}>
           <div className={styles.infoItem}>
-            <FaRegEye size={24} color={"#9A9A9A"} />
+            <FaRegEye size={24} color={'#9A9A9A'} />
             <p className={styles.views}>{study.views}</p>
           </div>
           <div className={styles.infoItem}>
-            <FaRegCommentDots size={20} color={"#9A9A9A"} />
+            <FaRegCommentDots size={20} color={'#9A9A9A'} />
             <p className={styles.comments}>{study.totalComments}</p>
           </div>
         </div>
