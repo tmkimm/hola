@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import LoadingSpinner from 'component/loading/loadingSpinner';
+import Modal from 'component/modal/modal_component/modal';
 
 const Study = lazy(() => import('./page/study/study'));
 const Main = lazy(() => import('./page/main/main'));
@@ -16,7 +17,13 @@ const NotFound = lazy(() => import('./page/notFound/notFound'));
 const App = () => {
   return (
     <Router>
-      <Suspense fallback={<LoadingSpinner />}>
+      <Suspense
+        fallback={
+          <Modal visible={true} name='loading'>
+            <LoadingSpinner />
+          </Modal>
+        }
+      >
         <Switch>
           <Route exact path={['/', '/main']}>
             <Main />
