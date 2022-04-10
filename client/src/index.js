@@ -1,30 +1,41 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 import {
   configureStore,
   combineReducers,
   getDefaultMiddleware,
-} from "@reduxjs/toolkit";
-import languageReducer from "./store/language";
-import userReducer from "./store/user";
-import writeReducer from "./store/write";
-import readReducer from "./store/read";
-import loginStepReducer from "./store/loginStep";
-import studyReducer from "./store/study";
-import { Provider } from "react-redux";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { persistReducer, persistStore } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import { PersistGate } from "redux-persist/integration/react";
+} from '@reduxjs/toolkit';
+import languageReducer from './store/language';
+import userReducer from './store/user';
+import writeReducer from './store/write';
+import readReducer from './store/read';
+import loginStepReducer from './store/loginStep';
+import studyReducer from './store/study';
+import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { PersistGate } from 'redux-persist/integration/react';
+import * as Sentry from '@sentry/react';
+import { BrowserTracing } from '@sentry/tracing';
+
+const SentryId = process.env.REACT_APP_SENTRY_API_KEY;
+
+Sentry.init({
+  dsn: process.env.NODE_ENV === 'production' ? SentryId : false,
+  integrations: [new BrowserTracing()],
+  tracesSampleRate: 1.0,
+  environment: process.env.NODE_ENV,
+});
 
 const persistConfig = {
-  key: "user",
+  key: 'user',
   storage,
-  whitelist: ["user"],
+  whitelist: ['user'],
 };
 
 const reducers = combineReducers({
@@ -44,7 +55,7 @@ const customizedMiddleware = getDefaultMiddleware({
 
 const store = configureStore({
   reducer: _persistedReducer,
-  devTools: process.env.NODE_ENV !== "production",
+  devTools: process.env.NODE_ENV !== 'production',
   middleware: customizedMiddleware,
 });
 
@@ -58,7 +69,7 @@ ReactDOM.render(
       <PersistGate loading={null} persistor={persistor}>
         <App />
         <ToastContainer
-          position="top-right"
+          position='top-right'
           autoClose={5000}
           hideProgressBar={false}
           newestOnTop={false}
@@ -71,7 +82,7 @@ ReactDOM.render(
       </PersistGate>
     </Provider>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

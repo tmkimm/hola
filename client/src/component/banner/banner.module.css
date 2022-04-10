@@ -29,7 +29,7 @@
 
 .titleContent {
   display: block;
-  word-break: keep-all;
+  word-break: break-all;
 }
 
 .subBanner {

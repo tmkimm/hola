@@ -90,8 +90,7 @@
 .postContentWrapper {
   margin-top: 5rem;
   font-size: 1.125rem;
-  word-break: keep-all;
-  overflow-wraps: break-word;
+  word-break: break-all;
   line-height: 1.7;
   letter-spacing: -0.004em;
 }

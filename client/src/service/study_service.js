@@ -25,7 +25,7 @@ class Study {
         params.language = qs;
       }
 
-      const studyList = await this.study.get('studies', {
+      const studyList = await this.study.get('posts', {
         params,
       });
 
@@ -37,7 +37,7 @@ class Study {
 
   getDetail = async (id) => {
     try {
-      const response = await this.study.get(`studies/${id}`);
+      const response = await this.study.get(`posts/${id}`);
       return response;
     } catch (error) {
       console.error(error);
@@ -46,7 +46,7 @@ class Study {
 
   getRecommendedPost = async (id) => {
     try {
-      const response = await this.study.get(`studies/${id}/recommend`);
+      const response = await this.study.get(`posts/${id}/recommend`);
       return response.data;
     } catch (e) {
       console.error(e);
@@ -54,7 +54,7 @@ class Study {
   };
   register = async ({ title, content, language }) => {
     try {
-      const response = await this.study.post('studies', {
+      const response = await this.study.post('posts', {
         title,
         content,
         language,
@@ -67,7 +67,7 @@ class Study {
 
   modify = async (id, title, content, language) => {
     try {
-      const response = await this.study.patch(`studies/${id}`, {
+      const response = await this.study.patch(`posts/${id}`, {
         title,
         content,
         language,
@@ -80,7 +80,7 @@ class Study {
 
   editClose = async (id, isClosed) => {
     try {
-      const response = await this.study.patch(`studies/${id}`, {
+      const response = await this.study.patch(`posts/${id}`, {
         isClosed,
       });
       return response;
@@ -91,7 +91,7 @@ class Study {
 
   deleteStudy = async (id) => {
     try {
-      await this.study.delete(`studies/${id}`);
+      await this.study.delete(`posts/${id}`);
     } catch (error) {
       console.error(error);
     }
@@ -100,7 +100,7 @@ class Study {
   // 스터디의 댓글 리스트 조회
   getComments = async (id) => {
     try {
-      const response = await this.study.get(`studies/comments/${id}`);
+      const response = await this.study.get(`posts/comments/${id}`);
       return response;
     } catch (error) {
       console.error(error);
@@ -110,8 +110,8 @@ class Study {
   // 신규 댓글 등록
   registerComment = async ({ id, content }) => {
     try {
-      const response = await this.study.post('studies/comments', {
-        studyId: id,
+      const response = await this.study.post('posts/comments', {
+        postId: id,
         content,
       });
       return response;
@@ -123,7 +123,7 @@ class Study {
   // 댓글 수정
   modifyComment = async ({ id, content }) => {
     try {
-      const response = await this.study.patch(`studies/comments/${id}`, {
+      const response = await this.study.patch(`posts/comments/${id}`, {
         content,
       });
       return response;
@@ -138,17 +138,17 @@ class Study {
   // 댓글 삭제
   deleteComment = async ({ id }) => {
     try {
-      await this.study.delete(`studies/comments/${id}`);
+      await this.study.delete(`posts/comments/${id}`);
     } catch (error) {
       console.error(error);
     }
   };
 
-  addLikes = async (studyId) => {
+  addLikes = async (postId) => {
     try {
-      // console.log("studyId : " + studyId);
-      const response = await this.study.post('studies/likes', {
-        studyId,
+      // console.log("postId : " + postId);
+      const response = await this.study.post('posts/likes', {
+        postId,
       });
       return response;
     } catch (error) {
@@ -156,25 +156,25 @@ class Study {
     }
   };
 
-  deleteLikes = async (studyId) => {
+  deleteLikes = async (postId) => {
     try {
-      const response = await this.study.delete(`studies/likes/${studyId}`);
+      const response = await this.study.delete(`posts/likes/${postId}`);
       return response;
     } catch (error) {
       console.error(error);
     }
   };
 
-  getLikesUser = async (studyId) => {
+  getLikesUser = async (postId) => {
     try {
-      const response = await this.study.get(`studies/${studyId}/likes`);
+      const response = await this.study.get(`posts/${postId}/likes`);
       return response.data;
     } catch (error) {
       console.error(error);
     }
   };
 
-  /* users/sign 말고 studies/sign 어떤가? */
+  /* users/sign 말고 posts/sign 어떤가? */
   getPresignedUrl = async (userName) => {
     try {
       const fileName = `${userName}_${getFormatedToday()}.png`;
