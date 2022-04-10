@@ -1,52 +1,49 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Main from './page/main/main';
-import PostRegister from './page/post_register/postRegister';
-import GithubLogin from './page/auth/githubLogin';
-import Study from './page/study/study';
-import MyPosts from './page/my_posts/myPosts';
-import MyLikes from './page/my_likes/myLikes';
-import SettingContainer from './component/setting_container/settingContainer';
-import NotFound from './page/notFound/notFound';
+import LoadingSpinner from 'component/loading/loadingSpinner';
 
-/* 
-
-App component 
-
-로그인한 User 정보가 있으면 user 정보를 set 하고
-적절한 component로 routing을 진행합니다.
-
-*/
+const Study = lazy(() => import('./page/study/study'));
+const Main = lazy(() => import('./page/main/main'));
+const PostRegister = lazy(() => import('./page/post_register/postRegister'));
+const GithubLogin = lazy(() => import('./page/auth/githubLogin'));
+const MyPosts = lazy(() => import('./page/my_posts/myPosts'));
+const MyLikes = lazy(() => import('./page/my_likes/myLikes'));
+const SettingContainer = lazy(() =>
+  import('./component/setting_container/settingContainer')
+);
+const NotFound = lazy(() => import('./page/notFound/notFound'));
 
 const App = () => {
   return (
     <Router>
-      <Switch>
-        <Route exact path={['/', '/main']}>
-          <Main />
-        </Route>
-        <Route path='/register'>
-          <PostRegister />
-        </Route>
-        <Route path='/setting'>
-          <SettingContainer />
-        </Route>
-        <Route path='/study'>
-          <Study />
-        </Route>
-        <Route path='/myPosts'>
-          <MyPosts />
-        </Route>
-        <Route path='/myLikes'>
-          <MyLikes />
-        </Route>
-        <Route path='/auth/github'>
-          <GithubLogin />
-        </Route>
-        <Route>
-          <NotFound />
-        </Route>
-      </Switch>
+      <Suspense fallback={<LoadingSpinner />}>
+        <Switch>
+          <Route exact path={['/', '/main']}>
+            <Main />
+          </Route>
+          <Route path='/register'>
+            <PostRegister />
+          </Route>
+          <Route path='/setting'>
+            <SettingContainer />
+          </Route>
+          <Route path='/study'>
+            <Study />
+          </Route>
+          <Route path='/myPosts'>
+            <MyPosts />
+          </Route>
+          <Route path='/myLikes'>
+            <MyLikes />
+          </Route>
+          <Route path='/auth/github'>
+            <GithubLogin />
+          </Route>
+          <Route>
+            <NotFound />
+          </Route>
+        </Switch>
+      </Suspense>
     </Router>
   );
 };
