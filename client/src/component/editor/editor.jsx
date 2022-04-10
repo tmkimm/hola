@@ -1,13 +1,14 @@
-import React, { useRef, useEffect, useCallback } from "react";
-import styled from "styled-components";
-import studyService from "service/study_service";
-import Quill from "quill";
-import styles from "./editor.module.css";
-import QuillImageDropAndPaste from "quill-image-drop-and-paste";
-import "react-quill/dist/quill.snow.css";
-import { useSelector } from "react-redux";
-import LikeLanguages from "component/like_languages/likeLanguages";
-import MagicUrl from "quill-magic-url";
+import React, { useRef, useEffect, useCallback } from 'react';
+import styled from 'styled-components';
+import studyService from 'service/study_service';
+import Quill from 'quill';
+import styles from './editor.module.css';
+import QuillImageDropAndPaste from 'quill-image-drop-and-paste';
+import 'react-quill/dist/quill.snow.css';
+import { useSelector } from 'react-redux';
+import LikeLanguages from 'component/like_languages/likeLanguages';
+import MagicUrl from 'quill-magic-url';
+import Datepicker from 'component/datepicker/datepicker';
 
 /* 
 
@@ -44,8 +45,8 @@ const Editor = ({
   onChangeField,
   onChangeLanguage,
 }) => {
-  const quillElement = useRef(""); // Quill을 적용할 DivElement를 설정
-  const quillInstance = useRef(""); // Quill 인스턴스를 설정
+  const quillElement = useRef(''); // Quill을 적용할 DivElement를 설정
+  const quillInstance = useRef(''); // Quill 인스턴스를 설정
   const user = useSelector((state) => state.user);
 
   /* image Handler 함수 */
@@ -63,7 +64,7 @@ const Editor = ({
       await studyService.uploadImageToS3(preSignedUrl, imageFile);
       let index = (quill.getSelection() || {}).index;
       if (index === undefined || index < 0) index = quill.getLength();
-      quill.insertEmbed(index, "image", imageUrl, "user");
+      quill.insertEmbed(index, 'image', imageUrl, 'user');
       quill.setSelection(quill.getSelection().index + 1, 0); // image upload 후 cursor 이동
     },
     [user.nickName]
@@ -71,15 +72,15 @@ const Editor = ({
 
   /* default quill editor 설정 */
   useEffect(() => {
-    Quill.register("modules/magicUrl", MagicUrl);
-    Quill.register("modules/imageDropAndPaste", QuillImageDropAndPaste);
+    Quill.register('modules/magicUrl', MagicUrl);
+    Quill.register('modules/imageDropAndPaste', QuillImageDropAndPaste);
     quillInstance.current = new Quill(quillElement.current, {
       modules: {
         toolbar: [
-          [{ header: "1" }, { header: "2" }],
-          ["bold", "italic", "underline", "strike"],
-          [{ list: "ordered" }, { list: "bullet" }],
-          ["link", "image"],
+          [{ header: '1' }, { header: '2' }],
+          ['bold', 'italic', 'underline', 'strike'],
+          [{ list: 'ordered' }, { list: 'bullet' }],
+          ['link', 'image'],
         ],
         imageDropAndPaste: {
           handler: imageHandler,
@@ -88,27 +89,27 @@ const Editor = ({
       },
       placeholder: `프로젝트/스터디 진행 방식 및 신청 방법(오픈카톡, 댓글 등)에 대해 구체적으로 작성 부탁드려요!`,
       readOnly: false,
-      theme: "snow",
+      theme: 'snow',
     });
 
     /* 기본 image upload button에 대해서도 같은 handler 적용 */
     const ImageData = QuillImageDropAndPaste.ImageData;
     quillInstance.current
-      .getModule("toolbar")
-      .addHandler("image", (clicked) => {
+      .getModule('toolbar')
+      .addHandler('image', (clicked) => {
         if (clicked) {
           let fileInput = quillInstance.current.container.querySelector(
-            "input.ql-image[type=file]"
+            'input.ql-image[type=file]'
           );
           if (fileInput == null) {
-            fileInput = document.createElement("input");
-            fileInput.setAttribute("type", "file");
+            fileInput = document.createElement('input');
+            fileInput.setAttribute('type', 'file');
             fileInput.setAttribute(
-              "accept",
-              "image/png, image/gif, image/jpeg, image/bmp, image/x-icon"
+              'accept',
+              'image/png, image/gif, image/jpeg, image/bmp, image/x-icon'
             );
-            fileInput.classList.add("ql-image");
-            fileInput.addEventListener("change", (e) => {
+            fileInput.classList.add('ql-image');
+            fileInput.addEventListener('change', (e) => {
               let files = e.target.files,
                 file;
               if (files.length > 0) {
@@ -119,7 +120,7 @@ const Editor = ({
                   // handle the inserted image
                   let dataUrl = e.target.result;
                   imageHandler(dataUrl, type, new ImageData(dataUrl, type));
-                  fileInput.value = "";
+                  fileInput.value = '';
                 };
                 reader.readAsDataURL(file);
               }
@@ -130,9 +131,9 @@ const Editor = ({
       });
 
     const quill = quillInstance.current;
-    quill.on("text-change", (delta, oldDelta, source) => {
-      if (source === "user") {
-        onChangeField({ key: "content", value: quill.root.innerHTML });
+    quill.on('text-change', (delta, oldDelta, source) => {
+      if (source === 'user') {
+        onChangeField({ key: 'content', value: quill.root.innerHTML });
       }
     });
   }, [onChangeField, imageHandler]);
@@ -145,15 +146,15 @@ const Editor = ({
   }, [content]);
 
   const onChangeTitle = (e) => {
-    onChangeField({ key: "title", value: e.target.value });
+    onChangeField({ key: 'title', value: e.target.value });
   };
 
   return (
     <section className={styles.editorWrapper}>
       <input
         className={styles.titleInput}
-        type="text"
-        placeholder="제목을 입력하세요"
+        type='text'
+        placeholder='제목을 입력하세요'
         onChange={onChangeTitle}
         value={title}
       />
@@ -163,10 +164,12 @@ const Editor = ({
           <LikeLanguages
             likeLanguages={language}
             setLikeLanguages={onChangeLanguage}
-            placeholder={"프로젝트/스터디 진행 언어 선택"}
+            placeholder={'프로젝트/스터디 진행 언어 선택'}
           ></LikeLanguages>
         </div>
       </div>
+      <Datepicker />
+
       <QuillWrapper>
         <div className={styles.quillEditor} ref={quillElement} />
       </QuillWrapper>

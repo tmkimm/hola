@@ -1,0 +1,14 @@
+.dateWrapper {
+  display: flex;
+}
+
+.datepickerWrapper {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+}
+
+.schedule {
+  width: 128px;
+  margin-bottom: 60px;
+}
