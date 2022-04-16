@@ -33,13 +33,7 @@ const useStudySearch = (category, pageNumber, setPageNumber, checked) => {
       .catch((e) => {
         setError(true);
       });
-  }, [
-    category,
-    pageNumber,
-    selectedLanguages,
-    currentLanguage.length,
-    checked,
-  ]);
+  }, [category, pageNumber, selectedLanguages, currentLanguage.length, checked]);
 
   return { loading, error, studyList, hasMore };
 };

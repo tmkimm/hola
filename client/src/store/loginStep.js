@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 /* 
 
@@ -18,7 +18,7 @@ const initialState = {
 };
 
 const loginstepSlice = createSlice({
-  name: "loginStep",
+  name: 'loginStep',
   initialState,
   reducers: {
     nextStep: (state, action) => ({
@@ -41,11 +41,6 @@ const loginstepSlice = createSlice({
   },
 });
 
-export const {
-  nextStep,
-  previousStep,
-  clearStep,
-  setSignUpUser,
-  setModalVisible,
-} = loginstepSlice.actions;
+export const { nextStep, previousStep, clearStep, setSignUpUser, setModalVisible } =
+  loginstepSlice.actions;
 export default loginstepSlice.reducer;

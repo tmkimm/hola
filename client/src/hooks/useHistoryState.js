@@ -1,12 +1,12 @@
-import { useState, useCallback } from "react";
-import { useHistory } from "react-router-dom";
+import { useState, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const useHistoryState = (initialState, key) => {
   const history = useHistory();
   const stateValue = history.location.state?.[key];
 
   const [historyState, setHistoryState] = useState(
-    stateValue === undefined ? initialState : stateValue
+    stateValue === undefined ? initialState : stateValue,
   );
 
   const setState = useCallback(
@@ -19,7 +19,7 @@ const useHistoryState = (initialState, key) => {
         state: replace ? value : { ...history.location.state, [key]: value },
       });
     },
-    [history, historyState, key]
+    [history, historyState, key],
   );
 
   return [historyState, setState];

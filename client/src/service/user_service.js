@@ -1,4 +1,4 @@
-import httpClient from "./http_client";
+import httpClient from './http_client';
 
 /* 
 user 관련 API를 정의한 class입니다.
@@ -22,9 +22,7 @@ class User {
   // user nickname 중복 검사를 실행합니다.
   checkNickname = async (id, nickName) => {
     try {
-      const response = await this.user.get(
-        `users/${id}/exists?nickName=${nickName}`
-      );
+      const response = await this.user.get(`users/${id}/exists?nickName=${nickName}`);
       return response.data;
     } catch (error) {
       console.log(error);

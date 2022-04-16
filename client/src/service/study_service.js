@@ -195,7 +195,7 @@ class Study {
         headers: new Headers({
           'Content-Type': 'image/png',
         }),
-      })
+      }),
     );
 
     if (response.status !== 200) {

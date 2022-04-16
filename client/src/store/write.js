@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice, createAction } from "@reduxjs/toolkit";
-import studyService from "service/study_service";
+import { createAsyncThunk, createSlice, createAction } from '@reduxjs/toolkit';
+import studyService from 'service/study_service';
 
 /* 
 
@@ -10,8 +10,8 @@ To-do
 생성시 글 id 건내주기 api 적용
 
 */
-const writePostAction = createAction("write/writePost");
-const modifyPostAction = createAction("write/modifyPost");
+const writePostAction = createAction('write/writePost');
+const modifyPostAction = createAction('write/modifyPost');
 
 const writePost = createAsyncThunk(
   writePostAction,
@@ -24,27 +24,22 @@ const writePost = createAsyncThunk(
     });
 
     return response.status;
-  }
+  },
 );
 
 const modifyPost = createAsyncThunk(
   modifyPostAction,
   async ({ postId, title, content, language }, thunkAPI) => {
     const new_lang = language.map((item) => item.value);
-    const response = await studyService.modify(
-      postId,
-      title,
-      content,
-      new_lang
-    );
+    const response = await studyService.modify(postId, title, content, new_lang);
 
     return response.status;
-  }
+  },
 );
 
 const initialState = {
-  title: "",
-  content: "",
+  title: '',
+  content: '',
   language: [],
   post: undefined,
   postError: undefined,
@@ -52,7 +47,7 @@ const initialState = {
 };
 
 const writeSlice = createSlice({
-  name: "write",
+  name: 'write',
   initialState,
   reducers: {
     changeField: (state, { payload: { key, value } }) => ({
@@ -84,32 +79,31 @@ const writeSlice = createSlice({
     [writePost.fulfilled]: (state, { payload }) => {
       // 수정 필요
       if (payload === 201) {
-        state.post = "success";
+        state.post = 'success';
       }
       state.post = payload; // post 정보 담음
     },
     [writePost.rejected]: (state, { payload }) => {
       if (payload === 401) {
-        state.postError = "failed"; // post 정보 담음
+        state.postError = 'failed'; // post 정보 담음
       }
     },
     [modifyPost.fulfilled]: (state, { payload }) => {
       // 수정 필요
       if (payload === 200) {
-        state = { ...state, post: "success" };
+        state = { ...state, post: 'success' };
         return state;
       }
       state.post = payload; // post 정보 담음
     },
     [modifyPost.rejected]: (state, { payload }) => {
       if (payload === 401) {
-        state.postError = "failed"; // post 정보 담음
+        state.postError = 'failed'; // post 정보 담음
       }
     },
   },
 });
 
-export const { changeField, changeLanguage, clearField, setPost } =
-  writeSlice.actions;
+export const { changeField, changeLanguage, clearField, setPost } = writeSlice.actions;
 export { writePost, modifyPost };
 export default writeSlice.reducer;

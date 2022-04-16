@@ -1,23 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = [
-  "javascript",
-  "typescript",
-  "react",
-  "vue",
-  "node.js",
-  "java",
-  "spring",
-  "kotlin",
-  "c++",
-  "go",
-  "python",
-  "django",
-  "flutter",
-  "swift",
+  'javascript',
+  'typescript',
+  'react',
+  'vue',
+  'node.js',
+  'java',
+  'spring',
+  'kotlin',
+  'c++',
+  'go',
+  'python',
+  'django',
+  'flutter',
+  'swift',
 ];
 const languageSlice = createSlice({
-  name: "language",
+  name: 'language',
   initialState,
   reducers: {
     addLanguage: (state, action) => {
@@ -26,7 +26,7 @@ const languageSlice = createSlice({
     removeLanguage: (state, action) => {
       state.splice(
         state.findIndex((item) => item === action.payload),
-        1
+        1,
       );
     },
     clearLanguage: () => [],
@@ -34,7 +34,6 @@ const languageSlice = createSlice({
   },
 });
 
-export const { addLanguage, removeLanguage, clearLanguage, initLanguage } =
-  languageSlice.actions;
+export const { addLanguage, removeLanguage, clearLanguage, initLanguage } = languageSlice.actions;
 
 export default languageSlice.reducer;

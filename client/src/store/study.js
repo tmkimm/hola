@@ -1,13 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  mode: "-createdAt",
+  mode: '-createdAt',
   sortByViews: [],
   sortByRecent: [],
 };
 
 const studySlice = createSlice({
-  name: "study",
+  name: 'study',
   initialState,
   reducers: {
     update: (state, { payload: { key, value } }) => ({

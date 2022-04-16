@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import styles from "./commentItem.module.css";
-import studyService from "service/study_service";
-import { getFormatedToday } from "common/utils.js";
-import { fetchUserByRefreshToken } from "store/user";
-import CommentButtons from "component/comment_buttons/commentButtons";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import styles from './commentItem.module.css';
+import studyService from 'service/study_service';
+import { getFormatedToday } from 'common/utils.js';
+import { fetchUserByRefreshToken } from 'store/user';
+import CommentButtons from 'component/comment_buttons/commentButtons';
 
 const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
   const user = useSelector((state) => state.user);
@@ -13,7 +13,7 @@ const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
   const preContent = comment.content;
   const [inputVisible, setInputVisible] = useState(false); // 댓글 입력 여부
   const defaultImage =
-    "https://media.vlpt.us/images/seeh_h/profile/6b7bfde5-b67c-4665-a2e1-a308e8de2059/tt.PNG?w=120";
+    'https://hola-post-image.s3.ap-northeast-2.amazonaws.com/default.PNG';
   const dispatch = useDispatch();
 
   // 댓글 수정 버튼 클릭
@@ -23,7 +23,7 @@ const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
 
   // 댓글 삭제 버튼 클릭
   const onDeleteClick = async () => {
-    document.body.style.overflow = "auto";
+    document.body.style.overflow = 'auto';
     setInputVisible(false);
     await studyService.deleteComment({ id: comment._id });
     setIsComplete((isComplete) => !isComplete);
@@ -59,7 +59,7 @@ const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
                 ? `https://hola-post-image.s3.ap-northeast-2.amazonaws.com/${comment.author.image}`
                 : defaultImage
             }
-            alt="사용자 이미지"
+            alt='사용자 이미지'
           />
 
           <div className={styles.commentInfo}>
@@ -86,8 +86,8 @@ const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
           <>
             <div className={styles.commentInput}>
               <input
-                type="text"
-                name="contentInput"
+                type='text'
+                name='contentInput'
                 value={content}
                 placeholder={comment.content}
                 onChange={(e) => {
@@ -98,14 +98,14 @@ const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
                 <button
                   onClick={onCancelClick}
                   className={styles.buttonCancel}
-                  name="complete"
+                  name='complete'
                 >
                   취소
                 </button>
                 <button
                   onClick={onModifyCompleteClick}
                   className={styles.buttonComplete}
-                  name="cancel"
+                  name='cancel'
                 >
                   완료
                 </button>
