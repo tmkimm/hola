@@ -38,13 +38,7 @@ const QuillWrapper = styled.div`
   }
 `;
 
-const Editor = ({
-  title,
-  content,
-  language,
-  onChangeField,
-  onChangeLanguage,
-}) => {
+const Editor = ({ title, content, language, onChangeField, onChangeLanguage }) => {
   const quillElement = useRef(''); // Quill을 적용할 DivElement를 설정
   const quillInstance = useRef(''); // Quill 인스턴스를 설정
   const user = useSelector((state) => state.user);
@@ -53,9 +47,7 @@ const Editor = ({
   const imageHandler = useCallback(
     async (dataUrl, type, imageData) => {
       const quill = quillInstance.current;
-      const { preSignedUrl, fileName } = await studyService.getPresignedUrl(
-        user.nickName
-      );
+      const { preSignedUrl, fileName } = await studyService.getPresignedUrl(user.nickName);
 
       const imageFile = imageData.toFile(fileName);
       const imageUrl = `https://hola-post-image.s3.ap-northeast-2.amazonaws.com/${fileName}`;
@@ -67,7 +59,7 @@ const Editor = ({
       quill.insertEmbed(index, 'image', imageUrl, 'user');
       quill.setSelection(quill.getSelection().index + 1, 0); // image upload 후 cursor 이동
     },
-    [user.nickName]
+    [user.nickName],
   );
 
   /* default quill editor 설정 */
@@ -94,41 +86,37 @@ const Editor = ({
 
     /* 기본 image upload button에 대해서도 같은 handler 적용 */
     const ImageData = QuillImageDropAndPaste.ImageData;
-    quillInstance.current
-      .getModule('toolbar')
-      .addHandler('image', (clicked) => {
-        if (clicked) {
-          let fileInput = quillInstance.current.container.querySelector(
-            'input.ql-image[type=file]'
+    quillInstance.current.getModule('toolbar').addHandler('image', (clicked) => {
+      if (clicked) {
+        let fileInput = quillInstance.current.container.querySelector('input.ql-image[type=file]');
+        if (fileInput == null) {
+          fileInput = document.createElement('input');
+          fileInput.setAttribute('type', 'file');
+          fileInput.setAttribute(
+            'accept',
+            'image/png, image/gif, image/jpeg, image/bmp, image/x-icon',
           );
-          if (fileInput == null) {
-            fileInput = document.createElement('input');
-            fileInput.setAttribute('type', 'file');
-            fileInput.setAttribute(
-              'accept',
-              'image/png, image/gif, image/jpeg, image/bmp, image/x-icon'
-            );
-            fileInput.classList.add('ql-image');
-            fileInput.addEventListener('change', (e) => {
-              let files = e.target.files,
-                file;
-              if (files.length > 0) {
-                file = files[0];
-                let type = file.type;
-                let reader = new FileReader();
-                reader.onload = (e) => {
-                  // handle the inserted image
-                  let dataUrl = e.target.result;
-                  imageHandler(dataUrl, type, new ImageData(dataUrl, type));
-                  fileInput.value = '';
-                };
-                reader.readAsDataURL(file);
-              }
-            });
-          }
-          fileInput.click();
+          fileInput.classList.add('ql-image');
+          fileInput.addEventListener('change', (e) => {
+            let files = e.target.files,
+              file;
+            if (files.length > 0) {
+              file = files[0];
+              let type = file.type;
+              let reader = new FileReader();
+              reader.onload = (e) => {
+                // handle the inserted image
+                let dataUrl = e.target.result;
+                imageHandler(dataUrl, type, new ImageData(dataUrl, type));
+                fileInput.value = '';
+              };
+              reader.readAsDataURL(file);
+            }
+          });
         }
-      });
+        fileInput.click();
+      }
+    });
 
     const quill = quillInstance.current;
     quill.on('text-change', (delta, oldDelta, source) => {

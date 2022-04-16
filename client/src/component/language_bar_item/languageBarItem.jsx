@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "./languageBarItem.module.css";
+import React from 'react';
+import styles from './languageBarItem.module.css';
 
 const LanguageBarItem = React.memo(({ Language, selected, onItemClick }) => {
   const displayType = selected === true ? styles.full : styles.transparent;

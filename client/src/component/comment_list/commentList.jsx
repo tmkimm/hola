@@ -1,6 +1,6 @@
-import React from "react";
-import CommentItem from "component/comment_item/commentItem";
-import styles from "./commentList.module.css";
+import React from 'react';
+import CommentItem from 'component/comment_item/commentItem';
+import styles from './commentList.module.css';
 
 const CommentList = ({ CommentList, setIsComplete, isComplete }) => (
   <ul className={styles.CommentList}>

@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import styles from "./postRegister.module.css";
-import EditorContainer from "component/editor/editorContainer";
-import WritebuttonContainer from "component/write_button/writebuttonContainer";
-import Navbar from "component/nav_bar/navbar";
-import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
-import { useHistory } from "react-router-dom";
+import React, { useEffect } from 'react';
+import styles from './postRegister.module.css';
+import EditorContainer from 'component/editor/editorContainer';
+import WritebuttonContainer from 'component/write_button/writebuttonContainer';
+import Navbar from 'component/nav_bar/navbar';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
 
 const PostRegister = () => {
   const user = useSelector((state) => state.user);

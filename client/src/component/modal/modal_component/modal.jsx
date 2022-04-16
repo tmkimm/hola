@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Portal from "../portal/portal";
+import styled from 'styled-components';
+import Portal from '../portal/portal';
 
 const Modal = ({ name, onClose, visible, children }) => {
   const onMaskClick = (e) => {
@@ -10,7 +10,7 @@ const Modal = ({ name, onClose, visible, children }) => {
   };
 
   return (
-    <Portal elementId="modal-root">
+    <Portal elementId='modal-root'>
       <ModalOverlay name={name} visible={visible} />
       <ModalWrapper onClick={onMaskClick} tabIndex={-1} visible={visible}>
         {children}
@@ -21,7 +21,7 @@ const Modal = ({ name, onClose, visible, children }) => {
 
 const ModalWrapper = styled.div`
   box-sizing: border-box;
-  display: ${(props) => (props.visible ? "block" : "none")};
+  display: ${(props) => (props.visible ? 'block' : 'none')};
   position: fixed;
   right: 0;
   bottom: 0;
@@ -35,14 +35,13 @@ const ModalWrapper = styled.div`
 
 const ModalOverlay = styled.div`
   box-sizing: border-box;
-  display: ${(props) => (props.visible ? "block" : "none")};
+  display: ${(props) => (props.visible ? 'block' : 'none')};
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  background: ${(props) =>
-    props.name === "loading" ? "white" : "rgba(77, 77, 77, 0.5)"};
+  background: ${(props) => (props.name === 'loading' ? 'white' : 'rgba(77, 77, 77, 0.5)')};
   z-index: 999;
 `;
 

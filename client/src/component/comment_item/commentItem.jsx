@@ -12,8 +12,7 @@ const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
   //const [preContent, setPreContent] = useState(comment.content);
   const preContent = comment.content;
   const [inputVisible, setInputVisible] = useState(false); // 댓글 입력 여부
-  const defaultImage =
-    'https://hola-post-image.s3.ap-northeast-2.amazonaws.com/default.PNG';
+  const defaultImage = 'https://hola-post-image.s3.ap-northeast-2.amazonaws.com/default.PNG';
   const dispatch = useDispatch();
 
   // 댓글 수정 버튼 클릭
@@ -64,12 +63,8 @@ const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
 
           <div className={styles.commentInfo}>
             <div className={styles.title}>
-              <div className={styles.userNickname}>
-                {comment.author.nickName}
-              </div>
-              <div className={styles.registeredDate}>
-                {getFormatedToday(comment.createdAt)}
-              </div>
+              <div className={styles.userNickname}>{comment.author.nickName}</div>
+              <div className={styles.registeredDate}>{getFormatedToday(comment.createdAt)}</div>
             </div>
           </div>
         </div>
@@ -95,11 +90,7 @@ const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
                 }}
               />
               <div className={styles.commentInputButton}>
-                <button
-                  onClick={onCancelClick}
-                  className={styles.buttonCancel}
-                  name='complete'
-                >
+                <button onClick={onCancelClick} className={styles.buttonCancel} name='complete'>
                   취소
                 </button>
                 <button

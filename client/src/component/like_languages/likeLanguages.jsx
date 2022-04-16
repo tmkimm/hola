@@ -1,14 +1,14 @@
-import React from "react";
-import Select from "react-select";
-import languageList from "common/languageList";
+import React from 'react';
+import Select from 'react-select';
+import languageList from 'common/languageList';
 
 const LikeLanguages = ({ likeLanguages, setLikeLanguages, placeholder }) => {
   const customStyles = {
     control: (css) => ({
       ...css,
-      maxWidth: "500px",
-      width: "100%",
-      minHeight: "3rem",
+      maxWidth: '500px',
+      width: '100%',
+      minHeight: '3rem',
     }),
   };
 
@@ -17,9 +17,9 @@ const LikeLanguages = ({ likeLanguages, setLikeLanguages, placeholder }) => {
       isMulti
       styles={customStyles}
       placeholder={placeholder}
-      name="likeLanguages"
+      name='likeLanguages'
       options={languageList}
-      classNamePrefix="select"
+      classNamePrefix='select'
       value={likeLanguages}
       onChange={(value) => {
         setLikeLanguages(value);

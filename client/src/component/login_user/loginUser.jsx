@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import styles from "./loginUser.module.css";
-import { useSelector } from "react-redux";
-import DropdownBar from "component/dropdown_bar/dropdownBar";
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import styles from './loginUser.module.css';
+import { useSelector } from 'react-redux';
+import DropdownBar from 'component/dropdown_bar/dropdownBar';
 
 /* 
 
@@ -21,37 +21,34 @@ const LoginUser = React.memo(() => {
 
   const handleCloseMenu = useCallback(
     (e) => {
-      if (
-        menuVisible &&
-        (!menuRef.current || !menuRef.current.contains(e.target))
-      )
+      if (menuVisible && (!menuRef.current || !menuRef.current.contains(e.target)))
         //dropdown이 켜져 있고 dropdown영역 외부 click시 dropdown menu 제거
         setMenuVisible(false);
     },
-    [menuVisible, menuRef]
+    [menuVisible, menuRef],
   );
 
   useEffect(() => {
-    window.addEventListener("click", handleCloseMenu);
+    window.addEventListener('click', handleCloseMenu);
     return () => {
-      window.removeEventListener("click", handleCloseMenu);
+      window.removeEventListener('click', handleCloseMenu);
     };
   }, [handleCloseMenu]);
 
   return (
     <div className={styles.userWrapper} onClick={handleLoginUserClick}>
       <div className={styles.userName}>{user.nickName}</div>
-      <img className={styles.userImg} src={user.imageUrl} alt="userImg" />
+      <img className={styles.userImg} src={user.imageUrl} alt='userImg' />
       <svg
-        stroke="currentColor"
-        fill="currentColor"
-        strokeWidth="0"
-        viewBox="0 0 24 24"
-        height="1em"
-        width="1em"
-        xmlns="http://www.w3.org/2000/svg"
+        stroke='currentColor'
+        fill='currentColor'
+        strokeWidth='0'
+        viewBox='0 0 24 24'
+        height='1em'
+        width='1em'
+        xmlns='http://www.w3.org/2000/svg'
       >
-        <path d="M7 10l5 5 5-5z"></path>
+        <path d='M7 10l5 5 5-5z'></path>
       </svg>
       {menuVisible && <DropdownBar></DropdownBar>}
     </div>

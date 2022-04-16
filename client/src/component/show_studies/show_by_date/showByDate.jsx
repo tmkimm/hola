@@ -13,7 +13,7 @@ const ShowByDate = ({ checked }) => {
     SHOW_BY_DATE,
     pageNumber,
     setPageNumber,
-    checked
+    checked,
   );
 
   const lastStudyElementRef = useCallback(
@@ -27,7 +27,7 @@ const ShowByDate = ({ checked }) => {
       });
       if (node) observer.current.observe(node);
     },
-    [loading, hasMore]
+    [loading, hasMore],
   );
 
   return (
@@ -35,10 +35,7 @@ const ShowByDate = ({ checked }) => {
       {!loading && studyList.length === 0 ? (
         <EmptyList />
       ) : (
-        <StudyList
-          lastStudyElementRef={lastStudyElementRef}
-          studyList={studyList}
-        ></StudyList>
+        <StudyList lastStudyElementRef={lastStudyElementRef} studyList={studyList}></StudyList>
       )}
     </>
   );

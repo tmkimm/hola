@@ -1,11 +1,11 @@
-import { useEffect } from "react";
-import qs from "qs";
-import { useHistory, useLocation } from "react-router";
-import { fetchUserById } from "store/user";
-import { useDispatch } from "react-redux";
-import { setModalVisible, nextStep, setSignUpUser } from "store/loginStep";
-import Modal from "component/modal/modal_component/modal";
-import LoadingSpinner from "component/loading/loadingSpinner";
+import { useEffect } from 'react';
+import qs from 'qs';
+import { useHistory, useLocation } from 'react-router';
+import { fetchUserById } from 'store/user';
+import { useDispatch } from 'react-redux';
+import { setModalVisible, nextStep, setSignUpUser } from 'store/loginStep';
+import Modal from 'component/modal/modal_component/modal';
+import LoadingSpinner from 'component/loading/loadingSpinner';
 
 /* 
 
@@ -26,15 +26,15 @@ const GithubLogin = () => {
       const { code } = qs.parse(location.search, {
         ignoreQueryPrefix: true,
       });
-      const userData = { code, social: "github" };
+      const userData = { code, social: 'github' };
       dispatch(fetchUserById(userData)).then((response) => {
         const id = response.payload._id;
         if (response.payload.loginSuccess === false) {
-          dispatch(setSignUpUser({ key: "id", value: id }));
+          dispatch(setSignUpUser({ key: 'id', value: id }));
           dispatch(setModalVisible(true));
           dispatch(nextStep());
         }
-        history.push("/");
+        history.push('/');
       });
     };
 
@@ -42,7 +42,7 @@ const GithubLogin = () => {
   }, [dispatch, history, location.search]);
 
   return (
-    <Modal visible={true} name="loading">
+    <Modal visible={true} name='loading'>
       <LoadingSpinner />
     </Modal>
   );
