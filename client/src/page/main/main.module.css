@@ -6,7 +6,6 @@
 
 .appWrapper {
   padding: 5rem 1rem 0 1rem;
-  background-color: #f8f9fa;
   min-height: 60rem;
 }
 
@@ -39,28 +38,6 @@
   display: flex;
   flex-direction: column;
 }
-
-.languagebarBubble {
-  width: 270px;
-  height: 60px;
-  margin-left: 1rem;
-  animation: bubbleAnimation 1.2s ease-in-out;
-}
-
-.languageSelectBox {
-  margin: 0 auto;
-  margin-top: 5rem;
-  max-width: 1210px;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* .selectboxInput {
-  width: 2rem;
-  border-radius: 4px;
-} */
 
 .selectboxInput {
   position: absolute;
@@ -130,11 +107,6 @@
   }
 }
 
-.languageBarWrapper {
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
-  margin-top: 1rem;
-}
-
 .title {
   font-size: 2.25rem;
   font-weight: 800;
@@ -152,26 +124,7 @@
   } */
 }
 
-@media screen and (max-width: 830px) {
-  .languageSelectBox {
-    margin-top: 5rem;
-  }
-  /* .app {
-    width: calc(100% - 2rem);
-  } */
-}
-
 @media screen and (max-width: 575px) {
-  .languagebarBubble {
-    width: 180px;
-    height: 40px;
-  }
-
-  .languageSelectBox {
-    margin-top: 2rem;
-    font-size: 1.125rem;
-  }
-
   .selectWrapper {
     display: none;
   }

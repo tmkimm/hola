@@ -3,7 +3,6 @@ import styles from './main.module.css';
 
 import Navbar from 'component/nav_bar/navbar';
 import Banner from 'component/banner/banner';
-import LanguageBarList from 'component/language_bar_list/languageBarList';
 
 import Rating from 'component/rating/rating';
 import ShowByDate from 'component/show_studies/show_by_date/showByDate';
@@ -11,6 +10,7 @@ import ShowByViews from 'component/show_studies/show_by_views/showByViews';
 
 import { AiFillFire } from 'react-icons/ai';
 import { FaCalendarCheck } from 'react-icons/fa';
+import { MobileCategory } from 'component/category/mobile';
 
 /* 
 main page의 layout을 담당하는 component입니다. 
@@ -43,17 +43,8 @@ const Main = () => {
     <>
       <Navbar />
       <Banner />
-      <div className={styles.languageSelectBox}>
-        <img
-          className={styles.languagebarBubble}
-          src='/images/info/languegeBar_bubble.png'
-          alt='information'
-        />
-      </div>
+      <MobileCategory />
 
-      <div className={styles.languageBarWrapper}>
-        <LanguageBarList />
-      </div>
       <div className={styles.appWrapper}>
         <div className={styles.app}>
           <main className={styles.main}>
