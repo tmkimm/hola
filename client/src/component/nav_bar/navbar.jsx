@@ -9,10 +9,6 @@ import { setModalVisible } from 'store/loginStep';
 import { clearUser, fetchUserByRefreshToken } from 'store/user';
 import { toast } from 'react-toastify';
 
-/* 
-To-do
-
-*/
 const Navbar = React.memo(() => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -48,8 +44,6 @@ const Navbar = React.memo(() => {
             autoClose: 3000,
           });
         }
-        //  console.log("fetchByuserRefreshToken response :", response);
-        // 실패했을때 에러처리 필요
       });
     }
   }, [dispatch, history, user.nickName]);
@@ -57,7 +51,7 @@ const Navbar = React.memo(() => {
   return (
     <nav className={styles.navbar}>
       <a href='/'>
-        <img className={styles.logo} src='/images/logo/hola_logo_w.png' alt='logo' />
+        <img className={styles.logo} src='/images/logo/hola_logo_y.png' alt='logo' />
       </a>
       <div className={styles.loginElementWrapper}>
         <button className={styles.postRegister} onClick={handleRegister}>
