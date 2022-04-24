@@ -15,5 +15,3 @@ export const Avatar = React.memo(({ imgPath, userName, size }) => {
     </div>
   );
 });
-
-export default Avatar;

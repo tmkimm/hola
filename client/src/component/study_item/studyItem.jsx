@@ -3,7 +3,7 @@ import styles from './studyItem.module.css';
 import { useHistory } from 'react-router-dom';
 import { FaRegComment } from 'react-icons/fa';
 import { AiOutlineEye } from 'react-icons/ai';
-import Avatar from 'component/common/avatar/avatar';
+import { Avatar } from 'component/common/avatar';
 
 const StudyItem = ({ study, lastStudyElementRef }) => {
   const studyLang = [];
