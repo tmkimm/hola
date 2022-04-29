@@ -7,7 +7,7 @@ const useStudySearch = (category, pageNumber, setPageNumber, checked) => {
   const [error, setError] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [studyList, setStudyList] = useState([]);
-  const selectedLanguages = useSelector((state) => state.language);
+  const selectedLanguages = useSelector((state) => state.language.selected);
   const [currentLanguage, setCurrentLanguage] = useState([]);
 
   useEffect(() => {
