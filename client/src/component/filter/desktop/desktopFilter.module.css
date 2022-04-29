@@ -15,11 +15,27 @@
 }
 
 .subjectItem {
+  display: flex;
   font-weight: 700;
   font-size: 26px;
   line-height: 126.5%;
   color: #848484;
   cursor: pointer;
+  position: relative;
+}
+
+.selectedSubject {
+  color: #333333;
+}
+
+.selectedSubject::after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: calc(100% + 26px);
+  background: #ffe579;
+  left: -13px;
+  bottom: -22px;
 }
 
 .languages {
@@ -52,12 +68,15 @@
 
 .selectedWrapper {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 30px;
 }
 
 .selectedLanguages {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 30px;
 }
 
@@ -66,7 +85,6 @@
   gap: 10px;
   background: #f2f2f2;
   padding: 8px 15px;
-  width: 158px;
   height: 41px;
   border-radius: 10px;
   font-weight: 500;
@@ -85,4 +103,14 @@
 .resetFilter {
   font-size: 20px;
   color: #333333;
+  cursor: pointer;
+}
+
+.full {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+.transparent {
+  opacity: 0.3;
 }
