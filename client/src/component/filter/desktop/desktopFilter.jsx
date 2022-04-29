@@ -11,23 +11,17 @@ import {
 
 export const DesktopFilter = React.memo(() => {
   const { subject, selected } = useSelector((state) => state.language);
-  console.log(subject, selected);
   const dispatch = useDispatch();
   const onIconClick = useCallback(
     (Langauge, isSelected) => {
-      if (selected.length === 14) {
-        dispatch(clearLanguage());
-        dispatch(addLanguage(Langauge));
-      } else if (selected.length === 1) {
-        if (!isSelected) dispatch(addLanguage(Langauge));
-        else dispatch(initLanguage());
-      } else {
-        if (!isSelected) dispatch(addLanguage(Langauge));
-        else dispatch(removeLanguage(Langauge));
+      if (!isSelected) dispatch(addLanguage(Langauge));
+      else {
+        selected.length === 1 ? dispatch(initLanguage()) : dispatch(removeLanguage());
       }
     },
     [dispatch, selected.length],
   );
+
   const onDeleteIconClick = (selected) => {
     dispatch(removeLanguage(selected));
   };
@@ -35,7 +29,7 @@ export const DesktopFilter = React.memo(() => {
     dispatch(changeSubject(curSubject));
   };
 
-  const resetFilterClick = () => {
+  const onResetFilterClick = () => {
     dispatch(clearLanguage());
   };
   const languages = {
@@ -128,7 +122,7 @@ export const DesktopFilter = React.memo(() => {
             </div>
           ))}
           {selected.length !== 0 && (
-            <span className={styles.resetFilter} onClick={resetFilterClick}>
+            <span className={styles.resetFilter} onClick={onResetFilterClick}>
               필터 초기화
             </span>
           )}
