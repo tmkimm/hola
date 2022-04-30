@@ -3,6 +3,7 @@ import styles from './mainContent.module.css';
 import ShowByDate from 'component/show_studies/show_by_date/showByDate';
 import ShowByViews from 'component/show_studies/show_by_views/showByViews';
 import { StudyIcon, ProjectIcon } from 'common/Icons';
+import { ToggleSwitch } from 'component/toggleSwitch';
 
 export const MainContent = () => {
   const SHOW_BY_VIEWS = '-views';
@@ -26,9 +27,10 @@ export const MainContent = () => {
     else setCategory(SHOW_BY_VIEWS);
   };
 
-  const handleSelect = (e) => {
+  const handleSelect = () => {
     setChecked((checked) => !checked);
   };
+
   return (
     <main className={styles.main}>
       <div className={styles.categoryWrapper}>
@@ -53,19 +55,7 @@ export const MainContent = () => {
             <span className={styles.text}>스터디</span>
           </div>
         </section>
-        <div className={styles.selectWrapper} onClick={handleSelect}>
-          <input
-            className={styles.selectboxInput}
-            type='checkbox'
-            name='languageSelect'
-            value='마감 글 보기'
-            checked={checked ? 'checked' : ''}
-            readOnly
-          ></input>
-          <label htmlFor='languageSelect'>
-            <span className={styles.selectTitle}>모집 중만 보기</span>
-          </label>
-        </div>
+        <ToggleSwitch checked={checked} handleSelect={handleSelect} />
       </div>
       {category === SHOW_BY_DATE ? (
         <ShowByDate checked={checked} />
