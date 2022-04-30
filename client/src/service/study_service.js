@@ -10,13 +10,16 @@ class Study {
     this.study = httpClient;
   }
 
-  getList = async (query, selectedLanguages, pageNumber, checked) => {
+  getList = async (category, selectedLanguages, pageNumber, checked) => {
+    const queryType = { project: 1, study: 2 };
+
     try {
       const params = {
-        sort: query,
+        sort: '-createdAt',
         offset: pageNumber,
         limit: 20,
         isClosed: checked,
+        type: queryType[category],
       };
 
       if (selectedLanguages.length !== 0) {

@@ -3,14 +3,12 @@ import EmptyList from 'component/empty_list/emptyList';
 import StudyList from 'component/study_list/studyList';
 import useStudySearch from '../hooks/useStudySearch';
 
-const ShowByDate = ({ checked }) => {
-  const SHOW_BY_DATE = '-createdAt';
+const ShowByDate = ({ checked, category }) => {
   const [pageNumber, setPageNumber] = useState(0);
-
   const observer = useRef();
 
   const { studyList, hasMore, loading } = useStudySearch(
-    SHOW_BY_DATE,
+    category,
     pageNumber,
     setPageNumber,
     checked,

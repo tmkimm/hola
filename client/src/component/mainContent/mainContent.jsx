@@ -6,8 +6,9 @@ import { StudyIcon, ProjectIcon } from 'common/Icons';
 import { ToggleSwitch } from 'component/toggleSwitch';
 
 export const MainContent = () => {
-  const SHOW_BY_VIEWS = '-views';
-  const SHOW_BY_DATE = '-createdAt';
+  const PROJECT = 'project';
+  const STUDY = 'study';
+
   const active = {
     className: styles.active,
     color: '#333333',
@@ -17,14 +18,14 @@ export const MainContent = () => {
     color: '#858E86',
   };
 
-  const [category, setCategory] = useState(SHOW_BY_DATE);
+  const [category, setCategory] = useState(PROJECT);
   const [checked, setChecked] = useState(true);
 
   const toggleCategory = (toggleTo) => {
     if (category === toggleTo) return; // 바꾸려는 대상이 현재 상태와 같으면 return
 
-    if (category === SHOW_BY_VIEWS) setCategory(SHOW_BY_DATE);
-    else setCategory(SHOW_BY_VIEWS);
+    if (category === PROJECT) setCategory(STUDY);
+    else setCategory(PROJECT);
   };
 
   const handleSelect = () => {
@@ -37,30 +38,30 @@ export const MainContent = () => {
         <section className={styles.category}>
           <div
             className={`${styles.category__item} ${
-              category === SHOW_BY_DATE ? active.className : inActive.className
+              category === PROJECT ? active.className : inActive.className
             }`}
-            onClick={() => toggleCategory(SHOW_BY_DATE)}
+            onClick={() => toggleCategory(PROJECT)}
           >
-            <ProjectIcon stroke={category === SHOW_BY_DATE ? active.color : inActive.color} />
+            <ProjectIcon stroke={category === PROJECT ? active.color : inActive.color} />
             <span className={styles.text}>프로젝트</span>
           </div>
 
           <div
             className={`${styles.category__item} ${
-              category === SHOW_BY_DATE ? inActive.className : active.className
+              category === STUDY ? active.className : inActive.className
             }`}
-            onClick={() => toggleCategory(SHOW_BY_VIEWS)}
+            onClick={() => toggleCategory(STUDY)}
           >
-            <StudyIcon stroke={category === SHOW_BY_VIEWS ? active.color : inActive.color} />
+            <StudyIcon stroke={category === STUDY ? active.color : inActive.color} />
             <span className={styles.text}>스터디</span>
           </div>
         </section>
         <ToggleSwitch checked={checked} handleSelect={handleSelect} />
       </div>
-      {category === SHOW_BY_DATE ? (
-        <ShowByDate checked={checked} />
+      {category === PROJECT ? (
+        <ShowByDate category={category} checked={checked} />
       ) : (
-        <ShowByViews checked={checked} />
+        <ShowByViews category={category} checked={checked} />
       )}
     </main>
   );
