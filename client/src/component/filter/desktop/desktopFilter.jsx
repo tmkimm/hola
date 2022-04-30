@@ -106,7 +106,7 @@ export const DesktopFilter = React.memo(() => {
     ],
   };
 
-  const subjects = ['인기', '프론트엔드', '모바일', '기타', '모두보기'];
+  const subjects = ['인기', '프론트엔드', '백엔드', '모바일', '기타', '모두보기'];
 
   return (
     <section className={styles.filterWrapper}>
