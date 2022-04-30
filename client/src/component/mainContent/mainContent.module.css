@@ -1,6 +1,7 @@
 .main {
   max-width: 1200px;
   width: 100%;
+  min-height: 60rem;
   padding: 0 10px;
   display: flex;
   flex-direction: column;
@@ -21,7 +22,7 @@
 }
 
 .active {
-  color: black;
+  color: #444444;
 }
 
 .inactive {

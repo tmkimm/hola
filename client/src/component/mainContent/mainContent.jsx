@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import styles from './mainContent.module.css';
-import { AiFillFire } from 'react-icons/ai';
-import { FaCalendarCheck } from 'react-icons/fa';
 import ShowByDate from 'component/show_studies/show_by_date/showByDate';
 import ShowByViews from 'component/show_studies/show_by_views/showByViews';
+import { StudyIcon, ProjectIcon } from 'common/Icons';
 
 export const MainContent = () => {
   const SHOW_BY_VIEWS = '-views';
   const SHOW_BY_DATE = '-createdAt';
-  const ACTIVE = styles.active;
-  const INACTIVE = styles.inactive;
+  const active = {
+    className: styles.active,
+    color: '#333333',
+  };
+  const inActive = {
+    className: styles.inactive,
+    color: '#858E86',
+  };
+
   const [category, setCategory] = useState(SHOW_BY_DATE);
   const [checked, setChecked] = useState(true);
 
@@ -28,19 +34,23 @@ export const MainContent = () => {
       <div className={styles.categoryWrapper}>
         <section className={styles.category}>
           <div
-            className={`${styles.category__item} ${category === SHOW_BY_DATE ? ACTIVE : INACTIVE}`}
+            className={`${styles.category__item} ${
+              category === SHOW_BY_DATE ? active.className : inActive.className
+            }`}
             onClick={() => toggleCategory(SHOW_BY_DATE)}
           >
-            <FaCalendarCheck />
-            <span className={styles.text}>최신</span>
+            <ProjectIcon stroke={category === SHOW_BY_DATE ? active.color : inActive.color} />
+            <span className={styles.text}>프로젝트</span>
           </div>
 
           <div
-            className={`${styles.category__item} ${category === SHOW_BY_DATE ? INACTIVE : ACTIVE}`}
+            className={`${styles.category__item} ${
+              category === SHOW_BY_DATE ? inActive.className : active.className
+            }`}
             onClick={() => toggleCategory(SHOW_BY_VIEWS)}
           >
-            <AiFillFire />
-            <span className={styles.text}>인기</span>
+            <StudyIcon stroke={category === SHOW_BY_VIEWS ? active.color : inActive.color} />
+            <span className={styles.text}>스터디</span>
           </div>
         </section>
         <div className={styles.selectWrapper} onClick={handleSelect}>
@@ -53,7 +63,7 @@ export const MainContent = () => {
             readOnly
           ></input>
           <label htmlFor='languageSelect'>
-            <span className={styles.selectTitle}>모집 중인 글만 보기</span>
+            <span className={styles.selectTitle}>모집 중만 보기</span>
           </label>
         </div>
       </div>

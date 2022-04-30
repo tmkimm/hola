@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './main.module.css';
 
 import Navbar from 'component/nav_bar/navbar';
@@ -14,8 +14,6 @@ main page의 layout을 담당하는 component입니다.
 */
 
 const Main = () => {
-  console.log('rerender');
-
   return (
     <>
       <Navbar />
