@@ -31,7 +31,7 @@
 .selectedSubject::after {
   content: '';
   position: absolute;
-  height: 2px;
+  height: 5px;
   width: calc(100% + 26px);
   background: #ffe579;
   left: -13px;
