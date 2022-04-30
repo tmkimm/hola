@@ -1,6 +1,6 @@
 import LanguageBarList from 'component/language_bar_list/languageBarList';
 import React from 'react';
-import styles from './mobileCategory.module.css';
+import styles from './mobileFilter.module.css';
 
 /* Todo : LanguageBarList 데스크탑/모바일 별도로 관리할 건지 결정 필요 */
 
