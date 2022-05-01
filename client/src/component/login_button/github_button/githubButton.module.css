@@ -23,6 +23,7 @@
 }
 
 .loginDescription {
+  margin-top: 10px;
   font-weight: bold;
   font-size: 1rem;
   line-height: 126.5%;
@@ -35,8 +36,5 @@
   .button {
     width: 20rem;
     height: 4.5rem;
-  }
-  .loginDescription {
-    display: none;
   }
 }
