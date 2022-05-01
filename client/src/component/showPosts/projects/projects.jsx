@@ -3,7 +3,7 @@ import EmptyList from 'component/empty_list/emptyList';
 import StudyList from 'component/study_list/studyList';
 import useStudySearch from '../hooks/useStudySearch';
 
-const ShowByDate = ({ checked, category }) => {
+export const Projects = ({ checked, category }) => {
   const [pageNumber, setPageNumber] = useState(0);
   const observer = useRef();
 
@@ -38,5 +38,3 @@ const ShowByDate = ({ checked, category }) => {
     </>
   );
 };
-
-export default ShowByDate;

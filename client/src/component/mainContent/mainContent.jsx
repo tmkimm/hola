@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styles from './mainContent.module.css';
-import ShowByDate from 'component/show_studies/show_by_date/showByDate';
-import ShowByViews from 'component/show_studies/show_by_views/showByViews';
+import ShowByDate from 'component/showPosts/projects/projects';
+import ShowByViews from 'component/showPosts/studies/studies';
+import { Projects, Studies } from 'component/showPosts';
 import { StudyIcon, ProjectIcon } from 'common/Icons';
 import { ToggleSwitch } from 'component/toggleSwitch';
 
@@ -59,9 +60,9 @@ export const MainContent = () => {
         <ToggleSwitch checked={checked} handleSelect={handleSelect} />
       </div>
       {category === PROJECT ? (
-        <ShowByDate category={category} checked={checked} />
+        <Projects category={category} checked={checked} />
       ) : (
-        <ShowByViews category={category} checked={checked} />
+        <Studies category={category} checked={checked} />
       )}
     </main>
   );
