@@ -29,7 +29,7 @@ const onlineOrOfflineOption = [
   { value: 'offline', label: '오프라인' },
 ];
 
-const membersOption = [
+const recruitsOption = [
   { value: 'und', label: '인원 미정' },
   { value: '1', label: '1명' },
   { value: '3', label: '2명' },
@@ -43,13 +43,13 @@ const membersOption = [
   { value: 'mo', label: '10명 이상' },
 ];
 
-const contactMethodOption = [
+const contactTypeOption = [
   { value: 'ok', label: '오픈 카카오톡' },
   { value: 'pk', label: '개인 카카오톡' },
   { value: 'em', label: '이메일' },
 ];
 
-const periodsOption = [
+const expectedPeriodOption = [
   { value: 'und', label: '기간 미정' },
   { value: '1', label: '1개월' },
   { value: '3', label: '2개월' },
@@ -64,7 +64,7 @@ export {
   languageList,
   studyOrProjectOption,
   onlineOrOfflineOption,
-  membersOption,
-  contactMethodOption,
-  periodsOption,
+  recruitsOption,
+  contactTypeOption,
+  expectedPeriodOption,
 };

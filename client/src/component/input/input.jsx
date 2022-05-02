@@ -1,10 +1,7 @@
 import React from 'react';
 import styles from './input.module.css';
 
-export const Input = ({ labelText, placeholder, value, setValue }) => {
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
+export const Input = ({ labelText, placeholder, value, onChange }) => {
   return (
     <>
       {labelText && (
@@ -16,7 +13,7 @@ export const Input = ({ labelText, placeholder, value, setValue }) => {
         className={styles.customInput}
         id='input'
         value={value}
-        onChange={handleChange}
+        onChange={onChange}
         placeholder={placeholder}
       ></input>
     </>

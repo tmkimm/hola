@@ -15,7 +15,7 @@ export const Datepicker = ({ dateValue, setDateValue }) => {
             inputFormat={'yyyy-MM-dd'}
             mask={'____-__-__'}
             value={dateValue}
-            onChange={(date) => setDateValue(date)}
+            onChange={setDateValue}
             renderInput={(params) => <TextField {...params} sx={{ width: '100%' }} />}
           />
         </LocalizationProvider>

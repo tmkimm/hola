@@ -12,7 +12,6 @@ const EditorContainer = (props) => {
   }));
 
   const onChangeField = useCallback((payload) => dispatch(changeField(payload)), [dispatch]);
-
   const onChangeLanguage = useCallback((payload) => dispatch(changeLanguage(payload)), [dispatch]);
 
   /* EditorContainer unmount시 quill editor 초기화 */

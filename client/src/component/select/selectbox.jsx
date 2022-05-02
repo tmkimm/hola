@@ -4,11 +4,13 @@ import styles from './selectbox.module.css';
 
 export const Selectbox = ({
   labelText,
+  isMulti,
   customStyles,
   options,
   selectValue,
   setSelectValue,
   placeholder,
+  id,
 }) => {
   const selectStyle = {
     control: (css) => ({
@@ -24,6 +26,7 @@ export const Selectbox = ({
         </label>
       )}
       <Select
+        isMulti
         styles={selectStyle}
         placeholder={placeholder}
         name='onoffline'
@@ -31,7 +34,7 @@ export const Selectbox = ({
         classNamePrefix='select'
         value={selectValue}
         onChange={(value) => {
-          setSelectValue(value);
+          setSelectValue({ key: id, value: value });
         }}
       />
     </>
