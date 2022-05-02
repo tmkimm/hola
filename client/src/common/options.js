@@ -25,8 +25,8 @@ const studyOrProjectOption = [
 ];
 
 const onlineOrOfflineOption = [
-  { value: 'online', label: '온라인' },
-  { value: 'offline', label: '오프라인' },
+  { value: 'on', label: '온라인' },
+  { value: 'off', label: '오프라인' },
 ];
 
 const recruitsOption = [
