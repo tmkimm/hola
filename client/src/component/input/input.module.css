@@ -20,3 +20,7 @@
   color: #333333;
   font-weight: 500;
 }
+
+.customInput::placeholder {
+  font-weight: 400;
+}

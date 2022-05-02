@@ -3,12 +3,9 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import { TextField } from '@mui/material';
-import { useState } from 'react';
 import styles from './datepicker.module.css';
 
-export const Datepicker = () => {
-  const [startDate, setStartDate] = useState(null);
-
+export const Datepicker = ({ dateValue, setDateValue }) => {
   return (
     <div className={styles.dateWrapper}>
       <div className={styles.datepickerWrapper}>
@@ -17,8 +14,8 @@ export const Datepicker = () => {
           <DesktopDatePicker
             inputFormat={'yyyy-MM-dd'}
             mask={'____-__-__'}
-            value={startDate}
-            onChange={(date) => setStartDate(date)}
+            value={dateValue}
+            onChange={(date) => setDateValue(date)}
             renderInput={(params) => <TextField {...params} sx={{ width: '100%' }} />}
           />
         </LocalizationProvider>
