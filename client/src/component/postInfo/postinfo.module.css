@@ -1,0 +1,25 @@
+.inputList {
+  margin-top: 40px;
+  display: flex;
+  gap: 15px;
+  list-style: none;
+}
+
+.listItem {
+  flex: 1;
+}
+
+.labelText {
+  display: inline-block;
+  margin-bottom: 5px;
+  color: #333333;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+  .inputList {
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+  }
+}

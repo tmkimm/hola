@@ -6,6 +6,7 @@ import Navbar from 'component/nav_bar/navbar';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
+import { PostInfo } from 'component/postInfo';
 
 const PostRegister = () => {
   const user = useSelector((state) => state.user);
@@ -24,10 +25,23 @@ const PostRegister = () => {
   return (
     <>
       <Navbar />
-      <section className={styles.editorWrapper}>
-        <EditorContainer></EditorContainer>
-        <WritebuttonContainer></WritebuttonContainer>
-      </section>
+      <div className={styles.postWrapper}>
+        <section className={styles.postInfo}>
+          <div className={styles.postContentWrapper}>
+            <span className={styles.sequence}>1</span>
+            <h2 className={styles.text}>프로젝트 기본 정보를 입력해주세요.</h2>
+          </div>
+          <PostInfo />
+        </section>
+        <section className={styles.postContent}>
+          <div className={styles.postContentWrapper}>
+            <span className={styles.sequence}>2</span>
+            <h2 className={styles.text}>프로젝트에 대해 소개해주세요.</h2>
+          </div>
+          <EditorContainer></EditorContainer>
+          <WritebuttonContainer></WritebuttonContainer>
+        </section>
+      </div>
     </>
   );
 };

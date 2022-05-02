@@ -4,11 +4,17 @@
 
 .datepickerWrapper {
   width: 100%;
-  display: flex;
   gap: 20px;
 }
 
 .schedule {
   width: 128px;
   margin-bottom: 60px;
+}
+
+.labelText {
+  display: inline-block;
+  margin-bottom: 5px;
+  color: #333333;
+  font-weight: 500;
 }

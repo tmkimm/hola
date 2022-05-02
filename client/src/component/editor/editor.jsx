@@ -8,7 +8,7 @@ import 'react-quill/dist/quill.snow.css';
 import { useSelector } from 'react-redux';
 import LikeLanguages from 'component/like_languages/likeLanguages';
 import MagicUrl from 'quill-magic-url';
-import Datepicker from 'component/datepicker/datepicker';
+import { Input } from 'component/input';
 
 /* 
 
@@ -27,6 +27,7 @@ image minify 적용할건지 결정 필요
 
 const QuillWrapper = styled.div`
   /* 최소 크기 지정 및 padding 제거 */
+  margin-top: 16px;
   .ql-editor {
     padding: 1rem;
     min-height: 480px;
@@ -139,14 +140,15 @@ const Editor = ({ title, content, language, onChangeField, onChangeLanguage }) =
 
   return (
     <section className={styles.editorWrapper}>
-      <input
+      <Input labelText='제목' placeholder='글 제목을 입력해주세요!' />
+      {/* <input
         className={styles.titleInput}
         type='text'
         placeholder='제목을 입력하세요'
         onChange={onChangeTitle}
         value={title}
-      />
-      <div className={styles.languageWrapper}>
+      /> */}
+      {/* <div className={styles.languageWrapper}>
         <h3 className={styles.languageList}>사용 언어 : </h3>
         <div className={styles.likeLanguagesWrapper}>
           <LikeLanguages
@@ -155,8 +157,7 @@ const Editor = ({ title, content, language, onChangeField, onChangeLanguage }) =
             placeholder={'프로젝트/스터디 진행 언어 선택'}
           ></LikeLanguages>
         </div>
-      </div>
-      <Datepicker />
+      </div> */}
 
       <QuillWrapper>
         <div className={styles.quillEditor} ref={quillElement} />
