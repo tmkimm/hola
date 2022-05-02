@@ -6,7 +6,6 @@ import styles from './editor.module.css';
 import QuillImageDropAndPaste from 'quill-image-drop-and-paste';
 import 'react-quill/dist/quill.snow.css';
 import { useSelector } from 'react-redux';
-import LikeLanguages from 'component/like_languages/likeLanguages';
 import MagicUrl from 'quill-magic-url';
 import { Input } from 'component/input';
 
@@ -140,7 +139,7 @@ const Editor = ({ title, content, language, onChangeField, onChangeLanguage }) =
 
   return (
     <section className={styles.editorWrapper}>
-      <Input labelText='제목' placeholder='글 제목을 입력해주세요!' />
+      <Input labelText='제목' placeholder='글 제목을 입력해주세요!' onChange={onChangeTitle} />
       {/* <input
         className={styles.titleInput}
         type='text'
