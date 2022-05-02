@@ -26,7 +26,7 @@ export const Selectbox = ({
         </label>
       )}
       <Select
-        isMulti
+        isMulti={isMulti}
         styles={selectStyle}
         placeholder={placeholder}
         name='onoffline'

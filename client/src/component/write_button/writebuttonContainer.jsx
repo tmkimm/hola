@@ -18,14 +18,46 @@ const WritebuttonContainer = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { title, content, language, post, postError, postId } = useSelector(({ write }) => ({
+  const {
+    title,
+    content,
+    language,
+    startDate,
+    type,
+    recruits,
+    onlineOrOffline,
+    contactType,
+    contactPoint,
+    expectedPeriod,
+    post,
+    postError,
+    postId,
+  } = useSelector(({ write }) => ({
     title: write.title,
     content: write.content,
     language: write.language,
+    startDate: write.startDate,
+    type: write.type,
+    recruits: write.recruits,
+    onlineOrOffline: write.onlineOrOffline,
+    contactType: write.contactType,
+    contactPoint: write.contactPoint,
+    expectedPeriod: write.expectedPeriod,
     post: write.post,
     postError: write.postError,
     postId: write.postId,
   }));
+  console.log('start');
+  console.log(
+    language,
+    startDate,
+    type,
+    recruits,
+    onlineOrOffline,
+    contactType,
+    contactPoint,
+    expectedPeriod,
+  );
   const checkValidity = () => {
     if (!title) {
       toast.error('제목을 입력해주세요!', {
@@ -57,14 +89,41 @@ const WritebuttonContainer = (props) => {
     if (!checkValidity()) return;
 
     if (postId) {
-      dispatch(modifyPost({ postId, title, content, language })).then((response) => {
+      dispatch(
+        modifyPost({
+          postId,
+          title,
+          content,
+          language,
+          startDate,
+          type,
+          recruits,
+          onlineOrOffline,
+          contactType,
+          contactPoint,
+          expectedPeriod,
+        }),
+      ).then((response) => {
         toast.info('글 수정이 완료되었어요!', {
           position: 'top-right',
           autoClose: 3000,
         });
       });
     } else {
-      dispatch(writePost({ title, content, language })).then((response) => {
+      dispatch(
+        writePost({
+          title,
+          content,
+          language,
+          startDate,
+          type,
+          recruits,
+          onlineOrOffline,
+          contactType,
+          contactPoint,
+          expectedPeriod,
+        }),
+      ).then((response) => {
         toast.success('글 작성이 완료되었어요!', {
           position: 'top-right',
           autoClose: 3000,

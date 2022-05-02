@@ -55,12 +55,30 @@ class Study {
       console.error(e);
     }
   };
-  register = async ({ title, content, language }) => {
+  register = async ({
+    title,
+    content,
+    language,
+    startDate,
+    type,
+    recruits,
+    onlineOrOffline,
+    contactType,
+    contactPoint,
+    expectedPeriod,
+  }) => {
     try {
       const response = await this.study.post('posts', {
         title,
         content,
         language,
+        startDate,
+        type,
+        recruits,
+        onlineOrOffline,
+        contactType,
+        contactPoint,
+        expectedPeriod,
       });
       return response;
     } catch (error) {
@@ -68,12 +86,31 @@ class Study {
     }
   };
 
-  modify = async (id, title, content, language) => {
+  modify = async ({
+    postId,
+    title,
+    content,
+    language,
+    startDate,
+    type,
+    recruits,
+    onlineOrOffline,
+    contactType,
+    contactPoint,
+    expectedPeriod,
+  }) => {
     try {
-      const response = await this.study.patch(`posts/${id}`, {
+      const response = await this.study.patch(`posts/${postId}`, {
         title,
         content,
         language,
+        startDate,
+        type,
+        recruits,
+        onlineOrOffline,
+        contactType,
+        contactPoint,
+        expectedPeriod,
       });
       return response;
     } catch (error) {

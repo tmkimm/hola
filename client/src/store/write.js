@@ -10,17 +10,41 @@ To-do
 생성시 글 id 건내주기 api 적용
 
 */
+const getValue = (items) => {
+  return items.map((item) => item.value);
+};
+
 const writePostAction = createAction('write/writePost');
 const modifyPostAction = createAction('write/modifyPost');
 
 const writePost = createAsyncThunk(
   writePostAction,
-  async ({ title, content, language }, thunkAPI) => {
-    const newLanguages = language.map((item) => item.value);
+  async (
+    {
+      title,
+      content,
+      language,
+      startDate,
+      type,
+      recruits,
+      onlineOrOffline,
+      contactType,
+      contactPoint,
+      expectedPeriod,
+    },
+    thunkAPI,
+  ) => {
     const response = await studyService.register({
       title,
       content,
-      language: newLanguages,
+      startDate,
+      contactPoint,
+      type: getValue(type),
+      recruits: getValue(recruits),
+      onlineOrOffline: getValue(onlineOrOffline),
+      contactType: getValue(contactType),
+      expectedPeriod: getValue(expectedPeriod),
+      language: getValue(language),
     });
 
     return response.status;
@@ -29,9 +53,35 @@ const writePost = createAsyncThunk(
 
 const modifyPost = createAsyncThunk(
   modifyPostAction,
-  async ({ postId, title, content, language }, thunkAPI) => {
-    const new_lang = language.map((item) => item.value);
-    const response = await studyService.modify(postId, title, content, new_lang);
+  async (
+    {
+      postId,
+      title,
+      content,
+      language,
+      startDate,
+      type,
+      recruits,
+      onlineOrOffline,
+      contactType,
+      contactPoint,
+      expectedPeriod,
+    },
+    thunkAPI,
+  ) => {
+    const response = await studyService.modify({
+      postId,
+      title,
+      content,
+      startDate,
+      contactPoint,
+      type: getValue(type),
+      recruits: getValue(recruits),
+      onlineOrOffline: getValue(onlineOrOffline),
+      contactType: getValue(contactType),
+      expectedPeriod: getValue(expectedPeriod),
+      language: getValue(language),
+    });
 
     return response.status;
   },
@@ -43,10 +93,10 @@ const initialState = {
   language: [],
   startDate: null,
   type: '',
-  recruit: '',
-  onlineOffline: '',
+  recruits: '',
+  onlineOrOffline: '',
   contactType: '',
-  contactLink: '',
+  contactPoint: '',
   expectedPeriod: '',
   post: undefined,
   postError: undefined,

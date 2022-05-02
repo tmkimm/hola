@@ -61,6 +61,7 @@ export const PostInfo = () => {
       <ul className={styles.inputList}>
         <li className={styles.listItem}>
           <Selectbox
+            isMulti={false}
             labelText='모집 구분'
             customStyles={customStyles}
             options={studyOrProjectOption}
@@ -72,6 +73,7 @@ export const PostInfo = () => {
         </li>
         <li className={styles.listItem}>
           <Selectbox
+            isMulti={false}
             labelText='모집 인원'
             customStyles={customStyles}
             options={recruitsOption}
@@ -85,6 +87,7 @@ export const PostInfo = () => {
       <ul className={styles.inputList}>
         <li className={styles.listItem}>
           <Selectbox
+            isMulti={false}
             labelText='진행 방식'
             customStyles={customStyles}
             options={onlineOrOfflineOption}
@@ -96,6 +99,7 @@ export const PostInfo = () => {
         </li>
         <li className={styles.listItem}>
           <Selectbox
+            isMulti={false}
             labelText='진행 기간'
             customStyles={customStyles}
             options={expectedPeriodOption}
@@ -126,6 +130,7 @@ export const PostInfo = () => {
       <ul className={styles.inputList}>
         <li className={styles.listItem}>
           <Selectbox
+            isMulti={false}
             labelText='연락 방법'
             customStyles={customStyles}
             options={contactTypeOption}
