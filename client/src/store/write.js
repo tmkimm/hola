@@ -34,17 +34,18 @@ const writePost = createAsyncThunk(
     },
     thunkAPI,
   ) => {
+    const newLanguages = language.map((item) => item.value);
     const response = await studyService.register({
       title,
       content,
       startDate,
       contactPoint,
-      type: getValue(type),
-      recruits: getValue(recruits),
-      onlineOrOffline: getValue(onlineOrOffline),
-      contactType: getValue(contactType),
-      expectedPeriod: getValue(expectedPeriod),
-      language: getValue(language),
+      type: type.value,
+      recruits: recruits.value,
+      onlineOrOffline: onlineOrOffline.value,
+      contactType: contactType.value,
+      expectedPeriod: expectedPeriod.value,
+      language: newLanguages,
     });
 
     return response.status;
