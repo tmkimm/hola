@@ -29,7 +29,16 @@ const PostRegister = () => {
         <section className={styles.postInfo}>
           <div className={styles.postContentWrapper}>
             <span className={styles.sequence}>1</span>
-            <h2 className={styles.text}>프로젝트 기본 정보를 입력해주세요.</h2>
+            <div className={styles.titleWrapper}>
+              <h2 className={styles.text}>프로젝트 기본 정보를 입력해주세요.</h2>
+              <a
+                href='https://patch-failing-503.notion.site/Udemy-X-Hola-df31594fa0934d56bf9f1978a74398e2'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <span className={styles.udemy}>유데미 무료 강의 목록 확인하기</span>
+              </a>
+            </div>
           </div>
           <PostInfo />
         </section>
