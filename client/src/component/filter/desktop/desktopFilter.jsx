@@ -34,6 +34,7 @@ export const DesktopFilter = React.memo(() => {
   };
   const languages = {
     인기: [
+      'udemy',
       'javascript',
       'typescript',
       'react',
@@ -66,9 +67,10 @@ export const DesktopFilter = React.memo(() => {
       'graphql',
       'firebase',
     ],
-    모바일: ['flutter', 'swift', 'reactNative', 'unity'],
+    모바일: ['flutter', 'swift', 'android', 'reactNative', 'unity'],
     기타: ['aws', 'kubernetes', 'docker', 'git', 'figma', 'zeplin', 'jest'],
     모두보기: [
+      'udemy',
       'javascript',
       'typescript',
       'react',
@@ -94,6 +96,7 @@ export const DesktopFilter = React.memo(() => {
       'firebase',
       'flutter',
       'swift',
+      'android',
       'reactNative',
       'unity',
       'aws',

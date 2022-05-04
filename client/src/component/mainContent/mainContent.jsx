@@ -57,7 +57,10 @@ export const MainContent = () => {
             <span className={styles.text}>스터디</span>
           </div>
         </section>
-        <ToggleSwitch checked={checked} handleSelect={handleSelect} />
+        <div className={styles.udemyWrapper}>
+          <div className={styles.udemy}>#무료강의로 스터디</div>
+          <ToggleSwitch checked={checked} handleSelect={handleSelect} />
+        </div>
       </div>
       {category === PROJECT ? (
         <Projects category={category} checked={checked} />
