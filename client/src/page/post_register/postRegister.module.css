@@ -10,6 +10,17 @@
   gap: 50px;
 }
 
+.titleWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.udemy {
+  font-weight: 500;
+}
+
 .postContentWrapper {
   display: flex;
   align-items: center;
