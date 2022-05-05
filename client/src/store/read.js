@@ -1,23 +1,42 @@
 import { createAsyncThunk, createSlice, createAction } from '@reduxjs/toolkit';
 import studyService from 'service/study_service';
-import { languageList } from 'common/options';
+import {
+  studyOrProjectOption,
+  onlineOrOfflineOption,
+  languageList,
+  recruitsOption,
+  contactTypeOption,
+  expectedPeriodOption,
+} from 'common/options';
 /* 
 
 읽고 있는 post 상태를 만드는 redux store 입니다.
 post 진입시 해당 내용을 기억하고 있다가, 이탈시 초기화합니다.
 
 */
+const getFormattedData = (list, datas) => {
+  return datas.map((data) => ({
+    value: data,
+    label: list.find((element) => element.value === data).label,
+  }));
+};
 const readPostAction = createAction('read/readPost');
 
 const readPost = createAsyncThunk(readPostAction, async (id, thunkAPI) => {
   const response = await studyService.getDetail(id);
+  console.log(response.data);
 
-  const language = response.data.language.map((obj) => ({
-    value: obj,
-    label: languageList.find((element) => element.value === obj).label,
-  }));
-  response.data.language = language;
-  return response.data;
+  return {
+    ...response.data,
+    language: getFormattedData(languageList, response.data.language),
+  };
+  // const language = response.data.language.map((language) => ({
+  //   value: language,
+  //   label: languageList.find((element) => element.value === language).label,
+  // }));
+
+  // response.data.language = language;
+  // return response.data;
 });
 
 const initialState = {
@@ -27,6 +46,13 @@ const initialState = {
     title: '',
     language: [],
     content: '',
+    startDate: null,
+    type: '',
+    recruits: '',
+    onlineOroffline: '',
+    contactType: '',
+    contactPoint: '',
+    expectedPeriod: '',
     nickname: '',
     imagePath: '',
     createdAt: '',
