@@ -30,7 +30,11 @@ const StudyItem = ({ study, lastStudyElementRef }) => {
         <p className={styles.scheduleInfo}>2022.02.05</p>
       </div>
       <h1 className={styles.title}>{study.title}</h1>
-      <p className={styles.hashtag}>#온라인 #4명 #2개월</p>
+      <p className={styles.hashtag}>
+        {study.hashTag.map((hashtag) => (
+          <li className={styles.hashtagList}>#{hashtag}</li>
+        ))}
+      </p>
       <ul className={styles.content}>
         {studyLang.map((lang, i) => (
           <li key={i} className={styles.language}>

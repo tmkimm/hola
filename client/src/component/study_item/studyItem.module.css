@@ -54,6 +54,8 @@ li {
 }
 
 .hashtag {
+  display: flex;
+  gap: 5px;
   font-size: 18px;
   color: rgba(0, 0, 0, 0.4);
   min-height: 30px;
