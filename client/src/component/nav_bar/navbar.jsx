@@ -62,7 +62,14 @@ const Navbar = React.memo(() => {
             로그인
           </button>
         ) : (
-          <LoginUser />
+          <>
+            <img
+              className={styles.notification}
+              src={'/images/info/notification.svg'}
+              alt='notification'
+            />
+            <LoginUser />
+          </>
         )}
       </div>
       <Modal visible={modalVisible} name='login' onClose={closeModal}>

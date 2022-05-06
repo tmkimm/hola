@@ -17,6 +17,7 @@ button {
 
 .loginElementWrapper {
   display: flex;
+  gap: 30px;
 }
 
 .logo {
@@ -30,9 +31,12 @@ button {
 }
 
 .postRegister {
-  margin-right: 2rem;
   font-weight: 600;
   font-size: 1.125rem;
+}
+
+.notification {
+  cursor: pointer;
 }
 
 .user {
