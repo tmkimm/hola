@@ -1,5 +1,6 @@
 .wrapper {
-  width: 48rem;
+  max-width: 900px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   margin-top: 5rem;
@@ -46,6 +47,7 @@
   border-bottom: 2px solid #dcdcdc;
   margin-top: 2rem;
 }
+
 .postHeader {
   display: flex;
   flex-direction: column;
@@ -82,6 +84,8 @@
 }
 
 .userAndDate {
+  padding-bottom: 30px;
+  border-bottom: 3px solid #f2f2f2;
   display: flex;
   justify-content: space-between;
   align-items: center;

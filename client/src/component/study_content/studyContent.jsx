@@ -11,6 +11,7 @@ import StudyButtons from 'component/study_buttons/studyButtons';
 import styles from './studyContent.module.css';
 import { FaArrowLeft } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import { StudyInfo } from 'component/studyInfo';
 
 const StudyLanguage = ({ languages }) => {
   const usedLanguage = languages.map((lang) => lang.value);
@@ -84,8 +85,8 @@ const StudyContent = ({ id }) => {
           ></StudyButtons>
         )}
         <RecommendPost id={id}></RecommendPost>
-
-        <StudyLanguage languages={read.post.language}></StudyLanguage>
+        <StudyInfo />
+        {/* <StudyLanguage languages={read.post.language}></StudyLanguage> */}
       </section>
       <div className={styles.postContentWrapper}>
         <div
