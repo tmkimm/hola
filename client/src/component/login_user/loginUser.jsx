@@ -37,7 +37,6 @@ const LoginUser = React.memo(() => {
 
   return (
     <div className={styles.userWrapper} onClick={handleLoginUserClick}>
-      <div className={styles.userName}>{user.nickName}</div>
       <img className={styles.userImg} src={user.imageUrl} alt='userImg' />
       <svg
         stroke='currentColor'
