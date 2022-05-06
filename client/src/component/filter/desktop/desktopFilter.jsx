@@ -12,7 +12,7 @@ import {
 const languages = {
   인기: [
     'JavaScript',
-    'Typescript',
+    'TypeScript',
     'React',
     'Vue',
     'Svelte',
@@ -23,7 +23,7 @@ const languages = {
     'Go',
     'Nestjs',
   ],
-  프론트엔드: ['Javascript', 'Typescript', 'React', 'Vue', 'Svelte', 'Nextjs'],
+  프론트엔드: ['JavaScript', 'TypeScript', 'React', 'Vue', 'Svelte', 'Nextjs'],
   백엔드: [
     'Java',
     'Spring',
@@ -43,8 +43,8 @@ const languages = {
   모바일: ['Flutter', 'Swift', 'ReactNative', 'Unity'],
   기타: ['Aws', 'Kubernetes', 'Docker', 'Git', 'Figma', 'Zeplin', 'Jest', 'C'],
   모두보기: [
-    'Javascript',
-    'Typescript',
+    'JavaScript',
+    'TypeScript',
     'React',
     'Vue',
     'Svelte',
