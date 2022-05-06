@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styles from './mainContent.module.css';
-import ShowByDate from 'component/showPosts/projects/projects';
-import ShowByViews from 'component/showPosts/studies/studies';
 import { Projects, Studies } from 'component/showPosts';
 import { StudyIcon, ProjectIcon } from 'common/Icons';
 import { ToggleSwitch } from 'component/toggleSwitch';
+import { useDispatch } from 'react-redux';
+import { addLanguage, clearLanguage } from 'store/language';
 
 export const MainContent = () => {
   const PROJECT = 'project';
@@ -21,6 +21,7 @@ export const MainContent = () => {
 
   const [category, setCategory] = useState(PROJECT);
   const [checked, setChecked] = useState(true);
+  const dispatch = useDispatch();
 
   const toggleCategory = (toggleTo) => {
     if (category === toggleTo) return; // 바꾸려는 대상이 현재 상태와 같으면 return
@@ -31,6 +32,11 @@ export const MainContent = () => {
 
   const handleSelect = () => {
     setChecked((checked) => !checked);
+  };
+
+  const handleClick = () => {
+    dispatch(clearLanguage());
+    dispatch(addLanguage('Udemy'));
   };
 
   return (
@@ -58,7 +64,9 @@ export const MainContent = () => {
           </div>
         </section>
         <div className={styles.udemyWrapper}>
-          <div className={styles.udemy}>#무료강의로 스터디</div>
+          <div className={styles.udemy} onClick={handleClick}>
+            #무료강의로 스터디
+          </div>
           <ToggleSwitch checked={checked} handleSelect={handleSelect} />
         </div>
       </div>

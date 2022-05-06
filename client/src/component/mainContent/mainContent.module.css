@@ -101,8 +101,14 @@
 .udemy {
   padding: 8px 15px;
   background: #f2f4f8;
+  color: #4a5275;
   border-radius: 10px;
   cursor: pointer;
+  transition: all 200ms ease-in;
+}
+
+.udemy:hover {
+  transform: scale(1.02);
 }
 
 @keyframes bubbleAnimation {

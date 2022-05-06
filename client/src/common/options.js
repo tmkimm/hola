@@ -1,4 +1,5 @@
 const languageList = [
+  { value: 'Udemy', label: 'Udemy' },
   { value: 'JavaScript', label: 'JavaScript' },
   { value: 'TypeScript', label: 'TypeScript' },
   { value: 'React', label: 'React' },

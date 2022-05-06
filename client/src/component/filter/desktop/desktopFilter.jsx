@@ -11,6 +11,7 @@ import {
 
 const languages = {
   인기: [
+    'Udemy',
     'JavaScript',
     'TypeScript',
     'React',
