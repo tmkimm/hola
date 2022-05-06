@@ -7,6 +7,7 @@ import { DesktopFilter } from 'component/filter/desktop';
 
 import Rating from 'component/rating/rating';
 import { MainContent } from 'component/mainContent';
+import { Carousel } from 'component/carousel';
 
 /* 
 main page의 layout을 담당하는 component입니다. 
@@ -17,7 +18,8 @@ const Main = () => {
   return (
     <>
       <Navbar />
-      <Banner />
+      <Carousel />
+      {/* <Banner /> */}
       <DesktopFilter />
       <MainContent />
       <Rating />

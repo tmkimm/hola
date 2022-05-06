@@ -91,6 +91,20 @@
   margin-bottom: 2rem;
 }
 
+.udemyWrapper {
+  width: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.udemy {
+  padding: 8px 15px;
+  background: #f2f4f8;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
 @keyframes bubbleAnimation {
   0% {
     opacity: 0;
