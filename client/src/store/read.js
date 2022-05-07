@@ -28,12 +28,6 @@ const readPost = createAsyncThunk(readPostAction, async (id, thunkAPI) => {
   const { data } = await studyService.getDetail(id);
   console.log(data);
   console.log(getFormattedData(onlineOrOfflineOption, data.onlineOrOffline));
-  //console.log(response.data);
-  //console.log(getFormattedData(languageList, language));
-  //console.log(expectedPeriodOption.map((item) => item));
-  // console.log(data.onlineOrOffline, data.contactType);
-  // console.log(getFormattedData(contactTypeOption, [...data.contactType]));
-  // console.log(getFormattedData(onlineOrOfflineOption, [...data.onlineOrOffline]));
   return {
     ...data,
     language: getFormattedData(languageList, data.language),
