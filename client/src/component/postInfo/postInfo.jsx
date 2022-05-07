@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { Datepicker } from 'component/datepicker';
 import { Input } from 'component/input';
 import styles from './postinfo.module.css';

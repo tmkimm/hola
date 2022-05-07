@@ -107,8 +107,9 @@ export const DesktopFilter = React.memo(() => {
   return (
     <section className={styles.filterWrapper}>
       <ul className={styles.subjects}>
-        {subjects.map((curSubject) => (
+        {subjects.map((curSubject, idx) => (
           <li
+            key={idx}
             className={`${styles.subjectItem} ${
               curSubject === subject ? styles.selectedSubject : ''
             }`}
@@ -121,10 +122,11 @@ export const DesktopFilter = React.memo(() => {
         ))}
       </ul>
       <ul className={styles.languages}>
-        {languages[subject].map((language) => {
+        {languages[subject].map((language, idx) => {
           const isSelected = selected.includes(language);
           return (
-            <div
+            <li
+              key={idx}
               className={`${styles.languageIcon} ${
                 !selected.length || isSelected === true ? styles.full : styles.transparent
               }`}
@@ -136,21 +138,25 @@ export const DesktopFilter = React.memo(() => {
                 alt={language}
               />
               <span className={styles.languageName}>{language}</span>
-            </div>
+            </li>
           );
         })}
       </ul>
       <div className={styles.selectedWrapper}>
         <ul className={styles.selectedLanguages}>
-          {selected.map((selected) => (
-            <div className={styles.selectedLanguage} onClick={() => onDeleteIconClick(selected)}>
-              <li>{selected}</li>
+          {selected.map((selected, idx) => (
+            <li
+              key={idx}
+              className={styles.selectedLanguage}
+              onClick={() => onDeleteIconClick(selected)}
+            >
+              <div>{selected}</div>
               <img
                 className={styles.deleteButton}
                 src={`/images/info/delete.svg`}
                 alt='deleteButton'
               />
-            </div>
+            </li>
           ))}
           {selected.length !== 0 && (
             <span className={styles.resetFilter} onClick={onResetFilterClick}>
