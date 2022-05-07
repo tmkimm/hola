@@ -38,7 +38,7 @@ const QuillWrapper = styled.div`
   }
 `;
 
-const Editor = ({ title, content, language, onChangeField, onChangeLanguage }) => {
+const Editor = ({ title, content, onChangeField }) => {
   const quillElement = useRef(''); // Quill을 적용할 DivElement를 설정
   const quillInstance = useRef(''); // Quill 인스턴스를 설정
   const user = useSelector((state) => state.user);
@@ -139,24 +139,12 @@ const Editor = ({ title, content, language, onChangeField, onChangeLanguage }) =
 
   return (
     <section className={styles.editorWrapper}>
-      <Input labelText='제목' placeholder='글 제목을 입력해주세요!' onChange={onChangeTitle} />
-      {/* <input
-        className={styles.titleInput}
-        type='text'
-        placeholder='제목을 입력하세요'
-        onChange={onChangeTitle}
+      <Input
+        labelText='제목'
+        placeholder='글 제목을 입력해주세요!'
         value={title}
-      /> */}
-      {/* <div className={styles.languageWrapper}>
-        <h3 className={styles.languageList}>사용 언어 : </h3>
-        <div className={styles.likeLanguagesWrapper}>
-          <LikeLanguages
-            likeLanguages={language}
-            setLikeLanguages={onChangeLanguage}
-            placeholder={'프로젝트/스터디 진행 언어 선택'}
-          ></LikeLanguages>
-        </div>
-      </div> */}
+        onChange={onChangeTitle}
+      />
 
       <QuillWrapper>
         <div className={styles.quillEditor} ref={quillElement} />

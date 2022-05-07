@@ -15,28 +15,35 @@ post 진입시 해당 내용을 기억하고 있다가, 이탈시 초기화합�
 
 */
 const getFormattedData = (list, datas) => {
-  return datas.map((data) => ({
-    value: data,
-    label: list.find((element) => element.value === data).label,
-  }));
+  if (Array.isArray(datas)) {
+    return datas.map((data) => ({
+      value: data,
+      label: list.find((element) => element.value === data).label,
+    }));
+  } else return { value: datas, label: list.find((element) => element.value === datas).label };
 };
 const readPostAction = createAction('read/readPost');
 
 const readPost = createAsyncThunk(readPostAction, async (id, thunkAPI) => {
-  const response = await studyService.getDetail(id);
-  console.log(response.data);
-
+  const { data } = await studyService.getDetail(id);
+  console.log(data);
+  console.log(getFormattedData(onlineOrOfflineOption, data.onlineOrOffline));
+  //console.log(response.data);
+  //console.log(getFormattedData(languageList, language));
+  //console.log(expectedPeriodOption.map((item) => item));
+  // console.log(data.onlineOrOffline, data.contactType);
+  // console.log(getFormattedData(contactTypeOption, [...data.contactType]));
+  // console.log(getFormattedData(onlineOrOfflineOption, [...data.onlineOrOffline]));
   return {
-    ...response.data,
-    language: getFormattedData(languageList, response.data.language),
+    ...data,
+    language: getFormattedData(languageList, data.language),
+    expectedPeriod: getFormattedData(expectedPeriodOption, data.expectedPeriod),
+    type: getFormattedData(studyOrProjectOption, data.type),
+    recruits: getFormattedData(recruitsOption, data.recruits),
+    contactPoint: data.contactPoint,
+    onlineOrOffline: getFormattedData(onlineOrOfflineOption, data.onlineOrOffline),
+    contactType: getFormattedData(contactTypeOption, data.contactType),
   };
-  // const language = response.data.language.map((language) => ({
-  //   value: language,
-  //   label: languageList.find((element) => element.value === language).label,
-  // }));
-
-  // response.data.language = language;
-  // return response.data;
 });
 
 const initialState = {
@@ -49,7 +56,7 @@ const initialState = {
     startDate: null,
     type: '',
     recruits: '',
-    onlineOroffline: '',
+    onlineOrOffline: '',
     contactType: '',
     contactPoint: '',
     expectedPeriod: '',
@@ -88,6 +95,12 @@ const readSlice = createSlice({
         updatedAt: payload.updatedAt,
         views: payload.views,
         isClosed: payload.isClosed,
+        expectedPeriod: payload.expectedPeriod,
+        contactType: payload.contactType,
+        type: payload.type,
+        contactPoint: payload.contactPoint,
+        onlineOrOffline: payload.onlineOrOffline,
+        recruits: payload.recruits,
       },
     }),
   },

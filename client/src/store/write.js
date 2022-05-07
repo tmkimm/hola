@@ -126,6 +126,13 @@ const writeSlice = createSlice({
       content: post.content,
       language: post.language,
       postId: post.id,
+      startDate: post.startDate,
+      type: post.type,
+      recruits: post.recruits,
+      onlineOrOffline: post.onlineOrOffline,
+      contactType: post.contactType,
+      contactPoint: post.contactPoint,
+      expectedPeriod: post.expectedPeriod,
     }),
   },
   extraReducers: {
