@@ -95,6 +95,7 @@ const readSlice = createSlice({
         contactPoint: payload.contactPoint,
         onlineOrOffline: payload.onlineOrOffline,
         recruits: payload.recruits,
+        startDate: payload.startDate,
       },
     }),
   },

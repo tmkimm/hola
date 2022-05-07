@@ -11,7 +11,8 @@ To-do
 
 */
 const getValue = (items) => {
-  return items.map((item) => item.value);
+  if (Array.isArray(items)) return items.map((item) => item.value);
+  else return items.value;
 };
 
 const writePostAction = createAction('write/writePost');
