@@ -61,7 +61,7 @@ const StudyItem = ({ study, lastStudyElementRef }) => {
           </div>
         </div>
       </section>
-      {study.isClosed && <div className={styles.closeNotice}>모집 완료</div>}
+      {study.isClosed && <div className={styles.closeNotice}>모집 마감</div>}
     </li>
   );
 };

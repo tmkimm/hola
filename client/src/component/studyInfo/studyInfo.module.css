@@ -6,6 +6,9 @@
 }
 
 .contentWrapper {
+  display: flex;
+  position: relative;
+  align-items: center;
   font-weight: 700;
   font-size: 20px;
 }
@@ -18,8 +21,37 @@
   color: #333333;
 }
 
+.language {
+  width: 36px;
+  height: 36px;
+}
+
+.languageImage {
+  width: 36px;
+  height: 36px;
+}
+
+.languageList {
+  display: flex;
+  gap: 12px;
+}
+
 @media screen and (max-width: 768px) {
   .studyGrid {
     grid-template-columns: repeat(1, 6fr);
+    row-gap: 16px;
+  }
+  .contentWrapper {
+    font-size: 16px;
+  }
+
+  .language {
+    width: 30px;
+    height: 30px;
+  }
+
+  .languageImage {
+    width: 30px;
+    height: 30px;
   }
 }

@@ -29,11 +29,15 @@ const StudyButtons = ({ history, dispatch, handleEdit, handleDelete, isClosed, h
   return (
     <>
       <section className={styles.buttonWrapper}>
-        <button onClick={() => openModal('endModal')}>
+        <button className={styles.buttons} onClick={() => openModal('endModal')}>
           {close === true ? '마감 취소' : '마감'}
         </button>
-        <button onClick={() => handleEdit(dispatch, history)}>수정</button>
-        <button onClick={() => openModal('deleteModal')}>삭제</button>
+        <button className={styles.buttons} onClick={() => handleEdit(dispatch, history)}>
+          수정
+        </button>
+        <button className={styles.buttons} onClick={() => openModal('deleteModal')}>
+          삭제
+        </button>
       </section>
 
       <Modal visible={showPopup} onClose={closeModal}>

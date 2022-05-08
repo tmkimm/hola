@@ -8,17 +8,17 @@
   margin: 0 auto; /* 중앙 정렬 */
   color: #333333;
   gap: 50px;
-}
-
-.titleWrapper {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  position: relative;
 }
 
 .udemy {
   font-weight: 500;
+  position: absolute;
+  right: 16px;
+  background: #f2f4f8;
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: #4a5e75;
 }
 
 .postContentWrapper {
@@ -54,5 +54,32 @@
 @media screen and (max-width: 1000px) {
   .postWrapper {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .udemy {
+    position: absolute;
+    right: 12px;
+    padding: 6px 9px;
+    border-radius: 10px;
+    color: #4a5e75;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .text {
+    font-size: 16px;
+  }
+
+  .postContentWrapper {
+    padding: 8px;
+  }
+  .sequence {
+    margin-right: 6px;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
   }
 }

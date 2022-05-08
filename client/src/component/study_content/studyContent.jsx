@@ -89,20 +89,21 @@ const StudyContent = ({ id }) => {
         {/* <StudyLanguage languages={read.post.language}></StudyLanguage> */}
       </section>
       <div className={styles.postContentWrapper}>
+        <h2 className={styles.postInfo}>프로젝트 소개</h2>
         <div
           className={styles.postContent}
           dangerouslySetInnerHTML={{ __html: read.post.content }}
         ></div>
       </div>
 
-      <section className={styles.modalComment}>
-        <LikesAndViews
+      <section className={styles.commentAndViews}>
+        {/* <LikesAndViews
           views={read.post.views}
           likeUser={read.post.likes}
           totalLikes={read.post.totalLikes}
           studyId={read.post.id}
           userId={user.id}
-        ></LikesAndViews>
+        ></LikesAndViews> */}
         <div className={styles.postComment}>
           <CommentContainer id={read.post.id}></CommentContainer>
         </div>
