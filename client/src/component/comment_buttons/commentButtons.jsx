@@ -18,8 +18,12 @@ const CommentButtons = ({ onModifyClick, onDeleteClick }) => {
   return (
     <>
       <section className={styles.buttonWrapper}>
-        <button onClick={onModifyClick}>수정</button>
-        <button onClick={openModal}>삭제</button>
+        <button className={styles.buttons} onClick={onModifyClick}>
+          수정
+        </button>
+        <button className={styles.buttons} onClick={openModal}>
+          삭제
+        </button>
       </section>
 
       <Modal visible={showPopup} onClose={closeModal}>

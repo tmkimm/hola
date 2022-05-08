@@ -6,6 +6,7 @@ const CommentInput = ({ content, setContent, onRegisterClick, count }) => {
     <div className={styles.commentInput}>
       <h1 className={styles.commentCount}>{count}개의 댓글이 있습니다.</h1>
       <textarea
+        className={styles.commentText}
         placeholder='댓글을 입력하세요.'
         value={content}
         onChange={(e) => {

@@ -81,6 +81,7 @@ const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
           <>
             <div className={styles.commentInput}>
               <input
+                className={styles.modifyInput}
                 type='text'
                 name='contentInput'
                 value={content}
