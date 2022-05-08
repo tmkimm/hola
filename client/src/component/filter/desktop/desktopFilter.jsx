@@ -86,7 +86,7 @@ export const DesktopFilter = React.memo(() => {
   const dispatch = useDispatch();
   const onIconClick = useCallback(
     (Langauge, isSelected) => {
-      if (!isSelected) dispatch(addLanguage(Langauge));
+      if (!isSelected) dispatch(addLanguage(languageMap[Langauge]));
       else {
         selected.length === 1 ? dispatch(initLanguage()) : dispatch(removeLanguage());
       }
