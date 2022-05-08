@@ -114,3 +114,9 @@
 .transparent {
   opacity: 0.3;
 }
+
+@media screen and (max-width: 575px) {
+  .filterWrapper {
+    display: none;
+  }
+}

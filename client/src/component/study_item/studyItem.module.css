@@ -177,8 +177,8 @@ li {
   }
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 767px) {
   .studyItem {
-    width: calc(100% - 2rem);
+    width: 100%;
   }
 }

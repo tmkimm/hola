@@ -18,7 +18,7 @@ const Main = () => {
   return (
     <>
       <Navbar />
-      <Carousel />
+      {/* <Carousel /> */}
       {/* <Banner /> */}
       <DesktopFilter />
       <MainContent />

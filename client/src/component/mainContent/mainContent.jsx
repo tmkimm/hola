@@ -19,7 +19,7 @@ export const MainContent = () => {
     color: '#858E86',
   };
 
-  const [category, setCategory] = useState(PROJECT);
+  const [category, setCategory] = useState(STUDY);
   const [checked, setChecked] = useState(true);
   const dispatch = useDispatch();
 
@@ -45,22 +45,22 @@ export const MainContent = () => {
         <section className={styles.category}>
           <div
             className={`${styles.category__item} ${
-              category === PROJECT ? active.className : inActive.className
-            }`}
-            onClick={() => toggleCategory(PROJECT)}
-          >
-            <ProjectIcon stroke={category === PROJECT ? active.color : inActive.color} />
-            <span className={styles.text}>프로젝트</span>
-          </div>
-
-          <div
-            className={`${styles.category__item} ${
               category === STUDY ? active.className : inActive.className
             }`}
             onClick={() => toggleCategory(STUDY)}
           >
             <StudyIcon stroke={category === STUDY ? active.color : inActive.color} />
             <span className={styles.text}>스터디</span>
+          </div>
+
+          <div
+            className={`${styles.category__item} ${
+              category === PROJECT ? active.className : inActive.className
+            }`}
+            onClick={() => toggleCategory(PROJECT)}
+          >
+            <ProjectIcon stroke={category === PROJECT ? active.color : inActive.color} />
+            <span className={styles.text}>프로젝트</span>
           </div>
         </section>
         <div className={styles.udemyWrapper}>
@@ -70,11 +70,13 @@ export const MainContent = () => {
           <ToggleSwitch checked={checked} handleSelect={handleSelect} />
         </div>
       </div>
-      {category === PROJECT ? (
-        <Projects category={category} checked={checked} />
-      ) : (
-        <Studies category={category} checked={checked} />
-      )}
+      <div className={styles.testWrapper}>
+        {category === PROJECT ? (
+          <Projects category={category} checked={checked} />
+        ) : (
+          <Studies category={category} checked={checked} />
+        )}
+      </div>
     </main>
   );
 };
