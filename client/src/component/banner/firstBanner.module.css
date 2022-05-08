@@ -1,0 +1,72 @@
+.bannerLink {
+  width: 100%;
+  position: relative;
+}
+
+.containerWrapper {
+  background-color: #eeaadc;
+}
+
+.container {
+  display: flex;
+  max-width: 1200px;
+  height: 330px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.leftCover {
+  flex: 1;
+  margin-top: 56px;
+}
+
+.rightCover {
+  flex: 1;
+  margin: auto;
+}
+
+.coverImage {
+  width: 580px;
+  height: 290px;
+}
+
+.promotion {
+  font-weight: bold;
+  padding: 5px 30px;
+  background: #ffcd00;
+  border-radius: 50px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  padding: 0;
+  margin: 12px 0;
+}
+
+@media screen and (max-width: 1000px) {
+  .title {
+    font-size: 28px;
+  }
+  .coverImage {
+    width: 500px;
+    height: 250px;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .coverImage {
+    width: 400px;
+    height: 200px;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .rightCover {
+    display: none;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+}

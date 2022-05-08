@@ -1,8 +1,16 @@
 .slideWrapper {
+  width: 100%;
   margin: 40px auto;
   margin-bottom: 100px;
+  background: #eeaadc;
 }
 
 .bannerImg {
+  width: 100%;
   margin: 0 auto;
+  background: #eeaadc;
+}
+
+.slick-next {
+  display: none;
 }
