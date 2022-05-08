@@ -31,6 +31,7 @@ const languageMap = {
   Docker: 'docker',
   Zeplin: 'zeplin',
   Jest: 'jest',
+  C: 'c',
 };
 
 const languageList = [
