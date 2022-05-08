@@ -1,19 +1,5 @@
-<svg width="78" height="78" viewBox="0 0 78 78" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g filter="url(#filter0_d_1429_3976)">
-<circle cx="39" cy="35" r="34" fill="white" stroke="#A435F0" stroke-width="2"/>
-<path d="M50.9982 25.4269L38.4973 18.2135L26 25.4269V18.2135L38.4991 11L51 18.2135V25.4269H50.9982Z" fill="#A435F0"/>
-<path d="M26 31.4846H32.5478V47.3857C32.5478 51.494 35.6167 53.4969 38.4991 53.4969C41.4063 53.4969 44.4528 51.4407 44.4528 47.3306V31.4846H51V47.7649C51 51.5491 49.8099 54.4696 47.429 56.4719C45.0469 58.473 42.0719 59.4475 38.444 59.4475C34.8197 59.4475 31.8428 58.4748 29.5177 56.4719C27.1901 54.4714 26 51.6593 26 47.9266V31.4846Z" fill="black"/>
-</g>
-<defs>
-<filter id="filter0_d_1429_3976" x="0" y="0" width="78" height="78" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="4"/>
-<feGaussianBlur stdDeviation="2"/>
-<feComposite in2="hardAlpha" operator="out"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1429_3976"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1429_3976" result="shape"/>
-</filter>
-</defs>
+<svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="35" cy="35" r="34" fill="white" stroke="#A435F0" stroke-width="2"/>
+<path d="M46.9982 25.4269L34.4973 18.2135L22 25.4269V18.2135L34.4991 11L47 18.2135V25.4269H46.9982Z" fill="#A435F0"/>
+<path d="M22 31.4846H28.5478V47.3857C28.5478 51.494 31.6167 53.4969 34.4991 53.4969C37.4063 53.4969 40.4528 51.4407 40.4528 47.3306V31.4846H47V47.7649C47 51.5491 45.8099 54.4696 43.429 56.4719C41.0469 58.473 38.0719 59.4475 34.444 59.4475C30.8197 59.4475 27.8428 58.4748 25.5177 56.4719C23.1901 54.4714 22 51.6593 22 47.9266V31.4846Z" fill="black"/>
 </svg>

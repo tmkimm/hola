@@ -5,6 +5,7 @@
 
 .containerWrapper {
   background-color: #eeaadc;
+  margin-bottom: 16px;
 }
 
 .container {
@@ -26,8 +27,8 @@
 }
 
 .coverImage {
-  width: 580px;
-  height: 290px;
+  width: 500px;
+  height: 250px;
 }
 
 .promotion {
@@ -41,7 +42,12 @@
   font-size: 32px;
   font-weight: 700;
   padding: 0;
-  margin: 12px 0;
+  margin-bottom: 12px;
+  margin-top: 0px;
+}
+
+.subText {
+  font-size: 22px;
 }
 
 @media screen and (max-width: 1000px) {
@@ -68,5 +74,9 @@
 
   .title {
     font-size: 24px;
+  }
+
+  .container {
+    height: 250px;
   }
 }

@@ -58,7 +58,7 @@ const WritebuttonContainer = (props) => {
     }
 
     if (language.length === 0) {
-      toast.error('사용 언어를 선택해주세요!', {
+      toast.error('기술 스택을 선택해주세요!', {
         position: 'top-right',
         autoClose: 3000,
       });

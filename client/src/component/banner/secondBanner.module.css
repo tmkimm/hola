@@ -48,6 +48,10 @@
   margin: 12px 0;
 }
 
+.subText {
+  font-size: 22px;
+}
+
 @media screen and (max-width: 820px) {
   .title {
     font-size: 28px;
@@ -66,5 +70,9 @@
 
   .title {
     font-size: 24px;
+  }
+
+  .container {
+    height: 250px;
   }
 }
