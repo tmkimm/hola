@@ -1,7 +1,7 @@
 const languageMap = {
   Udemy: 'udemy',
-  JavaScript: 'javaScript',
-  TypeScript: 'typeScript',
+  JavaScript: 'javascript',
+  TypeScript: 'typscript',
   React: 'react',
   Vue: 'vue',
   Svelte: 'svelte',
@@ -26,6 +26,8 @@ const languageMap = {
   Unity: 'unity',
   AWS: 'aws',
   Kubernetes: 'kubernetes',
+  Git: 'git',
+  Figma: 'figma',
   Docker: 'docker',
   Zeplin: 'zeplin',
   Jest: 'jest',
