@@ -50,7 +50,7 @@ const StudyItem = ({ study, lastStudyElementRef }) => {
         ))}
       </ul>
       <section className={styles.info}>
-        <Avatar size='small' userName={study.author.nickname} imgPath={study.}></Avatar>
+        <Avatar size='small' userName={study.author.nickName} imgPath={study.author.image}></Avatar>
         <div className={styles.viewsAndComment}>
           <div className={styles.infoItem}>
             <AiOutlineEye size={28} color={'#999999'} />
