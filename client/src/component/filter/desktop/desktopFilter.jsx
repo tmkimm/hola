@@ -124,7 +124,7 @@ export const DesktopFilter = React.memo(() => {
       </ul>
       <ul className={styles.languages}>
         {languages[subject].map((language, idx) => {
-          const isSelected = selected.includes(language);
+          const isSelected = selected.includes(languageMap[language]);
           return (
             <li
               key={idx}
@@ -151,7 +151,7 @@ export const DesktopFilter = React.memo(() => {
               className={styles.selectedLanguage}
               onClick={() => onDeleteIconClick(selected)}
             >
-              <div>{selected}</div>
+              <div>{languageMap[selected]}</div>
               <img
                 className={styles.deleteButton}
                 src={`/images/info/delete.svg`}
