@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { FaRegComment } from 'react-icons/fa';
 import { AiOutlineEye } from 'react-icons/ai';
 import { Avatar } from 'component/common/avatar';
+import { formatDate } from 'common/utils';
 
 const StudyItem = ({ study, lastStudyElementRef }) => {
   const studyLang = [];
@@ -27,7 +28,7 @@ const StudyItem = ({ study, lastStudyElementRef }) => {
     >
       <div className={styles.schedule}>
         <p className={styles.scheduleTitle}>시작 예정일 |</p>
-        <p className={styles.scheduleInfo}>2022.02.05</p>
+        <p className={styles.scheduleInfo}>{formatDate(study.startDate)}</p>
       </div>
       <h1 className={styles.title}>{study.title}</h1>
       <ul className={styles.hashtag}>
