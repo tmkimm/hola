@@ -17,7 +17,7 @@
 
 .leftCover {
   flex: 1;
-  margin-top: 88px;
+  margin: auto 0;
 }
 
 .rightCover {
@@ -73,6 +73,9 @@
   }
 
   .container {
-    height: 250px;
+    height: 240px;
+  }
+  .subText {
+    font-size: 16px;
   }
 }
