@@ -151,7 +151,7 @@ export const DesktopFilter = React.memo(() => {
               className={styles.selectedLanguage}
               onClick={() => onDeleteIconClick(selected)}
             >
-              <div>{languageMap[selected]}</div>
+              <div>{selected}</div>
               <img
                 className={styles.deleteButton}
                 src={`/images/info/delete.svg`}
