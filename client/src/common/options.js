@@ -1,7 +1,7 @@
 const languageMap = {
   Udemy: 'udemy',
   JavaScript: 'javascript',
-  TypeScript: 'typscript',
+  TypeScript: 'typescript',
   React: 'react',
   Vue: 'vue',
   Svelte: 'svelte',
