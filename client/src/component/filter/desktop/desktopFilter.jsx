@@ -8,6 +8,7 @@ import {
   removeLanguage,
   changeSubject,
 } from 'store/language';
+import { languageMap } from 'common/options';
 
 const languages = {
   인기: [
@@ -42,7 +43,7 @@ const languages = {
     'Firebase',
   ],
   모바일: ['Flutter', 'Swift', 'ReactNative', 'Unity'],
-  기타: ['Aws', 'Kubernetes', 'Docker', 'Git', 'Figma', 'Zeplin', 'Jest', 'C'],
+  기타: ['AWS', 'Kubernetes', 'Docker', 'Git', 'Figma', 'Zeplin', 'Jest', 'C'],
   모두보기: [
     'JavaScript',
     'TypeScript',
@@ -68,7 +69,7 @@ const languages = {
     'Swift',
     'ReactNative',
     'Unity',
-    'Aws',
+    'AWS',
     'Kubernetes',
     'Docker',
     'Git',
@@ -134,7 +135,7 @@ export const DesktopFilter = React.memo(() => {
             >
               <img
                 className={styles.logo}
-                src={`/images/languages/${language}.svg`}
+                src={`/images/languages/${languageMap[language]}.svg`}
                 alt={language}
               />
               <span className={styles.languageName}>{language}</span>
