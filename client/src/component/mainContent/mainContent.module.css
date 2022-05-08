@@ -126,18 +126,18 @@
   font-weight: 800;
 }
 
-.testWrapper {
+.appWrapper {
   margin: 0 auto;
 }
 
 @media screen and (max-width: 1300px) {
-  .testWrapper {
+  .appWrapper {
     width: 780px;
   }
 }
 
 @media screen and (max-width: 820px) {
-  .testWrapper {
+  .appWrapper {
     width: 100%;
   }
 
@@ -153,6 +153,9 @@
 }
 
 @media screen and (max-width: 575px) {
+  .main {
+    margin-top: 60px;
+  }
   .udemy {
     padding: 5px 10px;
     background: #f2f4f8;

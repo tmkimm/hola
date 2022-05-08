@@ -70,7 +70,7 @@ export const MainContent = () => {
           <ToggleSwitch checked={checked} handleSelect={handleSelect} />
         </div>
       </div>
-      <div className={styles.testWrapper}>
+      <div className={styles.appWrapper}>
         {category === PROJECT ? (
           <Projects category={category} checked={checked} />
         ) : (
