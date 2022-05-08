@@ -16,7 +16,8 @@ export const FirstBanner = () => {
             <div className={styles.LogoWrapper}>
               <img src='/images/banner/collaboLogo.png' alt='logo img' />
             </div>
-            <h2 className={styles.title}>유데미 강의 무료로 들으실 분 찾아요! </h2>
+            <h2 className={styles.title}>유데미 강의 무료 </h2>
+            <span className={styles.subTitle}>로 들으실 분 찾아요!</span>
             <span className={styles.subText}>올라에서만 50개 강의 무료 제공 🍀</span>
           </div>
           <div className={styles.rightCover}>

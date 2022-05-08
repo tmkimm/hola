@@ -39,6 +39,7 @@
 }
 
 .title {
+  display: inline-block;
   font-size: 32px;
   font-weight: 700;
   padding: 0;
@@ -46,8 +47,13 @@
   margin-top: 0px;
 }
 
+.subTitle {
+  font-size: 32px;
+}
+
 .subText {
   font-size: 22px;
+  display: block;
 }
 
 @media screen and (max-width: 1000px) {
@@ -73,6 +79,10 @@
   }
 
   .title {
+    font-size: 24px;
+  }
+
+  .subTitle {
     font-size: 24px;
   }
 

@@ -14,7 +14,8 @@ export const SecondBanner = () => {
           <div className={styles.leftCover}>
             <button className={styles.promotion}>NOTICE</button>
             <div className={styles.imgWrapper}></div>
-            <h2 className={styles.title}>새롭게 달라진 Hola!를 소개합니다.</h2>
+            <h2 className={styles.title}>새롭게 달라진 Hola!</h2>
+            <span className={styles.subTitle}>를 소개합니다.</span>
             <span className={styles.subText}>이제 마음 맞는 팀원을 더 쉽게 만나세요 🔍</span>
           </div>
           {/* <div className={styles.rightCover}>

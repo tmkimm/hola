@@ -42,13 +42,19 @@
 }
 
 .title {
+  display: inline-block;
   font-size: 32px;
   font-weight: 700;
   padding: 0;
   margin: 12px 0;
 }
 
+.subTitle {
+  font-size: 32px;
+}
+
 .subText {
+  display: block;
   font-size: 22px;
 }
 
@@ -69,6 +75,10 @@
   }
 
   .title {
+    font-size: 24px;
+  }
+
+  .subTitle {
     font-size: 24px;
   }
 
