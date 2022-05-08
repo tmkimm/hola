@@ -37,9 +37,9 @@ const App = () => {
         <Route path='/myPosts'>
           <MyPosts />
         </Route>
-        <Route path='/myLikes'>
+        {/* <Route path='/myLikes'>
           <MyLikes />
-        </Route>
+        </Route> */}
         <Route path='/auth/github'>
           <GithubLogin />
         </Route>
