@@ -1,5 +1,10 @@
 .buttonWrapper {
   display: flex;
   justify-content: flex-end;
-  margin-top: 2rem;
+  margin-top: 20px;
+}
+
+.buttons {
+  font-size: 16px;
+  color: #444444;
 }

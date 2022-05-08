@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router";
-import studyService from "service/study_service";
-import styles from "./recommendPost.module.css";
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+import studyService from 'service/study_service';
+import styles from './recommendPost.module.css';
 
 const RecommendPost = ({ id }) => {
   const [posts, setPosts] = useState([]);
-  const nickname = useSelector((state) => state.user.nickName) || "방문자";
+  const nickname = useSelector((state) => state.user.nickName) || '방문자';
   const history = useHistory();
   useEffect(() => {
     studyService.getRecommendedPost(id).then((data) => setPosts(data));
@@ -30,11 +30,7 @@ const RecommendPost = ({ id }) => {
         </div>
         <ul className={styles.listWrapper}>
           {posts.map((post, idx) => (
-            <li
-              className={styles.postList}
-              key={post._id}
-              onClick={() => onclick(post._id)}
-            >
+            <li className={styles.postList} key={post._id} onClick={() => onclick(post._id)}>
               <div className={styles.index}>{`${idx + 1}.`}</div>
               <div className={styles.title}>{post.title}</div>
             </li>

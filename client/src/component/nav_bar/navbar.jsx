@@ -1,18 +1,14 @@
-import React, { useEffect } from "react";
-import LoginModal from "component/modal/login_modal/loginModal";
-import Modal from "component/modal/modal_component/modal";
-import styles from "./navbar.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import LoginUser from "component/login_user/loginUser";
-import { setModalVisible } from "store/loginStep";
-import { clearUser, fetchUserByRefreshToken } from "store/user";
-import { toast } from "react-toastify";
+import React, { useEffect } from 'react';
+import LoginModal from 'component/modal/login_modal/loginModal';
+import Modal from 'component/modal/modal_component/modal';
+import styles from './navbar.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import LoginUser from 'component/login_user/loginUser';
+import { setModalVisible } from 'store/loginStep';
+import { clearUser, fetchUserByRefreshToken } from 'store/user';
+import { toast } from 'react-toastify';
 
-/* 
-To-do
-
-*/
 const Navbar = React.memo(() => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -20,11 +16,11 @@ const Navbar = React.memo(() => {
 
   const modalVisible = useSelector((state) => state.loginStep.modalVisible);
   const openModal = () => {
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
     dispatch(setModalVisible(true));
   };
   const closeModal = () => {
-    document.body.style.overflow = "auto";
+    document.body.style.overflow = 'auto';
     dispatch(setModalVisible(false));
   };
   const handleRegister = () => {
@@ -32,7 +28,7 @@ const Navbar = React.memo(() => {
       openModal();
       return;
     }
-    history.push("/register");
+    history.push('/register');
   };
 
   useEffect(() => {
@@ -40,28 +36,22 @@ const Navbar = React.memo(() => {
       // page refresh후 갱신
       dispatch(fetchUserByRefreshToken()).then((response) => {
         // 유저 nickname 존재시 refresh token을 이용해서 유저정보 얻어옴
-        if (response.meta.requestStatus !== "fulfilled") {
-          history.push("/");
+        if (response.meta.requestStatus !== 'fulfilled') {
+          history.push('/');
           dispatch(clearUser()); // 유저 초기화
-          toast.error("로그인이 만료 되었어요!", {
-            position: "top-right",
+          toast.error('로그인이 만료 되었어요!', {
+            position: 'top-right',
             autoClose: 3000,
           });
         }
-        //  console.log("fetchByuserRefreshToken response :", response);
-        // 실패했을때 에러처리 필요
       });
     }
   }, [dispatch, history, user.nickName]);
 
   return (
     <nav className={styles.navbar}>
-      <a href="/">
-        <img
-          className={styles.logo}
-          src="/images/logo/hola_logo_w.png"
-          alt="logo"
-        />
+      <a href='/'>
+        <img className={styles.logo} src='/images/logo/hola_logo_y.png' alt='logo' />
       </a>
       <div className={styles.loginElementWrapper}>
         <button className={styles.postRegister} onClick={handleRegister}>
@@ -72,10 +62,17 @@ const Navbar = React.memo(() => {
             로그인
           </button>
         ) : (
-          <LoginUser />
+          <>
+            <img
+              className={styles.notification}
+              src={'/images/info/notification.svg'}
+              alt='notification'
+            />
+            <LoginUser />
+          </>
         )}
       </div>
-      <Modal visible={modalVisible} name="login" onClose={closeModal}>
+      <Modal visible={modalVisible} name='login' onClose={closeModal}>
         <LoginModal handleClose={closeModal} tabIndex={0}></LoginModal>
       </Modal>
     </nav>

@@ -1,0 +1,47 @@
+.contactWrapper {
+  position: absolute;
+  left: 110px;
+  background: #f2f4f8;
+  border-radius: 10px;
+  color: #4a5e75;
+}
+
+.email {
+  position: absolute;
+  left: 110px;
+  background: #f2f4f8;
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: #4a5e75;
+  font-size: 14px;
+}
+
+.link {
+  display: flex;
+  gap: 8px;
+  font-size: 16px;
+  padding: 8px 12px;
+  text-decoration-line: underline;
+  text-decoration-color: #4a5e75;
+}
+
+.linkImg {
+  width: 16px;
+  height: 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .contactWrapper {
+    left: 95px;
+  }
+  .email {
+    padding: 6px 9px;
+    font-size: 12px;
+    left: 95px;
+  }
+
+  .link {
+    font-size: 12px;
+    padding: 6px 9px;
+  }
+}

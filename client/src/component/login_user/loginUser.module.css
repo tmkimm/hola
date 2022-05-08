@@ -5,17 +5,10 @@
   position: relative;
 }
 
-.userName {
-  font-size: 18px;
-  font-weight: 600;
-  margin-right: 0.25rem;
-}
-
 .userImg {
   display: block;
   height: 2.5rem;
   width: 2.5rem;
-  box-shadow: rgb(0 0 0 / 9%) 0px 0px 8px;
   border-radius: 50%;
   object-fit: cover;
   transition: all 0.125s ease-in 0s;
@@ -23,14 +16,7 @@
 
 .userWrapper svg {
   font-size: 1.5rem;
-  margin-left: 0.25rem;
   color: rgb(134, 142, 150);
   transition: all 0.125s ease-in 0s;
   margin-right: -0.4375rem;
-}
-
-@media screen and (max-width: 600px) {
-  .userName {
-    display: none;
-  }
 }

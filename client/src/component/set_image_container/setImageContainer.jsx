@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import SetImage from "../set_image/setImage";
-import { useDispatch, useSelector } from "react-redux";
-import { nextStep } from "../../store/loginStep";
-import studyService from "../../service/study_service";
-import { addUserNickName } from "../../store/user";
+import React, { useState } from 'react';
+import SetImage from '../set_image/setImage';
+import { useDispatch, useSelector } from 'react-redux';
+import { nextStep } from '../../store/loginStep';
+import studyService from '../../service/study_service';
+import { addUserNickName } from '../../store/user';
 
 const SetImageContainer = (props) => {
   const dispatch = useDispatch();
@@ -15,23 +15,16 @@ const SetImageContainer = (props) => {
     const nickName = loginStep.nickName;
     const id = loginStep.id;
     const likeLanguages = loginStep.likeLanguages;
-    let image = "";
+    let image = '';
     if (isImageChanged) {
       if (userImage) {
-        const { preSignedUrl, fileName } = await studyService.getPresignedUrl(
-          nickName
-        );
+        const { preSignedUrl, fileName } = await studyService.getPresignedUrl(nickName);
         image = fileName;
 
-        await studyService.uploadImageToS3WithBase64(
-          preSignedUrl,
-          userImage,
-          fileName
-        );
-        // console.log("response from uploadUserimgtoS3", response);
+        await studyService.uploadImageToS3WithBase64(preSignedUrl, userImage, fileName);
       }
     } else {
-      image = "default.PNG";
+      image = 'default.PNG';
     }
 
     dispatch(
@@ -40,7 +33,7 @@ const SetImageContainer = (props) => {
         nickName,
         likeLanguages,
         image,
-      })
+      }),
     );
 
     dispatch(nextStep());

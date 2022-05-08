@@ -1,0 +1,58 @@
+.switch {
+  display: flex;
+  align-items: center;
+}
+
+.switchTitle {
+  color: #444444;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-right: 20px;
+}
+
+.switchCheckbox {
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.switch input[type='checkbox']:checked + .ball {
+  transform: translateX(24px);
+}
+
+.switchLabel {
+  position: relative;
+  display: inline-block;
+  height: 26px;
+  width: 50px;
+  border-radius: 50px;
+  background-color: #c1cbd8;
+  cursor: pointer;
+}
+
+.switchChecked {
+  background-color: #ffcd00;
+}
+
+.ball {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.2s linear;
+  background-color: #ffffff;
+}
+
+@media screen and (max-width: 575px) {
+  .switchTitle {
+    font-size: 16px;
+    margin-right: 12px;
+  }
+}

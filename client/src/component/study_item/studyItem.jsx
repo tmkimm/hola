@@ -1,86 +1,68 @@
-import React, { useState } from "react";
-import styles from "./studyItem.module.css";
-import Modal from "component/modal/modal_component/modal";
-import PostModal from "component/modal/post_modal/postModal";
-import { useHistory } from "react-router-dom";
-import { FaRegCommentDots, FaRegEye } from "react-icons/fa";
+import React from 'react';
+import styles from './studyItem.module.css';
+import { useHistory } from 'react-router-dom';
+import { FaRegComment } from 'react-icons/fa';
+import { AiOutlineEye } from 'react-icons/ai';
+import { Avatar } from 'component/common/avatar';
 
 const StudyItem = ({ study, lastStudyElementRef }) => {
   const studyLang = [];
   const history = useHistory();
   const displayType = study.isClosed ? styles.closed : styles.open;
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 5; i++) {
     if (study.language[i] === undefined) break;
-    if (study.language[i] === "c#") studyLang.push("cc");
     else studyLang.push(study.language[i]);
   }
 
-  const [modalVisible, setModalVisible] = useState(false);
-
   const onClick = () => {
     history.push(`/study/${study._id}`);
-    // console.log(study);
-  };
-  const closeModal = () => {
-    document.body.style.overflow = "auto";
-    setModalVisible(false);
   };
 
   return (
-    <>
-      <li
-        ref={lastStudyElementRef ? lastStudyElementRef : null}
-        className={`${styles.studyItem} ${displayType}`}
-        onClick={onClick}
-      >
-        <h1 className={styles.title}>{study.title}</h1>
-        <ul className={styles.content}>
-          {studyLang.map((lang, i) => (
-            <li key={i} className={styles.language}>
-              <img
-                className={styles.languageImage}
-                src={`/images/languages/${lang}.png`}
-                alt="language"
-              />
-              <p className={styles.languageName}>
-                {lang === "cc" ? "c#" : lang}
-              </p>
-            </li>
-          ))}
-        </ul>
-        <section className={styles.info}>
+    <li
+      ref={lastStudyElementRef ? lastStudyElementRef : null}
+      className={`${styles.studyItem} ${displayType}`}
+      onClick={onClick}
+    >
+      <div className={styles.schedule}>
+        <p className={styles.scheduleTitle}>시작 예정일 |</p>
+        <p className={styles.scheduleInfo}>2022.02.05</p>
+      </div>
+      <h1 className={styles.title}>{study.title}</h1>
+      <ul className={styles.hashtag}>
+        {study.hashTag.map((hashtag, idx) => (
+          <li key={idx} className={styles.hashtagList}>
+            #{hashtag}
+          </li>
+        ))}
+      </ul>
+      <ul className={styles.content}>
+        {studyLang.map((lang, i) => (
+          <li key={i} className={styles.language}>
+            <img
+              className={styles.languageImage}
+              src={`/images/languages/${lang}.svg`}
+              alt='language'
+            />
+          </li>
+        ))}
+      </ul>
+      <section className={styles.info}>
+        <Avatar size='small' userName='testUser'></Avatar>
+        <div className={styles.viewsAndComment}>
           <div className={styles.infoItem}>
-            <FaRegCommentDots size={14} color={"#9A9A9A"} />
-            <p className={styles.comments}>{study.totalComments}</p>
-          </div>
-
-          <div className={styles.infoItem}>
-            <FaRegEye size={16} color={"#9A9A9A"} />
+            <AiOutlineEye size={28} color={'#999999'} />
             <p className={styles.views}>{study.views}</p>
           </div>
-
           <div className={styles.infoItem}>
-            <img
-              className={styles.itemImg}
-              src="/images/info/heart_filled.png"
-              alt="likes"
-            />
-            <p>{study.totalLikes}</p>
+            <FaRegComment size={20} color={'#999999'} />
+            <p className={styles.comments}>{study.totalComments}</p>
           </div>
-        </section>
-        {study.isClosed && <div className={styles.closeNotice}>모집 완료</div>}
-      </li>
-      {modalVisible && (
-        <Modal visible={modalVisible} onClose={closeModal}>
-          <PostModal
-            study={study}
-            handleClose={closeModal}
-            tabIndex={0}
-          ></PostModal>
-        </Modal>
-      )}
-    </>
+        </div>
+      </section>
+      {study.isClosed && <div className={styles.closeNotice}>모집 마감</div>}
+    </li>
   );
 };
 

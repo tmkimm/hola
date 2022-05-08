@@ -1,40 +1,29 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = [
-  "javascript",
-  "typescript",
-  "react",
-  "vue",
-  "node.js",
-  "java",
-  "spring",
-  "kotlin",
-  "c++",
-  "go",
-  "python",
-  "django",
-  "flutter",
-  "swift",
-];
+const initialState = {
+  subject: '인기',
+  selected: [],
+};
 const languageSlice = createSlice({
-  name: "language",
+  name: 'language',
   initialState,
   reducers: {
     addLanguage: (state, action) => {
-      state.push(action.payload);
+      state.selected.push(action.payload);
     },
     removeLanguage: (state, action) => {
-      state.splice(
-        state.findIndex((item) => item === action.payload),
-        1
+      state.selected.splice(
+        state.selected.findIndex((item) => item === action.payload),
+        1,
       );
     },
-    clearLanguage: () => [],
+    clearLanguage: (state) => ({ ...state, selected: [] }),
     initLanguage: () => initialState,
+    changeSubject: (state, action) => ({ ...state, subject: action.payload }),
   },
 });
 
-export const { addLanguage, removeLanguage, clearLanguage, initLanguage } =
+export const { addLanguage, removeLanguage, clearLanguage, initLanguage, changeSubject } =
   languageSlice.actions;
 
 export default languageSlice.reducer;

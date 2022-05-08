@@ -1,5 +1,6 @@
 .wrapper {
-  width: 48rem;
+  max-width: 900px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   margin-top: 5rem;
@@ -12,7 +13,7 @@
   font-size: 1rem;
 }
 
-.modalComment {
+.commentAndViews {
   display: flex;
   flex-direction: column;
   background: white;
@@ -46,6 +47,7 @@
   border-bottom: 2px solid #dcdcdc;
   margin-top: 2rem;
 }
+
 .postHeader {
   display: flex;
   flex-direction: column;
@@ -56,13 +58,15 @@
   display: flex;
   align-items: center;
   position: relative;
-  margin-top: 2rem;
 }
 
 .userName {
+  color: #333333;
   cursor: pointer;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 700;
+  padding-right: 15px;
+  border-right: 2px solid #e1e1e1;
 }
 
 .userImg {
@@ -70,11 +74,9 @@
   display: block;
   height: 3rem;
   width: 3rem;
-  margin-right: 0.25rem;
-  box-shadow: rgb(0 0 0 / 9%) 0px 0px 8px;
+  margin-right: 16px;
   border-radius: 50%;
   object-fit: cover;
-  transition: all 0.125s;
 }
 
 .userImg:hover {
@@ -82,13 +84,16 @@
 }
 
 .userAndDate {
+  margin-top: 32px;
+  padding-bottom: 32px;
+  border-bottom: 3px solid #f2f2f2;
   display: flex;
-  justify-content: space-between;
+  gap: 15px;
   align-items: center;
 }
 
 .postContentWrapper {
-  margin-top: 5rem;
+  margin-top: 132px;
   font-size: 1.125rem;
   word-break: break-all;
   line-height: 1.7;
@@ -97,12 +102,11 @@
 
 .postContent {
   width: 100%;
-  margin: 0 auto;
+  margin: 40px auto 0;
 }
 
 .postComment {
   width: 100%;
-  min-height: 800px;
   margin: 0 auto;
 }
 
@@ -123,11 +127,8 @@
 }
 
 .registeredDate {
-  font-size: 1.25rem;
-  line-height: 126.5%; /* or 19px */
-  margin-top: 1.5rem;
-  letter-spacing: -0.005em;
-  color: #8c8c8c;
+  font-size: 18px;
+  color: #717171;
 }
 
 .title {
@@ -137,6 +138,15 @@
   line-height: 126.5%; /* or 48px */
   letter-spacing: -0.005em;
   color: #000000;
+}
+
+.postInfo {
+  margin: 0;
+  color: #333333;
+  font-size: 26px;
+  font-weight: 700;
+  padding-bottom: 24px;
+  border-bottom: 3px solid #f2f2f2;
 }
 
 @media screen and (max-width: 768px) {
@@ -152,6 +162,10 @@
   .title {
     font-size: 1.5rem;
   }
+  .postInfo {
+    font-size: 20px;
+  }
+
   .usedLanguageWrapper {
     flex-direction: column;
     align-items: flex-start;
@@ -160,6 +174,7 @@
     font-size: 1rem;
   }
   .userImg {
+    margin-right: 12px;
     width: 2rem;
     height: 2rem;
   }

@@ -13,6 +13,7 @@
 @media (max-width: 768px) {
   .loginWrapper {
     flex-direction: column;
+    gap: 30px;
     margin-top: 1.5rem;
   }
   .loginTitle {
@@ -20,7 +21,7 @@
   }
 
   .descriptionMobile {
-    margin-top: 3rem;
+    margin-top: 4rem;
     display: block;
     color: rgb(134, 142, 150);
     font-weight: 500;

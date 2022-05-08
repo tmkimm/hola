@@ -1,6 +1,5 @@
 .totalWrapper {
   position: relative;
-  margin-top: 2rem;
 }
 
 .recommendWrapper {
@@ -10,7 +9,7 @@
 
 .listWrapper {
   width: 240px;
-  margin-left: 5rem;
+  margin-left: 2rem;
   border-left: 2px solid rgb(233, 236, 239);
   padding: 1rem 0.75rem;
   line-height: 1.5;
@@ -26,7 +25,7 @@
 
 .userInfoWrapper {
   display: flex;
-  margin-left: 5rem;
+  margin-left: 2rem;
   position: fixed;
   top: 350px;
 }

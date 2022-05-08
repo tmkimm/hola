@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { nextStep, setSignUpUser } from "store/loginStep";
-import SetInterest from "component/set_interest/setInterest";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { nextStep, setSignUpUser } from 'store/loginStep';
+import SetInterest from 'component/set_interest/setInterest';
 
 const SetInterestContainer = (props) => {
   const [likeLanguages, setLikeLanguages] = useState([]);
@@ -10,9 +10,9 @@ const SetInterestContainer = (props) => {
   const handleLoginStep = () => {
     dispatch(
       setSignUpUser({
-        key: "likeLanguages",
+        key: 'likeLanguages',
         value: likeLanguages.map((item) => item.value),
-      })
+      }),
     );
     dispatch(nextStep());
   };

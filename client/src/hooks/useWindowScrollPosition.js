@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import useLocalStorage from "./useLocalStorage";
+import React, { useEffect } from 'react';
+import useLocalStorage from './useLocalStorage';
 
 const useWindowScrollPosition = (pageName, loading) => {
   const [scrollYStorage, setScrollYStorage] = useLocalStorage(pageName, 0);

@@ -10,13 +10,16 @@ class Study {
     this.study = httpClient;
   }
 
-  getList = async (query, selectedLanguages, pageNumber, checked) => {
+  getList = async (category, selectedLanguages, pageNumber, checked) => {
+    const queryType = { project: 1, study: 2 };
+
     try {
       const params = {
-        sort: query,
+        sort: '-createdAt',
         offset: pageNumber,
         limit: 20,
         isClosed: checked,
+        type: queryType[category],
       };
 
       if (selectedLanguages.length !== 0) {
@@ -52,12 +55,30 @@ class Study {
       console.error(e);
     }
   };
-  register = async ({ title, content, language }) => {
+  register = async ({
+    title,
+    content,
+    language,
+    startDate,
+    type,
+    recruits,
+    onlineOrOffline,
+    contactType,
+    contactPoint,
+    expectedPeriod,
+  }) => {
     try {
       const response = await this.study.post('posts', {
         title,
         content,
         language,
+        startDate,
+        type,
+        recruits,
+        onlineOrOffline,
+        contactType,
+        contactPoint,
+        expectedPeriod,
       });
       return response;
     } catch (error) {
@@ -65,12 +86,31 @@ class Study {
     }
   };
 
-  modify = async (id, title, content, language) => {
+  modify = async ({
+    postId,
+    title,
+    content,
+    language,
+    startDate,
+    type,
+    recruits,
+    onlineOrOffline,
+    contactType,
+    contactPoint,
+    expectedPeriod,
+  }) => {
     try {
-      const response = await this.study.patch(`posts/${id}`, {
+      const response = await this.study.patch(`posts/${postId}`, {
         title,
         content,
         language,
+        startDate,
+        type,
+        recruits,
+        onlineOrOffline,
+        contactType,
+        contactPoint,
+        expectedPeriod,
       });
       return response;
     } catch (error) {
@@ -128,10 +168,7 @@ class Study {
       });
       return response;
     } catch (error) {
-      //console.log(error.response.status);
       return error.response.status;
-      //console.log("error from console.log", error);
-      //return
     }
   };
 
@@ -146,7 +183,6 @@ class Study {
 
   addLikes = async (postId) => {
     try {
-      // console.log("postId : " + postId);
       const response = await this.study.post('posts/likes', {
         postId,
       });
@@ -195,7 +231,7 @@ class Study {
         headers: new Headers({
           'Content-Type': 'image/png',
         }),
-      })
+      }),
     );
 
     if (response.status !== 200) {
@@ -208,10 +244,6 @@ class Study {
   };
 
   uploadImageToS3WithBase64 = async (presignedUrl, file, fileName) => {
-    // console.log("=======at base64==========");
-    // console.log("pre : ", presignedUrl);
-    // console.log("fileName: ", fileName);
-    // console.log("=======at base64==========");
     let arr = file.split(','),
       mime = arr[0].match(/:(.*?);/)[1],
       bstr = atob(arr[1]),

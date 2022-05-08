@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "./signupEnd.module.css";
+import React from 'react';
+import styles from './signupEnd.module.css';
 
 const SignupEnd = ({ handleClose }) => {
   return (
@@ -9,16 +9,8 @@ const SignupEnd = ({ handleClose }) => {
         <br />
         Hola에서 당신의 꿈을 코딩하세요!
       </h1>
-      <img
-        className={styles.logo}
-        src="/images/logo/hola_logo_y.png"
-        alt="logo"
-      />
-      <button
-        onClick={handleClose}
-        className={styles.buttonClose}
-        name="complete"
-      >
+      <img className={styles.logo} src='/images/logo/hola_logo_y.png' alt='logo' />
+      <button onClick={handleClose} className={styles.buttonClose} name='complete'>
         시작하기
       </button>
     </>

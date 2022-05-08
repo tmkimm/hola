@@ -1,6 +1,13 @@
 .studyList {
   display: flex;
+  gap: 35px;
   flex-wrap: wrap;
   padding: 0;
   margin-bottom: 10rem;
+}
+
+@media screen and (max-width: 820px) {
+  .studyList {
+    gap: 20px;
+  }
 }

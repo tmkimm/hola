@@ -1,0 +1,104 @@
+.bannerLink {
+  width: 100%;
+  position: relative;
+}
+
+.containerWrapper {
+  background-color: #eeaadc;
+  margin-bottom: 16px;
+}
+
+.container {
+  display: flex;
+  max-width: 1200px;
+  height: 330px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.leftCover {
+  flex: 1;
+  margin: auto 0;
+}
+
+.rightCover {
+  flex: 1;
+  margin: auto;
+}
+
+.coverImage {
+  width: 500px;
+  height: 250px;
+}
+
+.promotion {
+  font-weight: bold;
+  padding: 5px 30px;
+  background: #ffcd00;
+  border-radius: 50px;
+}
+
+.title {
+  display: inline-block;
+  font-size: 32px;
+  font-weight: 700;
+  padding: 0;
+  margin-bottom: 12px;
+  margin-top: 0px;
+}
+
+.subTitle {
+  font-size: 32px;
+}
+
+.subText {
+  font-size: 22px;
+  display: block;
+}
+
+@media screen and (max-width: 1000px) {
+  .title {
+    font-size: 28px;
+  }
+  .coverImage {
+    width: 500px;
+    height: 250px;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .coverImage {
+    width: 400px;
+    height: 200px;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .rightCover {
+    display: none;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .subTitle {
+    font-size: 24px;
+  }
+
+  .container {
+    height: 240px;
+  }
+
+  .subText {
+    font-size: 16px;
+  }
+
+  .LogoWrapper {
+    width: 180px;
+  }
+
+  .LogoWrapper img {
+    width: 180px;
+  }
+}
