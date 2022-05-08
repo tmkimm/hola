@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { formatDate } from 'common/utils';
 import CommentContainer from 'component/comment_container/commentContainer';
-import LikesAndViews from 'component/likes_and_views/likesAndViews';
 import studyService from 'service/study_service';
 import { setPost } from 'store/write';
 import RecommendPost from 'component/recommend_post/recommendPost';
@@ -37,7 +36,6 @@ const StudyContent = ({ id }) => {
   const user = useSelector((state) => state.user);
   const read = useSelector((state) => state.read);
 
-  // console.log("read : ", read);
   const handleDelete = async (id) => {
     await studyService.deleteStudy(id);
     document.body.style.overflow = 'auto';

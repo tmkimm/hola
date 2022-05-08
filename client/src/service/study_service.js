@@ -168,10 +168,7 @@ class Study {
       });
       return response;
     } catch (error) {
-      //console.log(error.response.status);
       return error.response.status;
-      //console.log("error from console.log", error);
-      //return
     }
   };
 
@@ -186,7 +183,6 @@ class Study {
 
   addLikes = async (postId) => {
     try {
-      // console.log("postId : " + postId);
       const response = await this.study.post('posts/likes', {
         postId,
       });
@@ -248,10 +244,6 @@ class Study {
   };
 
   uploadImageToS3WithBase64 = async (presignedUrl, file, fileName) => {
-    // console.log("=======at base64==========");
-    // console.log("pre : ", presignedUrl);
-    // console.log("fileName: ", fileName);
-    // console.log("=======at base64==========");
     let arr = file.split(','),
       mime = arr[0].match(/:(.*?);/)[1],
       bstr = atob(arr[1]),

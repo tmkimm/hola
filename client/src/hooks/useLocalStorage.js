@@ -11,7 +11,7 @@ const useLocalStorage = (key, initialValue) => {
   const [storedValue, setStoredValue] = useState(() => {
     try {
       const item = window.localStorage.getItem(key);
-      //console.log("get value from localStorage##### : ", JSON.parse(item));
+
       return item ? JSON.parse(item) : initialValue;
     } catch (error) {
       return initialValue;

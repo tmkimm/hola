@@ -14,7 +14,6 @@ const SocialLoginContainer = ({ handleClose }) => {
     const userData = { code: tokenId, social: 'google' };
 
     dispatch(fetchUserById(userData)).then((response) => {
-      //  console.log("fetchByuserID response :", response);
       const id = response.payload._id;
       if (response.payload.loginSuccess === true) handleClose();
       else {
@@ -33,7 +32,6 @@ const SocialLoginContainer = ({ handleClose }) => {
     const userData = { code: accessToken, social: 'kakao' };
 
     await dispatch(fetchUserById(userData)).then((response) => {
-      //   console.log("fetchByuserID response :", response);
       const id = response.payload._id;
       if (response.payload.loginSuccess === true) handleClose();
       else {

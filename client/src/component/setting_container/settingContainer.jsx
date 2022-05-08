@@ -107,7 +107,6 @@ const SettingContainer = (props) => {
       }
 
       dispatch(modifyUserInfo(payload)).then((response) => {
-        //console.log("response from modifyuserinfo", response);
         toast.success('변경이 완료되었어요!', {
           position: 'top-right',
           autoClose: 3000,

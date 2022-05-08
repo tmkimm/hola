@@ -62,7 +62,7 @@ export const PostInfo = () => {
     minHeight: '56px',
     height: '56px',
   };
-  console.log(language, type, contactType, onlineOrOffline);
+
   return (
     <>
       <ul className={styles.inputList}>

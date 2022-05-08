@@ -26,8 +26,7 @@ const readPostAction = createAction('read/readPost');
 
 const readPost = createAsyncThunk(readPostAction, async (id, thunkAPI) => {
   const { data } = await studyService.getDetail(id);
-  console.log(data);
-  console.log(getFormattedData(onlineOrOfflineOption, data.onlineOrOffline));
+
   return {
     ...data,
     language: getFormattedData(languageList, data.language),

@@ -12,7 +12,6 @@ const Study = () => {
   const studyId = location.pathname.split('/')[2];
   const dispatch = useDispatch();
   const read = useSelector((state) => state.read);
-  console.log(read);
 
   useEffect(() => {
     dispatch(readPost(studyId));

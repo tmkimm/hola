@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './contactPoint.module.css';
 
 export const ContactPoint = ({ contactPoint, contactType }) => {
-  console.log('aa :', contactType);
   if (contactType.value === 'ok' || contactType.value === 'gf') {
     return (
       <div className={styles.contactWrapper}>

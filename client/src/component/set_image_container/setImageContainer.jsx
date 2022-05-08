@@ -22,7 +22,6 @@ const SetImageContainer = (props) => {
         image = fileName;
 
         await studyService.uploadImageToS3WithBase64(preSignedUrl, userImage, fileName);
-        // console.log("response from uploadUserimgtoS3", response);
       }
     } else {
       image = 'default.PNG';
