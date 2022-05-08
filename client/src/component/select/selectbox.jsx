@@ -29,6 +29,7 @@ export const Selectbox = ({
         isMulti={isMulti}
         styles={selectStyle}
         placeholder={placeholder}
+        isOptionDisabled={() => selectValue.length >= 5}
         name='onoffline'
         options={options}
         classNamePrefix='select'

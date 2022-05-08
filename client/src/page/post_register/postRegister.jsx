@@ -28,7 +28,7 @@ const PostRegister = () => {
 
       <div className={styles.postWrapper}>
         <a
-          href='https://patch-failing-503.notion.site/Udemy-X-Hola-df31594fa0934d56bf9f1978a74398e2'
+          href='https://sturdy-dugout-e49.notion.site/Udemy-X-Hola-Study-with-Me-5299159dd78e424181c8cdbf7d5be46c'
           target='_blank'
           rel='noreferrer'
         >
