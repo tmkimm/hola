@@ -9,6 +9,10 @@
   flex: 1;
 }
 
+.contactInput {
+  margin-top: 12px;
+}
+
 @media screen and (max-width: 768px) {
   .inputList {
     flex-direction: column;

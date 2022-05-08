@@ -50,12 +50,19 @@ export const PostInfo = () => {
     expectedPeriod: write.expectedPeriod,
   }));
 
+  const getContactType = () => {
+    const option = contactType.value;
+    if (option === 'ok') return '오픈 카톡방 링크';
+    else if (option === 'em') return '이메일 주소';
+    else return '구글 폼 주소';
+  };
+
   const customStyles = {
     width: '100%',
     minHeight: '56px',
     height: '56px',
   };
-
+  console.log(language, type, contactType, onlineOrOffline);
   return (
     <>
       <ul className={styles.inputList}>
@@ -139,15 +146,15 @@ export const PostInfo = () => {
             placeholder='카카오톡/이메일'
             id='contactType'
           />
+          <div className={styles.contactInput}>
+            <Input
+              placeholder={getContactType()}
+              value={contactPoint}
+              onChange={handleInputChange}
+            />
+          </div>
         </li>
-        <li className={styles.listItem}>
-          <Input
-            labelText='연락처'
-            placeholder='오픈 카톡방 링크/이메일 아이디'
-            value={contactPoint}
-            onChange={handleInputChange}
-          />
-        </li>
+        <li className={styles.listItem}></li>
       </ul>
     </>
   );

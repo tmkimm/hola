@@ -47,17 +47,7 @@ const WritebuttonContainer = (props) => {
     postError: write.postError,
     postId: write.postId,
   }));
-  console.log('start');
-  console.log(
-    language,
-    startDate,
-    type,
-    recruits,
-    onlineOrOffline,
-    contactType,
-    contactPoint,
-    expectedPeriod,
-  );
+
   const checkValidity = () => {
     if (!title) {
       toast.error('제목을 입력해주세요!', {
@@ -82,6 +72,55 @@ const WritebuttonContainer = (props) => {
       });
       return false;
     }
+
+    if (!startDate) {
+      toast.error('시작일을 입력해주세요!', {
+        position: 'top-right',
+        autoClose: 3000,
+      });
+      return false;
+    }
+
+    if (!type.value) {
+      toast.error('모집 구분을 선택해주세요!', {
+        position: 'top-right',
+        autoClose: 3000,
+      });
+      return false;
+    }
+
+    if (!recruits.value) {
+      toast.error('모집 인원을 선택해주세요!', {
+        position: 'top-right',
+        autoClose: 3000,
+      });
+      return false;
+    }
+
+    if (!onlineOrOffline.value) {
+      toast.error('진행 방식을 선택해주세요!', {
+        position: 'top-right',
+        autoClose: 3000,
+      });
+      return false;
+    }
+
+    if (!expectedPeriod.value) {
+      toast.error('진행 기간을 선택해주세요!', {
+        position: 'top-right',
+        autoClose: 3000,
+      });
+      return false;
+    }
+
+    if (!contactPoint) {
+      toast.error('연락 주소를 입력해주세요!', {
+        position: 'top-right',
+        autoClose: 3000,
+      });
+      return false;
+    }
+
     return true;
   };
   // language 자동으로 넘어가도록 수정

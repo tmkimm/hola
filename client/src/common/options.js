@@ -57,10 +57,9 @@ const recruitsOption = [
 ];
 
 const contactTypeOption = [
-  { value: 'ok', label: '오픈 카카오톡' },
-  { value: 'pk', label: '개인 카카오톡' },
+  { value: 'ok', label: '카카오톡 오픈채팅' },
   { value: 'em', label: '이메일' },
-  { value: 'gf', label: '구글폼' },
+  { value: 'gf', label: '구글 폼' },
 ];
 
 const expectedPeriodOption = [
