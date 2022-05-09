@@ -34,4 +34,8 @@ const isBase64 = (str) => {
   }
 };
 
-export { getFormatedToday, isBase64, formatDate };
+const capitalize = (str) => {
+  return str[0].toUpperCase() + str.slice(1);
+};
+
+export { getFormatedToday, isBase64, formatDate, capitalize };

@@ -9,6 +9,7 @@ import {
   changeSubject,
 } from 'store/language';
 import { languageMap } from 'common/options';
+import { capitalize } from 'common/utils';
 
 const languages = {
   인기: [
@@ -151,7 +152,7 @@ export const DesktopFilter = React.memo(() => {
               className={styles.selectedLanguage}
               onClick={() => onDeleteIconClick(selected)}
             >
-              <div>{selected}</div>
+              <div>{capitalize(selected)}</div>
               <img
                 className={styles.deleteButton}
                 src={`/images/info/delete.svg`}
