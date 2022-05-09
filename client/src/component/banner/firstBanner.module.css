@@ -1,6 +1,7 @@
 .bannerLink {
   width: 100%;
   position: relative;
+  color: black;
 }
 
 .containerWrapper {
@@ -32,6 +33,7 @@
 }
 
 .promotion {
+  color: black;
   font-weight: bold;
   padding: 5px 30px;
   background: #ffcd00;
