@@ -96,4 +96,10 @@
   .commentContent {
     font-size: 1rem;
   }
+  .commentHeader {
+    flex-direction: column;
+  }
+  .avatarWrapper {
+    margin-bottom: 0;
+  }
 }

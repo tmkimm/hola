@@ -36,14 +36,13 @@
 
 .buttonComplete {
   padding: 10px 30px;
-  width: 120px;
+  min-width: 120px;
   height: 40px;
   background: #333333;
   border-radius: 50px;
   font-weight: bold;
   color: white;
   font-size: 16px;
-  margin-bottom: ;
 }
 
 .buttonWrapper {
