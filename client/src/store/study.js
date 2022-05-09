@@ -1,22 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  mode: '-createdAt',
-  sortByViews: [],
-  sortByRecent: [],
+  mode: 'study',
 };
 
 const studySlice = createSlice({
   name: 'study',
   initialState,
   reducers: {
-    update: (state, { payload: { key, value } }) => ({
+    update: (state, action) => ({
       ...state,
-      [key]: value,
+      mode: action.payload,
     }),
-    clear: () => ({}),
   },
 });
 
-export const { update, clear } = studySlice.actions;
+export const { update } = studySlice.actions;
 export default studySlice.reducer;
