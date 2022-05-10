@@ -89,7 +89,9 @@ export const DesktopFilter = React.memo(() => {
     (Langauge, isSelected) => {
       if (!isSelected) dispatch(addLanguage(languageMap[Langauge]));
       else {
-        selected.length === 1 ? dispatch(initLanguage()) : dispatch(removeLanguage());
+        selected.length === 1
+          ? dispatch(initLanguage())
+          : dispatch(removeLanguage(languageMap[Langauge]));
       }
     },
     [dispatch, selected.length],
