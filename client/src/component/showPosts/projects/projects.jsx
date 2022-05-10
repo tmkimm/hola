@@ -3,8 +3,7 @@ import EmptyList from 'component/empty_list/emptyList';
 import StudyList from 'component/study_list/studyList';
 import useStudySearch from '../hooks/useStudySearch';
 
-export const Projects = ({ checked, category }) => {
-  const [pageNumber, setPageNumber] = useState(0);
+export const Projects = ({ checked, category, pageNumber, setPageNumber }) => {
   const observer = useRef();
 
   const { studyList, hasMore, loading } = useStudySearch(

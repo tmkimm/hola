@@ -23,15 +23,18 @@ export const MainContent = () => {
   const dispatch = useDispatch();
 
   const [checked, setChecked] = useState(true);
+  const [pageNumber, setPageNumber] = useState(0);
 
   const toggleCategory = (toggleTo) => {
     if (category === toggleTo) return; // 바꾸려는 대상이 현재 상태와 같으면 return
+    setPageNumber(0);
 
     if (category === PROJECT) dispatch(update(STUDY));
     else dispatch(update(PROJECT));
   };
 
   const handleSelect = () => {
+    setPageNumber(0);
     setChecked((checked) => !checked);
   };
 
@@ -73,9 +76,19 @@ export const MainContent = () => {
       </div>
       <div className={styles.appWrapper}>
         {category === PROJECT ? (
-          <Projects category={category} checked={checked} />
+          <Projects
+            category={category}
+            checked={checked}
+            pageNumber={pageNumber}
+            setPageNumber={setPageNumber}
+          />
         ) : (
-          <Studies category={category} checked={checked} />
+          <Studies
+            category={category}
+            checked={checked}
+            pageNumber={pageNumber}
+            setPageNumber={setPageNumber}
+          />
         )}
       </div>
     </main>
