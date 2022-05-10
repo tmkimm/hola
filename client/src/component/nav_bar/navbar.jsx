@@ -8,6 +8,7 @@ import LoginUser from 'component/login_user/loginUser';
 import { setModalVisible } from 'store/loginStep';
 import { clearUser, fetchUserByRefreshToken } from 'store/user';
 import { toast } from 'react-toastify';
+import { Notice } from 'component/notice';
 
 const Navbar = React.memo(() => {
   const dispatch = useDispatch();
@@ -63,11 +64,7 @@ const Navbar = React.memo(() => {
           </button>
         ) : (
           <>
-            <img
-              className={styles.notification}
-              src={'/images/info/notification.svg'}
-              alt='notification'
-            />
+            <Notice />
             <LoginUser />
           </>
         )}

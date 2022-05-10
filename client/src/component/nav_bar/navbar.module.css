@@ -35,10 +35,6 @@ button {
   font-size: 1.125rem;
 }
 
-.notification {
-  cursor: pointer;
-}
-
 .user {
   margin-right: 2rem;
   font-weight: 600;
