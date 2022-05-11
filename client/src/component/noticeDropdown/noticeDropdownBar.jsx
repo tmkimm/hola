@@ -29,7 +29,7 @@ export const NoticeDropdownBar = ({ handleClose }) => {
   return (
     <div className={styles.noticeWrapper}>
       <div className={styles.noticeHeader}>
-        <span classname={styles.title}>읽지 않은 알림 ({getUnreadAlarmLength(alarms)}) </span>
+        <span className={styles.title}>읽지 않은 알림 ({getUnreadAlarmLength(alarms)}) </span>
         <div className={styles.exitWrapper} onClick={handleClose}>
           <svg
             stroke='currentColor'
@@ -59,7 +59,7 @@ export const NoticeDropdownBar = ({ handleClose }) => {
                 <p className={styles.noticeTitle}>{alarm.title}</p>
                 <p className={styles.noticeContent}>{alarm.content}</p>
                 <span className={styles.noticeText}>
-                  {alarm.noticeType === 'coupon' ? '쿠폰 사용하러 가기!' : '이벤트 확인하기'}
+                  {alarm.noticeType === 'coupon' ? '쿠폰 사용하러 가기!' : '모집글 양식 확인하기'}
                 </span>
               </a>
             </li>
