@@ -1,8 +1,8 @@
 .noticeWrapper {
   cursor: default;
   width: 360px;
-  min-height: 400px;
-  max-height: 400px;
+  min-height: 480px;
+  max-height: 480px;
   overflow-y: scroll;
   padding: 0;
   position: absolute;
