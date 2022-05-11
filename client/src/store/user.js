@@ -66,6 +66,7 @@ const fetchUserByRefreshToken = createAsyncThunk(
       id: response.data._id,
       image: response.data.image,
       likeLanguages: response.data.likeLanguages,
+      hasUnreadNotice: response.data.hasUnreadNotice,
     };
 
     // header에 access token 설정
@@ -91,6 +92,7 @@ const initialState = {
   id: undefined,
   imageUrl: undefined,
   likeLanguages: [],
+  hasUnreadNotice: false,
 };
 
 const defaultPath = 'https://hola-post-image.s3.ap-northeast-2.amazonaws.com/';
@@ -119,6 +121,7 @@ const userSlice = createSlice({
       id: payload.id,
       imageUrl: defaultPath + payload.image,
       likeLanguages: payload.likeLanguages,
+      hasUnreadNotice: payload.hasUnreadNotice,
     }),
 
     [addUserNickName.fulfilled]: (state, { payload }) => ({

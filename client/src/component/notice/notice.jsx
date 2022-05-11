@@ -1,8 +1,10 @@
 import { NoticeDropdownBar } from 'component/noticeDropdown';
 import React, { useState, useRef, useCallback, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import styles from './notice.module.css';
 
 export const Notice = () => {
+  const user = useSelector((state) => state.user);
   const [menuVisible, setMenuVisible] = useState(false);
   const menuRef = useRef();
 
@@ -34,7 +36,7 @@ export const Notice = () => {
   return (
     <div className={styles.notificationWrapper} onClick={handleNotificationClick}>
       <div className={styles.imageWrapper}>
-        <div className={styles.alarmNoticer}></div>
+        {user.hasUnreadNotice && <div className={styles.alarmNoticer}></div>}
         <img
           className={styles.notification}
           src={'/images/info/notification.svg'}
