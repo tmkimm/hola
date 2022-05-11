@@ -8,14 +8,18 @@ export const Notice = () => {
 
   const handleNotificationClick = () => {
     // dropdown control
+    if (menuVisible) document.body.style.overflow = 'auto';
+    else document.body.style.overflow = 'hidden';
     setMenuVisible((menuVisible) => !menuVisible);
   };
 
   const handleCloseMenu = useCallback(
     (e) => {
-      if (menuVisible && (!menuRef.current || !menuRef.current.contains(e.target)))
+      if (menuVisible && (!menuRef.current || !menuRef.current.contains(e.target))) {
         //dropdown이 켜져 있고 dropdown영역 외부 click시 dropdown menu 제거
+        document.body.style.overflow = 'auto';
         setMenuVisible(false);
+      }
     },
     [menuVisible, menuRef],
   );
@@ -29,12 +33,15 @@ export const Notice = () => {
 
   return (
     <div className={styles.notificationWrapper} onClick={handleNotificationClick}>
-      <img
-        className={styles.notification}
-        src={'/images/info/notification.svg'}
-        alt='notification'
-      />
-      {menuVisible && <NoticeDropdownBar />}
+      <div className={styles.imageWrapper}>
+        <div className={styles.alarmNoticer}></div>
+        <img
+          className={styles.notification}
+          src={'/images/info/notification.svg'}
+          alt='notification'
+        />
+      </div>
+      {menuVisible && <NoticeDropdownBar handleClose={handleNotificationClick} />}
     </div>
   );
 };

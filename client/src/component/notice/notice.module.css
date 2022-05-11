@@ -6,3 +6,22 @@
 .notification {
   display: block;
 }
+
+.imageWrapper {
+  position: relative;
+}
+
+.alarmNoticer {
+  position: absolute;
+  left: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: red;
+}
+
+@media screen and (max-width: 575px) {
+  .notificationWrapper {
+    position: static;
+  }
+}

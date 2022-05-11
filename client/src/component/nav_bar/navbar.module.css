@@ -52,4 +52,7 @@ button {
   .login {
     margin-right: 0;
   }
+  .navbar {
+    position: relative;
+  }
 }
