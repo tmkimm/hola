@@ -1,15 +1,27 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import userService from 'service/user_service';
+import { setUser } from 'store/user';
 import styles from './noticeDropdownBar.module.css';
 
 export const NoticeDropdownBar = ({ handleClose }) => {
   const [alarms, setAlarms] = useState([]);
+  const dispatch = useDispatch();
+  const getUnreadAlarmLength = (alarms) => {
+    return alarms.filter((alarm) => alarm.isRead === false).length;
+  };
+
+  const handleAlarmClick = async (id) => {
+    const result = await userService.readAlarm(id);
+    if (getUnreadAlarmLength(alarms) === 1 && result.status === 200) {
+      dispatch(setUser({ key: 'hasUnreadNotice', value: false }));
+    }
+  };
 
   useEffect(() => {
     const fetchAlarm = async () => {
       const response = await userService.getUserAlarm();
       setAlarms(response.data);
-      console.log(response.data);
     };
     fetchAlarm();
   }, []);
@@ -17,7 +29,7 @@ export const NoticeDropdownBar = ({ handleClose }) => {
   return (
     <div className={styles.noticeWrapper}>
       <div className={styles.noticeHeader}>
-        <span classname={styles.title}>읽지 않은 알림 ({alarms.length}) </span>
+        <span classname={styles.title}>읽지 않은 알림 ({getUnreadAlarmLength(alarms)}) </span>
         <div className={styles.exitWrapper} onClick={handleClose}>
           <svg
             stroke='currentColor'
@@ -40,7 +52,7 @@ export const NoticeDropdownBar = ({ handleClose }) => {
           {alarms.map((alarm) => (
             <li
               key={alarm._id}
-              onClick={() => userService.readAlarm(alarm._id)}
+              onClick={() => handleAlarmClick(alarm._id)}
               className={`${styles.noticeTitleWrapper} ${alarm.isRead && styles.isRead}`}
             >
               <a className={styles.noticeLink} href={alarm.href} target='_blank' rel='noreferrer'>
