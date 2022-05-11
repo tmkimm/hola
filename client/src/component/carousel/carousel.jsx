@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import styles from './carousel.module.css';
+//import styles from './carousel.module.css';
 import { FirstBanner, SecondBanner } from 'component/banner';
 
 export const Carousel = () => {

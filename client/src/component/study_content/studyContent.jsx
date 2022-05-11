@@ -12,23 +12,23 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { StudyInfo } from 'component/studyInfo';
 
-const StudyLanguage = ({ languages }) => {
-  const usedLanguage = languages.map((lang) => lang.value);
-  return (
-    <section className={styles.usedLanguageWrapper}>
-      <div className={styles.usedLanguageInfo}>사용 언어 :</div>
-      <ul className={styles.languageList}>
-        {usedLanguage.map((lang, i) => (
-          <LangItem Language={lang} key={i}></LangItem>
-        ))}
-      </ul>
-    </section>
-  );
-};
+// const StudyLanguage = ({ languages }) => {
+//   const usedLanguage = languages.map((lang) => lang.value);
+//   return (
+//     <section className={styles.usedLanguageWrapper}>
+//       <div className={styles.usedLanguageInfo}>사용 언어 :</div>
+//       <ul className={styles.languageList}>
+//         {usedLanguage.map((lang, i) => (
+//           <LangItem Language={lang} key={i}></LangItem>
+//         ))}
+//       </ul>
+//     </section>
+//   );
+// };
 
-const LangItem = ({ Language }) => {
-  return <li className={styles.languageItem}>{Language}</li>;
-};
+// const LangItem = ({ Language }) => {
+//   return <li className={styles.languageItem}>{Language}</li>;
+// };
 
 const StudyContent = ({ id }) => {
   const history = useHistory();

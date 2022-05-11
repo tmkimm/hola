@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef } from 'react';
 import EmptyList from 'component/empty_list/emptyList';
 import StudyList from 'component/study_list/studyList';
 import useStudySearch from '../hooks/useStudySearch';
