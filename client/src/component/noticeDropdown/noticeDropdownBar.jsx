@@ -14,7 +14,6 @@ export const NoticeDropdownBar = ({ handleClose }) => {
     fetchAlarm();
   }, []);
 
-  const isRead = true;
   return (
     <div className={styles.noticeWrapper}>
       <div className={styles.noticeHeader}>
@@ -38,87 +37,21 @@ export const NoticeDropdownBar = ({ handleClose }) => {
         <div className={styles.empty}>알림함이 비어있습니다.</div>
       ) : (
         <ul className={styles.noticeBody}>
-          <li className={styles.noticeTitleWrapper}>
-            <p className={styles.noticeTitle}>💌 Udemy 쿠폰이 도착했어요!</p>
-            <p className={styles.noticeContent}>
-              신청하신 강의 쿠폰이 도착했어요. 링크를 클릭하여 등록해주세요.
-            </p>
-            <a className={styles.anchor} href='https://naver.com' target='_blank' rel='noreferrer'>
-              쿠폰 사용하러 가기!
-            </a>
-          </li>
-          <li className={`${styles.noticeTitleWrapper} ${isRead && styles.isRead}`}>
-            <p className={styles.noticeTitle}>💌 Udemy 쿠폰이 도착했어요!</p>
-            <p className={styles.noticeContent}>
-              신청하신 강의 쿠폰이 도착했어요. 링크를 클릭하여 등록해주세요.
-            </p>
-            <a className={styles.anchor} href='https://naver.com' target='_blank' rel='noreferrer'>
-              쿠폰 사용하러 가기!
-            </a>
-          </li>
-          <li className={styles.noticeTitleWrapper}>
-            <p className={styles.noticeTitle}>💌 Udemy 쿠폰이 도착했어요!</p>
-            <p className={styles.noticeContent}>
-              신청하신 강의 쿠폰이 도착했어요. 링크를 클릭하여 등록해주세요.
-            </p>
-            <a className={styles.anchor} href='https://naver.com' target='_blank' rel='noreferrer'>
-              쿠폰 사용하러 가기!
-            </a>
-          </li>
-          <li className={styles.noticeTitleWrapper}>
-            <p className={styles.noticeTitle}>💌 Udemy 쿠폰이 도착했어요!</p>
-            <p className={styles.noticeContent}>
-              신청하신 강의 쿠폰이 도착했어요. 링크를 클릭하여 등록해주세요.
-            </p>
-            <a className={styles.anchor} href='https://naver.com' target='_blank' rel='noreferrer'>
-              쿠폰 사용하러 가기!
-            </a>
-          </li>
-          <li className={styles.noticeTitleWrapper}>
-            <p className={styles.noticeTitle}>💌 Udemy 쿠폰이 도착했어요!</p>
-            <p className={styles.noticeContent}>
-              신청하신 강의 쿠폰이 도착했어요. 링크를 클릭하여 등록해주세요.
-            </p>
-            <a className={styles.anchor} href='https://naver.com' target='_blank' rel='noreferrer'>
-              쿠폰 사용하러 가기!
-            </a>
-          </li>
-          <li className={styles.noticeTitleWrapper}>
-            <p className={styles.noticeTitle}>💌 Udemy 쿠폰이 도착했어요!</p>
-            <p className={styles.noticeContent}>
-              신청하신 강의 쿠폰이 도착했어요. 링크를 클릭하여 등록해주세요.
-            </p>
-            <a className={styles.anchor} href='https://naver.com' target='_blank' rel='noreferrer'>
-              쿠폰 사용하러 가기!
-            </a>
-          </li>
-          <li className={styles.noticeTitleWrapper}>
-            <p className={styles.noticeTitle}>💌 Udemy 쿠폰이 도착했어요!</p>
-            <p className={styles.noticeContent}>
-              신청하신 강의 쿠폰이 도착했어요. 링크를 클릭하여 등록해주세요.
-            </p>
-            <a className={styles.anchor} href='https://naver.com' target='_blank' rel='noreferrer'>
-              쿠폰 사용하러 가기!
-            </a>
-          </li>
-          <li className={styles.noticeTitleWrapper}>
-            <p className={styles.noticeTitle}>💌 Udemy 쿠폰이 도착했어요!</p>
-            <p className={styles.noticeContent}>
-              신청하신 강의 쿠폰이 도착했어요. 링크를 클릭하여 등록해주세요.
-            </p>
-            <a className={styles.anchor} href='https://naver.com' target='_blank' rel='noreferrer'>
-              쿠폰 사용하러 가기!
-            </a>
-          </li>
-          <li className={styles.noticeTitleWrapper}>
-            <p className={styles.noticeTitle}>💌 Udemy 쿠폰이 도착했어요!</p>
-            <p className={styles.noticeContent}>
-              신청하신 강의 쿠폰이 도착했어요. 링크를 클릭하여 등록해주세요.
-            </p>
-            <a className={styles.anchor} href='https://naver.com' target='_blank' rel='noreferrer'>
-              쿠폰 사용하러 가기!
-            </a>
-          </li>
+          {alarms.map((alarm) => (
+            <li
+              key={alarm._id}
+              onClick={() => userService.readAlarm(alarm._id)}
+              className={`${styles.noticeTitleWrapper} ${alarm.isRead && styles.isRead}`}
+            >
+              <a className={styles.noticeLink} href={alarm.href} target='_blank' rel='noreferrer'>
+                <p className={styles.noticeTitle}>{alarm.title}</p>
+                <p className={styles.noticeContent}>{alarm.content}</p>
+                <span className={styles.noticeText}>
+                  {alarm.noticeType === 'coupon' ? '쿠폰 사용하러 가기!' : '이벤트 확인하기'}
+                </span>
+              </a>
+            </li>
+          ))}
         </ul>
       )}
     </div>

@@ -119,6 +119,15 @@ class User {
       console.error(error);
     }
   };
+
+  readAlarm = async (id) => {
+    try {
+      const response = await this.user.patch(`notifications/${id}/read`);
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 }
 
 const userService = new User(httpClient);
