@@ -1,13 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import userService from 'service/user_service';
 import styles from './noticeDropdownBar.module.css';
 
 export const NoticeDropdownBar = ({ handleClose }) => {
-  const [test, setTest] = useState(false);
+  const [alarms, setAlarms] = useState([]);
+
+  useEffect(() => {
+    const fetchAlarm = async () => {
+      const response = await userService.getUserAlarm();
+      setAlarms(response.data);
+      console.log(response.data);
+    };
+    fetchAlarm();
+  }, []);
+
   const isRead = true;
   return (
     <div className={styles.noticeWrapper}>
       <div className={styles.noticeHeader}>
-        <span classname={styles.title}>읽지 않은 알림 (1) </span>
+        <span classname={styles.title}>읽지 않은 알림 ({alarms.length}) </span>
         <div className={styles.exitWrapper} onClick={handleClose}>
           <svg
             stroke='currentColor'
@@ -23,7 +34,7 @@ export const NoticeDropdownBar = ({ handleClose }) => {
           </svg>
         </div>
       </div>
-      {test ? (
+      {alarms.length === 0 ? (
         <div className={styles.empty}>알림함이 비어있습니다.</div>
       ) : (
         <ul className={styles.noticeBody}>

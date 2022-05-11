@@ -110,6 +110,15 @@ class User {
       console.error(error);
     }
   };
+
+  getUserAlarm = async () => {
+    try {
+      const response = await this.user.get(`notifications`);
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 }
 
 const userService = new User(httpClient);
