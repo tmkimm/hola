@@ -13,9 +13,9 @@ export const FirstBanner = () => {
         <div className={styles.container}>
           <div className={styles.leftCover}>
             <button className={styles.promotion}>PROMOTION</button>
-            <div className={styles.LogoWrapper}>
+            {/* <div className={styles.LogoWrapper}>
               <img src='/images/banner/collaboLogo.png' alt='logo img' />
-            </div>
+            </div> */}
             <h2 className={styles.title}>50개의 유료강의, 올라에서만 무료로! </h2>
             {/* <span className={styles.subTitle}>로 들으실 분 찾아요!</span> */}
             <span className={styles.subText}>유데미 강의 무료로 들으실 분 찾아요 ⭐️</span>
