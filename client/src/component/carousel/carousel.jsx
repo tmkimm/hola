@@ -31,10 +31,7 @@ export const Carousel = () => {
   ];
   return (
     <Slider {...settings}>
-      {slide.map((item, idx) => {
-        if (idx === 0) return <FirstBanner key={idx} />;
-        else return <SecondBanner key={idx} />;
-      })}
+      <SecondBanner />
     </Slider>
   );
 };
