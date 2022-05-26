@@ -27,13 +27,6 @@ const PostRegister = () => {
       <Navbar />
 
       <div className={styles.postWrapper}>
-        <a
-          href='https://sturdy-dugout-e49.notion.site/Udemy-X-Hola-Study-with-Me-5299159dd78e424181c8cdbf7d5be46c'
-          target='_blank'
-          rel='noreferrer'
-        >
-          <span className={styles.udemy}>유데미 무료 강의 이벤트 확인하기</span>
-        </a>
         <section className={styles.postInfo}>
           <div className={styles.postContentWrapper}>
             <span className={styles.sequence}>1</span>

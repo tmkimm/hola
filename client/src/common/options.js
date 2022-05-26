@@ -1,5 +1,4 @@
 const languageMap = {
-  Udemy: 'udemy',
   JavaScript: 'javascript',
   TypeScript: 'typescript',
   React: 'react',
@@ -35,7 +34,6 @@ const languageMap = {
 };
 
 const languageList = [
-  { value: 'udemy', label: 'Udemy' },
   { value: 'javascript', label: 'JavaScript' },
   { value: 'typescript', label: 'TypeScript' },
   { value: 'react', label: 'React' },

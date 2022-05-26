@@ -91,26 +91,6 @@
   margin-bottom: 2rem;
 }
 
-.udemyWrapper {
-  width: 420px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.udemy {
-  padding: 8px 15px;
-  background: #f2f4f8;
-  color: #4a5275;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 200ms ease-in;
-}
-
-.udemy:hover {
-  transform: scale(1.02);
-}
-
 @keyframes bubbleAnimation {
   0% {
     opacity: 0;
@@ -146,21 +126,10 @@
     gap: 28px;
     align-items: flex-start;
   }
-
-  .udemyWrapper {
-    width: 100%;
-  }
 }
 
 @media screen and (max-width: 575px) {
   .main {
     margin-top: 60px;
-  }
-  .udemy {
-    padding: 5px 10px;
-    background: #f2f4f8;
-    color: #4a5275;
-    border-radius: 10px;
-    font-size: 14px;
   }
 }

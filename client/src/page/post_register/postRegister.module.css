@@ -11,16 +11,6 @@
   position: relative;
 }
 
-.udemy {
-  font-weight: 500;
-  position: absolute;
-  right: 16px;
-  background: #f2f4f8;
-  padding: 8px 12px;
-  border-radius: 10px;
-  color: #4a5e75;
-}
-
 .postContentWrapper {
   display: flex;
   align-items: center;
@@ -54,17 +44,6 @@
 @media screen and (max-width: 1000px) {
   .postWrapper {
     width: 100%;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .udemy {
-    position: absolute;
-    right: 12px;
-    padding: 6px 9px;
-    border-radius: 10px;
-    color: #4a5e75;
-    font-size: 14px;
   }
 }
 

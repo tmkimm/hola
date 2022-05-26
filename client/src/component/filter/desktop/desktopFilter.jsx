@@ -13,7 +13,6 @@ import { capitalize } from 'common/utils';
 
 const languages = {
   인기: [
-    'Udemy',
     'JavaScript',
     'TypeScript',
     'React',
