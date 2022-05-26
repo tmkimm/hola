@@ -44,16 +44,6 @@ export const MainContent = () => {
         <section className={styles.category}>
           <div
             className={`${styles.category__item} ${
-              category === STUDY ? active.className : inActive.className
-            }`}
-            onClick={() => toggleCategory(STUDY)}
-          >
-            <StudyIcon stroke={category === STUDY ? active.color : inActive.color} />
-            <span className={styles.text}>스터디</span>
-          </div>
-
-          <div
-            className={`${styles.category__item} ${
               category === PROJECT ? active.className : inActive.className
             }`}
             onClick={() => toggleCategory(PROJECT)}
@@ -61,18 +51,18 @@ export const MainContent = () => {
             <ProjectIcon stroke={category === PROJECT ? active.color : inActive.color} />
             <span className={styles.text}>프로젝트</span>
           </div>
-        </section>
-        <div className={styles.udemyWrapper}>
-          <a
-            href='https://sturdy-dugout-e49.notion.site/Udemy-X-Hola-Study-with-Me-5299159dd78e424181c8cdbf7d5be46c'
-            target='_blank'
-            className={styles.udemy}
-            rel='noreferrer'
+          <div
+            className={`${styles.category__item} ${
+              category === STUDY ? active.className : inActive.className
+            }`}
+            onClick={() => toggleCategory(STUDY)}
           >
-            #무료강의로 스터디
-          </a>
-          <ToggleSwitch checked={checked} handleSelect={handleSelect} />
-        </div>
+            <StudyIcon stroke={category === STUDY ? active.color : inActive.color} />
+            <span className={styles.text}>스터디</span>
+          </div>
+        </section>
+
+        <ToggleSwitch checked={checked} handleSelect={handleSelect} />
       </div>
       <div className={styles.appWrapper}>
         {category === PROJECT ? (
