@@ -42,7 +42,7 @@ const languages = {
     'GraphQL',
     'Firebase',
   ],
-  모바일: ['Flutter', 'Swift', 'ReactNative', 'Unity'],
+  모바일: ['Flutter', 'Swift', 'Kotlin', 'ReactNative', 'Unity'],
   기타: ['AWS', 'Kubernetes', 'Docker', 'Git', 'Figma', 'Zeplin', 'Jest', 'C'],
   모두보기: [
     'JavaScript',
