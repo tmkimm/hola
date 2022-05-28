@@ -26,6 +26,7 @@
     "react-google-login": "5.2.2",
     "react-icons": "^4.2.0",
     "react-kakao-login": "^2.1.0",
+    "react-query": "^3.39.0",
     "react-quill": "^1.3.5",
     "react-rating-stars-component": "^2.2.0",
     "react-redux": "^7.2.4",
