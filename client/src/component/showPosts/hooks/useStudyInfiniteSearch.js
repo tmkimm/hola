@@ -1,0 +1,29 @@
+import { useInfiniteQuery } from 'react-query';
+import { useSelector } from 'react-redux';
+import studyService from 'service/study_service';
+
+export const useStudyInfiniteSearch = (category, pageNumber, setPageNumber, checked) => {
+  const selectedLanguages = useSelector((state) => state.language.selected);
+  const { data, error, fetchNextPage, hasNextPage, isFetching, status } = useInfiniteQuery(
+    ['studyList', { category, selectedLanguages }],
+    async ({ pageParam = 1 }) => {
+      console.log('fetch start!');
+      const { data } = await studyService.getList(category, selectedLanguages, pageParam, !checked);
+
+      return {
+        result: data,
+        nextPage: pageParam + 20,
+        isLast: data.length === 0 ? true : false,
+      };
+    },
+    {
+      getNextPageParam: (lastPage, page) => {
+        if (lastPage.isLast) return false;
+        return lastPage.nextPage;
+      },
+      refetchOnWindowFocus: false,
+    },
+  );
+
+  return { isFetching, error, data, hasNextPage, fetchNextPage, status };
+};
