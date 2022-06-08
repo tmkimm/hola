@@ -86,8 +86,8 @@
 
 .categoryWrapper {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  position: relative;
   margin-bottom: 2rem;
 }
 
@@ -131,5 +131,14 @@
 @media screen and (max-width: 575px) {
   .main {
     margin-top: 60px;
+  }
+  .text {
+    margin-left: 6px;
+    font-size: 20px;
+  }
+
+  .categoryWrapper {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
   }
 }

@@ -1,6 +1,8 @@
 .switch {
   display: flex;
   align-items: center;
+  position: absolute;
+  right: 0;
 }
 
 .switchTitle {
@@ -51,6 +53,9 @@
 }
 
 @media screen and (max-width: 575px) {
+  .switch {
+    top: -60px;
+  }
   .switchTitle {
     font-size: 16px;
     margin-right: 12px;
