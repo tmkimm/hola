@@ -11,7 +11,7 @@ class Study {
   }
 
   getList = async (category, selectedLanguages, pageNumber, checked) => {
-    const queryType = { project: 1, study: 2 };
+    const queryType = { all: 0, project: 1, study: 2 };
 
     try {
       const params = {

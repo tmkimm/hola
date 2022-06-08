@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  mode: 'project',
+  mode: 'all',
 };
 
 const studySlice = createSlice({

@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import styles from './mainContent.module.css';
-import { Projects, Studies } from 'component/showPosts';
+import { Posts } from 'component/showPosts';
 import { StudyIcon, ProjectIcon } from 'common/Icons';
 import { ToggleSwitch } from 'component/toggleSwitch';
 import { useDispatch, useSelector } from 'react-redux';
 import { update } from 'store/study';
+import { AllIcon } from 'common/Icons/allIcon';
 
 export const MainContent = () => {
+  const ALL = 'all';
   const PROJECT = 'project';
   const STUDY = 'study';
 
@@ -29,8 +31,7 @@ export const MainContent = () => {
     if (category === toggleTo) return; // 바꾸려는 대상이 현재 상태와 같으면 return
     setPageNumber(0);
 
-    if (category === PROJECT) dispatch(update(STUDY));
-    else dispatch(update(PROJECT));
+    dispatch(update(toggleTo));
   };
 
   const handleSelect = () => {
@@ -42,6 +43,15 @@ export const MainContent = () => {
     <main className={styles.main}>
       <div className={styles.categoryWrapper}>
         <section className={styles.category}>
+          <div
+            className={`${styles.category__item} ${
+              category === ALL ? active.className : inActive.className
+            }`}
+            onClick={() => toggleCategory(ALL)}
+          >
+            <AllIcon stroke={category === ALL ? active.color : inActive.color} />
+            <span className={styles.text}>전체</span>
+          </div>
           <div
             className={`${styles.category__item} ${
               category === PROJECT ? active.className : inActive.className
@@ -65,21 +75,12 @@ export const MainContent = () => {
         <ToggleSwitch checked={checked} handleSelect={handleSelect} />
       </div>
       <div className={styles.appWrapper}>
-        {category === PROJECT ? (
-          <Projects
-            category={category}
-            checked={checked}
-            pageNumber={pageNumber}
-            setPageNumber={setPageNumber}
-          />
-        ) : (
-          <Studies
-            category={category}
-            checked={checked}
-            pageNumber={pageNumber}
-            setPageNumber={setPageNumber}
-          />
-        )}
+        <Posts
+          category={category}
+          checked={checked}
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+        />
       </div>
     </main>
   );
