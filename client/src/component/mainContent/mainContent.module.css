@@ -131,6 +131,7 @@
 @media screen and (max-width: 575px) {
   .main {
     margin-top: 60px;
+    padding: 0 16px;
   }
   .text {
     margin-left: 6px;
