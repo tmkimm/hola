@@ -10,3 +10,9 @@
     gap: 20px;
   }
 }
+
+@media screen and (max-width: 575px) {
+  .studyList {
+    padding: 10px;
+  }
+}
