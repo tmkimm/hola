@@ -5,12 +5,9 @@ import { useStudyInfiniteSearch } from './hooks/useStudyInfiniteSearch';
 import { useBottomObserver } from './hooks/useBottomObserver';
 import styles from './posts.module.css';
 
-export const Posts = ({ checked, category, pageNumber, setPageNumber }) => {
-  console.log('rerender');
+export const Posts = ({ checked, category }) => {
   const { data, hasNextPage, fetchNextPage, status, isFetching } = useStudyInfiniteSearch(
     category,
-    pageNumber,
-    setPageNumber,
     checked,
   );
 
