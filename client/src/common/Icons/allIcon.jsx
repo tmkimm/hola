@@ -4,22 +4,22 @@ export const AllIcon = ({ stroke }) => {
       <path
         d='M1 9.51447L15.7458 1.25732L31 9.51447L15.7458 18.2573L1 9.51447Z'
         stroke={stroke}
-        stroke-width='2'
-        stroke-linejoin='round'
+        strokeWidth='2'
+        strokeLinejoin='round'
       />
       <path
         d='M1 16.2573L15.7458 25.0002L31 16.2573'
         stroke={stroke}
-        stroke-width='2'
-        stroke-linecap='round'
-        stroke-linejoin='round'
+        strokeWidth='2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
       <path
         d='M1 23L15.7458 31.7429L31 23'
         stroke={stroke}
-        stroke-width='2'
-        stroke-linecap='round'
-        stroke-linejoin='round'
+        strokeWidth='2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
     </svg>
   );
