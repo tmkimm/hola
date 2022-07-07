@@ -6,7 +6,7 @@ import { AiOutlineEye } from 'react-icons/ai';
 import { Avatar } from 'component/common/avatar';
 import { formatDate } from 'common/utils';
 
-const StudyItem = ({ study, lastStudyElementRef }) => {
+const StudyItem = ({ study }) => {
   const studyLang = [];
   const history = useHistory();
   const displayType = study.isClosed ? styles.closed : styles.open;
@@ -21,11 +21,7 @@ const StudyItem = ({ study, lastStudyElementRef }) => {
   };
 
   return (
-    <li
-      ref={lastStudyElementRef ? lastStudyElementRef : null}
-      className={`${styles.studyItem} ${displayType}`}
-      onClick={onClick}
-    >
+    <li className={`${styles.studyItem} ${displayType}`} onClick={onClick}>
       <div className={styles.schedule}>
         <p className={styles.scheduleTitle}>시작 예정일 |</p>
         <p className={styles.scheduleInfo}>{formatDate(study.startDate)}</p>
