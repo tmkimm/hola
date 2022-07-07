@@ -16,13 +16,9 @@ const StudyItem = ({ study }) => {
     else studyLang.push(study.language[i]);
   }
 
-  const onClick = () => {
-    history.push(`/study/${study._id}`);
-  };
-
   return (
-    <li className={`${styles.studyItem} ${displayType}`} onClick={onClick}>
-      <Link to={`/study/${study._id}`}>
+    <Link to={`/study/${study._id}`} className={`${styles.studyItem} ${displayType}`}>
+      <li>
         <div className={styles.schedule}>
           <p className={styles.scheduleTitle}>시작 예정일 |</p>
           <p className={styles.scheduleInfo}>{formatDate(study.startDate)}</p>
@@ -64,8 +60,8 @@ const StudyItem = ({ study }) => {
           </div>
         </section>
         {study.isClosed && <div className={styles.closeNotice}>모집 마감</div>}
-      </Link>
-    </li>
+      </li>
+    </Link>
   );
 };
 
