@@ -9,11 +9,6 @@ user 관련 store를 다루는 redux store 입니다.
 createSlice를 통해 전역 user state를 생성하고,
 createAsyncThunk를 통해 user 상태를 update 합니다.
 
-to-do
-fullfilled외에 rejected도 처리 로직 추가
-request abort나 signal에 대해서 찾아보기
-fetchByRefresh Token에서 user Id추가
-
 */
 
 // action 정의
@@ -57,7 +52,6 @@ const fetchUserById = createAsyncThunk(fetchUserByIdAction, async (userData, thu
 const fetchUserByRefreshToken = createAsyncThunk(
   fetchUserByRefreshTokenAction,
   async (thunkAPI) => {
-    // 생각해볼 것. 성공했을때만 이 data 넣어야 하나?
     const response = await authService.getUserInfo();
 
     const accessToken = response.data.accessToken;
@@ -78,7 +72,6 @@ const fetchUserByRefreshToken = createAsyncThunk(
 
 // 최초 회원 가입 시 user nickname을 설정하고 access token을 set합니다.
 const addUserNickName = createAsyncThunk(addUserNickNameAction, async (userInfo, thunkAPI) => {
-  //console.log("userinfo!!!", userInfo);
   const response = await authService.signUp(userInfo);
   const accessToken = response.data.accessToken;
 

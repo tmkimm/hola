@@ -7,11 +7,6 @@ import { MainContent } from 'component/mainContent';
 import { Carousel } from 'component/carousel';
 import TopButton from 'component/top_button/TopButton';
 
-/* 
-main page의 layout을 담당하는 component입니다. 
-최신, 트렌딩 두가지의 기준으로 데이터를 보여줍니다.
-*/
-
 const Main = () => {
   return (
     <>

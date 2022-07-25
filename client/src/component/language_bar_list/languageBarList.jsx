@@ -7,10 +7,6 @@ import styles from './languageBarList.module.css';
 const LanguageBarList = React.memo(() => {
   const selectedLanguage = useSelector((state) => state.language);
 
-  // useEffect(() => {
-  //   setChecked(selectedLanguage.length === 14);
-  // }, [selectedLanguage.length, setChecked]);
-
   const dispatch = useDispatch();
   const onItemClick = useCallback(
     (Langauge, selected) => {

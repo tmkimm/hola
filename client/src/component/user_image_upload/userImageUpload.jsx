@@ -24,10 +24,7 @@ const UserImageUpload = ({ image, setImage, setIsImageChanged }) => {
     setIsImageChanged(true);
   };
 
-  // image가 base64면 그냥 쓰고, base64가 아니면 url로 조합
-  // isImageChanged를 같이 넘겨받아서 그거에 따라 분기하는게 나을듯
-  // 지금 든 생각: isBase64()에 '', undefined, null 다 false로 나오니까,
-  // 이거 하나로만 분기해도 될 듯?
+  // TODO: image 분기 최적화 필요
   return (
     <div className={styles.image}>
       <img

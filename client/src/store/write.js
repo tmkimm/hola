@@ -143,7 +143,6 @@ const writeSlice = createSlice({
       postError: null,
     }),
     [writePost.fulfilled]: (state, { payload }) => {
-      // 수정 필요
       if (payload === 201) {
         state.post = 'success';
       }
@@ -155,7 +154,6 @@ const writeSlice = createSlice({
       }
     },
     [modifyPost.fulfilled]: (state, { payload }) => {
-      // 수정 필요
       if (payload === 200) {
         state = { ...state, post: 'success' };
         return state;
