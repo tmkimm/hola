@@ -1,13 +1,11 @@
 import React from 'react';
-//import styles from './main.module.css';
-
 import Navbar from 'component/nav_bar/navbar';
-//import Banner from 'component/banner/banner';
 import { DesktopFilter } from 'component/filter/desktop';
 
 import Rating from 'component/rating/rating';
 import { MainContent } from 'component/mainContent';
 import { Carousel } from 'component/carousel';
+import TopButton from 'component/top_button/TopButton';
 
 /* 
 main page의 layout을 담당하는 component입니다. 
@@ -19,9 +17,9 @@ const Main = () => {
     <>
       <Navbar />
       <Carousel />
-      {/* <Banner /> */}
       <DesktopFilter />
       <MainContent />
+      <TopButton />
       <Rating />
     </>
   );
