@@ -28,8 +28,8 @@
 }
 
 .coverImage {
-  width: 500px;
-  height: 250px;
+  width: 470px;
+  height: auto;
 }
 
 .title {
@@ -64,6 +64,10 @@
   .title {
     font-size: 28px;
   }
+  .coverImage {
+    width: 350px;
+    height: auto;
+  }
 }
 
 @media screen and (max-width: 820px) {
@@ -72,7 +76,7 @@
   }
   .coverImage {
     width: 300px;
-    height: 150px;
+    height: auto;
   }
 }
 
