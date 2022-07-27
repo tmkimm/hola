@@ -3,28 +3,21 @@ import styles from './firstBanner.module.css';
 
 export const FirstBanner = () => {
   return (
-    <a
-      className={styles.bannerLink}
-      href='https://sturdy-dugout-e49.notion.site/Udemy-X-Hola-Study-with-Me-5299159dd78e424181c8cdbf7d5be46c'
-      target='_blank'
-      rel='noreferrer'
-    >
-      <div className={styles.containerWrapper}>
-        <div className={styles.container}>
-          <div className={styles.leftCover}>
-            <button className={styles.promotion}>PROMOTION</button>
-            {/* <div className={styles.LogoWrapper}>
-              <img src='/images/banner/collaboLogo.png' alt='logo img' />
-            </div> */}
-            <h2 className={styles.title}>50개의 유료강의, 올라에서만 무료로! </h2>
-            {/* <span className={styles.subTitle}>로 들으실 분 찾아요!</span> */}
-            <span className={styles.subText}>유데미 강의 무료로 들으실 분 찾아요 ⭐️</span>
-          </div>
-          <div className={styles.rightCover}>
-            <img className={styles.coverImage} src='/images/banner/1.png' alt='firstBanner' />
+    <div className={styles.containerWrapper}>
+      <div className={styles.container}>
+        <div className={styles.leftCover}>
+          <h2 className={styles.title}>스터디와 사이드 프로젝트를 찾는</h2>
+          <h2 className={styles.title}>가장 쉬운 방법</h2>
+
+          <div className={styles.subContainer}>
+            <img className={styles.subImage} src='/images/logo/hola_logo_y.png' alt='hola logo' />
+            <span className={styles.subText}>에서 함께할 개발자를 찾으세요 ⭐️</span>
           </div>
         </div>
+        <div className={styles.rightCover}>
+          <img className={styles.coverImage} src='/images/banner/1.png' alt='firstBanner' />
+        </div>
       </div>
-    </a>
+    </div>
   );
 };

@@ -19,6 +19,7 @@ export const Carousel = () => {
 
   return (
     <Slider {...settings}>
+      <FirstBanner />
       <SecondBanner />
     </Slider>
   );

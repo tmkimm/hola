@@ -5,7 +5,7 @@
 }
 
 .containerWrapper {
-  background-color: #eeaadc;
+  background-color: #d7edff;
   margin-bottom: 16px;
 }
 
@@ -32,21 +32,18 @@
   height: 250px;
 }
 
-.promotion {
-  color: black;
-  font-weight: bold;
-  padding: 5px 30px;
-  background: #ffcd00;
-  border-radius: 50px;
-}
-
 .title {
   display: inline-block;
   font-size: 32px;
   font-weight: 700;
   padding: 0;
-  margin-bottom: 12px;
-  margin-top: 12px;
+  margin: 0;
+}
+
+.subContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 18px;
 }
 
 .subTitle {
@@ -58,20 +55,24 @@
   display: block;
 }
 
+.subImage {
+  width: 82px;
+  height: auto;
+}
+
 @media screen and (max-width: 1000px) {
   .title {
     font-size: 28px;
   }
-  .coverImage {
-    width: 500px;
-    height: 250px;
-  }
 }
 
 @media screen and (max-width: 820px) {
+  .rightCover {
+    flex: 0;
+  }
   .coverImage {
-    width: 400px;
-    height: 200px;
+    width: 300px;
+    height: 150px;
   }
 }
 
