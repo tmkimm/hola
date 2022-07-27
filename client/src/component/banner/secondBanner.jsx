@@ -18,15 +18,8 @@ export const SecondBanner = () => {
             <span className={styles.subTitle}>를 소개합니다.</span>
             <span className={styles.subText}>이제 마음 맞는 팀원을 더 쉽게 만나세요 🔍</span>
           </div>
-          {/* <div className={styles.rightCover}>
-            <img
-              className={styles.coverImageFirst}
-              src='/images/banner/2_1.png'
-              alt='firstBanner'
-            />
-          </div> */}
           <div className={styles.rightCover}>
-            <img className={styles.coverImage} src='/images/banner/2_2.png' alt='firstBanner' />
+            <img className={styles.coverImage} src='/images/banner/2.png' alt='second banner' />
           </div>
         </div>
       </div>

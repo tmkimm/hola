@@ -16,18 +16,7 @@ export const Carousel = () => {
     slidesToShow: 1, //화면에 보여질 개수
     arrows: false,
   };
-  const slide = [
-    {
-      id: '0',
-      src: '/images/banner/1.png',
-      division: 'hola',
-    },
-    {
-      id: '1',
-      src: '/images/banner/2.jpg',
-      division: 'udemy',
-    },
-  ];
+
   return (
     <Slider {...settings}>
       <SecondBanner />
