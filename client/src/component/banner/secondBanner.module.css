@@ -58,9 +58,17 @@
   font-size: 22px;
 }
 
-@media screen and (max-width: 820px) {
+@media screen and (max-width: 1000px) {
   .title {
     font-size: 28px;
+  }
+
+  .subTitle {
+    font-size: 28px;
+  }
+
+  .rightCover {
+    flex: 0;
   }
 
   .coverImage {
@@ -75,11 +83,16 @@
   }
 
   .title {
-    font-size: 24px;
+    font-size: 20px;
+    margin: 0;
   }
 
   .subTitle {
-    font-size: 24px;
+    font-size: 20px;
+  }
+
+  .subText {
+    margin-top: 4px;
   }
 
   .container {
