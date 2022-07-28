@@ -25,3 +25,12 @@
 .languageIcon:hover {
   transform: scale(1.05);
 }
+
+.full {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+.transparent {
+  opacity: 0.3;
+}
