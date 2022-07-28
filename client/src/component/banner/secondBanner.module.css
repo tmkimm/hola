@@ -83,22 +83,20 @@
   }
 
   .title {
-    font-size: 20px;
+    font-size: 24px;
     margin: 0;
   }
 
   .subTitle {
-    font-size: 20px;
+    font-size: 24px;
   }
 
   .subText {
     margin-top: 4px;
+    font-size: 16px;
   }
 
   .container {
     height: 240px;
-  }
-  .subText {
-    font-size: 16px;
   }
 }
