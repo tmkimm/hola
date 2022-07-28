@@ -10,6 +10,7 @@ import {
 } from 'store/language';
 import { languageMap } from 'common/options';
 import { capitalize } from 'common/utils';
+import Category from '../category/Category';
 
 const languages = {
   인기: [
@@ -79,8 +80,6 @@ const languages = {
   ],
 };
 
-const subjects = ['인기', '프론트엔드', '백엔드', '모바일', '기타', '모두보기'];
-
 export const DesktopFilter = React.memo(() => {
   const { subject, selected } = useSelector((state) => state.language);
   const dispatch = useDispatch();
@@ -99,7 +98,7 @@ export const DesktopFilter = React.memo(() => {
   const onDeleteIconClick = (selected) => {
     dispatch(removeLanguage(selected));
   };
-  const onSubjectClick = (curSubject) => {
+  const onCategoryClick = (curSubject) => {
     dispatch(changeSubject(curSubject));
   };
 
@@ -109,21 +108,7 @@ export const DesktopFilter = React.memo(() => {
 
   return (
     <section className={styles.filterWrapper}>
-      <ul className={styles.subjects}>
-        {subjects.map((curSubject, idx) => (
-          <li
-            key={idx}
-            className={`${styles.subjectItem} ${
-              curSubject === subject ? styles.selectedSubject : ''
-            }`}
-            onClick={() => {
-              onSubjectClick(curSubject);
-            }}
-          >
-            {curSubject}
-          </li>
-        ))}
-      </ul>
+      <Category onCategoryClick={onCategoryClick} />
       <ul className={styles.languages}>
         {languages[subject].map((language, idx) => {
           const isSelected = selected.includes(languageMap[language]);
