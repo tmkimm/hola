@@ -9,9 +9,9 @@ import {
   changeSubject,
 } from 'store/language';
 import { languageMap } from 'common/options';
-import { capitalize } from 'common/utils';
 import Category from '../category/Category';
 import LanguageBar from 'component/languageIBar/LanguageBar';
+import SelectedLanguage from '../selectedLanguage/SelectedLanguage';
 
 export const DesktopFilter = React.memo(() => {
   const { selected } = useSelector((state) => state.language);
@@ -43,30 +43,10 @@ export const DesktopFilter = React.memo(() => {
     <section className={styles.filterWrapper}>
       <Category onCategoryClick={onCategoryClick} />
       <LanguageBar onIconClick={onIconClick} />
-
-      <div className={styles.selectedWrapper}>
-        <ul className={styles.selectedLanguages}>
-          {selected.map((selected, idx) => (
-            <li
-              key={idx}
-              className={styles.selectedLanguage}
-              onClick={() => onDeleteIconClick(selected)}
-            >
-              <div>{capitalize(selected)}</div>
-              <img
-                className={styles.deleteButton}
-                src={`/images/info/delete.svg`}
-                alt='deleteButton'
-              />
-            </li>
-          ))}
-          {selected.length !== 0 && (
-            <span className={styles.resetFilter} onClick={onResetFilterClick}>
-              필터 초기화
-            </span>
-          )}
-        </ul>
-      </div>
+      <SelectedLanguage
+        onDeleteIconClick={onDeleteIconClick}
+        onResetFilterClick={onResetFilterClick}
+      />
     </section>
   );
 });

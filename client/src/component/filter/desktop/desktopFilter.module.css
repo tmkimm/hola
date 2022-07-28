@@ -5,55 +5,6 @@
   margin: 104px auto;
 }
 
-.selectedWrapper {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 30px;
-}
-
-.selectedLanguages {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 30px;
-}
-
-.selectedLanguage {
-  display: flex;
-  gap: 10px;
-  background: #f2f2f2;
-  padding: 8px 15px;
-  height: 41px;
-  border-radius: 10px;
-  font-weight: 500;
-  font-size: 20px;
-  color: #313131;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: all ease-in 100ms;
-}
-
-.selectedLanguage:hover {
-  transform: scale(1.02);
-}
-
-.resetFilter {
-  font-size: 20px;
-  color: #333333;
-  cursor: pointer;
-}
-
-.full {
-  opacity: 1;
-  transform: scale(1.02);
-}
-
-.transparent {
-  opacity: 0.3;
-}
-
 @media screen and (max-width: 575px) {
   .filterWrapper {
     display: none;
