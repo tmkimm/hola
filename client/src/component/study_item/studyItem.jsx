@@ -27,7 +27,7 @@ const StudyItem = ({ study }) => {
         <ul className={styles.hashtag}>
           {study.hashTag.map((hashtag, idx) => (
             <li key={idx} className={styles.hashtagList}>
-              #{hashtag}
+              #{hashtag === '10명 이상' ? '10명+' : hashtag}
             </li>
           ))}
         </ul>
