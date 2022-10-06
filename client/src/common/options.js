@@ -107,6 +107,26 @@ const expectedPeriodOption = [
   { value: 'lt', label: '장기' },
 ];
 
+const positionsOption = [
+  { value: 'FE', label: '프론트엔드' },
+  { value: 'BE', label: '백엔드' },
+  { value: 'DE', label: '디자이너' },
+  { value: 'IOS', label: 'IOS' },
+  { value: 'AND', label: '안드로이드' },
+  { value: 'DEVOPS', label: '데브옵스' },
+  { value: 'PM', label: 'PM' },
+];
+
+const positionsMap = {
+  FE: '프론트엔드',
+  BE: '백엔드',
+  DE: '디자이너',
+  IOS: 'IOS',
+  AND: '안드로이드',
+  DEVOPS: '데브옵스',
+  PM: 'PM',
+};
+
 export {
   languageList,
   studyOrProjectOption,
@@ -115,4 +135,6 @@ export {
   contactTypeOption,
   expectedPeriodOption,
   languageMap,
+  positionsOption,
+  positionsMap,
 };

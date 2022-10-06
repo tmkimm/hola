@@ -6,6 +6,7 @@ import styles from './studyInfo.module.css';
 
 export const StudyInfo = () => {
   const read = useSelector((state) => state.read);
+  console.log(read);
 
   return (
     <ul className={styles.studyGrid}>
@@ -43,6 +44,16 @@ export const StudyInfo = () => {
                 src={`/images/languages/${lang.value}.svg`}
                 alt='language'
               />
+            </li>
+          ))}
+        </ul>
+      </li>
+      <li className={styles.contentWrapper}>
+        <span className={styles.title}>모집 분야</span>
+        <ul className={styles.languageList}>
+          {read.post.positions.map((position, i) => (
+            <li key={i} className={styles.positions}>
+              {position.label}
             </li>
           ))}
         </ul>

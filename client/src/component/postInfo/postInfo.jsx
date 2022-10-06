@@ -10,6 +10,7 @@ import {
   recruitsOption,
   contactTypeOption,
   expectedPeriodOption,
+  positionsOption,
 } from 'common/options';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeField } from 'store/write';
@@ -39,6 +40,7 @@ export const PostInfo = () => {
     contactType,
     contactPoint,
     expectedPeriod,
+    positions,
   } = useSelector(({ write }) => ({
     language: write.language,
     startDate: write.startDate,
@@ -48,6 +50,7 @@ export const PostInfo = () => {
     contactType: write.contactType,
     contactPoint: write.contactPoint,
     expectedPeriod: write.expectedPeriod,
+    positions: write.positions,
   }));
 
   const getContactType = () => {
@@ -136,6 +139,18 @@ export const PostInfo = () => {
       <ul className={styles.inputList}>
         <li className={styles.listItem}>
           <Selectbox
+            isMulti={true}
+            labelText='모집 포지션'
+            customStyles={customStyles}
+            options={positionsOption}
+            selectValue={positions}
+            setSelectValue={onChangeField}
+            placeholder='프론트엔드, 백엔드...'
+            id='positions'
+          />
+        </li>
+        <li className={styles.listItem}>
+          <Selectbox
             isMulti={false}
             labelText='연락 방법'
             customStyles={customStyles}
@@ -153,7 +168,6 @@ export const PostInfo = () => {
             />
           </div>
         </li>
-        <li className={styles.listItem}></li>
       </ul>
     </>
   );

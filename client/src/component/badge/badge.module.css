@@ -1,0 +1,28 @@
+.badge{
+  height: 28px;
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: -0.04em;
+}
+
+.new{
+  border-radius: 20px;
+  padding: 6px 15px;
+  background: #FFF9D5;
+  color: #FDB900;
+}
+
+.hot{
+  border-radius: 20px;
+  padding: 6px 15px;
+  background: #F1F7FF;
+  color: #74A0E2;
+}
+
+.deadline{
+  border-radius: 20px;
+  padding: 6px 15px;
+  background: #FFE8E8;
+  color: #EA726F;
+}

@@ -9,7 +9,7 @@ export const Datepicker = ({ dateValue, setDateValue }) => {
   return (
     <div className={styles.dateWrapper}>
       <div className={styles.datepickerWrapper}>
-        <div className={styles.labelText}>시작 예정일</div>
+        <div className={styles.labelText}>모집 마감일</div>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DesktopDatePicker
             inputFormat={'yyyy-MM-dd'}

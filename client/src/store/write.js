@@ -32,6 +32,7 @@ const writePost = createAsyncThunk(
       contactType,
       contactPoint,
       expectedPeriod,
+      positions,
     },
     thunkAPI,
   ) => {
@@ -47,6 +48,7 @@ const writePost = createAsyncThunk(
       contactType: contactType.value,
       expectedPeriod: expectedPeriod.value,
       language: newLanguages,
+      positions: positions.value,
     });
 
     return response.status;
@@ -68,6 +70,7 @@ const modifyPost = createAsyncThunk(
       contactType,
       contactPoint,
       expectedPeriod,
+      positions,
     },
     thunkAPI,
   ) => {
@@ -83,6 +86,7 @@ const modifyPost = createAsyncThunk(
       contactType: getValue(contactType),
       expectedPeriod: getValue(expectedPeriod),
       language: getValue(language),
+      positions: getValue(positions),
     });
 
     return response.status;
@@ -100,6 +104,7 @@ const initialState = {
   contactType: { value: 'ok', label: '카카오톡 오픈채팅' },
   contactPoint: '',
   expectedPeriod: '',
+  positions: [],
   post: undefined,
   postError: undefined,
   postId: undefined,
@@ -134,6 +139,7 @@ const writeSlice = createSlice({
       contactType: post.contactType,
       contactPoint: post.contactPoint,
       expectedPeriod: post.expectedPeriod,
+      positions: post.positions,
     }),
   },
   extraReducers: {

@@ -1,5 +1,5 @@
 .main {
-  max-width: 1200px;
+  max-width: 1450px;
   width: 100%;
   min-height: 60rem;
   padding: 0 10px;
@@ -112,7 +112,7 @@
 
 @media screen and (max-width: 1300px) {
   .appWrapper {
-    width: 780px;
+    width: 1280px;
   }
 }
 

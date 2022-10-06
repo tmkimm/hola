@@ -36,6 +36,18 @@
   gap: 12px;
 }
 
+.positions {
+  height: 22px;
+  padding: 3px 10px;
+  background: #F2F4F8;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #4a5e75;
+}
+
 @media screen and (max-width: 768px) {
   .studyGrid {
     grid-template-columns: repeat(1, 6fr);

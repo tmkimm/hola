@@ -11,9 +11,9 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 70px 26px 26px 34px;
-  width: 370px;
-  height: 450px;
+  padding: 40px 27px 27px 20px;
+  width: 330px;
+  height: 418px;
   background: #ffffff;
   border: 2px solid #d1d1d1;
   border-radius: 30px;
@@ -28,24 +28,24 @@ li {
 
 .schedule {
   display: flex;
-  font-size: 18px;
-  gap: 10px;
-  color: rgba(0, 0, 0, 0.4);
+  font-size: 15px;
+  gap: 8px;
+  color: #999999;
+  font-weight: 700;
+  margin-top: 30px;
 }
 
 .scheduleTitle {
-  font-size: 18px;
-
   letter-spacing: -4%;
 }
 
 .title {
-  font-size: 24px;
-  min-height: 76px;
-  line-height: 36px;
-  font-weight: 400;
-  letter-spacing: -0.04em;
-  margin: 16px 0;
+  font-size: 20px;
+  min-height: 56px;
+  line-height: 28px;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  margin: 8px 0 10px 0;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -53,51 +53,80 @@ li {
   overflow: hidden;
 }
 
+.positionList{
+  height: 22px;
+  display: flex;
+  gap: 3px;
+}
+
+.position{
+  padding: 3px 10px;
+  gap: 5px;
+  height: 22px;
+  background: #F2F4F8;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px; 
+  color: #3E86F5;
+  
+}
+
 .hashtag {
   display: flex;
   gap: 5px;
   font-size: 18px;
-  color: rgba(0, 0, 0, 0.4);
+  margin-top: 20px;
+  color: #676767;
+  font-size: 14px;
   min-height: 30px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .content {
-  margin-bottom: 42px;
+  margin-bottom: 32px;
   padding: 0;
   display: flex;
-  gap: 12px;
+  gap: 8px;
   list-style: none;
 }
 
 .language {
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
 }
 
 .languageImage {
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
 }
 
 .info {
   display: flex;
-  font-size: 18px;
+  font-size: 14px;
+  font-weight: 500;
   justify-content: space-between;
   border-top: 2px solid #f2f2f2;
-  padding-top: 16px;
+  letter-spacing: -0.04em;
+  padding-top: 13px;
+}
+
+.userInfo{
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .viewsAndComment {
   display: flex;
-  gap: 12px;
+  gap: 10px;
 }
 
 .infoItem {
   display: flex;
   align-items: center;
   color: #999999;
-  gap: 6px;
+  gap: 5px;
 }
 
 .closed {

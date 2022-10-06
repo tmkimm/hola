@@ -66,6 +66,7 @@ class Study {
     contactType,
     contactPoint,
     expectedPeriod,
+    positions,
   }) => {
     try {
       const response = await this.study.post('posts', {
@@ -79,6 +80,7 @@ class Study {
         contactType,
         contactPoint,
         expectedPeriod,
+        positions,
       });
       return response;
     } catch (error) {
@@ -98,6 +100,7 @@ class Study {
     contactType,
     contactPoint,
     expectedPeriod,
+    positions,
   }) => {
     try {
       const response = await this.study.patch(`posts/${postId}`, {
@@ -111,6 +114,7 @@ class Study {
         contactType,
         contactPoint,
         expectedPeriod,
+        positions,
       });
       return response;
     } catch (error) {

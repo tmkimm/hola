@@ -5,10 +5,11 @@ import { FaRegComment } from 'react-icons/fa';
 import { AiOutlineEye } from 'react-icons/ai';
 import { Avatar } from 'component/common/avatar';
 import { formatDate } from 'common/utils';
+import { positionsMap } from 'common/options';
+import Badge from 'component/badge/badge';
 
 const StudyItem = ({ study }) => {
   const studyLang = [];
-  const history = useHistory();
   const displayType = study.isClosed ? styles.closed : styles.open;
 
   for (let i = 0; i < 5; i++) {
@@ -19,11 +20,19 @@ const StudyItem = ({ study }) => {
   return (
     <Link to={`/study/${study._id}`} className={`${styles.studyItem} ${displayType}`}>
       <li>
+        {study.state && <Badge state={study.state} />}
         <div className={styles.schedule}>
-          <p className={styles.scheduleTitle}>시작 예정일 |</p>
+          <p className={styles.scheduleTitle}>마감일 |</p>
           <p className={styles.scheduleInfo}>{formatDate(study.startDate)}</p>
         </div>
         <h1 className={styles.title}>{study.title}</h1>
+        <ul className={styles.positionList}>
+          {study.positions.map((position, idx) => (
+            <li key={idx} className={styles.position}>
+              {positionsMap[position]}
+            </li>
+          ))}
+        </ul>
         <ul className={styles.hashtag}>
           {study.hashTag.map((hashtag, idx) => (
             <li key={idx} className={styles.hashtagList}>
@@ -43,18 +52,17 @@ const StudyItem = ({ study }) => {
           ))}
         </ul>
         <section className={styles.info}>
-          <Avatar
-            size='small'
-            userName={study.author.nickName}
-            imgPath={study.author.image}
-          ></Avatar>
+          <div className={styles.userInfo}>
+            <Avatar size='32px' imgPath={study.author.image}></Avatar>
+            <div className={styles.userName}>{study.author.nickName}</div>
+          </div>
           <div className={styles.viewsAndComment}>
             <div className={styles.infoItem}>
-              <AiOutlineEye size={28} color={'#999999'} />
+              <AiOutlineEye size={24} color={'#999999'} />
               <p className={styles.views}>{study.views}</p>
             </div>
             <div className={styles.infoItem}>
-              <FaRegComment size={20} color={'#999999'} />
+              <FaRegComment size={18} color={'#999999'} />
               <p className={styles.comments}>{study.totalComments}</p>
             </div>
           </div>

@@ -4,24 +4,8 @@
   position: relative;
 }
 
-.userName {
-  font-size: 18px;
-  font-weight: 400;
-}
-
 .userImg {
   display: block;
-  margin-right: 10px;
   border-radius: 50%;
   object-fit: cover;
-}
-
-.small {
-  width: 36px;
-  height: 36px;
-}
-
-.large {
-  width: 48px;
-  height: 48px;
 }

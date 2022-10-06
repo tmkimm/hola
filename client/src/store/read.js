@@ -7,6 +7,7 @@ import {
   recruitsOption,
   contactTypeOption,
   expectedPeriodOption,
+  positionsOption,
 } from 'common/options';
 /* 
 
@@ -36,6 +37,7 @@ const readPost = createAsyncThunk(readPostAction, async (id, thunkAPI) => {
     contactPoint: data.contactPoint,
     onlineOrOffline: getFormattedData(onlineOrOfflineOption, data.onlineOrOffline),
     contactType: getFormattedData(contactTypeOption, data.contactType),
+    positions: getFormattedData(positionsOption, data.positions),
   };
 });
 
@@ -53,6 +55,7 @@ const initialState = {
     contactType: '',
     contactPoint: '',
     expectedPeriod: '',
+    positions: [],
     nickname: '',
     imagePath: '',
     createdAt: '',
@@ -95,6 +98,7 @@ const readSlice = createSlice({
         onlineOrOffline: payload.onlineOrOffline,
         recruits: payload.recruits,
         startDate: payload.startDate,
+        positions: payload.positions,
       },
     }),
   },
