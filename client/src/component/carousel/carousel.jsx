@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { FirstBanner, SecondBanner } from 'component/banner';
+import { EventBanner } from 'component/banner/eventBanner';
 
 export const Carousel = () => {
   const settings = {
@@ -19,6 +20,7 @@ export const Carousel = () => {
 
   return (
     <Slider {...settings}>
+      <EventBanner />
       <FirstBanner />
       <SecondBanner />
     </Slider>
