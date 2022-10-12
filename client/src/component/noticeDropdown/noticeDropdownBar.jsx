@@ -58,9 +58,7 @@ export const NoticeDropdownBar = ({ handleClose }) => {
               <a className={styles.noticeLink} href={alarm.href} target='_blank' rel='noreferrer'>
                 <p className={styles.noticeTitle}>{alarm.title}</p>
                 <p className={styles.noticeContent}>{alarm.content}</p>
-                <span className={styles.noticeText}>
-                  {alarm.noticeType === 'coupon' ? '쿠폰 사용하러 가기!' : '모집글 양식 확인하기'}
-                </span>
+                <span className={styles.noticeText}>지금 참여하기</span>
               </a>
             </li>
           ))}
