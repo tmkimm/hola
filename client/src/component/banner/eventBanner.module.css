@@ -25,12 +25,12 @@
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .coverImage {
-  width: 233px;
-  height: 244px;
+  width: 307px;
+  height: 291px;
 }
 
 .promotion {
@@ -43,8 +43,8 @@
 }
 
 .title {
+  font-weight: 700;
   margin-top: 28px;
-  font-weight: 400;
   font-size: 32px;
   line-height: 126.5%;
   letter-spacing: -0.03em;
@@ -68,11 +68,11 @@
 
 @media screen and (max-width: 1000px) {
   .title {
-    font-size: 24px;
+    font-size: 28px;
   }
 
   .subTitle {
-    font-size: 20px;
+    font-size: 24px;
   }
 
   .rightCover {
@@ -80,8 +80,8 @@
   }
 
   .coverImage {
-    width: 150px;
-    height: 160px;
+    width: 250px;
+    height: 250px;
   }
 }
 
@@ -91,17 +91,17 @@
   }
 
   .title {
-    font-size: 20px;
+    font-size: 24px;
     margin: 16px 0;
   }
 
   .subTitle {
-    font-size: 16px;
+    font-size: 20px;
   }
 
   .subText {
     margin-top: 4px;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .container {
