@@ -17,7 +17,7 @@ export const EventBanner = () => {
             <div className={styles.subTitle}>
               올리들의 이야기를 듣고싶어요! 지금 설문에 응답하고 커피 한 잔 해요 ️ ☕️
             </div>
-            <div className={styles.subText}>설문 기간 : 10/7~10/20</div>
+            <div className={styles.subText}>설문 기간 : 10/7~10/31</div>
           </div>
           <div className={styles.rightCover}>
             <img
