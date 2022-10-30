@@ -89,6 +89,7 @@
   align-items: center;
   position: relative;
   margin-bottom: 2rem;
+  gap: 630px;
 }
 
 @keyframes bubbleAnimation {
