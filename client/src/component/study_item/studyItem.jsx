@@ -45,6 +45,7 @@ const StudyItem = ({ study }) => {
             <li key={i} className={styles.language}>
               <img
                 className={styles.languageImage}
+                title={lang}
                 src={`/images/languages/${lang}.svg`}
                 alt='language'
               />

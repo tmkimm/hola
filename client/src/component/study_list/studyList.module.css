@@ -5,6 +5,21 @@
   padding: 0;
 }
 
+.bannerImg {
+  width: 370px;
+  height: 450px;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+}
+
+.bannerImg:hover {
+  transform: scale(1.02);
+}
+
+.link {
+  text-decoration: none;
+}
+
 @media screen and (max-width: 820px) {
   .studyList {
     gap: 20px;
@@ -14,5 +29,19 @@
 @media screen and (max-width: 575px) {
   .studyList {
     padding: 10px;
+  }
+
+  .bannerImg {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .studyItem {
+    width: 100%;
+  }
+
+  .bannerImg {
+    display: none;
   }
 }
