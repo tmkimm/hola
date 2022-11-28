@@ -9,7 +9,7 @@ export const Avatar = React.memo(({ imgPath, size }) => {
       : `https://hola-post-image.s3.ap-northeast-2.amazonaws.com/${imgPath}`;
   return (
     <div className={styles.user}>
-      <img className={styles.userImg} height={size} src={imagePath} alt='avatar' />
+      <img className={styles.userImg} width={size} height={size} src={imagePath} alt='avatar' />
     </div>
   );
 });
