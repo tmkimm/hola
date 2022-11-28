@@ -35,13 +35,3 @@
     display: none;
   }
 }
-
-@media screen and (max-width: 767px) {
-  .studyItem {
-    width: 100%;
-  }
-
-  .bannerImg {
-    display: none;
-  }
-}

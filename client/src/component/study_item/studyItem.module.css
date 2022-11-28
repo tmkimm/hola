@@ -7,13 +7,18 @@ li {
   margin: 0;
 }
 
+.badgeWrapper {
+  display: flex;
+  gap: 3px;
+}
+
 .studyItem {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 40px 27px 27px 20px;
-  width: 330px;
-  height: 418px;
+  padding: 20px 25px 0px 25px;
+  width: 300px;
+  height: 340px;
   background: #ffffff;
   border: 2px solid #d1d1d1;
   border-radius: 30px;
@@ -28,11 +33,11 @@ li {
 
 .schedule {
   display: flex;
-  font-size: 15px;
+  font-size: 14px;
   gap: 8px;
   color: #999999;
   font-weight: 700;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .scheduleTitle {
@@ -40,12 +45,12 @@ li {
 }
 
 .title {
-  font-size: 20px;
+  font-size: 17px;
   min-height: 56px;
   line-height: 28px;
   font-weight: 700;
   letter-spacing: -0.05em;
-  margin: 8px 0 10px 0;
+  margin: 12px 0;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -53,38 +58,27 @@ li {
   overflow: hidden;
 }
 
-.positionList{
+.positionList {
   height: 22px;
   display: flex;
+  margin-bottom: 20px;
   gap: 3px;
 }
 
-.position{
+.position {
   padding: 3px 10px;
   gap: 5px;
   height: 22px;
-  background: #F2F4F8;
+  background: #f2f4f8;
   border-radius: 15px;
   font-weight: 700;
   font-size: 13px;
-  line-height: 16px; 
-  color: #3E86F5;
-  
-}
-
-.hashtag {
-  display: flex;
-  gap: 5px;
-  font-size: 18px;
-  margin-top: 20px;
-  color: #676767;
-  font-size: 14px;
-  min-height: 30px;
-  margin-bottom: 20px;
+  line-height: 16px;
+  color: #3e86f5;
 }
 
 .content {
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   padding: 0;
   display: flex;
   gap: 8px;
@@ -101,17 +95,20 @@ li {
   height: 32px;
 }
 
+.border {
+  border-top: 2px solid #f2f2f2;
+}
+
 .info {
   display: flex;
   font-size: 14px;
   font-weight: 500;
   justify-content: space-between;
-  border-top: 2px solid #f2f2f2;
   letter-spacing: -0.04em;
-  padding-top: 13px;
+  margin-top: 8px;
 }
 
-.userInfo{
+.userInfo {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -148,62 +145,13 @@ li {
   border-radius: 6px;
 }
 
-@media screen and (max-width: 820px) {
-  .studyItem {
-    padding: 68px 40px 27px 30px;
-    width: 356px;
-    height: 430px;
-  }
-
-  .schedule {
-    font-size: 18px;
-    gap: 10px;
-  }
-
-  .title {
-    font-size: 24px;
-    min-height: 72px;
-    line-height: 36px;
-    font-weight: 400;
-    letter-spacing: -0.04em;
-    margin: 15px 0;
-  }
-
-  .hashtag {
-    font-size: 18px;
-    min-height: 23px;
-    margin-bottom: 45px;
-  }
-
-  .content {
-    margin-bottom: 49px;
-    display: flex;
-    gap: 10px;
-    list-style: none;
-  }
-
-  .language {
-    height: 42px;
-  }
-
-  .languageImage {
-    width: 42px;
-    height: 42px;
-  }
-
-  .info {
-    font-size: 12px;
-
-    padding-top: 10px;
-  }
-
-  .viewsAndComment {
-    gap: 10px;
-  }
-
-  .infoItem {
-    gap: 5px;
-  }
+.bookmark {
+  display: block;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: 25px;
+  right: 20px;
 }
 
 @media screen and (max-width: 767px) {

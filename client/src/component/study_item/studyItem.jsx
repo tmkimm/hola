@@ -20,7 +20,10 @@ const StudyItem = ({ study }) => {
   return (
     <Link to={`/study/${study._id}`} className={`${styles.studyItem} ${displayType}`}>
       <li>
-        {study.state && <Badge state={study.state} />}
+        <div className={styles.badgeWrapper}>
+          <Badge state={'project'} />
+          <Badge state={'new'} />
+        </div>
         <div className={styles.schedule}>
           <p className={styles.scheduleTitle}>마감일 |</p>
           <p className={styles.scheduleInfo}>{formatDate(study.startDate)}</p>
@@ -30,13 +33,6 @@ const StudyItem = ({ study }) => {
           {study.positions.map((position, idx) => (
             <li key={idx} className={styles.position}>
               {positionsMap[position]}
-            </li>
-          ))}
-        </ul>
-        <ul className={styles.hashtag}>
-          {study.hashTag.map((hashtag, idx) => (
-            <li key={idx} className={styles.hashtagList}>
-              #{hashtag === '10명 이상' ? '10명+' : hashtag}
             </li>
           ))}
         </ul>
@@ -52,9 +48,10 @@ const StudyItem = ({ study }) => {
             </li>
           ))}
         </ul>
+        <div className={styles.border} />
         <section className={styles.info}>
           <div className={styles.userInfo}>
-            <Avatar size='32px' imgPath={study.author.image}></Avatar>
+            <Avatar size='30px' imgPath={study.author.image}></Avatar>
             <div className={styles.userName}>{study.author.nickName}</div>
           </div>
           <div className={styles.viewsAndComment}>
@@ -69,6 +66,7 @@ const StudyItem = ({ study }) => {
           </div>
         </section>
         {study.isClosed && <div className={styles.closeNotice}>모집 마감</div>}
+        <img className={styles.bookmark} src={`/images/info/bookmark2.png`} alt='bookmark' />
       </li>
     </Link>
   );
