@@ -1,28 +1,35 @@
-.badge{
+.badge {
   height: 28px;
   font-weight: 800;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 16px;
   letter-spacing: -0.04em;
 }
 
-.new{
+.new {
   border-radius: 20px;
   padding: 6px 15px;
-  background: #FFF9D5;
-  color: #FDB900;
+  background: #fff9d5;
+  color: #fdb900;
 }
 
-.hot{
+.hot {
   border-radius: 20px;
   padding: 6px 15px;
-  background: #F1F7FF;
-  color: #74A0E2;
+  background: #f1f7ff;
+  color: #74a0e2;
 }
 
-.deadline{
+.deadline {
   border-radius: 20px;
   padding: 6px 15px;
-  background: #FFE8E8;
-  color: #EA726F;
+  background: #ffe8e8;
+  color: #ea726f;
+}
+
+.study {
+  border-radius: 20px;
+  padding: 6px 15px;
+  background: #efefef;
+  color: #656565;
 }
