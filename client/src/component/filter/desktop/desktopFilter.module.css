@@ -1,8 +1,8 @@
 .filterWrapper {
-  max-width: 1400px;
+  max-width: 1300px;
   width: 100%;
   padding: 0 15px;
-  margin: 104px auto;
+  margin: 100px auto 60px auto;
 }
 
 @media screen and (max-width: 575px) {

@@ -1,8 +1,8 @@
 .main {
-  max-width: 1450px;
   width: 100%;
+  max-width: 1300px;
   min-height: 60rem;
-  padding: 0 10px;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -109,17 +109,18 @@
 
 .appWrapper {
   margin: 0 auto;
+  width: 1300px;
 }
 
 @media screen and (max-width: 1300px) {
   .appWrapper {
-    width: 1280px;
+    width: 960px;
   }
 }
 
-@media screen and (max-width: 820px) {
+@media screen and (max-width: 980px) {
   .appWrapper {
-    width: 100%;
+    width: 630px;
   }
 
   .categoryWrapper {
@@ -130,6 +131,9 @@
 }
 
 @media screen and (max-width: 575px) {
+  .appWrapper {
+    width: 100%;
+  }
   .main {
     margin-top: 60px;
     padding: 0 16px;
