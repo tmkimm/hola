@@ -21,8 +21,8 @@ const StudyItem = ({ study }) => {
     <Link to={`/study/${study._id}`} className={`${styles.studyItem} ${displayType}`}>
       <li>
         <div className={styles.badgeWrapper}>
-          <Badge state={'project'} />
-          <Badge state={'new'} />
+          <Badge state={study.type === '1' ? 'project' : 'study'} />
+          <Badge state={study.state} />
         </div>
         <div className={styles.schedule}>
           <p className={styles.scheduleTitle}>마감일 |</p>

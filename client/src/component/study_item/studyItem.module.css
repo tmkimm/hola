@@ -9,6 +9,7 @@ li {
 
 .badgeWrapper {
   display: flex;
+  align-items: center;
   gap: 3px;
 }
 
@@ -16,7 +17,7 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20px 25px 0px 25px;
+  padding: 20px 20px 0px 20px;
   width: 300px;
   height: 340px;
   background: #ffffff;
@@ -36,8 +37,8 @@ li {
   font-size: 14px;
   gap: 8px;
   color: #999999;
-  font-weight: 700;
-  margin-top: 20px;
+  font-weight: 500;
+  margin-top: 10px;
 }
 
 .scheduleTitle {
@@ -46,9 +47,9 @@ li {
 
 .title {
   font-size: 17px;
-  min-height: 56px;
+  min-height: 50px;
   line-height: 28px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: -0.05em;
   margin: 12px 0;
   display: -webkit-box;
@@ -147,10 +148,10 @@ li {
 
 .bookmark {
   display: block;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   position: absolute;
-  top: 25px;
+  top: 35px;
   right: 20px;
 }
 
