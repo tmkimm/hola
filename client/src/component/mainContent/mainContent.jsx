@@ -22,33 +22,62 @@ const customStyles = {
   valueContainer: (provided, state) => ({
     ...provided,
     height: '42px',
-    padding: '7px 15px',
-    fontWeight: '700',
-    fontSize: '20px',
+    display: 'flex',
+    alignItems: 'center',
+    marginLeft: '8px',
+    fontWeight: '600',
+    fontSize: '18px',
     letterSpacing: '0.03em',
+  }),
+  menu: (provided, state) => ({
+    ...provided,
+    width: '190px',
+    background: '#FFFFFF',
+    border: '1.5px solid #E3E3E3',
+    borderRadius: '25px',
+    boxShadow: state.isFocused ? null : null,
+    padding: '20px',
+  }),
+  option: (provided) => ({
+    ...provided,
+    fontWeight: '700',
+    fontSize: '16px',
+    lineHeight: '26px',
+    letterSpacing: '-0.03em',
+    color: '#646464',
+    backgroundColor: 'null',
+    cursor: 'pointer',
   }),
 };
 
 const options = [
   {
-    label: 'option 1',
+    label: '프론트엔드',
     value: 1,
   },
   {
-    label: 'option 2',
+    label: '백엔드',
     value: 2,
   },
   {
-    label: 'option 3',
+    label: 'IOS',
     value: 3,
   },
   {
-    label: 'option 4',
+    label: '안드로이드',
     value: 4,
   },
   {
-    label: 'option 5',
+    label: 'DevOps',
     value: 5,
+  },
+  {
+    label: '디자이너',
+    value: 6,
+  },
+  {
+    label: 'PM',
+    value: 7,
   },
 ];
 
@@ -113,7 +142,14 @@ export const MainContent = () => {
           </div>
         </section>
 
-        <Select placeholder={'내 포지션 찾기'} styles={customStyles} options={options} />
+        <div className={styles.selectWrapper}>
+          <Select
+            placeholder={'내 포지션 찾기'}
+            styles={customStyles}
+            isSearchable={false}
+            options={options}
+          />
+        </div>
 
         <ToggleSwitch checked={checked} handleSelect={handleSelect} />
       </div>
