@@ -8,28 +8,28 @@
 
 .new {
   border-radius: 20px;
-  padding: 6px 15px;
+  padding: 4px 12px;
   background: #fff9d5;
   color: #fdb900;
 }
 
 .hot {
   border-radius: 20px;
-  padding: 6px 15px;
+  padding: 4px 12px;
   background: #f1f7ff;
   color: #74a0e2;
 }
 
 .deadline {
   border-radius: 20px;
-  padding: 6px 15px;
+  padding: 4px 12px;
   background: #ffe8e8;
   color: #ea726f;
 }
 
 .study {
   border-radius: 20px;
-  padding: 6px 15px;
+  padding: 4px 12px;
   background: #efefef;
   color: #656565;
 }

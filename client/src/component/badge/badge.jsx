@@ -9,17 +9,19 @@ const getClass = (state) => {
 };
 
 const Badge = ({ state }) => {
+  if (state === '') return null;
+
   const studyState = {
     new: '🍞 따끈따끈 새 글',
     deadline: '🔥 마감코앞',
     hot: '💙 인기',
     study: '✏️ 스터디',
-    project: '📁 프로젝트',
+    project: '🗂 프로젝트',
   };
 
   return (
     <div className={`${styles.badge}`}>
-      {state ? <span className={getClass(state)}>{studyState[state]}</span> : null}
+      {state ? <div className={getClass(state)}>{studyState[state]}</div> : null}
     </div>
   );
 };
