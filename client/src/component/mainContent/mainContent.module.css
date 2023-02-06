@@ -69,11 +69,6 @@
   width: 1300px;
 }
 
-.selectWrapper {
-  position: absolute;
-  right: 230px;
-}
-
 @media screen and (max-width: 1300px) {
   .appWrapper {
     width: 960px;
