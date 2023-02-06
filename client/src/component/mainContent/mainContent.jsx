@@ -48,6 +48,10 @@ const customStyles = {
     backgroundColor: 'null',
     cursor: 'pointer',
   }),
+  menuList: (base) => ({
+    ...base,
+    overflow: 'hidden',
+  }),
 };
 
 const options = [
