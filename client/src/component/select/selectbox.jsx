@@ -11,6 +11,7 @@ export const Selectbox = ({
   setSelectValue,
   placeholder,
   id,
+  maxValue,
 }) => {
   const selectStyle = {
     control: (css) => ({
@@ -29,7 +30,7 @@ export const Selectbox = ({
         isMulti={isMulti}
         styles={selectStyle}
         placeholder={placeholder}
-        isOptionDisabled={() => selectValue.length >= 5}
+        isOptionDisabled={() => selectValue.length >= maxValue ?? 5}
         name='onoffline'
         options={options}
         classNamePrefix='select'

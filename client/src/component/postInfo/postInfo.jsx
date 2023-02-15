@@ -145,6 +145,7 @@ export const PostInfo = () => {
             options={positionsOption}
             selectValue={positions}
             setSelectValue={onChangeField}
+            maxValue={3}
             placeholder='프론트엔드, 백엔드...'
             id='positions'
           />
