@@ -108,6 +108,7 @@ const expectedPeriodOption = [
 ];
 
 const positionsOption = [
+  { value: 'ALL', label: '전체' },
   { value: 'FE', label: '프론트엔드' },
   { value: 'BE', label: '백엔드' },
   { value: 'DE', label: '디자이너' },

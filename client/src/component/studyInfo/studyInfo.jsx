@@ -6,7 +6,6 @@ import styles from './studyInfo.module.css';
 
 export const StudyInfo = () => {
   const read = useSelector((state) => state.read);
-  console.log(read);
 
   return (
     <ul className={styles.studyGrid}>
