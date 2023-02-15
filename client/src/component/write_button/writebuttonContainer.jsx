@@ -32,6 +32,7 @@ const WritebuttonContainer = (props) => {
     post,
     postError,
     postId,
+    positions,
   } = useSelector(({ write }) => ({
     title: write.title,
     content: write.content,
@@ -46,6 +47,7 @@ const WritebuttonContainer = (props) => {
     post: write.post,
     postError: write.postError,
     postId: write.postId,
+    positions: write.positions,
   }));
 
   const checkValidity = () => {
@@ -121,6 +123,14 @@ const WritebuttonContainer = (props) => {
       return false;
     }
 
+    if (!positions) {
+      toast.error('모집 분야를 입력해주세요!', {
+        position: 'top-right',
+        autoClose: 3000,
+      });
+      return false;
+    }
+
     return true;
   };
   // language 자동으로 넘어가도록 수정
@@ -141,6 +151,7 @@ const WritebuttonContainer = (props) => {
           contactType,
           contactPoint,
           expectedPeriod,
+          positions,
         }),
       ).then((response) => {
         toast.info('글 수정이 완료되었어요!', {
@@ -161,6 +172,7 @@ const WritebuttonContainer = (props) => {
           contactType,
           contactPoint,
           expectedPeriod,
+          positions,
         }),
       ).then((response) => {
         toast.success('글 작성이 완료되었어요!', {

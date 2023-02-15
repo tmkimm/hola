@@ -58,7 +58,6 @@ class Study {
   register = async ({
     title,
     content,
-    language,
     startDate,
     type,
     recruits,
@@ -66,6 +65,7 @@ class Study {
     contactType,
     contactPoint,
     expectedPeriod,
+    language,
     positions,
   }) => {
     try {

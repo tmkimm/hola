@@ -37,6 +37,7 @@ const writePost = createAsyncThunk(
     thunkAPI,
   ) => {
     const newLanguages = language.map((item) => item.value);
+
     const response = await studyService.register({
       title,
       content,
@@ -155,6 +156,7 @@ const writeSlice = createSlice({
       state.post = payload; // post 정보 담음
     },
     [writePost.rejected]: (state, { payload }) => {
+      console.log('글 작성 실패', state);
       if (payload === 401) {
         state.postError = 'failed'; // post 정보 담음
       }
