@@ -10,9 +10,9 @@ class Study {
     this.study = httpClient;
   }
 
-  getList = async (category, selectedLanguages, pageNumber, checked) => {
+  getList = async (category, selectedLanguages, position, pageNumber, checked) => {
     const queryType = { all: 0, project: 1, study: 2 };
-
+    //TODO: position 추가 필요
     try {
       const params = {
         sort: '-createdAt',

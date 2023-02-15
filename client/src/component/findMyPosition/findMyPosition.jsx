@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './findMyPosition.module.css';
 import Select from 'react-select';
+import { useDispatch } from 'react-redux';
+import { changePosition } from 'store/language';
 
 const customStyles = {
   control: (base, state) => ({
@@ -48,38 +50,40 @@ const customStyles = {
   }),
 };
 
+/*        description: '포지션(FE: 프론트엔드, BE: 백엔드, DE: 디자이너, IOS: IOS, AND: 안드로이드, DEVOPS: DevOps, PM)' */
 const options = [
   {
     label: '프론트엔드',
-    value: 1,
+    value: 'FE',
   },
   {
     label: '백엔드',
-    value: 2,
+    value: 'BE',
   },
   {
     label: 'IOS',
-    value: 3,
+    value: 'IOS',
   },
   {
     label: '안드로이드',
-    value: 4,
+    value: 'AND',
   },
   {
     label: 'DevOps',
-    value: 5,
+    value: 'DEVOPS',
   },
   {
     label: '디자이너',
-    value: 6,
+    value: 'DE',
   },
   {
     label: 'PM',
-    value: 7,
+    value: 'PM',
   },
 ];
 
 const FindMyPosition = () => {
+  const dispatch = useDispatch();
   return (
     <div className={styles.selectWrapper}>
       <Select
@@ -87,6 +91,9 @@ const FindMyPosition = () => {
         styles={customStyles}
         isSearchable={false}
         options={options}
+        onChange={(position) => {
+          dispatch(changePosition(position.value));
+        }}
       />
     </div>
   );

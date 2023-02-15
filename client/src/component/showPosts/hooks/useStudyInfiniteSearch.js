@@ -3,11 +3,20 @@ import { useSelector } from 'react-redux';
 import studyService from 'service/study_service';
 
 export const useStudyInfiniteSearch = (category, checked) => {
-  const selectedLanguages = useSelector((state) => state.language.selected);
+  const languageState = useSelector((state) => state.language);
+  const { selected, position } = languageState;
+
+  console.log(position);
   const { data, error, fetchNextPage, hasNextPage, isFetching, status } = useInfiniteQuery(
-    ['studyList', { category, selectedLanguages, checked }],
+    ['studyList', { category, selected, checked }],
     async ({ pageParam = 0 }) => {
-      const { data } = await studyService.getList(category, selectedLanguages, pageParam, !checked);
+      const { data } = await studyService.getList(
+        category,
+        selected,
+        position,
+        pageParam,
+        !checked,
+      );
 
       return {
         result: data,

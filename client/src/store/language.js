@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   subject: '인기',
   selected: [],
+  position: '',
 };
 const languageSlice = createSlice({
   name: 'language',
@@ -20,10 +21,17 @@ const languageSlice = createSlice({
     clearLanguage: (state) => ({ ...state, selected: [] }),
     initLanguage: () => initialState,
     changeSubject: (state, action) => ({ ...state, subject: action.payload }),
+    changePosition: (state, action) => ({ ...state, position: action.payload }),
   },
 });
 
-export const { addLanguage, removeLanguage, clearLanguage, initLanguage, changeSubject } =
-  languageSlice.actions;
+export const {
+  addLanguage,
+  removeLanguage,
+  clearLanguage,
+  initLanguage,
+  changeSubject,
+  changePosition,
+} = languageSlice.actions;
 
 export default languageSlice.reducer;
