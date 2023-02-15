@@ -37,6 +37,7 @@ const writePost = createAsyncThunk(
     thunkAPI,
   ) => {
     const newLanguages = language.map((item) => item.value);
+    const newPositions = positions.map((item) => item.value);
 
     const response = await studyService.register({
       title,
@@ -49,7 +50,7 @@ const writePost = createAsyncThunk(
       contactType: contactType.value,
       expectedPeriod: expectedPeriod.value,
       language: newLanguages,
-      positions: positions.value,
+      positions: newPositions,
     });
 
     return response.status;

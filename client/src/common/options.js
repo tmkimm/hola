@@ -119,6 +119,7 @@ const positionsOption = [
 ];
 
 const positionsMap = {
+  ALL: '전체',
   FE: '프론트엔드',
   BE: '백엔드',
   DE: '디자이너',
