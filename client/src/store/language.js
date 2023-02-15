@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   subject: '인기',
   selected: [],
-  position: '',
+  position: 'ALL',
 };
 const languageSlice = createSlice({
   name: 'language',

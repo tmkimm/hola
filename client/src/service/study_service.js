@@ -12,7 +12,6 @@ class Study {
 
   getList = async (category, selectedLanguages, position, pageNumber, checked) => {
     const queryType = { all: 0, project: 1, study: 2 };
-    //TODO: position 추가 필요
     try {
       const params = {
         sort: '-createdAt',
@@ -20,6 +19,7 @@ class Study {
         limit: 20,
         isClosed: checked,
         type: queryType[category],
+        position,
       };
 
       if (selectedLanguages.length !== 0) {
