@@ -36,15 +36,18 @@ export const StudyInfo = () => {
       <li className={styles.contentWrapper}>
         <span className={styles.title}>사용 언어</span>
         <ul className={styles.languageList}>
-          {read.post.language.map((lang, i) => (
-            <li key={i} className={styles.language}>
-              <img
-                className={styles.languageImage}
-                src={`/images/languages/${lang.value}.svg`}
-                alt='language'
-              />
-            </li>
-          ))}
+          {read.post.language.map((lang, i) => {
+            if (i >= 5) return null;
+            return (
+              <li key={i} className={styles.language}>
+                <img
+                  className={styles.languageImage}
+                  src={`/images/languages/${lang.value}.svg`}
+                  alt='language'
+                />
+              </li>
+            );
+          })}
         </ul>
       </li>
       <li className={styles.contentWrapper}>
