@@ -4,6 +4,7 @@ const initialState = {
   subject: '인기',
   selected: [],
   position: 'ALL',
+  search: '',
 };
 const languageSlice = createSlice({
   name: 'language',
@@ -22,6 +23,7 @@ const languageSlice = createSlice({
     initLanguage: () => initialState,
     changeSubject: (state, action) => ({ ...state, subject: action.payload }),
     changePosition: (state, action) => ({ ...state, position: action.payload }),
+    changeSearch: (state, action) => ({ ...state, search: action.payload }),
   },
 });
 
@@ -32,6 +34,7 @@ export const {
   initLanguage,
   changeSubject,
   changePosition,
+  changeSearch,
 } = languageSlice.actions;
 
 export default languageSlice.reducer;
