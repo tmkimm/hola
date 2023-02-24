@@ -12,6 +12,7 @@ import { languageMap } from 'common/options';
 import Category from '../category/Category';
 import LanguageBar from 'component/languageIBar/LanguageBar';
 import SelectedLanguage from '../selectedLanguage/SelectedLanguage';
+import Search from 'component/search/search';
 
 export const DesktopFilter = React.memo(() => {
   const { selected } = useSelector((state) => state.language);
@@ -47,6 +48,7 @@ export const DesktopFilter = React.memo(() => {
         onDeleteIconClick={onDeleteIconClick}
         onResetFilterClick={onResetFilterClick}
       />
+      <Search />
     </section>
   );
 });

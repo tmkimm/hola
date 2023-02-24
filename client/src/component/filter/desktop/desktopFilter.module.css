@@ -3,6 +3,7 @@
   width: 100%;
   padding: 0 15px;
   margin: 100px auto 60px auto;
+  position: relative;
 }
 
 @media screen and (max-width: 575px) {
