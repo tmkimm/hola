@@ -4,10 +4,10 @@ import studyService from 'service/study_service';
 
 export const useStudyInfiniteSearch = (category, checked) => {
   const languageState = useSelector((state) => state.language);
-  const { selected, position } = languageState;
+  const { selected, position, search } = languageState;
 
   const { data, error, fetchNextPage, hasNextPage, isFetching, status } = useInfiniteQuery(
-    ['studyList', { category, selected, checked, position }],
+    ['studyList', { category, selected, checked, position, search }],
     async ({ pageParam = 0 }) => {
       const { data } = await studyService.getList(
         category,
@@ -15,6 +15,7 @@ export const useStudyInfiniteSearch = (category, checked) => {
         position,
         pageParam,
         !checked,
+        search,
       );
 
       return {

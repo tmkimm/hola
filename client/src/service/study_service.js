@@ -10,7 +10,7 @@ class Study {
     this.study = httpClient;
   }
 
-  getList = async (category, selectedLanguages, position, pageNumber, checked) => {
+  getList = async (category, selectedLanguages, position, pageNumber, checked, search) => {
     const queryType = { all: 0, project: 1, study: 2 };
     try {
       const params = {
@@ -27,6 +27,8 @@ class Study {
         const qs = selectedLanguages.map((language) => language).join(',');
         params.language = qs;
       }
+
+      if (search) params.search = search;
 
       const studyList = await this.study.get('posts', {
         params,
