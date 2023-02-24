@@ -3,10 +3,24 @@ import styles from './search.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeSearch } from 'store/language';
 
+const debounceFunction = (callback, delay) => {
+  let timer;
+  return (...args) => {
+    // 실행한 함수(setTimeout())를 취소
+    clearTimeout(timer);
+    // delay가 지나면 callback 함수를 실행
+    timer = setTimeout(() => callback(...args), delay);
+  };
+};
+
 const Search = () => {
   const dispatch = useDispatch();
   const [isVisible, setIsVisible] = useState(false);
   const value = useSelector((state) => state.search);
+  const debouncedOnchange = debounceFunction((e) => {
+    dispatch(changeSearch(e.target.value));
+  }, 300);
+
   return (
     <div className={styles.container}>
       <img
@@ -20,12 +34,10 @@ const Search = () => {
       />
       {isVisible && (
         <input
-          placeholder='검색어를 입력해주세요'
+          placeholder='제목, 게시글 검색'
           className={styles.searchInput}
           value={value}
-          onChange={(e) => {
-            dispatch(changeSearch(e.target.value));
-          }}
+          onChange={debouncedOnchange}
         ></input>
       )}
     </div>

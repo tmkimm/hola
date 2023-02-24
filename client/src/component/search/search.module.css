@@ -3,7 +3,7 @@
   align-items: center;
   position: absolute;
   gap: 8px;
-  top: 0;
+  top: -5px;
   right: 0;
 }
 
@@ -30,5 +30,11 @@
   }
   to {
     width: 200px;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .container {
+    display: none;
   }
 }
