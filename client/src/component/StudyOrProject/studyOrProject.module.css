@@ -1,0 +1,31 @@
+.category {
+  display: flex;
+}
+
+.category__item {
+  display: flex;
+  align-items: center;
+  margin-right: 1.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.active {
+  color: #444444;
+}
+
+.inactive {
+  color: rgb(134, 142, 150);
+}
+
+.text {
+  margin-left: 0.5rem;
+}
+
+@media screen and (max-width: 575px) {
+  .text {
+    margin-left: 6px;
+    font-size: 20px;
+  }
+}
