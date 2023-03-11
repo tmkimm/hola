@@ -6,10 +6,9 @@ import { changeLastId } from '../../../store/language';
 export const useStudySearch = () => {
   const languageState = useSelector((state) => state.language);
   const dispatch = useDispatch();
-  const { selected, position, search, mode, visibleOpenOnly, page, previousPage, lastId } =
-    languageState;
+  const { selected, position, search, mode, isClosed, page, previousPage, lastId } = languageState;
   const { data, isLoading, status } = useQuery(
-    ['studyList', { selected, position, search, mode, visibleOpenOnly, page, previousPage }],
+    ['studyList', { selected, position, search, mode, isClosed, page, previousPage }],
     () =>
       studyService.getListPagination(
         selected,
@@ -18,7 +17,7 @@ export const useStudySearch = () => {
         lastId,
         position,
         mode,
-        visibleOpenOnly,
+        isClosed,
         search,
       ),
     {
@@ -27,7 +26,7 @@ export const useStudySearch = () => {
           data: { posts },
         } = data;
         const lastData = posts.at(-1);
-        dispatch(changeLastId(lastData.id));
+        dispatch(changeLastId(lastData._id));
       },
     },
   );

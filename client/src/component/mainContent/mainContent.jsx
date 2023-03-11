@@ -10,7 +10,7 @@ import PostTemp from 'component/showPosts/postTemp';
 
 export const MainContent = () => {
   const category = useSelector((state) => state.language.mode);
-  const visibleOpenOnly = useSelector((state) => state.language.visibleOpenOnly);
+  const isClosed = useSelector((state) => state.language.isClosed);
   const dispatch = useDispatch();
 
   const toggleCategory = (toggleTo) => {
@@ -19,7 +19,7 @@ export const MainContent = () => {
   };
 
   const handleSelect = () => {
-    dispatch(changeVisibleOpenOnly(!visibleOpenOnly));
+    dispatch(changeVisibleOpenOnly(!isClosed));
   };
 
   return (
@@ -27,7 +27,7 @@ export const MainContent = () => {
       <div className={styles.categoryWrapper}>
         <StudyOrProject category={category} toggleCategory={toggleCategory} />
         <FindMyPosition />
-        <ToggleSwitch checked={visibleOpenOnly} handleSelect={handleSelect} />
+        <ToggleSwitch checked={!isClosed} handleSelect={handleSelect} />
       </div>
       <div className={styles.appWrapper}>
         <PostTemp />

@@ -14,6 +14,7 @@ const PostTemp = () => {
 
   const handlePage = (event) => {
     const currentPage = parseInt(event.target.outerText);
+    console.log('currentPage : ', currentPage);
     dispatch(changeField({ key: 'previousPage', value: page }));
     dispatch(changeField({ key: 'page', value: currentPage }));
   };
@@ -30,7 +31,7 @@ const PostTemp = () => {
         <EmptyList />
       )}
       <div className={styles.paginationWrapper}>
-        <Pagination count={lastPage} page={page} onChange={(e) => handlePage(e)} color='primary' />
+        <Pagination count={lastPage} page={page} onChange={handlePage} color='primary' />
       </div>
     </>
   );
