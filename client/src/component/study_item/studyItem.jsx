@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './studyItem.module.css';
-import { useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FaRegComment } from 'react-icons/fa';
 import { AiOutlineEye } from 'react-icons/ai';
 import { Avatar } from 'component/common/avatar';
@@ -66,7 +66,7 @@ const StudyItem = ({ study }) => {
           </div>
         </section>
         {study.isClosed && <div className={styles.closeNotice}>모집 마감</div>}
-        {/* <img className={styles.bookmark} src={`/images/info/bookmark2.png`} alt='bookmark' /> */}
+        <img className={styles.bookmark} src={`/images/info/bookmark.png`} alt='bookmark' />
       </li>
     </Link>
   );
