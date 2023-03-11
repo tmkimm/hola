@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { toast } from 'react-toastify';
-import { languageList } from 'common/options';
+import { languageList } from '../../common/options';
 import userService from 'service/user_service';
 import studyService from 'service/study_service';
 import { clearUser } from 'store/user';

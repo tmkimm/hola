@@ -8,7 +8,7 @@ import {
   contactTypeOption,
   expectedPeriodOption,
   positionsOption,
-} from 'common/options';
+} from '../common/options';
 /* 
 
 읽고 있는 post 상태를 만드는 redux store 입니다.
