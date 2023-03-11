@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeMode, changeVisibleOpenOnly } from 'store/language';
 import FindMyPosition from 'component/findMyPosition/findMyPosition';
 import StudyOrProject from 'component/StudyOrProject/studyOrProject';
+import PostTemp from 'component/showPosts/postTemp';
 
 export const MainContent = () => {
   const category = useSelector((state) => state.language.mode);
@@ -29,7 +30,7 @@ export const MainContent = () => {
         <ToggleSwitch checked={visibleOpenOnly} handleSelect={handleSelect} />
       </div>
       <div className={styles.appWrapper}>
-        <Posts category={category} checked={visibleOpenOnly} />
+        <PostTemp />
       </div>
     </main>
   );

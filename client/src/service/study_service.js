@@ -60,7 +60,6 @@ class Study {
         position,
         type: queryType[category],
         isClosed: checked,
-        search,
       };
 
       if (selectedLanguages.length !== 0) {

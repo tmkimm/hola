@@ -16,27 +16,50 @@ const languageSlice = createSlice({
   initialState,
   reducers: {
     addLanguage: (state, action) => {
-      state.selected.push(action.payload);
+      return {
+        ...state,
+        selected: [...state.selected, action.payload],
+        page: 1,
+      };
     },
     removeLanguage: (state, action) => {
-      state.selected.splice(
-        state.selected.findIndex((item) => item === action.payload),
+      const copy = [...state.selected];
+      copy.splice(
+        copy.findIndex((item) => item === action.payload),
         1,
       );
+
+      return {
+        ...state,
+        selected: copy,
+        page: 1,
+      };
     },
-    clearLanguage: (state) => ({ ...state, selected: [] }),
+    clearLanguage: (state) => ({ ...state, selected: [], page: 0 }),
     initLanguage: () => initialState,
     changeSubject: (state, action) => ({ ...state, subject: action.payload }),
-    changePosition: (state, action) => ({ ...state, position: action.payload }),
-    changeSearch: (state, action) => ({ ...state, search: action.payload }),
+    changePosition: (state, action) => ({ ...state, position: action.payload, page: 1 }),
+    changeSearch: (state, action) => ({ ...state, search: action.payload, page: 1 }),
     changeMode: (state, action) => ({
       ...state,
       mode: action.payload,
+      page: 1,
     }),
     changeVisibleOpenOnly: (state, action) => ({
       ...state,
       visibleOpenOnly: action.payload,
+      page: 1,
     }),
+    changeLastId: (state, action) => ({
+      ...state,
+      lastId: action.payload,
+    }),
+    changeField: (state, { payload: { key, value } }) => {
+      return {
+        ...state,
+        [key]: value,
+      };
+    },
   },
 });
 
@@ -50,6 +73,9 @@ export const {
   changeSearch,
   changeMode,
   changeVisibleOpenOnly,
+  changeLastId,
+  changeField,
+  changePage,
 } = languageSlice.actions;
 
 export default languageSlice.reducer;
