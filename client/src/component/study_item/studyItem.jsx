@@ -7,10 +7,19 @@ import { Avatar } from 'component/common/avatar';
 import { formatDate } from 'common/utils';
 import { positionsMap } from 'common/options';
 import Badge from 'component/badge/badge';
+import studyService from '../../service/study_service';
+import { useQueryClient } from 'react-query';
 
 const StudyItem = ({ study }) => {
   const studyLang = [];
   const displayType = study.isClosed ? styles.closed : styles.open;
+  const queryClient = useQueryClient();
+
+  const handleLike = (e) => {
+    e.preventDefault();
+    studyService.addLikes(study._id);
+    queryClient.invalidateQueries('studyList');
+  };
 
   for (let i = 0; i < 5; i++) {
     if (study.language[i] === undefined) break;
@@ -66,7 +75,12 @@ const StudyItem = ({ study }) => {
           </div>
         </section>
         {study.isClosed && <div className={styles.closeNotice}>모집 마감</div>}
-        <img className={styles.bookmark} src={`/images/info/bookmark.png`} alt='bookmark' />
+        <img
+          className={styles.bookmark}
+          src={study.isLiked ? '/images/info/bookmark_filled.png' : '/images/info/bookmark.png'}
+          alt='bookmark'
+          onClick={handleLike}
+        />
       </li>
     </Link>
   );
