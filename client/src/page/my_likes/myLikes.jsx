@@ -43,11 +43,11 @@ const MyLikes = (props) => {
       history.push('/');
     }
     userService.getUserLikeList(userId).then((res) => {
-      setLikeList((state) => res.data.likePosts);
+      setLikeList((state) => res.data);
     });
 
     userService.getUserReadList(userId).then((res) => {
-      setReadList((state) => res.data.readList);
+      setReadList((state) => res.data);
     });
   }, [userId, history]);
 
@@ -76,7 +76,7 @@ const MyLikes = (props) => {
                 onClick={() => toggleCategory(SHOW_BY_LIKES)}
               >
                 <MdFavorite />
-                <span className={styles.text}>좋아요 목록</span>
+                <span className={styles.text}>관심 목록</span>
               </div>
             </section>
             {category === SHOW_BY_LIKES ? (

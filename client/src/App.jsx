@@ -8,7 +8,7 @@ const Main = lazy(() => import('./page/main/main'));
 const PostRegister = lazy(() => import('./page/post_register/postRegister'));
 const GithubLogin = lazy(() => import('./page/auth/githubLogin'));
 const MyPosts = lazy(() => import('./page/my_posts/myPosts'));
-//const MyLikes = lazy(() => import('./page/my_likes/myLikes'));
+const MyLikes = lazy(() => import('./page/my_likes/myLikes'));
 const SettingContainer = lazy(() => import('./component/setting_container/settingContainer'));
 const NotFound = lazy(() => import('./page/notFound/notFound'));
 
@@ -38,9 +38,9 @@ const App = () => {
           <Route path='/myPosts'>
             <MyPosts />
           </Route>
-          {/* <Route path='/myLikes'>
+          <Route path='/myLikes'>
             <MyLikes />
-          </Route> */}
+          </Route>
           <Route path='/auth/github'>
             <GithubLogin />
           </Route>
