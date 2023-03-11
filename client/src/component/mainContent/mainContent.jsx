@@ -1,26 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './mainContent.module.css';
 import { Posts } from 'component/showPosts';
 import { ToggleSwitch } from 'component/toggleSwitch';
 import { useDispatch, useSelector } from 'react-redux';
-import { update } from 'store/study';
+import { changeMode, changeVisibleOpenOnly } from 'store/language';
 import FindMyPosition from 'component/findMyPosition/findMyPosition';
 import StudyOrProject from 'component/StudyOrProject/studyOrProject';
 
-// API 정의, 전역 상태 정의, 호출까지
 export const MainContent = () => {
-  const [checked, setChecked] = useState(true);
-  const category = useSelector((state) => state.study.mode);
-
+  const category = useSelector((state) => state.language.mode);
+  const visibleOpenOnly = useSelector((state) => state.language.visibleOpenOnly);
   const dispatch = useDispatch();
 
   const toggleCategory = (toggleTo) => {
-    if (category === toggleTo) return; // 바꾸려는 대상이 현재 상태와 같으면 return
-    dispatch(update(toggleTo));
+    if (category === toggleTo) return;
+    dispatch(changeMode(toggleTo));
   };
 
   const handleSelect = () => {
-    setChecked((checked) => !checked);
+    dispatch(changeVisibleOpenOnly(!visibleOpenOnly));
   };
 
   return (
@@ -28,10 +26,10 @@ export const MainContent = () => {
       <div className={styles.categoryWrapper}>
         <StudyOrProject category={category} toggleCategory={toggleCategory} />
         <FindMyPosition />
-        <ToggleSwitch checked={checked} handleSelect={handleSelect} />
+        <ToggleSwitch checked={visibleOpenOnly} handleSelect={handleSelect} />
       </div>
       <div className={styles.appWrapper}>
-        <Posts category={category} checked={checked} />
+        <Posts category={category} checked={visibleOpenOnly} />
       </div>
     </main>
   );

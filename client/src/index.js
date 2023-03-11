@@ -9,7 +9,6 @@ import userReducer from './store/user';
 import writeReducer from './store/write';
 import readReducer from './store/read';
 import loginStepReducer from './store/loginStep';
-import studyReducer from './store/study';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -43,7 +42,6 @@ const reducers = combineReducers({
   write: writeReducer,
   read: readReducer,
   loginStep: loginStepReducer,
-  study: studyReducer,
 });
 
 const _persistedReducer = persistReducer(persistConfig, reducers);
