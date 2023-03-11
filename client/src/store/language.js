@@ -7,6 +7,9 @@ const initialState = {
   search: '', // 검색어
   mode: 'all', // 전체, 프로젝트, 스터디
   visibleOpenOnly: true,
+  page: 1, // 페이지
+  previousPage: 0, // 이전페이지
+  lastId: '', // 마지막 id
 };
 const languageSlice = createSlice({
   name: 'language',
