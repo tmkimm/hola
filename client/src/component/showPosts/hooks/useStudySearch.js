@@ -28,6 +28,7 @@ export const useStudySearch = () => {
         const lastData = posts.at(-1);
         dispatch(changeLastId(lastData._id));
       },
+      refetchOnWindowFocus: false,
     },
   );
 

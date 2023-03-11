@@ -6,7 +6,7 @@ const initialState = {
   position: 'ALL', // 선택 포지션
   search: '', // 검색어
   mode: 'all', // 전체, 프로젝트, 스터디
-  visibleOpenOnly: true,
+  isClosed: false, // false일때 모집중인 글만 보기
   page: 1, // 페이지
   previousPage: 0, // 이전페이지
   lastId: '', // 마지막 id
@@ -47,7 +47,7 @@ const languageSlice = createSlice({
     }),
     changeVisibleOpenOnly: (state, action) => ({
       ...state,
-      visibleOpenOnly: action.payload,
+      isClosed: action.payload,
       page: 1,
     }),
     changeLastId: (state, action) => ({
