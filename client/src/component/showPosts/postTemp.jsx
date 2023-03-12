@@ -14,7 +14,6 @@ const PostTemp = () => {
 
   const handlePage = (event) => {
     const currentPage = parseInt(event.target.outerText);
-    dispatch(changeField({ key: 'previousPage', value: page }));
     dispatch(changeField({ key: 'page', value: currentPage }));
   };
 

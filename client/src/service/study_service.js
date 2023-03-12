@@ -40,22 +40,11 @@ class Study {
     }
   };
 
-  getListPagination = async (
-    selectedLanguages,
-    page,
-    previousPage,
-    lastId,
-    position,
-    category,
-    checked,
-    search,
-  ) => {
+  getListPagination = async (selectedLanguages, page, position, category, checked, search) => {
     const queryType = { all: 0, project: 1, study: 2 };
     try {
       const params = {
         page,
-        previousPage,
-        lastId,
         sort: '-createdAt',
         position,
         type: queryType[category],
