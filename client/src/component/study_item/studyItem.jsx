@@ -10,14 +10,27 @@ import Badge from 'component/badge/badge';
 import studyService from '../../service/study_service';
 import { useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { setModalVisible } from '../../store/loginStep';
 
 const StudyItem = ({ study }) => {
   const studyLang = [];
   const displayType = study.isClosed ? styles.closed : styles.open;
   const queryClient = useQueryClient();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
+  const openModal = () => {
+    document.body.style.overflow = 'hidden';
+    dispatch(setModalVisible(true));
+  };
 
   const handleLike = async (e) => {
     e.preventDefault();
+    if (!user.nickName) {
+      openModal();
+      return;
+    }
     if (!study.isLiked) {
       await studyService.addLikes(study._id);
       toast.success('관심 목록에 추가했어요!', {
