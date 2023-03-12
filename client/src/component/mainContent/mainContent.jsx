@@ -1,12 +1,11 @@
 import React from 'react';
 import styles from './mainContent.module.css';
-import { Posts } from 'component/showPosts';
 import { ToggleSwitch } from 'component/toggleSwitch';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeMode, changeVisibleOpenOnly } from 'store/language';
 import FindMyPosition from 'component/findMyPosition/findMyPosition';
 import StudyOrProject from 'component/StudyOrProject/studyOrProject';
-import PostTemp from 'component/showPosts/postTemp';
+import Posts from '../showPosts/posts';
 
 export const MainContent = () => {
   const category = useSelector((state) => state.language.mode);
@@ -30,7 +29,7 @@ export const MainContent = () => {
         <ToggleSwitch checked={!isClosed} handleSelect={handleSelect} />
       </div>
       <div className={styles.appWrapper}>
-        <PostTemp />
+        <Posts />
       </div>
     </main>
   );

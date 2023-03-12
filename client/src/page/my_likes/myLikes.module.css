@@ -50,12 +50,6 @@
   }
 }
 
-@media screen and (max-width: 1440px) {
-  .myLikes {
-    width: 780px;
-  }
-}
-
 @media screen and (max-width: 1024px) {
   .myLikes {
     width: calc(100% - 2rem);
