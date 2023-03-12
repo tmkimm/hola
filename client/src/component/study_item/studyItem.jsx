@@ -101,12 +101,14 @@ const StudyItem = ({ study }) => {
           </div>
         </section>
         {study.isClosed && <div className={styles.closeNotice}>모집 마감</div>}
-        <img
-          className={styles.bookmark}
-          src={study.isLiked ? '/images/info/bookmark_filled.png' : '/images/info/bookmark.png'}
-          alt='bookmark'
-          onClick={handleLike}
-        />
+        {study.isLiked !== undefined && (
+          <img
+            className={styles.bookmark}
+            src={study.isLiked ? '/images/info/bookmark_filled.png' : '/images/info/bookmark.png'}
+            alt='bookmark'
+            onClick={handleLike}
+          />
+        )}
       </li>
     </Link>
   );
