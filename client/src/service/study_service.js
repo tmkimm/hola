@@ -69,7 +69,6 @@ class Study {
       }
 
       if (search) params.search = search;
-
       const studyList = await this.study.get('posts/pagination', {
         params,
       });

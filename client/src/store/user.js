@@ -61,6 +61,7 @@ const fetchUserByRefreshToken = createAsyncThunk(
       image: response.data.image,
       likeLanguages: response.data.likeLanguages,
       hasUnreadNotice: response.data.hasUnreadNotice,
+      accessToken,
     };
 
     // header에 access token 설정
@@ -76,8 +77,7 @@ const addUserNickName = createAsyncThunk(addUserNickNameAction, async (userInfo,
   const accessToken = response.data.accessToken;
 
   httpClient.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-
-  return userInfo;
+  return { ...userInfo, accessToken };
 });
 
 const initialState = {
@@ -86,6 +86,7 @@ const initialState = {
   imageUrl: undefined,
   likeLanguages: [],
   hasUnreadNotice: false,
+  accessToken: undefined,
 };
 
 const defaultPath = 'https://hola-post-image.s3.ap-northeast-2.amazonaws.com/';
@@ -106,6 +107,7 @@ const userSlice = createSlice({
       id: payload._id,
       imageUrl: defaultPath + payload.image,
       likeLanguages: payload.likeLanguages,
+      accessToken: payload.accessToken,
     }),
 
     [fetchUserByRefreshToken.fulfilled]: (state, { payload }) => ({
@@ -115,6 +117,7 @@ const userSlice = createSlice({
       imageUrl: defaultPath + payload.image,
       likeLanguages: payload.likeLanguages,
       hasUnreadNotice: payload.hasUnreadNotice,
+      accessToken: payload.accessToken,
     }),
 
     [addUserNickName.fulfilled]: (state, { payload }) => ({
@@ -123,6 +126,7 @@ const userSlice = createSlice({
       id: payload._id,
       imageUrl: defaultPath + payload.image,
       likeLanguages: payload.likeLanguages,
+      accessToken: payload.accessToken,
     }),
 
     [modifyUserInfo.fulfilled]: (state, { payload }) => ({
@@ -131,6 +135,7 @@ const userSlice = createSlice({
       id: payload._id,
       imageUrl: defaultPath + payload.image,
       likeLanguages: payload.likeLanguages,
+      accessToken: payload.accessToken,
     }),
 
     [modifyUserInfo.rejected]: (state, { payload }) => {

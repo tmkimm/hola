@@ -9,15 +9,28 @@ import { positionsMap } from 'common/options';
 import Badge from 'component/badge/badge';
 import studyService from '../../service/study_service';
 import { useQueryClient } from 'react-query';
+import { toast } from 'react-toastify';
 
 const StudyItem = ({ study }) => {
   const studyLang = [];
   const displayType = study.isClosed ? styles.closed : styles.open;
   const queryClient = useQueryClient();
 
-  const handleLike = (e) => {
+  const handleLike = async (e) => {
     e.preventDefault();
-    studyService.addLikes(study._id);
+    if (!study.isLiked) {
+      await studyService.addLikes(study._id);
+      toast.success('관심 목록에 추가했어요!', {
+        position: 'top-right',
+        autoClose: 3000,
+      });
+    } else {
+      await studyService.deleteLikes(study._id);
+      toast.success('관심 목록에서 제거했어요!', {
+        position: 'top-right',
+        autoClose: 3000,
+      });
+    }
     queryClient.invalidateQueries('studyList');
   };
 

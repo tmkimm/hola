@@ -5,10 +5,11 @@ import { changeLastId } from '../../../store/language';
 
 export const useStudySearch = () => {
   const languageState = useSelector((state) => state.language);
+  const accessToken = useSelector((state) => state.user.accessToken);
   const dispatch = useDispatch();
   const { selected, position, search, mode, isClosed, page, previousPage, lastId } = languageState;
   const { data, isLoading, status } = useQuery(
-    ['studyList', { selected, position, search, mode, isClosed, page, previousPage }],
+    ['studyList', { selected, position, search, mode, isClosed, page, previousPage, accessToken }],
     () =>
       studyService.getListPagination(
         selected,
