@@ -19,9 +19,8 @@ const Posts = () => {
 
   if (isLoading || !data) return null;
 
-  const handlePage = (event) => {
-    const currentPage = parseInt(event.target.outerText);
-    dispatch(changeField({ key: 'page', value: currentPage }));
+  const handlePage = (event, value) => {
+    dispatch(changeField({ key: 'page', value }));
   };
 
   const {
