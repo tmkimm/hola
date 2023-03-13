@@ -7,9 +7,11 @@ import styles from './posts.module.css';
 import { useDispatch } from 'react-redux';
 import { changeField } from '../../store/language';
 import { isMobile } from 'react-device-detect';
+import { useGetPage } from './hooks/useGetPage';
 
 const Posts = () => {
   const { data, status, isLoading, page } = useStudySearch();
+  const { pageData, isPageLoading } = useGetPage();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,15 +19,19 @@ const Posts = () => {
     window.scrollTo(0, scrollPosition);
   }, [page]);
 
-  if (isLoading || !data) return null;
+  if (isLoading || isPageLoading || !data) return null;
 
   const handlePage = (event, value) => {
     dispatch(changeField({ key: 'page', value }));
   };
 
   const {
-    data: { posts, lastPage },
+    data: { posts },
   } = data;
+
+  const {
+    data: { lastPage },
+  } = pageData;
 
   return (
     <>

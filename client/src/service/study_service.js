@@ -68,6 +68,34 @@ class Study {
     }
   };
 
+  getPageNumber = async (selectedLanguages, page, position, category, checked, search) => {
+    const queryType = { all: 0, project: 1, study: 2 };
+    try {
+      const params = {
+        page,
+        sort: '-createdAt',
+        position,
+        type: queryType[category],
+        isClosed: checked,
+      };
+
+      if (selectedLanguages.length !== 0) {
+        // 선택된 language가 있으면 language 속성 추가
+        const qs = selectedLanguages.map((language) => language).join(',');
+        params.language = qs;
+      }
+
+      if (search) params.search = search;
+      const studyList = await this.study.get('posts/last-page', {
+        params,
+      });
+
+      return studyList;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   getDetail = async (id) => {
     try {
       const response = await this.study.get(`posts/${id}`);
