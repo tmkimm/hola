@@ -17,7 +17,7 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20px 20px 0px 20px;
+  padding: 20px 25px 0px 25px;
   width: 300px;
   height: 340px;
   background: #ffffff;
@@ -38,7 +38,7 @@ li {
   gap: 8px;
   color: #999999;
   font-weight: 500;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .scheduleTitle {
@@ -51,7 +51,7 @@ li {
   line-height: 28px;
   font-weight: 500;
   letter-spacing: -0.05em;
-  margin: 12px 0;
+  margin: 7px 0 10px 0;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
