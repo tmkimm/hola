@@ -5,7 +5,7 @@
 }
 
 .containerWrapper {
-  background-color: #d7edff;
+  background-color: #edfaf7;
   margin-bottom: 16px;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .leftCover {
-  flex: 1;
+  flex: 1.5;
   margin: auto 0;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .coverImage {
-  width: 470px;
+  width: 334px;
   height: auto;
 }
 
@@ -43,7 +43,7 @@
 .subContainer {
   display: flex;
   align-items: center;
-  margin-top: 18px;
+  margin-top: 15px;
 }
 
 .subTitle {
@@ -65,7 +65,7 @@
     font-size: 28px;
   }
   .coverImage {
-    width: 350px;
+    width: 320px;
     height: auto;
   }
 }
