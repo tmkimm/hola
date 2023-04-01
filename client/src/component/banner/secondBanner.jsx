@@ -14,9 +14,8 @@ export const SecondBanner = () => {
           <div className={styles.leftCover}>
             <button className={styles.promotion}>NOTICE</button>
             <div className={styles.imgWrapper}></div>
-            <h2 className={styles.title}>새롭게 달라진 Hola!</h2>
-            <span className={styles.subTitle}>를 소개합니다.</span>
-            <span className={styles.subText}>이제 마음 맞는 팀원을 더 쉽게 만나세요 🔍</span>
+            <h2 className={styles.title}>Hola!는 봄맞이 새단장 완료</h2>
+            <span className={styles.subText}>더 편해진 Hola! 모르는 사람 없게 해주세요!</span>
           </div>
           <div className={styles.rightCover}>
             <img className={styles.coverImage} src='/images/banner/2.png' alt='second banner' />
