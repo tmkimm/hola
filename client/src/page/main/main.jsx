@@ -6,6 +6,7 @@ import Rating from 'component/rating/rating';
 import { MainContent } from 'component/mainContent';
 import { Carousel } from 'component/carousel';
 import TopButton from 'component/top_button/TopButton';
+import Footer from 'component/footer/footer';
 
 const Main = () => {
   return (
@@ -16,6 +17,7 @@ const Main = () => {
       <MainContent />
       <TopButton />
       <Rating />
+      <Footer />
     </>
   );
 };
