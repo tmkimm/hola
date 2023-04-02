@@ -5,7 +5,7 @@ export const SecondBanner = () => {
   return (
     <a
       className={styles.bannerLink}
-      href='https://temporal-weather-18e.notion.site/Hola-22-05-09-660d9f48d6f044499035b10055d54d1c'
+      href='https://temporal-weather-18e.notion.site/Hola-23-04-01-74538d7012f0423e87d5c956e2ebf795'
       target='_blank'
       rel='noreferrer'
     >

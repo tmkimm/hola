@@ -13,10 +13,34 @@ const Footer = () => {
         <div className={styles.copyright}>Copyright Hola. All rights reserved</div>
       </div>
       <div className={styles.rightCover}>
-        <a href=''>이용약관</a>
-        <a href=''>개인정보처리방침</a>
-        <a href=''>서비스소개</a>
-        <a href=''>광고상품 소개</a>
+        <a
+          href='https://temporal-weather-18e.notion.site/95f676cba1a245bf843ffa6a6f7933dd'
+          target='_blank'
+          rel='noreferrer'
+        >
+          이용약관
+        </a>
+        <a
+          href='https://temporal-weather-18e.notion.site/f8bced09dea34b6caa11251eb8b8f1ef'
+          target='_blank'
+          rel='noreferrer'
+        >
+          개인정보처리방침
+        </a>
+        <a
+          href='https://temporal-weather-18e.notion.site/Hola-_______-613200b663ab47b2b59c8c5cf0011b2f'
+          target='_blank'
+          rel='noreferrer'
+        >
+          서비스소개
+        </a>
+        <a
+          href='https://temporal-weather-18e.notion.site/ab6b73c556c94119914883c31efb8049'
+          target='_blank'
+          rel='noreferrer'
+        >
+          광고상품 소개
+        </a>
       </div>
     </footer>
   );
