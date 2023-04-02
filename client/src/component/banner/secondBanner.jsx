@@ -18,7 +18,7 @@ export const SecondBanner = () => {
             <span className={styles.subText}>더 편해진 Hola! 모르는 사람 없게 해주세요!</span>
           </div>
           <div className={styles.rightCover}>
-            <img className={styles.coverImage} src='/images/banner/2.png' alt='second banner' />
+            <img className={styles.coverImage} src='/images/banner/22.png' alt='second banner' />
           </div>
         </div>
       </div>

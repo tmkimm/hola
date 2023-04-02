@@ -19,7 +19,7 @@ export const FirstBanner = () => {
             </div>
           </div>
           <div className={styles.rightCover}>
-            <img className={styles.coverImage} src='/images/banner/1.png' alt='firstBanner' />
+            <img className={styles.coverImage} src='/images/banner/11.png' alt='firstBanner' />
           </div>
         </div>
       </div>
