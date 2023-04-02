@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import EmptyList from 'component/empty_list/emptyList';
 import StudyList from 'component/study_list/studyList';
 import { useStudySearch } from './hooks/useStudySearch';
@@ -9,12 +9,18 @@ import { changeField } from '../../store/language';
 import { isMobile } from 'react-device-detect';
 import { useGetPage } from './hooks/useGetPage';
 
-const Posts = () => {
+const Posts = React.memo(() => {
   const { data, status, isLoading, page } = useStudySearch();
   const { pageData, isPageLoading } = useGetPage();
   const dispatch = useDispatch();
+  const firstRender = useRef(true);
 
   useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+
     const scrollPosition = isMobile ? 400 : 800;
     window.scrollTo(0, scrollPosition);
   }, [page]);
@@ -60,6 +66,6 @@ const Posts = () => {
       </div>
     </>
   );
-};
+});
 
 export default Posts;
