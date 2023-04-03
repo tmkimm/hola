@@ -14,8 +14,7 @@ export const FirstBanner = () => {
             <h2 className={styles.title}>스터디와 사이드 프로젝트를 찾는 가장 쉬운 방법</h2>
 
             <div className={styles.subContainer}>
-              <img className={styles.subImage} src='/images/logo/hola_logo_y.png' alt='hola logo' />
-              <span className={styles.subText}>에서 함께할 팀원을 찾으세요 🔍</span>
+              <span className={styles.subText}>올라에서 함께할 팀원을 찾으세요 🔍</span>
             </div>
           </div>
           <div className={styles.rightCover}>

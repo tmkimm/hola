@@ -55,11 +55,6 @@
   display: block;
 }
 
-.subImage {
-  width: 82px;
-  height: auto;
-}
-
 @media screen and (max-width: 1000px) {
   .title {
     font-size: 28px;
