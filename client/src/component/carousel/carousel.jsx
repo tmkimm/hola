@@ -19,8 +19,8 @@ export const Carousel = () => {
 
   return (
     <Slider {...settings}>
-      <FirstBanner />
       <SecondBanner />
+      <FirstBanner />
     </Slider>
   );
 };
