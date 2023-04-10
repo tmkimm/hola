@@ -43,6 +43,15 @@ button {
 }
 
 @media screen and (max-width: 575px) {
+  .navbar {
+    height: 50px;
+  }
+
+  .logo {
+    width: 80px;
+    height: auto;
+  }
+
   .postRegister {
     display: none;
   }
