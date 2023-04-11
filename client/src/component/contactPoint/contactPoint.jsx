@@ -20,7 +20,7 @@ export const ContactPoint = ({ contactPoint, contactType }) => {
       <div className={styles.contactWrapper}>
         <a className={styles.link} href={contactPoint} target='_blank' rel='noreferrer'>
           <span className={styles.label}>{contactType.label}</span>
-          <img className={styles.linkImg} src={'/images/info/link.svg'} alt='' />
+          <img className={styles.linkImg} src={'/images/info/link.svg'} alt='링크' />
         </a>
       </div>
     );
@@ -28,7 +28,7 @@ export const ContactPoint = ({ contactPoint, contactType }) => {
     return (
       <div className={styles.email} onClick={() => copyContent(contactPoint)}>
         <div>이메일</div>
-        <img className={styles.linkImg} src={'/images/info/link.svg'} alt='' />
+        <img className={styles.linkImg} src={'/images/info/link.svg'} alt='링크' />
       </div>
     );
   }
