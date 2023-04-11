@@ -91,7 +91,7 @@ const recruitsOption = [
 ];
 
 const contactTypeOption = [
-  { value: 'ok', label: '카카오톡 오픈채팅' },
+  { value: 'ok', label: '오픈톡' },
   { value: 'em', label: '이메일' },
   { value: 'gf', label: '구글 폼' },
 ];
