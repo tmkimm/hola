@@ -58,6 +58,7 @@ button {
   }
   .loginElementWrapper {
     margin-right: 0;
+    gap: 12px;
   }
   .login {
     margin-right: 0;
