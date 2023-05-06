@@ -3,20 +3,21 @@
   display: flex;
   align-items: center;
   position: relative;
+  padding-right: 8px;
 }
 
 .userImg {
   display: block;
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 32px;
+  width: 32px;
   border-radius: 50%;
   object-fit: cover;
   transition: all 0.125s ease-in 0s;
 }
 
 .userWrapper svg {
-  font-size: 1.5rem;
-  color: rgb(134, 142, 150);
-  transition: all 0.125s ease-in 0s;
-  margin-right: -0.4375rem;
+  fill: rgb(134, 142, 150);
+  position: absolute;
+  top: 8px;
+  right: -4px;
 }

@@ -12,10 +12,9 @@ User 정보와 새 글쓰기, Dropdown Bar button을 rendering 합니다.
 const LoginUser = React.memo(() => {
   const user = useSelector((state) => state.user);
   const [menuVisible, setMenuVisible] = useState(false);
-  const menuRef = useRef(); // menuRef를 통해서 menu 영역이 click되었는지 판단하고, 외부 영역 클릭시 메뉴 사라짐
+  const menuRef = useRef();
 
   const handleLoginUserClick = () => {
-    // dropdown control
     setMenuVisible((menuVisible) => !menuVisible);
   };
 
@@ -39,12 +38,10 @@ const LoginUser = React.memo(() => {
     <div className={styles.userWrapper} onClick={handleLoginUserClick}>
       <img className={styles.userImg} src={user.imageUrl} alt='userImg' />
       <svg
-        stroke='currentColor'
-        fill='currentColor'
         strokeWidth='0'
         viewBox='0 0 24 24'
-        height='1em'
-        width='1em'
+        height='16px'
+        width='16px'
         xmlns='http://www.w3.org/2000/svg'
       >
         <path d='M7 10l5 5 5-5z'></path>
