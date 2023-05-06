@@ -3,16 +3,22 @@
   display: flex;
   align-items: center;
   position: relative;
-  padding-right: 8px;
 }
 
 .userImg {
   display: block;
   height: 32px;
   width: 32px;
+  padding-right: 8px;
   border-radius: 50%;
   object-fit: cover;
   transition: all 0.125s ease-in 0s;
+}
+
+.menuIcon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 }
 
 .userWrapper svg {
