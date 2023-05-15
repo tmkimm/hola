@@ -1,0 +1,102 @@
+.bannerLink {
+  width: 100%;
+  position: relative;
+}
+
+.containerWrapper {
+  background-color: #ffeae9;
+}
+
+.container {
+  display: flex;
+  max-width: 1200px;
+  height: 330px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.leftCover {
+  flex: 1;
+  margin: auto 0;
+}
+
+.rightCover {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.coverImage {
+  width: 381px;
+  height: auto;
+}
+
+.promotion {
+  font-weight: bold;
+  padding: 5px 30px;
+  color: #ffffff;
+  background: #fb817f;
+  border-radius: 50px;
+  margin-bottom: 24px;
+}
+
+.title {
+  display: inline-block;
+  font-size: 32px;
+  font-weight: 700;
+  padding: 0;
+  margin: 0 0 15px 0;
+}
+
+.subTitle {
+  font-size: 32px;
+}
+
+.subText {
+  display: block;
+  font-size: 22px;
+}
+
+@media screen and (max-width: 1000px) {
+  .title {
+    font-size: 28px;
+  }
+
+  .subTitle {
+    font-size: 28px;
+  }
+
+  .rightCover {
+    flex: 0;
+  }
+
+  .coverImage {
+    width: 250px;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .rightCover {
+    display: none;
+  }
+
+  .title {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  .subTitle {
+    font-size: 24px;
+  }
+
+  .subText {
+    margin-top: 4px;
+    font-size: 16px;
+  }
+
+  .container {
+    height: 240px;
+  }
+}

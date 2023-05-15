@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { FirstBanner, SecondBanner } from 'component/banner';
+import { FirstBanner, InstagramBanner, SecondBanner } from 'component/banner';
 
 export const Carousel = () => {
   const settings = {
@@ -19,6 +19,7 @@ export const Carousel = () => {
 
   return (
     <Slider {...settings}>
+      <InstagramBanner />
       <SecondBanner />
       <FirstBanner />
     </Slider>
