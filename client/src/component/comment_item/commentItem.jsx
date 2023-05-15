@@ -9,7 +9,6 @@ import CommentButtons from 'component/comment_buttons/commentButtons';
 const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
   const user = useSelector((state) => state.user);
   const [content, setContent] = useState(comment.content);
-  //const [preContent, setPreContent] = useState(comment.content);
   const preContent = comment.content;
   const [inputVisible, setInputVisible] = useState(false); // 댓글 입력 여부
   const defaultImage = 'https://hola-post-image.s3.ap-northeast-2.amazonaws.com/default.PNG';

@@ -1,9 +1,16 @@
 @value registerBackground from '../../common/color.css';
 
+.comment {
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
 .commentCount {
-  margin: 0;
-  margin-bottom: 30px;
-  font-size: 22px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: #939393;
 }
 
 .commentInput {
@@ -35,8 +42,7 @@
 }
 
 .buttonComplete {
-  padding: 10px 30px;
-  min-width: 120px;
+  padding: 12px 24px;
   height: 40px;
   background: #333333;
   border-radius: 50px;
@@ -51,11 +57,19 @@
   margin: 16px 0 24px;
 }
 
-@media screen and (max-width: 575px) {
-  .commentCount {
-    font-size: 1.25rem;
-  }
+.inputContainer {
+  display: flex;
+  gap: 15px;
+}
 
+.profile {
+  display: block;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 575px) {
   .buttonComplete {
     padding: 7px 10px;
     position: absolute;

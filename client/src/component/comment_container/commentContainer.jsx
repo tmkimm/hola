@@ -10,8 +10,8 @@ import { setModalVisible } from 'store/loginStep';
 const CommentContainer = ({ id }) => {
   const [commentList, setCommentList] = useState([]);
   const [content, setContent] = useState('');
-  const [isComplete, setIsComplete] = useState(false); // useEffect 발생용 state
-  const userId = useSelector((state) => state.user.id);
+  const [isComplete, setIsComplete] = useState(false);
+  const { id: userId, imageUrl } = useSelector((state) => state.user);
   const modalVisible = useSelector((state) => state.loginStep.modalVisible);
   const dispatch = useDispatch();
 
@@ -49,6 +49,7 @@ const CommentContainer = ({ id }) => {
         setContent={setContent}
         onRegisterClick={onRegisterClick}
         count={commentList.length}
+        imageUrl={imageUrl}
       ></CommentInput>
       <CommentList
         CommentList={commentList}

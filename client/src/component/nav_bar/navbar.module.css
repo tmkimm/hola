@@ -42,6 +42,12 @@ button {
   font-size: 1.5rem;
 }
 
+.backBtn {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 575px) {
   .navbar {
     height: 50px;

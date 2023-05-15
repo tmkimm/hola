@@ -22,7 +22,6 @@ const Study = () => {
 
   return (
     <>
-      <Navbar />
       {read.loading === 'idle' ? (
         <Modal visible={true} name='loading'>
           <LoadingSpinner />

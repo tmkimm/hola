@@ -10,7 +10,7 @@ import { clearUser, fetchUserByRefreshToken } from 'store/user';
 import { toast } from 'react-toastify';
 import { Notice } from 'component/notice';
 
-const Navbar = React.memo(() => {
+const Navbar = React.memo(({ isBackBtn }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const history = useHistory();
@@ -51,9 +51,20 @@ const Navbar = React.memo(() => {
 
   return (
     <nav className={styles.navbar}>
-      <a href='/'>
-        <img className={styles.logo} src='/images/logo/hola_logo_y.png' alt='logo' />
-      </a>
+      {isBackBtn ? (
+        <img
+          className={styles.backBtn}
+          src='/images/info/arrowLeft.png'
+          alt='backbtn'
+          onClick={() => {
+            history.goBack();
+          }}
+        />
+      ) : (
+        <a href='/'>
+          <img className={styles.logo} src='/images/logo/hola_logo_y.png' alt='logo' />
+        </a>
+      )}
       <div className={styles.loginElementWrapper}>
         <button className={styles.postRegister} onClick={handleRegister}>
           새 글 쓰기

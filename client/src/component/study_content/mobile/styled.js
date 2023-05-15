@@ -1,22 +1,31 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  position: relative;
+`;
+
+export const InfoSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 20px;
+  background: #f9f9f9;
 `;
 
 export const Title = styled.h1`
   font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 30px;
+  font-weight: 700;
+  font-size: 20px;
   color: #000000;
-  margin-bottom: 48px;
+  margin-bottom: 8px;
+  text-align: center;
 `;
 
 export const UserInfo = styled.div`
   display: flex;
-  justify-content: space-between;
+  gap: 15px;
   align-items: center;
+  justify-content: center;
   margin-bottom: 16px;
 `;
 
@@ -46,5 +55,90 @@ export const StudyDate = styled.div`
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
-  color: rgba(0, 0, 0, 0.4);
+  color: #333333;
+`;
+
+export const ProjectInfoContainer = styled.div`
+  margin-top: 5px;
+  padding: 20px;
+`;
+
+export const ProjectInfo = styled.div`
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+`;
+
+export const ProjectIcon = styled.img`
+  display: block;
+  width: 28px;
+  height: 28px;
+`;
+
+export const Divider = styled.div`
+  width: 100%;
+  height: 1px;
+  border: 1px solid #f2f2f2;
+  margin-top: 16px;
+  margin-bottom: 30px;
+`;
+
+export const BackBtn = styled.img`
+  width: 28px;
+  height: 28px;
+`;
+
+export const InfoWrapper = styled.div`
+  background-color: white;
+`;
+
+export const Content = styled.div``;
+
+export const BottomSection = styled.div`
+  padding: 20px;
+`;
+
+export const ApplyContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: fixed;
+  bottom: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100%;
+  z-index: 3;
+  background-color: white;
+`;
+
+export const ApplyButton = styled.button`
+  width: 100%;
+  height: 44px;
+  background: #6ed1c0;
+  border-radius: 50px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 17px;
+`;
+
+export const ShareButton = styled.button`
+  width: 100%;
+  height: 44px;
+  background: #f1f1f1;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 17px;
+  color: #858585;
+`;
+
+export const LikesContainer = styled.div`
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+`;
+
+export const LikesImg = styled.img`
+  display: block;
+  width: 26px;
+  height: 26px;
 `;
