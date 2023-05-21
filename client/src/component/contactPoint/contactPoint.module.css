@@ -1,26 +1,53 @@
 .contactWrapper {
   position: absolute;
-  left: 110px;
+  left: 114px;
   background: #f2f4f8;
   border-radius: 10px;
   color: #4a5e75;
 }
 
 .email {
+  cursor: pointer;
+  display: flex;
+  gap: 4px;
   position: absolute;
-  left: 110px;
+  left: 114px;
   background: #f2f4f8;
-  padding: 8px 12px;
+  padding: 4px 8px;
   border-radius: 10px;
   color: #4a5e75;
   font-size: 14px;
+  text-decoration-line: underline;
+  text-decoration-color: #4a5e75;
+}
+
+.emailMobile {
+  cursor: pointer;
+  display: flex;
+  gap: 4px;
+  position: absolute;
+  left: 114px;
+  background: #f2f4f8;
+  border-radius: 10px;
+  color: #4a5e75;
+  padding: 4px 8px;
+  font-size: 12px;
+  left: 60px;
+}
+
+.contactContainer {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  padding: 4px 8px;
+  font-weight: 700;
 }
 
 .link {
   display: flex;
   gap: 8px;
-  font-size: 16px;
-  padding: 8px 12px;
+  font-size: 14px;
+  padding: 4px 8px;
   text-decoration-line: underline;
   text-decoration-color: #4a5e75;
 }
@@ -32,16 +59,11 @@
 
 @media screen and (max-width: 768px) {
   .contactWrapper {
-    left: 95px;
-  }
-  .email {
-    padding: 6px 9px;
-    font-size: 12px;
-    left: 95px;
+    left: 60px;
   }
 
   .link {
     font-size: 12px;
-    padding: 6px 9px;
+    padding: 4px 8px;
   }
 }

@@ -14,9 +14,12 @@
 }
 .title {
   color: #717171;
-  margin-right: 40px;
+  margin-right: 36px;
 }
 
+.oneLineItem {
+  flex: 1;
+}
 .content {
   color: #333333;
 }
@@ -33,37 +36,68 @@
 
 .languageList {
   display: flex;
+  align-items: center;
   gap: 12px;
 }
 
 .positions {
-  height: 22px;
-  padding: 3px 10px;
-  background: #F2F4F8;
+  padding: 6px 10px;
+  background: #f2f4f8;
   border-radius: 15px;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 16px;
   text-align: center;
   color: #4a5e75;
 }
 
+.remains {
+  display: flex;
+  margin-top: 24px;
+}
+
 @media screen and (max-width: 768px) {
-  .studyGrid {
-    grid-template-columns: repeat(1, 6fr);
-    row-gap: 16px;
+  .allWrapper {
+    border: 1px solid #e1e1e1;
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 13px;
   }
+
+  .remains {
+    gap: 12px;
+    flex-direction: column;
+    margin-top: 16px;
+  }
+  .studyGrid {
+    margin-top: 0;
+    grid-row-gap: 16px;
+  }
+
   .contentWrapper {
-    font-size: 16px;
+    font-size: 13px;
+  }
+
+  .title {
+    margin-right: 10px;
+  }
+
+  .languageList {
+    gap: 6px;
   }
 
   .language {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
   }
 
   .languageImage {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .positions {
+    padding: 4px 8px;
+    font-size: 12px;
   }
 }

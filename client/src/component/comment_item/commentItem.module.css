@@ -92,8 +92,16 @@
   outline: none;
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 800px) {
   .commentContent {
     font-size: 1rem;
+  }
+
+  .avatarWrapper {
+    margin-bottom: 8px;
+  }
+
+  .commentContent {
+    padding-bottom: 30px;
   }
 }

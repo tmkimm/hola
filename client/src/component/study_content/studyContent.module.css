@@ -105,11 +105,6 @@
   margin: 40px auto 0;
 }
 
-.postComment {
-  width: 100%;
-  margin: 0 auto;
-}
-
 .logo {
   width: 4rem;
   height: auto;
@@ -159,11 +154,22 @@
 }
 
 @media screen and (max-width: 575px) {
+  .postHeader {
+    margin-top: 8px;
+  }
   .title {
+    margin-top: 24px;
     font-size: 1.5rem;
   }
   .postInfo {
     font-size: 20px;
+  }
+  .wrapper {
+    padding: 1rem;
+  }
+
+  .userAndDate {
+    padding-bottom: 20px;
   }
 
   .usedLanguageWrapper {

@@ -10,8 +10,8 @@ import { setModalVisible } from 'store/loginStep';
 const CommentContainer = ({ id }) => {
   const [commentList, setCommentList] = useState([]);
   const [content, setContent] = useState('');
-  const [isComplete, setIsComplete] = useState(false); // useEffect 발생용 state
-  const userId = useSelector((state) => state.user.id);
+  const [isComplete, setIsComplete] = useState(false);
+  const { id: userId, imageUrl } = useSelector((state) => state.user);
   const modalVisible = useSelector((state) => state.loginStep.modalVisible);
   const dispatch = useDispatch();
 
@@ -43,12 +43,13 @@ const CommentContainer = ({ id }) => {
   }, [id, isComplete]);
 
   return (
-    <>
+    <div style={{ paddingBottom: '80px' }}>
       <CommentInput
         content={content}
         setContent={setContent}
         onRegisterClick={onRegisterClick}
         count={commentList.length}
+        imageUrl={imageUrl}
       ></CommentInput>
       <CommentList
         CommentList={commentList}
@@ -58,7 +59,7 @@ const CommentContainer = ({ id }) => {
       <Modal visible={modalVisible} name='login' onClose={closeModal}>
         <LoginModal handleClose={closeModal} tabIndex={0}></LoginModal>
       </Modal>
-    </>
+    </div>
   );
 };
 

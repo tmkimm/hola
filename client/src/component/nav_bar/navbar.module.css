@@ -42,12 +42,29 @@ button {
   font-size: 1.5rem;
 }
 
+.backBtn {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 575px) {
+  .navbar {
+    height: 50px;
+    padding: 0 20px;
+  }
+
+  .logo {
+    width: 80px;
+    height: auto;
+  }
+
   .postRegister {
     display: none;
   }
   .loginElementWrapper {
     margin-right: 0;
+    gap: 12px;
   }
   .login {
     margin-right: 0;
