@@ -96,4 +96,12 @@
   .commentContent {
     font-size: 1rem;
   }
+
+  .avatarWrapper {
+    margin-bottom: 8px;
+  }
+
+  .commentContent {
+    padding-bottom: 30px;
+  }
 }

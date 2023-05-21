@@ -43,7 +43,7 @@ const CommentContainer = ({ id }) => {
   }, [id, isComplete]);
 
   return (
-    <>
+    <div style={{ paddingBottom: '80px' }}>
       <CommentInput
         content={content}
         setContent={setContent}
@@ -59,7 +59,7 @@ const CommentContainer = ({ id }) => {
       <Modal visible={modalVisible} name='login' onClose={closeModal}>
         <LoginModal handleClose={closeModal} tabIndex={0}></LoginModal>
       </Modal>
-    </>
+    </div>
   );
 };
 

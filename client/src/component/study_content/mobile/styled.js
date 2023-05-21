@@ -103,16 +103,16 @@ export const ApplyContainer = styled.div`
   align-items: center;
   gap: 8px;
   position: fixed;
-  bottom: 30px;
-  padding-left: 20px;
-  padding-right: 20px;
+  bottom: 0px;
+  padding: 10px 20px;
   width: 100%;
   z-index: 3;
   background-color: white;
+  border-top: 1px solid #f2f2f2;
 `;
 
 export const ApplyButton = styled.button`
-  width: 100%;
+  flex: 1;
   height: 44px;
   background: #6ed1c0;
   border-radius: 50px;
@@ -122,7 +122,7 @@ export const ApplyButton = styled.button`
 `;
 
 export const ShareButton = styled.button`
-  width: 100%;
+  flex: 1;
   height: 44px;
   background: #f1f1f1;
   border-radius: 50px;
@@ -131,14 +131,18 @@ export const ShareButton = styled.button`
   color: #858585;
 `;
 
-export const LikesContainer = styled.div`
-  width: 44px;
-  height: 44px;
+export const LikeContainer = styled.div`
+  width: 43px;
+  height: 43px;
   border-radius: 50%;
+  background: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
-
 export const LikesImg = styled.img`
   display: block;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: auto;
+  background: transparent;
 `;

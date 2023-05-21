@@ -13,7 +13,7 @@
   position: absolute;
   left: 114px;
   background: #f2f4f8;
-  padding: 6px 10px;
+  padding: 4px 8px;
   border-radius: 10px;
   color: #4a5e75;
   font-size: 14px;
@@ -21,11 +21,33 @@
   text-decoration-color: #4a5e75;
 }
 
+.emailMobile {
+  cursor: pointer;
+  display: flex;
+  gap: 4px;
+  position: absolute;
+  left: 114px;
+  background: #f2f4f8;
+  border-radius: 10px;
+  color: #4a5e75;
+  padding: 4px 8px;
+  font-size: 12px;
+  left: 60px;
+}
+
+.contactContainer {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  padding: 4px 8px;
+  font-weight: 700;
+}
+
 .link {
   display: flex;
   gap: 8px;
-  font-size: 16px;
-  padding: 8px 12px;
+  font-size: 14px;
+  padding: 4px 8px;
   text-decoration-line: underline;
   text-decoration-color: #4a5e75;
 }
@@ -37,11 +59,6 @@
 
 @media screen and (max-width: 768px) {
   .contactWrapper {
-    left: 60px;
-  }
-  .email {
-    padding: 4px 8px;
-    font-size: 12px;
     left: 60px;
   }
 

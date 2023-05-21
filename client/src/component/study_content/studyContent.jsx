@@ -99,7 +99,7 @@ const StudyContent = ({ id }) => {
               totalLikes={read.post.totalLikes}
               studyId={read.post.id}
               userId={user.id}
-            ></LikesAndViews>
+            />
 
             <CommentContainer id={read.post.id}></CommentContainer>
           </div>
