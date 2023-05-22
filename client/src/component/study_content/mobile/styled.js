@@ -113,6 +113,7 @@ export const ApplyContainer = styled.div`
   z-index: 3;
   background-color: white;
   border-top: 1px solid #f2f2f2;
+  padding-bottom: calc(env(safe-area-inset-bottom) + 10px);
 `;
 
 export const ApplyButton = styled.button`
