@@ -57,7 +57,7 @@ const Navbar = React.memo(({ isBackBtn }) => {
           src='/images/info/arrowLeft.png'
           alt='backbtn'
           onClick={() => {
-            history.goBack();
+            history.length > 2 ? history.goBack() : history.push('/');
           }}
         />
       ) : (
