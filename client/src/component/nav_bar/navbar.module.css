@@ -29,6 +29,7 @@ button {
 .login {
   font-weight: 600;
   font-size: 1.125rem;
+  color: black;
 }
 
 .postRegister {

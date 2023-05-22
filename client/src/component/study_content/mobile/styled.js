@@ -92,7 +92,11 @@ export const InfoWrapper = styled.div`
   background-color: white;
 `;
 
-export const Content = styled.div``;
+export const Content = styled.div`
+  img {
+    width: 100%;
+  }
+`;
 
 export const BottomSection = styled.div`
   padding: 20px;
