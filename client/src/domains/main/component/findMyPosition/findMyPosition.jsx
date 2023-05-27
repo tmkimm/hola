@@ -51,7 +51,6 @@ const customStyles = {
   }),
 };
 
-/*        description: '포지션(FE: 프론트엔드, BE: 백엔드, DE: 디자이너, IOS: IOS, AND: 안드로이드, DEVOPS: DevOps, PM)' */
 const options = [
   {
     label: '전체',
