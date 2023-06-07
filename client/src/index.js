@@ -19,6 +19,9 @@ import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import ReactGA from 'react-ga4';
+
+ReactGA.initialize('G-WJQH1M67X8');
 
 const queryClient = new QueryClient();
 const SentryId = process.env.REACT_APP_SENTRY_API_KEY;

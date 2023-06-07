@@ -13,17 +13,20 @@ import Category from '../category/Category';
 import LanguageBar from 'component/languageIBar/LanguageBar';
 import SelectedLanguage from '../selectedLanguage/SelectedLanguage';
 import Search from 'component/search/search';
+import { HolaLogEvent } from 'common/GA';
 
 export const DesktopFilter = React.memo(() => {
   const { selected } = useSelector((state) => state.language);
   const dispatch = useDispatch();
   const onIconClick = useCallback(
-    (Langauge, isSelected) => {
-      if (!isSelected) dispatch(addLanguage(languageMap[Langauge]));
-      else {
+    (language, isSelected) => {
+      if (!isSelected) {
+        HolaLogEvent('filter_language', { category: language });
+        dispatch(addLanguage(languageMap[language]));
+      } else {
         selected.length === 1
           ? dispatch(initLanguage())
-          : dispatch(removeLanguage(languageMap[Langauge]));
+          : dispatch(removeLanguage(languageMap[language]));
       }
     },
     [dispatch, selected.length],

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './search.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeSearch } from 'store/language';
+import { HolaLogEvent } from 'common/GA';
 
 const debounceFunction = (callback, delay) => {
   let timer;
@@ -22,7 +23,12 @@ const Search = () => {
   }, 300);
 
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      onClick={() => {
+        HolaLogEvent('select_search');
+      }}
+    >
       <img
         className={styles.searchImg}
         src='images/info/search.png'

@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './studyOrProject.module.css';
 import { StudyIcon, ProjectIcon } from 'common/Icons';
 import { AllIcon } from 'common/Icons/allIcon';
+import { HolaLogEvent } from 'common/GA';
 
 const StudyOrProject = ({ category, toggleCategory }) => {
   const ALL = 'all';
@@ -23,7 +24,10 @@ const StudyOrProject = ({ category, toggleCategory }) => {
         className={`${styles.category__item} ${
           category === ALL ? active.className : inActive.className
         }`}
-        onClick={() => toggleCategory(ALL)}
+        onClick={() => {
+          toggleCategory(ALL);
+          HolaLogEvent('filter_type', { category: 'all' });
+        }}
       >
         <AllIcon stroke={category === ALL ? active.color : inActive.color} />
         <span className={styles.text}>전체</span>
@@ -32,7 +36,10 @@ const StudyOrProject = ({ category, toggleCategory }) => {
         className={`${styles.category__item} ${
           category === PROJECT ? active.className : inActive.className
         }`}
-        onClick={() => toggleCategory(PROJECT)}
+        onClick={() => {
+          HolaLogEvent('filter_type', { category: 'project' });
+          toggleCategory(PROJECT);
+        }}
       >
         <ProjectIcon stroke={category === PROJECT ? active.color : inActive.color} />
         <span className={styles.text}>프로젝트</span>
@@ -41,7 +48,10 @@ const StudyOrProject = ({ category, toggleCategory }) => {
         className={`${styles.category__item} ${
           category === STUDY ? active.className : inActive.className
         }`}
-        onClick={() => toggleCategory(STUDY)}
+        onClick={() => {
+          HolaLogEvent('filter_type', { category: 'study' });
+          toggleCategory(STUDY);
+        }}
       >
         <StudyIcon stroke={category === STUDY ? active.color : inActive.color} />
         <span className={styles.text}>스터디</span>

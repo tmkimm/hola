@@ -3,6 +3,7 @@ import styles from './findMyPosition.module.css';
 import Select from 'react-select';
 import { useDispatch } from 'react-redux';
 import { changePosition } from 'store/language';
+import { HolaLogEvent } from 'common/GA';
 
 const customStyles = {
   control: (base, state) => ({
@@ -96,6 +97,7 @@ const FindMyPosition = () => {
         isSearchable={false}
         options={options}
         onChange={(position) => {
+          HolaLogEvent('filter_position', { category: position.value });
           dispatch(changePosition(position.value));
         }}
       />

@@ -12,6 +12,8 @@ import { useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModalVisible } from '../../store/loginStep';
+import { HolaLogEvent } from 'common/GA';
+import { useHistory } from 'react-router';
 
 const StudyItem = ({ study }) => {
   const studyLang = [];
@@ -19,6 +21,7 @@ const StudyItem = ({ study }) => {
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const history = useHistory();
 
   const openModal = () => {
     document.body.style.overflow = 'hidden';
@@ -52,8 +55,18 @@ const StudyItem = ({ study }) => {
     else studyLang.push(study.language[i]);
   }
 
+  const handleStudyClick = (e) => {
+    e.preventDefault();
+    HolaLogEvent('select_block', { category: study._id });
+    history.push(`/study/${study._id}`);
+  };
+
   return (
-    <Link to={`/study/${study._id}`} className={`${styles.studyItem} ${displayType}`}>
+    <Link
+      to={`/study/${study._id}`}
+      onClick={handleStudyClick}
+      className={`${styles.studyItem} ${displayType}`}
+    >
       <li>
         <div className={styles.badgeWrapper}>
           <Badge state={study.type === '1' ? 'project' : 'study'} />
