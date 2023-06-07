@@ -42,7 +42,7 @@ const SocialLoginContainer = ({ handleClose }) => {
   };
 
   const kakaoOnFailure = (error) => {
-    console.log('error : ', error);
+    console.log(error);
   };
   return (
     <SocialLogin
