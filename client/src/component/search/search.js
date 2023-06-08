@@ -19,6 +19,7 @@ const Search = () => {
   const [isVisible, setIsVisible] = useState(false);
   const value = useSelector((state) => state.search);
   const debouncedOnchange = debounceFunction((e) => {
+    HolaLogEvent('select_search', { category: e.target.value });
     dispatch(changeSearch(e.target.value));
   }, 300);
 

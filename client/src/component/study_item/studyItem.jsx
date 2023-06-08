@@ -35,6 +35,7 @@ const StudyItem = ({ study }) => {
       return;
     }
     if (!study.isLiked) {
+      HolaLogEvent('highfive_main', { category: study._id });
       await studyService.addLikes(study._id);
       toast.success('관심 목록에 추가했어요!', {
         position: 'top-right',

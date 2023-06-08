@@ -1,3 +1,4 @@
+import { HolaLogEvent } from 'common/GA';
 import { NoticeDropdownBar } from 'component/noticeDropdown';
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -9,7 +10,7 @@ export const Notice = () => {
   const menuRef = useRef();
 
   const handleNotificationClick = () => {
-    // dropdown control
+    HolaLogEvent('notification');
     if (menuVisible) document.body.style.overflow = 'auto';
     else document.body.style.overflow = 'hidden';
     setMenuVisible((menuVisible) => !menuVisible);

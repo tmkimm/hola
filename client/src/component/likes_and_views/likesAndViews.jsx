@@ -5,6 +5,7 @@ import { setModalVisible } from 'store/loginStep';
 import LoginModal from 'component/modal/login_modal/loginModal';
 import Modal from 'component/modal/modal_component/modal';
 import * as S from './styled';
+import { HolaLogEvent } from 'common/GA';
 
 const LikesAndViews = ({ views, studyId, userId }) => {
   const [likeImg, setLikeImg] = useState('bookmark');
@@ -46,6 +47,7 @@ const LikesAndViews = ({ views, studyId, userId }) => {
       setLikeImg('bookmark');
       setTotalLikes(response.data.likeUsers.length);
     } else {
+      HolaLogEvent('highfive_block', { category: studyId });
       const response = await studyService.addLikes(studyId);
       setTotalLikes(response.data.likeUsers.length);
       setLikeImg('bookmark_filled');

@@ -1,13 +1,20 @@
+import { HolaLogEvent } from 'common/GA';
 import React from 'react';
 import styles from './instagramBanner.module.css';
 
 export const InstagramBanner = () => {
+  const handleLinkClick = (e) => {
+    HolaLogEvent('main_banner', { category: '스터디와 사이드 프로젝트를 찾는 가장 쉬운 방법' });
+    e.preventDefault();
+    window.location.href = 'https://instagram.com/holaworld_official';
+  };
   return (
     <a
       className={styles.bannerLink}
       href='https://instagram.com/holaworld_official'
       target='_blank'
       rel='noreferrer'
+      onClick={handleLinkClick}
     >
       <div className={styles.containerWrapper}>
         <div className={styles.container}>

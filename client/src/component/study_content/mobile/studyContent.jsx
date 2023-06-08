@@ -7,6 +7,7 @@ import LikesAndViews from 'component/likes_and_views/likesAndViews';
 import CommentContainer from 'component/comment_container/commentContainer';
 import { toast } from 'react-toastify';
 import useSocialShare from 'hooks/useSocialShare';
+import { HolaLogEvent } from 'common/GA';
 
 const MobileStudyContent = ({ id }) => {
   const { post } = useSelector((state) => state.read);
@@ -56,6 +57,10 @@ const MobileStudyContent = ({ id }) => {
     else copyContent(contactPoint);
   };
 
+  const handleLikesClick = () => {
+    HolaLogEvent('highfive_block', { category: studyId });
+  };
+
   return (
     <S.Container>
       <S.InfoSection>
@@ -94,7 +99,7 @@ const MobileStudyContent = ({ id }) => {
         <S.ApplyButton onClick={handleApplyClick}>바로지원</S.ApplyButton>
         <S.ShareButton onClick={handleShareClick}>공유하기</S.ShareButton>
 
-        <S.LikeContainer>
+        <S.LikeContainer onClick={handleLikesClick}>
           <S.LikesImg
             src={false ? '/images/info/bookmark_filled.svg' : '/images/info/bookmark.svg'}
           />
