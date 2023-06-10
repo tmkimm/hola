@@ -8,10 +8,18 @@ import CommentContainer from 'component/comment_container/commentContainer';
 import { toast } from 'react-toastify';
 import useSocialShare from 'hooks/useSocialShare';
 import { HolaLogEvent } from 'common/GA';
+import { useGetLikesUser } from 'hooks/useGetLikesUser';
+import { useAddLikes } from 'hooks/useAddLikes';
+import { useDeleteLikes } from 'hooks/useDeleteLikes';
+import { useQueryClient } from 'react-query';
 
-const MobileStudyContent = ({ id }) => {
+const MobileStudyContent = ({ user, id }) => {
   const { post } = useSelector((state) => state.read);
   const { shareToKakaoTalk } = useSocialShare();
+  const queryClient = useQueryClient();
+  const { data, isLoading } = useGetLikesUser(id);
+  const { mutateAsync: addLikes } = useAddLikes();
+  const { mutateAsync: deleteLikes } = useDeleteLikes();
   const {
     imagePath,
     nickname,
@@ -57,9 +65,19 @@ const MobileStudyContent = ({ id }) => {
     else copyContent(contactPoint);
   };
 
-  const handleLikesClick = () => {
+  const handleLikesClick = async () => {
     HolaLogEvent('highfive_block', { category: studyId });
+    const isLike = data.likeUsers.find((likeId) => likeId === user.id);
+    const toastText = isLike ? '북마크를 해제했어요!' : '북마크를 추가했어요!';
+    isLike ? await deleteLikes(id) : await addLikes(id);
+    queryClient.invalidateQueries(['api', 'likes', 'user']);
+    toast.success(toastText, {
+      position: 'top-right',
+      autoClose: 3000,
+    });
   };
+
+  if (isLoading) return <></>;
 
   return (
     <S.Container>
@@ -89,7 +107,7 @@ const MobileStudyContent = ({ id }) => {
           likeUser={post.likes}
           totalLikes={post.totalLikes}
           studyId={post.id}
-          userId={null}
+          userId={user.id}
         ></LikesAndViews>
 
         <CommentContainer id={post.id}></CommentContainer>
@@ -101,7 +119,11 @@ const MobileStudyContent = ({ id }) => {
 
         <S.LikeContainer onClick={handleLikesClick}>
           <S.LikesImg
-            src={false ? '/images/info/bookmark_filled.svg' : '/images/info/bookmark.svg'}
+            src={
+              data.likeUsers.find((likeId) => likeId === user.id)
+                ? '/images/info/bookmark_filled.svg'
+                : '/images/info/bookmark.svg'
+            }
           />
         </S.LikeContainer>
       </S.ApplyContainer>

@@ -52,7 +52,7 @@ const StudyContent = ({ id }) => {
       {isMobile ? (
         <>
           <Navbar isBackBtn={true} />
-          <MobileStudyContent id={id} />
+          <MobileStudyContent user={user} id={id} />
         </>
       ) : (
         <>

@@ -1,27 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import studyService from 'service/study_service';
 import { setModalVisible } from 'store/loginStep';
 import LoginModal from 'component/modal/login_modal/loginModal';
 import Modal from 'component/modal/modal_component/modal';
 import * as S from './styled';
 import { HolaLogEvent } from 'common/GA';
+import { useGetLikesUser } from 'hooks/useGetLikesUser';
+import { useAddLikes } from 'hooks/useAddLikes';
+import { useDeleteLikes } from 'hooks/useDeleteLikes';
+import { useQueryClient } from 'react-query';
+import { toast } from 'react-toastify';
 
 const LikesAndViews = ({ views, studyId, userId }) => {
-  const [likeImg, setLikeImg] = useState('bookmark');
-  const [totalLikes, setTotalLikes] = useState(0);
-  useEffect(() => {
-    studyService.getLikesUser(studyId).then((res) => {
-      setTotalLikes(res.likeUsers.length);
-      if (userId === undefined) {
-        setLikeImg('bookmark');
-      } else {
-        const isLike = res.likeUsers.filter((likeUserid) => likeUserid === userId);
-        isLike.length === 0 ? setLikeImg('bookmark') : setLikeImg('bookmark_filled');
-      }
-    });
-  }, [studyId, userId]);
-
+  const queryClient = useQueryClient();
+  const { data, isLoading } = useGetLikesUser(studyId);
+  const { mutateAsync: addLikes } = useAddLikes();
+  const { mutateAsync: deleteLikes } = useDeleteLikes();
   const modalVisible = useSelector((state) => state.loginStep.modalVisible);
 
   const dispatch = useDispatch();
@@ -37,23 +31,22 @@ const LikesAndViews = ({ views, studyId, userId }) => {
   };
 
   const handleLikesClick = async () => {
+    HolaLogEvent('highfive_block', { category: studyId });
     if (userId === undefined) {
       openModal();
       return;
     }
 
-    if (likeImg === 'bookmark') {
-      const response = await studyService.deleteLikes(studyId);
-      setLikeImg('bookmark');
-      setTotalLikes(response.data.likeUsers.length);
-    } else {
-      HolaLogEvent('highfive_block', { category: studyId });
-      const response = await studyService.addLikes(studyId);
-      setTotalLikes(response.data.likeUsers.length);
-      setLikeImg('bookmark_filled');
-    }
+    const isLike = data.likeUsers.find((likeId) => likeId === userId);
+    const toastText = isLike ? '북마크를 해제했어요!' : '북마크를 추가했어요!';
+    isLike ? await deleteLikes(studyId) : await addLikes(studyId);
+    queryClient.invalidateQueries(['api', 'likes', 'user']);
+    toast.success(toastText, {
+      position: 'top-right',
+      autoClose: 3000,
+    });
   };
-
+  if (isLoading) return <></>;
   return (
     <>
       <S.Container>
@@ -62,8 +55,16 @@ const LikesAndViews = ({ views, studyId, userId }) => {
           <S.Text>{views}</S.Text>
         </S.Views>
         <S.Likes>
-          <S.LikesImg onClick={handleLikesClick} src={`/images/info/${likeImg}.png`} alt='likes' />
-          <S.Text>{totalLikes}</S.Text>
+          <S.LikesImg
+            onClick={handleLikesClick}
+            src={
+              data.likeUsers.find((likeId) => likeId === userId)
+                ? '/images/info/bookmark_filled.svg'
+                : '/images/info/bookmark.svg'
+            }
+            alt='likes'
+          />
+          <S.Text>{data.likeUsers.length}</S.Text>
         </S.Likes>
       </S.Container>
       <Modal visible={modalVisible} name='login' onClose={closeModal}>

@@ -6,6 +6,7 @@ export const Container = styled.section`
   justify-content: flex-end;
   align-items: center;
   gap: 10px;
+  height: 20px;
 `;
 
 export const Likes = styled.div`
