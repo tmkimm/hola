@@ -5,25 +5,17 @@ import styles from './navbar.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import LoginUser from 'component/login_user/loginUser';
-import { setModalVisible } from 'store/loginStep';
 import { clearUser, fetchUserByRefreshToken } from 'store/user';
 import { toast } from 'react-toastify';
 import { Notice } from 'component/notice';
+import { useModal } from 'hooks/useModal';
 
 const Navbar = React.memo(({ isBackBtn }) => {
+  const { openModal, closeModal, modalVisible } = useModal();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const history = useHistory();
 
-  const modalVisible = useSelector((state) => state.loginStep.modalVisible);
-  const openModal = () => {
-    document.body.style.overflow = 'hidden';
-    dispatch(setModalVisible(true));
-  };
-  const closeModal = () => {
-    document.body.style.overflow = 'auto';
-    dispatch(setModalVisible(false));
-  };
   const handleRegister = () => {
     if (user.id === undefined) {
       openModal();

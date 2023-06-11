@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setModalVisible } from 'store/loginStep';
+import React from 'react';
 import LoginModal from 'component/modal/login_modal/loginModal';
 import Modal from 'component/modal/modal_component/modal';
 import * as S from './styled';
@@ -10,25 +8,14 @@ import { useAddLikes } from 'hooks/useAddLikes';
 import { useDeleteLikes } from 'hooks/useDeleteLikes';
 import { useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
+import { useModal } from 'hooks/useModal';
 
 const LikesAndViews = ({ views, studyId, userId }) => {
+  const { openModal, closeModal, modalVisible } = useModal();
   const queryClient = useQueryClient();
   const { data, isLoading } = useGetLikesUser(studyId);
   const { mutateAsync: addLikes } = useAddLikes();
   const { mutateAsync: deleteLikes } = useDeleteLikes();
-  const modalVisible = useSelector((state) => state.loginStep.modalVisible);
-
-  const dispatch = useDispatch();
-
-  const openModal = () => {
-    document.body.style.overflow = 'hidden';
-    dispatch(setModalVisible(true));
-  };
-
-  const closeModal = () => {
-    document.body.style.overflow = 'auto';
-    dispatch(setModalVisible(false));
-  };
 
   const handleLikesClick = async () => {
     HolaLogEvent('highfive_block', { category: studyId });
@@ -38,9 +25,11 @@ const LikesAndViews = ({ views, studyId, userId }) => {
     }
 
     const isLike = data.likeUsers.find((likeId) => likeId === userId);
-    const toastText = isLike ? '북마크를 해제했어요!' : '북마크를 추가했어요!';
-    isLike ? await deleteLikes(studyId) : await addLikes(studyId);
-    queryClient.invalidateQueries(['api', 'likes', 'user']);
+    const toastText = isLike ? '관심 목록에서 제거했어요!' : '관심 목록에 추가했어요!';
+    const result = isLike ? await deleteLikes(studyId) : await addLikes(studyId);
+    queryClient.setQueriesData(['api', 'likes', 'user'], {
+      ...result.data,
+    });
     toast.success(toastText, {
       position: 'top-right',
       autoClose: 3000,

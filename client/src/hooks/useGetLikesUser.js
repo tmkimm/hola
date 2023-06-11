@@ -5,14 +5,12 @@ export const useGetLikesUser = (studyId) => {
   const { data, isLoading } = useQuery(
     ['api', 'likes', 'user'],
     () => {
-      console.log('fetch like user..');
       return studyService.getLikesUser(studyId);
     },
     {
       refetchOnWindowFocus: false,
     },
   );
-  console.log('data : ', data);
 
   return { data, isLoading };
 };

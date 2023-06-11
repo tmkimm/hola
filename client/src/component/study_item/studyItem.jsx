@@ -10,44 +10,39 @@ import Badge from 'component/badge/badge';
 import studyService from '../../service/study_service';
 import { useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux';
-import { setModalVisible } from '../../store/loginStep';
+import { useSelector } from 'react-redux';
 import { HolaLogEvent } from 'common/GA';
 import { useHistory } from 'react-router';
+import { useModal } from 'hooks/useModal';
+import { useAddLikes } from 'hooks/useAddLikes';
+import { useDeleteLikes } from 'hooks/useDeleteLikes';
 
 const StudyItem = ({ study }) => {
+  const { openModal } = useModal();
+  const { mutateAsync: addLikes } = useAddLikes();
+  const { mutateAsync: deleteLikes } = useDeleteLikes();
   const studyLang = [];
   const displayType = study.isClosed ? styles.closed : styles.open;
   const queryClient = useQueryClient();
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const history = useHistory();
 
-  const openModal = () => {
-    document.body.style.overflow = 'hidden';
-    dispatch(setModalVisible(true));
-  };
-
   const handleLike = async (e) => {
+    e.stopPropagation();
     e.preventDefault();
     if (!user.nickName) {
       openModal();
       return;
     }
-    if (!study.isLiked) {
-      HolaLogEvent('highfive_main', { category: study._id });
-      await studyService.addLikes(study._id);
-      toast.success('관심 목록에 추가했어요!', {
-        position: 'top-right',
-        autoClose: 3000,
-      });
-    } else {
-      await studyService.deleteLikes(study._id);
-      toast.success('관심 목록에서 제거했어요!', {
-        position: 'top-right',
-        autoClose: 3000,
-      });
-    }
+
+    study.isLiked ? await deleteLikes(study._id) : await addLikes(study._id);
+    const toastText = study.isLiked ? '관심 목록에서 제거했어요!' : '관심 목록에 추가했어요!';
+    toast.success(toastText, {
+      position: 'top-right',
+      autoClose: 3000,
+    });
+
+    if (!study.isLiked) await studyService.addLikes(study._id);
     queryClient.invalidateQueries('studyList');
   };
 
