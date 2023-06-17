@@ -1,20 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-/* 
-
-loginStep
-
-login을 위한 modal visibility와 
-loginStep(social login, signUp)을 관리하는 redux 입니다.
-
-*/
-
 const initialState = {
   modalVisible: false,
   currentStep: 1,
   nickName: undefined,
   id: undefined,
   likeLanguages: [],
+  position: '',
+  workExperience: '',
 };
 
 const loginstepSlice = createSlice({

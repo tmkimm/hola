@@ -87,6 +87,8 @@ const initialState = {
   likeLanguages: [],
   hasUnreadNotice: false,
   accessToken: undefined,
+  position: '',
+  workExperience: '',
 };
 
 const defaultPath = 'https://hola-post-image.s3.ap-northeast-2.amazonaws.com/';
@@ -118,6 +120,8 @@ const userSlice = createSlice({
       likeLanguages: payload.likeLanguages,
       hasUnreadNotice: payload.hasUnreadNotice,
       accessToken: payload.accessToken,
+      position: payload.position,
+      workExperience: payload.workExperience,
     }),
 
     [addUserNickName.fulfilled]: (state, { payload }) => ({
@@ -125,8 +129,9 @@ const userSlice = createSlice({
       nickName: payload.nickName,
       id: payload._id,
       imageUrl: defaultPath + payload.image,
-      likeLanguages: payload.likeLanguages,
       accessToken: payload.accessToken,
+      position: payload.position,
+      workExperience: payload.workExperience,
     }),
 
     [modifyUserInfo.fulfilled]: (state, { payload }) => ({
@@ -136,6 +141,8 @@ const userSlice = createSlice({
       imageUrl: defaultPath + payload.image,
       likeLanguages: payload.likeLanguages,
       accessToken: payload.accessToken,
+      position: payload.position,
+      workExperience: payload.workExperience,
     }),
 
     [modifyUserInfo.rejected]: (state, { payload }) => {

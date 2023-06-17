@@ -116,6 +116,18 @@ const positionsOption = [
   { value: 'AND', label: '안드로이드' },
   { value: 'DEVOPS', label: '데브옵스' },
   { value: 'PM', label: 'PM' },
+  { value: 'PD', label: '기획자' },
+];
+
+const positionsExceptAllOption = [
+  { value: 'FE', label: '프론트엔드' },
+  { value: 'BE', label: '백엔드' },
+  { value: 'DE', label: '디자이너' },
+  { value: 'IOS', label: 'IOS' },
+  { value: 'AND', label: '안드로이드' },
+  { value: 'DEVOPS', label: '데브옵스' },
+  { value: 'PM', label: 'PM' },
+  { value: 'PD', label: '기획자' },
 ];
 
 const positionsMap = {
@@ -127,7 +139,22 @@ const positionsMap = {
   AND: '안드로이드',
   DEVOPS: '데브옵스',
   PM: 'PM',
+  PD: '기획자',
 };
+
+const workExperienceOption = [
+  { value: 'n', label: '0년' },
+  { value: '1', label: '1년' },
+  { value: '2', label: '2년' },
+  { value: '3', label: '3년' },
+  { value: '4', label: '4년' },
+  { value: '5', label: '5년' },
+  { value: '6', label: '6년' },
+  { value: '7', label: '7년' },
+  { value: '8', label: '8년' },
+  { value: '9', label: '9년' },
+  { value: 'mo', label: '10년 이상' },
+];
 
 export {
   languageList,
@@ -139,4 +166,6 @@ export {
   languageMap,
   positionsOption,
   positionsMap,
+  positionsExceptAllOption,
+  workExperienceOption,
 };

@@ -25,21 +25,18 @@ to-do
 const SOCIAL_LOGIN = 1;
 const SET_NICKNAME = 2;
 const SET_INTEREST = 3;
-const SET_IMAGE = 4;
-const SIGNUP_END = 5;
+const SIGNUP_END = 4;
 
 const LoginModal = ({ handleClose }) => {
   const loginStep = useSelector((state) => state.loginStep.currentStep);
   const renderByLoginStep = (loginStep) => {
     switch (loginStep) {
       case SOCIAL_LOGIN:
-        return <SocialLoginContainer handleClose={handleClose}></SocialLoginContainer>;
+        return <SocialLoginContainer handleClose={handleClose} />;
       case SET_NICKNAME:
         return <SetNicknameContainer />;
       case SET_INTEREST:
-        return <SetInterestContainer></SetInterestContainer>;
-      case SET_IMAGE:
-        return <SetImageContainer></SetImageContainer>;
+        return <SetInterestContainer />;
       case SIGNUP_END:
         return <SignupEnd handleClose={handleClose}></SignupEnd>;
       default:

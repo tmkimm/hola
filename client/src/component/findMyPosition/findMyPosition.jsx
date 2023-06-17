@@ -85,6 +85,10 @@ const options = [
     label: 'PM',
     value: 'PM',
   },
+  {
+    label: 'PD',
+    value: '기획자',
+  },
 ];
 
 const FindMyPosition = () => {
