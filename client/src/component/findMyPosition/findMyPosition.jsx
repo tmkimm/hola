@@ -47,11 +47,9 @@ const customStyles = {
   }),
   menuList: (base) => ({
     ...base,
-    overflow: 'hidden',
   }),
 };
 
-/*        description: '포지션(FE: 프론트엔드, BE: 백엔드, DE: 디자이너, IOS: IOS, AND: 안드로이드, DEVOPS: DevOps, PM)' */
 const options = [
   {
     label: '전체',
@@ -74,20 +72,20 @@ const options = [
     value: 'AND',
   },
   {
-    label: 'DevOps',
-    value: 'DEVOPS',
-  },
-  {
     label: '디자이너',
     value: 'DE',
+  },
+  {
+    label: '기획자',
+    value: 'PD',
   },
   {
     label: 'PM',
     value: 'PM',
   },
   {
-    label: 'PD',
-    value: '기획자',
+    label: 'DevOps',
+    value: 'DEVOPS',
   },
 ];
 
