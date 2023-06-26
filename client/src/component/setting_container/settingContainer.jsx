@@ -21,10 +21,6 @@ s3 경로 config 파일로 분리
 Input 표현을 위해 LikeLanguages Component로 넘길때
 => {value, label} 형태로 되어있음
 
-가끔 Can't perform a react state 나오는데, 이거 useEffect cleanUp 함수로 해결가능한지 확인
-해결법 => useState에 isMount 설정을 하고, useEffect에서 cleanUp function으로 isMount off 시켜준 뒤
-input에 state 바꿀때는 isMount가 true일때만 하기
-
 */
 const SettingContainer = (props) => {
   const user = useSelector((state) => state.user);
