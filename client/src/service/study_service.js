@@ -285,38 +285,25 @@ class Study {
     }
   };
 
-  uploadImageToS3 = async (presignedUrl, file) => {
-    const response = await fetch(
-      new Request(presignedUrl, {
-        method: 'PUT',
-        body: file,
-        headers: new Headers({
-          'Content-Type': 'image/png',
-        }),
-      }),
-    );
-
-    if (response.status !== 200) {
-      // The upload failed, so let's notify the caller.
-      //onError();
-      console.log('error occured!');
-      return;
-    }
-    return 'hehe success';
-  };
-
   uploadImageToS3WithBase64 = async (presignedUrl, file, fileName) => {
-    let arr = file.split(','),
-      mime = arr[0].match(/:(.*?);/)[1],
-      bstr = atob(arr[1]),
-      n = bstr.length,
-      u8arr = new Uint8Array(n);
+    const arr = file.split(',');
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    const n = bstr.length;
+    const u8arr = new Uint8Array(n);
 
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
+    for (let i = 0; i < n; i++) {
+      u8arr[i] = bstr.charCodeAt(i);
     }
+
     const imageFile = new File([u8arr], fileName, { type: mime });
-    const response = await this.uploadImageToS3(presignedUrl, imageFile);
+    const response = await fetch(presignedUrl, {
+      method: 'PUT',
+      body: imageFile,
+      headers: {
+        'Content-Type': imageFile.type,
+      },
+    });
     return response;
   };
 }
