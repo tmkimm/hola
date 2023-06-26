@@ -156,6 +156,20 @@ const workExperienceOption = [
   { value: 'mo', label: '10년 이상' },
 ];
 
+const urlOption = [
+  { value: 'Link', label: 'Link' },
+  { value: 'Blog', label: 'Blog' },
+  { value: 'Github', label: 'Github' },
+  { value: 'Tistory', label: 'Tistory' },
+  { value: 'Notion', label: 'Notion' },
+  { value: 'LinkedIn', label: 'LinkedIn' },
+  { value: 'Instargram', label: 'Instargram' },
+  { value: 'Brunch', label: 'Brunch' },
+  { value: 'Twitter', label: 'Twitter' },
+  { value: 'Youtube', label: 'Youtube' },
+  { value: 'Brunch', label: 'Brunch' },
+];
+
 export {
   languageList,
   studyOrProjectOption,
@@ -168,4 +182,5 @@ export {
   positionsMap,
   positionsExceptAllOption,
   workExperienceOption,
+  urlOption,
 };
