@@ -9,20 +9,14 @@ import {
   expectedPeriodOption,
   positionsOption,
 } from '../common/options';
+import { fotmatToReactSelect } from 'common/utils/formatToReactSelect';
 /* 
 
 읽고 있는 post 상태를 만드는 redux store 입니다.
 post 진입시 해당 내용을 기억하고 있다가, 이탈시 초기화합니다.
 
 */
-const getFormattedData = (list, datas) => {
-  if (Array.isArray(datas)) {
-    return datas.map((data) => ({
-      value: data,
-      label: list.find((element) => element.value === data).label,
-    }));
-  } else return { value: datas, label: list.find((element) => element.value === datas).label };
-};
+
 const readPostAction = createAction('read/readPost');
 
 const readPost = createAsyncThunk(readPostAction, async (id, thunkAPI) => {
@@ -30,14 +24,14 @@ const readPost = createAsyncThunk(readPostAction, async (id, thunkAPI) => {
 
   return {
     ...data,
-    language: getFormattedData(languageList, data.language),
-    expectedPeriod: getFormattedData(expectedPeriodOption, data.expectedPeriod),
-    type: getFormattedData(studyOrProjectOption, data.type),
-    recruits: getFormattedData(recruitsOption, data.recruits),
+    language: fotmatToReactSelect(languageList, data.language),
+    expectedPeriod: fotmatToReactSelect(expectedPeriodOption, data.expectedPeriod),
+    type: fotmatToReactSelect(studyOrProjectOption, data.type),
+    recruits: fotmatToReactSelect(recruitsOption, data.recruits),
     contactPoint: data.contactPoint,
-    onlineOrOffline: getFormattedData(onlineOrOfflineOption, data.onlineOrOffline),
-    contactType: getFormattedData(contactTypeOption, data.contactType),
-    positions: getFormattedData(positionsOption, data.positions),
+    onlineOrOffline: fotmatToReactSelect(onlineOrOfflineOption, data.onlineOrOffline),
+    contactType: fotmatToReactSelect(contactTypeOption, data.contactType),
+    positions: fotmatToReactSelect(positionsOption, data.positions),
   };
 });
 

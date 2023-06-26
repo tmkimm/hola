@@ -109,7 +109,10 @@ const userSlice = createSlice({
       id: payload._id,
       imageUrl: defaultPath + payload.image,
       likeLanguages: payload.likeLanguages,
+      hasUnreadNotice: payload.hasUnreadNotice,
       accessToken: payload.accessToken,
+      position: payload.position,
+      workExperience: payload.workExperience,
     }),
 
     [fetchUserByRefreshToken.fulfilled]: (state, { payload }) => ({
