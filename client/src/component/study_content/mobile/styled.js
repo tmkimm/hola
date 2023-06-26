@@ -61,6 +61,7 @@ export const StudyDate = styled.div`
 export const ProjectInfoContainer = styled.div`
   margin-top: 5px;
   padding: 20px;
+  word-break: break-all;
 `;
 
 export const ProjectInfo = styled.div`
