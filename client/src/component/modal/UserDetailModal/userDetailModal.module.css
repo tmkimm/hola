@@ -1,0 +1,200 @@
+.wrapper {
+  width: 600px;
+  padding: 60px 50px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  margin: 0 auto;
+  transform: translateY(-50%);
+  background: #fff;
+  border-radius: 30px;
+}
+
+.modalHeader {
+  display: flex;
+  height: 30px;
+  margin-bottom: 50px;
+  justify-content: space-between;
+}
+
+.backButton {
+  display: block;
+  width: 30px;
+  height: 30px;
+}
+
+.moreButton {
+  display: block;
+  width: auto;
+  height: 30px;
+}
+
+.position {
+  color: #6ed1c0;
+  font-size: 18px;
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 126.5%;
+  letter-spacing: -0.54px;
+}
+
+.workExperience {
+  color: #777;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 126.5%;
+  letter-spacing: -0.54px;
+}
+
+.introduces {
+  overflow: scroll;
+  max-height: 100px;
+  white-space: pre-line;
+}
+
+.organizationName {
+  color: #777;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 126.5%;
+  letter-spacing: -0.54px;
+}
+
+.avatarContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 30px;
+}
+
+.avatar {
+  display: block;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+}
+
+.nickname {
+  width: 100%;
+  color: #000;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 126.5%;
+  letter-spacing: -0.72px;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.modalContent {
+  background: white;
+  height: 100%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 0 0 8px 8px;
+}
+
+.exitWrapper {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1.5rem;
+  color: rgb(134, 142, 150);
+  cursor: pointer;
+}
+
+.blockContent {
+  flex: 1 1 0%;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  width: 4rem;
+  height: auto;
+  display: block;
+}
+
+.titleWrapper {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.titleWrapper input {
+  border-color: hsl(0, 0%, 80%);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  font-size: large;
+  width: 25rem;
+  padding: 0px;
+}
+.titleWrapper h3 {
+  margin: 10px 10px 10px 0px;
+  width: 130px;
+}
+
+.backButton {
+  color: gray;
+  cursor: pointer;
+}
+
+.careerInfoAndUrl {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.careerInfo {
+  display: flex;
+  gap: 10px;
+}
+
+.likeLanguages {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.languagesText {
+  text-align: left;
+  margin-bottom: 15px;
+  color: #000;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 126.5%;
+  letter-spacing: -0.54px;
+}
+
+.languageItem {
+  padding: 5px 10px;
+  border-radius: 10px;
+  background: #f2f4f8;
+  color: #4a5e75;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.urls {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    flex: 1 1 0%;
+    width: auto;
+    height: 100%;
+  }
+
+  .modalHeader {
+    background: #f8f9fa;
+    padding: 0 1rem;
+    border-radius: 0;
+  }
+}
