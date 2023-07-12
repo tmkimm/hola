@@ -19,6 +19,7 @@ export const Title = styled.h1`
   color: #000000;
   margin-bottom: 8px;
   text-align: center;
+  line-height: 150%;
 `;
 
 export const UserInfo = styled.div`
@@ -59,9 +60,10 @@ export const StudyDate = styled.div`
 `;
 
 export const ProjectInfoContainer = styled.div`
-  margin-top: 5px;
+  margin-top: 10px;
   padding: 20px;
   word-break: break-all;
+  line-height: 180%;
 `;
 
 export const ProjectInfo = styled.div`
