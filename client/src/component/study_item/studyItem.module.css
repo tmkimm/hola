@@ -113,6 +113,11 @@ li {
   display: flex;
   align-items: center;
   gap: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.userInfo:hover {
+  transform: scale(1.1);
 }
 
 .viewsAndComment {
