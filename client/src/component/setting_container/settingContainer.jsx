@@ -10,18 +10,6 @@ import { clearStep } from 'store/loginStep';
 import { modifyUserInfo } from 'store/user';
 import Setting from 'page/setting/setting';
 
-/*
-// TODO
-이미지 컴포넌트로 분리
-s3 경로 config 파일로 분리
-
-사용자 정보 API로 넘길때 
-=> [React, NodeJs]와 같이 일반 배열 형태
-
-Input 표현을 위해 LikeLanguages Component로 넘길때
-=> {value, label} 형태로 되어있음
-
-*/
 const SettingContainer = (props) => {
   const user = useSelector((state) => state.user);
   const [nickName, setNickName] = useState(user.nickName);
