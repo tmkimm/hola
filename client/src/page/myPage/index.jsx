@@ -25,9 +25,18 @@ const Mypage = () => {
   const uploadUserImage = useUploadImage();
   const { isLoading, data } = useGetUserInfo(user.id);
   const { mutate: updateUserInfo } = useUpdateUserInfo();
-  const { control, handleSubmit, register, reset, getValues } = useForm();
+  const {
+    formState: { isDirty, dirtyFields },
+    control,
+    handleSubmit,
+    register,
+    reset,
+    getValues,
+  } = useForm();
 
   const onSubmit = async (inputData) => {
+    if (!isDirty && !imageFile) return;
+
     let imageUrl = null;
     if (imageFile) {
       const { preSignedUrl, fileName } = await studyService.getPresignedUrl(user.nickName);
@@ -46,6 +55,7 @@ const Mypage = () => {
     });
 
     const submitData = {
+      ...(dirtyFields.nickName && { nickName: inputData.nickName }),
       likeLanguages: inputData.likeLanguages.map((lang) => lang.value),
       position: inputData.position.value,
       introduce: inputData.introduce,
