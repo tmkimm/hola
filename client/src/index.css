@@ -14,6 +14,7 @@ code {
 
 * {
   box-sizing: inherit;
+  font-family: inherit;
 }
 
 #root {

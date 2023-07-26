@@ -1,12 +1,12 @@
 .imageContainer {
   display: flex;
+  margin: 0 auto;
 }
 
 .profileContainer {
   display: flex;
   position: relative;
   cursor: pointer;
-  margin-bottom: 40px;
 }
 
 .imageControl {
@@ -19,8 +19,8 @@
 
 .userImg {
   display: block;
-  height: 10rem;
-  width: 10rem;
+  height: 150px;
+  width: 150px;
   border: 1px solid #e1e1e1;
   border-radius: 50%;
   object-fit: cover;

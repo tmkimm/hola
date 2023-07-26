@@ -123,20 +123,25 @@ const Mypage = () => {
     <>
       <Navbar />
       <S.Container>
+        <UserImageUpload
+          imageUrl={getValues('image')}
+          imageFile={imageFile}
+          handleImageChange={(file) => {
+            setImageFile(file);
+          }}
+        />
+        <S.Nickname>{user.nickName}님 환영해요.</S.Nickname>
         <S.Form onSubmit={handleSubmit(onSubmit)}>
-          <UserImageUpload
-            imageUrl={getValues('image')}
-            imageFile={imageFile}
-            handleImageChange={(file) => {
-              setImageFile(file);
-            }}
-          />
           <S.Group>
-            <div>닉네임 *</div>
-            <S.CustomInput {...register('nickName')} />
+            <S.FormItemTitle>
+              닉네임 <S.RequiredDot>*</S.RequiredDot>
+            </S.FormItemTitle>
+            <S.FormInput {...register('nickName')} />
           </S.Group>
           <S.Group>
-            <div>직무 *</div>
+            <S.FormItemTitle>
+              직무 <S.RequiredDot>*</S.RequiredDot>
+            </S.FormItemTitle>
             <Controller
               name='position'
               control={control}
@@ -148,11 +153,13 @@ const Mypage = () => {
             />
           </S.Group>
           <S.Group>
-            <div>소속</div>
-            <S.CustomInput {...register('organizationName')} />
+            <S.FormItemTitle>소속</S.FormItemTitle>
+            <S.FormInput {...register('organizationName')} />
           </S.Group>
           <S.Group>
-            <div>경력 *</div>
+            <S.FormItemTitle>
+              경력 <S.RequiredDot>*</S.RequiredDot>
+            </S.FormItemTitle>
             <Controller
               name='workExperience'
               control={control}
@@ -163,12 +170,14 @@ const Mypage = () => {
           </S.Group>
 
           <S.Group>
-            <div>자기소개</div>
-            <S.CustomTextArea {...register('introduce')} />
+            <S.FormItemTitle>자기소개</S.FormItemTitle>
+            <S.FormTextArea {...register('introduce')} />
           </S.Group>
 
           <S.Group>
-            <div>관심스택 *</div>
+            <S.FormItemTitle>
+              관심스택 <S.RequiredDot>*</S.RequiredDot>
+            </S.FormItemTitle>
             <Controller
               name='likeLanguages'
               control={control}
@@ -179,7 +188,7 @@ const Mypage = () => {
           </S.Group>
 
           <S.Group>
-            <div>링크</div>
+            <S.FormItemTitle>링크</S.FormItemTitle>
             <S.UrlGroup>
               {data?.urls.map((urlItem) => {
                 const { _id: id } = urlItem;
