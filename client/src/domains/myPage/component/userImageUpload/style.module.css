@@ -1,0 +1,41 @@
+.imageContainer {
+  display: flex;
+}
+
+.profileContainer {
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 40px;
+}
+
+.imageControl {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  margin-left: 10px;
+}
+
+.userImg {
+  display: block;
+  height: 10rem;
+  width: 10rem;
+  border: 1px solid #e1e1e1;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profileEditBtn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+}
+
+input[type='file'] {
+  opacity: 0;
+  z-index: -1;
+  position: absolute;
+}

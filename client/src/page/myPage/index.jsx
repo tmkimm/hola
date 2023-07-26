@@ -9,26 +9,39 @@ import CustomOption from 'domains/myPage/component/customOption';
 import { useGetUserInfo } from 'domains/myPage/hooks/useGetUserInfo';
 import { useUpdateUserInfo } from 'domains/myPage/hooks/useUpdateUserInfo';
 import { fotmatToReactSelect } from 'common/utils/formatToReactSelect';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import Select from 'react-select';
 import * as S from './styled';
+import RadioGroupDemo from 'component/radioTest';
+import UserImageUpload from 'domains/myPage/component/userImageUpload';
+import { useUploadImage } from 'domains/myPage/hooks/useUploadImage';
+import studyService from 'service/study_service';
 
 const Mypage = () => {
+  const [imageFile, setImageFile] = useState(null);
   const user = useSelector((state) => state.user);
-
+  const uploadUserImage = useUploadImage();
   const { isLoading, data } = useGetUserInfo(user.id);
   const { mutate: updateUserInfo } = useUpdateUserInfo();
+  const { control, handleSubmit, register, reset, getValues } = useForm();
 
-  const { control, handleSubmit, register, reset } = useForm();
-  const onSubmit = (inputData) => {
+  const onSubmit = async (inputData) => {
+    let imageUrl = null;
+    if (imageFile) {
+      const { preSignedUrl, fileName } = await studyService.getPresignedUrl(user.nickName);
+      imageUrl = fileName;
+      await uploadUserImage({ preSignedUrl, imageFile, fileName });
+    }
+
     // rhf data to api format
     const urls = data.urls.map((urlData) => {
       const { _id: id } = urlData;
-      const key = `${id}_type`;
-      const key2 = `${id}_url`;
-      if (key in inputData) return { url: inputData[key2], urlType: inputData[key].value };
+      const urlType = `${id}_type`;
+      const urlContent = `${id}_url`;
+      if (urlType in inputData)
+        return { url: inputData[urlContent], urlType: inputData[urlType].value };
       else return null;
     });
 
@@ -37,6 +50,7 @@ const Mypage = () => {
       position: inputData.position.value,
       introduce: inputData.introduce,
       workExperience: inputData.workExperience.value,
+      image: imageUrl ?? getValues('image'),
       urls,
     };
 
@@ -53,7 +67,15 @@ const Mypage = () => {
       return { ...acc, [urlKey]: url, [urlTypeKey]: fotmatToReactSelect(urlOption, urlType) };
     }, {});
 
-    const { nickName, organizationName, introduce, workExperience, position, likeLanguages } = data;
+    const {
+      nickName,
+      organizationName,
+      introduce,
+      workExperience,
+      position,
+      likeLanguages,
+      image,
+    } = data;
 
     const valueTobeUpdated = {
       nickName,
@@ -62,11 +84,12 @@ const Mypage = () => {
       workExperience: fotmatToReactSelect(workExperienceOption, workExperience),
       position: fotmatToReactSelect(positionsExceptAllOption, position),
       likeLanguages: fotmatToReactSelect(languageList, likeLanguages),
+      image,
       ...urlData,
     };
 
     reset(valueTobeUpdated);
-  }, [reset, data]);
+  }, [data]);
 
   const customStyles = {
     control: (css) => ({
@@ -84,23 +107,42 @@ const Mypage = () => {
       minHeight: '3rem',
     }),
   };
+
   if (isLoading) return <></>;
   return (
     <>
       <Navbar />
-
       <S.Container>
         <S.Form onSubmit={handleSubmit(onSubmit)}>
+          <UserImageUpload
+            imageUrl={getValues('image')}
+            imageFile={imageFile}
+            handleImageChange={(file) => {
+              setImageFile(file);
+            }}
+          />
           <S.Group>
-            <div>닉네임</div>
+            <div>닉네임 *</div>
             <S.CustomInput {...register('nickName')} />
           </S.Group>
           <S.Group>
-            <div>회사</div>
+            <div>직무 *</div>
+            <Controller
+              name='position'
+              control={control}
+              render={({ field }) => {
+                return (
+                  <Select {...field} styles={customStyles} options={positionsExceptAllOption} />
+                );
+              }}
+            />
+          </S.Group>
+          <S.Group>
+            <div>소속</div>
             <S.CustomInput {...register('organizationName')} />
           </S.Group>
           <S.Group>
-            <div>경력</div>
+            <div>경력 *</div>
             <Controller
               name='workExperience'
               control={control}
@@ -111,32 +153,18 @@ const Mypage = () => {
           </S.Group>
 
           <S.Group>
-            <div>직무</div>
-            <Controller
-              name='position'
-              control={control}
-              render={({ field }) => {
-                // console.log('field : ', field);
-                return (
-                  <Select {...field} styles={customStyles} options={positionsExceptAllOption} />
-                );
-              }}
-            />
-          </S.Group>
-
-          <S.Group>
-            <div>한줄 소개</div>
+            <div>자기소개</div>
             <S.CustomTextArea {...register('introduce')} />
           </S.Group>
 
           <S.Group>
-            <div>관심 스택</div>
+            <div>관심스택 *</div>
             <Controller
               name='likeLanguages'
               control={control}
-              render={({ field }) => (
-                <Select isMulti styles={customStyles} {...field} options={languageList} />
-              )}
+              render={({ field }) => {
+                return <Select isMulti styles={customStyles} {...field} options={languageList} />;
+              }}
             />
           </S.Group>
 
@@ -144,10 +172,10 @@ const Mypage = () => {
             <div>링크</div>
             <S.UrlGroup>
               {data?.urls.map((urlItem) => {
-                const { _id: id, urlType, url } = urlItem;
-                //console.log(id, urlType, url);
+                const { _id: id } = urlItem;
+
                 return (
-                  <S.UrlSet>
+                  <S.UrlSet key={id}>
                     <input {...register(`${id}_url`)} />
                     <Controller
                       name={`${id}_type`}
@@ -169,6 +197,7 @@ const Mypage = () => {
           </S.Group>
           <S.Button type='submit' />
         </S.Form>
+        {/* <RadioGroupDemo /> */}
       </S.Container>
     </>
   );

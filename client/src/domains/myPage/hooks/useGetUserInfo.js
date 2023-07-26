@@ -9,6 +9,7 @@ export const useGetUserInfo = (id) => {
     },
     {
       select: (data) => data.data,
+      refetchOnWindowFocus: false,
     },
   );
 

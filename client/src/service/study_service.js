@@ -306,6 +306,17 @@ class Study {
     });
     return response;
   };
+
+  uploadImageToS3 = async (presignedUrl, file, fileName) => {
+    const response = await fetch(presignedUrl, {
+      method: 'PUT',
+      body: file,
+      headers: {
+        'Content-Type': file.type,
+      },
+    });
+    return response;
+  };
 }
 
 const studyService = new Study(httpClient);
