@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
+  width: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,6 +44,11 @@ export const UrlSet = styled.li`
   gap: 8px;
 `;
 
+export const OrganizationInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const CustomInput = styled.input`
   width: 500px;
   height: 48px;
@@ -82,7 +88,7 @@ export const FormItemTitle = styled.div`
 
 export const FormInput = styled.input`
   display: flex;
-  width: 500px;
+  width: 100%;
   font-size: 16px;
   min-height: 50px;
   padding: 15px 13px;

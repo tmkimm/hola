@@ -14,7 +14,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import Select from 'react-select';
 import * as S from './styled';
-import RadioGroupDemo from 'component/radioTest';
+import OrginazationRadioGroup from 'component/organizationRadioGroup';
 import UserImageUpload from 'domains/myPage/component/userImageUpload';
 import { useUploadImage } from 'domains/myPage/hooks/useUploadImage';
 import studyService from 'service/study_service';
@@ -57,6 +57,8 @@ const Mypage = () => {
     const submitData = {
       ...(dirtyFields.nickName && { nickName: inputData.nickName }),
       likeLanguages: inputData.likeLanguages.map((lang) => lang.value),
+      organizationName: inputData.organizationName,
+      organizationIsOpen: inputData.organizationIsOpen,
       position: inputData.position.value,
       introduce: inputData.introduce,
       workExperience: inputData.workExperience.value,
@@ -80,6 +82,7 @@ const Mypage = () => {
     const {
       nickName,
       organizationName,
+      organizationIsOpen,
       introduce,
       workExperience,
       position,
@@ -90,6 +93,7 @@ const Mypage = () => {
     const valueTobeUpdated = {
       nickName,
       organizationName,
+      organizationIsOpen,
       introduce,
       workExperience: fotmatToReactSelect(workExperienceOption, workExperience),
       position: fotmatToReactSelect(positionsExceptAllOption, position),
@@ -153,7 +157,14 @@ const Mypage = () => {
             />
           </S.Group>
           <S.Group>
-            <S.FormItemTitle>소속</S.FormItemTitle>
+            <S.OrganizationInfo>
+              <S.FormItemTitle>소속</S.FormItemTitle>
+              <Controller
+                name='organizationIsOpen'
+                control={control}
+                render={({ field }) => <OrginazationRadioGroup {...field} />}
+              />
+            </S.OrganizationInfo>
             <S.FormInput {...register('organizationName')} />
           </S.Group>
           <S.Group>
@@ -195,7 +206,7 @@ const Mypage = () => {
 
                 return (
                   <S.UrlSet key={id}>
-                    <input {...register(`${id}_url`)} />
+                    <S.FormInput {...register(`${id}_url`)} />
                     <Controller
                       name={`${id}_type`}
                       control={control}
@@ -216,7 +227,6 @@ const Mypage = () => {
           </S.Group>
           <S.Button type='submit' />
         </S.Form>
-        {/* <RadioGroupDemo /> */}
       </S.Container>
     </>
   );

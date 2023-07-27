@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import LoadingSpinner from 'component/loading/loadingSpinner';
 import Modal from 'component/modal/modal_component/modal';
 import Study from './page/study/study';
+import Mypage from 'page/myPage';
 
 const Main = lazy(() => import('./page/main/main'));
 const PostRegister = lazy(() => import('./page/post_register/postRegister'));
@@ -31,6 +32,9 @@ const App = () => {
           </Route>
           <Route path='/setting'>
             <SettingContainer />
+          </Route>
+          <Route path='/settings'>
+            <Mypage />
           </Route>
           <Route path='/study'>
             <Study />
