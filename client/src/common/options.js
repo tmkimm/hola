@@ -74,6 +74,7 @@ const studyOrProjectOption = [
 const onlineOrOfflineOption = [
   { value: 'on', label: '온라인' },
   { value: 'off', label: '오프라인' },
+  { value: 'onOff', label: '온/오프라인' },
 ];
 
 const recruitsOption = [
@@ -116,6 +117,12 @@ const positionsOption = [
   { value: 'AND', label: '안드로이드' },
   { value: 'DEVOPS', label: '데브옵스' },
   { value: 'PM', label: 'PM' },
+  { value: 'PD', label: '기획자' },
+];
+
+const sortOption = [
+  { value: 'RECENT', label: '최신순' },
+  { value: 'URGENT', label: '마감순' },
 ];
 
 const positionsMap = {
@@ -139,4 +146,5 @@ export {
   languageMap,
   positionsOption,
   positionsMap,
+  sortOption,
 };
