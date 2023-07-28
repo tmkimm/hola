@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './studyOrProject.module.css';
+import { HolaLogEvent } from 'common/GA';
 
 const active = {
   className: styles.active,
