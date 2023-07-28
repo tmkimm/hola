@@ -59,15 +59,32 @@ export const CustomTextArea = styled.textarea`
   width: 500px;
 `;
 
-export const Button = styled.input`
+export const Button = styled.button`
   height: 48px;
-  width: 500px;
-  background-color: #ffe04b;
+  width: 130px;
+  border-radius: 30px;
+  background: #6ed1c0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: -0.28px;
   border: none;
+  cursor: pointer;
 `;
 
 export const AddButton = styled.div`
+  display: flex;
+  color: #888;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
   cursor: pointer;
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `;
 
 export const RequiredDot = styled.span`

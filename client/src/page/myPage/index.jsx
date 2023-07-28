@@ -10,7 +10,7 @@ import { useGetUserInfo } from 'domains/myPage/hooks/useGetUserInfo';
 import { useUpdateUserInfo } from 'domains/myPage/hooks/useUpdateUserInfo';
 import { fotmatToReactSelect } from 'common/utils/formatToReactSelect';
 import React, { useEffect, useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, useFieldArray } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import Select from 'react-select';
 import * as S from './styled';
@@ -21,6 +21,7 @@ import studyService from 'service/study_service';
 
 const Mypage = () => {
   const [imageFile, setImageFile] = useState(null);
+  const [localUrls, setLocalUrls] = useState([]);
   const user = useSelector((state) => state.user);
   const uploadUserImage = useUploadImage();
   const { isLoading, data } = useGetUserInfo(user.id);
@@ -32,7 +33,15 @@ const Mypage = () => {
     register,
     reset,
     getValues,
+    setValue,
   } = useForm();
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'urls',
+  });
+
+  console.log('fields : ', fields);
 
   const onSubmit = async (inputData) => {
     if (!isDirty && !imageFile) return;
@@ -79,6 +88,14 @@ const Mypage = () => {
       return { ...acc, [urlKey]: url, [urlTypeKey]: fotmatToReactSelect(urlOption, urlType) };
     }, {});
 
+    const realData = data?.urls.map((urlInfo) => ({
+      url: urlInfo.url,
+      urlType: fotmatToReactSelect(urlOption, urlInfo.urlType),
+    }));
+
+    console.log('urlData : ', urlData);
+    console.log('data : ', data?.urls);
+
     const {
       nickName,
       organizationName,
@@ -88,7 +105,10 @@ const Mypage = () => {
       position,
       likeLanguages,
       image,
+      urls,
     } = data;
+
+    //console.log('urls! : ',)
 
     const valueTobeUpdated = {
       nickName,
@@ -100,6 +120,7 @@ const Mypage = () => {
       likeLanguages: fotmatToReactSelect(languageList, likeLanguages),
       image,
       ...urlData,
+      urls: realData,
     };
 
     reset(valueTobeUpdated);
@@ -110,16 +131,18 @@ const Mypage = () => {
       ...css,
       maxWidth: '500px',
       width: '100%',
-      minHeight: '3rem',
+      minHeight: '48px',
     }),
+    indicatorSeparator: (base) => ({ ...base, display: 'none' }),
   };
 
   const customStyles2 = {
     control: (css) => ({
       ...css,
-      width: '340px',
-      minHeight: '3rem',
+      width: '160px',
+      minHeight: '48px',
     }),
+    indicatorSeparator: (base) => ({ ...base, display: 'none' }),
   };
 
   if (isLoading) return <></>;
@@ -201,31 +224,42 @@ const Mypage = () => {
           <S.Group>
             <S.FormItemTitle>링크</S.FormItemTitle>
             <S.UrlGroup>
-              {data?.urls.map((urlItem) => {
-                const { _id: id } = urlItem;
+              {fields.map((urlItem, index) => {
+                const { id } = urlItem;
 
                 return (
                   <S.UrlSet key={id}>
-                    <S.FormInput {...register(`${id}_url`)} />
+                    <S.FormInput {...register(`urls.${index}.url`)} />
                     <Controller
-                      name={`${id}_type`}
+                      name={`urls.${index}.urlType`}
                       control={control}
-                      render={({ field }) => (
-                        <Select
-                          styles={customStyles2}
-                          components={{ Option: CustomOption }}
-                          {...field}
-                          options={urlOption}
-                        />
-                      )}
+                      render={({ field }) => {
+                        console.log('field : ', field);
+                        return (
+                          <Select
+                            styles={customStyles2}
+                            components={{ Option: CustomOption }}
+                            {...field}
+                            options={urlOption}
+                          />
+                        );
+                      }}
                     />
                   </S.UrlSet>
                 );
               })}
             </S.UrlGroup>
-            <S.AddButton>+ 추가</S.AddButton>
+            <S.AddButton
+              onClick={() => {
+                append({ url: '', urlType: { value: 'Link', label: 'Link' } });
+              }}
+            >
+              + 추가
+            </S.AddButton>
           </S.Group>
-          <S.Button type='submit' />
+          <S.ButtonContainer>
+            <S.Button type='submit'>프로필 저장</S.Button>
+          </S.ButtonContainer>
         </S.Form>
       </S.Container>
     </>
