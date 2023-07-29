@@ -29,8 +29,10 @@ import { useModalState } from 'hooks/useModalCustom';
 import { toast } from 'react-toastify';
 import { clearStep } from 'store/loginStep';
 import { useHistory } from 'react-router';
+import { useMediaQuery } from 'react-responsive';
 
 const Mypage = () => {
+  const isMobile = useMediaQuery({ query: '(max-width: 400px)' });
   const [imageFile, setImageFile] = useState(null);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -138,7 +140,7 @@ const Mypage = () => {
   if (isLoading) return <></>;
   return (
     <>
-      <Navbar />
+      <Navbar isBackBtn={isMobile} />
       <S.Container>
         <UserImageUpload
           imageUrl={getValues('image')}
