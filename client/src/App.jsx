@@ -10,7 +10,7 @@ const PostRegister = lazy(() => import('./page/post_register/postRegister'));
 const GithubLogin = lazy(() => import('./page/auth/githubLogin'));
 const MyPosts = lazy(() => import('./page/my_posts/myPosts'));
 const MyLikes = lazy(() => import('./page/my_likes/myLikes'));
-const SettingContainer = lazy(() => import('./component/setting_container/settingContainer'));
+const MyPages = lazy(() => import('./page/myPage'));
 const NotFound = lazy(() => import('./page/notFound/notFound'));
 
 const App = () => {
@@ -31,10 +31,10 @@ const App = () => {
             <PostRegister />
           </Route>
           <Route path='/setting'>
-            <SettingContainer />
+            <Mypage />
           </Route>
           <Route path='/settings'>
-            <Mypage />
+            <MyPages />
           </Route>
           <Route path='/study'>
             <Study />

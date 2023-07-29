@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,6 +12,7 @@ export const Container = styled.div`
 `;
 
 export const Form = styled.form`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -31,6 +33,10 @@ export const Nickname = styled.div`
   line-height: 150%; /* 39px */
   letter-spacing: -0.78px;
   margin: 30px 0 40px 0;
+
+  @media screen and (max-width: 400px) {
+    display: none;
+  }
 `;
 
 export const UrlGroup = styled.ul`
@@ -39,7 +45,7 @@ export const UrlGroup = styled.ul`
   gap: 24px;
 `;
 
-export const UrlSet = styled.li`
+export const UrlSet = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
@@ -75,7 +81,7 @@ export const CustomTextArea = styled.textarea`
 
 export const Button = styled.button`
   height: 48px;
-  width: 130px;
+  width: 100%;
   border-radius: 30px;
   background: #6ed1c0;
   color: #fff;
@@ -98,7 +104,20 @@ export const AddButton = styled.div`
 
 export const ButtonContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+export const CancelId = styled.div`
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: rgb(194, 198, 207);
+  cursor: pointer;
 `;
 
 export const RequiredDot = styled.span`
@@ -135,7 +154,7 @@ export const FormInput = styled.input`
 
 export const FormTextArea = styled.textarea`
   height: 100px;
-  width: 500px;
+  width: 100%;
   padding: 15px 13px;
   border-radius: 5px;
   border: 1px solid #e1e2e3;

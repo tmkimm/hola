@@ -11,7 +11,7 @@ import { useUpdateUserInfo } from 'domains/myPage/hooks/useUpdateUserInfo';
 import { fotmatToReactSelect } from 'common/utils/formatToReactSelect';
 import React, { useEffect, useState } from 'react';
 import { useForm, Controller, useFieldArray } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import * as S from './styled';
 import OrginazationRadioGroup from 'component/organizationRadioGroup';
@@ -21,13 +21,25 @@ import studyService from 'service/study_service';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { validationSchema } from 'domains/myPage/component/schema';
 import { textareaPlaceHolderMaker } from 'domains/myPage/utils';
+import { clearUser, setUser } from 'store/user';
+import { useCancelId } from 'domains/myPage/hooks/useCancelId';
+import Modal from 'component/modal/modal_component/modal';
+import CancelButton from 'component/cancelButton/cancelButton';
+import { useModalState } from 'hooks/useModalCustom';
+import { toast } from 'react-toastify';
+import { clearStep } from 'store/loginStep';
+import { useHistory } from 'react-router';
 
 const Mypage = () => {
   const [imageFile, setImageFile] = useState(null);
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const uploadUserImage = useUploadImage();
   const { isLoading, data } = useGetUserInfo(user.id);
   const { mutate: updateUserInfo } = useUpdateUserInfo();
+  const { modalVisible, openModal, closeModal } = useModalState();
+  const deleteAccount = useCancelId();
+  const history = useHistory();
 
   const {
     formState: { isDirty, dirtyFields, errors },
@@ -65,7 +77,18 @@ const Mypage = () => {
       urls: inputData.urls.map(({ url, urlType }) => ({ url, urlType: urlType.value })),
     };
 
-    updateUserInfo({ id: user.id, userData: submitData });
+    updateUserInfo(
+      { id: user.id, userData: submitData },
+      {
+        onSuccess: () => {
+          dispatch(setUser({ key: 'nickName', value: inputData.nickName }));
+          toast.success('변경이 완료되었어요!', {
+            position: 'top-right',
+            autoClose: 3000,
+          });
+        },
+      },
+    );
   };
 
   useEffect(() => {
@@ -190,8 +213,8 @@ const Mypage = () => {
             <S.FormItemTitle>자기소개</S.FormItemTitle>
             <S.FormTextArea
               placeholder={textareaPlaceHolderMaker({
-                workExperience: getValues('workExperience').label,
-                position: getValues('position').label,
+                workExperience: getValues('workExperience')?.label,
+                position: getValues('position')?.label,
                 nickName: getValues('nickName'),
               })}
               {...register('introduce')}
@@ -266,9 +289,39 @@ const Mypage = () => {
           </S.Group>
           <S.ButtonContainer>
             <S.Button type='submit'>프로필 저장</S.Button>
+            <S.CancelId
+              onClick={() => {
+                console.log('hi');
+                console.log(modalVisible);
+                openModal();
+              }}
+            >
+              회원 탈퇴
+            </S.CancelId>
           </S.ButtonContainer>
         </S.Form>
       </S.Container>
+      <Modal visible={modalVisible} onClose={closeModal}>
+        <CancelButton
+          confirmMsg='HOLA! 정말 계정을 삭제하시겠어요?'
+          positiveMsg='네, 삭제할래요'
+          negativeMsg='아니요'
+          onPublish={() => {
+            deleteAccount(user.id, {
+              onSuccess: () => {
+                toast.success('회원 탈퇴가 완료되었어요!', {
+                  position: 'top-right',
+                  autoClose: 3000,
+                });
+                dispatch(clearUser());
+                dispatch(clearStep());
+                history.push('/');
+              },
+            });
+          }}
+          onCancel={closeModal}
+        ></CancelButton>
+      </Modal>
     </>
   );
 };
