@@ -41,7 +41,21 @@ export const UrlGroup = styled.ul`
 
 export const UrlSet = styled.li`
   display: flex;
+  align-items: center;
   gap: 8px;
+`;
+
+export const UrlContainer = styled.li`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const Trashbin = styled.img`
+  display: block;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
 `;
 
 export const OrganizationInfo = styled.div`
@@ -88,11 +102,16 @@ export const ButtonContainer = styled.div`
 `;
 
 export const RequiredDot = styled.span`
-  color: var(--color-system-gray-333333, #ea726f);
+  color: #ea726f;
   font-size: 14px;
   font-weight: 700;
   line-height: 20px;
   letter-spacing: -0.28px;
+`;
+
+export const ErrorText = styled.div`
+  color: #ea726f;
+  font-size: 14px;
 `;
 
 export const FormItemTitle = styled.div`

@@ -158,12 +158,10 @@ const workExperienceOption = [
 
 const urlOption = [
   { value: 'Link', label: 'Link' },
-  { value: 'Blog', label: 'Blog' },
   { value: 'Github', label: 'Github' },
-  { value: 'Tistory', label: 'Tistory' },
   { value: 'Notion', label: 'Notion' },
   { value: 'LinkedIn', label: 'LinkedIn' },
-  { value: 'Instargram', label: 'Instargram' },
+  { value: 'Instagram', label: 'Instagram' },
   { value: 'Brunch', label: 'Brunch' },
   { value: 'Twitter', label: 'Twitter' },
   { value: 'Youtube', label: 'Youtube' },

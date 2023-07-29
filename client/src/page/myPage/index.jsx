@@ -18,30 +18,30 @@ import OrginazationRadioGroup from 'component/organizationRadioGroup';
 import UserImageUpload from 'domains/myPage/component/userImageUpload';
 import { useUploadImage } from 'domains/myPage/hooks/useUploadImage';
 import studyService from 'service/study_service';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { validationSchema } from 'domains/myPage/component/schema';
+import { textareaPlaceHolderMaker } from 'domains/myPage/utils';
 
 const Mypage = () => {
   const [imageFile, setImageFile] = useState(null);
-  const [localUrls, setLocalUrls] = useState([]);
   const user = useSelector((state) => state.user);
   const uploadUserImage = useUploadImage();
   const { isLoading, data } = useGetUserInfo(user.id);
   const { mutate: updateUserInfo } = useUpdateUserInfo();
+
   const {
-    formState: { isDirty, dirtyFields },
+    formState: { isDirty, dirtyFields, errors },
     control,
     handleSubmit,
     register,
     reset,
     getValues,
-    setValue,
-  } = useForm();
+  } = useForm({ resolver: zodResolver(validationSchema) });
 
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'urls',
   });
-
-  console.log('fields : ', fields);
 
   const onSubmit = async (inputData) => {
     if (!isDirty && !imageFile) return;
@@ -53,16 +53,6 @@ const Mypage = () => {
       await uploadUserImage({ preSignedUrl, imageFile, fileName });
     }
 
-    // rhf data to api format
-    const urls = data.urls.map((urlData) => {
-      const { _id: id } = urlData;
-      const urlType = `${id}_type`;
-      const urlContent = `${id}_url`;
-      if (urlType in inputData)
-        return { url: inputData[urlContent], urlType: inputData[urlType].value };
-      else return null;
-    });
-
     const submitData = {
       ...(dirtyFields.nickName && { nickName: inputData.nickName }),
       likeLanguages: inputData.likeLanguages.map((lang) => lang.value),
@@ -72,7 +62,7 @@ const Mypage = () => {
       introduce: inputData.introduce,
       workExperience: inputData.workExperience.value,
       image: imageUrl ?? getValues('image'),
-      urls,
+      urls: inputData.urls.map(({ url, urlType }) => ({ url, urlType: urlType.value })),
     };
 
     updateUserInfo({ id: user.id, userData: submitData });
@@ -80,21 +70,11 @@ const Mypage = () => {
 
   useEffect(() => {
     if (isLoading) return;
-    // api format to rhf
-    const urlData = data?.urls.reduce((acc, urlData) => {
-      const { _id: id, urlType, url } = urlData;
-      const urlKey = `${id}_url`;
-      const urlTypeKey = `${id}_type`;
-      return { ...acc, [urlKey]: url, [urlTypeKey]: fotmatToReactSelect(urlOption, urlType) };
-    }, {});
 
-    const realData = data?.urls.map((urlInfo) => ({
+    const urls = data?.urls.map((urlInfo) => ({
       url: urlInfo.url,
       urlType: fotmatToReactSelect(urlOption, urlInfo.urlType),
     }));
-
-    console.log('urlData : ', urlData);
-    console.log('data : ', data?.urls);
 
     const {
       nickName,
@@ -105,10 +85,7 @@ const Mypage = () => {
       position,
       likeLanguages,
       image,
-      urls,
     } = data;
-
-    //console.log('urls! : ',)
 
     const valueTobeUpdated = {
       nickName,
@@ -119,30 +96,20 @@ const Mypage = () => {
       position: fotmatToReactSelect(positionsExceptAllOption, position),
       likeLanguages: fotmatToReactSelect(languageList, likeLanguages),
       image,
-      ...urlData,
-      urls: realData,
+      urls,
     };
 
     reset(valueTobeUpdated);
   }, [data]);
 
-  const customStyles = {
-    control: (css) => ({
-      ...css,
-      maxWidth: '500px',
-      width: '100%',
-      minHeight: '48px',
-    }),
-    indicatorSeparator: (base) => ({ ...base, display: 'none' }),
-  };
-
-  const customStyles2 = {
-    control: (css) => ({
-      ...css,
-      width: '160px',
-      minHeight: '48px',
-    }),
-    indicatorSeparator: (base) => ({ ...base, display: 'none' }),
+  const customStyleMaker = (styles) => {
+    return {
+      control: (css) => ({
+        ...css,
+        ...styles,
+      }),
+      indicatorSeparator: (base) => ({ ...base, display: 'none' }),
+    };
   };
 
   if (isLoading) return <></>;
@@ -163,7 +130,8 @@ const Mypage = () => {
             <S.FormItemTitle>
               닉네임 <S.RequiredDot>*</S.RequiredDot>
             </S.FormItemTitle>
-            <S.FormInput {...register('nickName')} />
+            <S.FormInput placeholder='닉네임을 입력해주세요' {...register('nickName')} />
+            {errors.nickName && <S.ErrorText>{errors.nickName.message}</S.ErrorText>}
           </S.Group>
           <S.Group>
             <S.FormItemTitle>
@@ -174,7 +142,15 @@ const Mypage = () => {
               control={control}
               render={({ field }) => {
                 return (
-                  <Select {...field} styles={customStyles} options={positionsExceptAllOption} />
+                  <Select
+                    {...field}
+                    styles={customStyleMaker({
+                      maxWidth: '500px',
+                      width: '100%',
+                      minHeight: '48px',
+                    })}
+                    options={positionsExceptAllOption}
+                  />
                 );
               }}
             />
@@ -188,7 +164,10 @@ const Mypage = () => {
                 render={({ field }) => <OrginazationRadioGroup {...field} />}
               />
             </S.OrganizationInfo>
-            <S.FormInput {...register('organizationName')} />
+            <S.FormInput
+              placeholder='소속을 입력해주세요. ex) 올라 회사, 올라 대학교... '
+              {...register('organizationName')}
+            />
           </S.Group>
           <S.Group>
             <S.FormItemTitle>
@@ -198,14 +177,25 @@ const Mypage = () => {
               name='workExperience'
               control={control}
               render={({ field }) => (
-                <Select {...field} styles={customStyles} options={workExperienceOption} />
+                <Select
+                  {...field}
+                  styles={customStyleMaker({ maxWidth: '500px', width: '100%', minHeight: '48px' })}
+                  options={workExperienceOption}
+                />
               )}
             />
           </S.Group>
 
           <S.Group>
             <S.FormItemTitle>자기소개</S.FormItemTitle>
-            <S.FormTextArea {...register('introduce')} />
+            <S.FormTextArea
+              placeholder={textareaPlaceHolderMaker({
+                workExperience: getValues('workExperience').label,
+                position: getValues('position').label,
+                nickName: getValues('nickName'),
+              })}
+              {...register('introduce')}
+            />
           </S.Group>
 
           <S.Group>
@@ -216,9 +206,21 @@ const Mypage = () => {
               name='likeLanguages'
               control={control}
               render={({ field }) => {
-                return <Select isMulti styles={customStyles} {...field} options={languageList} />;
+                return (
+                  <Select
+                    isMulti
+                    styles={customStyleMaker({
+                      maxWidth: '500px',
+                      width: '100%',
+                      minHeight: '48px',
+                    })}
+                    {...field}
+                    options={languageList}
+                  />
+                );
               }}
             />
+            {errors.likeLanguages && <S.ErrorText>{errors.likeLanguages.message}</S.ErrorText>}
           </S.Group>
 
           <S.Group>
@@ -228,24 +230,29 @@ const Mypage = () => {
                 const { id } = urlItem;
 
                 return (
-                  <S.UrlSet key={id}>
-                    <S.FormInput {...register(`urls.${index}.url`)} />
-                    <Controller
-                      name={`urls.${index}.urlType`}
-                      control={control}
-                      render={({ field }) => {
-                        console.log('field : ', field);
-                        return (
-                          <Select
-                            styles={customStyles2}
-                            components={{ Option: CustomOption }}
-                            {...field}
-                            options={urlOption}
-                          />
-                        );
-                      }}
-                    />
-                  </S.UrlSet>
+                  <S.UrlContainer key={id}>
+                    <S.UrlSet>
+                      <S.FormInput {...register(`urls.${index}.url`)} />
+                      <Controller
+                        name={`urls.${index}.urlType`}
+                        control={control}
+                        render={({ field }) => {
+                          return (
+                            <Select
+                              styles={customStyleMaker({ width: '160px', minHeight: '48px' })}
+                              components={{ Option: CustomOption }}
+                              {...field}
+                              options={urlOption}
+                            />
+                          );
+                        }}
+                      />
+                      <S.Trashbin src={'/images/info/delete.png'} onClick={() => remove(index)} />
+                    </S.UrlSet>
+                    {errors?.urls && errors.urls[index] && (
+                      <S.ErrorText>{errors?.urls[index].url.message}</S.ErrorText>
+                    )}
+                  </S.UrlContainer>
                 );
               })}
             </S.UrlGroup>
