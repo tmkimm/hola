@@ -78,17 +78,32 @@
 }
 
 @media screen and (max-width: 525px) {
+  .promotion {
+    font-weight: bold;
+    padding: 5px 20px;
+    color: #ffffff;
+    background: #b291dd;
+    border-radius: 50px;
+    margin-bottom: 16px;
+  }
+
+  .containerWrapper {
+    margin-left: 16px;
+    margin-right: 16px;
+    border-radius: 16px;
+  }
+
   .rightCover {
     display: none;
   }
 
   .title {
-    font-size: 24px;
+    font-size: 20px;
     margin: 0;
   }
 
   .subTitle {
-    font-size: 24px;
+    font-size: 16px;
   }
 
   .subText {
@@ -97,6 +112,6 @@
   }
 
   .container {
-    height: 240px;
+    height: 180px;
   }
 }

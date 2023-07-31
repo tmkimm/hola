@@ -14,3 +14,13 @@
 .slick-next {
   display: none;
 }
+
+.slick-dots {
+  display: none;
+}
+
+@media screen and (max-width: 400px) {
+  .slick-dots {
+    display: none;
+  }
+}
