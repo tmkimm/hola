@@ -9,7 +9,7 @@
   display: block;
   height: 32px;
   width: 32px;
-  padding-right: 8px;
+  margin-right: 12px;
   border-radius: 50%;
   object-fit: cover;
   transition: all 0.125s ease-in 0s;

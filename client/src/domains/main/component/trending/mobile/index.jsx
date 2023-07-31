@@ -11,7 +11,7 @@ const TrendingMobile = ({ trendings }) => {
           const { title, startDate, views } = trending;
           const remainDay = differenceInDays(new Date(), new Date(startDate));
           return (
-            <S.Container>
+            <S.Container key={title}>
               <S.Deadline>
                 {remainDay === 0 ? '🚨 오늘 마감' : `🚨 마감 ${remainDay}일전`}
               </S.Deadline>

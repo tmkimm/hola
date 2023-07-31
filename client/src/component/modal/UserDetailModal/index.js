@@ -43,48 +43,63 @@ const UserDetailModal = ({ id, isOpen, closeModal }) => {
   return (
     <Modal visible={isOpen} name='userInfo' onClose={closeModal}>
       <div className={styles.wrapper}>
-        <div className={styles.modalHeader}>
-          <img
-            className={styles.backButton}
-            src='images/info/arrow-right.png'
-            alt='backBtn'
-            onClick={closeModal}
-          />
-          <img className={styles.moreButton} src='images/info/moreBtn.png' alt='moreBtn' />
-        </div>
-        <div className={styles.modalContent}>
+        <div className={styles.upSection}>
+          <div className={styles.modalHeader}>
+            <img
+              className={styles.backButton}
+              src='images/info/close.png'
+              alt='backBtn'
+              onClick={closeModal}
+            />
+          </div>
           <div className={styles.avatarContainer}>
             <img
               className={styles.avatar}
-              src={`https://hola-post-image.s3.ap-northeast-2.amazonaws.com/${data.image}`}
+              src={`https://hola-post-image.s3.ap-northeast-2.amazonaws.com/${image}`}
               alt='user avatar'
             />
           </div>
+        </div>
+        <div className={styles.modalContent}>
           <div className={styles.nickname}>{nickName}</div>
-          <div className={styles.careerInfoAndUrl}>
-            <div className={styles.careerInfo}>
-              {position && <div className={styles.position}>{getPositionToText(position)}</div>}
-              {workExperience && <div className={styles.workExperience}>{workExperience}년차</div>}
-              {organizationIsOpen && organizationName && (
-                <div className={styles.organizationName}>{organizationName}</div>
-              )}
-            </div>
-            {/* TODO: url 적용 필요 */}
-            {/* <ul className={styles.urls}>
-              <li>a</li>
-              <li>b</li>
-              <li>c</li>
-            </ul> */}
+
+          <div className={styles.careerInfo}>
+            {position && <div className={styles.position}>{getPositionToText(position)}</div>}
+            {workExperience && <div className={styles.workExperience}>{workExperience}년차</div>}
+            {organizationIsOpen && organizationName && (
+              <div className={styles.organizationName}>{organizationName}</div>
+            )}
           </div>
-          <div className={styles.languagesText}>관심 기술</div>
-          <ul className={styles.likeLanguages}>
-            {likeLanguages.map((lang) => (
-              <li className={styles.languageItem}>{lang}</li>
-            ))}
-          </ul>
+
+          <div className={styles.likeLanguagesConatiner}>
+            <div className={styles.languagesText}>관심 스택</div>
+            <ul className={styles.likeLanguages}>
+              {likeLanguages.map((lang) => (
+                <li className={styles.languageItem}>{`${lang.charAt(0).toUpperCase()}${lang.slice(
+                  1,
+                )}`}</li>
+              ))}
+            </ul>
+          </div>
           <div className={styles.introduces}>
             {introduce ? introduce : 'Hola! 만나서 반가워요!'}
           </div>
+          <ul className={styles.urls}>
+            {urls.map((urlItem) => {
+              const { urlType, url } = urlItem;
+              return (
+                <li>
+                  <a href={url}>
+                    <img
+                      className={styles.urlItem}
+                      src={`/images/logo/${urlType.charAt(0).toUpperCase()}${urlType.slice(1)}.png`}
+                      alt='url'
+                    />
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
     </Modal>

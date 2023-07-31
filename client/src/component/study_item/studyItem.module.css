@@ -1,12 +1,3 @@
-p {
-  margin: 0;
-}
-
-li {
-  padding: 0;
-  margin: 0;
-}
-
 .badgeWrapper {
   display: flex;
   align-items: center;

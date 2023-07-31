@@ -25,7 +25,7 @@ const StudyItem = ({ study }) => {
     openModal: openUserModal,
     closeModal: closeUserModal,
   } = useModalState();
-  const { openModal } = useModal();
+  const { openModal } = useModalState();
   const { mutateAsync: addLikes } = useAddLikes();
   const { mutateAsync: deleteLikes } = useDeleteLikes();
   const studyLang = [];

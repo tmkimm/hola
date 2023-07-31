@@ -61,7 +61,7 @@ const TrendingDesktop = ({ trendings }) => {
           const { title, startDate, views, type } = trending;
           const remainDay = differenceInDays(new Date(), new Date(startDate));
           return (
-            <S.Container>
+            <S.Container key={title}>
               <S.Info>
                 <Badge state={type === '1' ? 'project' : 'study'} />
                 <S.Deadline>
