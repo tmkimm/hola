@@ -96,6 +96,10 @@ class Study {
     }
   };
 
+  getTrendings = () => {
+    return this.study.get('/posts/top');
+  };
+
   getDetail = async (id) => {
     try {
       const response = await this.study.get(`posts/${id}`);
