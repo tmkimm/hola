@@ -28,9 +28,7 @@ export const MainContent = () => {
         <FindMyPosition />
         <ToggleSwitch checked={!isClosed} handleSelect={handleSelect} />
       </div>
-      <div className={styles.appWrapper}>
-        <Posts />
-      </div>
+      <Posts />
     </main>
   );
 };

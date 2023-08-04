@@ -1,8 +1,5 @@
 .main {
-  width: 100%;
-  max-width: 1300px;
   min-height: 60rem;
-  padding: 0 20px;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -53,10 +50,15 @@
 }
 
 .categoryWrapper {
+  max-width: 1300px;
+  width: 100%;
   display: flex;
   align-items: center;
   position: relative;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 2rem;
+  padding: 0 20px;
 }
 
 .title {
@@ -64,22 +66,7 @@
   font-weight: 800;
 }
 
-.appWrapper {
-  margin: 0 auto;
-  width: 1300px;
-}
-
-@media screen and (max-width: 1300px) {
-  .appWrapper {
-    width: 960px;
-  }
-}
-
 @media screen and (max-width: 980px) {
-  .appWrapper {
-    width: 630px;
-  }
-
   .categoryWrapper {
     flex-direction: column;
     gap: 28px;
@@ -88,19 +75,17 @@
 }
 
 @media screen and (max-width: 575px) {
-  .appWrapper {
-    width: 100%;
-  }
   .main {
     margin-top: 60px;
-    padding: 0 16px;
   }
+
   .text {
     margin-left: 6px;
     font-size: 20px;
   }
 
   .categoryWrapper {
+    padding: 0 16px;
     margin-top: 2rem;
     margin-bottom: 1rem;
   }

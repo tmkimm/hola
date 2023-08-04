@@ -13,7 +13,6 @@ import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import { HolaLogEvent } from 'common/GA';
 import { useHistory } from 'react-router';
-import { useModal } from 'hooks/useModal';
 import { useAddLikes } from 'hooks/useAddLikes';
 import { useDeleteLikes } from 'hooks/useDeleteLikes';
 import UserDetailModal from 'component/modal/UserDetailModal';
