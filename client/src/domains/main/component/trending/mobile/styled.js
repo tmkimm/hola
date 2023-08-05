@@ -13,6 +13,9 @@ export const List = styled.ul`
   flex-wrap: no-wrap;
   overflow-x: scroll;
   overflow-y: hidden;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const Container = styled.li`
@@ -47,10 +50,15 @@ export const ProjectTitle = styled.h2`
   font-weight: 500;
   line-height: 140%; /* 19.6px */
   letter-spacing: -0.7px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-break: break-all;
+  overflow: hidden;
 `;
 
 export const Deadline = styled.div`
-  width: 70px;
+  width: 72px;
   padding: 2px 4px;
   color: #ea726f;
   font-size: 10px;
