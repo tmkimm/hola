@@ -3,8 +3,8 @@ import styles from './mainContent.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeMode, changeVisibleOpenOnly } from 'store/language';
 import StudyOrProject from 'component/StudyOrProject/studyOrProject';
-import Posts from '../../../../component/showPosts/posts';
 import Filter from '../filter';
+import Posts from '../posts/posts';
 
 export const MainContent = () => {
   const category = useSelector((state) => state.language.mode);
@@ -16,10 +16,6 @@ export const MainContent = () => {
   const toggleCategory = (toggleTo) => {
     if (category === toggleTo) return;
     dispatch(changeMode(toggleTo));
-  };
-
-  const handleSelect = () => {
-    dispatch(changeVisibleOpenOnly(!isClosed));
   };
 
   return (

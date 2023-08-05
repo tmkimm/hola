@@ -1,13 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import EmptyList from 'component/empty_list/emptyList';
 import StudyList from 'component/study_list/studyList';
-import { useStudySearch } from './hooks/useStudySearch';
 import Pagination from '@mui/material/Pagination';
 import styles from './posts.module.css';
 import { useDispatch } from 'react-redux';
-import { changeField } from '../../store/language';
 import { isMobile } from 'react-device-detect';
-import { useGetPage } from './hooks/useGetPage';
+import { useStudySearch } from 'domains/main/hooks/useStudySearch';
+import { useGetPage } from 'domains/main/hooks/useGetPage';
+import { changeField } from 'store/language';
 
 const Posts = React.memo(() => {
   const { data, status, isLoading, page } = useStudySearch();
