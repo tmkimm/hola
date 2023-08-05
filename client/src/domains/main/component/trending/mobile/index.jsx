@@ -9,7 +9,7 @@ const TrendingMobile = ({ trendings }) => {
       <S.List>
         {trendings.map((trending) => {
           const { title, startDate, views } = trending;
-          const remainDay = differenceInDays(new Date(), new Date(startDate));
+          const remainDay = differenceInDays(new Date(startDate), new Date());
           return (
             <S.Container key={title}>
               <S.Deadline>

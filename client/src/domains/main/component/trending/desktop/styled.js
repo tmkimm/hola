@@ -148,12 +148,13 @@ export const DeadlineInfo = styled.div`
 export const ProjectTitle = styled.h1`
   margin: 10px 0 0 0;
   color: #000;
-  font-size: 17px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 500;
   line-height: 140%; /* 28px */
   letter-spacing: -1px;
-  height: 56px;
+  min-height: 50px;
+  display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   word-break: break-all;

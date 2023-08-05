@@ -59,7 +59,7 @@ const TrendingDesktop = ({ trendings }) => {
       <S.CustomSlider {...config} ref={sliderRef}>
         {trendings.map((trending) => {
           const { title, startDate, views, type } = trending;
-          const remainDay = differenceInDays(new Date(), new Date(startDate));
+          const remainDay = differenceInDays(new Date(startDate), new Date());
           return (
             <S.Container key={title}>
               <S.Info>

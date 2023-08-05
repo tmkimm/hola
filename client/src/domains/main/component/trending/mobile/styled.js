@@ -58,8 +58,8 @@ export const ProjectTitle = styled.h2`
 `;
 
 export const Deadline = styled.div`
-  width: 72px;
-  padding: 2px 4px;
+  width: fit-content;
+  padding: 2px 8px;
   color: #ea726f;
   font-size: 10px;
   letter-spacing: -0.4px;
