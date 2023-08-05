@@ -134,6 +134,7 @@ const StudyItem = ({ study }) => {
           )}
         </li>
       </Link>
+      <div className={styles.seperator}></div>
       {isUserModalOpen && (
         <UserDetailModal id={authorId} isOpen={isUserModalOpen} closeModal={closeUserModal} />
       )}

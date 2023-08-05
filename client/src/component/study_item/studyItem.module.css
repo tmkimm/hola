@@ -151,8 +151,22 @@
   right: 20px;
 }
 
+.seperator {
+  display: none;
+}
+
 @media screen and (max-width: 767px) {
   .studyItem {
     width: 100%;
+    border: none;
+    padding: 30px 25px 15px 25px;
+    height: fit-content;
+  }
+
+  .seperator {
+    width: 100%;
+    display: block;
+    height: 7px;
+    background-color: #f3f3f3;
   }
 }

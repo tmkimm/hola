@@ -40,6 +40,7 @@
 @media screen and (max-width: 767px) {
   .studyList {
     width: 100%;
-    padding: 0 16px;
+    padding: 0;
+    gap: 0;
   }
 }
