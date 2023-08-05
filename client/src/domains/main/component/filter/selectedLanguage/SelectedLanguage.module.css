@@ -9,31 +9,49 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
+}
+
+.languageName {
+  color: #313131;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 .selectedLanguage {
   display: flex;
   gap: 10px;
   background: #f2f2f2;
-  padding: 8px 15px;
-  height: 41px;
+  padding: 5px 10px;
   border-radius: 10px;
-  font-weight: 500;
-  font-size: 20px;
-  color: #313131;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   transition: all ease-in 100ms;
 }
 
+.initializeIcon {
+  display: block;
+  width: 12px;
+  height: 12px;
+}
+
 .selectedLanguage:hover {
   transform: scale(1.02);
 }
 
+.resetContainer {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
 .resetFilter {
-  font-size: 20px;
-  color: #333333;
+  color: #777;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%; /* 14px */
+  letter-spacing: -0.42px;
   cursor: pointer;
 }

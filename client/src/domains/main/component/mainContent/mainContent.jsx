@@ -1,16 +1,13 @@
 import React from 'react';
 import styles from './mainContent.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeMode, changeVisibleOpenOnly } from 'store/language';
+import { changeMode } from 'store/language';
 import StudyOrProject from 'component/StudyOrProject/studyOrProject';
 import Filter from '../filter';
 import Posts from '../posts/posts';
 
 export const MainContent = () => {
   const category = useSelector((state) => state.language.mode);
-  const isClosed = useSelector((state) => state.language.isClosed);
-  const lang = useSelector((state) => state.language);
-
   const dispatch = useDispatch();
 
   const toggleCategory = (toggleTo) => {

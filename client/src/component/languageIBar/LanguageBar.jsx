@@ -1,7 +1,9 @@
 import { languageMap } from 'common/options';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './LanguageBar.module.css';
+import { HolaLogEvent } from 'common/GA';
+import { addLanguage, initLanguage, removeLanguage } from 'store/language';
 
 const languages = {
   인기: [
@@ -71,8 +73,20 @@ const languages = {
   ],
 };
 
-const LanguageBar = ({ onIconClick }) => {
+const LanguageBar = () => {
+  const dispatch = useDispatch();
   const { subject, selected } = useSelector((state) => state.language);
+
+  const onIconClick = (language, isSelected) => {
+    if (!isSelected) {
+      HolaLogEvent('filter_language', { category: language });
+      dispatch(addLanguage(languageMap[language]));
+    } else {
+      selected.length === 1
+        ? dispatch(initLanguage())
+        : dispatch(removeLanguage(languageMap[language]));
+    }
+  };
 
   return (
     <ul className={styles.languages}>

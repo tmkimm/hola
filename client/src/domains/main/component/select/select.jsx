@@ -37,6 +37,13 @@ const customStyles = {
       color: state.hasValue ? '#00b9ae' : '#646464',
     };
   },
+  placeholder: (provided, state) => {
+    return {
+      ...provided,
+      color: '#646464',
+      fontWeight: 500,
+    };
+  },
   menu: (provided, state) => ({
     ...provided,
     minWidth: '125px',
@@ -64,14 +71,12 @@ const customStyles = {
   }),
 };
 
-const CustomOption = ({ innerProps, isDisabled }) =>
-  !isDisabled ? <div {...innerProps}>{/* your component internals */}</div> : null;
-
-const CommonSelect = ({ options, placeholder, onChange }) => {
+const CommonSelect = ({ value, options, placeholder, onChange }) => {
   return (
     <div className={styles.selectWrapper}>
       <Select
         placeholder={placeholder}
+        value={value}
         styles={customStyles}
         isSearchable={false}
         options={options}

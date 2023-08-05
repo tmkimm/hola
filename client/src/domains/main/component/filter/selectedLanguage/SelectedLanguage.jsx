@@ -1,10 +1,12 @@
-import { capitalize } from '@mui/material';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './SelectedLanguage.module.css';
+import { clearLanguage, removeLanguage } from 'store/language';
+import { capitalize } from 'common/utils';
 
-const SelectedLanguage = ({ onDeleteIconClick, onResetFilterClick }) => {
+const SelectedLanguage = () => {
   const { selected } = useSelector((state) => state.language);
+  const dispatch = useDispatch();
   return (
     <div className={styles.selectedWrapper}>
       <ul className={styles.selectedLanguages}>
@@ -12,9 +14,9 @@ const SelectedLanguage = ({ onDeleteIconClick, onResetFilterClick }) => {
           <li
             key={idx}
             className={styles.selectedLanguage}
-            onClick={() => onDeleteIconClick(selected)}
+            onClick={() => dispatch(removeLanguage(selected))}
           >
-            <div>{capitalize(selected)}</div>
+            <span className={styles.languageName}>{capitalize(selected)}</span>
             <img
               className={styles.deleteButton}
               src={`/images/info/delete.svg`}
@@ -23,9 +25,19 @@ const SelectedLanguage = ({ onDeleteIconClick, onResetFilterClick }) => {
           </li>
         ))}
         {selected.length !== 0 && (
-          <span className={styles.resetFilter} onClick={onResetFilterClick}>
-            필터 초기화
-          </span>
+          <div
+            className={styles.resetContainer}
+            onClick={() => {
+              dispatch(clearLanguage());
+            }}
+          >
+            <img
+              className={styles.initializeIcon}
+              src={`/images/info/initialize.png`}
+              alt='initialize'
+            />
+            <span className={styles.resetFilter}>초기화</span>
+          </div>
         )}
       </ul>
     </div>

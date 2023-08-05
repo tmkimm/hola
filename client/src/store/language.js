@@ -7,6 +7,7 @@ const initialState = {
   search: '', // 검색어
   mode: 'all', // 전체, 프로젝트, 스터디
   isClosed: false, // false일때 모집중인 글만 보기
+  isLiked: false, // 북마크 보기 활성화 여부
   page: 1, // 페이지
 };
 const languageSlice = createSlice({
@@ -48,6 +49,7 @@ const languageSlice = createSlice({
       isClosed: action.payload,
       page: 1,
     }),
+    changePostMode: (_, action) => ({ ...initialState, isLiked: action.payload }),
     changeField: (state, { payload: { key, value } }) => {
       return {
         ...state,
@@ -69,6 +71,7 @@ export const {
   changeVisibleOpenOnly,
   changeField,
   changePage,
+  changePostMode,
 } = languageSlice.actions;
 
 export default languageSlice.reducer;

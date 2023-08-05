@@ -1,9 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './Category.module.css';
+import { changeSubject } from 'store/language';
 
-const Category = ({ onCategoryClick }) => {
+const Category = () => {
   const categories = ['인기', '프론트엔드', '백엔드', '모바일', '기타', '모두보기'];
+  const dispatch = useDispatch();
   const { subject: curCategory } = useSelector((state) => state.language);
   return (
     <ul className={styles.categories}>
@@ -14,7 +16,7 @@ const Category = ({ onCategoryClick }) => {
             category === curCategory ? styles.selectedCategory : ''
           }`}
           onClick={() => {
-            onCategoryClick(category);
+            dispatch(changeSubject(category));
           }}
         >
           {category}
