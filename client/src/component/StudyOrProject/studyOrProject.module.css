@@ -23,7 +23,7 @@
   margin-left: 0.5rem;
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 800px) {
   .text {
     margin-left: 6px;
     font-size: 20px;

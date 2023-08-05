@@ -74,6 +74,7 @@ const studyOrProjectOption = [
 const onlineOrOfflineOption = [
   { value: 'on', label: '온라인' },
   { value: 'off', label: '오프라인' },
+  { value: 'onOff', label: '온/오프라인' },
 ];
 
 const recruitsOption = [
@@ -130,6 +131,11 @@ const positionsExceptAllOption = [
   { value: 'PD', label: '기획자' },
 ];
 
+const sortOption = [
+  { value: 'RECENT', label: '최신순' },
+  { value: 'URGENT', label: '마감순' },
+];
+
 const positionsMap = {
   ALL: '전체',
   FE: '프론트엔드',
@@ -181,4 +187,5 @@ export {
   positionsExceptAllOption,
   workExperienceOption,
   urlOption,
+  sortOption,
 };
