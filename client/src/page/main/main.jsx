@@ -1,7 +1,5 @@
 import React from 'react';
 import Navbar from 'component/nav_bar/navbar';
-import { DesktopFilter } from 'domains/main/component/filter/desktop';
-
 import Rating from 'component/rating/rating';
 import { MainContent } from 'domains/main/component/mainContent';
 import { Carousel } from 'domains/main/component/carousel';
@@ -15,7 +13,6 @@ const Main = () => {
       <Navbar />
       <Carousel />
       <Trending />
-      <DesktopFilter />
       <MainContent />
       <TopButton />
       <Rating />
