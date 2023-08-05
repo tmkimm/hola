@@ -11,8 +11,9 @@ export const useStudySearch = () => {
     () => studyService.getListPagination(selected, page, position, mode, isClosed, search),
     {
       refetchOnWindowFocus: false,
+      select: (data) => data.data,
     },
   );
 
-  return { data, isLoading, status, page };
+  return { commonData: data, isLoading, status, page };
 };

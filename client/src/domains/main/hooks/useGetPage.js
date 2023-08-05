@@ -10,6 +10,7 @@ export const useGetPage = () => {
     () => studyService.getPageNumber(selected, page, position, mode, isClosed, search),
     {
       refetchOnWindowFocus: false,
+      select: (data) => data.data,
     },
   );
 
