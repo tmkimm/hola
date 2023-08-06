@@ -1,9 +1,10 @@
 import * as S from './styled';
 import Category from '../filter/category/Category';
-import LanguageBar from 'component/languageIBar/LanguageBar';
+
 import SelectedLanguage from '../filter/selectedLanguage/SelectedLanguage';
 import { useSelector } from 'react-redux';
 import { capitalize } from 'common/utils';
+import LanguageBar from '../filter/languageBar';
 
 const LanguageSelect = () => {
   const selected = useSelector((state) => state.language.selected);

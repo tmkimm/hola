@@ -5,7 +5,7 @@ import CommonSelect from '../../select/select';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeField, changePostMode } from 'store/language';
 import LanguageSelect from '../../listbox';
-import Search from 'component/search/search';
+import Search from '../../search/search';
 
 const DesktopFilter = () => {
   const dispatch = useDispatch();
