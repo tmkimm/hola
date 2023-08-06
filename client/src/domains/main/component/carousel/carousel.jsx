@@ -17,7 +17,7 @@ export const Carousel = () => {
     arrows: false,
     responsive: [
       {
-        breakpoint: 400,
+        breakpoint: 500,
         settings: {
           dots: false,
         },
