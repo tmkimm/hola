@@ -34,6 +34,19 @@
 
 @media screen and (max-width: 1300px) {
   .container {
-    display: none;
+    width: 100%;
+    background: white;
+    border-radius: 30px;
+    border: 0.783px solid #ddd;
+  }
+
+  .searchImg {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+
+  .searchInput {
+    font-size: 14px;
   }
 }

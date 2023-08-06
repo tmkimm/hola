@@ -31,10 +31,6 @@
 }
 
 @media screen and (max-width: 575px) {
-  .main {
-    margin-top: 60px;
-  }
-
   .categoryWrapper {
     padding: 0 16px;
     margin-top: 2rem;

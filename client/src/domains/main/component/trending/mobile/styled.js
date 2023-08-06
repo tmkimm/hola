@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const Box = styled.div`
   width: 100%;
   padding: 0 15px;
-  margin-top: 10px;
+  margin-top: 25px;
 `;
 
 export const List = styled.ul`
