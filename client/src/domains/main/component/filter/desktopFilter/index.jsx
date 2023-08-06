@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './styled';
-import { languageList, onlineOrOfflineOption, positionsOption } from 'common/options';
+import { onlineOrOfflineOption, positionsOption } from 'common/options';
 import CommonSelect from '../../select/select';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeField, changePostMode } from 'store/language';

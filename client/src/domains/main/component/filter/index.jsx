@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
-import MobileFilter from './newMobileFilter';
-import DesktopFilter from './newDesktopFilter';
+import MobileFilter from './mobileFilter';
+import DesktopFilter from './desktopFilter';
 
 const Filter = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 500px)' });
