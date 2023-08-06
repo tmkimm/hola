@@ -123,8 +123,8 @@ const WritebuttonContainer = (props) => {
       return false;
     }
 
-    if (!positions) {
-      toast.error('모집 분야를 입력해주세요!', {
+    if (positions.length === 0) {
+      toast.error('모집 포지션을 입력해주세요!', {
         position: 'top-right',
         autoClose: 3000,
       });
