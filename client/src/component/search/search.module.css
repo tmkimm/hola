@@ -1,39 +1,38 @@
 .container {
   display: flex;
   align-items: center;
-  position: absolute;
-  gap: 8px;
-  top: -5px;
-  right: 0;
+  width: 300px;
+  height: 34px;
+  padding: 0px 20px;
+  align-items: center;
+  gap: 10px;
+  border-radius: 36px;
+  background: #f5f5f5;
 }
 
 .searchImg {
   display: block;
-  width: 32px;
-  height: 32px;
+  width: 18px;
+  height: 18px;
+}
+
+.searchInitialize {
+  display: block;
+  width: 15px;
+  height: 15px;
   cursor: pointer;
 }
 
 .searchInput {
-  width: 200px;
   border: none;
+  background: transparent;
   outline: none;
   padding: 0;
-  font-weight: 700;
-  font-size: 20px;
-  animation: reveal 1s;
+  font-weight: 500;
+  font-size: 16px;
 }
 
-@keyframes reveal {
-  from {
-    width: 0px;
-  }
-  to {
-    width: 200px;
-  }
-}
-
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1300px) {
   .container {
     display: none;
   }

@@ -72,11 +72,15 @@
   font-weight: 800;
 }
 
+@media screen and (max-width: 1300px) {
+  .categoryWrapper {
+    width: 1000px;
+  }
+}
+
 @media screen and (max-width: 980px) {
   .categoryWrapper {
-    flex-direction: column;
-    gap: 28px;
-    align-items: flex-start;
+    width: 670px;
   }
 }
 

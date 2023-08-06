@@ -1,6 +1,12 @@
 import styled from '@emotion/styled';
 
-export const SelectConatiner = styled.div`
+export const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const SelectContainer = styled.div`
   display: flex;
   gap: 10px;
 `;

@@ -1,27 +1,12 @@
 import React, { useState } from 'react';
 import styles from './search.module.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { changeSearch } from 'store/language';
 import { HolaLogEvent } from 'common/GA';
 
-const debounceFunction = (callback, delay) => {
-  let timer;
-  return (...args) => {
-    // 실행한 함수(setTimeout())를 취소
-    clearTimeout(timer);
-    // delay가 지나면 callback 함수를 실행
-    timer = setTimeout(() => callback(...args), delay);
-  };
-};
-
 const Search = () => {
   const dispatch = useDispatch();
-  const [isVisible, setIsVisible] = useState(false);
-  const value = useSelector((state) => state.search);
-  const debouncedOnchange = debounceFunction((e) => {
-    HolaLogEvent('select_search', { category: e.target.value });
-    dispatch(changeSearch(e.target.value));
-  }, 300);
+  const [inputValue, setInputValue] = useState('');
 
   return (
     <div
@@ -30,22 +15,32 @@ const Search = () => {
         HolaLogEvent('select_search');
       }}
     >
-      <img
-        className={styles.searchImg}
-        src='images/info/search.png'
-        alt='sub logo'
-        onClick={() => {
-          if (isVisible) return;
-          setIsVisible(!isVisible);
+      <img className={styles.searchImg} src='images/info/search.png' alt='search icon' />
+
+      <input
+        placeholder='제목, 글 내용을 검색해보세요.'
+        className={styles.searchInput}
+        value={inputValue}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter') {
+            if (inputValue === '') return;
+
+            HolaLogEvent('select_search', { category: inputValue });
+            dispatch(changeSearch(inputValue));
+          }
         }}
-      />
-      {isVisible && (
-        <input
-          placeholder='제목, 게시글 검색'
-          className={styles.searchInput}
-          value={value}
-          onChange={debouncedOnchange}
-        ></input>
+        onChange={(e) => {
+          const { value } = e.target;
+          setInputValue(value);
+        }}
+      ></input>
+      {inputValue && (
+        <img
+          onClick={() => setInputValue('')}
+          className={styles.searchInitialize}
+          src='images/info/search-close-icon.png'
+          alt='검색 내용 초기화'
+        />
       )}
     </div>
   );
