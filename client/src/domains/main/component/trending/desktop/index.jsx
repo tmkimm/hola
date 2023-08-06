@@ -46,12 +46,7 @@ const TrendingDesktop = ({ trendings, isLoading }) => {
     ],
   };
 
-  if (isLoading)
-    return (
-      <S.Skeleton>
-        <S.Title>🔥 이번주 올라 인기글</S.Title>
-      </S.Skeleton>
-    );
+  if (isLoading) return <S.Skeleton />;
 
   return (
     <S.Box>
