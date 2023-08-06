@@ -5,13 +5,16 @@ import { Link } from 'react-router-dom';
 import { clearUser } from 'store/user';
 import authService from 'service/auth_service';
 import { clearStep } from 'store/loginStep';
+import { useHistory } from 'react-router';
 
 const DropdownBar = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const handleLogout = async () => {
-    await authService.logout();
+    history.push('/');
     dispatch(clearUser());
     dispatch(clearStep());
+    await authService.logout();
     authService.resetToken();
   };
   return (
