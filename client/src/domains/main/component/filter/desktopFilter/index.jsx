@@ -7,10 +7,13 @@ import { changeField, changePostMode } from 'store/language';
 import LanguageSelect from '../../listbox';
 import Search from '../../search/search';
 import StudyOrProject from '../../studyOrProject';
+import { useModal } from 'hooks/useModal';
 
 const DesktopFilter = () => {
   const dispatch = useDispatch();
   const { isClosed, isLiked, mode } = useSelector((state) => state.language);
+  const user = useSelector((state) => state.user);
+  const { openModal, closeModal, modalVisible } = useModal();
 
   return (
     <S.CategoryContainer>
@@ -37,7 +40,7 @@ const DesktopFilter = () => {
           <S.SelectItem
             selected={isLiked}
             onClick={() => {
-              dispatch(changePostMode(!isLiked));
+              user.id ? dispatch(changePostMode(!isLiked)) : openModal();
             }}
           >
             👋 내 북마크 보기
