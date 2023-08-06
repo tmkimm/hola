@@ -40,7 +40,15 @@ class Study {
     }
   };
 
-  getListPagination = async (selectedLanguages, page, position, category, checked, search) => {
+  getListPagination = async (
+    selectedLanguages,
+    page,
+    position,
+    category,
+    checked,
+    search,
+    onOffLine,
+  ) => {
     const queryType = { all: 0, project: 1, study: 2 };
     try {
       const params = {
@@ -49,6 +57,7 @@ class Study {
         position,
         type: queryType[category],
         isClosed: checked,
+        onOffLine,
       };
 
       if (selectedLanguages.length !== 0) {
@@ -68,7 +77,15 @@ class Study {
     }
   };
 
-  getPageNumber = async (selectedLanguages, page, position, category, checked, search) => {
+  getPageNumber = async (
+    selectedLanguages,
+    page,
+    position,
+    category,
+    checked,
+    search,
+    onOffLine,
+  ) => {
     const queryType = { all: 0, project: 1, study: 2 };
     try {
       const params = {
@@ -77,6 +94,7 @@ class Study {
         position,
         type: queryType[category],
         isClosed: checked,
+        onOffLine,
       };
 
       if (selectedLanguages.length !== 0) {

@@ -4,10 +4,10 @@ import studyService from 'service/study_service';
 
 export const useGetPage = () => {
   const languageState = useSelector((state) => state.language);
-  const { selected, position, search, mode, isClosed, page } = languageState;
+  const { selected, position, search, mode, isClosed, page, onOffLine } = languageState;
   const { data, isLoading } = useQuery(
-    ['page', { selected, position, search, mode, isClosed, page }],
-    () => studyService.getPageNumber(selected, page, position, mode, isClosed, search),
+    ['page', { selected, position, search, mode, isClosed, page, onOffLine }],
+    () => studyService.getPageNumber(selected, page, position, mode, isClosed, search, onOffLine),
     {
       refetchOnWindowFocus: false,
       select: (data) => data.data,

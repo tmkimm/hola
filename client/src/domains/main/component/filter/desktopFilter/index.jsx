@@ -25,11 +25,17 @@ const DesktopFilter = () => {
               const { value } = e;
               dispatch(changeField({ key: 'position', value }));
             }}
-            // value={fotmatToReactSelect(positionsOption, position)}
           />
-          <CommonSelect options={onlineOrOfflineOption} placeholder='진행 방식' />
+          <CommonSelect
+            options={onlineOrOfflineOption}
+            placeholder='진행 방식'
+            onChange={(e) => {
+              const { value } = e;
+              dispatch(changeField({ key: 'onOffLine', value }));
+            }}
+          />
           <S.SelectItem
-            isSelected={isLiked}
+            selected={isLiked}
             onClick={() => {
               dispatch(changePostMode(!isLiked));
             }}
@@ -37,7 +43,7 @@ const DesktopFilter = () => {
             👋 내 북마크 보기
           </S.SelectItem>
           <S.SelectItem
-            isSelected={!isClosed}
+            selected={!isClosed}
             onClick={() => {
               dispatch(changeField({ key: 'isClosed', value: !isClosed }));
             }}

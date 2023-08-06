@@ -9,6 +9,7 @@ const initialState = {
   isClosed: false, // false일때 모집중인 글만 보기
   isLiked: false, // 북마크 보기 활성화 여부
   page: 1, // 페이지
+  onOffLine: 'ALL',
 };
 const languageSlice = createSlice({
   name: 'language',
