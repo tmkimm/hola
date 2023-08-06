@@ -40,6 +40,7 @@
 
 @media screen and (max-width: 500px) {
   .container {
+    display: flex;
     width: 100%;
     background: white;
     border-radius: 30px;
