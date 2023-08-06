@@ -88,7 +88,6 @@ const Mypage = () => {
             position: 'top-right',
             autoClose: 3000,
           });
-          history.push('/');
         },
       },
     );
