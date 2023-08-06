@@ -107,10 +107,6 @@
   transition: all 0.2s ease-in-out;
 }
 
-.userInfo:hover {
-  transform: scale(1.1);
-}
-
 .viewsAndComment {
   display: flex;
   gap: 10px;

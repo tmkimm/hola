@@ -88,7 +88,7 @@ const UserDetailModal = ({ id, isOpen, closeModal }) => {
             {urls.map((urlItem) => {
               const { urlType, url } = urlItem;
               return (
-                <li>
+                <li key={url}>
                   <a href={url} target='_blank' rel='noreferrer'>
                     <img
                       className={styles.urlItem}
