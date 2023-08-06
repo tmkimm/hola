@@ -11,8 +11,9 @@ const PositionFilter = () => {
 
   return (
     <S.LanguageList>
-      {positionsOption.map((types) => (
+      {positionsOption.map((types, idx) => (
         <S.LanguageItem
+          key={idx}
           selected={position === types.value}
           onClick={() => dispatch(changeField({ key: 'position', value: types.value }))}
         >

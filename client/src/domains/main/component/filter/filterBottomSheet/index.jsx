@@ -5,6 +5,8 @@ import StudyTypeFilter from './studyTypeFilter';
 import PositionFilter from './positionFilter';
 import { useDispatch } from 'react-redux';
 import { initLanguage } from 'store/language';
+import OnOfflineFilter from './onOfflineFilter';
+import IsClosedFilter from './isClosedFilter';
 
 const FilterBottomSheet = ({ isOpen, onDismiss, curCategory, setCurCategory }) => {
   const dispatch = useDispatch();
@@ -13,16 +15,17 @@ const FilterBottomSheet = ({ isOpen, onDismiss, curCategory, setCurCategory }) =
     기술스택: <LanguageFilter />,
     모집구분: <StudyTypeFilter />,
     포지션: <PositionFilter />,
-    진행방식: <StudyTypeFilter />,
-    마감여부: <StudyTypeFilter />,
+    진행방식: <OnOfflineFilter />,
+    마감여부: <IsClosedFilter />,
   };
 
   return (
     <S.Popup expandOnContentDrag={true} open={isOpen} onDismiss={onDismiss}>
       <S.Container>
         <S.Categories>
-          {categories.map((category) => (
+          {categories.map((category, idx) => (
             <S.CategoryItem
+              key={idx}
               onClick={() => setCurCategory(category)}
               selected={category === curCategory}
             >

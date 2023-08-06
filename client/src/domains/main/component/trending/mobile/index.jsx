@@ -24,6 +24,7 @@ const TrendingMobile = ({ isLoading, trendings }) => {
           const remainDay = differenceInDays(new Date(startDate), new Date());
           return (
             <Link
+              key={title}
               to={`/study/${id}`}
               onClick={(e) => {
                 e.preventDefault();

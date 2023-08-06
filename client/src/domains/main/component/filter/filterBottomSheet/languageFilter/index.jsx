@@ -54,8 +54,9 @@ const LanguageFilter = () => {
 
   return (
     <S.LanguageList>
-      {languages.map((lang) => (
+      {languages.map((lang, idx) => (
         <S.LanguageItem
+          key={idx}
           onClick={() => onLanguageClick(languageMap[lang], selected.includes(languageMap[lang]))}
           selected={selected.includes(languageMap[lang])}
         >

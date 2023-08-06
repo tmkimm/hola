@@ -20,8 +20,9 @@ const StudyTypeFilter = () => {
 
   return (
     <S.LanguageList>
-      {typeOption.map((types) => (
+      {typeOption.map((types, idx) => (
         <S.LanguageItem
+          key={idx}
           selected={category === types.value}
           onClick={() => toggleCategory(types.value)}
         >

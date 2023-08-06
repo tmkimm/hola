@@ -55,6 +55,7 @@ const languageSlice = createSlice({
       return {
         ...state,
         [key]: value,
+        page: 1,
       };
     },
   },
