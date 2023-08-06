@@ -291,15 +291,7 @@ const Mypage = () => {
           </S.Group>
           <S.ButtonContainer>
             <S.Button type='submit'>프로필 저장</S.Button>
-            <S.CancelId
-              onClick={() => {
-                console.log('hi');
-                console.log(modalVisible);
-                openModal();
-              }}
-            >
-              회원 탈퇴
-            </S.CancelId>
+            <S.CancelId onClick={openModal}>회원 탈퇴</S.CancelId>
           </S.ButtonContainer>
         </S.Form>
       </S.Container>

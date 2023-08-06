@@ -15,6 +15,8 @@ import MobileStudyContent from './mobile/studyContent';
 import { useMediaQuery } from 'react-responsive';
 import Navbar from 'component/nav_bar/navbar';
 import LikesAndViews from 'component/likes_and_views/likesAndViews';
+import { useModalState } from 'hooks/useModalCustom';
+import UserDetailModal from 'component/modal/UserDetailModal';
 
 const StudyContent = ({ id }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
@@ -22,6 +24,7 @@ const StudyContent = ({ id }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const read = useSelector((state) => state.read);
+  const { modalVisible, openModal, closeModal } = useModalState();
 
   const handleDelete = async (id) => {
     await studyService.deleteStudy(id);
@@ -46,7 +49,6 @@ const StudyContent = ({ id }) => {
     history.goBack();
   };
   const defaultPath = 'https://hola-post-image.s3.ap-northeast-2.amazonaws.com/';
-  //TODO: 컴포넌트 공통 로직 추출 및 반응형 breakpoint 정리. Comment 로직 query로 이관
   return (
     <>
       {isMobile ? (
@@ -62,7 +64,7 @@ const StudyContent = ({ id }) => {
               <FaArrowLeft size={'30'} color='808080' cursor='pointer' onClick={handleBack} />
               <div className={styles.title}>{read.post.title}</div>
               <div className={styles.userAndDate}>
-                <div className={styles.user}>
+                <div className={styles.user} onClick={openModal}>
                   <img
                     className={styles.userImg}
                     src={defaultPath + read.post.imagePath}
@@ -70,6 +72,7 @@ const StudyContent = ({ id }) => {
                   />
                   <div className={styles.userName}>{read.post.nickname}</div>
                 </div>
+                <div className={styles.seperator} />
                 <div className={styles.registeredDate}>{formatDate(read.post.createdAt)}</div>
               </div>
               {user.nickName === read.post.nickname && (
@@ -103,6 +106,9 @@ const StudyContent = ({ id }) => {
 
             <CommentContainer id={read.post.id}></CommentContainer>
           </div>
+          {modalVisible && (
+            <UserDetailModal id={id} isOpen={modalVisible} closeModal={closeModal} />
+          )}
         </>
       )}
     </>

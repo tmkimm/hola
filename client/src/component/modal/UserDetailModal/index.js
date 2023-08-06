@@ -47,7 +47,7 @@ const UserDetailModal = ({ id, isOpen, closeModal }) => {
           <div className={styles.modalHeader}>
             <img
               className={styles.backButton}
-              src='images/info/close.png'
+              src='/images/info/close.png'
               alt='backBtn'
               onClick={closeModal}
             />

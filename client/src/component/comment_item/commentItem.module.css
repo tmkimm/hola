@@ -19,6 +19,12 @@
   display: flex;
   align-items: center;
   margin-bottom: 18px;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.avatarWrapper:hover {
+  transform: scale(1.05);
 }
 
 .commentInfo {

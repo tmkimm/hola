@@ -5,8 +5,11 @@ import studyService from 'service/study_service';
 import { getFormatedToday } from 'common/utils.js';
 import { fetchUserByRefreshToken } from 'store/user';
 import CommentButtons from 'component/comment_buttons/commentButtons';
+import { useModalState } from 'hooks/useModalCustom';
+import UserDetailModal from 'component/modal/UserDetailModal';
 
 const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
+  const { modalVisible, openModal, closeModal } = useModalState();
   const user = useSelector((state) => state.user);
   const [content, setContent] = useState(comment.content);
   const preContent = comment.content;
@@ -49,7 +52,7 @@ const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
   return (
     <li className={styles.commentContainer}>
       <section className={styles.commentHeader}>
-        <div className={styles.avatarWrapper}>
+        <div className={styles.avatarWrapper} onClick={openModal}>
           <img
             className={styles.userImg}
             src={
@@ -106,6 +109,9 @@ const CommentItem = React.memo(({ comment, setIsComplete, isComplete }) => {
         )}
         {!inputVisible && <p className={styles.commentContent}>{content}</p>}
       </section>
+      {modalVisible && (
+        <UserDetailModal id={comment.author._id} isOpen={modalVisible} closeModal={closeModal} />
+      )}
     </li>
   );
 });
