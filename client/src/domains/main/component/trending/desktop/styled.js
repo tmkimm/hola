@@ -1,7 +1,16 @@
 import styled from '@emotion/styled';
 import Slider from 'react-slick';
+import { Link } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
+export const Skeleton = styled.div`
+  width: 100%;
+  padding: 0 15px;
+  margin-top: 25px;
+  height: 247px;
+  margin: 100px auto 60px 14px;
+`;
 
 export const Box = styled.div`
   width: 100%;
@@ -79,7 +88,7 @@ export const CustomSlider = styled(Slider)`
   } */
 `;
 
-export const Container = styled.div`
+export const Container = styled(Link)`
   width: 300px;
   color: black;
   display: flex;

@@ -3,8 +3,11 @@ import * as S from './styled';
 import Badge from 'component/badge/badge';
 import differenceInDays from 'date-fns/differenceInDays';
 import { formatDate } from 'common/utils';
+import { useHistory } from 'react-router';
+import { HolaLogEvent } from 'common/GA';
 
-const TrendingDesktop = ({ trendings }) => {
+const TrendingDesktop = ({ trendings, isLoading }) => {
+  const history = useHistory();
   const sliderRef = useRef();
   const config = {
     dots: false,
@@ -42,6 +45,14 @@ const TrendingDesktop = ({ trendings }) => {
       },
     ],
   };
+
+  if (isLoading)
+    return (
+      <S.Skeleton>
+        <S.Title>🔥 이번주 올라 인기글</S.Title>
+      </S.Skeleton>
+    );
+
   return (
     <S.Box>
       <S.TitleContainer>
@@ -59,10 +70,18 @@ const TrendingDesktop = ({ trendings }) => {
       </S.TitleContainer>
       <S.CustomSlider {...config} ref={sliderRef}>
         {trendings.map((trending) => {
-          const { title, startDate, views, type } = trending;
+          const { title, startDate, views, type, id } = trending;
           const remainDay = differenceInDays(new Date(startDate), new Date());
           return (
-            <S.Container key={title}>
+            <S.Container
+              key={title}
+              to={`/study/${id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                HolaLogEvent('select_trending', { category: id });
+                history.push(`/study/${id}`);
+              }}
+            >
               <S.Info>
                 <Badge state={type === '1' ? 'project' : 'study'} />
                 <S.Deadline>

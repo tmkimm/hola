@@ -8,12 +8,10 @@ const Trending = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 500px)' });
   const { data: trendings, isLoading } = useGetTrending();
 
-  if (isLoading) return <></>;
-
   return isMobile ? (
-    <TrendingMobile trendings={trendings} />
+    <TrendingMobile isLoading={isLoading} trendings={trendings} />
   ) : (
-    <TrendingDesktop trendings={trendings} />
+    <TrendingDesktop isLoading={isLoading} trendings={trendings} />
   );
 };
 
