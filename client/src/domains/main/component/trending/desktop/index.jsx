@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import * as S from './styled';
 import Badge from 'component/badge/badge';
 import differenceInDays from 'date-fns/differenceInDays';
+import { formatDate } from 'common/utils';
 
 const TrendingDesktop = ({ trendings }) => {
   const sliderRef = useRef();
@@ -68,7 +69,7 @@ const TrendingDesktop = ({ trendings }) => {
                   {remainDay === 0 ? '🚨 오늘 마감' : `🚨 마감 ${remainDay}일전`}
                 </S.Deadline>
               </S.Info>
-              <S.DeadlineInfo>시작 예정 | 2022.04.16</S.DeadlineInfo>
+              <S.DeadlineInfo>{`마감일 | ${formatDate(startDate)}`}</S.DeadlineInfo>
               <S.ProjectTitle>{title}</S.ProjectTitle>
               <S.ViewCount>👀 조회수 {views}회</S.ViewCount>
             </S.Container>
