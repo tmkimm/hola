@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './studyOrProject.module.css';
 import { HolaLogEvent } from 'common/GA';
+import { useDispatch } from 'react-redux';
+import { changeMode } from 'store/language';
 
 const active = {
   className: styles.active,
@@ -11,10 +13,16 @@ const inActive = {
   color: '#858E86',
 };
 
-const StudyOrProject = ({ category, toggleCategory }) => {
+const StudyOrProject = ({ category }) => {
   const ALL = 'all';
   const PROJECT = 'project';
   const STUDY = 'study';
+  const dispatch = useDispatch();
+
+  const toggleCategory = (toggleTo) => {
+    if (category === toggleTo) return;
+    dispatch(changeMode(toggleTo));
+  };
 
   return (
     <section className={styles.category}>

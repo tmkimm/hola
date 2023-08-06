@@ -1,5 +1,32 @@
 import styled from '@emotion/styled';
 
+export const CategoryContainer = styled.div`
+  max-width: 1300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  padding: 0 20px;
+
+  @media screen and (max-width: 1300px) {
+    width: 1000px;
+  }
+
+  @media screen and (max-width: 980px) {
+    width: 670px;
+  }
+
+  @media screen and (max-width: 575px) {
+    padding: 0 16px;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+`;
+
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
