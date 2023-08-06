@@ -3,8 +3,11 @@ import * as S from './styled';
 import LanguageFilter from './languageFilter';
 import StudyTypeFilter from './studyTypeFilter';
 import PositionFilter from './positionFilter';
+import { useDispatch } from 'react-redux';
+import { initLanguage } from 'store/language';
 
 const FilterBottomSheet = ({ isOpen, onDismiss, curCategory, setCurCategory }) => {
+  const dispatch = useDispatch();
   const categories = ['기술스택', '모집구분', '포지션', '진행방식', '마감여부'];
   const FilterItem = {
     기술스택: <LanguageFilter />,
@@ -29,7 +32,13 @@ const FilterBottomSheet = ({ isOpen, onDismiss, curCategory, setCurCategory }) =
         </S.Categories>
         {FilterItem[curCategory]}
         <S.ButtonContainer>
-          <S.InitButton>초기화</S.InitButton>
+          <S.InitButton
+            onClick={() => {
+              dispatch(initLanguage());
+            }}
+          >
+            초기화
+          </S.InitButton>
           <S.ConfirmButton onClick={onDismiss}>필터 적용</S.ConfirmButton>
         </S.ButtonContainer>
       </S.Container>
