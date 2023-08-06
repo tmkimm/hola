@@ -2,16 +2,15 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import LoadingSpinner from 'component/loading/loadingSpinner';
 import Modal from 'component/modal/modal_component/modal';
-import Study from './page/study/study';
-import Mypage from 'page/myPage';
 
 const Main = lazy(() => import('./page/main/main'));
 const PostRegister = lazy(() => import('./page/post_register/postRegister'));
 const GithubLogin = lazy(() => import('./page/auth/githubLogin'));
 const MyPosts = lazy(() => import('./page/my_posts/myPosts'));
 const MyLikes = lazy(() => import('./page/my_likes/myLikes'));
-const MyPages = lazy(() => import('./page/myPage'));
+const MyPage = lazy(() => import('./page/myPage'));
 const NotFound = lazy(() => import('./page/notFound/notFound'));
+const Study = lazy(() => import('./page/study/study'));
 
 const App = () => {
   return (
@@ -31,10 +30,7 @@ const App = () => {
             <PostRegister />
           </Route>
           <Route path='/setting'>
-            <Mypage />
-          </Route>
-          <Route path='/settings'>
-            <MyPages />
+            <MyPage />
           </Route>
           <Route path='/study'>
             <Study />
