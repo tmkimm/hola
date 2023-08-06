@@ -11,7 +11,7 @@ const LanguageSelect = () => {
 
   return (
     <S.PopoverContainer>
-      <S.PopoverButton isSelected={selected.length !== 0}>
+      <S.PopoverButton selected={selected.length !== 0}>
         <S.Languages>
           {selected.length === 0
             ? '기술 스택'

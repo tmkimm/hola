@@ -2,7 +2,7 @@ import * as S from './styled';
 
 const FilterButton = ({ buttonText, isSelected, onClick }) => {
   return (
-    <S.Button isSelected={isSelected} onClick={onClick}>
+    <S.Button selected={isSelected} onClick={onClick}>
       <S.Languages>{buttonText}</S.Languages>
       <svg height='16' width='16' viewBox='0 0 20 20' aria-hidden='true' focusable='false'>
         <path

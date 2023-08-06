@@ -25,8 +25,8 @@ export const PopoverButton = styled(Popover.Button)`
   padding-right: 10px;
   width: 140px;
   height: 38px;
-  border: ${({ isSelected }) => (isSelected ? '1px solid #00b9ae' : '1px solid #E3E3E3')};
-  color: ${({ isSelected }) => (isSelected ? '#00b9ae' : '#646464')};
+  border: ${({ selected }) => (selected ? '1px solid #00b9ae' : '1px solid #E3E3E3')};
+  color: ${({ selected }) => (selected ? '#00b9ae' : '#646464')};
   font-weight: 500;
   font-size: 16px;
   letter-spacing: 0.03em;
