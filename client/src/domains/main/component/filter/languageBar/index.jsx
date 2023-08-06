@@ -7,17 +7,19 @@ import { addLanguage, initLanguage, removeLanguage } from 'store/language';
 
 const languages = {
   인기: [
-    'JavaScript',
-    'TypeScript',
     'React',
+    'TypeScript',
+    'JavaScript',
     'Vue',
-    'Svelte',
     'Nextjs',
     'Nodejs',
     'Java',
     'Spring',
-    'Go',
+    'Kotlin',
     'Nestjs',
+    'Swift',
+    'Flutter',
+    'Figma',
   ],
   프론트엔드: ['JavaScript', 'TypeScript', 'React', 'Vue', 'Svelte', 'Nextjs'],
   백엔드: [
