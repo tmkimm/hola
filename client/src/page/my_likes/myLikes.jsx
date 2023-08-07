@@ -79,6 +79,7 @@ const MyLikes = (props) => {
                 <span className={styles.text}>관심 목록</span>
               </div>
             </section>
+            <div className={styles.seperator} />
             {category === SHOW_BY_LIKES ? (
               <StudyList studyList={likeList}></StudyList>
             ) : (
