@@ -73,6 +73,7 @@ const readSlice = createSlice({
       ...state,
       loading: 'success',
       post: {
+        author: payload.author,
         id: payload._id,
         title: payload.title,
         language: payload.language,

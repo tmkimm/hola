@@ -24,6 +24,7 @@ const StudyContent = ({ id }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const read = useSelector((state) => state.read);
+
   const { modalVisible, openModal, closeModal } = useModalState();
 
   const handleDelete = async (id) => {
@@ -107,7 +108,11 @@ const StudyContent = ({ id }) => {
             <CommentContainer id={read.post.id}></CommentContainer>
           </div>
           {modalVisible && (
-            <UserDetailModal id={id} isOpen={modalVisible} closeModal={closeModal} />
+            <UserDetailModal
+              id={read.post.author.id}
+              isOpen={modalVisible}
+              closeModal={closeModal}
+            />
           )}
         </>
       )}
