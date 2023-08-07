@@ -72,6 +72,7 @@ const studyOrProjectOption = [
 ];
 
 const onlineOrOfflineOption = [
+  { value: 'ALL', label: '전체' },
   { value: 'on', label: '온라인' },
   { value: 'off', label: '오프라인' },
   { value: 'onOff', label: '온/오프라인' },
