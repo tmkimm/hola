@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { isMobile } from 'react-device-detect';
 import { useStudySearch } from 'domains/main/hooks/useStudySearch';
 import { useGetPage } from 'domains/main/hooks/useGetPage';
-import { changeField } from 'store/language';
+import { changeField, changePage } from 'store/language';
 import { useGetMyLikes } from 'domains/main/hooks/useGetMyLikes';
 
 const Posts = React.memo(() => {
@@ -31,7 +31,7 @@ const Posts = React.memo(() => {
             count={lastPage}
             page={page}
             onChange={(_, value) => {
-              dispatch(changeField({ key: 'page', value }));
+              dispatch(changePage(value));
             }}
             color='primary'
             showFirstButton

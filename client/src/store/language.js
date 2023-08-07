@@ -51,6 +51,10 @@ const languageSlice = createSlice({
       page: 1,
     }),
     changePostMode: (_, action) => ({ ...initialState, isLiked: action.payload }),
+    changePage: (state, action) => ({
+      ...state,
+      page: action.payload,
+    }),
     changeField: (state, { payload: { key, value } }) => {
       return {
         ...state,
