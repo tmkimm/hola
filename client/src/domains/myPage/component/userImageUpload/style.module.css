@@ -1,6 +1,7 @@
 .imageContainer {
   display: flex;
-  margin: 0 auto;
+  width: 100%;
+  justify-content: center;
 }
 
 .profileContainer {
@@ -38,6 +39,8 @@ input[type='file'] {
   opacity: 0;
   z-index: -1;
   position: absolute;
+  width: 0;
+  height: 0;
 }
 
 @media screen and (max-width: 400px) {
