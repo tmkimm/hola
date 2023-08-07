@@ -17,7 +17,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 8px 20px 30px 20px;
-  height: 500px;
 `;
 
 export const Categories = styled.ul`

@@ -10,6 +10,7 @@ export const LanguageList = styled.ul`
 export const LanguageItem = styled.li`
   display: flex;
   padding: 10px;
+  font-size: 13px;
   justify-content: center;
   align-items: center;
   border-radius: 30px;
