@@ -17,6 +17,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 8px 20px 30px 20px;
+  height: 500px;
 `;
 
 export const Categories = styled.ul`
@@ -92,15 +93,4 @@ export const ConfirmButton = styled.button`
   letter-spacing: -0.51px;
   border-radius: 50px;
   background: #6ed1c0;
-`;
-
-export const LanguageItem = styled.li`
-  display: flex;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 30px;
-  background: #f2f4f8;
-  color: ${({ selected }) => (selected ? '#4A5E75' : '#999999')};
-  background: ${({ selected }) => (selected ? '#F2F4F8' : '#FFFFF')};
 `;
