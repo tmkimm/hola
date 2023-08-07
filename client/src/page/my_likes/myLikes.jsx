@@ -43,7 +43,7 @@ const MyLikes = (props) => {
       history.push('/');
     }
     userService.getUserLikeList(userId).then((res) => {
-      setLikeList((state) => res.data);
+      setLikeList((state) => res.data.posts);
     });
 
     userService.getUserReadList(userId).then((res) => {
