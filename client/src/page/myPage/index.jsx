@@ -94,6 +94,16 @@ const Mypage = () => {
   };
 
   useEffect(() => {
+    if (user.id === undefined) {
+      toast.error('로그인이 필요한 페이지입니다.', {
+        position: 'top-right',
+        autoClose: 3000,
+      });
+      history.push('/');
+    }
+  }, [history, user.id, user.nickName]);
+
+  useEffect(() => {
     if (isLoading) return;
 
     const urls = data?.urls.map((urlInfo) => ({
