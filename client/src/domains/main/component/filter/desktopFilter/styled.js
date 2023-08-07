@@ -17,7 +17,7 @@ export const CategoryContainer = styled.div`
   }
 
   @media screen and (max-width: 980px) {
-    width: 670px;
+    width: 850px;
   }
 
   @media screen and (max-width: 575px) {
