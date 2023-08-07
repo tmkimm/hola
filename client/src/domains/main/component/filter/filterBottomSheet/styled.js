@@ -13,10 +13,19 @@ export const Popup = styled(BottomSheet)`
 `;
 
 export const Container = styled.div`
+  position: relative;
   margin-top: 10px;
   display: flex;
   flex-direction: column;
   padding: 8px 20px 30px 20px;
+
+  @media screen and (max-width: 500px) {
+    height: 430px;
+  }
+
+  @media screen and (max-width: 400px) {
+    height: 470px;
+  }
 `;
 
 export const Categories = styled.ul`
@@ -58,6 +67,10 @@ export const ButtonContainer = styled.div`
   gap: 8px;
   margin: 0 auto;
   width: 100%;
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  padding: 0 8px;
 `;
 
 export const InitButton = styled.button`

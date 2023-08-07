@@ -24,7 +24,7 @@ const SetInterest = ({ loginStep, handleLoginStep, handleFields }) => {
       </h1>
 
       <div className={styles.inputWrapper}>
-        <h3>직무</h3>
+        <h3 className={styles.inputLabel}>직무</h3>
         <div className={styles.likeLanguageWrapper}>
           <Selectbox
             customStyles={customStyles}
@@ -38,7 +38,7 @@ const SetInterest = ({ loginStep, handleLoginStep, handleFields }) => {
         </div>
       </div>
       <div className={styles.careerWrapper}>
-        <h3>경력</h3>
+        <h3 className={styles.inputLabel}>경력</h3>
         <div className={styles.likeLanguageWrapper}>
           <Selectbox
             customStyles={customStyles}

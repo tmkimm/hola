@@ -94,6 +94,10 @@
     width: 100%;
   }
 
+  .inputLabel {
+    margin-bottom: 8px;
+  }
+
   .careerWrapper h3 {
     margin-right: 16px;
     font-size: 16px;

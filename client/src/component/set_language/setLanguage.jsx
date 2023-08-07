@@ -33,7 +33,7 @@ const SetLanguage = () => {
       </h1>
 
       <div className={styles.inputWrapper}>
-        <h3>관심 스택</h3>
+        <h3 className={styles.inputLabel}>관심 스택</h3>
         <div className={styles.likeLanguageWrapper}>
           <Selectbox
             isMulti={true}

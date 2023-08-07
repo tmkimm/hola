@@ -90,8 +90,13 @@
     flex-direction: column;
     align-items: flex-start;
   }
+
   .inputWrapper h3 {
     width: 100%;
+  }
+
+  .inputLabel {
+    margin-bottom: 8px;
   }
 
   .careerWrapper {
