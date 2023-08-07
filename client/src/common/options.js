@@ -149,7 +149,7 @@ const positionsMap = {
 };
 
 const workExperienceOption = [
-  { value: 'n', label: '0년' },
+  { value: '0', label: '0년' },
   { value: '1', label: '1년' },
   { value: '2', label: '2년' },
   { value: '3', label: '3년' },

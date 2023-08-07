@@ -74,10 +74,10 @@ const UserDetailModal = ({ id, isOpen, closeModal }) => {
           <div className={styles.likeLanguagesConatiner}>
             <div className={styles.languagesText}>관심 스택</div>
             <ul className={styles.likeLanguages}>
-              {likeLanguages.map((lang) => (
-                <li className={styles.languageItem}>{`${lang.charAt(0).toUpperCase()}${lang.slice(
-                  1,
-                )}`}</li>
+              {likeLanguages.map((lang, idx) => (
+                <li key={idx} className={styles.languageItem}>{`${lang
+                  .charAt(0)
+                  .toUpperCase()}${lang.slice(1)}`}</li>
               ))}
             </ul>
           </div>
@@ -85,10 +85,10 @@ const UserDetailModal = ({ id, isOpen, closeModal }) => {
             {introduce ? introduce : 'Hola! 만나서 반가워요!'}
           </div>
           <ul className={styles.urls}>
-            {urls.map((urlItem) => {
+            {urls.map((urlItem, idx) => {
               const { urlType, url } = urlItem;
               return (
-                <li key={url}>
+                <li key={(url, idx)}>
                   <a href={url} target='_blank' rel='noreferrer'>
                     <img
                       className={styles.urlItem}
