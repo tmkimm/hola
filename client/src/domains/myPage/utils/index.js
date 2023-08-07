@@ -1,5 +1,5 @@
 export const textareaPlaceHolderMaker = ({ workExperience, position, nickName }) => {
-  if (workExperience === '' || position === '') return 'Hola! 만나서 반가워요!';
+  if (!workExperience || !position) return 'Hola! 만나서 반가워요!';
 
   let positionSuffix = '';
   if (
