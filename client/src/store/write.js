@@ -95,11 +95,12 @@ const modifyPost = createAsyncThunk(
   },
 );
 
+const currentDate = new Date();
 const initialState = {
   title: '',
   content: '',
   language: [],
-  startDate: new Date(),
+  startDate: currentDate.setDate(currentDate.getDate() + 14),
   type: '',
   recruits: '',
   onlineOrOffline: '',
