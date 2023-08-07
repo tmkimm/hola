@@ -87,10 +87,15 @@ const UserDetailModal = ({ id, isOpen, closeModal }) => {
           <ul className={styles.urls}>
             {urls.map((urlItem, idx) => {
               const { urlType, url } = urlItem;
+
               return (
                 <li key={(url, idx)}>
                   <a href={url} target='_blank' rel='noreferrer'>
-                    <img className={styles.urlItem} src={`/images/logo/${urlType}.png`} alt='url' />
+                    <img
+                      className={styles.urlItem}
+                      src={`/images/logo/${urlType.toLowerCase()}.png`}
+                      alt='url'
+                    />
                   </a>
                 </li>
               );
