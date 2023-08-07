@@ -90,11 +90,7 @@ const UserDetailModal = ({ id, isOpen, closeModal }) => {
               return (
                 <li key={(url, idx)}>
                   <a href={url} target='_blank' rel='noreferrer'>
-                    <img
-                      className={styles.urlItem}
-                      src={`/images/logo/${urlType.charAt(0).toUpperCase()}${urlType.slice(1)}.png`}
-                      alt='url'
-                    />
+                    <img className={styles.urlItem} src={`/images/logo/${urlType}.png`} alt='url' />
                   </a>
                 </li>
               );
