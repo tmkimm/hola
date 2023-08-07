@@ -1,6 +1,5 @@
 import React from 'react';
 import * as S from './styled';
-import differenceInDays from 'date-fns/differenceInDays';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { HolaLogEvent } from 'common/GA';
@@ -15,8 +14,8 @@ const TrendingMobile = ({ isLoading, trendings }) => {
       <S.Title>🔥 이번주 올라 인기글</S.Title>
       <S.List>
         {trendings.map((trending) => {
-          const { title, startDate, views, id } = trending;
-          const remainDay = differenceInDays(new Date(startDate), new Date());
+          const { title, views, id, badge } = trending;
+
           return (
             <Link
               key={title}
@@ -28,9 +27,7 @@ const TrendingMobile = ({ isLoading, trendings }) => {
               }}
             >
               <S.Container key={title}>
-                <S.Deadline>
-                  {remainDay === 0 ? '🚨 오늘 마감' : `🚨 마감 ${remainDay}일전`}
-                </S.Deadline>
+                <S.Deadline>{`🚨 ${badge[0].name}`}</S.Deadline>
                 <S.ProjectTitle>{title}</S.ProjectTitle>
                 <S.ViewCount>👀 조회수 {views}회</S.ViewCount>
               </S.Container>

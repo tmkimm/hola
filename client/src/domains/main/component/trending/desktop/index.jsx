@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import * as S from './styled';
 import Badge from 'component/badge/badge';
-import differenceInDays from 'date-fns/differenceInDays';
 import { formatDate } from 'common/utils';
 import { useHistory } from 'react-router';
 import { HolaLogEvent } from 'common/GA';
@@ -65,8 +64,7 @@ const TrendingDesktop = ({ trendings, isLoading }) => {
       </S.TitleContainer>
       <S.CustomSlider {...config} ref={sliderRef}>
         {trendings.map((trending) => {
-          const { title, startDate, views, type, id } = trending;
-          const remainDay = differenceInDays(new Date(startDate), new Date());
+          const { title, startDate, views, type, id, badge } = trending;
           return (
             <S.Container
               key={title}
@@ -79,9 +77,7 @@ const TrendingDesktop = ({ trendings, isLoading }) => {
             >
               <S.Info>
                 <Badge state={type === '1' ? 'project' : 'study'} />
-                <S.Deadline>
-                  {remainDay === 0 ? '🚨 오늘 마감' : `🚨 마감 ${remainDay}일전`}
-                </S.Deadline>
+                <S.Deadline>{`🚨 ${badge[0].name}`}</S.Deadline>
               </S.Info>
               <S.DeadlineInfo>{`마감일 | ${formatDate(startDate)}`}</S.DeadlineInfo>
               <S.ProjectTitle>{title}</S.ProjectTitle>
