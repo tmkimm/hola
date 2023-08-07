@@ -32,11 +32,15 @@ const Search = () => {
         onChange={(e) => {
           const { value } = e.target;
           setInputValue(value);
+          if (value === '') dispatch(changeSearch(''));
         }}
       ></input>
       {inputValue && (
         <img
-          onClick={() => setInputValue('')}
+          onClick={() => {
+            setInputValue('');
+            dispatch(changeSearch(''));
+          }}
           className={styles.searchInitialize}
           src='images/info/search-close-icon.png'
           alt='검색 내용 초기화'
