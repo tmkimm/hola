@@ -6,6 +6,7 @@ import SetNicknameContainer from 'component/set_nickname_container/setNicknameCo
 import SetInterestContainer from 'component/set_interest_container/setInterestContainer';
 import SetImageContainer from 'component/set_image_container/setImageContainer';
 import SignupEnd from 'component/signup_end/signupEnd';
+import SetLanguage from 'component/set_language/setLanguage';
 /* 
 
 LoginModal Component
@@ -25,7 +26,8 @@ to-do
 const SOCIAL_LOGIN = 1;
 const SET_NICKNAME = 2;
 const SET_INTEREST = 3;
-const SIGNUP_END = 4;
+const SET_LANGUAGE = 4;
+const SIGNUP_END = 5;
 
 const LoginModal = ({ handleClose }) => {
   const loginStep = useSelector((state) => state.loginStep.currentStep);
@@ -37,6 +39,8 @@ const LoginModal = ({ handleClose }) => {
         return <SetNicknameContainer />;
       case SET_INTEREST:
         return <SetInterestContainer />;
+      case SET_LANGUAGE:
+        return <SetLanguage />;
       case SIGNUP_END:
         return <SignupEnd handleClose={handleClose}></SignupEnd>;
       default:

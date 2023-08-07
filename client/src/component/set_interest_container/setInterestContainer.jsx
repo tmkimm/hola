@@ -8,7 +8,7 @@ import { addUserNickName } from 'store/user';
 const SetInterestContainer = () => {
   const dispatch = useDispatch();
   const loginStep = useSelector((state) => state.loginStep);
-  const { nickName, id, position, workExperience } = loginStep;
+  const { position, workExperience } = loginStep;
 
   const handleFields = ({ key, value }) => {
     dispatch(setSignUpUser({ key, value }));
@@ -30,15 +30,6 @@ const SetInterestContainer = () => {
       });
       return;
     }
-    dispatch(
-      addUserNickName({
-        id,
-        nickName,
-        image: 'default.PNG',
-        position: position.value,
-        workExperience: workExperience.value,
-      }),
-    );
 
     dispatch(nextStep());
   };

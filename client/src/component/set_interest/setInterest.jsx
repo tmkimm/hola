@@ -32,7 +32,7 @@ const SetInterest = ({ loginStep, handleLoginStep, handleFields }) => {
             selectValue={loginStep.position}
             setSelectValue={handleFields}
             maxValue={3}
-            placeholder='프론트엔드, 백엔드, 디자이너, PM...'
+            placeholder='프론트엔드, 백엔드, 디자이너...'
             id='position'
           />
         </div>
