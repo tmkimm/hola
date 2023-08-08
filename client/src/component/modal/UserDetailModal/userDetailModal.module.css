@@ -56,6 +56,10 @@
   white-space: pre-line;
 }
 
+.introduces::-webkit-scrollbar {
+  display: none;
+}
+
 .organizationName {
   color: #777;
   font-size: 18px;
@@ -110,12 +114,20 @@
   overflow-y: hidden;
 }
 
+.careerInfo::-webkit-scrollbar {
+  display: none;
+}
+
 .likeLanguagesConatiner {
   display: flex;
   align-items: center;
   margin-bottom: 30px;
   max-width: 100%;
   overflow-x: scroll;
+}
+
+.likeLanguagesConatiner::-webkit-scrollbar {
+  display: none;
 }
 
 .likeLanguages {
