@@ -7,10 +7,8 @@ import { useDispatch } from 'react-redux';
 import { initLanguage } from 'store/language';
 import OnOfflineFilter from './onOfflineFilter';
 import IsClosedFilter from './isClosedFilter';
-import { usePopupBackground } from 'hooks/usePopupBackground';
 
 const FilterBottomSheet = ({ isOpen, onDismiss, curCategory, setCurCategory }) => {
-  //const { showBackground } = usePopupBackground(isOpen);
   const dispatch = useDispatch();
   const categories = ['기술스택', '모집구분', '포지션', '진행방식', '마감여부'];
   const FilterItem = {
@@ -22,6 +20,8 @@ const FilterBottomSheet = ({ isOpen, onDismiss, curCategory, setCurCategory }) =
   };
 
   return (
+    /* ios에서 bottom sheet background가 click 되는 이슈가 있어 click event 전파를 막습니다.
+       @see https://github.com/stipsan/react-spring-bottom-sheet/issues/180 */
     <S.Popup
       expandOnContentDrag={true}
       open={isOpen}
