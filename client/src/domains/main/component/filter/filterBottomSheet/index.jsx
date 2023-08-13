@@ -7,8 +7,10 @@ import { useDispatch } from 'react-redux';
 import { initLanguage } from 'store/language';
 import OnOfflineFilter from './onOfflineFilter';
 import IsClosedFilter from './isClosedFilter';
+import { usePopupBackground } from 'hooks/usePopupBackground';
 
 const FilterBottomSheet = ({ isOpen, onDismiss, curCategory, setCurCategory }) => {
+  const { showBackground } = usePopupBackground(isOpen);
   const dispatch = useDispatch();
   const categories = ['기술스택', '모집구분', '포지션', '진행방식', '마감여부'];
   const FilterItem = {
@@ -20,32 +22,34 @@ const FilterBottomSheet = ({ isOpen, onDismiss, curCategory, setCurCategory }) =
   };
 
   return (
-    <S.Popup expandOnContentDrag={true} open={isOpen} onDismiss={onDismiss}>
-      <S.Container>
-        <S.Categories>
-          {categories.map((category, idx) => (
-            <S.CategoryItem
-              key={idx}
-              onClick={() => setCurCategory(category)}
-              selected={category === curCategory}
+    <S.BottomSheetBackground onClick={(event) => event.stopPropagation()} isOpen={showBackground}>
+      <S.Popup expandOnContentDrag={true} open={isOpen} onDismiss={onDismiss}>
+        <S.Container>
+          <S.Categories>
+            {categories.map((category, idx) => (
+              <S.CategoryItem
+                key={idx}
+                onClick={() => setCurCategory(category)}
+                selected={category === curCategory}
+              >
+                {category}
+              </S.CategoryItem>
+            ))}
+          </S.Categories>
+          {FilterItem[curCategory]}
+          <S.ButtonContainer>
+            <S.InitButton
+              onClick={() => {
+                dispatch(initLanguage());
+              }}
             >
-              {category}
-            </S.CategoryItem>
-          ))}
-        </S.Categories>
-        {FilterItem[curCategory]}
-        <S.ButtonContainer>
-          <S.InitButton
-            onClick={() => {
-              dispatch(initLanguage());
-            }}
-          >
-            초기화
-          </S.InitButton>
-          <S.ConfirmButton onClick={onDismiss}>필터 적용</S.ConfirmButton>
-        </S.ButtonContainer>
-      </S.Container>
-    </S.Popup>
+              초기화
+            </S.InitButton>
+            <S.ConfirmButton onClick={onDismiss}>필터 적용</S.ConfirmButton>
+          </S.ButtonContainer>
+        </S.Container>
+      </S.Popup>
+    </S.BottomSheetBackground>
   );
 };
 

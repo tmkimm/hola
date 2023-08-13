@@ -106,3 +106,12 @@ export const ConfirmButton = styled.button`
   border-radius: 50px;
   background: #6ed1c0;
 `;
+
+export const BottomSheetBackground = styled.div`
+  bottom: 0px;
+  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  left: 0px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+`;
