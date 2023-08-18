@@ -160,7 +160,7 @@ const workExperienceOption = [
   { value: '7', label: '7년' },
   { value: '8', label: '8년' },
   { value: '9', label: '9년' },
-  { value: 'mo', label: '10년 이상' },
+  { value: '10', label: '10년 이상' },
 ];
 
 const urlOption = [

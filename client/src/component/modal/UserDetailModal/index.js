@@ -65,7 +65,11 @@ const UserDetailModal = ({ id, isOpen, closeModal }) => {
 
           <div className={styles.careerInfo}>
             {position && <div className={styles.position}>{getPositionToText(position)}</div>}
-            {workExperience && <div className={styles.workExperience}>{workExperience}년차</div>}
+            {workExperience && (
+              <div className={styles.workExperience}>
+                {workExperience === '10' ? '10년 이상' : `${workExperience}년차`}
+              </div>
+            )}
             {organizationIsOpen && organizationName && (
               <div className={styles.organizationName}>{organizationName}</div>
             )}
