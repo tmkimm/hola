@@ -1,6 +1,6 @@
 import React from 'react';
-import { FirstBanner, InstagramBanner, SecondBanner } from 'component/banner';
 import { Carousel } from 'component/carousel';
+import { EventBanner } from '../Banner/EventBanner';
 
 export const EventCarousel = () => {
   const options = {
@@ -25,7 +25,7 @@ export const EventCarousel = () => {
 
   return (
     <Carousel options={options}>
-      <InstagramBanner />
+      <EventBanner />
     </Carousel>
   );
 };
