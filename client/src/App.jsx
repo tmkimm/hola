@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import LoadingSpinner from 'component/loading/loadingSpinner';
 import Modal from 'component/modal/modal_component/modal';
+import EventPage from 'page/event';
 
 const Main = lazy(() => import('./page/main/main'));
 const PostRegister = lazy(() => import('./page/post_register/postRegister'));
@@ -43,6 +44,9 @@ const App = () => {
           </Route>
           <Route path='/auth/github'>
             <GithubLogin />
+          </Route>
+          <Route path='/event'>
+            <EventPage />
           </Route>
           <Route>
             <NotFound />
