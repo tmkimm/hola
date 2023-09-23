@@ -1,11 +1,10 @@
 .navbar {
   margin: auto;
-  max-width: 1180px;
+  max-width: 1281px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 85px;
-  padding: 0 10px;
 }
 
 button {
