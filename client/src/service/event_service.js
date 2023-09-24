@@ -21,7 +21,7 @@ class Event {
   /* 공모전 광고 영역 */
   events = ({ page, eventType, search, onOffLine }) => {
     try {
-      return this.client.get('recommend?');
+      return this.client.get('events');
     } catch (error) {
       console.error(error);
     }

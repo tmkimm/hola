@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './select.module.css';
 import Select from 'react-select';
 
 const customStyles = {
@@ -17,6 +16,7 @@ const customStyles = {
       '&:hover': {
         border: '1px solid #d1d1d1',
       },
+      cursor: 'pointer',
     };
   },
   singleValue: (provided, state) => ({
@@ -35,6 +35,7 @@ const customStyles = {
       fontSize: '16px',
       letterSpacing: '0.03em',
       color: state.hasValue ? '#00b9ae' : '#646464',
+      cursor: 'pointer',
     };
   },
   placeholder: (provided, state) => {
@@ -73,7 +74,7 @@ const customStyles = {
 
 const CommonSelect = ({ value, options, placeholder, onChange }) => {
   return (
-    <div className={styles.selectWrapper}>
+    <div>
       <Select
         placeholder={placeholder}
         value={value}

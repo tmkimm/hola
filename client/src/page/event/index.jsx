@@ -3,6 +3,7 @@ import * as S from './styled';
 import Navbar from 'component/nav_bar/navbar';
 import { EventCarousel } from 'domains/eventPage/components/EventCarousel';
 import RecommendEvents from 'domains/eventPage/components/RecommendEvents';
+import MainEvents from 'domains/eventPage/components/MainEvents';
 
 const EventPage = () => {
   return (
@@ -10,6 +11,7 @@ const EventPage = () => {
       <Navbar isBackBtn={false} />
       <EventCarousel />
       <RecommendEvents />
+      <MainEvents />
     </S.Container>
   );
 };
