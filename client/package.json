@@ -5,6 +5,9 @@
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
+    "@fullcalendar/core": "^6.1.9",
+    "@fullcalendar/daygrid": "^6.1.9",
+    "@fullcalendar/react": "^6.1.9",
     "@headlessui/react": "^1.7.15",
     "@hookform/resolvers": "^3.1.1",
     "@mui/lab": "^5.0.0-alpha.75",
