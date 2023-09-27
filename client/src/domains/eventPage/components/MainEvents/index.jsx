@@ -5,6 +5,7 @@ import CommonSelect from 'domains/main/component/select/select';
 import { onlineOrOfflineOption, sortOption } from 'common/options';
 import { useGetMainListEvent } from 'domains/eventPage/hooks/useGetMainListEvent';
 import EventItem from '../EventItem';
+import CalendarView from '../CalendarView';
 
 const MainEvents = () => {
   const { data } = useGetMainListEvent();
@@ -15,8 +16,6 @@ const MainEvents = () => {
     isLiked: false,
     mode: 'list',
   });
-
-  console.log('data : ', data);
 
   return (
     <S.Container>
@@ -56,15 +55,27 @@ const MainEvents = () => {
         <S.SelectItem selected={filterState.isLiked} onClick={() => {}}>
           👋 관심이벤트
         </S.SelectItem>
-        <S.SelectItem selected={filterState.mode === 'calendar'} onClick={() => {}}>
+        <S.SelectItem
+          selected={filterState.mode === 'calendar'}
+          onClick={() => {
+            setFilterState((prev) => ({
+              ...prev,
+              mode: prev.mode === 'list' ? 'calendar' : 'list',
+            }));
+          }}
+        >
           🗓️ 캘린더뷰
         </S.SelectItem>
       </S.SelectContainer>
-      <S.EventList>
-        {data?.map((eventItem) => (
-          <EventItem key={eventItem.title} eventInfo={eventItem} />
-        ))}
-      </S.EventList>
+      {filterState.mode === 'list' ? (
+        <S.EventList>
+          {data?.map((eventItem) => (
+            <EventItem key={eventItem.title} eventInfo={eventItem} />
+          ))}
+        </S.EventList>
+      ) : (
+        <CalendarView />
+      )}
     </S.Container>
   );
 };
