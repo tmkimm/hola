@@ -45,7 +45,7 @@ const App = () => {
           <Route path='/auth/github'>
             <GithubLogin />
           </Route>
-          <Route path='/event'>
+          <Route path='/hola-it'>
             <EventPage />
           </Route>
           <Route>
