@@ -3,10 +3,12 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import FullCalendar from '@fullcalendar/react';
 import * as S from './styled';
 import './calendar.css';
+import { useGetMainCalendarEvent } from 'domains/eventPage/hooks/useGetMainCalendarEvent';
 
 const CalendarView = () => {
   const calendarRef = useRef(null);
   const [_, forceUpdate] = useState(0);
+  const { data, isLoading } = useGetMainCalendarEvent({ year: 2023, month: 9 });
 
   return (
     <S.TotalContainer>
