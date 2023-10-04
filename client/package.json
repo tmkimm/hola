@@ -24,6 +24,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.6.2",
+    "qs": "^6.11.2",
     "quill-image-drop-and-paste": "^1.2.5",
     "quill-magic-url": "^4.1.2",
     "react": "^17.0.2",
