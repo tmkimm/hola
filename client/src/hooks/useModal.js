@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { setModalVisible } from 'store/loginStep';
 
-export const useModal = () => {
+export const useLoginModal = () => {
   const modalVisible = useSelector((state) => state.loginStep.modalVisible);
   const dispatch = useDispatch();
 
