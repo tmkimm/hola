@@ -82,7 +82,16 @@ const Mypage = () => {
     updateUserInfo(
       { id: user.id, userData: submitData },
       {
-        onSuccess: () => {
+        onSuccess: (res) => {
+          const { isExists } = res.user.data;
+
+          if (isExists) {
+            toast.error('닉네임이 중복되었어요!', {
+              position: 'top-right',
+              autoClose: 3000,
+            });
+            return;
+          }
           dispatch(setUser({ key: 'nickName', value: inputData.nickName }));
           toast.success('변경이 완료되었어요!', {
             position: 'top-right',
