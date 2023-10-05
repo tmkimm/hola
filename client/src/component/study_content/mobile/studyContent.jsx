@@ -12,12 +12,12 @@ import { useGetLikesUser } from 'hooks/useGetLikesUser';
 import { useAddLikes } from 'hooks/useAddLikes';
 import { useDeleteLikes } from 'hooks/useDeleteLikes';
 import { useQueryClient } from 'react-query';
-import { useModal } from 'hooks/useModal';
+import { useLoginModal } from 'hooks/useModal';
 import Modal from 'component/modal/modal_component/modal';
 import LoginModal from 'component/modal/login_modal/loginModal';
 
 const MobileStudyContent = ({ user, id }) => {
-  const { openModal, closeModal, modalVisible } = useModal();
+  const { openModal, closeModal, modalVisible } = useLoginModal();
   const { post } = useSelector((state) => state.read);
   const { shareToKakaoTalk } = useSocialShare();
   const queryClient = useQueryClient();

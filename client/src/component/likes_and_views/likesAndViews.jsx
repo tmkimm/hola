@@ -8,10 +8,10 @@ import { useAddLikes } from 'hooks/useAddLikes';
 import { useDeleteLikes } from 'hooks/useDeleteLikes';
 import { useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
-import { useModal } from 'hooks/useModal';
+import { useLoginModal } from 'hooks/useModal';
 
 const LikesAndViews = ({ views, studyId, userId }) => {
-  const { openModal, closeModal, modalVisible } = useModal();
+  const { openModal, closeModal, modalVisible } = useLoginModal();
   const queryClient = useQueryClient();
   const { data, isLoading } = useGetLikesUser(studyId);
   const { mutateAsync: addLikes } = useAddLikes();

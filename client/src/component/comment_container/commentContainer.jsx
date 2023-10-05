@@ -5,10 +5,10 @@ import studyService from 'service/study_service';
 import { useSelector } from 'react-redux';
 import Modal from 'component/modal/modal_component/modal';
 import LoginModal from 'component/modal/login_modal/loginModal';
-import { useModal } from 'hooks/useModal';
+import { useLoginModal } from 'hooks/useModal';
 
 const CommentContainer = ({ id }) => {
-  const { openModal, closeModal, modalVisible } = useModal();
+  const { openModal, closeModal, modalVisible } = useLoginModal();
   const [commentList, setCommentList] = useState([]);
   const [content, setContent] = useState('');
   const [isComplete, setIsComplete] = useState(false);

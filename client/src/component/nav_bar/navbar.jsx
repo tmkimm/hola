@@ -8,10 +8,10 @@ import LoginUser from 'component/login_user/loginUser';
 import { clearUser, fetchUserByRefreshToken } from 'store/user';
 import { toast } from 'react-toastify';
 import { Notice } from 'component/notice';
-import { useModal } from 'hooks/useModal';
+import { useLoginModal } from 'hooks/useModal';
 
 const Navbar = React.memo(({ isBackBtn }) => {
-  const { openModal, closeModal, modalVisible } = useModal();
+  const { openModal, closeModal, modalVisible } = useLoginModal();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const history = useHistory();

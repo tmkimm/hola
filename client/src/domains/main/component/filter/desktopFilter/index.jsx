@@ -7,13 +7,13 @@ import { changeField, changePostMode } from 'store/language';
 import LanguageSelect from '../../listbox';
 import Search from '../../search/search';
 import StudyOrProject from '../../studyOrProject';
-import { useModal } from 'hooks/useModal';
+import { useLoginModal } from 'hooks/useModal';
 
 const DesktopFilter = () => {
   const dispatch = useDispatch();
   const { isClosed, isLiked, mode } = useSelector((state) => state.language);
   const user = useSelector((state) => state.user);
-  const { openModal, closeModal, modalVisible } = useModal();
+  const { openModal } = useLoginModal();
 
   return (
     <S.CategoryContainer>

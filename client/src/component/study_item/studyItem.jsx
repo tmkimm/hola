@@ -17,6 +17,7 @@ import { useAddLikes } from 'hooks/useAddLikes';
 import { useDeleteLikes } from 'hooks/useDeleteLikes';
 import UserDetailModal from 'component/modal/UserDetailModal';
 import { useModalState } from 'hooks/useModalCustom';
+import { useLoginModal } from 'hooks/useModal';
 
 const StudyItem = ({ study }) => {
   const {
@@ -24,7 +25,7 @@ const StudyItem = ({ study }) => {
     openModal: openUserModal,
     closeModal: closeUserModal,
   } = useModalState();
-  const { openModal } = useModalState();
+  const { openModal } = useLoginModal();
   const { mutateAsync: addLikes } = useAddLikes();
   const { mutateAsync: deleteLikes } = useDeleteLikes();
   const studyLang = [];
