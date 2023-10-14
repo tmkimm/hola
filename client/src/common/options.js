@@ -175,6 +175,11 @@ const urlOption = [
   { value: 'Brunch', label: 'Brunch' },
 ];
 
+const filterSortOption = [
+  { value: 'RECENT', label: '최신순' },
+  { value: 'TRENDING', label: '인기순' },
+];
+
 export {
   languageList,
   studyOrProjectOption,
@@ -189,4 +194,5 @@ export {
   workExperienceOption,
   urlOption,
   sortOption,
+  filterSortOption,
 };
