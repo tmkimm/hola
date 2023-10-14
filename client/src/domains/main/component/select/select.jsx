@@ -3,25 +3,30 @@ import Select from 'react-select';
 
 const customStyles = {
   control: (base, state) => {
+    console.log('disabled state : ', state.isDisabled);
     return {
       ...base,
       width: '125px',
       height: '38px',
       display: 'flex',
       justifyContent: 'center',
-      background: 'white',
+      background: state.isDisabled ? '#f7f7f7' : 'white',
       borderRadius: '36px',
       boxShadow: 'none',
-      border: state.hasValue ? '1px solid #00b9ae' : '1px solid #E3E3E3',
+      border: state.isDisabled
+        ? '1px solid #E3E3E3'
+        : state.hasValue
+        ? '1px solid #00b9ae'
+        : '1px solid #E3E3E3',
       '&:hover': {
         border: '1px solid #d1d1d1',
       },
-      cursor: 'pointer',
+      cursor: state.isDisabled ? 'not-allowed' : 'pointer',
     };
   },
   singleValue: (provided, state) => ({
     ...provided,
-    color: state.hasValue ? '#00b9ae' : '#646464',
+    color: state.isDisabled ? 'gray' : state.hasValue ? '#00b9ae' : '#646464',
   }),
   indicatorSeparator: (base) => ({ ...base, display: 'none' }),
   valueContainer: (provided, state) => {
@@ -35,7 +40,7 @@ const customStyles = {
       fontSize: '16px',
       letterSpacing: '0.03em',
       color: state.hasValue ? '#00b9ae' : '#646464',
-      cursor: 'pointer',
+      cursor: state.isDisabled ? 'not-allowed' : 'pointer',
     };
   },
   placeholder: (provided, state) => {
@@ -72,7 +77,7 @@ const customStyles = {
   }),
 };
 
-const CommonSelect = ({ value, options, placeholder, onChange }) => {
+const CommonSelect = ({ value, options, placeholder, onChange, isDisabled = false }) => {
   return (
     <div>
       <Select
@@ -82,6 +87,7 @@ const CommonSelect = ({ value, options, placeholder, onChange }) => {
         isSearchable={false}
         options={options}
         onChange={onChange}
+        isDisabled={isDisabled}
       />
     </div>
   );
