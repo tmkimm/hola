@@ -1,14 +1,20 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import FullCalendar from '@fullcalendar/react';
 import * as S from './styled';
 import './calendar.css';
 import { useGetMainCalendarEvent } from 'domains/eventPage/hooks/useGetMainCalendarEvent';
+import { useHistory, useLocation } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeField } from 'store/itFilter';
 
 const CalendarView = () => {
+  const itFilter = useSelector((state) => state.itFilter);
+  const dispatch = useDispatch();
   const calendarRef = useRef(null);
   const [_, forceUpdate] = useState(0);
-  const { data, isLoading } = useGetMainCalendarEvent({ year: 2023, month: 9 });
+  const { data, isLoading } = useGetMainCalendarEvent({ year: 2023, month: 8 });
+  const history = useHistory();
 
   return (
     <S.TotalContainer>
@@ -19,7 +25,7 @@ const CalendarView = () => {
             const api = calendarRef.current.getApi();
             api.prev();
             forceUpdate((prev) => prev + 1);
-            console.log(api);
+            console.log(api.getDate());
           }}
         />
         <S.Title>{calendarRef.current?.getApi().currentData.viewTitle}</S.Title>
@@ -40,8 +46,11 @@ const CalendarView = () => {
         initialView='dayGridMonth'
         headerToolbar={false}
         events={[
-          { title: '[구름 COMMIT] 관찰 가능성을 찾아 떠나는 SRE의 여정', date: '2023-09-13' },
-          { title: '[유데미x웅진씽크빅x스나이퍼팩토리] 프로젝트 캠프: 플러터', date: '2023-09-22' },
+          { title: '시작 [구름 COMMIT] 관찰 가능성을 찾아 떠나는 SRE의 여정', date: '2023-09-13' },
+          {
+            title: '마감 [유데미x웅진씽크빅x스나이퍼팩토리] 프로젝트 캠프: 플러터',
+            date: '2023-09-22',
+          },
         ]}
         eventContent={renderEventContent}
         eventBackgroundColor='white'

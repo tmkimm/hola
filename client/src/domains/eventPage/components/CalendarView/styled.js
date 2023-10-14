@@ -38,4 +38,5 @@ export const ArrowImg = styled.img`
   display: block;
   width: 30px;
   height: 30px;
+  cursor: pointer;
 `;
