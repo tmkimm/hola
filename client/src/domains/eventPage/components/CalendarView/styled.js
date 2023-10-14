@@ -5,9 +5,18 @@ export const TotalContainer = styled.div`
 `;
 
 export const Content = styled.div`
+  padding-left: 8px;
+  display: flex;
+  gap: 7px;
   overflow: hidden;
   color: #333;
-  font-family: Spoqa Han Sans Neo;
+  font-size: 12px;
+  align-items: center;
+  margin: 2px;
+`;
+
+export const TimeText = styled.span`
+  color: var(--color-system-gray-777777, #777);
   font-size: 12px;
 
   ::before {
@@ -15,10 +24,17 @@ export const Content = styled.div`
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    margin-right: 4px;
-    background: red;
+    margin-right: 7px;
+    background: ${({ color }) => color};
     display: inline-block;
   }
+`;
+
+export const TitleText = styled.span`
+  color: #333;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.36px;
 `;
 
 export const TitleContainer = styled.div`
