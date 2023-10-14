@@ -44,7 +44,6 @@ const RecommendEvents = () => {
   const { data } = useGetRecommendEvents();
   const sliderRef = useRef();
 
-  console.log('data : ', data);
   return (
     <S.Container>
       <S.TitleContainer>

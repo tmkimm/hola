@@ -1,9 +1,9 @@
 import { useQuery } from 'react-query';
 import eventService from 'service/event_service';
 
-export const useGetMainListEvent = () => {
-  const queryKey = ['api', 'event', 'list'];
-  return useQuery(queryKey, eventService.events, {
+export const useGetMainListEvent = (filterState) => {
+  const queryKey = ['api', 'event', 'list', { ...filterState }];
+  return useQuery(queryKey, () => eventService.events(filterState), {
     select: (data) => data.data,
   });
 };

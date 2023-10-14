@@ -20,20 +20,31 @@ class Event {
   };
 
   /* 공모전 광고 영역 */
-  events = ({ page, eventType, search, onOffLine }) => {
+  events = ({ page, eventType, search, onOffline, sort }) => {
+    const queryString = stringify(
+      {
+        page,
+        eventType: eventType === 'all' ? null : eventType,
+        sort: sort === 'RECENT' ? '-createAt' : '-views',
+        onOffline,
+        search,
+      },
+      { skipNulls: true },
+    );
+
     try {
-      return this.client.get('events');
+      return this.client.get(`events?${queryString}`);
     } catch (error) {
       console.error(error);
     }
   };
 
-  calendar = async ({ year, month, ...rest }) => {
-    const queryString = stringify(rest);
+  calendar = async ({ year, month, eventType, search }) => {
+    const queryString = stringify({ eventType, search }, { skipNulls: true });
 
     try {
       const response = await this.client.get(
-        `/calendar/${year}/${month}` + (queryString ? `?${queryString}` : ''),
+        `events/calendar/${year}/${month}${queryString ? `?${queryString}` : ''}`,
       );
       return response;
     } catch (error) {
