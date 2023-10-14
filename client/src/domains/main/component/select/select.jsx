@@ -3,7 +3,6 @@ import Select from 'react-select';
 
 const customStyles = {
   control: (base, state) => {
-    console.log('disabled state : ', state.isDisabled);
     return {
       ...base,
       width: '125px',
