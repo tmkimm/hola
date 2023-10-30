@@ -45,6 +45,12 @@ export const CategoryContainer = styled.div`
   }
 `;
 
+export const SelectAndSearch = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 export const SelectContainer = styled.div`
   margin-top: 33px;
   display: flex;

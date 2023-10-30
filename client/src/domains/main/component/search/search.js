@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
 import styles from './search.module.css';
 
-const Search = ({ handleSubmit, handleChange, handleSearchAreaClick, handleRemoveClick }) => {
-  const [inputValue, setInputValue] = useState('');
+const Search = ({
+  handleSubmit,
+  handleChange,
+  handleSearchAreaClick,
+  handleRemoveClick,
+  defaultValue = '',
+  placeholder,
+}) => {
+  const [inputValue, setInputValue] = useState(null);
+  const defaultInputValue = defaultValue || '';
 
   return (
     <div
@@ -14,9 +22,9 @@ const Search = ({ handleSubmit, handleChange, handleSearchAreaClick, handleRemov
       <img className={styles.searchImg} src='images/info/search.png' alt='search icon' />
 
       <input
-        placeholder='제목, 글 내용을 검색해보세요.'
+        placeholder={placeholder}
         className={styles.searchInput}
-        value={inputValue}
+        value={inputValue ?? defaultInputValue}
         onKeyPress={(e) => {
           //NOTE: enter key 입력시에만 전역 state와 sync합니다.
           if (e.key === 'Enter') {

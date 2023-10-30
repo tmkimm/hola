@@ -60,6 +60,7 @@ const DesktopFilter = () => {
           </S.SelectItem>
         </S.SelectContainer>
         <Search
+          placeholder='제목, 글 내용을 검색해보세요.'
           handleSubmit={(inputValue) => {
             if (inputValue === '') return;
             HolaLogEvent('select_search', { category: inputValue });
