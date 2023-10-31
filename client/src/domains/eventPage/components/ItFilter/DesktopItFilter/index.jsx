@@ -7,7 +7,7 @@ import { filterSortOption, onlineOrOfflineOption } from 'common/options';
 import Search from 'domains/main/component/search/search';
 import { HolaLogEvent } from 'common/GA';
 
-const filterList = {
+export const filterList = {
   전체: IT_FILTER.TYPE.ALL,
   해커톤: IT_FILTER.TYPE.HACKATHON,
   컨퍼런스: IT_FILTER.TYPE.CONFERENCE,

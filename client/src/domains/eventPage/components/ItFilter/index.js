@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { stringify, parse } from 'qs';
 import { updateField } from 'store/itFilter';
 import DesktopItFilter from './DesktopItFilter';
+import MobileItFilter from './MobileItFilter';
 
 const makeQueryString = (state) => {
   const { eventType, viewMode, year, month, sort, page, onOffline, search } = state;
@@ -31,7 +32,7 @@ const ItFilterView = ({ isMobile }) => {
     history.push({ pathName: '/hola-it', search: makeQueryString(filterState) });
   }, [filterState, history]);
 
-  return isMobile ? <DesktopItFilter /> : <DesktopItFilter />;
+  return isMobile ? <MobileItFilter /> : <DesktopItFilter />;
 };
 
 export default ItFilterView;
