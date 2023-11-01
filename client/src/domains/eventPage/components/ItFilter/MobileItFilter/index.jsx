@@ -3,18 +3,17 @@ import * as S from './styled';
 import FilterButton from './FilterButton';
 // import FilterBottomSheet from '../filterBottomSheet';
 import { useDispatch, useSelector } from 'react-redux';
-import { capitalize } from 'common/utils';
-import { onlineOrOfflineOption, positionsOption } from 'common/options';
+import { filterSortOption, onlineOrOfflineOption, eventTypeOption } from 'common/options';
 import { HolaLogEvent } from 'common/GA';
 import { changeSearch } from 'store/language';
 import Search from 'domains/main/component/search/search';
 import { IT_FILTER } from 'store/itFilter';
-import { filterList } from '../DesktopItFilter';
+import FilterBottomSheet from './filterBottomSheet';
 
 const MobileItFilter = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [curCategory, setCurCategory] = useState('기술스택');
-  const { eventType, viewMode, onOffline } = useSelector((state) => state.itFilter);
+  const [curCategory, setCurCategory] = useState('카테고리');
+  const { eventType, viewMode, onOffline, sort } = useSelector((state) => state.itFilter);
   const dispatch = useDispatch();
 
   const handleClick = (category) => {
@@ -41,7 +40,7 @@ const MobileItFilter = () => {
             dispatch(changeSearch(''));
           }}
           handleSearchAreaClick={() => {
-            HolaLogEvent('select_search');
+            HolaLogEvent('it_select_search');
           }}
         />
         <S.ButtonContainer>
@@ -51,9 +50,13 @@ const MobileItFilter = () => {
             onClick={() => handleClick('모집구분')}
           />
           <FilterButton
-            buttonText={eventType === IT_FILTER.TYPE.ALL ? '카테고리' : '키'}
-            isSelected={IT_FILTER.TYPE !== 'ALL'}
-            onClick={() => handleClick('포지션')}
+            buttonText={
+              eventType === IT_FILTER.TYPE.ALL
+                ? '카테고리'
+                : eventTypeOption.find((v) => v.value === eventType).label
+            }
+            isSelected={eventType !== IT_FILTER.TYPE.ALL}
+            onClick={() => handleClick('카테고리')}
           />
           <FilterButton
             buttonText={
@@ -64,15 +67,20 @@ const MobileItFilter = () => {
             isSelected={onOffline !== IT_FILTER.PLACE.ALL}
             onClick={() => handleClick('진행방식')}
           />
+          <FilterButton
+            buttonText={filterSortOption.find((v) => v.value === sort).label}
+            isSelected={true}
+            onClick={() => handleClick('정렬방식')}
+          />
         </S.ButtonContainer>
       </S.Container>
       <S.Separator />
-      {/* <FilterBottomSheet
+      <FilterBottomSheet
         isOpen={isOpen}
         onDismiss={() => setIsOpen(false)}
         curCategory={curCategory}
         setCurCategory={setCurCategory}
-      /> */}
+      />
     </>
   );
 };

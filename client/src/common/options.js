@@ -132,11 +132,6 @@ const positionsExceptAllOption = [
   { value: 'PD', label: '기획자' },
 ];
 
-const sortOption = [
-  { value: 'RECENT', label: '최신순' },
-  { value: 'URGENT', label: '마감순' },
-];
-
 const positionsMap = {
   ALL: '전체',
   FE: '프론트엔드',
@@ -180,6 +175,14 @@ const filterSortOption = [
   { value: 'TRENDING', label: '인기순' },
 ];
 
+const eventTypeOption = [
+  { value: 'all', label: '전체' },
+  { value: 'conference', label: '컨퍼런스' },
+  { value: 'hackathon', label: '해커톤' },
+  { value: 'contest', label: '공모전' },
+  { value: 'bootcamp', label: '부트캠프' },
+];
+
 export {
   languageList,
   studyOrProjectOption,
@@ -193,6 +196,6 @@ export {
   positionsExceptAllOption,
   workExperienceOption,
   urlOption,
-  sortOption,
   filterSortOption,
+  eventTypeOption,
 };

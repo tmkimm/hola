@@ -13,8 +13,8 @@ export const IT_FILTER = {
     CALENDAR: 'calendar',
   },
   SORT: {
-    RECENT: 'recent',
-    URGENT: 'urgent',
+    RECENT: 'RECENT',
+    URGENT: 'TRENDING',
   },
   PLACE: {
     ALL: 'all',
@@ -52,8 +52,9 @@ const itFilterSlice = createSlice({
         ...payload,
       };
     },
+    initFilterState: () => initialState,
   },
 });
 
-export const { changeField, updateField } = itFilterSlice.actions;
+export const { changeField, updateField, initFilterState } = itFilterSlice.actions;
 export default itFilterSlice.reducer;
