@@ -10,7 +10,9 @@ const ListView = () => {
   return (
     <S.EventList>
       {data?.map((eventItem, idx) => (
-        <EventItem key={idx} eventInfo={eventItem} />
+        <S.EventItemContainer>
+          <EventItem key={idx} eventInfo={eventItem} />
+        </S.EventItemContainer>
       ))}
     </S.EventList>
   );

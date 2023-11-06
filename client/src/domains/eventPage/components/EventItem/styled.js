@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const EventContainer = styled.li`
-  width: 300px;
+  width: 100%;
 `;
 
 export const ImageContainer = styled.div`
@@ -13,6 +13,14 @@ export const AdImage = styled.img`
   width: 100%;
   height: 180px;
   border-radius: 15px;
+
+  @media screen and (max-width: 768px) {
+    height: 200px;
+  }
+
+  @media screen and (max-width: 500px) {
+    height: 100px;
+  }
 `;
 
 export const PositionAndDateContainer = styled.div`
@@ -20,12 +28,14 @@ export const PositionAndDateContainer = styled.div`
   margin-top: 15px;
   gap: 10px;
   color: #999;
-  font-family: Spoqa Han Sans Neo;
   font-size: 15px;
-  font-style: normal;
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.45px;
+
+  @media screen and (max-width: 500px) {
+    font-size: 12px;
+  }
 `;
 
 export const DateInfo = styled.span`
@@ -49,6 +59,12 @@ export const Title = styled.h1`
   -webkit-line-clamp: 2;
   word-break: break-all;
   overflow: hidden;
+
+  @media screen and (max-width: 500px) {
+    margin-top: 8px;
+    font-size: 14px;
+    height: 40px;
+  }
 `;
 
 export const Badge = styled.div`
@@ -63,4 +79,10 @@ export const Badge = styled.div`
   font-weight: 700;
   border: 1px solid ${({ color }) => color};
   color: ${({ color }) => color};
+
+  @media screen and (max-width: 500px) {
+    font-size: 10px;
+    padding: 2px 10px;
+    margin-top: 10px;
+  }
 `;

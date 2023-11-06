@@ -5,9 +5,8 @@ import FilterButton from './FilterButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterSortOption, onlineOrOfflineOption, eventTypeOption } from 'common/options';
 import { HolaLogEvent } from 'common/GA';
-import { changeSearch } from 'store/language';
 import Search from 'domains/main/component/search/search';
-import { IT_FILTER } from 'store/itFilter';
+import { IT_FILTER, changeField } from 'store/itFilter';
 import FilterBottomSheet from './filterBottomSheet';
 
 const MobileItFilter = () => {
@@ -28,16 +27,15 @@ const MobileItFilter = () => {
           handleSubmit={(inputValue) => {
             if (inputValue === '') return;
             HolaLogEvent('it_select_search', { category: inputValue });
-            dispatch(changeSearch(inputValue));
+            dispatch(changeField({ key: 'search', value: inputValue }));
           }}
           handleChange={(inputValue) => {
             if (inputValue === '') {
-              alert('occur');
-              dispatch(changeSearch(''));
+              dispatch(changeField({ key: 'search', value: '' }));
             }
           }}
           handleRemoveClick={() => {
-            dispatch(changeSearch(''));
+            dispatch(changeField({ key: 'search', value: '' }));
           }}
           handleSearchAreaClick={() => {
             HolaLogEvent('it_select_search');

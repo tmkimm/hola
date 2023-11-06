@@ -108,3 +108,7 @@ export const ImageContainer = styled.div`
   display: flex;
   gap: 6px;
 `;
+
+export const EventItemContainer = styled.div`
+  width: 300px;
+`;

@@ -31,7 +31,6 @@ const MobileFilter = () => {
           }}
           handleChange={(inputValue) => {
             if (inputValue === '') {
-              alert('occur');
               dispatch(changeSearch(''));
             }
           }}
