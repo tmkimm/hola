@@ -14,7 +14,7 @@ const CommonBanner = ({
   bgColor,
 }) => {
   const handleLinkClick = (e) => {
-    HolaLogEvent('main_banner', { category: title });
+    HolaLogEvent(`main_banner_${title}`, { category: title });
     e.preventDefault();
     window.location.href = link;
   };
