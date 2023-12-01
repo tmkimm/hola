@@ -6,11 +6,13 @@ import { clearUser } from 'store/user';
 import authService from 'service/auth_service';
 import { clearStep } from 'store/loginStep';
 import { useHistory } from 'react-router';
+import { HolaLogEvent } from 'common/GA';
 
 const DropdownBar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const handleLogout = async () => {
+    HolaLogEvent('sign_out');
     history.push('/');
     dispatch(clearUser());
     dispatch(clearStep());

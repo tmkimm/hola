@@ -81,7 +81,11 @@ const LanguageBar = () => {
 
   const onIconClick = (language, isSelected) => {
     if (!isSelected) {
-      HolaLogEvent('filter_language', { category: language });
+      HolaLogEvent('filter_language', {
+        category: language,
+        select_language: language,
+        user_agent: 'desktop',
+      });
       dispatch(addLanguage(languageMap[language]));
     } else {
       selected.length === 1

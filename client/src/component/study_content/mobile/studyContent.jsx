@@ -37,6 +37,7 @@ const MobileStudyContent = ({ user, id }) => {
   const defaultPath = 'https://hola-post-image.s3.ap-northeast-2.amazonaws.com/';
 
   const handleShareClick = () => {
+    HolaLogEvent('share_button_click');
     shareToKakaoTalk({
       templateId: 93996,
       templateArgs: {
@@ -64,6 +65,7 @@ const MobileStudyContent = ({ user, id }) => {
 
   const handleApplyClick = () => {
     const { value } = contactType;
+    HolaLogEvent(`mobile_apply_${title}`);
 
     if (value === 'ok' || value === 'gf') window.open(contactPoint, '_blank');
     else copyContent(contactPoint);
@@ -74,7 +76,8 @@ const MobileStudyContent = ({ user, id }) => {
       openModal();
       return;
     }
-    HolaLogEvent('highfive_block', { category: studyId });
+    HolaLogEvent('mobile_highfive_block', { category: studyId });
+    HolaLogEvent(`mobile_highfive_block_${studyId}`, { category: studyId });
     const isLike = data.likeUsers.find((likeId) => likeId === user.id);
     const toastText = isLike ? '관심 목록에서 제거했어요!' : '관심 목록에 추가했어요!';
     const result = isLike ? await deleteLikes(id) : await addLikes(id);

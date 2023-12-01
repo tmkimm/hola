@@ -8,6 +8,7 @@ import LanguageSelect from '../../listbox';
 import Search from '../../search/search';
 import StudyOrProject from '../../studyOrProject';
 import { useLoginModal } from 'hooks/useModal';
+import { HolaLogEvent } from 'common/GA';
 
 const DesktopFilter = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const DesktopFilter = () => {
             placeholder='포지션'
             onChange={(e) => {
               const { value } = e;
+              HolaLogEvent(`filter_position_${value}`);
               dispatch(changeField({ key: 'position', value }));
             }}
           />
@@ -34,12 +36,14 @@ const DesktopFilter = () => {
             placeholder='진행 방식'
             onChange={(e) => {
               const { value } = e;
+              HolaLogEvent(`filter_method_${value}`);
               dispatch(changeField({ key: 'onOffLine', value }));
             }}
           />
           <S.SelectItem
             selected={isLiked}
             onClick={() => {
+              HolaLogEvent(`filter_view_like_only_${isLiked}`);
               user.id ? dispatch(changePostMode(!isLiked)) : openModal();
             }}
           >
@@ -48,6 +52,7 @@ const DesktopFilter = () => {
           <S.SelectItem
             selected={!isClosed}
             onClick={() => {
+              HolaLogEvent(`filter_open_only_${isClosed}`);
               dispatch(changeField({ key: 'isClosed', value: !isClosed }));
             }}
           >

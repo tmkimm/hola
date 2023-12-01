@@ -12,7 +12,7 @@ const Search = () => {
     <div
       className={styles.container}
       onClick={() => {
-        HolaLogEvent('select_search');
+        HolaLogEvent('select_search_click');
       }}
     >
       <img className={styles.searchImg} src='images/info/search.png' alt='search icon' />
@@ -25,7 +25,7 @@ const Search = () => {
           if (e.key === 'Enter') {
             if (inputValue === '') return;
 
-            HolaLogEvent('select_search', { category: inputValue });
+            HolaLogEvent('select_search', { category: inputValue, input: inputValue });
             dispatch(changeSearch(inputValue));
           }
         }}

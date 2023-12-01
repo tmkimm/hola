@@ -2,11 +2,13 @@ import React from 'react';
 import styles from './contactPoint.module.css';
 import { toast } from 'react-toastify';
 import { useMediaQuery } from 'react-responsive';
+import { HolaLogEvent } from 'common/GA';
 
-export const ContactPoint = ({ contactPoint, contactType }) => {
+export const ContactPoint = ({ title, contactPoint, contactType }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   const copyContent = async (text) => {
+    HolaLogEvent(`apply_email_${title}`);
     try {
       await navigator.clipboard.writeText(text);
       toast.success('클립보드에 주소가 복사되었어요!', {
@@ -29,7 +31,15 @@ export const ContactPoint = ({ contactPoint, contactType }) => {
             <span className={styles.label}>{contactType.label}</span>
           </div>
         ) : (
-          <a className={styles.link} href={contactPoint} target='_blank' rel='noreferrer'>
+          <a
+            onClick={() => {
+              HolaLogEvent(`apply_${contactType.value}_${title}`);
+            }}
+            className={styles.link}
+            href={contactPoint}
+            target='_blank'
+            rel='noreferrer'
+          >
             <span className={styles.label}>{contactType.label}</span>
             <img className={styles.linkImg} src={'/images/info/link.svg'} alt='링크' />
           </a>

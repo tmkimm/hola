@@ -8,6 +8,7 @@ import { MdFavorite } from 'react-icons/md';
 import { FaBook } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
+import { HolaLogEvent } from 'common/GA';
 
 /*
 
@@ -73,7 +74,10 @@ const MyLikes = (props) => {
                 className={`${styles.category__item} ${
                   category === SHOW_BY_READS ? INACTIVE : ACTIVE
                 }`}
-                onClick={() => toggleCategory(SHOW_BY_LIKES)}
+                onClick={() => {
+                  toggleCategory(SHOW_BY_LIKES);
+                  HolaLogEvent('highfive_list');
+                }}
               >
                 <MdFavorite />
                 <span className={styles.text}>관심 목록</span>

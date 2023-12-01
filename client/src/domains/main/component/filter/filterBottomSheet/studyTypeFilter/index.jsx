@@ -2,6 +2,7 @@ import React from 'react';
 import * as S from './styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeMode } from 'store/language';
+import { HolaLogEvent } from 'common/GA';
 
 const typeOption = [
   { value: 'all', label: '전체' },
@@ -14,6 +15,7 @@ const StudyTypeFilter = () => {
   const category = useSelector((state) => state.language.mode);
 
   const toggleCategory = (toggleTo) => {
+    HolaLogEvent(`mobile_filter_study_type_${toggleTo}`);
     if (category === toggleTo) return;
     dispatch(changeMode(toggleTo));
   };

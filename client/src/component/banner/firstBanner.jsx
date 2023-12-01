@@ -4,7 +4,9 @@ import styles from './firstBanner.module.css';
 
 export const FirstBanner = () => {
   const handleLinkClick = (e) => {
-    HolaLogEvent('main_banner', { category: '스터디와 사이드 프로젝트를 찾는 가장 쉬운 방법' });
+    HolaLogEvent('main_banner_default', {
+      category: '스터디와 사이드 프로젝트를 찾는 가장 쉬운 방법',
+    });
     e.preventDefault();
     window.location.href =
       'https://temporal-weather-18e.notion.site/Hola-_______-613200b663ab47b2b59c8c5cf0011b2f';

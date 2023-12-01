@@ -45,7 +45,11 @@ const LanguageFilter = () => {
 
   const onLanguageClick = (language, isSelected) => {
     if (!isSelected) {
-      HolaLogEvent('filter_language', { category: language });
+      HolaLogEvent('filter_language', {
+        category: language,
+        select_language: language,
+        user_agent: 'mobile',
+      });
       dispatch(addLanguage(language));
     } else {
       selected.length === 1 ? dispatch(initLanguage()) : dispatch(removeLanguage(language));

@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 import { modifyPost, writePost } from 'store/write';
 import Writebutton from './writebutton';
 import { toast } from 'react-toastify';
+import { HolaLogEvent } from 'common/GA';
 
 /* 
 
@@ -136,6 +137,7 @@ const WritebuttonContainer = (props) => {
   // language 자동으로 넘어가도록 수정
   const onPublish = () => {
     if (!checkValidity()) return;
+    HolaLogEvent('create_newpost_complete');
 
     if (postId) {
       dispatch(
@@ -184,6 +186,7 @@ const WritebuttonContainer = (props) => {
   };
 
   const onCancel = () => {
+    HolaLogEvent('create_newpost_cancel');
     history.goBack();
   };
 

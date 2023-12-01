@@ -11,7 +11,7 @@ import { changeField, changePage } from 'store/language';
 import { useGetMyLikes } from 'domains/main/hooks/useGetMyLikes';
 
 const Posts = React.memo(() => {
-  const { isLiked } = useSelector((state) => state.language);
+  const { isLiked, search } = useSelector((state) => state.language);
   const { commonData, isLoading, page } = useStudySearch();
   const { pageData, isPageLoading } = useGetPage();
   const { likeData, isLikeLoading } = useGetMyLikes(isLiked);
@@ -24,7 +24,14 @@ const Posts = React.memo(() => {
 
   return (
     <>
-      {!!renderedPosts?.length ? <StudyList studyList={renderedPosts}></StudyList> : <EmptyList />}
+      {!!renderedPosts?.length ? (
+        <StudyList
+          type={search === '' ? 'organic' : 'search'}
+          studyList={renderedPosts}
+        ></StudyList>
+      ) : (
+        <EmptyList />
+      )}
       {!isLiked && !isPageLoading && (
         <div className={styles.paginationWrapper}>
           <Pagination

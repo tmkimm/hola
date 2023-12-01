@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import * as S from './styled';
 import { changeField } from 'store/language';
+import { HolaLogEvent } from 'common/GA';
 
 const onlineOrOfflineOption = [
   { value: 'ALL', label: '전체' },
@@ -21,7 +22,10 @@ const OnOfflineFilter = () => {
         <S.LanguageItem
           key={idx}
           selected={onOffline === types.value}
-          onClick={() => dispatch(changeField({ key: 'onOffLine', value: types.value }))}
+          onClick={() => {
+            HolaLogEvent(`mobile_filter_method_${types.value}`);
+            dispatch(changeField({ key: 'onOffLine', value: types.value }));
+          }}
         >
           {types.label}
         </S.LanguageItem>

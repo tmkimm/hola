@@ -4,6 +4,7 @@ import { nextStep, setSignUpUser } from 'store/loginStep';
 import SetNickname from 'component/set_nickname/setNickname';
 import { toast } from 'react-toastify';
 import userService from 'service/user_service';
+import { HolaLogEvent } from 'common/GA';
 
 const SetNicknameContainer = (props) => {
   const dispatch = useDispatch();
@@ -34,7 +35,9 @@ const SetNicknameContainer = (props) => {
       });
       return;
     }
-
+    HolaLogEvent('sign_up_start_nickname', {
+      category: nickname,
+    });
     dispatch(setSignUpUser({ key: 'nickName', value: nickname }));
     dispatch(nextStep());
   };

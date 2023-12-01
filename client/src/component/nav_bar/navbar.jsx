@@ -9,6 +9,7 @@ import { clearUser, fetchUserByRefreshToken } from 'store/user';
 import { toast } from 'react-toastify';
 import { Notice } from 'component/notice';
 import { useLoginModal } from 'hooks/useModal';
+import { HolaLogEvent } from 'common/GA';
 
 const Navbar = React.memo(({ isBackBtn }) => {
   const { openModal, closeModal, modalVisible } = useLoginModal();
@@ -17,6 +18,7 @@ const Navbar = React.memo(({ isBackBtn }) => {
   const history = useHistory();
 
   const handleRegister = () => {
+    HolaLogEvent('create_newpost_start');
     if (user.id === undefined) {
       openModal();
       return;

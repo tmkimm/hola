@@ -16,7 +16,7 @@ const SocialLogin = ({
   kakaoClientId,
 }) => {
   const handleClick = (method) => {
-    HolaLogEvent('login', { category: method });
+    HolaLogEvent(`login_${method}`, { category: method });
   };
 
   return (

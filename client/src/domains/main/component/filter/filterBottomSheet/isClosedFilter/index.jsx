@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import * as S from './styled';
 import { changeField } from 'store/language';
+import { HolaLogEvent } from 'common/GA';
 
 const isClosedOption = [
   { value: false, label: '모집 중만 보기' },
@@ -19,7 +20,10 @@ const IsClosedFilter = () => {
         <S.LanguageItem
           key={idx}
           selected={isClosed === types.value}
-          onClick={() => dispatch(changeField({ key: 'isClosed', value: types.value }))}
+          onClick={() => {
+            HolaLogEvent(`mobile_filter_open_only_${types.value}`);
+            dispatch(changeField({ key: 'isClosed', value: types.value }));
+          }}
         >
           {types.label}
         </S.LanguageItem>

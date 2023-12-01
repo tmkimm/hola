@@ -19,7 +19,7 @@ import UserDetailModal from 'component/modal/UserDetailModal';
 import { useModalState } from 'hooks/useModalCustom';
 import { useLoginModal } from 'hooks/useModal';
 
-const StudyItem = ({ study }) => {
+const StudyItem = ({ study, type }) => {
   const {
     modalVisible: isUserModalOpen,
     openModal: openUserModal,
@@ -42,6 +42,8 @@ const StudyItem = ({ study }) => {
   };
 
   const handleLike = async (e) => {
+    HolaLogEvent(`highfive_main_${study._id}`, { category: study._id });
+    HolaLogEvent('highfive_main', { category: study._id });
     e.stopPropagation();
     e.preventDefault();
     if (!user.nickName) {
@@ -67,7 +69,7 @@ const StudyItem = ({ study }) => {
 
   const handleStudyClick = (e) => {
     e.preventDefault();
-    HolaLogEvent('select_block', { category: study._id });
+    HolaLogEvent(`select_block_${type}`, { category: study._id });
     history.push(`/study/${study._id}`);
   };
 

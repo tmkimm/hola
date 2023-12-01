@@ -28,7 +28,11 @@ export const StudyInfo = () => {
         </li>
         <li className={styles.contentWrapper}>
           <span className={styles.title}>연락 방법</span>
-          <ContactPoint contactPoint={read.post.contactPoint} contactType={read.post.contactType} />
+          <ContactPoint
+            title={read.post.title}
+            contactPoint={read.post.contactPoint}
+            contactType={read.post.contactType}
+          />
         </li>
 
         <li className={styles.contentWrapper}>

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { nextStep, setSignUpUser } from 'store/loginStep';
 import { toast } from 'react-toastify';
 import { addUserNickName } from 'store/user';
+import { HolaLogEvent } from 'common/GA';
 
 const SetLanguage = () => {
   const dispatch = useDispatch();
@@ -59,6 +60,12 @@ const SetLanguage = () => {
             });
             return;
           }
+
+          HolaLogEvent('sign_up_start_select_tag', {
+            category: likeLanguages.map((lang) => lang.value).join('_'),
+            select_language: likeLanguages.map((lang) => lang.value).join('_'),
+          });
+
           dispatch(
             addUserNickName({
               id,

@@ -20,6 +20,7 @@ const StudyOrProject = ({ category }) => {
   const dispatch = useDispatch();
 
   const toggleCategory = (toggleTo) => {
+    HolaLogEvent(`filter_position_desktop_studyType_${toggleTo}`);
     if (category === toggleTo) return;
     dispatch(changeMode(toggleTo));
   };
@@ -32,7 +33,6 @@ const StudyOrProject = ({ category }) => {
         }`}
         onClick={() => {
           toggleCategory(ALL);
-          HolaLogEvent('filter_type', { category: 'all' });
         }}
       >
         <span className={styles.text}>전체</span>
@@ -42,7 +42,6 @@ const StudyOrProject = ({ category }) => {
           category === PROJECT ? active.className : inActive.className
         }`}
         onClick={() => {
-          HolaLogEvent('filter_type', { category: 'project' });
           toggleCategory(PROJECT);
         }}
       >
@@ -53,7 +52,6 @@ const StudyOrProject = ({ category }) => {
           category === STUDY ? active.className : inActive.className
         }`}
         onClick={() => {
-          HolaLogEvent('filter_type', { category: 'study' });
           toggleCategory(STUDY);
         }}
       >

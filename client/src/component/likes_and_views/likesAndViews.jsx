@@ -18,7 +18,13 @@ const LikesAndViews = ({ views, studyId, userId }) => {
   const { mutateAsync: deleteLikes } = useDeleteLikes();
 
   const handleLikesClick = async () => {
-    HolaLogEvent('highfive_block', { category: studyId });
+    HolaLogEvent('highfive_block', {
+      category: studyId,
+      study_id: studyId,
+    });
+    HolaLogEvent(`highfive_block_${studyId}`, {
+      category: studyId,
+    });
     if (userId === undefined) {
       openModal();
       return;

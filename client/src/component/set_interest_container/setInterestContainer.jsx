@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { nextStep, setSignUpUser } from 'store/loginStep';
 import SetInterest from 'component/set_interest/setInterest';
 import { toast } from 'react-toastify';
-import { addUserNickName } from 'store/user';
+import { HolaLogEvent } from 'common/GA';
 
 const SetInterestContainer = () => {
   const dispatch = useDispatch();
@@ -30,6 +30,10 @@ const SetInterestContainer = () => {
       });
       return;
     }
+
+    HolaLogEvent('sign_up_start_position_and_career', {
+      category: workExperience,
+    });
 
     dispatch(nextStep());
   };

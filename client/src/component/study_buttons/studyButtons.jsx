@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './studyButtons.module.css';
 import Modal from 'component/modal/modal_component/modal';
 import CancelButton from 'component/cancelButton/cancelButton';
+import { HolaLogEvent } from 'common/GA';
 
 const StudyButtons = ({ history, dispatch, handleEdit, handleDelete, isClosed, handleEnd }) => {
   const [showPopup, setShowPopup] = useState(false);
@@ -29,13 +30,31 @@ const StudyButtons = ({ history, dispatch, handleEdit, handleDelete, isClosed, h
   return (
     <>
       <section className={styles.buttonWrapper}>
-        <button className={styles.buttons} onClick={() => openModal('endModal')}>
+        <button
+          className={styles.buttons}
+          onClick={() => {
+            HolaLogEvent('post_close');
+            openModal('endModal');
+          }}
+        >
           {close === true ? '마감 취소' : '마감'}
         </button>
-        <button className={styles.buttons} onClick={() => handleEdit(dispatch, history)}>
+        <button
+          className={styles.buttons}
+          onClick={() => {
+            HolaLogEvent('post_edit');
+            handleEdit(dispatch, history);
+          }}
+        >
           수정
         </button>
-        <button className={styles.buttons} onClick={() => openModal('deleteModal')}>
+        <button
+          className={styles.buttons}
+          onClick={() => {
+            HolaLogEvent('post_delete');
+            openModal('deleteModal');
+          }}
+        >
           삭제
         </button>
       </section>

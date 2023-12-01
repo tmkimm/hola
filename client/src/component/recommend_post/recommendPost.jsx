@@ -16,6 +16,7 @@ const RecommendPost = ({ id }) => {
   const handlePostClick = (id) => {
     history.push(`/study/${id}`);
     HolaLogEvent('recommend_list');
+    HolaLogEvent(`recommend_list_${id}`);
   };
 
   return (
