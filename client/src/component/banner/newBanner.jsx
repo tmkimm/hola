@@ -1,9 +1,9 @@
 import { HolaLogEvent } from 'common/GA';
 import React from 'react';
-import styles from './commonBanner.module.css';
+import styles from './newBanner.module.css';
 import './carousel.css';
 
-const CommonBanner = ({
+const NewBanner = ({
   title,
   subTitle,
   imgSrc,
@@ -59,4 +59,4 @@ const CommonBanner = ({
   );
 };
 
-export default CommonBanner;
+export default NewBanner;

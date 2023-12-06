@@ -1,4 +1,5 @@
 .slick-list {
+  width: calc(100% - 40px);
   max-width: 1300px;
   margin: 0 auto;
   border-radius: 30px;
@@ -15,5 +16,6 @@
   .slick-list {
     max-width: 670px;
     margin: 0 auto;
+    border-radius: 15px;
   }
 }
