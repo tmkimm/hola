@@ -8,8 +8,8 @@ import NewBanner from 'component/banner/newBanner';
 
 const bannerItem = [
   {
-    title: '더 편해진 올라~',
-    subTitle: '연말 선물같은 설렘과 함께 찾아온 패치노트 보러가기 🎁',
+    title: '더 편해진 올라!',
+    subTitle: '연말 선물같은 설렘과 함께 찾아온 패치노트 🎁',
     imgSrc: '/images/banner/banner231206.png',
     link: 'https://www.notion.so/Hola-What-s-new-23-12-1dae5aa7acb245edb5d5d98fb9386719',
     badgeTitle: 'NOTICE',
@@ -20,7 +20,7 @@ const bannerItem = [
   },
   {
     title: 'Hola! 공식 인스타그램 OPEN!',
-    subTitle: '지금 팔로우하고 다양한 올라 소식을 만나보세요 👋',
+    subTitle: '팔로우하고 다양한 올라 소식을 만나보세요 👋',
     imgSrc: '/images/banner/33.png',
     link: 'https://instagram.com/holaworld_official',
     badgeTitle: 'NOTICE',

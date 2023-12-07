@@ -165,4 +165,8 @@
     height: 7px;
     background-color: #f3f3f3;
   }
+
+  .studyItem:hover {
+    transform: none;
+  }
 }

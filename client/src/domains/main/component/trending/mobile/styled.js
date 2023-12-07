@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const Skeleton = styled.div`
   width: 100%;
-  padding: 0 15px;
+  padding-left: 15px;
   margin-top: 25px;
   height: 157px;
 `;

@@ -45,10 +45,11 @@
 @media screen and (max-width: 500px) {
   .container {
     display: flex;
-    width: 100%;
+    width: calc(100% - 50px);
     background: white;
     border-radius: 30px;
     border: 0.783px solid #ddd;
+    margin: 0 auto;
   }
 
   .searchImg {

@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
   margin-top: 20px;
-  padding: 0 25px;
   width: 100%;
 `;
 
@@ -15,6 +14,7 @@ export const Separator = styled.div`
 
 export const ButtonContainer = styled.div`
   margin-top: 10px;
+  padding: 0 25px;
   display: flex;
   flex-wrap: nowrap;
   gap: 7px;
