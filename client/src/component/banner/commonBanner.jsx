@@ -3,6 +3,7 @@ import React from 'react';
 import styles from './commonBanner.module.css';
 import './carousel.css';
 
+//TODO:: rightSection을 absolute로 얹는 방식으로 스타일 변경
 const CommonBanner = ({
   title,
   subTitle,
