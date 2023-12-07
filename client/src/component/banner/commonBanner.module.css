@@ -58,9 +58,11 @@
 }
 
 .sequenceBadge {
-  padding: 5px 16px;
+  padding: 7px 6px;
+  display: flex;
   justify-content: center;
   align-items: center;
+  gap: 15px;
   border-radius: 36px;
   background: rgba(255, 255, 255, 0.8);
   color: #555555;
@@ -69,6 +71,16 @@
   bottom: 25px;
   font-size: 14px;
   font-weight: 500;
+}
+
+.pagination {
+  display: flex;
+  gap: 10px;
+}
+
+.arrows {
+  width: 16px;
+  height: 16px;
 }
 
 @media screen and (max-width: 980px) {

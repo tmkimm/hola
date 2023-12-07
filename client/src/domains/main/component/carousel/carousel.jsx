@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -59,8 +59,22 @@ export const Carousel = () => {
     ],
   };
 
+  const slickRef = useRef();
+
+  useEffect(() => {
+    console.log(slickRef.current.slickNext);
+  }, [slickRef.current]);
+
+  const handlePrev = () => {
+    slickRef.current.slickPrev();
+  };
+
+  const handleNext = () => {
+    slickRef.current.slickNext();
+  };
+
   return (
-    <Slider {...settings}>
+    <Slider {...settings} ref={slickRef}>
       {bannerItem.map((banner, idx) => {
         return idx === 0 ? (
           <NewBanner
@@ -75,6 +89,8 @@ export const Carousel = () => {
             badgeTextColor={banner.badgeTextColor}
             totalLength={bannerItem.length}
             currentIndex={idx}
+            onNext={handleNext}
+            onPrev={handlePrev}
           />
         ) : (
           <CommonBanner
@@ -89,13 +105,11 @@ export const Carousel = () => {
             badgeTextColor={banner.badgeTextColor}
             totalLength={bannerItem.length}
             currentIndex={idx}
+            onNext={handleNext}
+            onPrev={handlePrev}
           />
         );
       })}
-
-      {/* <InstagramBanner />
-      <SecondBanner />
-      <FirstBanner /> */}
     </Slider>
   );
 };

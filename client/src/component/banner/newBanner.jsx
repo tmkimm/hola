@@ -15,6 +15,8 @@ const NewBanner = ({
   titleColor,
   totalLength,
   currentIndex,
+  onPrev,
+  onNext,
 }) => {
   const handleLinkClick = (e) => {
     HolaLogEvent(`main_banner_${title}`, { category: title });
@@ -48,12 +50,37 @@ const NewBanner = ({
             </span>
           </div>
           <div className={styles.rightCover}>
-            <img className={styles.coverImage} src={imgSrc} alt='banner' />
+            <img
+              className={styles.coverImage}
+              src={imgSrc}
+              alt='banner'
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onPrev();
+              }}
+            />
           </div>
         </div>
       </div>
       <div className={styles.sequenceBadge}>
-        {currentIndex + 1} / {totalLength}
+        <img src='images/banner/banner-arrowLeft.png' className={styles.arrows} alt='left-arrow' />
+        <div className={styles.pagination}>
+          <span>{currentIndex + 1}</span>
+          <span>|</span>
+          <span>{totalLength}</span>
+        </div>
+
+        <img
+          className={styles.arrows}
+          src='images/banner/banner-arrowRight.png'
+          alt='right-arrow'
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            onNext();
+          }}
+        />
       </div>
     </a>
   );

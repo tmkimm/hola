@@ -16,12 +16,15 @@ const CommonBanner = ({
   titleColor,
   totalLength,
   currentIndex,
+  onNext,
+  onPrev,
 }) => {
   const handleLinkClick = (e) => {
     HolaLogEvent(`main_banner_${title}`, { category: title });
     e.preventDefault();
     window.location.href = link;
   };
+
   return (
     <a
       className={styles.bannerLink}
@@ -54,7 +57,32 @@ const CommonBanner = ({
         </div>
       </div>
       <div className={styles.sequenceBadge}>
-        {currentIndex + 1} / {totalLength}
+        <img
+          src='images/banner/banner-arrowLeft.png'
+          className={styles.arrows}
+          alt='left-arrow'
+          onClick={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            onPrev();
+          }}
+        />
+        <div className={styles.pagination}>
+          <span>{currentIndex + 1}</span>
+          <span>|</span>
+          <span>{totalLength}</span>
+        </div>
+
+        <img
+          className={styles.arrows}
+          onClick={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            onNext();
+          }}
+          src='images/banner/banner-arrowRight.png'
+          alt='right-arrow'
+        />
       </div>
     </a>
   );
