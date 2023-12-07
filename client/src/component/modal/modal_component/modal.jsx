@@ -29,8 +29,7 @@ const ModalWrapper = styled.div`
   z-index: 1000;
   overflow: auto;
   outline: 0;
-  top:0;
-}
+  top: 0;
 `;
 
 const ModalOverlay = styled.div`
