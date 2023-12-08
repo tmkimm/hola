@@ -32,7 +32,7 @@ const SetInterestContainer = () => {
     }
 
     HolaLogEvent('sign_up_start_position_and_career', {
-      category: workExperience,
+      category: [position.label, workExperience.label].join(' '),
     });
 
     dispatch(nextStep());

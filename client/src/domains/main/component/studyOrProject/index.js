@@ -20,7 +20,7 @@ const StudyOrProject = ({ category }) => {
   const dispatch = useDispatch();
 
   const toggleCategory = (toggleTo) => {
-    HolaLogEvent(`filter_position_desktop_studyType_${toggleTo}`);
+    HolaLogEvent(`filter_position`, { category: toggleTo });
     if (category === toggleTo) return;
     dispatch(changeMode(toggleTo));
   };

@@ -17,7 +17,7 @@ const PositionFilter = () => {
           key={idx}
           selected={position === types.value}
           onClick={() => {
-            HolaLogEvent(`mobile_filter_position_${types.value}`);
+            HolaLogEvent(`mobile_filter_position`, { category: types.value });
             dispatch(changeField({ key: 'position', value: types.value }));
           }}
         >

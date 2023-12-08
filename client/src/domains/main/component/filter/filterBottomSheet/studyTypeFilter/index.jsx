@@ -15,7 +15,7 @@ const StudyTypeFilter = () => {
   const category = useSelector((state) => state.language.mode);
 
   const toggleCategory = (toggleTo) => {
-    HolaLogEvent(`mobile_filter_study_type_${toggleTo}`);
+    HolaLogEvent(`mobile_filter_study_type`, { category: toggleTo });
     if (category === toggleTo) return;
     dispatch(changeMode(toggleTo));
   };

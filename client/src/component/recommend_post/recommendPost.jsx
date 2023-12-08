@@ -13,10 +13,9 @@ const RecommendPost = ({ id }) => {
     studyService.getRecommendedPost(id).then((data) => setPosts(data));
   }, [id]);
 
-  const handlePostClick = (id) => {
+  const handlePostClick = (id, title) => {
     history.push(`/study/${id}`);
-    HolaLogEvent('recommend_list');
-    HolaLogEvent(`recommend_list_${id}`);
+    HolaLogEvent('recommend_list', { category: title });
   };
 
   return (
@@ -36,7 +35,7 @@ const RecommendPost = ({ id }) => {
             <li
               className={styles.postList}
               key={post._id}
-              onClick={() => handlePostClick(post._id)}
+              onClick={() => handlePostClick(post._id, post.title)}
             >
               <div className={styles.index}>{`${idx + 1}.`}</div>
               <div className={styles.title}>{post.title}</div>

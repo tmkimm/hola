@@ -20,7 +20,7 @@ const CommonBanner = ({
   onPrev,
 }) => {
   const handleLinkClick = (e) => {
-    HolaLogEvent(`main_banner_${title}`, { category: title });
+    HolaLogEvent(`main_banner_click`, { category: title });
     e.preventDefault();
     window.location.href = link;
   };

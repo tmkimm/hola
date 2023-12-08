@@ -65,7 +65,7 @@ const MobileStudyContent = ({ user, id }) => {
 
   const handleApplyClick = () => {
     const { value } = contactType;
-    HolaLogEvent(`mobile_apply_${title}`);
+    HolaLogEvent(`mobile_apply`, { category: title });
 
     if (value === 'ok' || value === 'gf') window.open(contactPoint, '_blank');
     else copyContent(contactPoint);
@@ -76,8 +76,7 @@ const MobileStudyContent = ({ user, id }) => {
       openModal();
       return;
     }
-    HolaLogEvent('mobile_highfive_block', { category: studyId });
-    HolaLogEvent(`mobile_highfive_block_${studyId}`, { category: studyId });
+    HolaLogEvent('mobile_highfive_block', { category: title });
     const isLike = data.likeUsers.find((likeId) => likeId === user.id);
     const toastText = isLike ? '관심 목록에서 제거했어요!' : '관심 목록에 추가했어요!';
     const result = isLike ? await deleteLikes(id) : await addLikes(id);

@@ -22,9 +22,7 @@ const LikesAndViews = ({ views, studyId, userId }) => {
       category: studyId,
       study_id: studyId,
     });
-    HolaLogEvent(`highfive_block_${studyId}`, {
-      category: studyId,
-    });
+
     if (userId === undefined) {
       openModal();
       return;

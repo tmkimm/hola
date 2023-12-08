@@ -27,7 +27,7 @@ const DesktopFilter = () => {
             placeholder='포지션'
             onChange={(e) => {
               const { value } = e;
-              HolaLogEvent(`filter_position_${value}`);
+              HolaLogEvent(`filter_position`, { category: value });
               dispatch(changeField({ key: 'position', value }));
             }}
           />
@@ -36,14 +36,14 @@ const DesktopFilter = () => {
             placeholder='진행 방식'
             onChange={(e) => {
               const { value } = e;
-              HolaLogEvent(`filter_method_${value}`);
+              HolaLogEvent(`filter_method`, { category: value });
               dispatch(changeField({ key: 'onOffLine', value }));
             }}
           />
           <S.SelectItem
             selected={isLiked}
             onClick={() => {
-              HolaLogEvent(`filter_view_like_only_${isLiked}`);
+              HolaLogEvent(`filter_view_like_only`, { category: isLiked });
               user.id ? dispatch(changePostMode(!isLiked)) : openModal();
             }}
           >
@@ -52,7 +52,7 @@ const DesktopFilter = () => {
           <S.SelectItem
             selected={!isClosed}
             onClick={() => {
-              HolaLogEvent(`filter_open_only_${isClosed}`);
+              HolaLogEvent(`filter_open_only`, { category: isClosed });
               dispatch(changeField({ key: 'isClosed', value: !isClosed }));
             }}
           >

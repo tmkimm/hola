@@ -63,7 +63,6 @@ const SetLanguage = () => {
 
           HolaLogEvent('sign_up_start_select_tag', {
             category: likeLanguages.map((lang) => lang.value).join('_'),
-            select_language: likeLanguages.map((lang) => lang.value).join('_'),
           });
 
           dispatch(

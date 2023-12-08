@@ -71,7 +71,7 @@ const TrendingDesktop = ({ trendings, isLoading }) => {
               to={`/study/${id}`}
               onClick={(e) => {
                 e.preventDefault();
-                HolaLogEvent('select_trending', { category: id });
+                HolaLogEvent('select_trending', { category: title });
                 history.push(`/study/${id}`);
               }}
             >

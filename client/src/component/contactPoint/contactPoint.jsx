@@ -8,7 +8,7 @@ export const ContactPoint = ({ title, contactPoint, contactType }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   const copyContent = async (text) => {
-    HolaLogEvent(`apply_email_${title}`);
+    HolaLogEvent(`apply_email`, { category: title });
     try {
       await navigator.clipboard.writeText(text);
       toast.success('클립보드에 주소가 복사되었어요!', {
@@ -33,7 +33,7 @@ export const ContactPoint = ({ title, contactPoint, contactType }) => {
         ) : (
           <a
             onClick={() => {
-              HolaLogEvent(`apply_${contactType.value}_${title}`);
+              HolaLogEvent(`apply_${contactType.value}`, { category: title });
             }}
             className={styles.link}
             href={contactPoint}

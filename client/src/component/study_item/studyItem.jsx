@@ -42,8 +42,7 @@ const StudyItem = ({ study, type }) => {
   };
 
   const handleLike = async (e) => {
-    HolaLogEvent(`highfive_main_${study._id}`, { category: study._id });
-    HolaLogEvent('highfive_main', { category: study._id });
+    HolaLogEvent('highfive_main', { category: study.title });
     e.stopPropagation();
     e.preventDefault();
     if (!user.nickName) {
@@ -69,7 +68,7 @@ const StudyItem = ({ study, type }) => {
 
   const handleStudyClick = (e) => {
     e.preventDefault();
-    HolaLogEvent(`select_block_${type}`, { category: study._id });
+    HolaLogEvent(`select_block_${type}`, { category: study.title });
     history.push(`/study/${study._id}`);
   };
 

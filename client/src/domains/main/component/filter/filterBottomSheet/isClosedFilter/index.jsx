@@ -21,7 +21,7 @@ const IsClosedFilter = () => {
           key={idx}
           selected={isClosed === types.value}
           onClick={() => {
-            HolaLogEvent(`mobile_filter_open_only_${types.value}`);
+            HolaLogEvent(`mobile_filter_open_only`, { category: types.value });
             dispatch(changeField({ key: 'isClosed', value: types.value }));
           }}
         >

@@ -23,7 +23,7 @@ const OnOfflineFilter = () => {
           key={idx}
           selected={onOffline === types.value}
           onClick={() => {
-            HolaLogEvent(`mobile_filter_method_${types.value}`);
+            HolaLogEvent(`mobile_filter_method`, { category: types.value });
             dispatch(changeField({ key: 'onOffLine', value: types.value }));
           }}
         >
