@@ -3,7 +3,7 @@ import * as S from './styled';
 import { onlineOrOfflineOption, positionsOption } from 'common/options';
 import CommonSelect from '../../select/select';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeField, changePostMode } from 'store/language';
+import { changeField, changePostMode, changeSearch } from 'store/language';
 import LanguageSelect from '../../listbox';
 import Search from '../../search/search';
 import StudyOrProject from '../../studyOrProject';
@@ -59,7 +59,22 @@ const DesktopFilter = () => {
             👀 모집 중만 보기
           </S.SelectItem>
         </S.SelectContainer>
-        <Search />
+        <Search
+          handleSubmit={(inputValue) => {
+            if (inputValue === '') return;
+            HolaLogEvent('select_search', { category: inputValue });
+            dispatch(changeSearch(inputValue));
+          }}
+          handleChange={(inputValue) => {
+            if (inputValue === '') dispatch(changeSearch(''));
+          }}
+          handleRemoveClick={() => {
+            dispatch(changeSearch(''));
+          }}
+          handleSearchAreaClick={() => {
+            HolaLogEvent('select_search');
+          }}
+        />
       </S.Container>
     </S.CategoryContainer>
   );

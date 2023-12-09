@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import styles from './search.module.css';
-import { useDispatch } from 'react-redux';
-import { changeSearch } from 'store/language';
-import { HolaLogEvent } from 'common/GA';
 
-const Search = ({ handleSubmit, handleSearchAreaClick, handleRemoveClick }) => {
-  const dispatch = useDispatch();
+const Search = ({ handleSubmit, handleChange, handleSearchAreaClick, handleRemoveClick }) => {
   const [inputValue, setInputValue] = useState('');
 
   return (
@@ -22,6 +18,7 @@ const Search = ({ handleSubmit, handleSearchAreaClick, handleRemoveClick }) => {
         className={styles.searchInput}
         value={inputValue}
         onKeyPress={(e) => {
+          //NOTE: enter key 입력시에만 전역 state와 sync합니다.
           if (e.key === 'Enter') {
             if (inputValue === '') return;
 
@@ -32,14 +29,14 @@ const Search = ({ handleSubmit, handleSearchAreaClick, handleRemoveClick }) => {
         onChange={(e) => {
           const { value } = e.target;
           setInputValue(value);
-          if (value === '') dispatch(changeSearch(''));
+          handleChange(value);
         }}
       ></input>
       {inputValue && (
         <img
           onClick={() => {
             setInputValue('');
-            dispatch(changeSearch(''));
+            handleRemoveClick();
           }}
           className={styles.searchInitialize}
           src='images/info/search-close-icon.png'
