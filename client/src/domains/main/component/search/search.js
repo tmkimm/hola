@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { changeSearch } from 'store/language';
 import { HolaLogEvent } from 'common/GA';
 
-const Search = () => {
+const Search = ({ handleSubmit, handleSearchAreaClick, handleRemoveClick }) => {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState('');
 
