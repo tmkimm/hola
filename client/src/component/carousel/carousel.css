@@ -1,0 +1,9 @@
+.slick-list {
+  border-radius: 30px;
+}
+
+@media screen and (max-width: 400px) {
+  .slick-dots {
+    display: none;
+  }
+}
