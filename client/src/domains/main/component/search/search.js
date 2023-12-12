@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import styles from './search.module.css';
+import { useDispatch } from 'react-redux';
+import { changeSearch } from 'store/language';
+import { HolaLogEvent } from 'common/GA';
 
-const Search = ({
-  handleSubmit,
-  handleChange,
-  handleSearchAreaClick,
-  handleRemoveClick,
-  defaultValue = '',
-  placeholder,
-}) => {
-  const [inputValue, setInputValue] = useState(null);
-  const defaultInputValue = defaultValue || '';
+const Search = () => {
+  const dispatch = useDispatch();
+  const [inputValue, setInputValue] = useState('');
 
   return (
     <div
@@ -22,11 +18,10 @@ const Search = ({
       <img className={styles.searchImg} src='images/info/search.png' alt='search icon' />
 
       <input
-        placeholder={placeholder}
+        placeholder='제목, 글 내용을 검색해보세요.'
         className={styles.searchInput}
-        value={inputValue ?? defaultInputValue}
+        value={inputValue}
         onKeyPress={(e) => {
-          //NOTE: enter key 입력시에만 전역 state와 sync합니다.
           if (e.key === 'Enter') {
             if (inputValue === '') return;
 
@@ -37,14 +32,14 @@ const Search = ({
         onChange={(e) => {
           const { value } = e.target;
           setInputValue(value);
-          handleChange(value);
+          if (value === '') dispatch(changeSearch(''));
         }}
       ></input>
       {inputValue && (
         <img
           onClick={() => {
             setInputValue('');
-            handleRemoveClick();
+            dispatch(changeSearch(''));
           }}
           className={styles.searchInitialize}
           src='images/info/search-close-icon.png'
