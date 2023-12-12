@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const EventContainer = styled.li`
   width: 100%;
+  cursor: pointer;
 `;
 
 export const ImageContainer = styled.div`

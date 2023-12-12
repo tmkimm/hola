@@ -51,6 +51,9 @@ class Event {
       console.error(error);
     }
   };
+
+  /* 이벤트 상세 */
+  detail = (id) => this.client.get(`events/${id}`);
 }
 
 const eventService = new Event(httpClient);
