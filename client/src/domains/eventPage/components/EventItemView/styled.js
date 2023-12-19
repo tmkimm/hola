@@ -70,7 +70,7 @@ export const Title = styled.h1`
 
 export const Badge = styled.div`
   width: fit-content;
-  margin-top: 15px;
+  margin-top: ${({ isRecommend }) => (isRecommend ? '0px' : '15px')};
   display: flex;
   padding: 3.5px 10px;
   font-size: 13px;

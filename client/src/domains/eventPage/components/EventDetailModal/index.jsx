@@ -9,11 +9,13 @@ import {
 } from 'domains/eventPage/utils/getFormattedDate';
 import { HolaLogEvent } from 'common/GA';
 import { getBadgeColor, getBadgeTitle } from 'domains/eventPage/utils/getBadgeTitle';
+import { differenceInDays } from 'date-fns';
+import { useGetRelativeEvent } from 'domains/eventPage/hooks/useGetRelativeEvent';
+import EventItemView from '../EventItemView';
 
-const EventDetailModal = ({ id, isOpen, closeModal }) => {
-  const { data, isLoading } = useGetEventDtail(id);
-
-  console.log(data);
+const EventDetailModal = ({ id, isOpen, closeModal, eventType, onRecommendEventClick }) => {
+  const { data: detailData, isLoading } = useGetEventDtail(id);
+  const { data: relativeEvents } = useGetRelativeEvent(id, eventType);
 
   if (isLoading) return null;
 
@@ -27,8 +29,9 @@ const EventDetailModal = ({ id, isOpen, closeModal }) => {
     organization,
     link,
     content,
-    eventType,
-  } = data;
+  } = detailData;
+
+  const leftDays = differenceInDays(new Date(), new Date(applicationEndDate));
 
   return (
     <Modal visible={isOpen} name='eventInfo' onClose={closeModal}>
@@ -48,7 +51,11 @@ const EventDetailModal = ({ id, isOpen, closeModal }) => {
                 >
                   {getBadgeTitle(eventType)}
                 </li>
-                <li className={styles.deadline}>🔥 마감 3일전</li>
+                {leftDays > 0 && (
+                  <li className={styles.deadline}>
+                    🔥 마감 {differenceInDays(new Date(), new Date(applicationEndDate))}일전
+                  </li>
+                )}
               </ul>
               <div className={styles.evantInfoWrapper}>
                 <span className={styles.eventTitle}>일시</span>
@@ -91,6 +98,15 @@ const EventDetailModal = ({ id, isOpen, closeModal }) => {
         <div className={styles.content} dangerouslySetInnerHTML={{ __html: content }} />
 
         <div className={styles.recommendContentTitle}>📁 추천 콘텐츠</div>
+        <div className={styles.recommendContainer}>
+          {relativeEvents?.slice(0, 4).map((item) => (
+            <EventItemView
+              isRecommend={true}
+              eventInfo={item}
+              onEventClick={() => onRecommendEventClick(item._id)}
+            />
+          ))}
+        </div>
       </div>
     </Modal>
   );

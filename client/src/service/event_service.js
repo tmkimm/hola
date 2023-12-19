@@ -54,6 +54,10 @@ class Event {
 
   /* 이벤트 상세 */
   detail = (id) => this.client.get(`events/${id}`);
+
+  /* 이벤트 상세 */
+  relativeEvent = (id, eventType) =>
+    this.client.get(`events/${id}/recommend?eventType=${eventType}`);
 }
 
 const eventService = new Event(httpClient);

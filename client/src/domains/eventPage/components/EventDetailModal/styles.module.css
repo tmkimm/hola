@@ -16,6 +16,7 @@
   transform: translateY(-50%);
   background: #fff;
   border-radius: 30px;
+  overflow: scroll;
 }
 
 .title {
@@ -107,11 +108,17 @@
   padding-bottom: 40px;
   font-size: 18px;
   line-height: 135%;
+  white-space: pre-line;
 }
 
 .content > * {
   font-size: 18px;
   font-weight: normal;
+  line-height: 180%;
+}
+
+.content img {
+  width: 100%;
 }
 
 .recommendContentTitle {
@@ -164,4 +171,10 @@
   background-color: #ffe8e8;
   font-weight: 600;
   line-height: normal;
+}
+
+.recommendContainer {
+  display: flex;
+  gap: 20px;
+  margin-top: 24px;
 }
