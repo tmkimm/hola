@@ -6,7 +6,7 @@ import { getBadgeColor, getBadgeTitle } from 'domains/eventPage/utils/getBadgeTi
 
 const EventItemView = ({ eventInfo, onEventClick, isRecommend }) => {
   const { title, imageUrl, onlineOrOffline, startDate, eventType, _id } = eventInfo;
-  console.log('imageUrl : ', imageUrl);
+
   return (
     <>
       <S.EventContainer onClick={onEventClick} key={_id}>

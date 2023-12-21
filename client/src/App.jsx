@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import LoadingSpinner from 'component/loading/loadingSpinner';
 import Modal from 'component/modal/modal_component/modal';
 import EventPage from 'page/event';
+import EventDetailPage from 'page/event_detail';
 
 const Main = lazy(() => import('./page/main/main'));
 const PostRegister = lazy(() => import('./page/post_register/postRegister'));
@@ -12,6 +13,8 @@ const MyLikes = lazy(() => import('./page/my_likes/myLikes'));
 const MyPage = lazy(() => import('./page/myPage'));
 const NotFound = lazy(() => import('./page/notFound/notFound'));
 const Study = lazy(() => import('./page/study/study'));
+const HolaIt = lazy(() => import('./page/event'));
+const HolaItDetail = lazy(() => import('./page/event_detail'));
 
 const App = () => {
   return (
@@ -45,8 +48,11 @@ const App = () => {
           <Route path='/auth/github'>
             <GithubLogin />
           </Route>
-          <Route path='/hola-it'>
-            <EventPage />
+          <Route path='/hola-it' exact>
+            <HolaIt />
+          </Route>
+          <Route path='/hola-it/:id'>
+            <HolaItDetail />
           </Route>
           <Route>
             <NotFound />
