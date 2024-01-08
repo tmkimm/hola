@@ -4,19 +4,33 @@ import EventDetailModal from '../EventDetailModal';
 import EventItemView from '../EventItemView';
 import { useMediaQuery } from 'react-responsive';
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { makeQueryString } from 'domains/eventPage/utils/makeQueryString';
 
 const EventItem = ({ eventInfo }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 500px)' });
   const history = useHistory();
   const { _id, eventType } = eventInfo;
   const [currentId, setCurrentId] = useState(_id);
+  const filterState = useSelector((state) => state.itFilter);
   const { modalVisible, openModal, closeModal } = useModalState();
+
+  const handleClose = () => {
+    window.history.replaceState(null, 'modal title', `/hola-it?${makeQueryString(filterState)}`);
+    closeModal();
+  };
+
   return (
     <>
       <EventItemView
         eventInfo={eventInfo}
         onEventClick={() => {
-          isMobile ? history.push(`/hola-it/${_id}`) : openModal();
+          if (isMobile) {
+            history.push(`/hola-it/${_id}`);
+            return;
+          }
+          window.history.replaceState(null, 'modal title', `/hola-it/${_id}`);
+          openModal();
         }}
       />
       {modalVisible && (
@@ -24,7 +38,7 @@ const EventItem = ({ eventInfo }) => {
           id={currentId}
           onRecommendEventClick={setCurrentId}
           isOpen={modalVisible}
-          closeModal={closeModal}
+          closeModal={handleClose}
           eventType={eventType}
           eventInfo={eventInfo}
         />

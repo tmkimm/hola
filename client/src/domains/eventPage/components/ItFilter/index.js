@@ -1,22 +1,11 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { stringify, parse } from 'qs';
+import { parse } from 'qs';
 import { updateField } from 'store/itFilter';
 import DesktopItFilter from './DesktopItFilter';
 import MobileItFilter from './MobileItFilter';
-
-const makeQueryString = (state) => {
-  const { eventType, viewMode, year, month, sort, page, onOffline, search } = state;
-
-  const params = {
-    eventType,
-    search,
-    viewMode,
-    ...(viewMode === 'general' ? { sort, page, search, onOffline } : { year, month }),
-  };
-  return stringify(params, { skipNulls: true });
-};
+import { makeQueryString } from 'domains/eventPage/utils/makeQueryString';
 
 const ItFilterView = ({ isMobile }) => {
   const filterState = useSelector((state) => state.itFilter);
