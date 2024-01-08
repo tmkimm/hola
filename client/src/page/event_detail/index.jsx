@@ -4,17 +4,22 @@ import { useMediaQuery } from 'react-responsive';
 import { useLocation } from 'react-router-dom';
 import DetailMobile from './mobile';
 import DetailDesktop from './desktop';
+import { useGetRelativeEvent } from 'domains/eventPage/hooks/useGetRelativeEvent';
 
 const EventDetailPage = () => {
   const location = useLocation();
   const eventid = location.pathname.split('/')[2];
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
-  const { data: detailData, isLoading } = useGetEventDtail(eventid);
+  const { data: detailData } = useGetEventDtail(eventid);
+  const { data: relativeEvents } = useGetRelativeEvent(eventid, detailData?.eventType);
+
+  console.log('detailData : ', detailData);
+  console.log('rela : ', relativeEvents);
 
   return isMobile ? (
-    <DetailMobile detailData={detailData} />
+    <DetailMobile detailData={detailData} relativeEvents={relativeEvents} />
   ) : (
-    <DetailDesktop detailData={detailData} />
+    <DetailDesktop detailData={detailData} relativeEvents={relativeEvents} />
   );
 };
 

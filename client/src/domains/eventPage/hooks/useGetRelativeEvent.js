@@ -6,5 +6,6 @@ export const useGetRelativeEvent = (id, eventType) => {
 
   return useQuery(queryKey, () => eventService.relativeEvent(id, eventType), {
     select: (data) => data.data,
+    enabled: !!eventType,
   });
 };
