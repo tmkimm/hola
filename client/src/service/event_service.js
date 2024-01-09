@@ -58,6 +58,16 @@ class Event {
   /* 이벤트 상세 */
   relativeEvent = (id, eventType) =>
     this.client.get(`events/${id}/recommend?eventType=${eventType}`);
+
+  addLikes = (eventId) => {
+    this.client.post('events/likes', {
+      eventId,
+    });
+  };
+
+  deleteLikes = (eventId) => {
+    this.client.delete(`events/likes/${eventId}`);
+  };
 }
 
 const eventService = new Event(httpClient);

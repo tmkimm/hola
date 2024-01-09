@@ -6,13 +6,13 @@ const getDayOfWeekKorean = (date) => {
   return daysOfWeekKorean[dayOfWeek - 1];
 };
 
-export const getFormattedDate = (dateString) => {
+export const getFormattedDate = (dateString, skipYear = false) => {
+  console.log('skipyear : ', skipYear);
   const dateTime = new Date(dateString);
 
-  const date = format(dateTime, 'yyyy년 MM월 dd일');
+  const date = format(dateTime, skipYear ? 'MM월 dd일' : 'yyyy년 MM월 dd일');
   const time = format(dateTime, 'HH:mm');
   const ampm = getHours(dateTime) >= 12 ? '오후' : '오전';
-  console.log(ampm);
 
   return `${date} (${getDayOfWeekKorean(dateTime)})\n${ampm} ${time}`;
 };

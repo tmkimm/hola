@@ -89,7 +89,7 @@ const EventDetailModal = ({ id, isOpen, closeModal, eventType, onRecommendEventC
                 }}
                 className={styles.applyButton}
               >
-                💌 신청하기
+                신청하기
               </button>
             </div>
           </div>

@@ -23,6 +23,7 @@ const EventItem = ({ eventInfo }) => {
   return (
     <>
       <EventItemView
+        isOverlayNeeded
         eventInfo={eventInfo}
         onEventClick={() => {
           if (isMobile) {
