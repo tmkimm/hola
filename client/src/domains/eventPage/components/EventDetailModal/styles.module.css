@@ -19,6 +19,10 @@
   overflow: scroll;
 }
 
+.wrapper::-webkit-scrollbar {
+  display: none;
+}
+
 .title {
   color: #000;
   font-size: 25px;
