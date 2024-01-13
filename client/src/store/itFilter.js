@@ -33,6 +33,7 @@ const initialState = {
   onOffline: IT_FILTER.PLACE.ALL,
   page: 1,
   search: null,
+  isLiked: false,
 };
 
 const itFilterSlice = createSlice({

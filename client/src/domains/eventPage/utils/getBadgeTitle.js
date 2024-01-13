@@ -11,5 +11,5 @@ export const getBadgeColor = (type) => {
   else if (type === 'hackathon') return '#3E86F5';
   else if (type === 'contest') return '#6E3EF5';
   else if (type === 'bootcamp') return '#00B488';
-  else return '4A5E75';
+  else return '#4A5E75';
 };

@@ -62,7 +62,12 @@ const DesktopItFilter = () => {
             }}
           />
 
-          <S.SelectItem selected={false} onClick={() => {}}>
+          <S.SelectItem
+            selected={filterState.isLiked}
+            onClick={() => {
+              dispatch(changeField({ key: 'isLiked', value: !filterState.isLiked }));
+            }}
+          >
             👋 관심이벤트
           </S.SelectItem>
           <S.SelectItem

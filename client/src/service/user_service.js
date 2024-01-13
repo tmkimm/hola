@@ -90,6 +90,15 @@ class User {
     }
   };
 
+  getUserEventLikeList = async (id) => {
+    try {
+      const response = await this.user.get(`users/${id}/like-events`);
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   getUserPostList = async (id) => {
     try {
       const response = await this.user.get(`users/myPosts/${id}`);

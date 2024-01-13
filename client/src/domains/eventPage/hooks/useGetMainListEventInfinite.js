@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useQuery } from 'react-query';
+import { useInfiniteQuery } from 'react-query';
 import { useSelector } from 'react-redux';
 import eventService from 'service/event_service';
 
