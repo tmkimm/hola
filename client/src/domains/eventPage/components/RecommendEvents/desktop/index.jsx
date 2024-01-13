@@ -59,8 +59,8 @@ const RecommendEventsDesktop = ({ recommendEvents }) => {
       </S.TitleContainer>
       <S.CustomSlider {...config} ref={sliderRef}>
         {recommendEvents?.map((eventItem, idx) => (
-          <S.EventItemContainer>
-            <EventItem eventInfo={eventItem} key={idx} />
+          <S.EventItemContainer key={idx}>
+            <EventItem eventInfo={eventItem} />
           </S.EventItemContainer>
         ))}
       </S.CustomSlider>

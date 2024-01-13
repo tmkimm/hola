@@ -20,3 +20,8 @@ export const EventItemContainer = styled.li`
     width: calc(50% - 8px);
   }
 `;
+
+export const bottomObserver = styled.div`
+  height: 10px;
+  padding-bottom: 100px;
+`;

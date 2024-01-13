@@ -7,7 +7,6 @@ const getDayOfWeekKorean = (date) => {
 };
 
 export const getFormattedDate = (dateString, skipYear = false) => {
-  console.log('skipyear : ', skipYear);
   const dateTime = new Date(dateString);
 
   const date = format(dateTime, skipYear ? 'MM월 dd일' : 'yyyy년 MM월 dd일');

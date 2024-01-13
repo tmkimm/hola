@@ -1,22 +1,34 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import * as S from './styled';
-import { useGetMainListEvent } from 'domains/eventPage/hooks/useGetMainListEvent';
 import { useSelector } from 'react-redux';
 import EventItem from '../EventItem';
+import { useOnScreen } from 'domains/eventPage/hooks/useOnScreen';
+import { useGetMainListEventInfinite } from 'domains/eventPage/hooks/useGetMainListEventInfinite';
 
 const ListView = () => {
   const filterState = useSelector((state) => state.itFilter);
-  const { data } = useGetMainListEvent(filterState);
+  const { data, hasNextPage, fetchNextPage, isFetching, isLoading } =
+    useGetMainListEventInfinite(filterState);
+
+  const bottomRef = useRef(null);
+  const inView = useOnScreen(bottomRef.current);
+
+  useEffect(() => {
+    if (inView && hasNextPage && !isFetching) {
+      fetchNextPage();
+    }
+  }, [hasNextPage, inView, fetchNextPage, isFetching]);
 
   return (
     <>
       <S.EventList>
         {data?.map((eventItem, idx) => (
-          <S.EventItemContainer>
-            <EventItem key={idx} eventInfo={eventItem} />
+          <S.EventItemContainer key={idx}>
+            <EventItem eventInfo={eventItem} />
           </S.EventItemContainer>
         ))}
       </S.EventList>
+      <S.bottomObserver ref={bottomRef} />
     </>
   );
 };

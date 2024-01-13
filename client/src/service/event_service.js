@@ -39,6 +39,30 @@ class Event {
     }
   };
 
+  /* 공모전 광고 영역 */
+  eventsInfinite = async ({ pageParam = 0 }, { eventType, search, onOffline, sort }) => {
+    const queryString = stringify(
+      {
+        page: pageParam,
+        eventType: eventType === 'all' ? null : eventType,
+        sort: sort === 'RECENT' ? '-createAt' : '-views',
+        onOffline,
+        search,
+      },
+      { skipNulls: true },
+    );
+
+    try {
+      const data = await this.client.get(`events?${queryString}`);
+      return {
+        data,
+        nextPage: pageParam + 1,
+      };
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   calendar = async ({ year, month, eventType, search }) => {
     const queryString = stringify({ eventType, search }, { skipNulls: true });
 
