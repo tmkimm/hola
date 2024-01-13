@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import FullCalendar from '@fullcalendar/react';
 import * as S from './styled';
@@ -8,9 +8,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeField } from 'store/itFilter';
 import { format } from 'date-fns';
 import { getDotColor } from 'domains/eventPage/utils/getDotColor';
+import { useModalState } from 'hooks/useModalCustom';
+import EventDetailModal from '../EventDetailModal';
 
 const CalendarView = () => {
   const { year, month } = useSelector((state) => state.itFilter);
+  const [currentId, setCurrentId] = useState(null);
+  const { modalVisible, openModal, closeModal } = useModalState();
   const dispatch = useDispatch();
   const calendarRef = useRef(null);
   const { data } = useGetMainCalendarEvent({ year, month });
@@ -23,14 +27,16 @@ const CalendarView = () => {
   const calendarData =
     data
       ?.map((d) => {
-        const { title, startDate, endDate, eventType } = d;
+        const { _id, title, startDate, endDate, eventType } = d;
         const startItem = {
+          id: _id,
           title,
           date: format(new Date(startDate), 'yyyy-MM-dd'),
           itemType: 'start',
           eventType,
         };
         const endItem = {
+          id: _id,
           title,
           date: format(new Date(endDate), 'yyyy-MM-dd'),
           itemType: 'end',
@@ -41,62 +47,83 @@ const CalendarView = () => {
       .flat() ?? [];
 
   return (
-    <S.TotalContainer>
-      <S.TitleContainer>
-        <S.ArrowImg
-          src='images/info/calendar-prev-btn.png'
-          onClick={() => {
-            const api = calendarRef.current.getApi();
-            api.prev();
-            const currentDate = api.currentData.dateProfile.currentDate;
-            updateMonthAndDate(currentDate);
+    <>
+      <S.TotalContainer>
+        <S.TitleAndInfo>
+          <S.TitleContainer>
+            <S.ArrowImg
+              src='images/info/calendar-prev-btn.png'
+              onClick={() => {
+                const api = calendarRef.current.getApi();
+                api.prev();
+                const currentDate = api.currentData.dateProfile.currentDate;
+                updateMonthAndDate(currentDate);
+              }}
+            />
+            <S.Title>
+              {year}년 {month}월
+            </S.Title>
+            <S.ArrowImg
+              src='images/info/calendar-next-btn.png'
+              onClick={() => {
+                const api = calendarRef.current.getApi();
+                api.next();
+                const currentDate = api.currentData.dateProfile.currentDate;
+                updateMonthAndDate(currentDate);
+              }}
+            />
+          </S.TitleContainer>
+          <S.InfoContainer>
+            <S.InfoItem color={getDotColor('conference')}>컨퍼런스</S.InfoItem>
+            <S.InfoItem color={getDotColor('hackathon')}>해커톤</S.InfoItem>
+            <S.InfoItem color={getDotColor('contest')}>공모전</S.InfoItem>
+            <S.InfoItem color={getDotColor('bootcamp')}>부트캠프</S.InfoItem>
+          </S.InfoContainer>
+        </S.TitleAndInfo>
 
-            console.log(api.getDate());
+        <FullCalendar
+          ref={calendarRef}
+          plugins={[dayGridPlugin]}
+          initialView='dayGridMonth'
+          headerToolbar={false}
+          initialDate={new Date(year, month - 1)}
+          events={calendarData}
+          eventContent={(eventInfo) => {
+            const { itemType, eventType } = eventInfo.event.extendedProps;
+
+            return (
+              <S.Content
+                onClick={() => {
+                  openModal();
+                  setCurrentId(eventInfo.event.id);
+                }}
+              >
+                <S.TimeText color={getDotColor(eventType)}>
+                  {itemType === 'start' ? '시작' : '마감'}
+                </S.TimeText>
+                <S.TitleText>{eventInfo.event.title}</S.TitleText>
+              </S.Content>
+            );
+          }}
+          eventBackgroundColor='white'
+          eventBorderColor='white'
+          titleFormat={(date) => `${date.date.year}년 ${date.date.month + 1}월`}
+          dayHeaderContent={(date) => {
+            let weekList = ['일', '월', '화', '수', '목', '금', '토'];
+            return weekList[date.dow];
           }}
         />
-        <S.Title>
-          {year}년 {month}월
-        </S.Title>
-        <S.ArrowImg
-          src='images/info/calendar-next-btn.png'
-          onClick={() => {
-            const api = calendarRef.current.getApi();
-            api.next();
-            const currentDate = api.currentData.dateProfile.currentDate;
-            updateMonthAndDate(currentDate);
-          }}
+      </S.TotalContainer>
+      {modalVisible && (
+        <EventDetailModal
+          id={currentId}
+          onRecommendEventClick={setCurrentId}
+          isOpen={modalVisible}
+          closeModal={closeModal}
+          eventType={'hackathon'}
         />
-      </S.TitleContainer>
-
-      <FullCalendar
-        ref={calendarRef}
-        plugins={[dayGridPlugin]}
-        initialView='dayGridMonth'
-        headerToolbar={false}
-        initialDate={new Date(year, month - 1)}
-        events={calendarData}
-        eventContent={renderEventContent}
-        eventBackgroundColor='white'
-        eventBorderColor='white'
-        titleFormat={(date) => `${date.date.year}년 ${date.date.month + 1}월`}
-        dayHeaderContent={(date) => {
-          let weekList = ['일', '월', '화', '수', '목', '금', '토'];
-          return weekList[date.dow];
-        }}
-      />
-    </S.TotalContainer>
-  );
-};
-
-const renderEventContent = (eventInfo) => {
-  const { itemType, eventType } = eventInfo.event.extendedProps;
-  return (
-    <S.Content>
-      <S.TimeText color={getDotColor(eventType)}>
-        {itemType === 'start' ? '시작' : '마감'}
-      </S.TimeText>
-      <S.TitleText>{eventInfo.event.title}</S.TitleText>
-    </S.Content>
+      )}
+    </>
   );
 };
 

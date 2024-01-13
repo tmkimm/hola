@@ -41,7 +41,6 @@ const EventItem = ({ eventInfo }) => {
           isOpen={modalVisible}
           closeModal={handleClose}
           eventType={eventType}
-          eventInfo={eventInfo}
         />
       )}
     </>

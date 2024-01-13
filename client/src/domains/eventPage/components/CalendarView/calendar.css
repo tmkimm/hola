@@ -9,10 +9,6 @@
   letter-spacing: 0.1px;
 }
 
-.test {
-  color: black;
-}
-
 .calendar__flex {
   display: flex;
   gap: 4px;

@@ -57,6 +57,7 @@ const customStyles = {
     borderRadius: '25px',
     boxShadow: null,
     padding: '10px',
+    zIndex: 9999,
   }),
   option: (provided, state) => {
     return {

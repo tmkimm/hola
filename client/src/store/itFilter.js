@@ -28,7 +28,7 @@ const initialState = {
   eventType: IT_FILTER.TYPE.ALL, // 상단 필터(전체, 컨퍼런스, 해커톤, 공모전, 부트캠프)
   viewMode: IT_FILTER.VIEW.GENERAL, // GENERAL, CALENDAR
   year: new Date().getFullYear(), // calendar에서만 사용
-  month: new Date().getMonth(), // calendar에서만 사용
+  month: new Date().getMonth() + 1, // calendar에서만 사용
   sort: IT_FILTER.SORT.RECENT,
   onOffline: IT_FILTER.PLACE.ALL,
   page: 1,
