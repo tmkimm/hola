@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-const MyPosts = (props) => {
+const MyPosts = () => {
   const [postList, setPostList] = useState([]);
   const userId = useSelector((state) => state.user.id);
   const history = useHistory();
