@@ -63,8 +63,8 @@ class Event {
     }
   };
 
-  calendar = async ({ year, month, eventType, search }) => {
-    const queryString = stringify({ eventType, search }, { skipNulls: true });
+  calendar = async ({ year, month, eventType, search, onOffline }) => {
+    const queryString = stringify({ eventType, search, onOffline }, { skipNulls: true });
 
     try {
       const response = await this.client.get(

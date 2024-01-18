@@ -12,12 +12,13 @@ import { useModalState } from 'hooks/useModalCustom';
 import EventDetailModal from '../EventDetailModal';
 
 const CalendarView = () => {
-  const { year, month } = useSelector((state) => state.itFilter);
+  const { year, month, search, eventType, onOffline } = useSelector((state) => state.itFilter);
+
   const [currentId, setCurrentId] = useState(null);
   const { modalVisible, openModal, closeModal } = useModalState();
   const dispatch = useDispatch();
   const calendarRef = useRef(null);
-  const { data } = useGetMainCalendarEvent({ year, month });
+  const { data } = useGetMainCalendarEvent({ year, month, search, eventType, onOffline });
 
   const updateMonthAndDate = (currentDate) => {
     dispatch(changeField({ key: 'year', value: new Date(currentDate).getFullYear() }));
@@ -29,14 +30,15 @@ const CalendarView = () => {
       ?.map((d) => {
         const { _id, title, startDate, endDate, eventType } = d;
         const startItem = {
-          id: _id,
+          //HACK:: FULL CALENDAR에서 id를 key로 사용해서 index를 붙여줍니다.
+          id: _id + '0',
           title,
           date: format(new Date(startDate), 'yyyy-MM-dd'),
           itemType: 'start',
           eventType,
         };
         const endItem = {
-          id: _id,
+          id: _id + '1',
           title,
           date: format(new Date(endDate), 'yyyy-MM-dd'),
           itemType: 'end',
@@ -90,12 +92,11 @@ const CalendarView = () => {
           events={calendarData}
           eventContent={(eventInfo) => {
             const { itemType, eventType } = eventInfo.event.extendedProps;
-
             return (
               <S.Content
                 onClick={() => {
                   openModal();
-                  setCurrentId(eventInfo.event.id);
+                  setCurrentId(eventInfo.event.id.slice(0, -1));
                 }}
               >
                 <S.TimeText color={getDotColor(eventType)}>
@@ -109,7 +110,7 @@ const CalendarView = () => {
           eventBorderColor='white'
           titleFormat={(date) => `${date.date.year}년 ${date.date.month + 1}월`}
           dayHeaderContent={(date) => {
-            let weekList = ['일', '월', '화', '수', '목', '금', '토'];
+            const weekList = ['일', '월', '화', '수', '목', '금', '토'];
             return weekList[date.dow];
           }}
         />

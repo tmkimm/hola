@@ -1,45 +1,51 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './search.module.css';
-import { useDispatch } from 'react-redux';
-import { changeSearch } from 'store/language';
-import { HolaLogEvent } from 'common/GA';
 
-const Search = () => {
-  const dispatch = useDispatch();
+const Search = ({
+  placeholder = '제목, 글 내용을 검색해보세요.',
+  defaultValue,
+  handleSubmit,
+  handleChange,
+  handleRemoveClick,
+  handleSearchAreaClick,
+}) => {
   const [inputValue, setInputValue] = useState('');
+
+  useEffect(() => {
+    //HACK:: 초기 state 업데이트 후 sync를 맞춰주기 위해 effect를 사용합니다.
+    if (defaultValue === null) return;
+    setInputValue(defaultValue);
+  }, [defaultValue]);
 
   return (
     <div
       className={styles.container}
       onClick={() => {
-        HolaLogEvent('select_search_click');
+        handleSearchAreaClick();
       }}
     >
       <img className={styles.searchImg} src='images/info/search.png' alt='search icon' />
 
       <input
-        placeholder='제목, 글 내용을 검색해보세요.'
+        placeholder={placeholder}
         className={styles.searchInput}
         value={inputValue}
         onKeyPress={(e) => {
           if (e.key === 'Enter') {
-            if (inputValue === '') return;
-
-            HolaLogEvent('select_search', { category: inputValue, input: inputValue });
-            dispatch(changeSearch(inputValue));
+            handleSubmit(inputValue);
           }
         }}
         onChange={(e) => {
           const { value } = e.target;
           setInputValue(value);
-          if (value === '') dispatch(changeSearch(''));
+          handleChange(value);
         }}
       ></input>
       {inputValue && (
         <img
           onClick={() => {
             setInputValue('');
-            dispatch(changeSearch(''));
+            handleRemoveClick();
           }}
           className={styles.searchInitialize}
           src='images/info/search-close-icon.png'

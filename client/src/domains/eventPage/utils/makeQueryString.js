@@ -7,7 +7,9 @@ export const makeQueryString = (state) => {
     eventType,
     search,
     viewMode,
-    ...(viewMode === 'general' ? { sort, page, search, onOffline } : { year, month }),
+    ...(viewMode === 'general'
+      ? { sort, page, search, onOffline }
+      : { year, month, search, onOffline }),
   };
   return stringify(params, { skipNulls: true });
 };

@@ -99,8 +99,9 @@ const EventDetailModal = ({ id, isOpen, closeModal, eventType, onRecommendEventC
 
         <div className={styles.recommendContentTitle}>📁 추천 콘텐츠</div>
         <div className={styles.recommendContainer}>
-          {relativeEvents?.slice(0, 4).map((item) => (
+          {relativeEvents?.slice(0, 4).map((item, idx) => (
             <EventItemView
+              key={idx}
               isRecommend={true}
               eventInfo={item}
               onEventClick={() => onRecommendEventClick(item._id)}
