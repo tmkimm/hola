@@ -2,6 +2,8 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import LoadingSpinner from 'component/loading/loadingSpinner';
 import Modal from 'component/modal/modal_component/modal';
+import { useSelector } from 'react-redux';
+import { updateHttpClientHeader } from 'common/utils/updateHttpClientHeader';
 
 const Main = lazy(() => import('./page/main/main'));
 const PostRegister = lazy(() => import('./page/post_register/postRegister'));
@@ -15,6 +17,9 @@ const HolaIt = lazy(() => import('./page/event'));
 const HolaItDetail = lazy(() => import('./page/event_detail'));
 
 const App = () => {
+  const usr = useSelector((state) => state.user);
+  updateHttpClientHeader(usr.accessToken);
+
   return (
     <Router>
       <Suspense
