@@ -27,10 +27,9 @@ const Navbar = React.memo(({ isBackBtn }) => {
   };
 
   useEffect(() => {
+    // page refresh 후 accessToken을 갱신합니다.
     if (user.nickName) {
-      // page refresh후 갱신
       dispatch(fetchUserByRefreshToken()).then((response) => {
-        // 유저 nickname 존재시 refresh token을 이용해서 유저정보 얻어옴
         if (response.meta.requestStatus !== 'fulfilled') {
           history.push('/');
           dispatch(clearUser()); // 유저 초기화
