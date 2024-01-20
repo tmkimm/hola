@@ -40,7 +40,7 @@ const ModalOverlay = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background: ${(props) => (props.name === 'loading' ? 'white' : 'rgba(77, 77, 77, 0.5)')};
+  background: ${(props) => (props.name === 'loading' ? 'white' : '#000000CC')};
   z-index: 999;
 `;
 

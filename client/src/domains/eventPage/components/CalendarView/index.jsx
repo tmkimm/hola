@@ -121,7 +121,7 @@ const CalendarView = () => {
           onRecommendEventClick={setCurrentId}
           isOpen={modalVisible}
           closeModal={closeModal}
-          eventType={'hackathon'}
+          eventType={eventType}
         />
       )}
     </>

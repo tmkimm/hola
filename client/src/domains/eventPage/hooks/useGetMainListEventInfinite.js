@@ -1,10 +1,8 @@
 import { useInfiniteQuery } from 'react-query';
-import { useSelector } from 'react-redux';
 import eventService from 'service/event_service';
 
 export const useGetMainListEventInfinite = (filterState) => {
-  const accessToken = useSelector((state) => state.user.accessToken);
-  const queryKey = ['api', 'event', 'list', accessToken, { ...filterState }];
+  const queryKey = ['api', 'event', 'list', { ...filterState }];
   return useInfiniteQuery(
     queryKey,
     (pageParams) => eventService.eventsInfinite(pageParams, filterState),
