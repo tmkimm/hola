@@ -108,7 +108,11 @@ const EventDetailModal = ({
     link,
     content,
     _id,
+    views,
+    totalLikes,
   } = detailData;
+
+  console.log(detailData);
 
   const leftDays = differenceInDays(new Date(), new Date(applicationEndDate));
 
@@ -116,7 +120,13 @@ const EventDetailModal = ({
     <Modal visible={isOpen} name='eventInfo' onClose={closeModal}>
       <div className={styles.container}>
         <div className={styles.wrapper} ref={scrollRef}>
-          <h1 className={styles.title}>{title}</h1>
+          <div className={styles.titleContainer}>
+            <h1 className={styles.title}>{title}</h1>
+            <div className={styles.viewAndLikes}>
+              <span>👀 조회수 {views}회</span>
+              <span>👋 북마크 {totalLikes}개</span>
+            </div>
+          </div>
           <section className={styles.eventInfoSection}>
             <img className={styles.eventBannerImg} src={imageUrl} alt='banner' />
             <div className={styles.eventInfo}>
@@ -166,7 +176,7 @@ const EventDetailModal = ({
                 <button
                   onClick={() => {
                     HolaLogEvent('hola_it_event_click', { cagtegory: title });
-                    window.location.href = link;
+                    window.open(link, '_blank');
                   }}
                   className={styles.applyButton}
                 >
