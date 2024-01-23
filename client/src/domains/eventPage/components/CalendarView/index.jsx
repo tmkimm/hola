@@ -10,23 +10,30 @@ import { format } from 'date-fns';
 import { getDotColor } from 'domains/eventPage/utils/getDotColor';
 import { useModalState } from 'hooks/useModalCustom';
 import EventDetailModal from '../EventDetailModal';
+import { useGetUserLikes } from 'domains/eventPage/hooks/useGetUserLikes';
 
 const CalendarView = () => {
-  const { year, month, search, eventType, onOffline } = useSelector((state) => state.itFilter);
+  const { year, month, search, eventType, onOffline, isLiked } = useSelector(
+    (state) => state.itFilter,
+  );
 
   const [currentId, setCurrentId] = useState(null);
   const { modalVisible, openModal, closeModal } = useModalState();
   const dispatch = useDispatch();
   const calendarRef = useRef(null);
   const { data } = useGetMainCalendarEvent({ year, month, search, eventType, onOffline });
+  const { data: likesData } = useGetUserLikes(isLiked);
 
   const updateMonthAndDate = (currentDate) => {
     dispatch(changeField({ key: 'year', value: new Date(currentDate).getFullYear() }));
     dispatch(changeField({ key: 'month', value: new Date(currentDate).getMonth() + 1 }));
   };
 
+  const renderData = isLiked ? likesData : data;
+  console.log(likesData);
+  console.log(data);
   const calendarData =
-    data
+    renderData
       ?.map((d) => {
         const { _id, title, startDate, endDate, eventType } = d;
         const startItem = {
@@ -118,7 +125,7 @@ const CalendarView = () => {
       {modalVisible && (
         <EventDetailModal
           id={currentId}
-          onRecommendEventClick={setCurrentId}
+          setCurrentId={setCurrentId}
           isOpen={modalVisible}
           closeModal={closeModal}
           eventType={eventType}
