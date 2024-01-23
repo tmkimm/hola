@@ -194,7 +194,12 @@ const EventDetailModal = ({
               <EventItemView
                 key={idx}
                 eventInfo={item}
-                onEventClick={() => setCurrentId(item._id)}
+                isSmallImage
+                onEventClick={() => {
+                  window.history.replaceState(null, 'modal title', `/hola-it/${item._id}`);
+                  setCurrentId(item._id);
+                  scrollRef.current.scrollTo({ top: 0 });
+                }}
               />
             ))}
           </div>
@@ -257,7 +262,11 @@ const EventDetailModal = ({
           className={styles.prev}
           onClick={() => {
             const prevId = getPrevId(id);
-            if (prevId) setCurrentId(prevId);
+            if (prevId) {
+              setCurrentId(prevId);
+              window.history.replaceState(null, 'modal title', `/hola-it/${prevId}`);
+              scrollRef.current.scrollTo({ top: 0 });
+            }
           }}
         >
           <img src='/images/info/left-arrow-button.png' className={styles.prevNextImg} alt='이전' />
@@ -266,7 +275,11 @@ const EventDetailModal = ({
           className={styles.next}
           onClick={() => {
             const nextId = getNextId(id);
-            if (nextId) setCurrentId(nextId);
+            if (nextId) {
+              setCurrentId(nextId);
+              window.history.replaceState(null, 'modal title', `/hola-it/${nextId}`);
+              scrollRef.current.scrollTo({ top: 0 });
+            }
           }}
         >
           <img

@@ -11,11 +11,11 @@ import { getDotColor } from 'domains/eventPage/utils/getDotColor';
 import { useModalState } from 'hooks/useModalCustom';
 import EventDetailModal from '../EventDetailModal';
 import { useGetUserLikes } from 'domains/eventPage/hooks/useGetUserLikes';
+import { makeQueryString } from 'domains/eventPage/utils/makeQueryString';
 
 const CalendarView = () => {
-  const { year, month, search, eventType, onOffline, isLiked } = useSelector(
-    (state) => state.itFilter,
-  );
+  const filterState = useSelector((state) => state.itFilter);
+  const { year, month, search, eventType, onOffline, isLiked } = filterState;
 
   const [currentId, setCurrentId] = useState(null);
   const { modalVisible, openModal, closeModal } = useModalState();
@@ -24,14 +24,18 @@ const CalendarView = () => {
   const { data } = useGetMainCalendarEvent({ year, month, search, eventType, onOffline });
   const { data: likesData } = useGetUserLikes(isLiked);
 
+  const handleClose = () => {
+    window.history.replaceState(null, 'modal title', `/hola-it?${makeQueryString(filterState)}`);
+    closeModal();
+  };
+
   const updateMonthAndDate = (currentDate) => {
     dispatch(changeField({ key: 'year', value: new Date(currentDate).getFullYear() }));
     dispatch(changeField({ key: 'month', value: new Date(currentDate).getMonth() + 1 }));
   };
 
   const renderData = isLiked ? likesData : data;
-  console.log(likesData);
-  console.log(data);
+
   const calendarData =
     renderData
       ?.map((d) => {
@@ -102,8 +106,10 @@ const CalendarView = () => {
             return (
               <S.Content
                 onClick={() => {
+                  const nextId = eventInfo.event.id.slice(0, -1);
                   openModal();
-                  setCurrentId(eventInfo.event.id.slice(0, -1));
+                  setCurrentId(nextId);
+                  window.history.replaceState(null, 'modal title', `/hola-it/${nextId}`);
                 }}
               >
                 <S.TimeText color={getDotColor(eventType)}>
@@ -127,7 +133,7 @@ const CalendarView = () => {
           id={currentId}
           setCurrentId={setCurrentId}
           isOpen={modalVisible}
-          closeModal={closeModal}
+          closeModal={handleClose}
           eventType={eventType}
         />
       )}

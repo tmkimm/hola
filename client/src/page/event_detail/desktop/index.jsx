@@ -67,11 +67,11 @@ const DetailDesktop = ({ detailData, relativeEvents }) => {
             <button
               onClick={() => {
                 HolaLogEvent('hola_it_event_click', { cagtegory: detailData?.title });
-                window.location.href = detailData?.link;
+                window.open(detailData?.link);
               }}
               className={styles.applyButton}
             >
-              💌 신청하기
+              신청하기
             </button>
           </div>
         </div>

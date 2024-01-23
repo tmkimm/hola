@@ -24,6 +24,7 @@ const EventItem = ({ eventInfo, getNextId, getPrevId }) => {
     <>
       <EventItemView
         isOverlayNeeded
+        isSmallImage
         eventInfo={eventInfo}
         onEventClick={() => {
           if (isMobile) {
