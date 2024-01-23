@@ -8,7 +8,7 @@ import { useLoginModal } from 'hooks/useModal';
 import { useSelector } from 'react-redux';
 
 const EventItemOverlay = ({ eventInfo }) => {
-  const { startDate, _id, isLiked } = eventInfo;
+  const { startDate, _id, isLiked, place } = eventInfo;
   const { mutate: addLikes } = useAddEventLikes();
   const { mutate: deleteLikes } = useDeleteEventLikes();
   const [liked, setLiked] = useState(isLiked ?? false);
@@ -27,7 +27,7 @@ const EventItemOverlay = ({ eventInfo }) => {
         </S.DetailInfo>
         <S.DetailInfo>
           <S.DetailInfoDecription>장소</S.DetailInfoDecription>
-          <S.DetailInfoDecription>카카오판교아지트</S.DetailInfoDecription>
+          <S.DetailInfoDecription>{place}</S.DetailInfoDecription>
         </S.DetailInfo>
         <S.LikeContainer
           onClick={(e) => {

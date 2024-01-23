@@ -5,6 +5,20 @@
   height: calc(100% - 50px);
 }
 
+.skeletonWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 45px 38px;
+  top: 50px;
+  left: 50px;
+  background: #fff;
+  border-radius: 20px;
+  overflow-y: auto;
+  width: 1200px;
+}
+
 .tooltip {
   position: relative;
   top: 50px;

@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { makeQueryString } from 'domains/eventPage/utils/makeQueryString';
 
-const EventItem = ({ eventInfo }) => {
+const EventItem = ({ eventInfo, getNextId, getPrevId }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 500px)' });
   const history = useHistory();
   const { _id, eventType } = eventInfo;
@@ -37,10 +37,12 @@ const EventItem = ({ eventInfo }) => {
       {modalVisible && (
         <EventDetailModal
           id={currentId}
-          onRecommendEventClick={setCurrentId}
+          setCurrentId={setCurrentId}
           isOpen={modalVisible}
           closeModal={handleClose}
           eventType={eventType}
+          getNextId={getNextId}
+          getPrevId={getPrevId}
         />
       )}
     </>

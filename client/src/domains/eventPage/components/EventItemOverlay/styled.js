@@ -12,6 +12,7 @@ export const Overlay = styled.div`
   align-items: flex-start;
   justify-content: center;
   padding-left: 40px;
+  padding-right: 40px;
   color: white; /* 덮어질 내용의 글자색 등 조절 */
   border-radius: 15px;
   font-size: 14px;
@@ -26,6 +27,7 @@ export const DetailInfo = styled.div`
 
 export const DetailInfoDecription = styled.span`
   white-space: pre-line;
+  min-width: 30px;
 `;
 
 export const LikeContainer = styled.div`

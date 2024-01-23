@@ -17,7 +17,15 @@ import { useAddEventLikes } from 'domains/eventPage/hooks/useAddEventLikes';
 import { useDeleteEventLikes } from 'domains/eventPage/hooks/useDeleteEventLikes';
 import { useSelector } from 'react-redux';
 
-const EventDetailModal = ({ id, isOpen, closeModal, eventType, onRecommendEventClick }) => {
+const EventDetailModal = ({
+  id,
+  isOpen,
+  closeModal,
+  eventType,
+  setCurrentId,
+  getPrevId,
+  getNextId,
+}) => {
   const scrollRef = useRef(null);
   const { data: detailData, isLoading } = useGetEventDtail(id);
   const { data: relativeEvents } = useGetRelativeEvent(id, eventType);
@@ -47,7 +55,47 @@ const EventDetailModal = ({ id, isOpen, closeModal, eventType, onRecommendEventC
     }
   };
 
-  if (isLoading) return null;
+  if (isLoading)
+    return (
+      <Modal visible={isOpen} name='eventInfo' onClose={closeModal}>
+        <div className={styles.container}>
+          <div className={styles.skeletonWrapper}></div>
+          <aside className={styles.tooltip}>
+            <div className={styles.tooltipImgContainer}>
+              <img
+                className={styles.tooltipImg}
+                alt='북마크'
+                src={'/images/event/event-bookmark.png'}
+              />
+              <span className={styles.tooltipText}>북마크</span>
+            </div>
+
+            <div className={styles.tooltipImgContainer}>
+              <img className={styles.tooltipImg} alt='공유' src='/images/event/event-share.png' />
+              <span className={styles.tooltipText}>공유</span>
+            </div>
+            <div className={styles.tooltipImgContainer}>
+              <img className={styles.tooltipImg} alt='위로' src='/images/event/event-top.png' />
+              <span className={styles.tooltipText}>TOP</span>
+            </div>
+          </aside>
+          <button className={styles.prev}>
+            <img
+              src='/images/info/left-arrow-button.png'
+              className={styles.prevNextImg}
+              alt='이전'
+            />
+          </button>
+          <button className={styles.next}>
+            <img
+              src='/images/info/right-arrow-button.png'
+              className={styles.prevNextImg}
+              alt='다음'
+            />
+          </button>
+        </div>
+      </Modal>
+    );
 
   const {
     title,
@@ -135,9 +183,8 @@ const EventDetailModal = ({ id, isOpen, closeModal, eventType, onRecommendEventC
             {relativeEvents?.slice(0, 4).map((item, idx) => (
               <EventItemView
                 key={idx}
-                isRecommend={true}
                 eventInfo={item}
-                onEventClick={() => onRecommendEventClick(item._id)}
+                onEventClick={() => setCurrentId(item._id)}
               />
             ))}
           </div>
@@ -196,10 +243,22 @@ const EventDetailModal = ({ id, isOpen, closeModal, eventType, onRecommendEventC
             <span className={styles.tooltipText}>TOP</span>
           </div>
         </aside>
-        <button className={styles.prev}>
+        <button
+          className={styles.prev}
+          onClick={() => {
+            const prevId = getPrevId(id);
+            if (prevId) setCurrentId(prevId);
+          }}
+        >
           <img src='/images/info/left-arrow-button.png' className={styles.prevNextImg} alt='이전' />
         </button>
-        <button className={styles.next}>
+        <button
+          className={styles.next}
+          onClick={() => {
+            const nextId = getNextId(id);
+            if (nextId) setCurrentId(nextId);
+          }}
+        >
           <img
             src='/images/info/right-arrow-button.png'
             className={styles.prevNextImg}
