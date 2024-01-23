@@ -112,8 +112,6 @@ const EventDetailModal = ({
     totalLikes,
   } = detailData;
 
-  console.log(detailData);
-
   const leftDays = differenceInDays(new Date(), new Date(applicationEndDate));
 
   return (

@@ -8,8 +8,10 @@ import {
 } from 'domains/eventPage/utils/getFormattedDate';
 import { HolaLogEvent } from 'common/GA';
 import EventItemView from 'domains/eventPage/components/EventItemView';
+import { useHistory } from 'react-router';
 
 const DetailDesktop = ({ detailData, relativeEvents }) => {
+  const history = useHistory();
   if (!detailData) return null;
 
   const leftDays = differenceInDays(new Date(), new Date(detailData?.applicationEndDate));
@@ -25,7 +27,7 @@ const DetailDesktop = ({ detailData, relativeEvents }) => {
                 className={styles.badge}
                 style={{
                   color: getBadgeColor(detailData?.eventType),
-                  border: `1px solid ${getBadgeTitle(detailData?.eventType)}`,
+                  border: `1px solid ${getBadgeColor(detailData?.eventType)}`,
                 }}
               >
                 {getBadgeTitle(detailData?.eventType)}
@@ -82,7 +84,12 @@ const DetailDesktop = ({ detailData, relativeEvents }) => {
       <div className={styles.recommendContentTitle}>📁 추천 콘텐츠</div>
       <div className={styles.recommendContainer}>
         {relativeEvents?.slice(0, 4).map((item) => (
-          <EventItemView isRecommend={true} eventInfo={item} onEventClick={() => {}} />
+          <EventItemView
+            eventInfo={item}
+            onEventClick={() => {
+              history.push(`/hola-it/${item._id}`);
+            }}
+          />
         ))}
       </div>
     </div>

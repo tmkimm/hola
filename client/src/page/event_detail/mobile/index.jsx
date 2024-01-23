@@ -1,5 +1,5 @@
 import Navbar from 'component/nav_bar/navbar';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './style.module.css';
 import { getBadgeColor, getBadgeTitle } from 'domains/eventPage/utils/getBadgeTitle';
 import { differenceInDays } from 'date-fns';
@@ -7,9 +7,63 @@ import {
   getFormattedApplicationDate,
   getFormattedDate,
 } from 'domains/eventPage/utils/getFormattedDate';
+import useSocialShare from 'hooks/useSocialShare';
+import { useSelector } from 'react-redux';
+import { useAddEventLikes } from 'domains/eventPage/hooks/useAddEventLikes';
+import { useDeleteEventLikes } from 'domains/eventPage/hooks/useDeleteEventLikes';
+import { toast } from 'react-toastify';
 
 const DetailMobile = ({ detailData, relativeEvents }) => {
-  console.log('detailData : ', detailData);
+  const { shareToKakaoTalk } = useSocialShare();
+  const { id: userId } = useSelector((state) => state.user);
+  const { mutate: addLikes } = useAddEventLikes();
+  const { mutate: deleteLikes } = useDeleteEventLikes();
+  const [liked, setLiked] = useState(false);
+  const mutateFn = liked ? deleteLikes : addLikes;
+
+  useEffect(() => {
+    setLiked(detailData?.isLiked);
+  }, [detailData?.isLiked]);
+
+  //TODO:: 공유 템플릿 적용
+  // const handleShareClick = () => {
+  //   HolaLogEvent('share_button_click');
+  //   shareToKakaoTalk({
+  //     templateId: 93996,
+  //     templateArgs: {
+  //       studyId,
+  //       title,
+  //       description: content,
+  //     },
+  //   });
+  // };
+
+  const handleLikeClick = (e) => {
+    e.stopPropagation();
+
+    if (userId === undefined) {
+      toast.info('로그인이 필요합니다.');
+      return;
+    }
+    const toastText = liked ? '관심 목록에서 제거했어요!' : '관심 목록에 추가했어요!';
+    setLiked((prev) => !prev);
+
+    mutateFn(detailData?._id, {
+      onSuccess: () => {
+        toast.success(toastText, {
+          position: 'top-right',
+          autoClose: 3000,
+        });
+      },
+      onError: () => {
+        setLiked((prev) => !prev);
+        toast.error('잠시 후 다시 시도해주세요', {
+          position: 'top-right',
+          autoClose: 3000,
+        });
+      },
+    });
+  };
 
   if (!detailData) return null;
 
@@ -70,18 +124,20 @@ const DetailMobile = ({ detailData, relativeEvents }) => {
       </section>
 
       <div className={styles.applyContainer}>
-        <button className={styles.applyButton}>지원하기</button>
+        <button
+          className={styles.applyButton}
+          onClick={() => (window.location.href = detailData?.link)}
+        >
+          지원하기
+        </button>
         <button className={styles.shareButton}>공유하기</button>
 
         <div className={styles.likeContainer}>
           <img
+            onClick={handleLikeClick}
             alt='likes'
             className={styles.likesImg}
-            src={
-              // data.likeUsers.find((likeId) => likeId === user.id)
-              //   ? '/images/info/bookmark_filled.svg'
-              '/images/info/bookmark.svg'
-            }
+            src={liked ? '/images/info/bookmark_filled.svg' : '/images/info/bookmark.svg'}
           />
         </div>
       </div>

@@ -13,9 +13,6 @@ const EventDetailPage = () => {
   const { data: detailData } = useGetEventDtail(eventid);
   const { data: relativeEvents } = useGetRelativeEvent(eventid, detailData?.eventType);
 
-  console.log('detailData : ', detailData);
-  console.log('rela : ', relativeEvents);
-
   return isMobile ? (
     <DetailMobile detailData={detailData} relativeEvents={relativeEvents} />
   ) : (
