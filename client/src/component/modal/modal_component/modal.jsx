@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Portal from '../portal/portal';
+import { useEffect } from 'react';
 
 const Modal = ({ name, onClose, visible, children }) => {
   const onMaskClick = (e) => {
@@ -8,6 +9,20 @@ const Modal = ({ name, onClose, visible, children }) => {
       onClose(e);
     }
   };
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onClose]);
 
   return (
     <Portal elementId='modal-root'>
