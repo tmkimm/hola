@@ -23,3 +23,8 @@ export const ButtonContainer = styled.div`
     display: none;
   }
 `;
+
+export const SearchContainer = styled.div`
+  width: calc(100% - 50px);
+  margin: 0 auto;
+`;

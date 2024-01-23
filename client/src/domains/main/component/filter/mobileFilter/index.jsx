@@ -22,25 +22,27 @@ const MobileFilter = () => {
   return (
     <>
       <S.Container>
-        <Search
-          placeholder='제목, 글 내용을 검색해보세요.'
-          handleSubmit={(inputValue) => {
-            if (inputValue === '') return;
-            HolaLogEvent('select_search', { category: inputValue });
-            dispatch(changeSearch(inputValue));
-          }}
-          handleChange={(inputValue) => {
-            if (inputValue === '') {
+        <S.SearchContainer>
+          <Search
+            placeholder='제목, 글 내용을 검색해보세요.'
+            handleSubmit={(inputValue) => {
+              if (inputValue === '') return;
+              HolaLogEvent('select_search', { category: inputValue });
+              dispatch(changeSearch(inputValue));
+            }}
+            handleChange={(inputValue) => {
+              if (inputValue === '') {
+                dispatch(changeSearch(''));
+              }
+            }}
+            handleRemoveClick={() => {
               dispatch(changeSearch(''));
-            }
-          }}
-          handleRemoveClick={() => {
-            dispatch(changeSearch(''));
-          }}
-          handleSearchAreaClick={() => {
-            HolaLogEvent('select_search');
-          }}
-        />
+            }}
+            handleSearchAreaClick={() => {
+              HolaLogEvent('select_search');
+            }}
+          />
+        </S.SearchContainer>
         <S.ButtonContainer>
           <FilterButton
             buttonText={
