@@ -69,3 +69,7 @@
 .fc-day-fri {
   color: #999;
 }
+
+.fc-event-today {
+  background-color: inherit !important;
+}
