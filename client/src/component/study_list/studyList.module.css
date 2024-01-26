@@ -7,14 +7,16 @@
   padding: 0 20px;
 }
 
-.bannerImg {
-  width: 370px;
-  height: 450px;
+.adBlockImg {
+  width: 300px;
+  height: 340px;
   cursor: pointer;
   transition: 0.2s ease-in;
+  border: 2px solid #d1d1d1;
+  border-radius: 30px;
 }
 
-.bannerImg:hover {
+.adBlockImg:hover {
   transform: scale(1.02);
 }
 
