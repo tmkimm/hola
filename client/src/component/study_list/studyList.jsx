@@ -16,7 +16,7 @@ const StudyList = ({ studyList, type }) => {
           src='images/banner/adblock.png'
           alt='ad-block'
           onClick={() => {
-            mutate({ advertisementId: '1234', logType: 'reach' });
+            mutate({ advertisementId: '65b3c33420a6057557e3a2cb', logType: 'reach' });
             window.open(
               'https://hanghae99.spartacodingclub.kr/v2/plus/be?utm_source=hola&utm_medium=display&utm_campaign=hhplus&utm_content=%ED%95%AD%ED%95%B4%ED%94%8C%EB%9F%AC%EC%8A%A4%EB%B0%B1%EC%97%94%EB%93%9C4%EA%B8%B0%EB%AA%A8%EC%A7%91&utm_term=240125',
               '_blank',
