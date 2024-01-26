@@ -15,8 +15,10 @@ const ListView = () => {
   const bottomRef = useRef(null);
   const inView = useOnScreen(bottomRef.current);
 
+  const renderData = filterState.isLiked ? likesData : data;
+
   const getNextId = (id) => {
-    const idList = data?.map((d) => d._id);
+    const idList = renderData?.map((d) => d._id);
     const index = idList.indexOf(id);
 
     // 특정 요소가 배열에 없거나 마지막 요소라면 null을 반환
@@ -33,7 +35,7 @@ const ListView = () => {
   };
 
   const getPrevId = (id) => {
-    const idList = data?.map((d) => d._id);
+    const idList = renderData?.map((d) => d._id);
     const index = idList.indexOf(id);
 
     // 첫번쨰 요소면 null 반환
@@ -50,8 +52,6 @@ const ListView = () => {
       fetchNextPage();
     }
   }, [hasNextPage, inView, fetchNextPage, isFetching]);
-
-  const renderData = filterState.isLiked ? likesData : data;
 
   return (
     <>
