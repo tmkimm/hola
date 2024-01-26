@@ -40,7 +40,7 @@ class Event {
   };
 
   /* 공모전 광고 영역 */
-  eventsInfinite = async ({ pageParam = 0 }, { eventType, search, onOffline, sort }) => {
+  eventsInfinite = async ({ pageParam = 1 }, { eventType, search, onOffline, sort }) => {
     const queryString = stringify(
       {
         page: pageParam,
