@@ -59,6 +59,32 @@ const CalendarView = () => {
       })
       .flat() ?? [];
 
+  const getNextId = (id) => {
+    const idList = renderData?.map((d) => d._id);
+    const index = idList.indexOf(id);
+
+    // 특정 요소가 배열에 없거나 마지막 요소라면 null을 반환
+    if (index === -1) {
+      return null;
+    }
+
+    // 다음 요소 반환
+    return idList[index + 1];
+  };
+
+  const getPrevId = (id) => {
+    const idList = renderData?.map((d) => d._id);
+    const index = idList.indexOf(id);
+
+    // 첫번쨰 요소면 null 반환
+    if (index === 0) {
+      return null;
+    }
+
+    // 다음 요소 반환
+    return idList[index - 1];
+  };
+
   return (
     <>
       <S.TotalContainer>
@@ -135,6 +161,8 @@ const CalendarView = () => {
           isOpen={modalVisible}
           closeModal={handleClose}
           eventType={eventType}
+          getNextId={getNextId}
+          getPrevId={getPrevId}
         />
       )}
     </>
