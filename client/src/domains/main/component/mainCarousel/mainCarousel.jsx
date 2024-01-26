@@ -11,6 +11,7 @@ export const Carousel = () => {
   const { data: bannerItem } = useGetCarouselItem();
   const isMobile = useMediaQuery({ query: '(max-width: 500px)' });
   const { mutate } = useEventLog();
+  const [logId, setLogId] = useState([]);
 
   const settings = {
     dots: false, //화면아래 컨텐츠 갯수 표시
@@ -22,8 +23,16 @@ export const Carousel = () => {
     speed: 400, //다음버튼 누르고 다음화면 뜨는데까지 걸리는 시간
     slidesToShow: 1, //화면에 보여질 개수
     arrows: false,
-    afterChange: (curIndex) => {
-      mutate({ advertisementId: bannerItem?.[curIndex]._id, logType: 'impression' });
+    beforeChange: (curIndex) => {
+      if (logId.includes(curIndex)) return;
+      mutate(
+        { advertisementId: bannerItem?.[curIndex]._id, logType: 'impression' },
+        {
+          onSuccess: () => {
+            setLogId((prev) => [...prev, curIndex]);
+          },
+        },
+      );
     },
     responsive: [
       {

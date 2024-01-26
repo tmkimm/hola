@@ -21,7 +21,6 @@ class Advertisement {
 
   /* 광고 추적 로깅 */
   eventLog = ({ advertisementId, logType }) => {
-    //if (window.location.href.includes('localhost')) return;
     return this.client.post('advertisements/event-log', {
       advertisementId,
       logType,
