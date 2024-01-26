@@ -8,6 +8,7 @@ import { useEventLog } from 'domains/main/hooks/useEventLog';
 const StudyList = ({ studyList, type }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const { mutate } = useEventLog();
+
   return (
     <ul className={styles.studyList}>
       {!isMobile && (
