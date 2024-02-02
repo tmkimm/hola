@@ -22,7 +22,7 @@ button {
 
 .logo {
   width: 105px;
-  height: 32px;
+  height: auto;
 }
 
 .login {

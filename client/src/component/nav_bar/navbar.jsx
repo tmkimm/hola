@@ -55,7 +55,7 @@ const Navbar = React.memo(({ isBackBtn }) => {
         />
       ) : (
         <a href='/'>
-          <img className={styles.logo} src='/images/logo/hola_logo_y.png' alt='logo' />
+          <img className={styles.logo} src='/images/logo/new-logo.png' alt='logo' />
         </a>
       )}
       <div className={styles.loginElementWrapper}>
