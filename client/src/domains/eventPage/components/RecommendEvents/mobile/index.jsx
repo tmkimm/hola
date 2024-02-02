@@ -17,7 +17,7 @@ const RecommendEventsMobile = ({ recommendEvents }) => {
           return (
             <Link
               key={title}
-              to={`/study/${_id}`}
+              to={`/hola-it/${_id}`}
               onClick={(e) => {
                 e.preventDefault();
                 //TODO: GA 이벤트 정의
@@ -26,8 +26,7 @@ const RecommendEventsMobile = ({ recommendEvents }) => {
               }}
             >
               <S.Container key={title}>
-                {/* <S.Deadline>{`🚨 ${badge[0].name}`}</S.Deadline> */}
-                <S.Deadline>{`🚨 ${'마감 3일전'}`}</S.Deadline>
+                <S.Deadline>{`🚨 ${badge[0]?.name}`}</S.Deadline>
                 <S.ProjectTitle>{title}</S.ProjectTitle>
                 <S.ViewCount>👀 조회수 {views}회</S.ViewCount>
               </S.Container>
