@@ -13,6 +13,8 @@ export const getFormattedDate = (dateString, skipYear = false) => {
   const time = format(dateTime, 'HH:mm');
   const ampm = getHours(dateTime) >= 12 ? '오후' : '오전';
 
+  if (ampm === '오전' && time === '00:00') return `${date} (${getDayOfWeekKorean(dateTime)})`;
+
   return `${date} (${getDayOfWeekKorean(dateTime)})\n${ampm} ${time}`;
 };
 
@@ -21,6 +23,8 @@ export const getFormattedApplicationDate = (dateString) => {
 
   const date = format(dateTime, 'MM월 dd일');
   const time = format(dateTime, 'HH:mm');
+
+  if (time === '00:00') return `${date}(${getDayOfWeekKorean(dateTime)})`;
 
   return `${date}(${getDayOfWeekKorean(dateTime)}) ${time}`;
 };
