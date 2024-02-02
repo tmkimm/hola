@@ -22,7 +22,7 @@ const RecommendEventsMobile = ({ recommendEvents }) => {
                 e.preventDefault();
                 //TODO: GA 이벤트 정의
                 //HolaLogEvent('select_trending', { category: id });
-                history.push(`/study/${_id}`);
+                history.push(`/hola-it/${_id}`);
               }}
             >
               <S.Container key={title}>
