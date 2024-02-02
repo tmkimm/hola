@@ -268,3 +268,8 @@
   outline: none;
   border-radius: 100%;
 }
+
+.eventItemContainer {
+  width: 260px;
+  height: auto;
+}

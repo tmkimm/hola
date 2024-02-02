@@ -189,16 +189,18 @@ const EventDetailModal = ({
           <div className={styles.recommendContentTitle}>📁 추천 콘텐츠</div>
           <div className={styles.recommendContainer}>
             {relativeEvents?.slice(0, 4).map((item, idx) => (
-              <EventItemView
-                key={idx}
-                eventInfo={item}
-                isSmallImage
-                onEventClick={() => {
-                  window.history.replaceState(null, 'modal title', `/hola-it/${item._id}`);
-                  setCurrentId(item._id);
-                  scrollRef.current.scrollTo({ top: 0 });
-                }}
-              />
+              <div className={styles.eventItemContainer}>
+                <EventItemView
+                  key={idx}
+                  eventInfo={item}
+                  isSmallImage
+                  onEventClick={() => {
+                    window.history.replaceState(null, 'modal title', `/hola-it/${item._id}`);
+                    setCurrentId(item._id);
+                    scrollRef.current.scrollTo({ top: 0 });
+                  }}
+                />
+              </div>
             ))}
           </div>
         </div>
