@@ -70,6 +70,7 @@ export const ProjectInfo = styled.div`
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
+  margin-bottom: 16px;
 `;
 
 export const ProjectIcon = styled.img`
@@ -98,6 +99,14 @@ export const InfoWrapper = styled.div`
 export const Content = styled.div`
   img {
     width: 100%;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 18px;
   }
 `;
 
