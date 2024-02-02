@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import SocialLoginContainer from 'component/social_login_container/socialLoginContainer';
 import SetNicknameContainer from 'component/set_nickname_container/setNicknameContainer';
 import SetInterestContainer from 'component/set_interest_container/setInterestContainer';
-import SetImageContainer from 'component/set_image_container/setImageContainer';
 import SignupEnd from 'component/signup_end/signupEnd';
 import SetLanguage from 'component/set_language/setLanguage';
 /* 
@@ -17,9 +16,6 @@ LoginModal Component
 loginStep에 따라
 true면 <SocialLogin>, false면 <SignUp>
 component를 rendering 합니다.
-
-to-do
-꼭 modalvisible이 전역 state로 관리가 되어야 하는가?
 
 */
 
