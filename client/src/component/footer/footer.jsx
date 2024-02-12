@@ -34,11 +34,7 @@ const Footer = () => {
         >
           서비스소개
         </a>
-        <a
-          href='https://temporal-weather-18e.notion.site/ab6b73c556c94119914883c31efb8049'
-          target='_blank'
-          rel='noreferrer'
-        >
+        <a href='https://tally.so/r/w4rWyX' target='_blank' rel='noreferrer'>
           광고상품 소개
         </a>
       </div>
