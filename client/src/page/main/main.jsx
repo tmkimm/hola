@@ -10,8 +10,10 @@ import { useEventLog } from 'domains/main/hooks/useEventLog';
 
 const Main = () => {
   const { mutate } = useEventLog();
+
   useEffect(() => {
-    mutate({ advertisementId: '65b3c33420a6057557e3a2cb', logType: 'impression' });
+    if (window.innerWidth < 500) return;
+    mutate({ advertisementId: '65cb764fc9cb7c177c881ac1', logType: 'impression' });
   }, []);
 
   return (
