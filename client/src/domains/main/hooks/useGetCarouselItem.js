@@ -9,8 +9,7 @@ export const useGetCarouselItem = () => {
     },
     {
       select: (data) => {
-        // return data.data;
-        return data.data.filter((d) => d._id !== '65cb7624c9cb7c177c881ab9');
+        return data.data;
       },
     },
   );
