@@ -1,17 +1,17 @@
 import React from 'react';
 import StudyItem from 'component/study_item/studyItem';
 import styles from './studyList.module.css';
-// import { useMediaQuery } from 'react-responsive';
-// import { useEventLog } from 'domains/main/hooks/useEventLog';
+import { useMediaQuery } from 'react-responsive';
+import { useEventLog } from 'domains/main/hooks/useEventLog';
 
 /* StudyList component는 map을 통해 StudyItem component를 생성합니다. */
 const StudyList = ({ studyList, type }) => {
-  // const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
-  // const { mutate } = useEventLog();
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+  const { mutate } = useEventLog();
 
   return (
     <ul className={styles.studyList}>
-      {/* {!isMobile && (
+      {!isMobile && (
         <img
           className={styles.adBlockImg}
           src='images/banner/ad-block-ll.png'
@@ -24,7 +24,7 @@ const StudyList = ({ studyList, type }) => {
             );
           }}
         />
-      )} */}
+      )}
       {studyList.map((study) => {
         return <StudyItem study={study} type={type} key={study._id}></StudyItem>;
       })}

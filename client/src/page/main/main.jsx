@@ -9,12 +9,13 @@ import Trending from 'domains/main/component/trending';
 import { useEventLog } from 'domains/main/hooks/useEventLog';
 
 const Main = () => {
-  //const { mutate } = useEventLog();
+  const { mutate } = useEventLog();
 
-  // useEffect(() => {
-  //   if (window.innerWidth < 500) return;
-  //   mutate({ advertisementId: '65cb764fc9cb7c177c881ac1', logType: 'impression' });
-  // }, []);
+  useEffect(() => {
+    if (window.innerWidth < 767) return;
+    console.log('window.in', window.innerWidth);
+    mutate({ advertisementId: '65cb764fc9cb7c177c881ac1', logType: 'impression' });
+  }, []);
 
   return (
     <>
