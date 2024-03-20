@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const EventList = styled.ul`
   display: flex;
-  gap: 27px;
+  gap: 26px;
   margin-top: 36px;
   flex-wrap: wrap;
 
@@ -16,7 +16,11 @@ export const EventList = styled.ul`
 export const EventItemContainer = styled.li`
   width: 300px;
 
-  @media screen and (max-width: 950px) {
+  @media screen and (max-width: 1300px) {
+    width: 310px;
+  }
+
+  @media screen and (max-width: 980px) {
     width: calc(50% - 8px);
   }
 `;

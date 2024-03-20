@@ -8,6 +8,16 @@ export const Container = styled.section`
   display: flex;
   flex-direction: column;
   gap: 30px;
+
+  @media screen and (max-width: 1300px) {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media screen and (max-width: 980px) {
+    padding: 0 20px;
+  }
 `;
 
 export const Title = styled.div`
