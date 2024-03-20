@@ -12,7 +12,7 @@ import FilterBottomSheet from './filterBottomSheet';
 const MobileItFilter = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [curCategory, setCurCategory] = useState('카테고리');
-  const { eventType, viewMode, onOffline, sort } = useSelector((state) => state.itFilter);
+  const { eventType, viewMode, onOffLine, sort } = useSelector((state) => state.itFilter);
   const dispatch = useDispatch();
 
   const handleClick = (category) => {
@@ -58,11 +58,11 @@ const MobileItFilter = () => {
           />
           <FilterButton
             buttonText={
-              onOffline === IT_FILTER.PLACE.ALL
+              onOffLine === IT_FILTER.PLACE.ALL
                 ? '진행 방식'
-                : onlineOrOfflineOption.find((v) => v.value === onOffline).label
+                : onlineOrOfflineOption.find((v) => v.value === onOffLine).label
             }
-            isSelected={onOffline !== IT_FILTER.PLACE.ALL}
+            isSelected={onOffLine !== IT_FILTER.PLACE.ALL}
             onClick={() => handleClick('진행방식')}
           />
           <FilterButton

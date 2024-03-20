@@ -54,11 +54,11 @@ const DesktopItFilter = () => {
             options={onlineOrOfflineOption}
             placeholder='진행방식'
             value={onlineOrOfflineOption.filter((option) => {
-              return option.value === filterState.onOffline;
+              return option.value === filterState.onOffLine;
             })}
             onChange={(e) => {
               const { value } = e;
-              dispatch(changeField({ key: 'onOffline', value }));
+              dispatch(changeField({ key: 'onOffLine', value }));
             }}
           />
 

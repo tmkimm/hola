@@ -30,7 +30,7 @@ const initialState = {
   year: new Date().getFullYear(), // calendar에서만 사용
   month: new Date().getMonth() + 1, // calendar에서만 사용
   sort: IT_FILTER.SORT.RECENT,
-  onOffline: IT_FILTER.PLACE.ALL,
+  onOffLine: IT_FILTER.PLACE.ALL,
   page: 1,
   search: null,
   isLiked: false,

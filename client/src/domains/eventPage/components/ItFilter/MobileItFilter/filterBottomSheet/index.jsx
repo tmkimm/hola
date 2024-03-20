@@ -13,9 +13,8 @@ const onlineOrOfflineOption = [
 ];
 
 const FilterBottomSheet = ({ isOpen, onDismiss, curCategory, setCurCategory }) => {
-  console.log('curcategory', curCategory);
   const dispatch = useDispatch();
-  const { eventType, onOffline, sort } = useSelector((state) => state.itFilter);
+  const { eventType, onOffLine, sort } = useSelector((state) => state.itFilter);
   const categories = ['카테고리', '진행방식', '정렬방식'];
   const FilterItem = {
     카테고리: (
@@ -28,8 +27,8 @@ const FilterBottomSheet = ({ isOpen, onDismiss, curCategory, setCurCategory }) =
     진행방식: (
       <FilterContent
         options={onlineOrOfflineOption}
-        currentValue={onOffline}
-        handleClick={(value) => dispatch(changeField({ key: 'onOffline', value }))}
+        currentValue={onOffLine}
+        handleClick={(value) => dispatch(changeField({ key: 'onOffLine', value }))}
       />
     ),
     정렬방식: (

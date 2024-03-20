@@ -20,17 +20,18 @@ class Event {
   };
 
   /* 공모전 광고 영역 */
-  events = ({ page, eventType, search, onOffline, sort }) => {
+  events = ({ page, eventType, search, onOffLine, sort }) => {
     const queryString = stringify(
       {
         page,
         eventType: eventType === 'all' ? null : eventType,
         sort: sort === 'RECENT' ? '-createAt' : '-views',
-        onOffline,
+        onOffLine,
         search,
       },
       { skipNulls: true },
     );
+    console.log('queryString : ', queryString);
 
     try {
       return this.client.get(`events?${queryString}`);
@@ -40,13 +41,13 @@ class Event {
   };
 
   /* 공모전 광고 영역 */
-  eventsInfinite = async ({ pageParam = 1 }, { eventType, search, onOffline, sort }) => {
+  eventsInfinite = async ({ pageParam = 1 }, { eventType, search, onOffLine, sort }) => {
     const queryString = stringify(
       {
         page: pageParam,
         eventType: eventType === 'all' ? null : eventType,
         sort: sort === 'RECENT' ? '-createAt' : '-views',
-        onOffline,
+        onOffLine,
         search,
       },
       { skipNulls: true },
