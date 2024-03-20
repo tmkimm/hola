@@ -71,7 +71,7 @@ const RecommendEventsDesktop = ({ recommendEvents }) => {
   return (
     <S.Container>
       <S.TitleContainer>
-        <S.Title>추천 이벤트(AD)</S.Title>
+        <S.Title>추천 이벤트</S.Title>
         <S.ImageContainer>
           <S.Arrows
             src={'/images/info/left-arrow-button.png'}
