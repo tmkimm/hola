@@ -1,7 +1,14 @@
 .info {
+  padding: 0;
+}
+
+.infoWrapper {
   background-color: #f9f9f9;
-  height: 400px;
   padding: 30px 20px;
+}
+
+.introduceWrapper {
+  padding: 0 20px;
 }
 
 .badgeList {
@@ -155,10 +162,19 @@
 
 .content {
   padding-top: 25px;
-  padding-bottom: 50px;
   font-size: 18px;
   line-height: 135%;
   white-space: pre-line;
+}
+
+.warning {
+  font-size: 11px;
+  display: flex;
+  justify-content: flex-end;
+  color: #333;
+  border-bottom: 2px solid #f2f2f2;
+  padding-bottom: 50px;
+  padding-top: 40px;
 }
 
 .content > * {

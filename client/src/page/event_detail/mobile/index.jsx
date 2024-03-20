@@ -71,50 +71,57 @@ const DetailMobile = ({ detailData, relativeEvents }) => {
     <>
       <Navbar isBackBtn={true} />
       <section className={styles.info}>
-        <ul className={styles.badgeList}>
-          <li
-            style={{
-              border: `1px solid ${getBadgeColor(detailData?.eventType)}`,
-              color: getBadgeColor(detailData?.eventType),
-            }}
-            className={styles.badge}
-          >
-            {getBadgeTitle(detailData?.eventType)}
-          </li>
-          <li className={styles.deadline}>
-            🔥 마감 {differenceInDays(new Date(), new Date(detailData?.applicationEndDate))}일전
-          </li>
-        </ul>
-        <img className={styles.thumbnail} src={detailData?.imageUrl} alt='thumbnail' />
-        <div className={styles.titleAndOrganization}>
-          <h1 className={styles.title}>{detailData?.title}</h1>
-          <span className={styles.description}>주최 | {detailData?.organization}</span>
+        <div className={styles.infoWrapper}>
+          <ul className={styles.badgeList}>
+            <li
+              style={{
+                border: `1px solid ${getBadgeColor(detailData?.eventType)}`,
+                color: getBadgeColor(detailData?.eventType),
+              }}
+              className={styles.badge}
+            >
+              {getBadgeTitle(detailData?.eventType)}
+            </li>
+            <li className={styles.deadline}>
+              🔥 마감 {differenceInDays(new Date(), new Date(detailData?.applicationEndDate))}일전
+            </li>
+          </ul>
+          <img className={styles.thumbnail} src={detailData?.imageUrl} alt='thumbnail' />
+          <div className={styles.titleAndOrganization}>
+            <h1 className={styles.title}>{detailData?.title}</h1>
+            <span className={styles.description}>주최 | {detailData?.organization}</span>
+          </div>
+
+          <div className={styles.scheduleInfo}>
+            <div className={styles.evantInfoWrapper}>
+              <span className={styles.eventTitle}>일시</span>
+              <span className={styles.eventSubTitle}>
+                {getFormattedDate(detailData?.startDate)}
+              </span>
+            </div>
+
+            <div className={styles.evantInfoWrapper}>
+              <span className={styles.eventTitle}>신청</span>
+              <span className={styles.eventSubTitle}>
+                <span className={styles.eventSubTitle}>{`${getFormattedApplicationDate(
+                  detailData?.applicationStartDate,
+                )} ~\n${getFormattedApplicationDate(detailData?.applicationEndDate)}`}</span>
+              </span>
+            </div>
+
+            <div className={styles.evantInfoWrapper}>
+              <span className={styles.eventTitle}>장소</span>
+              <span className={styles.eventSubTitle}>{detailData?.place}</span>
+            </div>
+          </div>
         </div>
 
-        <div className={styles.scheduleInfo}>
-          <div className={styles.evantInfoWrapper}>
-            <span className={styles.eventTitle}>일시</span>
-            <span className={styles.eventSubTitle}>{getFormattedDate(detailData?.startDate)}</span>
-          </div>
-
-          <div className={styles.evantInfoWrapper}>
-            <span className={styles.eventTitle}>신청</span>
-            <span className={styles.eventSubTitle}>
-              <span className={styles.eventSubTitle}>{`${getFormattedApplicationDate(
-                detailData?.applicationStartDate,
-              )} ~\n${getFormattedApplicationDate(detailData?.applicationEndDate)}`}</span>
-            </span>
-          </div>
-
-          <div className={styles.evantInfoWrapper}>
-            <span className={styles.eventTitle}>장소</span>
-            <span className={styles.eventSubTitle}>{detailData?.place}</span>
-          </div>
-        </div>
-
-        <div>
+        <div className={styles.introduceWrapper}>
           <div className={styles.introduce}>소개</div>
           <p className={styles.content} dangerouslySetInnerHTML={{ __html: detailData?.content }} />
+          <div className={styles.warning}>
+            * 행사의 주최는 hola가 아니며 자세한 정보는 신청하기 버튼을 확인하세요
+          </div>
 
           <div>
             <span>조회수 2회</span>

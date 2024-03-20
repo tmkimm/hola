@@ -185,11 +185,14 @@ const EventDetailModal = ({
           </section>
           <div className={styles.introductionTitle}>소개</div>
           <div className={styles.content} dangerouslySetInnerHTML={{ __html: content }} />
+          <div className={styles.warning}>
+            * 행사의 주최는 hola가 아니며 자세한 정보는 신청하기 버튼을 확인하세요
+          </div>
 
           <div className={styles.recommendContentTitle}>📁 추천 콘텐츠</div>
           <div className={styles.recommendContainer}>
             {relativeEvents?.slice(0, 4).map((item, idx) => (
-              <div className={styles.eventItemContainer}>
+              <div key={idx} className={styles.eventItemContainer}>
                 <EventItemView
                   key={idx}
                   eventInfo={item}
