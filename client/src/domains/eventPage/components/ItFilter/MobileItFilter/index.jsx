@@ -23,7 +23,7 @@ const MobileItFilter = () => {
     <>
       <S.Container>
         <Search
-          placeholder='찾고 있는 프로젝트가 있나요?'
+          placeholder='키워드를 검색해 보세요.'
           handleSubmit={(inputValue) => {
             if (inputValue === '') return;
             HolaLogEvent('it_select_search', { category: inputValue });
@@ -42,11 +42,11 @@ const MobileItFilter = () => {
           }}
         />
         <S.ButtonContainer>
-          <FilterButton
+          {/* <FilterButton
             buttonText={viewMode === IT_FILTER.VIEW.GENERAL ? '📁 리스트뷰' : '🗓️ 캘린더뷰'}
             isSelected
             onClick={() => handleClick('모집구분')}
-          />
+          /> */}
           <FilterButton
             buttonText={
               eventType === IT_FILTER.TYPE.ALL
