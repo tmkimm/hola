@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 import { useAddEventLikes } from 'domains/eventPage/hooks/useAddEventLikes';
 import { useDeleteEventLikes } from 'domains/eventPage/hooks/useDeleteEventLikes';
 import { toast } from 'react-toastify';
+import { HolaLogEvent } from 'common/GA';
 
 const DetailMobile = ({ detailData, relativeEvents }) => {
   const { shareToKakaoTalk } = useSocialShare();
@@ -26,17 +27,16 @@ const DetailMobile = ({ detailData, relativeEvents }) => {
   }, [detailData?.isLiked]);
 
   //TODO:: 공유 템플릿 적용
-  // const handleShareClick = () => {
-  //   HolaLogEvent('share_button_click');
-  //   shareToKakaoTalk({
-  //     templateId: 93996,
-  //     templateArgs: {
-  //       studyId,
-  //       title,
-  //       description: content,
-  //     },
-  //   });
-  // };
+  const handleShareClick = () => {
+    HolaLogEvent('share_button_click');
+    shareToKakaoTalk({
+      templateId: 105815,
+      templateArgs: {
+        id: detailData?._id,
+        title: detailData?.title,
+      },
+    });
+  };
 
   const handleLikeClick = (e) => {
     e.stopPropagation();
@@ -137,7 +137,9 @@ const DetailMobile = ({ detailData, relativeEvents }) => {
         >
           지원하기
         </button>
-        <button className={styles.shareButton}>공유하기</button>
+        <button className={styles.shareButton} onClick={handleShareClick}>
+          공유하기
+        </button>
 
         <div className={styles.likeContainer}>
           <img
