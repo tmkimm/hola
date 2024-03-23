@@ -1,20 +1,11 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  addLanguage,
-  clearLanguage,
-  initLanguage,
-  removeLanguage,
-} from 'store/language';
+import { addLanguage, clearLanguage, initLanguage, removeLanguage } from 'store/language';
 import LanguageBarItem from 'component/language_bar_item/languageBarItem';
 import styles from './languageBarList.module.css';
 
 const LanguageBarList = React.memo(() => {
   const selectedLanguage = useSelector((state) => state.language);
-
-  // useEffect(() => {
-  //   setChecked(selectedLanguage.length === 14);
-  // }, [selectedLanguage.length, setChecked]);
 
   const dispatch = useDispatch();
   const onItemClick = useCallback(
@@ -30,7 +21,7 @@ const LanguageBarList = React.memo(() => {
         else dispatch(removeLanguage(Langauge));
       }
     },
-    [dispatch, selectedLanguage.length]
+    [dispatch, selectedLanguage.length],
   );
 
   const languages = [
@@ -50,7 +41,6 @@ const LanguageBarList = React.memo(() => {
     'swift',
   ];
 
-  //console.log(selectedLanguage);
   return (
     <ul className={styles.languageList}>
       {languages.map((language, i) => {

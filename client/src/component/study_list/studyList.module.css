@@ -1,6 +1,47 @@
 .studyList {
+  width: 1325px;
   display: flex;
+  gap: 27px;
   flex-wrap: wrap;
-  padding: 0;
-  margin-bottom: 10rem;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.adBlockImg {
+  width: 300px;
+  height: 340px;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+  border-radius: 30px;
+}
+
+.adBlockImg:hover {
+  transform: scale(1.02);
+}
+
+.link {
+  text-decoration: none;
+}
+
+/* 1300px 밑으로 3개 노출 */
+@media screen and (max-width: 1300px) {
+  .studyList {
+    width: 1000px;
+  }
+}
+
+/* 980px 밑으로 2개 노출 */
+@media screen and (max-width: 980px) {
+  .studyList {
+    width: 670px;
+  }
+}
+
+/* 767px 밑으로 1개 노출 */
+@media screen and (max-width: 767px) {
+  .studyList {
+    width: 100%;
+    padding: 0;
+    gap: 0;
+  }
 }

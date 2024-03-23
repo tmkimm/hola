@@ -1,0 +1,18 @@
+.topButton {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.topButtonImage {
+  width: 100%;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1300px) {
+  .topButton {
+    display: none;
+  }
+}

@@ -1,14 +1,64 @@
-.editorWrapper {
+.postWrapper {
+  max-width: 1040px;
+  padding: 0 16px;
   display: flex;
   flex-direction: column;
-  padding: 5rem 1rem;
+  padding: 60px 16px;
   width: 1024px;
   margin: 0 auto; /* 중앙 정렬 */
-  background-color: #ffffff;
+  color: #333333;
+  gap: 50px;
+  position: relative;
 }
 
-@media screen and (max-width: 1048px) {
-  .editorWrapper {
+.postContentWrapper {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  margin-bottom: 36px;
+  border-bottom: 3px solid #f2f2f2;
+}
+
+.text {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  letter-spacing: -0.05em;
+  margin: 0;
+}
+
+.sequence {
+  margin-right: 8px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: #ffcd00;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 19px;
+  color: #ffffff;
+}
+@media screen and (max-width: 1000px) {
+  .postWrapper {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .text {
+    font-size: 16px;
+  }
+
+  .postContentWrapper {
+    padding: 8px;
+  }
+  .sequence {
+    margin-right: 6px;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
   }
 }

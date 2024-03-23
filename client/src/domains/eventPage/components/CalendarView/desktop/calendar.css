@@ -1,0 +1,75 @@
+.fc-daygrid-day-top {
+  justify-content: center;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  letter-spacing: 0.1px;
+}
+
+.calendar__flex {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 4px 6px;
+  overflow: hidden;
+}
+
+.calendar__contentType {
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.calendar__content {
+  color: #333;
+  font-family: Spoqa Han Sans Neo;
+  font-size: 12px;
+}
+
+.fc-col-header-cell {
+  vertical-align: middle !important;
+  height: 44px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.fc-day-other {
+  background-color: #f7f7f7;
+}
+
+.fc-day-sat {
+  color: #5892ec !important;
+}
+
+.fc-day-sun {
+  color: #ea726f !important;
+}
+
+.fc-day-mon {
+  color: #999;
+}
+
+.fc-day-tue {
+  color: #999;
+}
+
+.fc-day-wed {
+  color: #999;
+}
+
+.fc-day-thu {
+  color: #999;
+}
+
+.fc-day-fri {
+  color: #999;
+}
+
+.fc-event-today {
+  background-color: inherit !important;
+}

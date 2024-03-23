@@ -1,4 +1,4 @@
-import httpClient from "./http_client";
+import httpClient from './http_client';
 
 /* 
 auth 관련 API를 정의한 class입니다.
@@ -23,8 +23,7 @@ class Auth {
 
   logout = async () => {
     try {
-      const res = await this.auth.post("logout");
-      //  console.log("returned value from logout API : ", res);
+      const res = await this.auth.post('logout');
       return res;
     } catch (error) {
       console.error(error);
@@ -35,7 +34,7 @@ class Auth {
    유저 정보를 얻어 옵니다. */
   getUserInfo = async () => {
     try {
-      const userInfo = await this.auth.get("auth");
+      const userInfo = await this.auth.get('auth');
       return userInfo;
     } catch (error) {
       console.error(error);
@@ -44,12 +43,11 @@ class Auth {
 
   /* userInfo를 전달하여 회원가입을 진행합니다. */
   signUp = async (userInfo) => {
-    //console.log("here for signup!");
-    return await this.auth.post("login/signup", userInfo);
+    return await this.auth.post('login/signup', userInfo);
   };
 
   resetToken = () => {
-    this.auth.defaults.headers.common["Authorization"] = "";
+    this.auth.defaults.headers.common['Authorization'] = '';
   };
 }
 

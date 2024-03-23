@@ -1,0 +1,283 @@
+.container {
+  display: flex;
+  margin: 0 auto;
+  width: min(calc(85% + 90px), 1290px);
+  height: calc(100% - 50px);
+}
+
+.skeletonWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 45px 38px;
+  top: 50px;
+  left: 50px;
+  background: #fff;
+  border-radius: 20px;
+  overflow-y: auto;
+  width: 1200px;
+}
+
+.tooltip {
+  position: relative;
+  top: 50px;
+  left: 50px;
+  margin-left: 40px;
+}
+
+.tooltip > :not(:first-child) {
+  margin-top: 30px;
+}
+
+.tooltipImgContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tooltipImg {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.tooltipText {
+  color: #d8d8d8;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 150%; /* 21px */
+  text-align: center;
+}
+
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 45px 45px;
+  top: 50px;
+  left: 50px;
+  background: #fff;
+  border-radius: 20px;
+  overflow-y: auto;
+}
+
+.wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  color: #000;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 34px */
+  margin-bottom: 24px;
+}
+
+.viewAndLikes {
+  display: flex;
+  gap: 15px;
+}
+
+.eventInfoSection {
+  display: flex;
+  gap: 40px;
+  height: fit-content;
+}
+
+.eventBannerImg {
+  display: block;
+  width: 60%;
+  height: auto;
+  min-width: 558px;
+  min-height: 380px;
+}
+
+.eventInfo {
+  display: flex;
+
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.eventInfoDetail {
+  width: 100%;
+  padding: 26px 24px;
+  border: 1px solid #eee;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.eventApplyContainer {
+  width: 100%;
+  padding: 16px 24px;
+  border: 1px solid #eee;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.evantInfoWrapper {
+  display: flex;
+  gap: 15px;
+}
+
+.eventTitle {
+  color: #717171;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 180%; /* 36px */
+  width: 34px;
+  white-space: nowrap;
+}
+
+.eventSubTitle {
+  color: var(--color-system-gray-333333, #333);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 180%; /* 36px */
+  white-space: pre-line;
+}
+
+.introductionTitle {
+  color: #333;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 126.5%; /* 32.89px */
+  margin-top: 32px;
+  margin-bottom: 30px;
+}
+
+.content {
+  border-top: 2px solid #f2f2f2;
+  padding-top: 30px;
+  font-size: 18px;
+  line-height: 180%;
+  white-space: pre-line;
+}
+
+.warning {
+  font-size: 14px;
+  display: flex;
+  justify-content: flex-end;
+  color: #333;
+  border-bottom: 2px solid #f2f2f2;
+  padding-bottom: 40px;
+  padding-top: 40px;
+}
+
+.content > * {
+  font-size: 17px;
+  font-weight: normal;
+  line-height: 180%;
+}
+
+.content img {
+  width: 100%;
+}
+
+.recommendContentTitle {
+  margin-top: 40px;
+  color: #333;
+  font-family: Spoqa Han Sans Neo;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.applyButton {
+  display: flex;
+  width: 100%;
+  max-width: 336px;
+  height: 36px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 36px;
+  background: #2fb2f5;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 26px; /* 162.5% */
+  letter-spacing: -0.48px;
+}
+
+.badgeContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.badge {
+  width: fit-content;
+  display: flex;
+  padding: 3.5px 10px;
+  font-size: 13px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  font-weight: 700;
+}
+
+.deadline {
+  width: fit-content;
+  padding: 4px 10px;
+  color: #ea726f;
+  font-size: 12px;
+  letter-spacing: -0.4px;
+  border-radius: 20px;
+  background-color: #ffe8e8;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.recommendContainer {
+  display: flex;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.prev {
+  width: 45px;
+  height: 45px;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 0;
+  margin: 0;
+  border-radius: 100%;
+}
+
+.prevNextImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.next {
+  width: 45px;
+  height: 45px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  border-radius: 100%;
+}
+
+.eventItemContainer {
+  width: 260px;
+  height: auto;
+}

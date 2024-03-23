@@ -1,0 +1,25 @@
+.slick-list {
+  max-width: 1300px;
+  margin: 0 auto !important;
+  border-radius: 30px;
+}
+
+@media screen and (max-width: 1300px) {
+  .slick-list {
+    max-width: 1000px;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .slick-list {
+    max-width: 670px;
+    border-radius: 15px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  /* NOTE:: 전체 carousel에 적용되어서 mobile에서만 적용되게 분기처리 */
+  .slick-list {
+    width: calc(100% - 40px);
+  }
+}

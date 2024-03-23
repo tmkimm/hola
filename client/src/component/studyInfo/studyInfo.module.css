@@ -1,0 +1,103 @@
+.studyGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 3fr);
+  row-gap: 24px;
+  margin-top: 60px;
+}
+
+.contentWrapper {
+  display: flex;
+  position: relative;
+  align-items: center;
+  font-weight: 700;
+  font-size: 20px;
+}
+.title {
+  color: #717171;
+  margin-right: 36px;
+}
+
+.oneLineItem {
+  flex: 1;
+}
+.content {
+  color: #333333;
+}
+
+.language {
+  width: 36px;
+  height: 36px;
+}
+
+.languageImage {
+  width: 36px;
+  height: 36px;
+}
+
+.languageList {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.positions {
+  padding: 6px 10px;
+  background: #f2f4f8;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  color: #4a5e75;
+}
+
+.remains {
+  display: flex;
+  margin-top: 24px;
+}
+
+@media screen and (max-width: 768px) {
+  .allWrapper {
+    border: 1px solid #e1e1e1;
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 13px;
+  }
+
+  .remains {
+    gap: 12px;
+    flex-direction: column;
+    margin-top: 16px;
+  }
+  .studyGrid {
+    margin-top: 0;
+    grid-row-gap: 16px;
+  }
+
+  .contentWrapper {
+    font-size: 13px;
+  }
+
+  .title {
+    margin-right: 10px;
+  }
+
+  .languageList {
+    gap: 6px;
+  }
+
+  .language {
+    width: 28px;
+    height: 28px;
+  }
+
+  .languageImage {
+    width: 28px;
+    height: 28px;
+  }
+
+  .positions {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+}

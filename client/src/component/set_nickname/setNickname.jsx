@@ -1,6 +1,6 @@
-import React from "react";
-import styles from "./setNickname.module.css";
-import TopBarContainer from "component/top_bar_container/topBarContainer";
+import React from 'react';
+import styles from './setNickname.module.css';
+import TopBarContainer from 'component/top_bar_container/topBarContainer';
 
 const SetNickname = ({ nickname, setNickname, handleLoginStep }) => {
   return (
@@ -15,19 +15,15 @@ const SetNickname = ({ nickname, setNickname, handleLoginStep }) => {
         <h3 className={styles.nicknameText}>닉네임</h3>
         <input
           className={styles.nicknameInput}
-          type="text"
-          name="nickNameInput"
+          type='text'
+          name='nickNameInput'
           value={nickname}
           onChange={(e) => {
             setNickname(e.target.value);
           }}
         />
       </div>
-      <button
-        onClick={handleLoginStep}
-        className={styles.buttonNext}
-        name="complete"
-      >
+      <button onClick={handleLoginStep} className={styles.buttonNext} name='complete'>
         다음
       </button>
     </>

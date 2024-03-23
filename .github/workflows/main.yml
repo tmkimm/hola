@@ -29,7 +29,7 @@ jobs:
           echo REACT_APP_GOOGLE_LOGIN_API_KEY=${{ secrets.GOOGLE_API_KEY }} >> .env
           echo REACT_APP_GITHUB_LOGIN_API_KEY=${{ secrets.HUB_API_KEY }} >> .env
           echo REACT_APP_KAKAO_LOGIN_API_KEY=${{ secrets.KAKAO_API_KEY }} >> .env
-          echo REACT_APP_SENTRY_API_KEY=${{ secrets.KAKAO_API_KEY }} >> .env
+          echo REACT_APP_SENTRY_API_KEY=${{ secrets.SENTRY_API_KEY }} >> .env
           cat .env
         working-directory: ${{ env.working-directory }}
 

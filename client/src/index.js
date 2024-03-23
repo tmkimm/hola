@@ -3,17 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {
-  configureStore,
-  combineReducers,
-  getDefaultMiddleware,
-} from '@reduxjs/toolkit';
+import { configureStore, combineReducers, getDefaultMiddleware } from '@reduxjs/toolkit';
 import languageReducer from './store/language';
 import userReducer from './store/user';
 import writeReducer from './store/write';
 import readReducer from './store/read';
+import itFilterReducer from './store/itFilter';
 import loginStepReducer from './store/loginStep';
-import studyReducer from './store/study';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,7 +18,13 @@ import storage from 'redux-persist/lib/storage';
 import { PersistGate } from 'redux-persist/integration/react';
 import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import ReactGA from 'react-ga4';
 
+ReactGA.initialize('G-WJQH1M67X8');
+
+const queryClient = new QueryClient();
 const SentryId = process.env.REACT_APP_SENTRY_API_KEY;
 
 Sentry.init({
@@ -44,7 +46,7 @@ const reducers = combineReducers({
   write: writeReducer,
   read: readReducer,
   loginStep: loginStepReducer,
-  study: studyReducer,
+  itFilter: itFilterReducer,
 });
 
 const _persistedReducer = persistReducer(persistConfig, reducers);
@@ -61,28 +63,29 @@ const store = configureStore({
 
 const persistor = persistStore(store);
 
-//login된 user가 있으면 user redux 갱신
-
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <App />
-        <ToastContainer
-          position='top-right'
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-      </PersistGate>
-    </Provider>
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+          <ToastContainer
+            position='top-right'
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+        </PersistGate>
+      </Provider>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function

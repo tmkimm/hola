@@ -10,13 +10,16 @@ class Study {
     this.study = httpClient;
   }
 
-  getList = async (query, selectedLanguages, pageNumber, checked) => {
+  getList = async (category, selectedLanguages, position, pageNumber, checked, search) => {
+    const queryType = { all: 0, project: 1, study: 2 };
     try {
       const params = {
-        sort: query,
+        sort: '-createdAt',
         offset: pageNumber,
         limit: 20,
         isClosed: checked,
+        type: queryType[category],
+        position,
       };
 
       if (selectedLanguages.length !== 0) {
@@ -24,6 +27,8 @@ class Study {
         const qs = selectedLanguages.map((language) => language).join(',');
         params.language = qs;
       }
+
+      if (search) params.search = search;
 
       const studyList = await this.study.get('posts', {
         params,
@@ -33,6 +38,84 @@ class Study {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  getListPagination = async (
+    selectedLanguages,
+    page,
+    position,
+    category,
+    checked,
+    search,
+    onOffLine,
+  ) => {
+    const queryType = { all: 0, project: 1, study: 2 };
+    try {
+      const params = {
+        page,
+        sort: '-createdAt',
+        position,
+        type: queryType[category],
+        isClosed: checked,
+        onOffLine,
+      };
+
+      if (selectedLanguages.length !== 0) {
+        // 선택된 language가 있으면 language 속성 추가
+        const qs = selectedLanguages.map((language) => language).join(',');
+        params.language = qs;
+      }
+
+      if (search) params.search = search;
+      const studyList = await this.study.get('posts/pagination', {
+        params,
+      });
+
+      return studyList;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  getPageNumber = async (
+    selectedLanguages,
+    page,
+    position,
+    category,
+    checked,
+    search,
+    onOffLine,
+  ) => {
+    const queryType = { all: 0, project: 1, study: 2 };
+    try {
+      const params = {
+        page,
+        sort: '-createdAt',
+        position,
+        type: queryType[category],
+        isClosed: checked,
+        onOffLine,
+      };
+
+      if (selectedLanguages.length !== 0) {
+        // 선택된 language가 있으면 language 속성 추가
+        const qs = selectedLanguages.map((language) => language).join(',');
+        params.language = qs;
+      }
+
+      if (search) params.search = search;
+      const studyList = await this.study.get('posts/last-page', {
+        params,
+      });
+
+      return studyList;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  getTrendings = () => {
+    return this.study.get('/posts/top');
   };
 
   getDetail = async (id) => {
@@ -52,12 +135,32 @@ class Study {
       console.error(e);
     }
   };
-  register = async ({ title, content, language }) => {
+  register = async ({
+    title,
+    content,
+    startDate,
+    type,
+    recruits,
+    onlineOrOffline,
+    contactType,
+    contactPoint,
+    expectedPeriod,
+    language,
+    positions,
+  }) => {
     try {
       const response = await this.study.post('posts', {
         title,
         content,
         language,
+        startDate,
+        type,
+        recruits,
+        onlineOrOffline,
+        contactType,
+        contactPoint,
+        expectedPeriod,
+        positions,
       });
       return response;
     } catch (error) {
@@ -65,12 +168,33 @@ class Study {
     }
   };
 
-  modify = async (id, title, content, language) => {
+  modify = async ({
+    postId,
+    title,
+    content,
+    language,
+    startDate,
+    type,
+    recruits,
+    onlineOrOffline,
+    contactType,
+    contactPoint,
+    expectedPeriod,
+    positions,
+  }) => {
     try {
-      const response = await this.study.patch(`posts/${id}`, {
+      const response = await this.study.patch(`posts/${postId}`, {
         title,
         content,
         language,
+        startDate,
+        type,
+        recruits,
+        onlineOrOffline,
+        contactType,
+        contactPoint,
+        expectedPeriod,
+        positions,
       });
       return response;
     } catch (error) {
@@ -128,10 +252,7 @@ class Study {
       });
       return response;
     } catch (error) {
-      //console.log(error.response.status);
       return error.response.status;
-      //console.log("error from console.log", error);
-      //return
     }
   };
 
@@ -146,7 +267,6 @@ class Study {
 
   addLikes = async (postId) => {
     try {
-      // console.log("postId : " + postId);
       const response = await this.study.post('posts/likes', {
         postId,
       });
@@ -187,42 +307,36 @@ class Study {
     }
   };
 
-  uploadImageToS3 = async (presignedUrl, file) => {
-    const response = await fetch(
-      new Request(presignedUrl, {
-        method: 'PUT',
-        body: file,
-        headers: new Headers({
-          'Content-Type': 'image/png',
-        }),
-      })
-    );
+  uploadImageToS3WithBase64 = async (presignedUrl, file, fileName) => {
+    const arr = file.split(',');
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    const n = bstr.length;
+    const u8arr = new Uint8Array(n);
 
-    if (response.status !== 200) {
-      // The upload failed, so let's notify the caller.
-      //onError();
-      console.log('error occured!');
-      return;
+    for (let i = 0; i < n; i++) {
+      u8arr[i] = bstr.charCodeAt(i);
     }
-    return 'hehe success';
+
+    const imageFile = new File([u8arr], fileName, { type: mime });
+    const response = await fetch(presignedUrl, {
+      method: 'PUT',
+      body: imageFile,
+      headers: {
+        'Content-Type': imageFile.type,
+      },
+    });
+    return response;
   };
 
-  uploadImageToS3WithBase64 = async (presignedUrl, file, fileName) => {
-    // console.log("=======at base64==========");
-    // console.log("pre : ", presignedUrl);
-    // console.log("fileName: ", fileName);
-    // console.log("=======at base64==========");
-    let arr = file.split(','),
-      mime = arr[0].match(/:(.*?);/)[1],
-      bstr = atob(arr[1]),
-      n = bstr.length,
-      u8arr = new Uint8Array(n);
-
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
-    }
-    const imageFile = new File([u8arr], fileName, { type: mime });
-    const response = await this.uploadImageToS3(presignedUrl, imageFile);
+  uploadImageToS3 = async (presignedUrl, file, fileName) => {
+    const response = await fetch(presignedUrl, {
+      method: 'PUT',
+      body: file,
+      headers: {
+        'Content-Type': file.type,
+      },
+    });
     return response;
   };
 }

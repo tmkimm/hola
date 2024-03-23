@@ -1,0 +1,93 @@
+.noticeWrapper {
+  cursor: default;
+  width: 360px;
+  min-height: 480px;
+  max-height: 480px;
+  overflow-y: scroll;
+  padding: 0;
+  position: absolute;
+  z-index: 1000;
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.15);
+  margin-top: 16px;
+  right: 12px;
+  top: 100%;
+}
+
+.noticeHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 16px;
+  font-weight: 400;
+  color: black;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 0px;
+  border-bottom: 1px solid #d7e2eb;
+}
+
+.noticeBody {
+  list-style: none;
+}
+
+.noticeTitleWrapper {
+  border-bottom: 1px solid #d7e2eb;
+  padding: 10px 16px;
+}
+
+.noticeLink {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.exitWrapper {
+  display: flex;
+  font-size: 24px;
+  color: rgb(134, 142, 150);
+  cursor: pointer;
+}
+
+.noticeTitle {
+  font-weight: 500;
+}
+
+.noticeContent {
+}
+
+.noticeText {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 16px;
+  text-decoration-line: underline;
+  text-decoration-color: #4a5e75;
+}
+
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  color: #4a5275;
+}
+
+.isRead {
+  opacity: 0.3;
+}
+
+@media (max-width: 575px) {
+  .noticeWrapper {
+    min-width: 100vw;
+    min-height: 100vh;
+    margin-top: 0;
+    left: 0;
+    top: 0;
+  }
+
+  .modalHeader {
+    background: #f8f9fa;
+    padding: 0 1rem;
+    border-radius: 0;
+  }
+}

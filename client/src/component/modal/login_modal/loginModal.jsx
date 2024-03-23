@@ -1,11 +1,11 @@
-import React from "react";
-import styles from "./loginModal.module.css";
-import { useSelector } from "react-redux";
-import SocialLoginContainer from "component/social_login_container/socialLoginContainer";
-import SetNicknameContainer from "component/set_nickname_container/setNicknameContainer";
-import SetInterestContainer from "component/set_interest_container/setInterestContainer";
-import SetImageContainer from "component/set_image_container/setImageContainer";
-import SignupEnd from "component/signup_end/signupEnd";
+import React from 'react';
+import styles from './loginModal.module.css';
+import { useSelector } from 'react-redux';
+import SocialLoginContainer from 'component/social_login_container/socialLoginContainer';
+import SetNicknameContainer from 'component/set_nickname_container/setNicknameContainer';
+import SetInterestContainer from 'component/set_interest_container/setInterestContainer';
+import SignupEnd from 'component/signup_end/signupEnd';
+import SetLanguage from 'component/set_language/setLanguage';
 /* 
 
 LoginModal Component
@@ -17,15 +17,12 @@ loginStep에 따라
 true면 <SocialLogin>, false면 <SignUp>
 component를 rendering 합니다.
 
-to-do
-꼭 modalvisible이 전역 state로 관리가 되어야 하는가?
-
 */
 
 const SOCIAL_LOGIN = 1;
 const SET_NICKNAME = 2;
 const SET_INTEREST = 3;
-const SET_IMAGE = 4;
+const SET_LANGUAGE = 4;
 const SIGNUP_END = 5;
 
 const LoginModal = ({ handleClose }) => {
@@ -33,17 +30,13 @@ const LoginModal = ({ handleClose }) => {
   const renderByLoginStep = (loginStep) => {
     switch (loginStep) {
       case SOCIAL_LOGIN:
-        return (
-          <SocialLoginContainer
-            handleClose={handleClose}
-          ></SocialLoginContainer>
-        );
+        return <SocialLoginContainer handleClose={handleClose} />;
       case SET_NICKNAME:
         return <SetNicknameContainer />;
       case SET_INTEREST:
-        return <SetInterestContainer></SetInterestContainer>;
-      case SET_IMAGE:
-        return <SetImageContainer></SetImageContainer>;
+        return <SetInterestContainer />;
+      case SET_LANGUAGE:
+        return <SetLanguage />;
       case SIGNUP_END:
         return <SignupEnd handleClose={handleClose}></SignupEnd>;
       default:
@@ -53,23 +46,19 @@ const LoginModal = ({ handleClose }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.modalHeader}>
-        <img
-          className={styles.logo}
-          src="/images/logo/hola_logo_y.png"
-          alt="welcome"
-        ></img>
+        <img className={styles.logo} src='/images/logo/hola_logo_y.png' alt='welcome'></img>
         <div className={styles.exitWrapper} onClick={handleClose}>
           <svg
-            stroke="currentColor"
-            fill="currentColor"
-            strokeWidth="0"
-            viewBox="0 0 24 24"
-            tabIndex="1"
-            height="1em"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
+            stroke='currentColor'
+            fill='currentColor'
+            strokeWidth='0'
+            viewBox='0 0 24 24'
+            tabIndex='1'
+            height='1em'
+            width='1em'
+            xmlns='http://www.w3.org/2000/svg'
           >
-            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+            <path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'></path>
           </svg>
         </div>
       </div>

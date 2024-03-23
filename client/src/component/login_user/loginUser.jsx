@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import styles from "./loginUser.module.css";
-import { useSelector } from "react-redux";
-import DropdownBar from "component/dropdown_bar/dropdownBar";
+import React, { useEffect, useState } from 'react';
+import styles from './loginUser.module.css';
+import { useSelector } from 'react-redux';
+import DropdownBar from 'component/dropdown_bar/dropdownBar';
+import { useMediaQuery } from 'react-responsive';
 
 /* 
 
@@ -10,50 +11,44 @@ User 정보와 새 글쓰기, Dropdown Bar button을 rendering 합니다.
 
 */
 const LoginUser = React.memo(() => {
+  const isMobile = useMediaQuery({ query: '(max-width: 400px)' });
   const user = useSelector((state) => state.user);
   const [menuVisible, setMenuVisible] = useState(false);
-  const menuRef = useRef(); // menuRef를 통해서 menu 영역이 click되었는지 판단하고, 외부 영역 클릭시 메뉴 사라짐
 
   const handleLoginUserClick = () => {
-    // dropdown control
     setMenuVisible((menuVisible) => !menuVisible);
   };
 
-  const handleCloseMenu = useCallback(
-    (e) => {
-      if (
-        menuVisible &&
-        (!menuRef.current || !menuRef.current.contains(e.target))
-      )
-        //dropdown이 켜져 있고 dropdown영역 외부 click시 dropdown menu 제거
-        setMenuVisible(false);
-    },
-    [menuVisible, menuRef]
-  );
+  const handleCloseMenu = () => {
+    if (menuVisible) setMenuVisible(false);
+  };
 
   useEffect(() => {
-    window.addEventListener("click", handleCloseMenu);
+    window.addEventListener('click', handleCloseMenu);
     return () => {
-      window.removeEventListener("click", handleCloseMenu);
+      window.removeEventListener('click', handleCloseMenu);
     };
   }, [handleCloseMenu]);
 
   return (
     <div className={styles.userWrapper} onClick={handleLoginUserClick}>
-      <div className={styles.userName}>{user.nickName}</div>
-      <img className={styles.userImg} src={user.imageUrl} alt="userImg" />
-      <svg
-        stroke="currentColor"
-        fill="currentColor"
-        strokeWidth="0"
-        viewBox="0 0 24 24"
-        height="1em"
-        width="1em"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d="M7 10l5 5 5-5z"></path>
-      </svg>
-      {menuVisible && <DropdownBar></DropdownBar>}
+      {isMobile ? (
+        <img className={styles.menuIcon} src={'/images/info/menu.png'} alt='menu' />
+      ) : (
+        <>
+          <img className={styles.userImg} src={user.imageUrl} alt='userImg' />
+          <svg
+            strokeWidth='0'
+            viewBox='0 0 24 24'
+            height='16px'
+            width='16px'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path d='M7 10l5 5 5-5z'></path>
+          </svg>
+        </>
+      )}
+      {menuVisible && <DropdownBar />}
     </div>
   );
 });

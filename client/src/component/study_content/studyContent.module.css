@@ -1,5 +1,6 @@
 .wrapper {
-  width: 48rem;
+  max-width: 900px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   margin-top: 5rem;
@@ -12,7 +13,7 @@
   font-size: 1rem;
 }
 
-.modalComment {
+.commentAndViews {
   display: flex;
   flex-direction: column;
   background: white;
@@ -46,6 +47,7 @@
   border-bottom: 2px solid #dcdcdc;
   margin-top: 2rem;
 }
+
 .postHeader {
   display: flex;
   flex-direction: column;
@@ -56,13 +58,14 @@
   display: flex;
   align-items: center;
   position: relative;
-  margin-top: 2rem;
+  transition: transform 0.2s ease-in-out;
 }
 
 .userName {
+  color: #333333;
   cursor: pointer;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .userImg {
@@ -70,25 +73,32 @@
   display: block;
   height: 3rem;
   width: 3rem;
-  margin-right: 0.25rem;
-  box-shadow: rgb(0 0 0 / 9%) 0px 0px 8px;
+  margin-right: 8px;
   border-radius: 50%;
   object-fit: cover;
-  transition: all 0.125s;
 }
 
-.userImg:hover {
-  scale: 1.1;
+.seperator {
+  width: 2px;
+  height: 20px;
+  background-color: #e2e2e2;
+}
+
+.user:hover {
+  transform: scale(1.05);
 }
 
 .userAndDate {
+  margin-top: 32px;
+  padding-bottom: 32px;
+  border-bottom: 3px solid #f2f2f2;
   display: flex;
-  justify-content: space-between;
+  gap: 15px;
   align-items: center;
 }
 
 .postContentWrapper {
-  margin-top: 5rem;
+  margin-top: 132px;
   font-size: 1.125rem;
   word-break: break-all;
   line-height: 1.7;
@@ -97,13 +107,7 @@
 
 .postContent {
   width: 100%;
-  margin: 0 auto;
-}
-
-.postComment {
-  width: 100%;
-  min-height: 800px;
-  margin: 0 auto;
+  margin: 40px auto 0;
 }
 
 .logo {
@@ -123,59 +127,24 @@
 }
 
 .registeredDate {
-  font-size: 1.25rem;
-  line-height: 126.5%; /* or 19px */
-  margin-top: 1.5rem;
-  letter-spacing: -0.005em;
-  color: #8c8c8c;
+  font-size: 18px;
+  color: #717171;
 }
 
 .title {
-  margin-top: 2.5rem;
+  margin-top: 40px;
   font-weight: 800;
-  font-size: 3rem;
+  font-size: 36px;
   line-height: 126.5%; /* or 48px */
   letter-spacing: -0.005em;
   color: #000000;
 }
 
-@media screen and (max-width: 768px) {
-  .wrapper {
-    width: 100%;
-  }
-  .title {
-    font-size: 2rem;
-  }
-}
-
-@media screen and (max-width: 575px) {
-  .title {
-    font-size: 1.5rem;
-  }
-  .usedLanguageWrapper {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .usedLanguageInfo {
-    font-size: 1rem;
-  }
-  .userImg {
-    width: 2rem;
-    height: 2rem;
-  }
-  .userName {
-    font-size: 1rem;
-  }
-  .registeredDate {
-    font-size: 1rem;
-  }
-  .languageItem {
-    margin-right: 0.25rem;
-    background: #dce2f0;
-    border: 2px solid #dce2f0;
-    border-radius: 58px;
-    padding: 0.15rem 0.6rem;
-    margin-bottom: 1rem;
-    font-weight: 500;
-  }
+.postInfo {
+  margin: 0;
+  color: #333333;
+  font-size: 26px;
+  font-weight: 700;
+  padding-bottom: 24px;
+  border-bottom: 3px solid #f2f2f2;
 }

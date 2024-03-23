@@ -1,0 +1,11 @@
+.user {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.userImg {
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+}

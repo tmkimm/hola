@@ -1,0 +1,32 @@
+.categories {
+  display: flex;
+  gap: 30px;
+  border-bottom: 3px solid #f2f2f2;
+  padding-bottom: 10px;
+  padding-left: 16px;
+  margin-bottom: 25px;
+}
+
+.categoryItem {
+  display: flex;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 126.5%;
+  color: #848484;
+  cursor: pointer;
+  position: relative;
+}
+
+.selectedCategory {
+  color: #333333;
+}
+
+.selectedCategory::after {
+  content: '';
+  position: absolute;
+  height: 3px;
+  width: calc(100% + 26px);
+  background: #ffe579;
+  left: -13px;
+  bottom: -12px;
+}

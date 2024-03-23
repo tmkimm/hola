@@ -7,7 +7,7 @@
   flex-direction: column;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgb(233, 236, 239);
+  border-bottom: 2px solid #e1e1e1;
 }
 
 .commentHeader {
@@ -17,6 +17,14 @@
 
 .avatarWrapper {
   display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.avatarWrapper:hover {
+  transform: scale(1.05);
 }
 
 .commentInfo {
@@ -31,35 +39,23 @@
 
 .userImg {
   display: block;
-  height: 3rem;
-  width: 3rem;
-  margin-right: 0.5rem;
-  box-shadow: rgb(0 0 0 / 9%) 0px 0px 8px;
+  width: 52px;
+  height: 52px;
+  margin-right: 16px;
   border-radius: 50%;
   object-fit: cover;
-  transition: all 0.125s ease-in 0s;
 }
 
 .userNickname {
-  font-weight: 600;
+  color: #333333;
+  font-weight: 700;
 }
 
 .registeredDate {
-  font-size: 1rem;
+  font-size: 14px;
   line-height: 126.5%; /* or 19px */
   letter-spacing: -0.005em;
-  color: #8c8c8c;
-}
-
-.commentInput input {
-  border-color: hsl(0, 0%, 80%);
-  border-radius: 4px;
-  border-style: solid;
-  border-width: 1px;
-  font-size: large;
-  width: 40rem;
-  height: 3rem;
-  padding: 0px;
+  color: #9f9f9f;
 }
 
 .commentInputButton {
@@ -81,7 +77,7 @@
   line-height: 1.7;
   letter-spacing: -0.004em;
   word-break: break-all;
-  overflow-wrap: break-word;
+  overflow-wrap: break-all;
 }
 
 .buttonComplete {
@@ -94,16 +90,24 @@
   background: cancelBackground;
 }
 
-hr {
-  border: 0;
-  display: block;
-  width: 98%;
-  background-color: #808080;
-  height: 1px;
+.modifyInput {
+  width: 100%;
+  border-radius: 8px;
+  padding: 8px 12px;
+  border: 1px solid #e1e1e1;
+  outline: none;
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 800px) {
   .commentContent {
     font-size: 1rem;
+  }
+
+  .avatarWrapper {
+    margin-bottom: 8px;
+  }
+
+  .commentContent {
+    padding-bottom: 30px;
   }
 }

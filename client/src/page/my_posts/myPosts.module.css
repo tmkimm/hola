@@ -6,7 +6,6 @@
 
 .pageWrapper {
   padding-top: 5rem;
-  background-color: #f8f9fa;
 }
 
 .main {
@@ -40,13 +39,7 @@
 
 @media screen and (max-width: 1919px) {
   .myLikes {
-    width: 1040px;
-  }
-}
-
-@media screen and (max-width: 1440px) {
-  .myLikes {
-    width: 780px;
+    width: 1200px;
   }
 }
 

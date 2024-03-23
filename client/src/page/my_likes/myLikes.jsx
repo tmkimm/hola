@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import Navbar from "component/nav_bar/navbar";
-import StudyList from "component/study_list/studyList";
-import userService from "service/user_service";
-import styles from "./myLikes.module.css";
-import { MdFavorite } from "react-icons/md";
-import { FaBook } from "react-icons/fa";
-import { toast } from "react-toastify";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import Navbar from 'component/nav_bar/navbar';
+import StudyList from 'component/study_list/studyList';
+import userService from 'service/user_service';
+import styles from './myLikes.module.css';
+import { MdFavorite } from 'react-icons/md';
+import { FaBook } from 'react-icons/fa';
+import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
+import { HolaLogEvent } from 'common/GA';
 
 /*
 
@@ -16,8 +17,8 @@ component rendering시 useEffect를 통해 render할 post list를 받아옵니�
 
 */
 
-const SHOW_BY_LIKES = "likes";
-const SHOW_BY_READS = "reads";
+const SHOW_BY_LIKES = 'likes';
+const SHOW_BY_READS = 'reads';
 const ACTIVE = styles.active;
 const INACTIVE = styles.inactive;
 
@@ -36,18 +37,18 @@ const MyLikes = (props) => {
 
   useEffect(() => {
     if (userId === undefined) {
-      toast.error("로그인이 필요한 페이지입니다.", {
-        position: "top-right",
+      toast.error('로그인이 필요한 페이지입니다.', {
+        position: 'top-right',
         autoClose: 3000,
       });
-      history.push("/");
+      history.push('/');
     }
     userService.getUserLikeList(userId).then((res) => {
-      setLikeList((state) => res.data.likePosts);
+      setLikeList((state) => res.data.posts);
     });
 
     userService.getUserReadList(userId).then((res) => {
-      setReadList((state) => res.data.readList);
+      setReadList((state) => res.data);
     });
   }, [userId, history]);
 
@@ -73,12 +74,16 @@ const MyLikes = (props) => {
                 className={`${styles.category__item} ${
                   category === SHOW_BY_READS ? INACTIVE : ACTIVE
                 }`}
-                onClick={() => toggleCategory(SHOW_BY_LIKES)}
+                onClick={() => {
+                  toggleCategory(SHOW_BY_LIKES);
+                  HolaLogEvent('highfive_list');
+                }}
               >
                 <MdFavorite />
-                <span className={styles.text}>좋아요 목록</span>
+                <span className={styles.text}>관심 목록</span>
               </div>
             </section>
+            <div className={styles.seperator} />
             {category === SHOW_BY_LIKES ? (
               <StudyList studyList={likeList}></StudyList>
             ) : (

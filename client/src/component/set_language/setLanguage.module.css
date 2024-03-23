@@ -1,0 +1,106 @@
+@value registerBackground from '../../common/color.css';
+
+.logo {
+  width: 4rem;
+  height: auto;
+  display: block;
+}
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  margin-bottom: 16px;
+}
+
+.careerWrapper {
+  display: flex;
+  align-items: center;
+  width: 80%;
+}
+
+.nicknameInput {
+  border-color: hsl(0, 0%, 80%);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  font-size: large;
+  width: 20rem;
+  height: 3rem;
+  padding-left: 1rem;
+}
+
+.inputWrapper h3 {
+  margin-right: 16px;
+  font-size: 16px;
+  width: 20%;
+}
+
+.careerWrapper h3 {
+  margin-right: 16px;
+  font-size: 16px;
+  width: 20%;
+}
+
+.title {
+  margin-top: 4rem;
+  text-align: center;
+  animation-duration: 4s;
+  animation-name: opacityAnimation;
+  margin-bottom: 32px;
+}
+
+.buttonNext {
+  margin-top: 5rem;
+  font-weight: bold;
+  color: white;
+  border-radius: 4px;
+  width: 6rem;
+  height: 2.5rem;
+  font-size: 1.25rem;
+  background-color: registerBackground;
+}
+
+.likeLanguageWrapper {
+  width: 100%;
+}
+
+@keyframes opacityAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .title {
+    font-size: 1.125rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .inputWrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .inputWrapper h3 {
+    width: 100%;
+  }
+
+  .inputLabel {
+    margin-bottom: 8px;
+  }
+
+  .careerWrapper h3 {
+    margin-right: 16px;
+    font-size: 16px;
+    width: 20%;
+  }
+}

@@ -1,0 +1,57 @@
+.selectedWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 30px;
+}
+
+.selectedLanguages {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.languageName {
+  color: #313131;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.selectedLanguage {
+  display: flex;
+  gap: 10px;
+  background: #f2f2f2;
+  padding: 5px 10px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all ease-in 100ms;
+}
+
+.initializeIcon {
+  display: block;
+  width: 12px;
+  height: 12px;
+}
+
+.selectedLanguage:hover {
+  transform: scale(1.02);
+}
+
+.resetContainer {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.resetFilter {
+  color: #777;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%; /* 14px */
+  letter-spacing: -0.42px;
+  cursor: pointer;
+}

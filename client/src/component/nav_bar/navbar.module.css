@@ -1,7 +1,10 @@
 .navbar {
+  margin: auto;
+  max-width: 1281px;
   display: flex;
   justify-content: space-between;
-  padding: 1.5rem;
+  align-items: center;
+  height: 85px;
 }
 
 button {
@@ -13,22 +16,22 @@ button {
 
 .loginElementWrapper {
   display: flex;
-  margin-right: 1rem;
+  gap: 30px;
+  align-items: center;
 }
 
 .logo {
-  width: 4.5rem;
+  width: 105px;
   height: auto;
 }
 
 .login {
-  margin-right: 2rem;
   font-weight: 600;
   font-size: 1.125rem;
+  color: black;
 }
 
 .postRegister {
-  margin-right: 2rem;
   font-weight: 600;
   font-size: 1.125rem;
 }
@@ -39,14 +42,34 @@ button {
   font-size: 1.5rem;
 }
 
+.backBtn {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 575px) {
+  .navbar {
+    height: 60px;
+    padding: 0 20px;
+  }
+
+  .logo {
+    width: 80px;
+    height: auto;
+  }
+
   .postRegister {
     display: none;
   }
   .loginElementWrapper {
     margin-right: 0;
+    gap: 12px;
   }
   .login {
     margin-right: 0;
+  }
+  .navbar {
+    position: relative;
   }
 }

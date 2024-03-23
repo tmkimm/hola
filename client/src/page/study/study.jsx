@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import LoadingSpinner from 'component/loading/loadingSpinner';
 import Modal from 'component/modal/modal_component/modal';
-import Navbar from 'component/nav_bar/navbar';
 import StudyContent from 'component/study_content/studyContent';
 import { clearPost, readPost } from 'store/read';
 
@@ -22,7 +21,6 @@ const Study = () => {
 
   return (
     <>
-      <Navbar />
       {read.loading === 'idle' ? (
         <Modal visible={true} name='loading'>
           <LoadingSpinner />

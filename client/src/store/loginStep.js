@@ -1,13 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
-
-/* 
-
-loginStep
-
-login을 위한 modal visibility와 
-loginStep(social login, signUp)을 관리하는 redux 입니다.
-
-*/
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   modalVisible: false,
@@ -15,10 +6,12 @@ const initialState = {
   nickName: undefined,
   id: undefined,
   likeLanguages: [],
+  position: '',
+  workExperience: '',
 };
 
 const loginstepSlice = createSlice({
-  name: "loginStep",
+  name: 'loginStep',
   initialState,
   reducers: {
     nextStep: (state, action) => ({
@@ -41,11 +34,6 @@ const loginstepSlice = createSlice({
   },
 });
 
-export const {
-  nextStep,
-  previousStep,
-  clearStep,
-  setSignUpUser,
-  setModalVisible,
-} = loginstepSlice.actions;
+export const { nextStep, previousStep, clearStep, setSignUpUser, setModalVisible } =
+  loginstepSlice.actions;
 export default loginstepSlice.reducer;

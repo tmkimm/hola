@@ -1,0 +1,10 @@
+.selectWrapper {
+  position: absolute;
+  right: 230px;
+}
+
+@media screen and (max-width: 900px) {
+  .selectWrapper {
+    display: none;
+  }
+}

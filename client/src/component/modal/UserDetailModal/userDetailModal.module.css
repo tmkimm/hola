@@ -1,0 +1,250 @@
+.wrapper {
+  width: 520px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fff;
+  border-radius: 30px;
+}
+
+.upSection {
+  border-radius: 30px 30px 0 0;
+  padding: 50px 50px 40px 50px;
+  height: 170px;
+  background: #f5f5f5;
+  position: relative;
+}
+
+.modalHeader {
+  display: flex;
+  height: 30px;
+  margin-bottom: 50px;
+  justify-content: flex-end;
+}
+
+.backButton {
+  display: block;
+  width: 30px;
+  height: 30px;
+}
+
+.position {
+  color: #6ed1c0;
+  font-size: 18px;
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 126.5%;
+  letter-spacing: -0.54px;
+}
+
+.workExperience {
+  color: #777;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 126.5%;
+  letter-spacing: -0.54px;
+}
+
+.introduces {
+  overflow: scroll;
+  max-height: 100px;
+  white-space: pre-line;
+}
+
+.introduces::-webkit-scrollbar {
+  display: none;
+}
+
+.organizationName {
+  color: #777;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 126.5%;
+  letter-spacing: -0.54px;
+}
+
+.avatarContainer {
+  position: absolute;
+  top: 93px;
+  left: 200px;
+  z-index: 5;
+}
+
+.avatar {
+  display: block;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 1px solid #e1e1e1;
+}
+
+.nickname {
+  width: 100%;
+  color: #000;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 126.5%;
+  letter-spacing: -0.72px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.modalContent {
+  background: white;
+  padding: 75px 50px 40px 50px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 0 0 30px 30px;
+}
+
+.careerInfo {
+  margin-bottom: 30px;
+  display: flex;
+  gap: 10px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.careerInfo::-webkit-scrollbar {
+  display: none;
+}
+
+.likeLanguagesConatiner {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  max-width: 100%;
+  overflow-x: scroll;
+}
+
+.likeLanguagesConatiner::-webkit-scrollbar {
+  display: none;
+}
+
+.likeLanguages {
+  display: flex;
+  gap: 10px;
+}
+
+.languagesText {
+  min-width: 62px;
+  margin-right: 15px;
+  color: #4a5e75;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 180%; /* 28.8px */
+  letter-spacing: -0.48px;
+}
+
+.languageItem {
+  padding: 5px 10px;
+  border-radius: 10px;
+  background: #f2f4f8;
+  color: #4a5e75;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.urls {
+  display: flex;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.urlItem {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    width: 334px;
+    height: 400px;
+    top: 40%;
+    transform: translateY(-50%);
+    border-radius: 0px;
+  }
+
+  .upSection {
+    padding: 50px 30px 40px 30px;
+    background-color: #fff;
+  }
+
+  .nickname {
+    font-size: 18px;
+  }
+
+  .avatar {
+    display: block;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    border: 1px solid #e1e1e1;
+  }
+
+  .avatarContainer {
+    position: absolute;
+    top: 100px;
+    left: 130px;
+    z-index: 5;
+  }
+
+  .modalContent {
+    border-radius: 0;
+    padding: 25px 24px 35px 24px;
+  }
+
+  .position {
+    font-size: 14px;
+  }
+  .workExperience {
+    font-size: 14px;
+  }
+  .organizationName {
+    font-size: 14px;
+  }
+
+  .languagesText {
+    min-width: 54px;
+  }
+
+  .careerInfo {
+    margin-bottom: 25px;
+  }
+
+  .languagesText {
+    font-size: 14px;
+    margin-right: 10px;
+  }
+
+  .languageItem {
+    font-size: 12px;
+  }
+
+  .introduces {
+    font-size: 14px;
+  }
+
+  .urls {
+    margin-top: 25px;
+  }
+
+  .urlItem {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+}

@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router";
-import studyService from "service/study_service";
-import styles from "./recommendPost.module.css";
+import { HolaLogEvent } from 'common/GA';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+import studyService from 'service/study_service';
+import styles from './recommendPost.module.css';
 
 const RecommendPost = ({ id }) => {
   const [posts, setPosts] = useState([]);
-  const nickname = useSelector((state) => state.user.nickName) || "방문자";
+  const nickname = useSelector((state) => state.user.nickName) || '방문자';
   const history = useHistory();
   useEffect(() => {
     studyService.getRecommendedPost(id).then((data) => setPosts(data));
   }, [id]);
 
-  const onclick = (id) => {
+  const handlePostClick = (id, title) => {
     history.push(`/study/${id}`);
+    HolaLogEvent('recommend_list', { category: title });
   };
 
   return (
@@ -33,7 +35,7 @@ const RecommendPost = ({ id }) => {
             <li
               className={styles.postList}
               key={post._id}
-              onClick={() => onclick(post._id)}
+              onClick={() => handlePostClick(post._id, post.title)}
             >
               <div className={styles.index}>{`${idx + 1}.`}</div>
               <div className={styles.title}>{post.title}</div>
