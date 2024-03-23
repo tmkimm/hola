@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import FullCalendar from '@fullcalendar/react';
 import * as S from '../styled';
@@ -12,17 +12,32 @@ import { useModalState } from 'hooks/useModalCustom';
 import EventDetailModal from '../../EventDetailModal';
 import { useGetUserLikes } from 'domains/eventPage/hooks/useGetUserLikes';
 import { makeQueryString } from 'domains/eventPage/utils/makeQueryString';
+import { useHistory } from 'react-router-dom';
 
 const DesktopCalendarView = () => {
   const filterState = useSelector((state) => state.itFilter);
   const { year, month, search, eventType, onOffline, isLiked } = filterState;
 
   const [currentId, setCurrentId] = useState(null);
+  const history = useHistory();
   const { modalVisible, openModal, closeModal } = useModalState();
   const dispatch = useDispatch();
   const calendarRef = useRef(null);
   const { data } = useGetMainCalendarEvent({ year, month, search, eventType, onOffline });
   const { data: likesData } = useGetUserLikes(isLiked);
+
+  useEffect(() => {
+    const unlisten = history.listen((location, action) => {
+      if (action === 'POP') {
+        console.log('사용자가 브라우저 뒤로가기를 클릭했습니다.');
+        handleClose();
+      }
+    });
+
+    return () => {
+      unlisten();
+    };
+  }, [history]);
 
   const handleClose = () => {
     window.history.replaceState(null, 'modal title', `/hola-it?${makeQueryString(filterState)}`);

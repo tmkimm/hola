@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useModalState } from 'hooks/useModalCustom';
 import EventDetailModal from '../EventDetailModal';
 import EventItemView from '../EventItemView';
@@ -14,6 +14,16 @@ const EventItem = ({ eventInfo, getNextId, getPrevId }) => {
   const [currentId, setCurrentId] = useState(_id);
   const filterState = useSelector((state) => state.itFilter);
   const { modalVisible, openModal, closeModal } = useModalState();
+
+  useEffect(() => {
+    const unlisten = history.listen((location, action) => {
+      if (action === 'POP') handleClose();
+    });
+
+    return () => {
+      unlisten();
+    };
+  }, [history]);
 
   const handleClose = () => {
     window.history.replaceState(null, 'modal title', `/hola-it?${makeQueryString(filterState)}`);
